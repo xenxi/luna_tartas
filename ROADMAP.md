@@ -9,7 +9,7 @@
 - Se ejecuta exclusivamente la tarea solicitada; no se anticipa la siguiente.
 - `DONE` exige todos los criterios y verificaciones en `PASS`, con evidencia registrada aquí.
 - Orden normal: de arriba abajo. Una tarea posterior sólo puede comenzar si todas sus dependencias están `DONE`.
-- **Siguiente tarea:** `M1.5 — Pipeline base de GitHub Pages`.
+- **Siguiente tarea:** `M2.1 — Schemas de taxonomías`.
 
 ## Gates de programa
 
@@ -147,7 +147,7 @@
 
 ## M1.5 — Pipeline base de GitHub Pages
 
-**Estado:** IN_PROGRESS
+**Estado:** DONE
 **Objetivo:** demostrar que un artefacto estático verificable puede desplegarse sin cortar el dominio.  
 **Alcance:** workflow Pages oficial, permisos/concurrencia, configuración `site`, artifact y smoke de URL técnica; documentar preview/rollback real.  
 **Fuera de alcance:** cambio DNS, producción, contenido final o redirects históricos.  
@@ -158,7 +158,7 @@
 **Verificación:** run Actions, inspección de logs/artifact por datos sensibles, HTTP smoke y procedimiento de rollback ensayado/documentado.  
 **Modelo recomendado:** LUNA → SOL REVIEW.  
 **Razón del modelo:** implementación estándar con revisión por riesgo operacional.  
-**Evidencia:** —
+**Evidencia:** PASS (2026-08-15) — `.github/workflows/deploy.yml` publica sólo `main` mediante jobs `build -> deploy`, environment `github-pages`, concurrencia no cancelable y permisos mínimos separados (`contents: read`; `pages: write` + `id-token: write`). `checkout`, `setup-node`, `configure-pages`, `upload-pages-artifact` y `deploy-pages` están fijadas a SHA; el checkout verifica `HEAD == GITHUB_SHA`, la suite contractual precede al build, el `base_path` técnico no altera el canonical apex y un scan sin eco bloquea material sensible antes del upload. Pages se habilitó con source `workflow`, sin CNAME, secrets ni cambios DNS. [Run público 31907524015, intento 2](https://github.com/xenxi/luna_tartas/actions/runs/31907524015) sobre el commit público `76882362bc39d89ed9f6ad2d34f19023aa888f29`: build PASS, deploy PASS y smoke PASS. API pública: un único artifact `github-pages` (ID `9252778368`, 510 bytes, digest `sha256:3ff6ed3b59033ed4f436a817d73d90811c95083e267c6a0dbe2050f4137e0f34`) ligado al mismo SHA. Auditoría autenticada y temporal de artifact/logs: 0 patrones de credenciales; los archivos se eliminaron tras inspección. Smoke independiente de `https://xenxi.github.io/luna_tartas/`: HTTP 200, `<main>` presente, canonical `https://lunatartas.es/` y 0 patrones sensibles. Ensayo local montando el artifact bajo `/luna_tartas/`: PASS; el fallo seguro inicial con Pages deshabilitado y la reejecución del mismo SHA tras habilitar source `workflow` ensayan la recuperación inmediata. Rollback permanente por revert hacia delante y preview sin deploy de PR documentados en `docs/architecture/deployment.md`. `npm ci`, `npm run lint`, `npm run format`, `npm run typecheck` (0 errores/warnings/hints), `npm test` (2 archivos, 16 tests), build técnico, parse/inspección del workflow, scan del artifact y `git diff --check`: PASS.
 
 ---
 
@@ -1126,3 +1126,4 @@ No avanzar a la siguiente milestone.
 - 2026-08-15 — M1.2 completada: Node/npm actualizados a las versiones contractuales, harness de lint/formato/Vitest integrado, checks verdes y fallo controlado recuperado. Siguiente tarea: M1.3 (modelo LUNA → SOL REVIEW).
 - 2026-08-15 — M1.3 completada: configuración global validada, origen/canonical/locale centralizados, placeholder de marca no publicable, BaseLayout semántico y 16 tests/checks verdes. Siguiente tarea: M1.4 (modelo LUNA).
 - 2026-08-15 — M1.4 completada: CI de pull request con permisos mínimos, acciones fijadas por SHA, Node/npm/cache/concurrencia definidos y checks contractuales obligatorios. Verificación local completa PASS; run real pendiente de la primera rama/PR. Siguiente tarea: M1.5 (modelo LUNA → SOL REVIEW).
+- 2026-08-15 — M1.5 completada: Pages habilitado en modo workflow, pipeline oficial por SHA y permisos mínimos desplegado desde `main`; artifact único, auditoría, smoke técnico y recuperación/rollback documentados en PASS. G1 satisfecho. Siguiente tarea: M2.1 (modelo SOL → LUNA).

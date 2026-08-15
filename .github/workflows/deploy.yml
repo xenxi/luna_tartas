@@ -76,7 +76,7 @@ jobs:
           test -f dist/index.html
           test -z "$(find dist -type l -print -quit)"
           if grep -rEIlq --exclude='*.map' \
-            '(BEGIN (RSA |EC |OPENSSH )?PRIVATE KEY|github_pat_|gh[pousr]_[A-Za-z0-9]{20,}|AKIA[0-9A-Z]{16}|(password|passwd|secret|token)[[:space:]]*[:=][[:space:]]*["'"'][^"'"']+["'"'])' \
+            '(BEGIN (RSA |EC |OPENSSH )?PRIVATE KEY|github_pat_[A-Za-z0-9_]{20,}|gh[pousr]_[A-Za-z0-9]{20,}|AKIA[0-9A-Z]{16}|(password|passwd|secret|token)[[:space:]]*[:=][[:space:]]*["'"'][^"'"']+["'"'])' \
             dist; then
             echo 'Potential credential material found in public artifact.' >&2
             exit 1

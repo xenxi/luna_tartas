@@ -66,7 +66,7 @@ Ensayo previo a producción:
 4. Fusionar y comprobar que el nuevo run publica el SHA de revert, no el worktree local.
 5. Verificar el smoke de la URL técnica y, si falla, pausar cambios y volver a evaluar el último SHA verde.
 
-En M1.5 el ensayo local valida la reconstrucción desde un commit conocido y la forma del artifact. El ensayo remoto completo requiere un primer run de Pages y permisos administrativos; si faltan, la milestone queda `BLOCKED` con `xenxi` como owner y no se simula un PASS. El corte DNS conserva export de zona, valores anteriores, TTL y ventana/owner de reversión. Las reglas Cloudflare se exportan antes de modificarse. Ningún release elimina la versión recuperable anterior sin confirmación.
+En M1.5 se reconstruyó y sirvió localmente el commit conocido bajo `/luna_tartas/`, con smoke `200`, `<main>` y canonical apex. El primer run remoto quedó detenido de forma segura porque Pages aún no estaba habilitado; tras seleccionar la fuente `workflow`, la reejecución del mismo SHA completó build, artifact, deploy y smoke. Este ensayo confirma la recuperación inmediata sin introducir un segundo artifact ni tocar DNS; el revert hacia delante sigue siendo el procedimiento permanente cuando exista un cambio de aplicación que revertir. El corte DNS conserva export de zona, valores anteriores, TTL y ventana/owner de reversión. Las reglas Cloudflare se exportan antes de modificarse. Ningún release elimina la versión recuperable anterior sin confirmación.
 
 ## Gates
 
@@ -82,7 +82,7 @@ En M1.5 el ensayo local valida la reconstrucción desde un commit conocido y la 
 
 | Necesidad | Owner | Fecha límite/gate | Estado |
 | --- | --- | --- | --- |
-| Administrar Actions, environment y Pages del remoto | Propietario GitHub `xenxi` | M1.5 | `BLOCKED`: remoto sin refs y credencial local de GitHub inválida; falta publicar `main`, seleccionar GitHub Actions como source y obtener el primer run/smoke |
+| Administrar Actions, environment y Pages del remoto | Propietario GitHub `xenxi` | M1.5 | `READY`: repositorio público con `main`, Pages habilitado con source `workflow` y primer deploy/smoke en PASS; environment `github-pages` creado por el flujo oficial |
 | Verificar custom domain en GitHub | Propietario GitHub `xenxi` + propietario del negocio | antes de M9.3 | `TBD` |
 | Exportar/administrar DNS y redirects Cloudflare | Propietario del negocio | antes de M9.2/M9.3 | `TBD` |
 | Exportar configuración anterior para rollback | Propietario del negocio | antes de M9.3 | `TBD` |
