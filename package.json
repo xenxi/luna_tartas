@@ -1,0 +1,32 @@
+{
+  "name": "luna-tartas",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "lint": "eslint src tests astro.config.mjs",
+    "format": "prettier --check \"src/**/*.{astro,ts,js}\" \"tests/**/*.{ts,js}\" \"*.{json,mjs}\"",
+    "build": "astro build",
+    "preview": "astro preview",
+    "typecheck": "astro check",
+    "test": "vitest run"
+  },
+  "engines": {
+    "node": ">=24.19.0 <25"
+  },
+  "packageManager": "npm@11.17.0",
+  "dependencies": {
+    "astro": "6.4.8"
+  },
+  "devDependencies": {
+    "@astrojs/check": "0.9.10",
+    "eslint": "10.8.1",
+    "eslint-plugin-astro": "3.1.0",
+    "@typescript-eslint/parser": "8.67.0",
+    "prettier": "3.9.6",
+    "prettier-plugin-astro": "0.14.1",
+    "typescript": "5.9.3",
+    "vitest": "3.2.7"
+  }
+}

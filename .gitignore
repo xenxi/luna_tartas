@@ -1,0 +1,24 @@
+# Dependencies
+node_modules/
+
+# Astro and build output
+dist/
+.astro/
+
+# Environment files and secrets
+.env
+.env.*
+!.env.example
+
+# Logs and local caches
+*.log
+.npm/
+.cache/
+coverage/
+
+# Local tooling
+.vscode/
+.idea/
+*.swp
+.DS_Store
+Thumbs.db

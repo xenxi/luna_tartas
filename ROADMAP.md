@@ -9,7 +9,7 @@
 - Se ejecuta exclusivamente la tarea solicitada; no se anticipa la siguiente.
 - `DONE` exige todos los criterios y verificaciones en `PASS`, con evidencia registrada aquí.
 - Orden normal: de arriba abajo. Una tarea posterior sólo puede comenzar si todas sus dependencias están `DONE`.
-- **Siguiente tarea:** `M0.3 — Contrato de entradas y readiness V1`.
+- **Siguiente tarea:** `M1.4 — CI de pull request`.
 
 ## Gates de programa
 
@@ -65,7 +65,7 @@
 
 ## M0.3 — Contrato de entradas y readiness V1
 
-**Estado:** PENDING  
+**Estado:** DONE
 **Objetivo:** acordar qué contenido/configuración se necesita, quién lo aporta y qué puede ser provisional.  
 **Alcance:** checklist de marca, catálogo, fotos/derechos/alt, precios, WhatsApp, identidad legal, prueba social, analytics, DNS y Search Console; plantilla editorial y reglas de aprobación.  
 **Fuera de alcance:** producir copy/fotos, cargar catálogo o aprobar información no facilitada.  
@@ -76,7 +76,7 @@
 **Verificación:** walkthrough de checklist y enlaces a evidencia; revisión de consistencia con M9.1.  
 **Modelo recomendado:** SOL → LUNA.  
 **Razón del modelo:** Sol fija el contrato; Luna puede materializar plantillas/checklists.  
-**Evidencia:** —
+**Evidencia:** PASS (2026-08-15) — `docs/product/content-readiness.md` define estados `TBD/RECEIVED/READY/BLOCKED/FIXTURE`, matriz de 18 entradas con owner y gate/deadline, plantilla editorial, reglas de aprobación y exclusión de fixtures/TBD de toda proyección pública. Cubre marca, catálogo, fotos/derechos/alt, precios, WhatsApp, identidad legal, prueba social, analytics, DNS y Search Console. `scope.md` y `catalog-contract.md` enlazan el contrato y fijan que lo provisional no es publicable. G0 evaluado PASS: las ausencias de M0.1 tienen propietario y siguiente gate, sin blocker desconocido; M1 no queda bloqueado por contenido externo. Walkthrough de enlaces internos y consistencia con M9.1/M7.1/M9.2/M9.4: PASS. No se produjeron copy, fotos, catálogo ni aprobaciones de negocio.
 
 ---
 
@@ -87,7 +87,7 @@
 
 ## M1.1 — Scaffold Astro reproducible
 
-**Estado:** PENDING  
+**Estado:** DONE
 **Objetivo:** crear el mínimo proyecto Astro estático con TypeScript estricto.  
 **Alcance:** package/lockfile npm, Astro estable fijado, config SSG, `tsconfig` strict, scripts base, `.gitignore` para dependencias/output/caches/tooling local/`.env*`, página mínima no diseñada y README operativo.  
 **Fuera de alcance:** catálogo, design system, analytics, SEO completo o deploy.  
@@ -98,11 +98,11 @@
 **Verificación:** `npm ci`, `npm run typecheck`, `npm run build`, pruebas de reglas `.gitignore` con nombres seguros.  
 **Modelo recomendado:** LUNA.  
 **Razón del modelo:** scaffold mecánico guiado por decisiones ya cerradas.  
-**Evidencia:** —
+**Evidencia:** PASS (2026-08-15) — scaffold creado con `package.json`, `package-lock.json`, `astro.config.mjs`, `tsconfig.json`, `.nvmrc`, `.gitignore`, `README.md` y `src/pages/index.astro`. Astro fijado en `6.4.8`, Node/npm contractuales declarados (`24.19.0`/`11.17.0`), `output: static`, `build.format: directory` y `trailingSlash: always`; no se añadió framework UI. `npm ci`: PASS; `npm run typecheck`: PASS (0 errores, 0 warnings, 0 hints); `npm run build`: PASS (1 ruta `/index.html`). `git check-ignore`: PASS para `node_modules/`, `dist/`, `.astro/`, `.env*` y tooling local; `.env.example` queda permitido pero no existe. El entorno local usa Node `24.13.0`/npm `11.6.2` y emite `EBADENGINE`, sin impedir la verificación; debe usarse `.nvmrc` en CI/local. `npm audit` reporta 2 high/1 low transitorios en Astro 6 y dependencias de build; la corrección disponible fuerza Astro 7, incompatible con la decisión M0.2, por lo que no se cambia de major en M1.1 y no se usa ninguna feature vulnerable en el scaffold. `git diff --check`: PASS.
 
 ## M1.2 — Harness de lint, formato y tests
 
-**Estado:** PENDING  
+**Estado:** DONE
 **Objetivo:** establecer los checks locales contractuales antes de añadir dominio.  
 **Alcance:** lint, formato comprobable, Vitest/equivalente, un test de infraestructura significativo y scripts `lint/typecheck/test/build`.  
 **Fuera de alcance:** suite de catálogo o browser tests.  
@@ -113,11 +113,11 @@
 **Verificación:** ejecutar los cuatro scripts y una prueba controlada de fallo/reversión del harness.  
 **Modelo recomendado:** LUNA.  
 **Razón del modelo:** integración local bien acotada.  
-**Evidencia:** —
+**Evidencia:** PASS (2026-08-15) — Node actualizado mediante `winget` a `24.19.0` y npm global a `11.17.0`; `npm ci`: PASS. Añadidos ESLint 10.8.1 + `eslint-plugin-astro` 3.1.0 + parser TypeScript, Prettier 3.9.6 + plugin Astro y Vitest 3.2.7, todos fijados en `package.json`/lockfile. Scripts `lint`, `format`, `typecheck`, `test` y `build`: PASS; Vitest ejecuta 1 test de infraestructura que protege el contrato static/site/trailing slash. Prueba controlada: un `.ts` sintácticamente inválido produjo fallo de lint; se eliminó y el lint volvió a PASS. La instalación limpia y la suite secuencial posterior pasan sin carreras. `npm audit` mantiene 2 high/1 low heredados de Astro 6 y dependencias de build; la corrección automática exige Astro 7 y queda fuera de esta submilestone/decisión M0.2. `git diff --check`: PASS.
 
 ## M1.3 — Configuración global y layout técnico
 
-**Estado:** PENDING  
+**Estado:** DONE
 **Objetivo:** centralizar identidad técnica y metadatos mínimos sin diseñar la UI.  
 **Alcance:** config validada de site/locale/canonical/placeholders `TBD` no publicables, layout HTML semántico, idioma, viewport y manejo de config ausente.  
 **Fuera de alcance:** teléfono definitivo, JSON-LD, estilos de marca o analytics.  
@@ -128,11 +128,11 @@
 **Verificación:** tests de config, typecheck, build e inspección de HTML generado.  
 **Modelo recomendado:** LUNA → SOL REVIEW.  
 **Razón del modelo:** implementación pequeña con efecto transversal que merece revisión.  
-**Evidencia:** —
+**Evidencia:** PASS (2026-08-15) — `src/config/site.ts` centraliza y valida el origen HTTPS canónico, locale BCP 47 e identidad comercial con estado explícito `READY`/`TBD`; el idioma y las URLs canonical se derivan de esa única fuente, y Astro consume el mismo `siteUrl`. La marca pendiente no tiene valor publicable y el HTML generado no contiene `TBD`, nombres de marca provisionales ni patrones de secretos. `BaseLayout.astro` aporta documento HTML semántico mínimo, `lang="es"`, charset, viewport, canonical absoluto, title requerido y `main`; la página inicial ya lo consume sin estilos ni integraciones fuera de alcance. Vitest: PASS (2 archivos, 16 tests), incluyendo configuración ausente/inválida, URL insegura/con credenciales/path, locale inválido, estados editoriales y escape de origen canonical. `npm run lint`, `npm run format`, `npm run typecheck` (0 errores/warnings/hints), `npm test`, `npm run build` (1 página), inspección de `dist/index.html` y `git diff --check`: PASS.
 
 ## M1.4 — CI de pull request
 
-**Estado:** PENDING  
+**Estado:** DONE
 **Objetivo:** convertir los checks contractuales en gate automatizado.  
 **Alcance:** workflow apto para repositorio público con permisos mínimos, Node/npm fijados, cache seguro, concurrencia y `lint/typecheck/test/build`; secretos sólo por Actions Secrets cuando sean imprescindibles y artefacto diagnóstico cuando aporte valor.  
 **Fuera de alcance:** deployment de producción y servicios externos.  
@@ -143,7 +143,7 @@
 **Verificación:** validación local de YAML, ejecución de scripts y run real en GitHub cuando haya rama/PR.  
 **Modelo recomendado:** LUNA.  
 **Razón del modelo:** workflow estándar con contratos ya definidos.  
-**Evidencia:** —
+**Evidencia:** PASS (2026-08-15) — `.github/workflows/ci.yml` creado para `pull_request` con `contents: read`, concurrencia cancelable, `ubuntu-24.04`, timeout, Node desde `.nvmrc`, npm `11.17.0`, cache npm basada en lockfile y `actions/checkout`/`actions/setup-node` fijadas por SHA. Ejecuta `npm ci`, `npm run lint`, `npm run typecheck`, `npm test` y `npm run build` como pasos obligatorios, sin secretos, artifacts ni servicios externos. Prettier valida el YAML; `npm ci`, `npm run lint`, `npm run format`, `npm run typecheck` (0 errores/warnings/hints), `npm test` (2 archivos, 16 tests), `npm run build` (1 página) y `git diff --check`: PASS. No se creó PR ni se hizo push desde el worktree; el run real queda para la primera rama/PR del repositorio. `npm ci` mantiene 3 vulnerabilidades transitorias heredadas de Astro 6 (1 low/2 high), ya documentadas en M1.1/M1.2, sin cambiar la versión contractual.
 
 ## M1.5 — Pipeline base de GitHub Pages
 
@@ -1121,3 +1121,8 @@ No avanzar a la siguiente milestone.
 - 2026-08-15 — Requisito confirmado: repositorio GitHub nuevo, vacío y público. Se reforzaron frontera de seguridad, `.gitignore`, Actions/Pages, scans y prohibición de credenciales cliente del futuro Catalog Manager. Prioridad y estados no cambian.
 - 2026-08-15 — M0.1 completada: inventario trazable de producción/SEO/activos, 8 URLs conocidas clasificadas y riesgos actualizados. Código ratificado greenfield; migración SEO/contenido permanece posible hasta resolver los `TBD` con sus propietarios.
 - 2026-08-15 — M0.2 completada: baseline técnico cerrado con Astro 6 estático, Node/npm fijados, Pages condicionado a redirects verificables, budgets medibles y blockers externos asignados. Siguiente tarea: M0.3.
+- 2026-08-15 — M0.3 completada: contrato de readiness V1 creado con matriz de entradas, owners/gates, plantilla editorial, reglas de aprobación y separación fixture/TBD frente a contenido publicable. G0 PASS; M1 queda sin blocker desconocido. Siguiente tarea: M1.1.
+- 2026-08-15 — M1.1 completada: scaffold Astro 6 estático reproducible, runtime/package manager fijados, página mínima, typecheck/build y reglas de `.gitignore` verificados. Siguiente tarea: M1.2 (modelo LUNA).
+- 2026-08-15 — M1.2 completada: Node/npm actualizados a las versiones contractuales, harness de lint/formato/Vitest integrado, checks verdes y fallo controlado recuperado. Siguiente tarea: M1.3 (modelo LUNA → SOL REVIEW).
+- 2026-08-15 — M1.3 completada: configuración global validada, origen/canonical/locale centralizados, placeholder de marca no publicable, BaseLayout semántico y 16 tests/checks verdes. Siguiente tarea: M1.4 (modelo LUNA).
+- 2026-08-15 — M1.4 completada: CI de pull request con permisos mínimos, acciones fijadas por SHA, Node/npm/cache/concurrencia definidos y checks contractuales obligatorios. Verificación local completa PASS; run real pendiente de la primera rama/PR. Siguiente tarea: M1.5 (modelo LUNA → SOL REVIEW).

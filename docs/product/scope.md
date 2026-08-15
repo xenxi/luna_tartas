@@ -37,7 +37,9 @@
 - URLs históricas, enlaces externos, métricas y configuración de producción anterior.
 - Proveedor de analytics y requisitos de consentimiento/privacidad.
 
-La ausencia de estos datos no bloquea el diseño de arquitectura. Sí bloqueará los milestones de contenido final, instrumentación o release que los indiquen como dependencia.
+El estado, propietario, deadline y evidencia de cada entrada se mantienen en [`content-readiness.md`](content-readiness.md). La ausencia de estos datos no bloquea el diseño de arquitectura ni M1.1. Sí bloqueará los milestones de contenido final, instrumentación o release que los indiquen como dependencia.
+
+La información marcada como `TBD` no es publicable. Los fixtures de desarrollo tampoco son contenido V1: deben estar marcados como no publicables y aislados de la proyección de catálogo, HTML, sitemap, JSON-LD y `/catalog.json`.
 
 ## Regla de alcance
 

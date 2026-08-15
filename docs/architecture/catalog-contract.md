@@ -2,6 +2,8 @@
 
 Este documento fija semántica y límites. Los nombres exactos de campos y schemas ejecutables se cierran en M2 sin romper estas reglas.
 
+La procedencia y aprobación editorial de cada entidad se controla con el contrato de readiness en [`../product/content-readiness.md`](../product/content-readiness.md). Un fixture puede servir para probar schemas o variantes, pero no es contenido publicable.
+
 ## Entidades
 
 ### Product
@@ -34,6 +36,7 @@ Marca, URL canónica, locale, moneda permitida, WhatsApp y analytics no se repit
 - `fixed/from` requieren importe positivo válido y moneda admitida; `on_request` no publica un Offer ficticio.
 - No hay dos portadas ni referencias de medios fuera del directorio permitido.
 - Una entidad draft no aparece en HTML público, sitemap, JSON-LD ni `/catalog.json`.
+- Una entidad sólo puede pasar a `published` cuando sus campos obligatorios, medios, derechos, copy y aprobación editorial constan en la evidencia de readiness; `TBD` y fixtures permanecen fuera de toda proyección pública.
 - URLs, texto SEO y campos estructurados respetan longitud/forma cuando el schema lo pueda validar; la semántica se audita además.
 
 ## Pipeline y errores
