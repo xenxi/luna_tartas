@@ -9,7 +9,7 @@
 - Se ejecuta exclusivamente la tarea solicitada; no se anticipa la siguiente.
 - `DONE` exige todos los criterios y verificaciones en `PASS`, con evidencia registrada aquí.
 - Orden normal: de arriba abajo. Una tarea posterior sólo puede comenzar si todas sus dependencias están `DONE`.
-- **Siguiente tarea:** `M4.1 — Shell público: header, navegación y footer`.
+- **Siguiente tarea:** `M4.2 — Hero emocional`.
 
 ## Gates de programa
 
@@ -348,7 +348,7 @@
 
 ## M4.1 — Shell público: header, navegación y footer
 
-**Estado:** PENDING  
+**Estado:** DONE
 **Objetivo:** establecer navegación global simple y reconocible en móvil/escritorio.  
 **Alcance:** header/logo, nav de destinos principales, menú móvil con HTML/JS mínimo justificado, skip target y footer con datos confirmados/placeholders no publicables.  
 **Fuera de alcance:** hero, catálogo en home o datos legales inventados.  
@@ -359,7 +359,7 @@
 **Verificación:** build, navegación 320/768/1440, teclado y JS deshabilitado.  
 **Modelo recomendado:** LUNA → SOL REVIEW.  
 **Razón del modelo:** componente habitual con riesgo accesible/responsive que merece review.  
-**Evidencia:** —
+**Evidencia:** PASS (2026-08-16) — `src/components/site/` incorpora header, región de marca sustituible, navegación principal y footer en `BaseLayout`; los destinos estables se centralizan en `src/config/navigation.ts` reutilizando los builders de rutas. En móvil el menú usa `details`/`summary` nativos, sin script ni hidratación, y en escritorio expone la navegación completa desde 48 rem; foco, targets mínimos de 44 px y `aria-current="page"` cubren inicio, índices y descendientes. La identidad bloqueada proyecta sólo el destino genérico “Inicio”; logo, marca, WhatsApp, contacto y datos legales no aprobados permanecen fuera del HTML. El artifact estático contiene header/main/footer, cero scripts y ningún `TBD`, teléfono o email. Revisión real en navegador a 320/768/1440 px: ancho de documento exacto al viewport, menú móvil cerrado/abierto sin overflow, navegación desktop visible sin solapes, footer estable y summary con foco visible; el funcionamiento esencial sin JavaScript queda garantizado por enlaces y disclosure HTML nativos. `npm run lint`, `npm run format`, `npm run typecheck` (0 errores/warnings/hints), `npm test` (16 archivos, 113 tests), `npm run build` (1 página pública) y `git diff --check`: PASS. Los únicos avisos del build son los informativos esperados por las cuatro colecciones productivas vacías.
 
 ## M4.2 — Hero emocional
 
@@ -1138,3 +1138,4 @@ No avanzar a la siguiente milestone.
 - 2026-08-16 — M3.3 completada: base global CSS, layout estable, skip link, destino de foco, estilos nativos/prose/medios y reduced motion implementados; 101 tests, build y checks de formato en PASS. Siguiente tarea: M3.4 (modelo LUNA).
 - 2026-08-16 — M3.4 completada: primitives nativos Button/ActionLink/Icon/Badge, variantes, targets táctiles, estados y modos accesibles de icono implementados sin hidratación; 103 tests, build y checks de formato en PASS. Siguiente tarea: M3.5 (modelo LUNA → SOL REVIEW).
 - 2026-08-16 — M3.5 completada: cards, media responsive dimensionada, breadcrumb y patrones de sección/lista tipados, semánticos, accesibles y sin hidratación; 108 tests, HTML estático y revisión 320/768/1440 en PASS. G3 satisfecho. Siguiente tarea: M4.1 (modelo LUNA → SOL REVIEW).
+- 2026-08-16 — M4.1 completada: shell global responsive con header, navegación y footer centralizados, menú móvil HTML nativo, estado actual y foco accesibles, datos no aprobados excluidos, 113 tests y revisión 320/768/1440 en PASS. Siguiente tarea: M4.2 (modelo SOL).

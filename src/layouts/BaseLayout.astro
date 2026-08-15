@@ -1,5 +1,9 @@
 ---
 import { getCanonicalUrl, siteConfig } from '../config/site';
+import SiteFooter from '../components/site/SiteFooter.astro';
+import SiteHeader from '../components/site/SiteHeader.astro';
+import '../components/site/site.css';
+import '../styles/global.css';
 
 interface Props {
   title: string;
@@ -26,8 +30,11 @@ const canonicalUrl = getCanonicalUrl(
     <title>{title}</title>
   </head>
   <body>
-    <main id="main-content">
+    <a class="skip-link" href="#main-content">Saltar al contenido principal</a>
+    <SiteHeader currentPath={Astro.url.pathname} />
+    <main id="main-content" tabindex="-1">
       <slot />
     </main>
+    <SiteFooter currentPath={Astro.url.pathname} />
   </body>
 </html>

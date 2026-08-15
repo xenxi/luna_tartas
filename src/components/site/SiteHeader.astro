@@ -1,0 +1,20 @@
+---
+import BrandHomeLink from './BrandHomeLink.astro';
+import PrimaryNavigation from './PrimaryNavigation.astro';
+
+interface Props {
+  currentPath: string;
+}
+
+const { currentPath } = Astro.props;
+---
+
+<header class="site-header">
+  <div class="site-header__inner container">
+    <BrandHomeLink currentPath={currentPath} />
+    <details class="site-menu">
+      <summary>Menú</summary>
+      <PrimaryNavigation currentPath={currentPath} />
+    </details>
+  </div>
+</header>

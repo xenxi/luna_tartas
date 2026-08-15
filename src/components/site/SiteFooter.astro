@@ -1,0 +1,17 @@
+---
+import BrandHomeLink from './BrandHomeLink.astro';
+import PrimaryNavigation from './PrimaryNavigation.astro';
+
+interface Props {
+  currentPath: string;
+}
+
+const { currentPath } = Astro.props;
+---
+
+<footer class="site-footer">
+  <div class="site-footer__inner container">
+    <BrandHomeLink currentPath={currentPath} />
+    <PrimaryNavigation currentPath={currentPath} location="footer" />
+  </div>
+</footer>

@@ -1,0 +1,8 @@
+id: fixture-celebration
+slug: fixture-celebration
+name: Categoría sintética celebración
+summary: Taxonomía artificial para validar relaciones integrales.
+description: Contenido de laboratorio sin significado comercial.
+status: draft
+order: 20
+context: FIXTURE

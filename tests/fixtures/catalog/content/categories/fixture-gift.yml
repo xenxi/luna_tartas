@@ -1,0 +1,7 @@
+id: fixture-gift
+slug: fixture-gift
+name: Categoría sintética regalo
+summary: Segunda categoría artificial para probar relaciones múltiples.
+status: draft
+order: 10
+context: FIXTURE

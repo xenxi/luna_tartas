@@ -1,0 +1,26 @@
+id: fixture-on-request
+slug: fixture-on-request
+status: draft
+context: FIXTURE
+name: Producto sintético precio bajo consulta
+summary: Ejemplo artificial completo de la variante de precio bajo consulta.
+description: Descripción de laboratorio sin relación con la oferta comercial.
+categories:
+  - fixture-celebration
+occasions:
+  - fixture-birthday
+recipients:
+  - fixture-family
+price:
+  kind: on_request
+media:
+  cover:
+    src: products/fixture-on-request.svg
+    alt: Composición abstracta sintética para la variante bajo consulta
+customization:
+  kind: available
+  options:
+    - Opción artificial gamma
+  description: Personalización inventada exclusivamente para probar la carga.
+featured: false
+order: 10

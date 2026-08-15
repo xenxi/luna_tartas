@@ -1,0 +1,131 @@
+@import url("./tokens.css");
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  min-width: 320px;
+  background: var(--color-canvas);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  font-size: 100%;
+  text-rendering: optimizeLegibility;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-width: 320px;
+  min-height: 100vh;
+  margin: 0;
+  overflow-x: hidden;
+  background: var(--color-canvas);
+  color: var(--color-text);
+  font-size: var(--font-size-md);
+  line-height: var(--line-height-body);
+}
+
+main {
+  flex: 1 0 auto;
+}
+
+img,
+svg,
+video {
+  display: block;
+  max-width: 100%;
+}
+
+img,
+video {
+  height: auto;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+:where(a) {
+  color: var(--color-action);
+  text-decoration-thickness: 0.1em;
+  text-underline-offset: 0.15em;
+  transition: color var(--duration-fast) var(--ease-standard);
+}
+
+:where(a:hover) {
+  color: var(--color-action-hover);
+}
+
+:where(:focus-visible) {
+  outline: none;
+  box-shadow: var(--shadow-focus);
+}
+
+::selection {
+  background: var(--color-focus);
+  color: var(--color-on-action);
+}
+
+:where(h1, h2, h3, h4, p, ul, ol, figure) {
+  margin-block: 0;
+}
+
+:where(h1, h2, h3, h4) {
+  font-family: var(--font-display);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--line-height-display);
+  text-wrap: balance;
+}
+
+:where(h1) {
+  font-size: var(--font-size-2xl);
+}
+
+:where(h2) {
+  font-size: var(--font-size-xl);
+}
+
+:where(h3) {
+  font-size: var(--font-size-lg);
+}
+
+:where(p, li) {
+  max-width: var(--measure-reading);
+}
+
+:where(button, a, input, select, textarea) {
+  -webkit-tap-highlight-color: transparent;
+}
+
+.container {
+  width: min(100% - (2 * var(--gutter)), var(--container-max));
+  margin-inline: auto;
+}
+
+.prose {
+  max-width: var(--container-copy);
+}
+
+@media (min-width: 48rem) {
+  :where(h1) {
+    max-width: 18ch;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}

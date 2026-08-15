@@ -1,0 +1,25 @@
+id: fixture-from
+slug: fixture-from
+status: draft
+context: FIXTURE
+name: Producto sintético precio desde
+summary: Ejemplo artificial completo de la variante de precio desde.
+description: Descripción de laboratorio sin relación con la oferta comercial.
+categories:
+  - fixture-gift
+occasions:
+  - fixture-anniversary
+recipients:
+  - fixture-friends
+price:
+  kind: from
+  amountMinor: 6789
+  currency: EUR
+media:
+  cover:
+    src: products/fixture-from.svg
+    alt: Composición abstracta sintética para la variante de precio desde
+customization:
+  kind: none
+featured: false
+order: 20

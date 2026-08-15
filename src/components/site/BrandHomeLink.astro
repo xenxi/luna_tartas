@@ -1,0 +1,29 @@
+---
+import { getPublishableText, siteConfig } from '../../config/site';
+import { routes } from '../../lib/catalog/domain/routes';
+
+interface Props {
+  currentPath: string;
+}
+
+const { currentPath } = Astro.props;
+const brandName = getPublishableText(siteConfig.brandName);
+const isCurrent = currentPath === routes.home();
+---
+
+<a
+  class="brand-home"
+  href={routes.home()}
+  aria-label={brandName ?? 'Inicio'}
+  aria-current={isCurrent ? 'page' : undefined}
+>
+  {
+    brandName ? (
+      <span>{brandName}</span>
+    ) : (
+      <span class="brand-home__fallback" aria-hidden="true">
+        Inicio
+      </span>
+    )
+  }
+</a>

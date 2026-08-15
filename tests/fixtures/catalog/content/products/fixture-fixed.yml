@@ -1,0 +1,35 @@
+id: fixture-fixed
+slug: fixture-fixed
+status: draft
+context: FIXTURE
+name: Producto sintético precio fijo
+summary: Ejemplo artificial completo de la variante de precio fijo.
+description: Descripción de laboratorio sin relación con la oferta comercial.
+categories:
+  - fixture-celebration
+  - fixture-gift
+occasions:
+  - fixture-birthday
+  - fixture-anniversary
+recipients:
+  - fixture-family
+  - fixture-friends
+price:
+  kind: fixed
+  amountMinor: 12345
+  currency: EUR
+media:
+  cover:
+    src: products/fixture-cover.svg
+    alt: Ilustración geométrica sintética usada como portada de prueba
+  gallery:
+    - src: products/fixture-detail.svg
+      alt: Ilustración geométrica sintética usada como detalle de prueba
+customization:
+  kind: available
+  options:
+    - Opción artificial alfa
+    - Opción artificial beta
+  description: Opciones inventadas exclusivamente para comprobar el contrato.
+featured: true
+order: 30

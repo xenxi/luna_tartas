@@ -1,0 +1,7 @@
+id: fixture-friends
+slug: fixture-friends
+name: Destinatario sintético amistades
+summary: Segundo destinatario artificial para relaciones múltiples.
+status: draft
+order: 10
+context: FIXTURE

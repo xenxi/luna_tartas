@@ -1,0 +1,36 @@
+---
+import {
+  isCurrentNavigationPath,
+  primaryNavigation,
+} from '../../config/navigation';
+
+interface Props {
+  currentPath: string;
+  location?: 'header' | 'footer';
+}
+
+const { currentPath, location = 'header' } = Astro.props;
+const label =
+  location === 'header' ? 'Navegación principal' : 'Navegación del pie';
+---
+
+<nav
+  class:list={['primary-navigation', `primary-navigation--${location}`]}
+  aria-label={label}
+>
+  <ul>
+    {
+      primaryNavigation.map((item) => {
+        const isCurrent = isCurrentNavigationPath(currentPath, item.href);
+
+        return (
+          <li>
+            <a href={item.href} aria-current={isCurrent ? 'page' : undefined}>
+              {item.label}
+            </a>
+          </li>
+        );
+      })
+    }
+  </ul>
+</nav>

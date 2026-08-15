@@ -1,0 +1,7 @@
+id: fixture-family
+slug: fixture-family
+name: Destinatario sintético familia
+summary: Destinatario artificial destinado únicamente a pruebas.
+status: draft
+order: 20
+context: FIXTURE

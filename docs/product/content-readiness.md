@@ -24,9 +24,9 @@ Cada fila debe tener exactamente un estado, un propietario, una fecha o `TBD`, y
 
 | Área | Entrada y mínimo requerido | Estado | Owner | Deadline/gate | Evidencia o siguiente acción |
 | --- | --- | --- | --- | --- | --- |
-| Marca | Nombre comercial y uso aprobado | `TBD` | Propietario del negocio | antes de M3.1 | Entregar nombre aprobado y fuente; no inventar variante |
-| Marca | Logo, variantes, favicon e iconos en formatos web | `TBD` | Propietario del negocio | antes de M3.1 | Entregar masters, autor/licencia y aprobación |
-| Marca | Tipografías, archivos y licencias o autorización de alternativa | `TBD` | Propietario del negocio | antes de M3.1 | Entregar guía/licencias; resolver proveedor en M3.1 |
+| Marca | Nombre comercial y uso aprobado | `BLOCKED` | Propietario del negocio | bloquea identidad definitiva; no M3.2 provisional | Entregar nombre aprobado, fuente, responsable y fecha; no inventar variante |
+| Marca | Logo, variantes, favicon e iconos en formatos web | `BLOCKED` | Propietario del negocio | bloquea identidad definitiva; no M3.2 provisional | Entregar masters, autor/licencia, reglas de uso y aprobación |
+| Marca | Tipografías, archivos y licencias o autorización de alternativa | `BLOCKED` | Propietario del negocio | bloquea identidad definitiva; no M3.2 provisional | Entregar guía, archivos/proveedor, licencia web y aprobación; mientras tanto se usan stacks del sistema |
 | Catálogo | Productos, IDs estables, slugs, nombres, resúmenes y descripción | `TBD` | Propietario del negocio | antes de M9.1 | Entregar fuente vigente y fecha de aprobación |
 | Catálogo | Categorías, ocasiones y destinatarios con copy público | `TBD` | Propietario del negocio | antes de M9.1 | Entregar taxonomías y relaciones revisadas |
 | Catálogo | Personalización, contenido incluido y orden/destacado | `TBD` | Propietario del negocio | antes de M9.1 | Confirmar capacidades por producto, sin promesas no verificadas |
@@ -93,3 +93,7 @@ Para un `Product`, la ficha debe añadir nombre, summary, descripción, al menos
 - Carga y aprobación final: M9.1 en `ROADMAP.md`.
 
 La revisión de esta checklist se repite al iniciar M3.1, M4.5, M7.1, M9.1 y M9.2/M9.4; cualquier fila que cambie debe conservar su evidencia anterior y registrar la nueva.
+
+## Historial de revisiones
+
+- 2026-08-16 — Inicio de M3.1: las tres entradas de marca vencieron su gate sin material ni evidencia nueva. Cambian de `TBD` a `BLOCKED`, conservan como owner al propietario del negocio y dejan acciones concretas. La dirección provisional documentada en [`../design/visual-direction.md`](../design/visual-direction.md) permite continuar M3.2 sin publicar una identidad inventada; los demás estados no cambian.

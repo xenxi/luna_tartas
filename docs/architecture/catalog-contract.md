@@ -74,6 +74,24 @@ parse/schema -> map DTO -> aggregate validation -> immutable public catalog -> q
 
 Los errores deben agruparse cuando sea posible y mostrar entidad/archivo, campo, valor problemático y corrección esperada. El build y CI fallan antes de generar producción.
 
+### Límite source → domain (M2.3)
+
+Content Collections queda encapsulado en `src/lib/catalog/source/`. El DTO de entrada conserva únicamente la colección, el ID emitido por el loader, el `filePath` cuando Astro lo proporciona y los datos ya validados por el schema. `loadCatalog()` es el único punto de carga: lee las cuatro colecciones una vez en paralelo, memoiza la promesa para el proceso de build y entrega un `Catalog` de dominio.
+
+El mapping es explícito para taxonomías, variantes `draft|published`, las tres variantes de precio, medios, personalización, SEO y aprobación. Copia objetos y arrays en lugar de exponer los datos de Astro; `context: FIXTURE` es metadata exclusiva del source y no cruza al dominio. Las colecciones se mantienen separadas y cada taxonomía recibe un discriminador de dominio estable: `categories → category`, `occasions → occasion` y `recipients → recipient`.
+
+Los tipos de `src/lib/catalog/domain/` son TypeScript plano, readonly en su superficie y no importan Astro, schemas, layouts, páginas ni componentes. El adaptador depende del dominio, nunca al revés. No existe una interfaz de repositorio o multi-source anticipada: una fuente futura deberá mapear hacia el mismo `Catalog` cuando haya un caso real.
+
+Un fallo propio del mapping lanza `CatalogSourceError` con `collection`, `entryId`, `filePath` opcional y `field`; su mensaje comienza por `archivo-o-colección:campo:` y conserva la causa cuando existe. La validación agregada de identidad, relaciones y assets permanece en M2.4.
+
+### Validación agregada y assets (M2.4)
+
+Tras el mapping, el dominio vuelve a comprobar IDs y slugs, unicidad por colección/espacio URL, bloques mínimos de publicación, alt significativo y variantes de precio. Las referencias de cualquier producto deben existir; una referencia desde un producto publicado exige además que la taxonomía destino esté publicada. Las referencias repetidas dentro del mismo campo se rechazan. La única moneda admitida en V1 es `EUR`, centralizada en `src/config/catalog.ts`; ampliar esa lista requiere un requisito de negocio confirmado.
+
+El adaptador resuelve toda portada y galería declarada —también en drafts— contra `src/assets/catalog`, comprueba que el destino real permanezca dentro de esa raíz, sea un archivo legible y coincida con un formato permitido con dimensiones positivas. Raster aplica 8 MiB y 24 MP; SVG aplica 250 KiB y rechaza scripts, event handlers, declaraciones o referencias externas/ejecutables. PNG, JPEG, WebP y AVIF se identifican por sus cabeceras de dimensiones, no sólo por la extensión.
+
+`CatalogValidationError` conserva todos los issues detectados con código, entidad, campo, valor problemático y corrección esperada. `loadCatalog()` combina en una sola pasada los issues de dominio y filesystem. La generación estática invoca esa carga antes de renderizar la entrada pública, por lo que un error deja el build con salida no cero y CI no puede avanzar al despliegue.
+
 ## Medios
 
 Las referencias editoriales apuntan a activos web mantenibles en `src/assets/catalog`. El pipeline conoce dimensiones, genera variantes modernas y preserva una alternativa compatible. Originales de archivo gigantes quedan fuera del Git ordinario. Los límites iniciales de fuente/repositorio están ratificados en [`architecture.md`](architecture.md#política-de-imágenes-y-salud-del-repositorio) y M8.2 los calibra con muestras reales sin relajar silenciosamente los hard limits.

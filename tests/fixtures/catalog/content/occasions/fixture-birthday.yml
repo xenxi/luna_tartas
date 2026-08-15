@@ -1,0 +1,7 @@
+id: fixture-birthday
+slug: fixture-birthday
+name: Ocasión sintética cumpleaños
+summary: Segunda ocasión artificial para probar relaciones múltiples.
+status: draft
+order: 10
+context: FIXTURE

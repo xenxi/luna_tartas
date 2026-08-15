@@ -1,0 +1,7 @@
+id: fixture-anniversary
+slug: fixture-anniversary
+name: Ocasión sintética aniversario
+summary: Ocasión artificial destinada únicamente a la suite integral.
+status: draft
+order: 20
+context: FIXTURE
