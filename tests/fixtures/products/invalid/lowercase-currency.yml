@@ -1,0 +1,8 @@
+id: fixture-product-currency
+slug: fixture-product-currency
+status: draft
+context: FIXTURE
+price:
+  kind: fixed
+  amountMinor: 1000
+  currency: eur

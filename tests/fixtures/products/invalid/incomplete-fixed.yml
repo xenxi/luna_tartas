@@ -1,0 +1,7 @@
+id: fixture-product-incomplete-price
+slug: fixture-product-incomplete-price
+status: draft
+context: FIXTURE
+price:
+  kind: fixed
+  amountMinor: 1000

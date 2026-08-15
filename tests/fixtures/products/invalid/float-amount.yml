@@ -1,0 +1,8 @@
+id: fixture-product-float
+slug: fixture-product-float
+status: draft
+context: FIXTURE
+price:
+  kind: fixed
+  amountMinor: 12.34
+  currency: EUR

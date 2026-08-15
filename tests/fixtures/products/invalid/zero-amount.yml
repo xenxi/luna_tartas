@@ -1,0 +1,8 @@
+id: fixture-product-zero
+slug: fixture-product-zero
+status: draft
+context: FIXTURE
+price:
+  kind: from
+  amountMinor: 0
+  currency: EUR

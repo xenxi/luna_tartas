@@ -1,0 +1,41 @@
+id: fixture-product-fixed
+slug: fixture-product-fixed
+status: draft
+context: FIXTURE
+name: Producto sintético completo
+summary: Resumen sintético usado exclusivamente para validar el schema.
+description: Descripción sintética sin relación con el catálogo comercial.
+categories:
+  - fixture-category
+occasions: []
+recipients:
+  - fixture-recipient
+price:
+  kind: fixed
+  amountMinor: 12345
+  currency: EUR
+media:
+  cover:
+    src: products/fixture-cover.webp
+    alt: Portada sintética claramente identificada para pruebas
+    rights:
+      owner: Propietario sintético de pruebas
+      licenseOrPermission: Permiso sintético para tests automatizados
+      evidence: Referencia sintética sin valor comercial
+  gallery:
+    - src: products/fixture-detail.jpg
+      alt: Detalle sintético claramente identificado para pruebas
+customization:
+  kind: available
+  options:
+    - Opción sintética A
+  description: Personalización sintética usada sólo por tests.
+featured: false
+order: 10
+seo:
+  title: Producto sintético para pruebas
+approval:
+  source: Fuente sintética de pruebas
+  sourceDate: 2026-08-15
+  approvedBy: Responsable sintético
+  approvedAt: 2026-08-15

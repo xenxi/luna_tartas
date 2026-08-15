@@ -1,0 +1,8 @@
+id: fixture-product-partial-customization
+slug: fixture-product-partial-customization
+status: draft
+context: FIXTURE
+customization:
+  kind: available
+  options: []
+  description: Personalización sintética incompleta.

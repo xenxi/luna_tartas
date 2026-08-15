@@ -1,0 +1,8 @@
+id: fixture-product-from
+slug: fixture-product-from
+status: draft
+context: FIXTURE
+price:
+  kind: from
+  amountMinor: 5000
+  currency: EUR

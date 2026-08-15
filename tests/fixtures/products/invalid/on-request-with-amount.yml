@@ -1,0 +1,8 @@
+id: fixture-product-on-request-amount
+slug: fixture-product-on-request-amount
+status: draft
+context: FIXTURE
+price:
+  kind: on_request
+  amountMinor: 1000
+  currency: EUR

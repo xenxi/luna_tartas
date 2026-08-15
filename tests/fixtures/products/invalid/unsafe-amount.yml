@@ -1,0 +1,8 @@
+id: fixture-product-unsafe-amount
+slug: fixture-product-unsafe-amount
+status: draft
+context: FIXTURE
+price:
+  kind: fixed
+  amountMinor: 9007199254740992
+  currency: EUR

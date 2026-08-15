@@ -1,0 +1,6 @@
+id: fixture-product-on-request
+slug: fixture-product-on-request
+status: draft
+context: FIXTURE
+price:
+  kind: on_request

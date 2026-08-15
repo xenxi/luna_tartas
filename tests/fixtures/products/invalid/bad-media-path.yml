@@ -1,0 +1,8 @@
+id: fixture-product-bad-media
+slug: fixture-product-bad-media
+status: draft
+context: FIXTURE
+media:
+  cover:
+    src: ../private/fixture.jpg
+    alt: Alt sintético para un path inválido

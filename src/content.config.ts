@@ -1,8 +1,11 @@
 import { defineCollection } from 'astro:content';
 import { glob } from 'astro/loaders';
+import { productSchema } from './content/schemas/product';
 import { taxonomySchema } from './content/schemas/taxonomy';
 
-function defineTaxonomyCollection(base: string) {
+function defineYamlCollection<
+  Schema extends typeof taxonomySchema | typeof productSchema,
+>(base: string, schema: Schema) {
   return defineCollection({
     loader: glob({
       pattern: '**/[^_]*.{yml,yaml}',
@@ -10,12 +13,22 @@ function defineTaxonomyCollection(base: string) {
       generateId: ({ data, entry }) =>
         typeof data.id === 'string' ? data.id : entry,
     }),
-    schema: taxonomySchema,
+    schema,
   });
 }
 
-const categories = defineTaxonomyCollection('./src/content/categories');
-const occasions = defineTaxonomyCollection('./src/content/occasions');
-const recipients = defineTaxonomyCollection('./src/content/recipients');
+const categories = defineYamlCollection(
+  './src/content/categories',
+  taxonomySchema,
+);
+const occasions = defineYamlCollection(
+  './src/content/occasions',
+  taxonomySchema,
+);
+const recipients = defineYamlCollection(
+  './src/content/recipients',
+  taxonomySchema,
+);
+const products = defineYamlCollection('./src/content/products', productSchema);
 
-export const collections = { categories, occasions, recipients };
+export const collections = { categories, occasions, recipients, products };

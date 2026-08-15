@@ -1,37 +1,14 @@
 import { describe, expect, it } from 'vitest';
-import { parseDocument } from 'yaml';
 import {
   taxonomySchema,
   type TaxonomyData,
 } from '../src/content/schemas/taxonomy';
-
-const fixtures = import.meta.glob('./fixtures/taxonomies/**/*.{yml,yaml}', {
-  eager: true,
-  import: 'default',
-  query: '?raw',
-}) as Record<string, string>;
-
-function readYamlFixture(relativePath: string): unknown {
-  const fixturePath = `./fixtures/taxonomies/${relativePath}`;
-  const source = fixtures[fixturePath];
-
-  if (source === undefined) {
-    throw new Error(`${fixturePath}: Fixture not found`);
-  }
-
-  const document = parseDocument(source);
-
-  if (document.errors.length > 0) {
-    throw new Error(
-      `${fixturePath}: ${document.errors[0]?.message ?? 'Invalid YAML'}`,
-    );
-  }
-
-  return document.toJS();
-}
+import { readYamlFixture } from './helpers/yaml-fixtures';
 
 function diagnostics(relativePath: string): string[] {
-  const result = taxonomySchema.safeParse(readYamlFixture(relativePath));
+  const result = taxonomySchema.safeParse(
+    readYamlFixture(`taxonomies/${relativePath}`),
+  );
 
   if (result.success) {
     return [];
@@ -48,7 +25,7 @@ describe('taxonomy YAML schema', () => {
     'accepts the non-publishable fixture %s',
     (relativePath) => {
       const parsed: TaxonomyData = taxonomySchema.parse(
-        readYamlFixture(relativePath),
+        readYamlFixture(`taxonomies/${relativePath}`),
       );
 
       expect(parsed.status).toBe('draft');
@@ -73,7 +50,7 @@ describe('taxonomy YAML schema', () => {
   });
 
   it('trims editorial text at the source boundary', () => {
-    const fixture = readYamlFixture('valid/occasion.yaml');
+    const fixture = readYamlFixture('taxonomies/valid/occasion.yaml');
     const parsed = taxonomySchema.parse({
       ...(fixture as Record<string, unknown>),
       name: '  Nombre sintético  ',

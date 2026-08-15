@@ -9,7 +9,7 @@
 - Se ejecuta exclusivamente la tarea solicitada; no se anticipa la siguiente.
 - `DONE` exige todos los criterios y verificaciones en `PASS`, con evidencia registrada aquí.
 - Orden normal: de arriba abajo. Una tarea posterior sólo puede comenzar si todas sus dependencias están `DONE`.
-- **Siguiente tarea:** `M2.2 — Schema de producto, precio y medios`.
+- **Siguiente tarea:** `M2.3 — Adaptador source y modelo de dominio`.
 
 ## Gates de programa
 
@@ -184,7 +184,7 @@
 
 ## M2.2 — Schema de producto, precio y medios
 
-**Estado:** PENDING  
+**Estado:** DONE
 **Objetivo:** expresar el contrato editorial completo de Product sin lógica agregada.  
 **Alcance:** unión de precio, status, relaciones por ID, personalización, featured/order, media/alt y overrides SEO; límites iniciales de assets.  
 **Fuera de alcance:** comprobar IDs referenciados, UI, optimización final o WhatsApp.  
@@ -195,7 +195,7 @@
 **Verificación:** matriz de tests por price/status/media, typecheck y build.  
 **Modelo recomendado:** SOL → LUNA.  
 **Razón del modelo:** modelado con casos límite seguido de implementación mecánica.  
-**Evidencia:** —
+**Evidencia:** PASS (2026-08-15) — `products` queda registrada como colección YAML Astro con schema source estricto y tipado. Product es una unión discriminada `draft|published`: los drafts pueden omitir bloques editoriales completos, pero cualquier bloque presente debe ser válido; los publicados exigen copy, categoría, precio, portada, personalización, derechos y aprobación. Price admite exactamente `fixed|from|on_request`; los dos primeros usan unidades menores enteras positivas y moneda ISO 4217 mayúscula, y `on_request` rechaza importe/moneda. Relaciones por ID, featured/order, SEO, rutas/alt de medios, galería y límites iniciales de assets quedan modelados sin anticipar validación agregada. 4 fixtures válidos y 9 inválidos permanecen sólo en `tests/fixtures`; Vitest: PASS (4 archivos, 53 tests), incluida la matriz price/status/media, mínimos de publicación y galería. Prueba controlada: un producto temporal con importe decimal hizo fallar el build real con `InvalidContentEntryDataError`, archivo y campo `price.amountMinor`; retirado el archivo, el build volvió a PASS. `npm ci`, `npm run lint`, `npm run format`, `npm run typecheck` (0 errores/warnings/hints), `npm test`, `npm run build` (1 página), exclusión de fixtures/copy sintético de `dist` y `git diff --check`: PASS. Los avisos informativos de `glob-loader` corresponden a colecciones reales deliberadamente vacías hasta recibir contenido aprobado.
 
 ## M2.3 — Adaptador source y modelo de dominio
 
@@ -1128,3 +1128,4 @@ No avanzar a la siguiente milestone.
 - 2026-08-15 — M1.4 completada: CI de pull request con permisos mínimos, acciones fijadas por SHA, Node/npm/cache/concurrencia definidos y checks contractuales obligatorios. Verificación local completa PASS; run real pendiente de la primera rama/PR. Siguiente tarea: M1.5 (modelo LUNA → SOL REVIEW).
 - 2026-08-15 — M1.5 completada: Pages habilitado en modo workflow, pipeline oficial por SHA y permisos mínimos desplegado desde `main`; artifact único, auditoría, smoke técnico y recuperación/rollback documentados en PASS. G1 satisfecho. Siguiente tarea: M2.1 (modelo SOL → LUNA).
 - 2026-08-15 — M2.1 completada: schemas YAML estrictos y tipados para Category, Occasion y Recipient, fixtures aislados, negativos accionables y build válido en PASS. Siguiente tarea: M2.2 (modelo SOL → LUNA).
+- 2026-08-15 — M2.2 completada: contrato Product/Price/Media estricto y tipado, publicación discriminada, importes en unidades menores, fixtures aislados y matriz de 53 tests/checks verdes. Siguiente tarea: M2.3 (modelo SOL).

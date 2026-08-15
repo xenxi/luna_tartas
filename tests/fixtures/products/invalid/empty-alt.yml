@@ -1,0 +1,8 @@
+id: fixture-product-empty-alt
+slug: fixture-product-empty-alt
+status: draft
+context: FIXTURE
+media:
+  cover:
+    src: products/fixture.jpg
+    alt: ''
