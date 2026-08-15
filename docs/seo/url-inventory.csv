@@ -1,0 +1,9 @@
+url,scope,discovery_source,checked_at,observed_state,historical_signal,migration_state,owner,next_action
+http://lunatartas.es/,apex-home,S3+S4,2026-08-15T20:49:35+02:00,INCONCLUSIVE_NETWORK_BLOCK,UNKNOWN,TBD,Propietario del negocio,Verificar desde otra red y contrastar con hosting y Search Console
+https://lunatartas.es/,apex-home,S3+S4+S6,2026-08-15T20:49:35+02:00,UNREACHABLE_FROM_AUDIT_ENVIRONMENT,UNKNOWN,TBD,Propietario del negocio,Revisar Cloudflare SSL y origin y aportar histórico de Search Console
+http://www.lunatartas.es/,www-home,S3,2026-08-15T20:49:35+02:00,DNS_NXDOMAIN,UNKNOWN,TBD,Propietario del negocio,Confirmar histórico y futura redirección www a apex
+https://www.lunatartas.es/,www-home,S3,2026-08-15T20:49:35+02:00,DNS_NXDOMAIN,UNKNOWN,TBD,Propietario del negocio,Confirmar histórico y futura redirección www a apex
+http://lunatartas.es/robots.txt,seo-endpoint,S4,2026-08-15T20:49:35+02:00,INCONCLUSIVE_NETWORK_BLOCK,UNKNOWN,TBD,Propietario del negocio,Recuperar desde hosting o verificar origin autorizado
+https://lunatartas.es/robots.txt,seo-endpoint,S4,2026-08-15T20:49:35+02:00,UNREACHABLE_FROM_AUDIT_ENVIRONMENT,UNKNOWN,TBD,Propietario del negocio,Recuperar desde hosting o verificar origin autorizado
+http://lunatartas.es/sitemap.xml,seo-endpoint,S4,2026-08-15T20:49:35+02:00,INCONCLUSIVE_NETWORK_BLOCK,UNKNOWN,TBD,Propietario del negocio,Recuperar desde hosting y comparar con Search Console
+https://lunatartas.es/sitemap.xml,seo-endpoint,S4,2026-08-15T20:49:35+02:00,UNREACHABLE_FROM_AUDIT_ENVIRONMENT,UNKNOWN,TBD,Propietario del negocio,Recuperar desde hosting y comparar con Search Console
