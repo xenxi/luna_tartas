@@ -1,0 +1,11 @@
+id: fixture-category
+slug: fixture-category
+name: Categoría sintética
+summary: Resumen sintético usado exclusivamente para validar el schema.
+description: Contenido sintético sin relación con el catálogo comercial.
+status: draft
+order: 10
+context: FIXTURE
+seo:
+  title: Categoría sintética para pruebas
+  description: Metadata sintética y no publicable para una prueba automatizada.

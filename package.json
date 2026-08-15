@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "astro dev",
     "lint": "eslint src tests astro.config.mjs",
-    "format": "prettier --check \"src/**/*.{astro,ts,js}\" \"tests/**/*.{ts,js}\" \"*.{json,mjs}\"",
+    "format": "prettier --check \"src/**/*.{astro,ts,js,yml,yaml}\" \"tests/**/*.{ts,js,yml,yaml}\" \"*.{json,mjs}\"",
     "build": "astro build",
     "preview": "astro preview",
     "typecheck": "astro check",
@@ -21,12 +21,13 @@
   },
   "devDependencies": {
     "@astrojs/check": "0.9.10",
+    "@typescript-eslint/parser": "8.67.0",
     "eslint": "10.8.1",
     "eslint-plugin-astro": "3.1.0",
-    "@typescript-eslint/parser": "8.67.0",
     "prettier": "3.9.6",
     "prettier-plugin-astro": "0.14.1",
     "typescript": "5.9.3",
-    "vitest": "3.2.7"
+    "vitest": "3.2.7",
+    "yaml": "2.9.0"
   }
 }

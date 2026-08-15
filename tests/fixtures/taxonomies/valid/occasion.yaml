@@ -1,0 +1,7 @@
+id: fixture-occasion
+slug: fixture-occasion
+name: Ocasión sintética
+summary: Resumen sintético usado exclusivamente para validar el schema.
+status: draft
+order: 20
+context: FIXTURE

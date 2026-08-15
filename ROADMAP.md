@@ -9,7 +9,7 @@
 - Se ejecuta exclusivamente la tarea solicitada; no se anticipa la siguiente.
 - `DONE` exige todos los criterios y verificaciones en `PASS`, con evidencia registrada aquí.
 - Orden normal: de arriba abajo. Una tarea posterior sólo puede comenzar si todas sus dependencias están `DONE`.
-- **Siguiente tarea:** `M2.1 — Schemas de taxonomías`.
+- **Siguiente tarea:** `M2.2 — Schema de producto, precio y medios`.
 
 ## Gates de programa
 
@@ -169,7 +169,7 @@
 
 ## M2.1 — Schemas de taxonomías
 
-**Estado:** PENDING  
+**Estado:** DONE
 **Objetivo:** validar Category, Occasion y Recipient desde YAML.  
 **Alcance:** colecciones/schema, campos editoriales mínimos, slug/status/order/SEO opcional y fixtures válidos/inválidos.  
 **Fuera de alcance:** Product, relaciones agregadas, rutas o UI.  
@@ -180,7 +180,7 @@
 **Verificación:** tests positivos/negativos, typecheck y build.  
 **Modelo recomendado:** SOL → LUNA.  
 **Razón del modelo:** Sol concreta semántica; Luna implementa schemas explícitos.  
-**Evidencia:** —
+**Evidencia:** PASS (2026-08-15) — `src/content.config.ts` registra `categories`, `occasions` y `recipients` mediante el `glob()` oficial de Astro 6 para YAML; las tres comparten un schema source estricto y tipado en `src/content/schemas/taxonomy.ts`, y el loader conserva el `id` editorial como ID de colección. El contrato ejecutable exige ID/slug kebab-case ASCII, nombre, resumen, `draft|published`, orden entero no negativo, descripción y SEO opcionales con límites, rechaza campos desconocidos y prohíbe `context: FIXTURE` con estado publicable. `catalog-contract.md` registra el shape exacto. Las colecciones reales contienen sólo `.gitkeep`; 3 YAML sintéticos válidos y 8 inválidos viven exclusivamente bajo `tests/fixtures`. `yaml@2.9.0` queda fijado como devDependency para parsear fixtures negativos sin depender de internals transitivos de Astro; el script de formato incluye YAML. Vitest: PASS (3 archivos, 28 tests), con rutas accionables por archivo/campo. Prueba controlada: un YAML temporal con slug inválido hizo fallar `npm run build` con `InvalidContentEntryDataError`, ruta `src/content/categories/invalid-schema-check.yml`, campo `slug` y corrección esperada; el archivo se retiró y el build volvió a PASS. `npm ci`, `npm run lint`, `npm run format`, `npm run typecheck` (0 errores/warnings/hints), `npm test`, `npm run build` (1 página), exclusión de `FIXTURE`/copy sintético de `dist` y `git diff --check`: PASS. Los avisos informativos de `glob-loader` corresponden a las tres colecciones reales deliberadamente vacías hasta recibir contenido aprobado.
 
 ## M2.2 — Schema de producto, precio y medios
 
@@ -1127,3 +1127,4 @@ No avanzar a la siguiente milestone.
 - 2026-08-15 — M1.3 completada: configuración global validada, origen/canonical/locale centralizados, placeholder de marca no publicable, BaseLayout semántico y 16 tests/checks verdes. Siguiente tarea: M1.4 (modelo LUNA).
 - 2026-08-15 — M1.4 completada: CI de pull request con permisos mínimos, acciones fijadas por SHA, Node/npm/cache/concurrencia definidos y checks contractuales obligatorios. Verificación local completa PASS; run real pendiente de la primera rama/PR. Siguiente tarea: M1.5 (modelo LUNA → SOL REVIEW).
 - 2026-08-15 — M1.5 completada: Pages habilitado en modo workflow, pipeline oficial por SHA y permisos mínimos desplegado desde `main`; artifact único, auditoría, smoke técnico y recuperación/rollback documentados en PASS. G1 satisfecho. Siguiente tarea: M2.1 (modelo SOL → LUNA).
+- 2026-08-15 — M2.1 completada: schemas YAML estrictos y tipados para Category, Occasion y Recipient, fixtures aislados, negativos accionables y build válido en PASS. Siguiente tarea: M2.2 (modelo SOL → LUNA).

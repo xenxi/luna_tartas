@@ -1,0 +1,7 @@
+id: ' fixture-bad-id '
+slug: fixture-bad-id
+name: ID inválido sintético
+summary: Documento negativo usado exclusivamente por tests.
+status: draft
+order: 0
+context: FIXTURE

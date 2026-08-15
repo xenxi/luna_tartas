@@ -1,0 +1,8 @@
+id: fixture-empty-seo
+slug: fixture-empty-seo
+name: SEO vacío sintético
+summary: Documento negativo usado exclusivamente por tests.
+status: draft
+order: 0
+context: FIXTURE
+seo: {}

@@ -23,6 +23,22 @@ La procedencia y aprobación editorial de cada entidad se controla con el contra
 
 Taxonomías con `id`, `slug`, nombre, resumen/contenido, estado/orden y metadata opcional. `Recipient` representa la intención pública `/regalos/{slug}/`; el nombre del modelo no determina el copy visible.
 
+M2.1 concreta un único shape source para las tres colecciones:
+
+| Campo | Regla source |
+| --- | --- |
+| `id` | obligatorio, 1–80 caracteres, minúsculas ASCII/números separados por guiones simples |
+| `slug` | obligatorio, misma forma que `id`; es estable aunque cambie `name` |
+| `name` | texto obligatorio, 1–100 caracteres después de trim |
+| `summary` | copy obligatorio, 1–200 caracteres después de trim |
+| `description` | copy ampliado opcional, 1–2000 caracteres después de trim |
+| `status` | `draft \| published` |
+| `order` | entero obligatorio mayor o igual que cero |
+| `seo` | objeto opcional y no vacío; `title` 1–60 y/o `description` 1–160 |
+| `context` | sólo admite `FIXTURE`; cuando existe obliga a `status: draft` |
+
+Los objetos son estrictos: un campo desconocido falla para hacer visibles los errores editoriales. Las colecciones reales pueden permanecer vacías hasta recibir contenido aprobado; los documentos sintéticos viven exclusivamente bajo `tests/fixtures`.
+
 ### Configuración global
 
 Marca, URL canónica, locale, moneda permitida, WhatsApp y analytics no se repiten por producto. Las excepciones requieren un campo explícito y justificado.

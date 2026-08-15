@@ -1,0 +1,9 @@
+id: fixture-recipient
+slug: fixture-recipient
+name: Destinatario sintético
+summary: Resumen sintético usado exclusivamente para validar el schema.
+status: draft
+order: 30
+context: FIXTURE
+seo:
+  title: Destinatario sintético para pruebas

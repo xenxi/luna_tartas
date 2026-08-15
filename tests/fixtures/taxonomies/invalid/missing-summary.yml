@@ -1,0 +1,6 @@
+id: fixture-missing-summary
+slug: fixture-missing-summary
+name: Resumen ausente sintético
+status: draft
+order: 0
+context: FIXTURE
