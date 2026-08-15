@@ -9,7 +9,7 @@
 - Se ejecuta exclusivamente la tarea solicitada; no se anticipa la siguiente.
 - `DONE` exige todos los criterios y verificaciones en `PASS`, con evidencia registrada aquí.
 - Orden normal: de arriba abajo. Una tarea posterior sólo puede comenzar si todas sus dependencias están `DONE`.
-- **Siguiente tarea:** `M1.4 — CI de pull request`.
+- **Siguiente tarea:** `M1.5 — Pipeline base de GitHub Pages`.
 
 ## Gates de programa
 
@@ -147,7 +147,7 @@
 
 ## M1.5 — Pipeline base de GitHub Pages
 
-**Estado:** PENDING  
+**Estado:** IN_PROGRESS
 **Objetivo:** demostrar que un artefacto estático verificable puede desplegarse sin cortar el dominio.  
 **Alcance:** workflow Pages oficial, permisos/concurrencia, configuración `site`, artifact y smoke de URL técnica; documentar preview/rollback real.  
 **Fuera de alcance:** cambio DNS, producción, contenido final o redirects históricos.  

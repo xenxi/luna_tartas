@@ -129,12 +129,29 @@ export function getPublishableText(value: PublishableText): string | undefined {
   return value.status === CONTENT_STATUS.ready ? value.value : undefined;
 }
 
-export function getCanonicalUrl(pathname = '/'): string {
+export function getCanonicalUrl(pathname = '/', deploymentBase = '/'): string {
   if (!pathname.startsWith('/') || pathname.startsWith('//')) {
     throw new Error('Canonical pathname must start with exactly one slash');
   }
 
-  const url = new URL(pathname, siteConfig.siteUrl);
+  if (!deploymentBase.startsWith('/') || deploymentBase.startsWith('//')) {
+    throw new Error('Deployment base must start with exactly one slash');
+  }
+
+  const normalizedBase = deploymentBase.replace(/\/$/, '');
+  let canonicalPathname = pathname;
+
+  if (normalizedBase) {
+    if (pathname === normalizedBase || pathname === `${normalizedBase}/`) {
+      canonicalPathname = '/';
+    } else if (pathname.startsWith(`${normalizedBase}/`)) {
+      canonicalPathname = pathname.slice(normalizedBase.length);
+    } else {
+      throw new Error('Canonical pathname must be inside the deployment base');
+    }
+  }
+
+  const url = new URL(canonicalPathname, siteConfig.siteUrl);
 
   if (url.origin !== siteConfig.siteUrl) {
     throw new Error('Canonical URL must stay on the configured site origin');

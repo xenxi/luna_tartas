@@ -21,7 +21,7 @@ Cuando una integración requiera secretos, se usarán GitHub Actions Secrets con
 
 No se hace deploy desde el worktree ni se versiona `dist/`.
 
-GitHub Pages sigue siendo la plataforma V1: M0.1 no encontró rutas históricas de contenido que hoy exijan cambiarla. M1.5 debe usar el flujo oficial `configure-pages -> upload-pages-artifact -> deploy-pages`, con build y deploy separados por `needs`, environment `github-pages` y protección para que sólo `main` despliegue. Las actions se fijan a SHA en la implementación aunque aquí se nombren por producto.
+GitHub Pages sigue siendo la plataforma V1: M0.1 no encontró rutas históricas de contenido que hoy exijan cambiarla. El workflow de M1.5 usa el flujo oficial `configure-pages -> upload-pages-artifact -> deploy-pages`, con build y deploy separados por `needs`, environment `github-pages` y protección para que sólo `main` despliegue. Las actions están fijadas a SHA, el checkout comprueba que `HEAD` coincide con `GITHUB_SHA` y sólo el artefacto `github-pages` generado por ese job puede llegar al deploy.
 
 ## Configuración
 
@@ -29,13 +29,18 @@ GitHub Pages sigue siendo la plataforma V1: M0.1 no encontró rutas históricas 
 - Astro estable `6.x` exacto, dependencias exactas y `package-lock.json` versionados en M1.1.
 - `.gitignore` mantenido desde bootstrap para dependencias, outputs, caches, tooling local y archivos `.env`; sólo se permite un ejemplo sin valores sensibles cuando aporte valor.
 - `site` canónico `https://lunatartas.es`, `output: static`, `build.format: directory` y `trailingSlash: always`.
+- Mientras no haya custom domain, el build de Actions pasa a Astro el `base_path` calculado por `configure-pages`; así la URL técnica `https://xenxi.github.io/luna_tartas/` funciona sin cambiar `site` ni anticipar el corte DNS. Cuando Pages exponga base vacía para el dominio configurado, el mismo workflow construirá sin override.
 - Con custom GitHub Actions, el dominio se configura en Settings/API de Pages; un archivo `CNAME` no es la fuente de verdad y no es requerido por ese flujo.
 - Tokens sólo mediante permisos mínimos de GitHub Actions Secrets; el build público no necesita secretos para leer catálogo.
 - Concurrencia de deploy evita carreras y conserva el último artefacto correcto.
 
-## Entornos
+## Preview y smoke técnico
 
-V1 no necesita un backend de staging. PR checks verifican el artefacto; un mecanismo de preview sólo se añadirá si aporta valor y no complica Pages. La validación final puede usar la URL técnica de Pages antes del cambio de dominio, según capacidades reales confirmadas en M1.4/M9.
+V1 no necesita un backend de staging. Los pull requests sólo ejecutan CI y no publican una preview: `deploy.yml` despliega exclusivamente `refs/heads/main`, también cuando se lanza manualmente. Esto evita exponer builds no aprobados y mantiene un solo artefacto desplegable por run.
+
+Antes del cambio DNS, la preview operativa es la URL técnica `https://xenxi.github.io/luna_tartas/`. El job de deploy toma la URL real de `deploy-pages`, exige HTTP `200` y comprueba que la respuesta contiene el `<main>` de la aplicación, con reintentos acotados para la propagación de Pages. Este smoke no consulta `lunatartas.es`, por lo que no corta ni altera el servicio actual.
+
+Para habilitarlo por primera vez, el propietario `xenxi` debe seleccionar **GitHub Actions** como fuente en `Settings -> Pages`. El environment `github-pages` puede protegerse para permitir sólo `main`; el workflow ya aplica esa restricción y no necesita secrets ni un PAT. La evidencia del primer run debe conservar URL del run, SHA desplegado, artifact `github-pages`, URL emitida y resultado del smoke. Logs y artifact se revisan sin copiar posibles coincidencias sensibles a la salida.
 
 ## DNS y redirects
 
@@ -51,7 +56,17 @@ La responsabilidad se separa así:
 
 ## Rollback
 
-El rollback de aplicación es redesplegar el último commit/artefacto verificado. El corte DNS conserva export de zona, valores anteriores, TTL y ventana/owner de reversión. Las reglas Cloudflare se exportan antes de modificarse. Ningún release elimina la versión recuperable anterior sin confirmación.
+El rollback de aplicación es un **revert hacia delante** en `main`: identificar el último run verde y su SHA, revertir únicamente los commits posteriores mediante PR, ejecutar CI y fusionar. El push resultante crea un commit público nuevo y `deploy.yml` vuelve a construir, escanear, desplegar y ejecutar el smoke; no se reescribe historia ni se reutiliza un artifact sin trazabilidad. Si el commit bueno todavía es compatible y su artifact no ha expirado, volver a ejecutar su run sirve sólo como recuperación inmediata; el revert sigue siendo el registro permanente.
+
+Ensayo previo a producción:
+
+1. Registrar el SHA y la URL del último run verde de `Deploy to GitHub Pages`.
+2. Crear una rama desde `main`, ejecutar `git revert <sha-malo>` y abrir PR.
+3. Exigir CI verde y revisar que el diff restaura exactamente el estado conocido.
+4. Fusionar y comprobar que el nuevo run publica el SHA de revert, no el worktree local.
+5. Verificar el smoke de la URL técnica y, si falla, pausar cambios y volver a evaluar el último SHA verde.
+
+En M1.5 el ensayo local valida la reconstrucción desde un commit conocido y la forma del artifact. El ensayo remoto completo requiere un primer run de Pages y permisos administrativos; si faltan, la milestone queda `BLOCKED` con `xenxi` como owner y no se simula un PASS. El corte DNS conserva export de zona, valores anteriores, TTL y ventana/owner de reversión. Las reglas Cloudflare se exportan antes de modificarse. Ningún release elimina la versión recuperable anterior sin confirmación.
 
 ## Gates
 
@@ -67,7 +82,7 @@ El rollback de aplicación es redesplegar el último commit/artefacto verificado
 
 | Necesidad | Owner | Fecha límite/gate | Estado |
 | --- | --- | --- | --- |
-| Administrar Actions, environment y Pages del remoto | Propietario GitHub `xenxi` | antes de M1.4/M1.5 | `TBD`; no bloquea M1.1 |
+| Administrar Actions, environment y Pages del remoto | Propietario GitHub `xenxi` | M1.5 | `BLOCKED`: remoto sin refs y credencial local de GitHub inválida; falta publicar `main`, seleccionar GitHub Actions como source y obtener el primer run/smoke |
 | Verificar custom domain en GitHub | Propietario GitHub `xenxi` + propietario del negocio | antes de M9.3 | `TBD` |
 | Exportar/administrar DNS y redirects Cloudflare | Propietario del negocio | antes de M9.2/M9.3 | `TBD` |
 | Exportar configuración anterior para rollback | Propietario del negocio | antes de M9.3 | `TBD` |

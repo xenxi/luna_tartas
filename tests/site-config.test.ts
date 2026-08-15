@@ -74,8 +74,17 @@ describe('site configuration', () => {
     expect(getCanonicalUrl('/categoria/')).toBe(
       `${siteConfig.siteUrl}/categoria/`,
     );
+    expect(getCanonicalUrl('/luna_tartas/', '/luna_tartas')).toBe(
+      `${siteConfig.siteUrl}/`,
+    );
+    expect(getCanonicalUrl('/luna_tartas/categoria/', '/luna_tartas/')).toBe(
+      `${siteConfig.siteUrl}/categoria/`,
+    );
     expect(() => getCanonicalUrl('//attacker.example/')).toThrow(
       'Canonical pathname must start with exactly one slash',
+    );
+    expect(() => getCanonicalUrl('/otra/', '/luna_tartas')).toThrow(
+      'Canonical pathname must be inside the deployment base',
     );
   });
 });
