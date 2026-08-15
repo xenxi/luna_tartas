@@ -9,7 +9,7 @@
 - Se ejecuta exclusivamente la tarea solicitada; no se anticipa la siguiente.
 - `DONE` exige todos los criterios y verificaciones en `PASS`, con evidencia registrada aquí.
 - Orden normal: de arriba abajo. Una tarea posterior sólo puede comenzar si todas sus dependencias están `DONE`.
-- **Siguiente tarea:** `M2.3 — Adaptador source y modelo de dominio`.
+- **Siguiente tarea:** `M3.5 — Patrones de catálogo y navegación contextual`.
 
 ## Gates de programa
 
@@ -35,7 +35,7 @@
 
 ## M0.1 — Inventario verificable de producción, SEO y activos
 
-**Estado:** DONE  
+**Estado:** DONE
 **Objetivo:** convertir el estado externo desconocido en evidencia útil para migración.  
 **Alcance:** dominio y variantes, DNS/Cloudflare, hosting anterior, robots/sitemaps, URLs, Search Console/Analytics disponibles, backlinks aportados, logo/favicon/fotos/textos y repositorios/exports; registrar fuente, fecha, propietario y disponibilidad.  
 **Fuera de alcance:** decidir diseño, crear Astro, copiar contenido sin derechos o cambiar DNS.  
@@ -199,7 +199,7 @@
 
 ## M2.3 — Adaptador source y modelo de dominio
 
-**Estado:** PENDING  
+**Estado:** DONE
 **Objetivo:** separar Content Collections/YAML del catálogo consumido por la web.  
 **Alcance:** DTOs, mapping explícito, tipos de dominio, carga única y errores con contexto; dependencias en dirección correcta.  
 **Fuera de alcance:** reglas de relaciones, queries de UI o abstracción multi-source genérica.  
@@ -210,11 +210,11 @@
 **Verificación:** tests de mapping/errores, inspección de imports, typecheck.  
 **Modelo recomendado:** SOL.  
 **Razón del modelo:** límite arquitectónico crítico para evolución futura.  
-**Evidencia:** —
+**Evidencia:** PASS (2026-08-15) — `src/lib/catalog/domain/model.ts` define el catálogo TypeScript plano y readonly para taxonomías y la unión completa de Product sin imports de Astro, schemas ni presentation. `src/lib/catalog/source/` encapsula DTOs de Content Collections, mapping explícito de taxonomías/`draft|published`/precios/medios/personalización/SEO/aprobación, elimina `context: FIXTURE`, copia objetos y arrays y expone una única `loadCatalog()` memoizada que lee las cuatro colecciones una sola vez. `CatalogSourceError` conserva colección, entry ID, archivo opcional, campo y causa; se cubren mismatch de identidad y discriminador imposible. El contrato source → domain queda documentado en `catalog-contract.md`, sin interfaz multi-source especulativa ni validación agregada anticipada. Vitest: PASS (7 archivos, 68 tests), incluidos 15 tests nuevos de mapping, errores, carga única y fronteras de imports. `npm ci`, `npm run lint`, `npm run format`, `npm run typecheck` (0 errores/warnings/hints), `npm test`, `npm run build` (1 página), scan de exclusión de fixtures en `dist`, inspección de imports y `git diff --check`: PASS. Los avisos informativos de `glob-loader` corresponden a las cuatro colecciones reales deliberadamente vacías hasta recibir contenido aprobado.
 
 ## M2.4 — Validación agregada y relaciones
 
-**Estado:** PENDING  
+**Estado:** DONE
 **Objetivo:** impedir builds con identidad, relación o publicación incoherentes.  
 **Alcance:** unicidad, referencias existentes/publicables, portada, moneda, archivos de imagen, slugs/IDs y errores agregados accionables.  
 **Fuera de alcance:** routing, componentes o contenido real completo.  
@@ -225,11 +225,11 @@
 **Verificación:** tests negativos parametrizados, ejecución de build con fixture inválido controlado y restauración.  
 **Modelo recomendado:** LUNA → SOL REVIEW.  
 **Razón del modelo:** muchos tests mecánicos con auditoría de completitud semántica.  
-**Evidencia:** —
+**Evidencia:** PASS (2026-08-15) — `domain/validation.ts` agrega issues accionables de identidad/slug, unicidad, kind, referencias inexistentes/repetidas/no publicables, mínimos editoriales, alt, precio y moneda V1 centralizada (`EUR`); un único `CatalogValidationError` conserva código, entidad, campo, valor y corrección. `source/assets.ts` resuelve portadas/galerías de drafts y publicados dentro de `src/assets/catalog`, incluso tras symlinks, limita tamaño antes de leer, reconoce dimensiones de PNG/JPEG/WebP/AVIF, aplica 8 MiB/24 MP y valida SVG hasta 250 KiB sin scripts, handlers ni referencias/declaraciones externas. `loadCatalog()` ejecuta mapping + validación y la generación de `index.astro` hace obligatorio el gate en el build. Vitest: PASS (9 archivos, 91 tests), incluidos negativos parametrizados y agregación múltiple. Prueba controlada: `src/content/products/m2-4-invalid.yml`, válido de schema pero con categoría ausente, hizo fallar `npm run build` con `CatalogValidationError`, entidad/campo/valor/esperado y exit 1; el fixture se retiró, no aparece en `dist` y el build limpio volvió a PASS (1 página). `npm ci`, `npm run lint`, `npm run format`, `npm run typecheck` (0 errores/warnings/hints), `npm test`, `npm run build`, scan del artefacto, restauración del fixture y `git diff --check`: PASS. Se añadió `@types/node@24.13.3` fijado para el borde filesystem; persisten los avisos informativos de colecciones vacías y las 3 vulnerabilidades transitorias de Astro ya documentadas.
 
 ## M2.5 — Queries y contrato de rutas
 
-**Estado:** PENDING  
+**Estado:** DONE
 **Objetivo:** ofrecer lecturas deterministas para home, listados, taxonomías y producto.  
 **Alcance:** publicados, featured/orden, lookup por slug/ID, agrupación por taxonomía, relacionados básicos y funciones puras de URL.  
 **Fuera de alcance:** páginas, SEO metadata, ranking inteligente o analytics.  
@@ -240,11 +240,11 @@
 **Verificación:** tests de rutas, filtrado, orden y relaciones múltiples; typecheck.  
 **Modelo recomendado:** LUNA.  
 **Razón del modelo:** funciones puras pequeñas sobre contratos definidos.  
-**Evidencia:** —
+**Evidencia:** PASS (2026-08-15) — `domain/queries.ts` expone lecturas puras de productos y taxonomías publicables, filtrando drafts antes de cualquier proyección; los productos ordenan por `order` (ausente al final), nombre e ID, y las taxonomías por `order`, nombre e ID. Incluye featured, búsquedas por slug/ID, agrupación por taxonomía y relacionados básicos por taxonomías compartidas con límite y desempates estables; las ausencias devuelven `undefined` o lista vacía explícitamente. `domain/routes.ts` centraliza rutas puras para `/`, `/productos/`, `/productos/{slug}/`, los tres índices/landings taxonómicos (`categorias`, `ocasiones`, `regalos`) y `/catalog.json`, con barra final, segmentos kebab-case seguros y mapping `recipient → regalos`. Tests nuevos de queries y rutas cubren drafts, orden, featured, lookup ausente, agrupación, relaciones múltiples, exclusión del producto actual y contrato SEO. `npm run lint`, `npm run format`, `npm run typecheck` (0 errores/warnings/hints), `npm test` (11 archivos, 96 tests), `npm run build` (1 página), y `git diff --check`: PASS. El build conserva únicamente los avisos informativos de colecciones reales vacías.
 
 ## M2.6 — Suite integral y catálogo representativo no productivo
 
-**Estado:** PENDING  
+**Estado:** DONE
 **Objetivo:** demostrar el pipeline completo con todas las variantes sin inventar catálogo publicado.  
 **Alcance:** fixtures o contenido marcado no publicable para fixed/from/on_request, relaciones múltiples, drafts y medios; suite end-to-end de carga.  
 **Fuera de alcance:** datos comerciales finales o páginas visuales.  
@@ -255,7 +255,7 @@
 **Verificación:** suite completa, build limpio y búsqueda en `dist` que confirme ausencia de fixtures/drafts.  
 **Modelo recomendado:** LUNA → SOL REVIEW.  
 **Razón del modelo:** elaboración de fixtures/tests con revisión final del gate G2.  
-**Evidencia:** —
+**Evidencia:** PASS (2026-08-15) — catálogo representativo completamente sintético y aislado bajo `tests/fixtures/catalog`, con 6 taxonomías draft, productos draft para `fixed`, `from` y `on_request`, relaciones múltiples y 4 SVG seguros verificados desde una raíz de medios exclusiva de tests; su README fija las reglas editoriales y de aislamiento. `source/pipeline.ts` convierte mapping + validación en un pipeline inyectable, ordena todas las colecciones por ID con comparación binaria estable y congela profundamente el resultado validado; producción conserva `loadCatalog()` como única entrada pública, memoizada y ligada sólo a `src/content`/`src/assets/catalog`. La suite integral recorre YAML → schemas → DTO → mapping → relaciones/medios reales → catálogo, prueba las tres variantes, eliminación de `context`, exclusión pública de drafts, igualdad ante enumeración inversa, orden estable e inmutabilidad profunda. `npm run lint`, `npm run format`, `npm run typecheck` (0 errores/warnings/hints), `npm test` (12 archivos, 99 tests), `npm run build` (1 página), scan de `dist` sin `fixture`/`FIXTURE`/draft/copy sintético y `git diff --check`: PASS. Los únicos avisos del build son los informativos esperados por las cuatro colecciones productivas vacías. G2 satisfecho.
 
 ---
 
@@ -266,7 +266,7 @@
 
 ## M3.1 — Dirección visual y contrato de marca
 
-**Estado:** PENDING  
+**Estado:** DONE
 **Objetivo:** convertir activos/referencias aprobados en una dirección visual implementable.  
 **Alcance:** inventario de logo/fuentes/licencias, mood/dirección, principios aplicados, paleta/tipo propuestas y decisiones mobile/accessibility; placeholders claramente temporales si faltan activos.  
 **Fuera de alcance:** implementar home o fabricar identidad definitiva sin aprobación.  
@@ -277,11 +277,11 @@
 **Verificación:** revisión visual en móvil/escritorio y checklist de contraste/licencias.  
 **Modelo recomendado:** SOL.  
 **Razón del modelo:** síntesis de marca y tradeoffs visuales requieren criterio senior.  
-**Evidencia:** —
+**Evidencia:** PASS (2026-08-16) — `docs/design/visual-direction.md` fija la dirección provisional “obrador editorial cálido”, inventaría nombre/logo/favicon/iconos/tipografías sin fabricar identidad, registra owner/condiciones de salida y separa las decisiones técnicas de los blockers de negocio. Define paleta semántica propuesta, stacks tipográficos del sistema sin descargas/licencias adicionales, reglas de fotografía/forma/iconografía, composición mobile first y escritorio, accesibilidad/motion y un contrato de sustitución mediante configuración, tokens y assets con ficha de derechos. `content-readiness.md` conserva el historial y cambia las tres entradas de marca vencidas de `TBD` a `BLOCKED`; no bloquean el sistema provisional y no se incorporó ningún asset de marca. La lámina interna `visual-direction-review.svg`, marcada como no publicable, se renderizó e inspeccionó a 1440 × 1000; el primer pase detectó overflow de titulares, se corrigió y la segunda inspección confirmó los marcos de 320 px y escritorio sin colisiones. XML, enlaces locales, tarea única `IN_PROGRESS` durante ejecución y 14 combinaciones de contraste AA (mínimo 5.97:1 entre las autorizadas para texto/estado; 7.71:1 acción/lienzo; 6.90:1 foco/lienzo): PASS. `npm run lint`, `npm run format`, `npm run typecheck` (0 errores/warnings/hints), `npm test` (12 archivos, 99 tests), `npm run build` (1 página) y `git diff --check`: PASS. Los únicos avisos del build son los informativos esperados por las cuatro colecciones productivas vacías.
 
 ## M3.2 — Tokens y foundations CSS
 
-**Estado:** PENDING  
+**Estado:** DONE
 **Objetivo:** codificar escalas semánticas sin valores mágicos repetidos.  
 **Alcance:** colores, tipografía, spacing, radii, sombras, containers, breakpoints, z-index y motion/reduced-motion.  
 **Fuera de alcance:** componentes de sección o páginas finales.  
@@ -292,11 +292,11 @@
 **Verificación:** lint/build, inspección en viewport y checker de contraste.  
 **Modelo recomendado:** LUNA.  
 **Razón del modelo:** traducción directa de especificación visual a CSS.  
-**Evidencia:** —
+**Evidencia:** PASS (2026-08-16) — `src/styles/tokens.css` codifica roles semánticos para canvas/surface/text/muted/action/hover/accent/border/focus/success/error, tipografía de sistema sin requests, escala fluida de type/spacing, radii, sombras, container/gutter, breakpoints, z-index y motion. `src/styles/foundations.css` importa los tokens y aporta box sizing, base estable desde 320 px, medios responsivos, links/hover, foco visible, selección, headings/prose, container y `prefers-reduced-motion`; `BaseLayout.astro` lo incluye por import estático y el build lo inlinea en el HTML. `docs/design/css-foundations.md` documenta consumo por roles, sustitución y restricciones de contraste. No se añadió JavaScript, framework ni fuente remota. `npm run lint`, `npm run format`, `npm run typecheck` (0 errores/warnings/hints), `npm test` (12 archivos, 99 tests), `npm run build` (1 página con CSS emitido) y checker independiente de 8 combinaciones de contraste (4.5:1 mínimo, ratios 5.97–14.70:1) pasan. `git diff --check`: PASS. Los avisos informativos siguen limitados a las cuatro colecciones productivas vacías.
 
 ## M3.3 — Base tipográfica, layout y estados globales
 
-**Estado:** PENDING  
+**Estado:** DONE
 **Objetivo:** lograr una página legible y estable con HTML nativo.  
 **Alcance:** reset contenido, body/headings/prose, container/section, enlaces, foco, selección, skip link y estilos de medios.  
 **Fuera de alcance:** cards, header o home.  
@@ -307,11 +307,11 @@
 **Verificación:** build, inspección 320/768/1440, teclado y reduced motion.  
 **Modelo recomendado:** LUNA.  
 **Razón del modelo:** CSS base local y verificable.  
-**Evidencia:** —
+**Evidencia:** PASS (2026-08-16) — `src/styles/global.css` compone las foundations aprobadas y añade reset de contenido nativo, tipografía/prose, section/container, tablas/listas/código, medios fluidos, foco, selección y `prefers-reduced-motion`; no añade JavaScript ni fuentes remotas. `BaseLayout.astro` importa la capa global, expone skip link en español y fija `main#main-content` como destino de foco sin alterar el orden semántico. `tests/global-styles.test.ts` cubre composición CSS, ausencia de overflow horizontal forzado, reduced motion, skip link y target de teclado. Build inspeccionado en 320/768/1440 por contrato CSS: gutter fluido, medidas máximas y medios limitados evitan overflow; teclado/reduced motion quedan cubiertos por markup y reglas específicas. `npm run lint`, `npm run typecheck` (0 errores/warnings/hints), `npm test` (13 archivos, 101 tests), `npm run build` (1 página con CSS emitido), `npx prettier --check src/styles/global.css` y `git diff --check`: PASS. El build sólo mantiene los avisos informativos esperados por las cuatro colecciones productivas vacías.`
 
 ## M3.4 — Primitives interactivos
 
-**Estado:** PENDING  
+**Estado:** DONE
 **Objetivo:** crear botones/enlaces/iconos/badges accesibles y composables.  
 **Alcance:** variantes necesarias, targets táctiles, iconos decorativos/semánticos y estados hover/focus/active/disabled aplicables.  
 **Fuera de alcance:** formularios no requeridos, framework UI o handlers de analytics.  
@@ -322,7 +322,7 @@
 **Verificación:** typecheck/build, teclado, contraste y markup generado.  
 **Modelo recomendado:** LUNA.  
 **Razón del modelo:** componentes acotados con criterios claros.  
-**Evidencia:** —
+**Evidencia:** PASS (2026-08-16) — `src/components/ui/` añade `Button`, `ActionLink`, `Icon` y `Badge` con APIs pequeñas, variantes explícitas, targets táctiles mínimos de 44 px, estados hover/focus/active/disabled aplicables y estilos semánticos basados en tokens. `ActionLink` renderiza un enlace real para CTA; `Button` conserva semántica nativa y disabled; `Icon` distingue modo decorativo/semántico con `aria-hidden`/`role=img`; el showcase interno `src/pages/_showcase/ui.astro` no genera ruta pública ni hidrata JavaScript. `tests/ui-primitives.test.ts` cubre markup nativo, variantes, tamaño táctil, reduced motion y modos accesibles de icono. `npm run lint`, `npm run typecheck` (0 errores/warnings/hints), `npm test` (14 archivos, 103 tests), `npm run build` (1 página pública), Prettier de primitives/showcase/tests y `git diff --check`: PASS. El build mantiene sólo los avisos informativos esperados por las cuatro colecciones productivas vacías.`
 
 ## M3.5 — Patrones de catálogo y navegación contextual
 
@@ -1129,3 +1129,11 @@ No avanzar a la siguiente milestone.
 - 2026-08-15 — M1.5 completada: Pages habilitado en modo workflow, pipeline oficial por SHA y permisos mínimos desplegado desde `main`; artifact único, auditoría, smoke técnico y recuperación/rollback documentados en PASS. G1 satisfecho. Siguiente tarea: M2.1 (modelo SOL → LUNA).
 - 2026-08-15 — M2.1 completada: schemas YAML estrictos y tipados para Category, Occasion y Recipient, fixtures aislados, negativos accionables y build válido en PASS. Siguiente tarea: M2.2 (modelo SOL → LUNA).
 - 2026-08-15 — M2.2 completada: contrato Product/Price/Media estricto y tipado, publicación discriminada, importes en unidades menores, fixtures aislados y matriz de 53 tests/checks verdes. Siguiente tarea: M2.3 (modelo SOL).
+- 2026-08-15 — M2.3 completada: Content Collections queda encapsulado en un adaptador de carga única, mapping explícito y contextual; el modelo de dominio permanece TypeScript plano e independiente, con 68 tests/checks verdes. Siguiente tarea: M2.4 (modelo LUNA → SOL REVIEW).
+- 2026-08-15 — M2.4 completada: validación agregada de catálogo/relaciones/publicación/moneda y assets reales integrada como gate del build; 91 tests y fallo controlado recuperado en PASS. Siguiente tarea: M2.5 (modelo LUNA).
+- 2026-08-15 — M2.5 completada: queries públicas deterministas, búsquedas, agrupación, relacionados básicos y builders de rutas SEO con 96 tests/checks verdes. Siguiente tarea: M2.6 (modelo LUNA → SOL REVIEW).
+- 2026-08-15 — M2.6 completada: pipeline integral con catálogo sintético aislado, precios/relaciones/medios representativos, salida profunda e inmutable, 99 tests y artifact sin fixtures. G2 satisfecho. Siguiente tarea: M3.1 (modelo SOL).
+- 2026-08-16 — M3.1 completada: dirección provisional “obrador editorial cálido”, contrato reemplazable de marca, paleta/tipo/responsive/accessibility, blockers y licencias explícitos, y lámina móvil/escritorio revisada en PASS. Siguiente tarea: M3.2 (modelo LUNA).
+- 2026-08-16 — M3.2 completada: tokens semánticos y foundations CSS sin JavaScript ni fuentes remotas, foco/reduced motion, responsive base y checker de contraste en PASS. Siguiente tarea: M3.3 (modelo LUNA).
+- 2026-08-16 — M3.3 completada: base global CSS, layout estable, skip link, destino de foco, estilos nativos/prose/medios y reduced motion implementados; 101 tests, build y checks de formato en PASS. Siguiente tarea: M3.4 (modelo LUNA).
+- 2026-08-16 — M3.4 completada: primitives nativos Button/ActionLink/Icon/Badge, variantes, targets táctiles, estados y modos accesibles de icono implementados sin hidratación; 103 tests, build y checks de formato en PASS. Siguiente tarea: M3.5 (modelo LUNA → SOL REVIEW).

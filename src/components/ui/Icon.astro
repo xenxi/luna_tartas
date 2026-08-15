@@ -1,0 +1,31 @@
+---
+import './ui.css';
+
+interface Props {
+  name: 'arrow-right' | 'check' | 'info' | 'close';
+  label?: string;
+}
+
+const { name, label } = Astro.props;
+const paths = {
+  'arrow-right': '<path d="M4 12h16m-6-6 6 6-6 6" />',
+  check: '<path d="m5 12 4 4L19 6" />',
+  info: '<circle cx="12" cy="12" r="8" /><path d="M12 11v5m0-8v.01" />',
+  close: '<path d="m6 6 12 12M18 6 6 18" />',
+} as const;
+---
+
+<svg
+  class="icon"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="1.75"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  focusable="false"
+  aria-hidden={label ? undefined : 'true'}
+  role={label ? 'img' : undefined}
+  aria-label={label}
+  set:html={paths[name]}
+/>

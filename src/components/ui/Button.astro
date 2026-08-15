@@ -1,0 +1,26 @@
+---
+import './ui.css';
+
+interface Props {
+  variant?: 'primary' | 'secondary' | 'quiet';
+  type?: 'button' | 'submit' | 'reset';
+  disabled?: boolean;
+  ariaLabel?: string;
+}
+
+const {
+  variant = 'primary',
+  type = 'button',
+  disabled = false,
+  ariaLabel,
+} = Astro.props;
+---
+
+<button
+  class:list={['button', `button--${variant}`]}
+  type={type}
+  disabled={disabled}
+  aria-label={ariaLabel}
+>
+  <slot />
+</button>

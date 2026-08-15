@@ -1,0 +1,18 @@
+---
+import ActionLink from '../../components/ui/ActionLink.astro';
+import Badge from '../../components/ui/Badge.astro';
+import Button from '../../components/ui/Button.astro';
+import Icon from '../../components/ui/Icon.astro';
+---
+
+<section aria-labelledby="ui-showcase-title">
+  <h1 id="ui-showcase-title">UI primitives showcase</h1>
+  <Button>Acción</Button>
+  <Button variant="secondary" disabled>Desactivado</Button>
+  <ActionLink href="/productos/" variant="secondary">Ver productos</ActionLink>
+  <Icon name="arrow-right" />
+  <Icon name="info" label="Información" />
+  <Badge>Estado</Badge>
+  <Badge tone="success">Disponible</Badge>
+  <Badge tone="error">Revisar</Badge>
+</section>

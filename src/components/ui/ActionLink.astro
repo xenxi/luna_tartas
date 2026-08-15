@@ -1,0 +1,23 @@
+---
+import './ui.css';
+
+interface Props {
+  href: string;
+  variant?: 'primary' | 'secondary' | 'quiet';
+  ariaLabel?: string;
+}
+
+const { href, variant = 'primary', ariaLabel } = Astro.props;
+
+if (!href || href.startsWith('javascript:')) {
+  throw new Error('ActionLink requires a safe href');
+}
+---
+
+<a
+  class:list={['action-link', `action-link--${variant}`]}
+  href={href}
+  aria-label={ariaLabel}
+>
+  <slot />
+</a>

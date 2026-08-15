@@ -1,0 +1,100 @@
+.button,
+.action-link {
+  display: inline-flex;
+  min-block-size: 2.75rem;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-5);
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
+  font: inherit;
+  font-weight: var(--font-weight-semibold);
+  line-height: 1.25;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    background-color var(--duration-fast) var(--ease-standard),
+    border-color var(--duration-fast) var(--ease-standard),
+    color var(--duration-fast) var(--ease-standard);
+}
+
+.button--primary,
+.action-link--primary {
+  background: var(--color-action);
+  color: var(--color-on-action);
+}
+
+.button--primary:hover,
+.action-link--primary:hover {
+  background: var(--color-action-hover);
+  color: var(--color-on-action);
+}
+
+.button--secondary,
+.action-link--secondary {
+  border-color: var(--color-action);
+  background: var(--color-surface);
+  color: var(--color-action);
+}
+
+.button--secondary:hover,
+.action-link--secondary:hover {
+  background: var(--color-action);
+  color: var(--color-on-action);
+}
+
+.button--quiet,
+.action-link--quiet {
+  padding-inline: var(--space-2);
+  color: var(--color-action);
+}
+
+.button--quiet:hover,
+.action-link--quiet:hover {
+  color: var(--color-action-hover);
+}
+
+.button:disabled {
+  cursor: not-allowed;
+  opacity: 0.58;
+}
+
+.icon {
+  display: inline-block;
+  flex: 0 0 auto;
+  inline-size: 1.25em;
+  block-size: 1.25em;
+  vertical-align: middle;
+}
+
+.badge {
+  display: inline-flex;
+  min-block-size: 1.75rem;
+  align-items: center;
+  padding: var(--space-1) var(--space-3);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-pill);
+  color: var(--color-text-muted);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  line-height: 1.25;
+}
+
+.badge--success {
+  border-color: var(--color-success);
+  color: var(--color-success);
+}
+
+.badge--error {
+  border-color: var(--color-error);
+  color: var(--color-error);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .button,
+  .action-link {
+    transition: none;
+  }
+}

@@ -1,0 +1,13 @@
+---
+import './ui.css';
+
+interface Props {
+  tone?: 'neutral' | 'success' | 'error';
+}
+
+const { tone = 'neutral' } = Astro.props;
+---
+
+<span class:list={['badge', `badge--${tone}`]}>
+  <slot />
+</span>
