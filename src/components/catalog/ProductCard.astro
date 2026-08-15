@@ -1,0 +1,29 @@
+---
+import ResponsiveMedia from './ResponsiveMedia.astro';
+import type { ProductCardProjection } from './types';
+import './catalog.css';
+
+interface Props {
+  product: ProductCardProjection;
+  headingLevel?: 2 | 3;
+}
+
+const { product, headingLevel = 3 } = Astro.props;
+const Heading = `h${headingLevel}` as 'h2' | 'h3';
+
+if (!product.href.startsWith('/') || product.href.startsWith('//')) {
+  throw new Error('ProductCard requires an internal absolute-path href');
+}
+---
+
+<article class="catalog-card catalog-card--product">
+  <ResponsiveMedia media={product.media} />
+  <div class="catalog-card__body">
+    {product.eyebrow && <p class="catalog-card__eyebrow">{product.eyebrow}</p>}
+    <Heading class="catalog-card__title">
+      <a href={product.href}>{product.name}</a>
+    </Heading>
+    <p class="catalog-card__summary">{product.summary}</p>
+    <p class="catalog-card__meta">{product.priceLabel}</p>
+  </div>
+</article>

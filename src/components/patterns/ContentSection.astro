@@ -1,0 +1,31 @@
+---
+import './patterns.css';
+
+interface Props {
+  id: string;
+  title: string;
+  intro?: string;
+  headingLevel?: 2 | 3;
+}
+
+const { id, title, intro, headingLevel = 2 } = Astro.props;
+const Heading = `h${headingLevel}` as 'h2' | 'h3';
+const titleId = `${id}-title`;
+
+if (!/^[a-z][a-z0-9-]*$/.test(id)) {
+  throw new Error('ContentSection requires a stable kebab-case id');
+}
+---
+
+<section class="content-section" id={id} aria-labelledby={titleId}>
+  <header class="content-section__header">
+    <div class="content-section__heading">
+      <Heading id={titleId}>{title}</Heading>
+      {intro && <p>{intro}</p>}
+    </div>
+    <div class="content-section__actions">
+      <slot name="actions" />
+    </div>
+  </header>
+  <slot />
+</section>

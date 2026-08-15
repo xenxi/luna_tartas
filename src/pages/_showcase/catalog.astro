@@ -1,0 +1,75 @@
+---
+import ProductCard from '../../components/catalog/ProductCard.astro';
+import TaxonomyCard from '../../components/catalog/TaxonomyCard.astro';
+import type {
+  ProductCardProjection,
+  TaxonomyCardProjection,
+} from '../../components/catalog/types';
+import Breadcrumb from '../../components/navigation/Breadcrumb.astro';
+import CardList from '../../components/patterns/CardList.astro';
+import ContentSection from '../../components/patterns/ContentSection.astro';
+import ActionLink from '../../components/ui/ActionLink.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const sampleImage =
+  'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600"%3E%3Crect width="800" height="600" fill="%23f0d0dc"/%3E%3Ccircle cx="400" cy="300" r="155" fill="%238f294b"/%3E%3C/svg%3E';
+
+const product = {
+  href: '/productos/muestra-no-publicable/',
+  name: 'Tarta de muestra',
+  summary:
+    'Proyección sintética para revisar el patrón, no contenido editorial.',
+  priceLabel: 'Desde 30 €',
+  eyebrow: 'Muestra interna',
+  media: {
+    src: sampleImage,
+    alt: 'Forma circular abstracta que representa una tarta de muestra',
+    width: 800,
+    height: 600,
+    sizes: '(min-width: 64rem) 33vw, (min-width: 40rem) 50vw, 100vw',
+  },
+} satisfies ProductCardProjection;
+
+const taxonomy = {
+  href: '/categorias/muestra-no-publicable/',
+  name: 'Celebraciones de muestra',
+  summary: 'Estado honesto sin fotografía disponible.',
+  itemCountLabel: '3 productos de muestra',
+} satisfies TaxonomyCardProjection;
+---
+
+<BaseLayout title="Showcase interno de patrones de catálogo">
+  <div class="container">
+    <Breadcrumb
+      items={[
+        { label: 'Inicio', href: '/' },
+        { label: 'Productos', href: '/productos/' },
+        { label: 'Muestra', current: true },
+      ]}
+    />
+
+    <ContentSection
+      id="catalog-patterns"
+      title="Patrones de catálogo"
+      intro="Contenido sintético y no publicable para revisar layout y estados."
+    >
+      <ActionLink slot="actions" href="/productos/" variant="secondary">
+        Ver catálogo
+      </ActionLink>
+      <CardList
+        count={2}
+        emptyMessage="No hay elementos aprobados para mostrar."
+      >
+        <li><ProductCard product={product} /></li>
+        <li><TaxonomyCard taxonomy={taxonomy} /></li>
+      </CardList>
+    </ContentSection>
+
+    <ContentSection id="empty-pattern" title="Estado sin contenido">
+      <CardList
+        count={0}
+        emptyMessage="Todavía no hay productos aprobados en esta selección."
+      />
+    </ContentSection>
+  </div>
+</BaseLayout>

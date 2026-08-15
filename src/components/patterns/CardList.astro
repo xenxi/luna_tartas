@@ -1,0 +1,30 @@
+---
+import './patterns.css';
+
+interface Props {
+  count: number;
+  emptyMessage: string;
+  columns?: 2 | 3;
+}
+
+const { count, emptyMessage, columns = 3 } = Astro.props;
+
+if (!Number.isSafeInteger(count) || count < 0) {
+  throw new Error('CardList requires a non-negative integer count');
+}
+if (emptyMessage.trim() === '') {
+  throw new Error('CardList requires an honest empty-state message');
+}
+---
+
+{
+  count > 0 ? (
+    <ul class:list={['card-list', `card-list--${columns}`]}>
+      <slot />
+    </ul>
+  ) : (
+    <p class="content-empty-state" data-content-state="empty">
+      {emptyMessage}
+    </p>
+  )
+}

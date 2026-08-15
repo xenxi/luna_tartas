@@ -1,0 +1,70 @@
+---
+import type { MediaProjection } from './types';
+import './catalog.css';
+
+interface Props {
+  media?: MediaProjection;
+  loading?: 'eager' | 'lazy';
+  missingLabel?: string;
+}
+
+const {
+  media,
+  loading = 'lazy',
+  missingLabel = 'Imagen no disponible',
+} = Astro.props;
+
+if (media !== undefined) {
+  if (
+    !Number.isSafeInteger(media.width) ||
+    !Number.isSafeInteger(media.height) ||
+    media.width <= 0 ||
+    media.height <= 0
+  ) {
+    throw new Error('ResponsiveMedia requires positive integer dimensions');
+  }
+  if (media.alt.trim() === '') {
+    throw new Error('ResponsiveMedia requires meaningful alternative text');
+  }
+}
+---
+
+{
+  media ? (
+    <figure
+      class="responsive-media"
+      style={`--media-aspect: ${media.width} / ${media.height}`}
+      data-media-state="available"
+    >
+      <picture>
+        {media.sources?.map((source) => (
+          <source
+            srcset={source.srcSet}
+            type={source.type}
+            media={source.media}
+            sizes={media.sizes}
+          />
+        ))}
+        <img
+          src={media.src}
+          alt={media.alt}
+          width={media.width}
+          height={media.height}
+          sizes={media.sizes}
+          loading={loading}
+          decoding="async"
+        />
+      </picture>
+      {media.caption && <figcaption>{media.caption}</figcaption>}
+    </figure>
+  ) : (
+    <div
+      class="responsive-media responsive-media--missing"
+      data-media-state="missing"
+      role="img"
+      aria-label={missingLabel}
+    >
+      <span aria-hidden="true">{missingLabel}</span>
+    </div>
+  )
+}

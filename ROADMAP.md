@@ -1,6 +1,6 @@
 # ROADMAP — Luna Estudio
 
-Única fuente de verdad sobre prioridad, estado y siguiente tarea. Última actualización: 2026-08-15.
+Única fuente de verdad sobre prioridad, estado y siguiente tarea. Última actualización: 2026-08-16.
 
 ## Uso
 
@@ -9,7 +9,7 @@
 - Se ejecuta exclusivamente la tarea solicitada; no se anticipa la siguiente.
 - `DONE` exige todos los criterios y verificaciones en `PASS`, con evidencia registrada aquí.
 - Orden normal: de arriba abajo. Una tarea posterior sólo puede comenzar si todas sus dependencias están `DONE`.
-- **Siguiente tarea:** `M3.5 — Patrones de catálogo y navegación contextual`.
+- **Siguiente tarea:** `M4.1 — Shell público: header, navegación y footer`.
 
 ## Gates de programa
 
@@ -261,7 +261,7 @@
 
 # M3 — Design System
 
-**Estado:** PENDING  
+**Estado:** DONE
 **Gate:** G3.
 
 ## M3.1 — Dirección visual y contrato de marca
@@ -326,7 +326,7 @@
 
 ## M3.5 — Patrones de catálogo y navegación contextual
 
-**Estado:** PENDING  
+**Estado:** DONE
 **Objetivo:** disponer de cards, media, breadcrumb y grupos de contenido reutilizables.  
 **Alcance:** ProductCard, TaxonomyCard, responsive media wrapper, Breadcrumb visual y patrones de sección/lista; estados de ausencia honestos.  
 **Fuera de alcance:** generar páginas, JSON-LD, galería completa o datos hardcodeados.  
@@ -337,7 +337,7 @@
 **Verificación:** build, inspección de HTML, visual responsive y teclado.  
 **Modelo recomendado:** LUNA → SOL REVIEW.  
 **Razón del modelo:** implementación mecánica con revisión de coherencia del gate G3.  
-**Evidencia:** —
+**Evidencia:** PASS (2026-08-16) — `src/components/catalog/` añade proyecciones TypeScript explícitas, `ResponsiveMedia`, `ProductCard` y `TaxonomyCard`; la media usa `picture`/`source`, `sizes`, carga diferida, `width`/`height` enteros obligatorios y reserva de aspecto, con texto visible cuando falta imagen. Las cards son `article`, aceptan nivel de heading y exponen una única acción como enlace de título, sin slots ni controles interactivos anidados. `Breadcrumb` usa `nav` + `ol`, ancestros enlazados y un único destino actual final con `aria-current="page"`; `ContentSection` enlaza heading y región, y `CardList` alterna una lista real con un mensaje vacío obligatorio. El showcase sintético queda bajo `_showcase` y no genera ruta pública. La inspección del HTML estático renderizado confirmó 2 articles, `ul`, `ol`, imagen 800 × 600, current/empty/missing states, cero scripts y cero interacciones anidadas; la revisión visual real en 320/768/1440 px confirmó una/dos/tres columnas, foco visible y todos los enlaces con orden nativo de teclado. Contraste reutilizado: 6.12:1 mínimo para texto muted y 8.12:1 para acción. `npm run lint`, `npm run typecheck` (0 errores/warnings/hints), `npm test` (15 archivos, 108 tests), `npm run build` (1 página pública, cero scripts), Prettier específico y `git diff --check`: PASS. Los únicos avisos del build son los informativos esperados por las cuatro colecciones productivas vacías. G3 satisfecho.
 
 ---
 
@@ -1137,3 +1137,4 @@ No avanzar a la siguiente milestone.
 - 2026-08-16 — M3.2 completada: tokens semánticos y foundations CSS sin JavaScript ni fuentes remotas, foco/reduced motion, responsive base y checker de contraste en PASS. Siguiente tarea: M3.3 (modelo LUNA).
 - 2026-08-16 — M3.3 completada: base global CSS, layout estable, skip link, destino de foco, estilos nativos/prose/medios y reduced motion implementados; 101 tests, build y checks de formato en PASS. Siguiente tarea: M3.4 (modelo LUNA).
 - 2026-08-16 — M3.4 completada: primitives nativos Button/ActionLink/Icon/Badge, variantes, targets táctiles, estados y modos accesibles de icono implementados sin hidratación; 103 tests, build y checks de formato en PASS. Siguiente tarea: M3.5 (modelo LUNA → SOL REVIEW).
+- 2026-08-16 — M3.5 completada: cards, media responsive dimensionada, breadcrumb y patrones de sección/lista tipados, semánticos, accesibles y sin hidratación; 108 tests, HTML estático y revisión 320/768/1440 en PASS. G3 satisfecho. Siguiente tarea: M4.1 (modelo LUNA → SOL REVIEW).
