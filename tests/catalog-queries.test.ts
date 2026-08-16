@@ -15,6 +15,10 @@ import {
   getRelatedProducts,
 } from '../src/lib/catalog/domain/queries';
 import { projectTaxonomyDiscovery } from '../src/components/home/taxonomy-discovery';
+import {
+  formatPriceLabel,
+  projectFeaturedProducts,
+} from '../src/components/home/featured-products';
 
 const taxonomy = (
   id: string,
@@ -132,5 +136,36 @@ describe('catalog queries', () => {
     expect(recipients.items.map(({ href }) => href)).toEqual([
       '/regalos/family/',
     ]);
+  });
+
+  it('projects only featured products and preserves every public price variant', () => {
+    const featured = projectFeaturedProducts({
+      ...catalog,
+      products: [
+        product('fixed', 0, {
+          featured: true,
+          price: { kind: 'fixed', amountMinor: 3000, currency: 'EUR' },
+        }),
+        product('from', 1, {
+          featured: true,
+          price: { kind: 'from', amountMinor: 3050, currency: 'EUR' },
+        }),
+        product('request', 2, {
+          featured: true,
+          price: { kind: 'on_request' },
+        }),
+        product('not-featured', 3),
+        { id: 'draft', slug: 'draft', status: 'draft' },
+      ],
+    });
+
+    expect(
+      featured.items.map(({ href, priceLabel }) => ({ href, priceLabel })),
+    ).toEqual([
+      { href: '/productos/fixed/', priceLabel: `30,00\u00a0€` },
+      { href: '/productos/from/', priceLabel: `Desde 30,50\u00a0€` },
+      { href: '/productos/request/', priceLabel: 'Consultar precio' },
+    ]);
+    expect(formatPriceLabel({ kind: 'on_request' })).toBe('Consultar precio');
   });
 });

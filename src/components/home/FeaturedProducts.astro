@@ -1,0 +1,36 @@
+---
+import CardList from '../patterns/CardList.astro';
+import ContentSection from '../patterns/ContentSection.astro';
+import ProductCard from '../catalog/ProductCard.astro';
+import type { Catalog } from '../../lib/catalog/domain/model';
+import { projectFeaturedProducts } from './featured-products';
+import './featured-products.css';
+
+interface Props {
+  catalog: Catalog;
+}
+
+const { catalog } = Astro.props;
+const featured = projectFeaturedProducts(catalog);
+---
+
+<div class="featured-products">
+  <ContentSection
+    id="featured-products"
+    title={featured.title}
+    intro={featured.intro}
+  >
+    <CardList
+      count={featured.items.length}
+      emptyMessage={featured.emptyMessage}
+    >
+      {
+        featured.items.map((product) => (
+          <li>
+            <ProductCard product={product} />
+          </li>
+        ))
+      }
+    </CardList>
+  </ContentSection>
+</div>

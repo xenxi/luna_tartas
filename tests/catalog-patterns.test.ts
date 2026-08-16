@@ -43,6 +43,14 @@ const taxonomyDiscoveryProjection = readFileSync(
   'src/components/home/taxonomy-discovery.ts',
   'utf8',
 );
+const featuredProducts = readFileSync(
+  'src/components/home/FeaturedProducts.astro',
+  'utf8',
+);
+const featuredProductsProjection = readFileSync(
+  'src/components/home/featured-products.ts',
+  'utf8',
+);
 
 describe('catalog and contextual navigation patterns', () => {
   it('accepts explicit typed presentation projections', () => {
@@ -121,5 +129,15 @@ describe('catalog and contextual navigation patterns', () => {
     expect(taxonomyDiscoveryProjection).not.toMatch(/categories:\s*\[/);
     expect(taxonomyDiscoveryProjection).not.toMatch(/occasions:\s*\[/);
     expect(taxonomyDiscoveryProjection).not.toMatch(/recipients:\s*\[/);
+  });
+
+  it('keeps featured products semantic and free of client hydration', () => {
+    expect(featuredProducts).toContain('<ContentSection');
+    expect(featuredProducts).toContain('<CardList');
+    expect(featuredProducts).toContain('<ProductCard');
+    expect(featuredProductsProjection).toContain('getFeaturedProducts');
+    expect(featuredProductsProjection).toContain('routes.product');
+    expect(featuredProductsProjection).toContain('formatPriceLabel');
+    expect(featuredProductsProjection).not.toContain('client:');
   });
 });

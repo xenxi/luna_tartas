@@ -9,7 +9,7 @@
 - Se ejecuta exclusivamente la tarea solicitada; no se anticipa la siguiente.
 - `DONE` exige todos los criterios y verificaciones en `PASS`, con evidencia registrada aquí.
 - Orden normal: de arriba abajo. Una tarea posterior sólo puede comenzar si todas sus dependencias están `DONE`.
-- **Siguiente tarea:** `M4.4 — Ideas/productos destacados`.
+- **Siguiente tarea:** `M4.5 — Confianza y muestra de trabajos`.
 
 ## Gates de programa
 
@@ -393,7 +393,7 @@
 
 ## M4.4 — Ideas/productos destacados
 
-**Estado:** PENDING  
+**Estado:** DONE
 **Objetivo:** presentar productos prioritarios con contexto suficiente para seleccionarlos.  
 **Alcance:** bloque destacados, ProductCards, precio semántico y estado sin destacados.  
 **Fuera de alcance:** ficha, CTA WhatsApp directo o algoritmo de recomendación.  
@@ -404,7 +404,7 @@
 **Verificación:** build, variantes de precio y visual móvil/escritorio.  
 **Modelo recomendado:** LUNA.  
 **Razón del modelo:** sección repetible con lógica ya cubierta.  
-**Evidencia:** —
+**Evidencia:** PASS (2026-08-16) — `featured-products.ts` proyecta únicamente `getFeaturedProducts` en orden de dominio, genera URLs con `routes.product` y conserva la semántica de precio `fixed`, `from` y `on_request` (`30,00 €`, `Desde 30,50 €`, `Consultar precio`). `FeaturedProducts.astro` compone `ContentSection`, `CardList` y `ProductCard`, con estado vacío honesto; no añade CTA directo, algoritmo ni JavaScript. El patrón `ProductCard` reutiliza `ResponsiveMedia`, reserva espacio y mantiene el placeholder accesible cuando no hay proyección de media. Tests unitarios cubren featured/drafts, orden, rutas, las tres variantes de precio y composición semántica. `npm run format`, `npm run lint`, `npm run typecheck` (0 errores/warnings/hints), `npm test` (18 archivos, 128 tests), `npm run build` (1 página estática), inspección de `dist/index.html` sin scripts y `git diff --check`: PASS. El build sólo conserva los avisos informativos esperados por las cuatro colecciones productivas vacías.
 
 ## M4.5 — Confianza y muestra de trabajos
 
@@ -1141,3 +1141,4 @@ No avanzar a la siguiente milestone.
 - 2026-08-16 — M4.1 completada: shell global responsive con header, navegación y footer centralizados, menú móvil HTML nativo, estado actual y foco accesibles, datos no aprobados excluidos, 113 tests y revisión 320/768/1440 en PASS. Siguiente tarea: M4.2 (modelo SOL).
 - 2026-08-16 — M4.2 completada: hero aprobado con ambos CTA, enlace directo WhatsApp codificado, fotografía responsive optimizada, 124 tests, artifact sin JS/TBD, QA 320/768/1440 y LCP local 32/40 ms en PASS. Siguiente tarea: M4.3 (modelo LUNA).
 - 2026-08-16 — M4.3 completada: navegación home por categorías, ocasiones y destinatarios proyectada desde taxonomías publicables, con orden determinista, estados vacíos, rutas SEO y 126 tests/checks en PASS. Siguiente tarea: M4.4 (modelo LUNA).
+- 2026-08-16 — M4.4 completada: bloque de ideas destacadas con ProductCard, orden/featured del dominio, precios fixed/from/on_request sin tergiversación, estado vacío y 128 tests/checks en PASS. Siguiente tarea: M4.5 (modelo LUNA).

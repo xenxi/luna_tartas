@@ -1,0 +1,8 @@
+.featured-products {
+  padding-inline: var(--space-gutter);
+}
+
+.featured-products .content-section {
+  inline-size: min(100%, var(--container-wide));
+  margin-inline: auto;
+}
