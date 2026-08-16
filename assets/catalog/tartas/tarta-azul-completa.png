@@ -1,0 +1,35 @@
+id: lamina-personalizada-a5
+slug: lamina-personalizada-a5
+status: published
+name: Lámina personalizada A5
+summary: Una pequeña lámina creada especialmente para esa persona, con su nombre y un diseño pensado para ella.
+description: Lámina personalizada en tamaño A5, impresa en cartulina blanca de 180 g y diseñada alrededor del nombre elegido.
+categories:
+  - laminas-personalizadas
+recipients:
+  - alguien-especial
+price:
+  kind: fixed
+  amountMinor: 200
+  currency: EUR
+media:
+  cover:
+    src: laminas/lamina-personalizada-lea.webp
+    alt: Lámina A5 personalizada con el nombre Lea y una ilustración floral de una ovejita en tonos suaves.
+    rights:
+      owner: Luna / MGR Creaciones
+      licenseOrPermission: Fotografía y producto propios; publicación autorizada en lunatartas.es.
+      evidence: Confirmación directa del propietario en conversación de proyecto, 2026-08-16.
+customization:
+  kind: available
+  options:
+    - Nombre
+    - Diseño personalizado
+  description: El nombre y el diseño se adaptan al encargo.
+featured: true
+order: 40
+approval:
+  source: Handoff editorial del propietario del proyecto
+  sourceDate: 2026-08-16
+  approvedBy: Propietario del proyecto
+  approvedAt: 2026-08-16
