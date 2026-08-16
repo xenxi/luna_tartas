@@ -1,8 +1,83 @@
 .taxonomy-discovery {
-  padding-inline: var(--space-gutter);
+  display: grid;
+  gap: var(--space-6);
+  padding-block: var(--space-8) var(--space-16);
 }
 
 .taxonomy-discovery .content-section {
-  inline-size: min(100%, var(--container-wide));
+  position: relative;
+  inline-size: min(calc(100% - (2 * var(--gutter))), var(--container-max));
   margin-inline: auto;
+  padding-block: var(--space-10);
+}
+
+.taxonomy-discovery .content-section::before {
+  position: absolute;
+  inset-block-start: var(--space-10);
+  inset-inline-end: 0;
+  color: var(--color-border);
+  content: '0' counter(discovery-chapter);
+  counter-increment: discovery-chapter;
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 8vw, 5rem);
+  line-height: 0.75;
+}
+
+.taxonomy-discovery {
+  counter-reset: discovery-chapter;
+}
+
+.taxonomy-discovery .content-section__header {
+  padding-inline-end: clamp(var(--space-12), 12vw, 8rem);
+}
+
+.taxonomy-discovery #discover-occasions {
+  inline-size: min(calc(100% - (2 * var(--gutter))), 78rem);
+  padding-inline: clamp(var(--space-5), 4vw, var(--space-12));
+  border-radius: var(--radius-xl);
+  background: var(--color-surface-rose);
+}
+
+.taxonomy-discovery #discover-recipients {
+  border-block-start: 1px solid var(--color-border);
+}
+
+@media (min-width: 64rem) {
+  .taxonomy-discovery {
+    gap: var(--space-12);
+    padding-block-end: var(--space-20);
+  }
+
+  .taxonomy-discovery .content-section {
+    grid-template-columns: minmax(15rem, 0.72fr) minmax(0, 1.28fr);
+    align-items: start;
+    column-gap: clamp(var(--space-10), 7vw, var(--space-20));
+  }
+
+  .taxonomy-discovery .content-section__header {
+    position: sticky;
+    inset-block-start: var(--space-8);
+    padding-inline-end: 0;
+  }
+
+  .taxonomy-discovery .content-section::before {
+    inset-inline: 0 auto;
+    inset-block-start: calc(-1 * var(--space-6));
+  }
+
+  .taxonomy-discovery .content-section__header,
+  .taxonomy-discovery .card-list,
+  .taxonomy-discovery .content-empty-state {
+    grid-column: 2;
+  }
+
+  .taxonomy-discovery #discover-occasions .content-section__header,
+  .taxonomy-discovery #discover-occasions .card-list,
+  .taxonomy-discovery #discover-occasions .content-empty-state {
+    grid-column: auto;
+  }
+
+  .taxonomy-discovery #discover-occasions .content-section__header {
+    grid-column: 1;
+  }
 }

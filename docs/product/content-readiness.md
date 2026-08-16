@@ -10,40 +10,41 @@ La fuente de verdad del estado de cada entrada es esta matriz. Los detalles sem�
 
 Cada fila debe tener exactamente un estado, un propietario, una fecha o `TBD`, y una evidencia o acción siguiente.
 
-| Estado | Significado | ¿Publicable? |
-| --- | --- | --- |
-| `TBD` | No entregado, no verificable o falta una decisión; incluye owner y siguiente acción | No |
-| `RECEIVED` | Material recibido, pendiente de revisión de completitud, derechos o aprobación | No |
-| `READY` | Completo para implementación; fuente, derechos y aprobación están identificados | Sí, cuando pase schemas/QA |
-| `BLOCKED` | Tiene un impedimento concreto que requiere decisión o entrega del owner | No |
-| `FIXTURE` | Material sintético o de prueba, aislado y marcado como no publicable | No |
+| Estado     | Significado                                                                         | ¿Publicable?               |
+| ---------- | ----------------------------------------------------------------------------------- | -------------------------- |
+| `TBD`      | No entregado, no verificable o falta una decisión; incluye owner y siguiente acción | No                         |
+| `RECEIVED` | Material recibido, pendiente de revisión de completitud, derechos o aprobación      | No                         |
+| `READY`    | Completo para implementación; fuente, derechos y aprobación están identificados     | Sí, cuando pase schemas/QA |
+| `BLOCKED`  | Tiene un impedimento concreto que requiere decisión o entrega del owner             | No                         |
+| `FIXTURE`  | Material sintético o de prueba, aislado y marcado como no publicable                | No                         |
 
 `READY` no sustituye la validación técnica de M2 ni el QA de M9.1. Un cambio de contenido aprobado reinicia la revisión de la fila y de sus dependencias.
 
 ## Matriz de entradas
 
-| Área | Entrada y mínimo requerido | Estado | Owner | Deadline/gate | Evidencia o siguiente acción |
-| --- | --- | --- | --- | --- | --- |
-| Marca | Nombre comercial y uso aprobado | `BLOCKED` | Propietario del negocio | bloquea identidad definitiva; no M3.2 provisional | Entregar nombre aprobado, fuente, responsable y fecha; no inventar variante |
-| Marca | Logo, variantes, favicon e iconos en formatos web | `BLOCKED` | Propietario del negocio | bloquea identidad definitiva; no M3.2 provisional | Entregar masters, autor/licencia, reglas de uso y aprobación |
-| Marca | Tipografías, archivos y licencias o autorización de alternativa | `BLOCKED` | Propietario del negocio | bloquea identidad definitiva; no M3.2 provisional | Entregar guía, archivos/proveedor, licencia web y aprobación; mientras tanto se usan stacks del sistema |
-| Catálogo | Productos, IDs estables, slugs, nombres, resúmenes y descripción | `TBD` | Propietario del negocio | antes de M9.1 | Entregar fuente vigente y fecha de aprobación |
-| Catálogo | Categorías, ocasiones y destinatarios con copy público | `TBD` | Propietario del negocio | antes de M9.1 | Entregar taxonomías y relaciones revisadas |
-| Catálogo | Personalización, contenido incluido y orden/destacado | `TBD` | Propietario del negocio | antes de M9.1 | Confirmar capacidades por producto, sin promesas no verificadas |
-| Fotos | Muestra Home M4.5: cuatro trabajos reales, orden editorial, dimensiones y contexto | `READY` | Propietario del negocio | M4.5 | Cuatro originales PNG de 1536 × 2048 px entregados y aprobados el 2026-08-16; copias de trabajo versionadas bajo `src/assets/home/work-showcase/` |
-| Fotos | Portadas y galerías del catálogo de productos | `TBD` | Propietario del negocio | antes de M9.1 | Entregar selección por producto y originales; la muestra Home no se asigna al catálogo sin aprobación editorial adicional |
-| Derechos | Fotografías y textos de proceso publicados en M4.5 | `READY` | Propietario del negocio | M4.5 | Material propio; publicación en `lunatartas.es` autorizada expresamente por el propietario el 2026-08-16; no requiere atribución pública |
-| Derechos | Resto de fotografías, logo, fuentes y textos pendientes | `TBD` | Propietario del negocio | antes de publicar cada asset | Aportar confirmación trazable por activo; la autorización M4.5 no se extiende a material distinto |
-| Accesibilidad | Alt significativo para las cuatro imágenes de M4.5 | `READY` | Propietario del negocio | M4.5 | Cuatro textos alternativos entregados y aprobados el 2026-08-16; validación técnica y relación imagen/alt cubiertas por tests |
-| Accesibilidad | Alt y caption/atribución del resto de imágenes | `TBD` | Propietario del negocio | junto con cada asset futuro | Entregar texto aprobado por imagen; el técnico valida presencia y relación |
-| Home hero | H1, copy, ambos CTA, fotografía, alt, derechos y aprobación | `READY` | Responsable del proyecto | M4.2 | Handoff aprobado 2026-08-16; original `tarta_hero.png`, autora/propietaria Luna; enlace directo WhatsApp y mensaje aprobados |
-| Precios | Caso `fixed`, `from` u `on_request`, importe entero menor cuando aplique y moneda | `TBD` | Propietario del negocio | antes de M9.1 | Confirmar precio y moneda; no crear Offers ficticios |
-| WhatsApp | Número público, saludo, plantilla, horario/reglas de atención y copy | `TBD` | Propietario del negocio | antes de M4.6/M5.1 | Entregar datos aprobados; el número puede versionarse, nunca credenciales |
-| Identidad legal | Nombre legal/comercial, contacto, zona, plazos y políticas que se quieran afirmar | `TBD` | Propietario del negocio | antes de M9.1 | Entregar fuentes verificables y aprobación de publicación |
-| Prueba social/confianza | Reseñas, atribución, permisos y cualquier cifra o claim | `READY` | Propietario del negocio | M4.5; revisar antes de M9.1 | Decisión aprobada 2026-08-16: M4.5 publica sólo el proceso facilitado y trabajos reales; no publica reseñas, estrellas, contadores, antigüedad, plazos ni cifras no aportadas |
-| Analytics | Proveedor, owner, IDs públicos si existen y requisitos de consentimiento/privacidad | `TBD` | Propietario del negocio | antes de M7.1 | Identificar responsable y requisitos; M7.1 decide la solución |
-| DNS/Cloudflare | Acceso operativo, export de zona, reglas, TTL y rollback owner | `TBD` | Propietario del negocio | antes de M9.2/M9.3 | Aportar export sanitizado y confirmar acceso; no cambiar DNS en M0.3 |
-| Search Console | Owner, propiedad, sitemaps, páginas, enlaces y rendimiento exportable | `TBD` | Propietario del negocio | antes de M9.2/M9.4 | Aportar exports sin credenciales o confirmar ausencia explícita |
+| Área                    | Entrada y mínimo requerido                                                          | Estado    | Owner                    | Deadline/gate                                     | Evidencia o siguiente acción                                                                                                                                                  |
+| ----------------------- | ----------------------------------------------------------------------------------- | --------- | ------------------------ | ------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Marca                   | Nombre comercial y uso aprobado                                                     | `BLOCKED` | Propietario del negocio  | bloquea identidad definitiva; no M3.2 provisional | Entregar nombre aprobado, fuente, responsable y fecha; no inventar variante                                                                                                   |
+| Marca                   | Logo, variantes, favicon e iconos en formatos web                                   | `BLOCKED` | Propietario del negocio  | bloquea identidad definitiva; no M3.2 provisional | Entregar masters, autor/licencia, reglas de uso y aprobación                                                                                                                  |
+| Marca                   | Tipografías, archivos y licencias o autorización de alternativa                     | `BLOCKED` | Propietario del negocio  | bloquea identidad definitiva; no M3.2 provisional | Entregar guía, archivos/proveedor, licencia web y aprobación; mientras tanto se usan stacks del sistema                                                                       |
+| Catálogo                | Productos, IDs estables, slugs, nombres, resúmenes y descripción                    | `TBD`     | Propietario del negocio  | antes de M9.1                                     | Entregar fuente vigente y fecha de aprobación                                                                                                                                 |
+| Catálogo                | Categorías, ocasiones y destinatarios con copy público                              | `TBD`     | Propietario del negocio  | antes de M9.1                                     | Entregar taxonomías y relaciones revisadas                                                                                                                                    |
+| Catálogo                | Personalización, contenido incluido y orden/destacado                               | `TBD`     | Propietario del negocio  | antes de M9.1                                     | Confirmar capacidades por producto, sin promesas no verificadas                                                                                                               |
+| Fotos                   | Muestra Home M4.5: cuatro trabajos reales, orden editorial, dimensiones y contexto  | `READY`   | Propietario del negocio  | M4.5                                              | Cuatro originales PNG de 1536 × 2048 px entregados y aprobados el 2026-08-16; copias de trabajo versionadas bajo `src/assets/home/work-showcase/`                             |
+| Fotos                   | Portadas y galerías del catálogo de productos                                       | `TBD`     | Propietario del negocio  | antes de M9.1                                     | Entregar selección por producto y originales; la muestra Home no se asigna al catálogo sin aprobación editorial adicional                                                     |
+| Derechos                | Fotografías y textos de proceso publicados en M4.5                                  | `READY`   | Propietario del negocio  | M4.5                                              | Material propio; publicación en `lunatartas.es` autorizada expresamente por el propietario el 2026-08-16; no requiere atribución pública                                      |
+| Derechos                | Resto de fotografías, logo, fuentes y textos pendientes                             | `TBD`     | Propietario del negocio  | antes de publicar cada asset                      | Aportar confirmación trazable por activo; la autorización M4.5 no se extiende a material distinto                                                                             |
+| Accesibilidad           | Alt significativo para las cuatro imágenes de M4.5                                  | `READY`   | Propietario del negocio  | M4.5                                              | Cuatro textos alternativos entregados y aprobados el 2026-08-16; validación técnica y relación imagen/alt cubiertas por tests                                                 |
+| Accesibilidad           | Alt y caption/atribución del resto de imágenes                                      | `TBD`     | Propietario del negocio  | junto con cada asset futuro                       | Entregar texto aprobado por imagen; el técnico valida presencia y relación                                                                                                    |
+| Home hero               | H1, copy, ambos CTA, fotografía, alt, derechos y aprobación                         | `READY`   | Responsable del proyecto | M4.2                                              | Handoff aprobado 2026-08-16; original `tarta_hero.png`, autora/propietaria Luna; enlace directo WhatsApp y mensaje aprobados                                                  |
+| Precios                 | Caso `fixed`, `from` u `on_request`, importe entero menor cuando aplique y moneda   | `TBD`     | Propietario del negocio  | antes de M9.1                                     | Confirmar precio y moneda; no crear Offers ficticios                                                                                                                          |
+| WhatsApp                | Número público, saludo, plantilla, horario/reglas de atención y copy                | `BLOCKED` | Propietario del negocio  | antes de M4.6/M5.1                                | Número y mensaje personalizado aprobados; entregar saludo y plantilla exacta de producto, fuente/fecha de aprobación y política de nueva pestaña; nunca credenciales          |
+| Contacto público        | WhatsApp Business, email e Instagram para Footer                                    | `READY`   | Propietario del negocio  | M4.11.5                                           | Aprobados en el encargo de recuperación visual del 2026-08-16: `+34 697 63 71 80`, `encargosmgr@gmail.com` y `@lunatartas`; no autoriza otras redes ni datos                  |
+| Identidad legal         | Nombre legal/comercial, contacto, zona, plazos y políticas que se quieran afirmar   | `TBD`     | Propietario del negocio  | antes de M9.1                                     | Entregar fuentes verificables y aprobación de publicación                                                                                                                     |
+| Prueba social/confianza | Reseñas, atribución, permisos y cualquier cifra o claim                             | `READY`   | Propietario del negocio  | M4.5; revisar antes de M9.1                       | Decisión aprobada 2026-08-16: M4.5 publica sólo el proceso facilitado y trabajos reales; no publica reseñas, estrellas, contadores, antigüedad, plazos ni cifras no aportadas |
+| Analytics               | Proveedor, owner, IDs públicos si existen y requisitos de consentimiento/privacidad | `TBD`     | Propietario del negocio  | antes de M7.1                                     | Identificar responsable y requisitos; M7.1 decide la solución                                                                                                                 |
+| DNS/Cloudflare          | Acceso operativo, export de zona, reglas, TTL y rollback owner                      | `TBD`     | Propietario del negocio  | antes de M9.2/M9.3                                | Aportar export sanitizado y confirmar acceso; no cambiar DNS en M0.3                                                                                                          |
+| Search Console          | Owner, propiedad, sitemaps, páginas, enlaces y rendimiento exportable               | `TBD`     | Propietario del negocio  | antes de M9.2/M9.4                                | Aportar exports sin credenciales o confirmar ausencia explícita                                                                                                               |
 
 Los estados `TBD` reflejan la evidencia de M0.1 y no son un bloqueo desconocido: todos tienen owner y gate. No se asignan deadlines de calendario mientras el propietario no los confirme; por eso la columna usa el milestone que los necesita.
 
@@ -52,17 +53,17 @@ Los estados `TBD` reflejan la evidencia de M0.1 y no son un bloqueo desconocido:
 Cada entrega editorial debe incluir un archivo o registro equivalente a esta ficha:
 
 ```yaml
-id: "estable-y-publico"
-slug: "minusculas-con-guiones"
-status: "draft" # draft durante trabajo; published sólo tras aprobación
-source: "nombre-del-export-o-documento"
-source_date: "YYYY-MM-DD"
-approved_by: "TBD"
-approved_at: "TBD"
+id: 'estable-y-publico'
+slug: 'minusculas-con-guiones'
+status: 'draft' # draft durante trabajo; published sólo tras aprobación
+source: 'nombre-del-export-o-documento'
+source_date: 'YYYY-MM-DD'
+approved_by: 'TBD'
+approved_at: 'TBD'
 rights:
-  owner: "TBD"
-  license_or_permission: "TBD"
-  evidence: "TBD"
+  owner: 'TBD'
+  license_or_permission: 'TBD'
+  evidence: 'TBD'
 ```
 
 Para un `Product`, la ficha debe añadir nombre, summary, descripción, al menos una categoría, ocasiones/destinatarios aplicables, precio, portada, galería/alt, personalización y SEO aprobado. Las taxonomías deben añadir nombre, resumen/contenido, orden y copy público. Los campos exactos y schemas ejecutables se cierran en M2.
@@ -103,3 +104,5 @@ La revisión de esta checklist se repite al iniciar M3.1, M4.5, M7.1, M9.1 y M9.
 - 2026-08-16 — Inicio de M3.1: las tres entradas de marca vencieron su gate sin material ni evidencia nueva. Cambian de `TBD` a `BLOCKED`, conservan como owner al propietario del negocio y dejan acciones concretas. La dirección provisional documentada en [`../design/visual-direction.md`](../design/visual-direction.md) permite continuar M3.2 sin publicar una identidad inventada; los demás estados no cambian.
 - 2026-08-16 — Handoff M4.2: H1, copy, CTA principal, fotografía hero, alt, autoría/derechos y aprobación pasan a `READY`. El CTA “Cuéntanos tu idea” queda aprobado como texto, pero su destino WhatsApp no es publicable hasta recibir número y plantilla; la fila global de WhatsApp permanece `TBD`.
 - 2026-08-16 — Reanudación M4.2: número WhatsApp Business normalizado y mensaje precargado recibidos y aprobados para publicación. El enlace directo del hero pasa a `READY`; email e Instagram aportados se reservan para milestones posteriores. La fila global de WhatsApp permanece `TBD` para el alcance adicional de M4.6/M5.1 que aún requiere sus propias reglas.
+- 2026-08-16 — Inicio de M5.1: la entrada global de WhatsApp vence su gate sin saludo ni plantilla de producto aprobados. Pasa de `TBD` a `BLOCKED`; conserva como owner al propietario del negocio. El número y mensaje personalizado existentes siguen aprobados y publicados, pero no autorizan a derivar ni inventar el mensaje de producto.
+- 2026-08-16 — M4.11.1 registra los contactos públicos facilitados expresamente para el Footer: WhatsApp Business `+34 697 63 71 80`, email `encargosmgr@gmail.com` e Instagram `@lunatartas`. Pasan a `READY` sólo para ese uso; la plantilla de producto de M5.1 continúa `BLOCKED`.

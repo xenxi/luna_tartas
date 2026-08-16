@@ -17,7 +17,8 @@
   transition:
     background-color var(--duration-fast) var(--ease-standard),
     border-color var(--duration-fast) var(--ease-standard),
-    color var(--duration-fast) var(--ease-standard);
+    color var(--duration-fast) var(--ease-standard),
+    transform var(--duration-normal) var(--ease-standard);
 }
 
 .button--primary,
@@ -27,9 +28,12 @@
 }
 
 .button--primary:hover,
-.action-link--primary:hover {
+.action-link--primary:hover,
+.button--primary:focus-visible,
+.action-link--primary:focus-visible {
   background: var(--color-action-hover);
   color: var(--color-on-action);
+  transform: translateY(-2px);
 }
 
 .button--secondary,
@@ -40,9 +44,12 @@
 }
 
 .button--secondary:hover,
-.action-link--secondary:hover {
+.action-link--secondary:hover,
+.button--secondary:focus-visible,
+.action-link--secondary:focus-visible {
   background: var(--color-action);
   color: var(--color-on-action);
+  transform: translateY(-2px);
 }
 
 .button--quiet,
@@ -96,5 +103,12 @@
   .button,
   .action-link {
     transition: none;
+  }
+
+  .button:hover,
+  .button:focus-visible,
+  .action-link:hover,
+  .action-link:focus-visible {
+    transform: none;
   }
 }

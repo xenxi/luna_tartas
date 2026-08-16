@@ -2,28 +2,32 @@
   color-scheme: light;
 
   /* Semantic colors. Replace roles, not component-specific values. */
-  --color-canvas: #fff8f0;
-  --color-surface: #ffffff;
-  --color-text: #2f211d;
+  --color-canvas: #faf7f2;
+  --color-surface: #fffdfc;
+  --color-surface-soft: #f4ede4;
+  --color-surface-rose: #f3dfdc;
+  --color-surface-sage: #e2e6df;
+  --color-text: #352c29;
   --color-text-muted: #6f5a51;
   --color-action: #8f294b;
   --color-action-hover: #74203c;
-  --color-accent: #c45e47;
-  --color-border: #d8c5b9;
+  --color-accent: #b96f62;
+  --color-border: #d9c6ac;
   --color-focus: #155e75;
   --color-success: #2f6b4f;
   --color-error: #9b2c2c;
   --color-on-action: #ffffff;
 
   /* System stacks avoid network requests and remain replaceable. */
-  --font-display: ui-serif, Georgia, Cambria, "Times New Roman", serif;
-  --font-body: ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-display: ui-serif, Georgia, Cambria, 'Times New Roman', serif;
+  --font-body: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
   --font-size-xs: 0.875rem;
   --font-size-sm: 0.9375rem;
   --font-size-md: 1rem;
   --font-size-lg: clamp(1.125rem, 1.05rem + 0.35vw, 1.375rem);
   --font-size-xl: clamp(1.75rem, 1.45rem + 1.35vw, 3rem);
   --font-size-2xl: clamp(2.25rem, 1.7rem + 2.5vw, 4.5rem);
+  --font-size-display: clamp(3rem, 2.1rem + 4.1vw, 6.5rem);
   --line-height-body: 1.6;
   --line-height-display: 1.12;
   --font-weight-regular: 400;
@@ -52,8 +56,10 @@
   --radius-xl: 1.5rem;
   --radius-pill: 999px;
 
-  --shadow-soft: 0 0.5rem 1.5rem rgb(47 33 29 / 10%);
-  --shadow-focus: 0 0 0 0.1875rem var(--color-canvas), 0 0 0 0.375rem var(--color-focus);
+  --shadow-soft: 0 0.5rem 1.5rem rgb(53 44 41 / 9%);
+  --shadow-editorial: 0 1.25rem 3rem rgb(53 44 41 / 13%);
+  --shadow-focus:
+    0 0 0 0.1875rem var(--color-canvas), 0 0 0 0.375rem var(--color-focus);
 
   --container-max: 72rem;
   --container-copy: 70ch;
@@ -69,5 +75,6 @@
 
   --duration-fast: 150ms;
   --duration-normal: 220ms;
+  --duration-slow: 300ms;
   --ease-standard: cubic-bezier(0.2, 0, 0, 1);
 }

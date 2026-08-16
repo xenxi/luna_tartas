@@ -21,7 +21,7 @@ import './hero.css';
       </div>
     </div>
 
-    <div class="hero__media">
+    <div class="hero__media" aria-hidden="false">
       <Picture
         src={heroImage}
         alt={heroContent.image.alt}
@@ -35,6 +35,7 @@ import './hero.css';
         class="hero__image"
         pictureAttributes={{ class: 'hero__picture' }}
       />
+      <span class="hero__detail" aria-hidden="true"></span>
     </div>
   </div>
 </section>

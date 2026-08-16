@@ -5,4 +5,5 @@
 .product-listing .content-section {
   inline-size: min(100%, var(--container-max));
   margin-inline: auto;
+  padding-block: var(--space-10);
 }

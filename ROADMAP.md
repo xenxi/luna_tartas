@@ -9,22 +9,31 @@
 - Se ejecuta exclusivamente la tarea solicitada; no se anticipa la siguiente.
 - `DONE` exige todos los criterios y verificaciones en `PASS`, con evidencia registrada aquí.
 - Orden normal: de arriba abajo. Una tarea posterior sólo puede comenzar si todas sus dependencias están `DONE`.
-- **Siguiente tarea:** `M4.11 — Integración y QA de descubrimiento`.
+- **Siguiente tarea:** `M4.11.2 — Design system, tipografía y ritmo`.
 
 ## Gates de programa
 
-| Gate | Condición objetiva |
-| --- | --- |
-| G0 Discovery cerrado | inventario o ausencia documentada, decisiones bloqueantes resueltas y entradas V1 con propietario |
-| G1 Plataforma reproducible | instalación limpia + lint + typecheck + test + build + CI + artefacto Pages |
-| G2 Catálogo confiable | schemas, relaciones, errores, queries y fixtures pasan; ningún draft se proyecta |
-| G3 Sistema visual | foundations/primitives/patterns accesibles y aprobados en viewports objetivo |
-| G4 Descubrimiento | home, índices y taxonomías estáticas funcionan con contenido representativo |
-| G5 Conversión | fichas y ambos WhatsApp flows funcionan sin JS y están cubiertos |
-| G6 SEO/agents | metadata, crawl, JSON-LD, enlaces y catalog JSON son consistentes |
-| G7 Medición | eventos aprobados, privacidad resuelta y recepción validada sin PII |
-| G8 Release candidate | accesibilidad, performance, responsive, seguridad y suite completa aprobados |
-| G9 Producción | contenido, redirects, DNS, HTTPS, Search Console, analytics, monitor y rollback verificados |
+| Gate                       | Condición objetiva                                                                                                                                  |
+| -------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------- |
+| G0 Discovery cerrado       | inventario o ausencia documentada, decisiones bloqueantes resueltas y entradas V1 con propietario                                                   |
+| G1 Plataforma reproducible | instalación limpia + lint + typecheck + test + build + CI + artefacto Pages                                                                         |
+| G2 Catálogo confiable      | schemas, relaciones, errores, queries y fixtures pasan; ningún draft se proyecta                                                                    |
+| G3 Sistema visual          | foundations/primitives/patterns accesibles y aprobados en viewports objetivo                                                                        |
+| G4 Descubrimiento          | home, shell, índices y taxonomías forman un recorrido estático coherente y superan el gate visual manual 320/768/1440 contra la referencia aprobada |
+| G5 Conversión              | fichas y ambos WhatsApp flows funcionan sin JS, mantienen la dirección artística y están cubiertos                                                  |
+| G6 SEO/agents              | metadata, crawl, JSON-LD, enlaces y catalog JSON son consistentes                                                                                   |
+| G7 Medición                | eventos aprobados, privacidad resuelta y recepción validada sin PII                                                                                 |
+| G8 Release candidate       | accesibilidad, performance, responsive, seguridad, dirección artística y suite completa aprobados con revisión visual manual                        |
+| G9 Producción              | contenido, redirects, DNS, HTTPS, Search Console, analytics, monitor y rollback verificados                                                         |
+
+## Dirección artística transversal aprobada
+
+- Concepto rector: **“Atelier de pequeños detalles”**. La experiencia debe sentirse como una boutique/atelier artesanal digital de composición editorial contemporánea, con producto y fotografía real como protagonistas; no como una plantilla ecommerce, una interfaz infantil ni un scrapbook.
+- Principios: editorial antes que grid genérico; fotografía antes que decoración; movimiento delicado e intencional; imperfección controlada; espacio negativo y ritmo; mobile con composición propia; accesibilidad, rendimiento y mantenibilidad como límites no negociables.
+- `docs/design/visual-direction.md` es la especificación autoritativa de paleta/tokens, tipografía, fotografía, composición, ornamentación, motion y firma del creador. No se crea un sistema paralelo: cualquier evolución de M3 se hace mediante los tokens, foundations y componentes existentes, con decisión documentada y el cambio mínimo necesario.
+- M4.11.2–M4.11.8 recuperan la dirección de Home y shell; M5 la continúa en ficha, galería y conversión; M6 preserva su coherencia cuando SEO/legal afecten al layout; M8 ejecuta las auditorías transversales y el gate visual final; M9 sustituye contenido provisional por material aprobado sin reabrir el diseño.
+- Una milestone visual no puede cerrarse sólo con lint, tests o build: requiere inspección manual documentada a 320, 768 y 1440 px. Los efectos deben respetar `prefers-reduced-motion`, no provocar CLS ni convertir JavaScript secundario en crítico.
+- La referencia contractual de la Home está registrada en `docs/design/reference/luna-home-art-direction-reference.png`; su función y el gap del primer cierre de M4.11 se documentan en `docs/design/home-art-direction-recovery.md`. G4 queda reabierto hasta completar M4.11.8 y M5 no avanza mientras tanto.
 
 ---
 
@@ -46,7 +55,7 @@
 **Verificación:** revisar fuentes/accesos; comprobar dominio, variantes y remoto; validar CSV sin duplicados y con columnas acordadas.  
 **Modelo recomendado:** SOL.  
 **Razón del modelo:** auditoría incompleta y SEO histórico requieren razonamiento transversal.  
-**Evidencia:** PASS (2026-08-15) — `docs/discovery/current-state.md` registra fuentes, fecha, disponibilidad, owner y siguiente acción; clasificación ratificada: código greenfield con migración SEO/contenido posible. Dominio: A/AAAA y NS Cloudflare contrastados, `www` NXDOMAIN, HTTP(S)/robots/sitemap inconclusos y documentados sin inferir origen. Remoto: API GitHub pública + `git ls-remote` confirman repo público vacío, 0 refs y Pages desactivado. Assets/exports/accesos ausentes quedan `TBD`. `Import-Csv docs/seo/url-inventory.csv`: 8 URLs, 9 columnas requeridas, 0 duplicados, 0 filas incompletas; ninguna URL conocida sin estado.  
+**Evidencia:** PASS (2026-08-15) — `docs/discovery/current-state.md` registra fuentes, fecha, disponibilidad, owner y siguiente acción; clasificación ratificada: código greenfield con migración SEO/contenido posible. Dominio: A/AAAA y NS Cloudflare contrastados, `www` NXDOMAIN, HTTP(S)/robots/sitemap inconclusos y documentados sin inferir origen. Remoto: API GitHub pública + `git ls-remote` confirman repo público vacío, 0 refs y Pages desactivado. Assets/exports/accesos ausentes quedan `TBD`. `Import-Csv docs/seo/url-inventory.csv`: 8 URLs, 9 columnas requeridas, 0 duplicados, 0 filas incompletas; ninguna URL conocida sin estado.
 
 ## M0.2 — Cierre de decisiones técnicas y presupuestos iniciales
 
@@ -61,7 +70,7 @@
 **Verificación:** revisión cruzada de contratos y resolución de contradicciones/TBD bloqueantes para M1.  
 **Modelo recomendado:** SOL.  
 **Razón del modelo:** decisiones irreversibles y transversales dominan el trabajo.  
-**Evidencia:** PASS (2026-08-15) — `architecture.md` ratifica Astro 6/SSG sin adapter, Node `24.19.0` + npm `11.17.0`, URLs con barra final, Pages condicionado, Cloudflare 301/308 y fallback para 410, frontera pública, hard limits de assets, Baseline, WCAG 2.2 AA y criterios de dependencias; `deployment.md` fija flujo oficial Pages, permisos/owners, DNS/redirects y criterio objetivo de sustitución; `testing-strategy.md` define budgets medibles de CWV/Lighthouse/HTML/CSS/JS/transferencia/imágenes. Revisión PowerShell: dependencia M0.1 PASS, única tarea `IN_PROGRESS` durante ejecución PASS, enlaces internos PASS, decisiones requeridas PASS, budgets PASS, owners/exit gate PASS y 0 contradicciones obsoletas. Fuentes oficiales: Astro, Node, GitHub, Cloudflare, W3C y web.dev. No se creó ADR porque no cambió la dirección aceptada.  
+**Evidencia:** PASS (2026-08-15) — `architecture.md` ratifica Astro 6/SSG sin adapter, Node `24.19.0` + npm `11.17.0`, URLs con barra final, Pages condicionado, Cloudflare 301/308 y fallback para 410, frontera pública, hard limits de assets, Baseline, WCAG 2.2 AA y criterios de dependencias; `deployment.md` fija flujo oficial Pages, permisos/owners, DNS/redirects y criterio objetivo de sustitución; `testing-strategy.md` define budgets medibles de CWV/Lighthouse/HTML/CSS/JS/transferencia/imágenes. Revisión PowerShell: dependencia M0.1 PASS, única tarea `IN_PROGRESS` durante ejecución PASS, enlaces internos PASS, decisiones requeridas PASS, budgets PASS, owners/exit gate PASS y 0 contradicciones obsoletas. Fuentes oficiales: Astro, Node, GitHub, Cloudflare, W3C y web.dev. No se creó ADR porque no cambió la dirección aceptada.
 
 ## M0.3 — Contrato de entradas y readiness V1
 
@@ -496,20 +505,130 @@
 **Razón del modelo:** implementación mecánica con review SEO del mapping Recipient→regalos.  
 **Evidencia:** PASS (2026-08-16) — `src/pages/regalos/index.astro` publica `/regalos/` con un único H1, copy centrado en la persona y estado vacío honesto, sin exponer la jerga interna `Recipient/destinatario`. `src/pages/regalos/[slug].astro` reutiliza el patrón compartido y genera sólo landings para destinatarios publicados con al menos un producto publicado; incluye breadcrumb, contenido editorial, productos en orden de dominio y enlaces construidos con `routes`. La proyección sintética excluye drafts y destinatarios vacíos y confirma `/regalos/family/` con sus dos productos ordenados. `npm run format`, `npm run lint`, `npm run typecheck` (0 errores/warnings/hints), `npm test` (22 archivos, 142 tests), `npm run build` (5 páginas estáticas; 0 landings de regalo porque el catálogo productivo está vacío) y `git diff --check`: PASS. Inspección de `dist/regalos/index.html`: canonical `/regalos/`, un H1, cero scripts, 6 enlaces internos y 0 rotos. Los únicos avisos son los informativos esperados por las cuatro colecciones productivas vacías.
 
-## M4.11 — Integración y QA de descubrimiento
+## M4.11 — Integración, dirección artística y QA de descubrimiento
 
-**Estado:** PENDING  
-**Objetivo:** cerrar home/listados como recorrido coherente antes de fichas.  
-**Alcance:** ajustar composición, jerarquía, responsive, estados y enlaces; eliminar duplicación/dead code directo.  
-**Fuera de alcance:** ficha, analytics, SEO avanzado o rediseño del sistema.  
+**Estado:** DONE
+**Objetivo:** cerrar Home, shell y listados como un recorrido coherente antes de fichas, aplicando “Atelier de pequeños detalles” a la página completa y no como suma de módulos.
+
+**Alcance:** auditoría visual de extremo a extremo; ajustar composición, jerarquía, ritmo vertical, espaciado, superficies, tipografía, fotografía, recortes/object-position, proporciones, variaciones de cards, transiciones entre secciones, ornamentación moderada y motion; dar composición propia a 320/768/1440; integrar editorialmente categorías, ocasiones, destinatarios, destacados, trabajos, proceso existente y CTA final; corregir estados, enlaces, duplicación/dead code directo; permitir cambios mínimos y trazables en tokens/foundations/componentes existentes cuando la especificación autoritativa lo exija; incorporar en la zona inferior del Footer la firma del creador definida a continuación.
+
+**Requisito explícito del Footer — firma del creador:** copy único `Hecho con mimo para Luna · Creado por Antonio MDM · © {YEAR}`; `Antonio MDM` es un `<a href="https://antoniomdm.dev/">` real, utilizable sin JavaScript, sin `target="_blank"` salvo convención de proyecto previa y, si se justificase, con `rel` seguro; `{YEAR}` se resuelve una sola vez durante el build de Astro (preferentemente mediante una constante de frontmatter), sin año repetido, dependencia, hidratación ni JavaScript cliente. Se sitúa bajo navegación/contacto/legal con separación suficiente, jerarquía tipográfica secundaria, legibilidad y contraste WCAG AA; el enlace conserva teclado y foco claramente visible y puede usar sólo un subrayado/transición/desplazamiento sutil coherente con el motion system. No sustituir el copy por corazones, emojis, iconos u ornamentación, no convertirlo en CTA/publicidad y no añadir animación si no aporta valor.
+
+**Fuera de alcance:** ficha, analytics, SEO avanzado, reescritura caótica del design system, librerías pesadas, cambio de copy/CTA/derechos ya aprobados, nueva sesión fotográfica o nueva sección de proceso sin contenido aprobado. M4.1 permanece `DONE`; esta evolución posterior del Footer no reabre su alcance histórico.
+
 **Dependencias:** M4.10.  
-**Archivos/áreas previstas:** home, listados y componentes M4.  
-**Contratos afectados:** G4, UI, navigation, performance inicial.  
-**Criterios de aceptación:** recorrido home→intención→selección funciona a 320/768/1440, por teclado y sin errores; contenido/links consistentes.  
-**Verificación:** suite, build, smoke manual sin JS y capturas de viewports representativos.  
+**Archivos/áreas previstas:** home, shell/Footer, listados, componentes M4, estilos/tokens existentes sólo si es necesario y evidencia visual de G4.
+
+**Contratos afectados:** G4, dirección artística, UI, navigation, accessibility, responsive, motion y performance inicial.
+
+**Criterios de aceptación:** recorrido home→intención→selección coherente por teclado y sin JS; jerarquía y ritmo claros; fotografía protagonista; composición no reducible a grid→grid; tokens consistentes; ornamentación escasa e intencional; hover y foco equivalentes; movimiento limitado al vocabulario aprobado y anulado/reducido correctamente; 320/768/1440 sin overflow, solapes ni recortes dañinos; ninguna fuente/animación introduce CLS ni rompe budgets. La firma aparece completa en la zona inferior del Footer, legible y secundaria, con enlace nativo/foco visible, año de build centralizado y sin competir con navegación, contacto, legales ni CTA.
+
+**Verificación:** suite, build y smoke manual sin JS; teclado, contraste y `prefers-reduced-motion`; comprobación de HTML generado (firma/enlace/año y ausencia de hidratación); capturas y revisión visual manual obligatoria a 1440, 768 y 320 px. La revisión debe confirmar coherencia extremo a extremo, ausencia de aspecto de plantilla genérica, fotografía/ritmo/transiciones, moderación ornamental, foco/hover, ausencia de overflow/CLS y cumplimiento de budgets; tests/lint/build son necesarios, no suficientes.
+
 **Modelo recomendado:** LUNA → SOL REVIEW.  
-**Razón del modelo:** corrección local seguida de auditoría del recorrido completo.  
-**Evidencia:** —
+**Razón del modelo:** implementación visual iterativa y acotada seguida de auditoría senior del recorrido, contratos y gate G4.
+
+**Evidencia:** PASS (2026-08-16) — Home, shell y listados aplican “Atelier de pequeños detalles” mediante tokens semánticos recalibrados, hero editorial, capítulos de intención diferenciados, proceso numerado, galería asimétrica, superficies/ritmo propios y CTA final integrado; se corrigieron los tokens inexistentes de descubrimiento y la navegación de escritorio oculta por el `<details>` cerrado. El Footer incorpora una única firma `Hecho con mimo para Luna · Creado por Antonio MDM · © 2026`, con año UTC resuelto en build, enlace nativo sin nueva pestaña, foco visible y cero hidratación. QA manual del artefacto a 320/768/1440: composición, recortes, lazy media, navegación, menú nativo, foco, estados vacíos, Footer y listados PASS; 0 px de overflow y 0 scripts cliente. `prefers-reduced-motion` está presente en 5 reglas compiladas y anula transiciones/desplazamientos no esenciales. Contraste mínimo de texto auxiliar sobre las nuevas superficies: 5.03:1; foco sobre canvas: 6.80:1; acción: 8.12:1. Budgets Home: HTML 3.00 KiB gzip, CSS total 5.43 KiB gzip, JS 0 KiB y mayor variante hero 120,053 bytes. `npm run format`, `npm run lint`, `npm run typecheck` (0 errores/warnings/hints), `npm test` (22 archivos, 144 tests), `npm run build` (5 páginas), smoke sin JS y link check (71 enlaces internos, 0 fallos): PASS. G4 satisfecho.
+
+**Corrección posterior:** el PASS anterior conserva su evidencia técnica e histórica, pero la comparación con la referencia visual aportada posteriormente demuestra que fue insuficiente en escala, protagonismo fotográfico, densidad, ritmo, descubrimiento, materialidad, CTA y Footer. No se borra ni se reescribe ese cierre: M4.11.1–M4.11.8 forman una recuperación explícita y G4 vuelve a quedar abierto.
+
+## M4.11.1 — Auditoría y contrato visual
+
+**Estado:** DONE
+**Objetivo:** registrar la referencia aprobada y convertir la diferencia entre la Home actual y “Atelier de pequeños detalles” en un contrato reproducible.
+**Alcance:** lectura completa de roadmap/M3/M4; inspección de tokens, foundations, layout, Header, Hero, cards, descubrimiento, destacados, proceso, trabajos, CTA, Footer, responsive, motion, contenido y assets; build y revisión renderizada 320/768/1440; registro estable de referencia y capturas previas.
+**Fuera de alcance:** modificar la UI, inventar contenido/assets, cerrar G4 o ejecutar M4.11.2.
+**Dependencias:** M4.11 histórico.
+**Archivos/áreas:** `docs/design/reference/`, `docs/design/home-art-direction-recovery.md`, `docs/design/visual-direction.md`, readiness y roadmap.
+**Contratos afectados:** dirección artística, G4, documentación, contenido y assets.
+**Criterios de aceptación:** referencia estable y enlazada; función no pixel-perfect explícita; gap clasificado; reutilizables/faltantes identificados; subtareas y bloqueos trazables; siguiente tarea única.
+**Verificación:** SHA-256 del asset; build actual; DOM/capturas y medidas 320/768/1440; enlaces Markdown; revisión de estados y dependencias.
+**Modelo recomendado:** SOL.
+**Evidencia:** PASS (2026-08-16) — referencia registrada en `docs/design/reference/luna-home-art-direction-reference.png` (2.180.828 bytes, SHA-256 `747E4453AF9C043CE1D24CF792B56F8D12B8C299B606861FAADEE41F7D45B283`); auditoría y evidencias “before” documentadas en `docs/design/home-art-direction-recovery.md`. Build PASS. QA 1440/768/320 confirma 0 px de overflow, pero H1/foto miden respectivamente 516×519/663×378, 299×301/372×212 y 267×269/275×155 px; placeholders públicos, scroll excesivo, ritmo discontinuo y CTA/Footer desconectados justifican reabrir G4. No se modificó la UI ni se ejecutó M4.11.2.
+
+## M4.11.2 — Design system, tipografía y ritmo
+
+**Estado:** PENDING
+**Objetivo:** evolucionar el sistema M3 para sostener la referencia sin valores oportunistas ni un sistema paralelo.
+**Alcance:** diferenciar medidas `visual/content/copy`; recalibrar escala tipográfica, espacios de capítulo, superficies, radios/sombras y continuidad cromática; fijar vocabulario de 2–4 motivos locales; documentar migración de consumidores.
+**Fuera de alcance:** rediseñar secciones completas, añadir webfonts sin archivos/licencia, imágenes sintéticas o librerías.
+**Dependencias:** M4.11.1.
+**Assets necesarios:** ninguno para la base; fuentes de marca WOFF2/licencia sólo como mejora futura, no blocker.
+**Criterios de aceptación:** roles semánticos reutilizables; lectura 45–70 caracteres; contraste AA; ritmo no uniforme; motivos ignorados por AT; sin regresión de CSS/CLS.
+**Verificación:** lint, typecheck, tests, build, contraste, showcase y revisión 320/768/1440.
+**Modelo recomendado:** SOL → LUNA.
+
+## M4.11.3 — Header y Hero editorial
+
+**Estado:** PENDING
+**Objetivo:** corregir la prioridad máxima con aproximadamente 45 % contenido y 55 % fotografía en desktop, y una composición propia en móvil.
+**Alcance:** header más respirado manteniendo sólo navegación real; H1 aprobado con ruptura editorial adaptable; fotografía hero real grande y bien encuadrada; ambos CTA/destinos existentes; transición orgánica a la siguiente sección.
+**Fuera de alcance:** logo inventado, iconos de ecommerce, copy nuevo, otra fotografía, script caligráfico no licenciado o posicionamiento hardcodeado a 1440.
+**Dependencias:** M4.11.2.
+**Assets necesarios:** `src/assets/home/tarta-hero.png` (READY); logo/nombre formal siguen bloqueados y el diseño debe degradar honestamente.
+**Criterios de aceptación:** producto inequívocamente protagonista; H1 no domina; LCP y dimensiones estables; CTA táctiles; sin recorte dañino ni overflow a 320/768/1440.
+**Verificación:** suite/build, HTML, teclado, contraste, requests/LCP inicial y capturas comparadas.
+**Modelo recomendado:** LUNA → SOL REVIEW.
+
+## M4.11.4 — Storytelling artesanal y trabajos realizados
+
+**Estado:** PENDING
+**Objetivo:** transformar proceso y galería en una historia compacta de cuidado, evidencia y producto real.
+**Alcance:** mantener el significado aprobado de los tres pasos; conectar visualmente la secuencia; evolucionar el collage con superficie editorial, proporciones, asimetría y profundidad controladas; permitir futuras fotos de proceso sin exigirlas ahora.
+**Fuera de alcance:** claims, reseñas, cifras, fotografías nuevas, carrusel, feed social o parallax sin coste demostrado.
+**Dependencias:** M4.11.3.
+**Assets necesarios:** cuatro fotografías READY en `src/assets/home/work-showcase/`; deseable no bloqueante: foto horizontal de manos preparando packaging.
+**Criterios de aceptación:** narrativa legible, collage no reducible a grid, orden DOM correcto, alt/dimensiones preservados, lazy loading y reduced motion.
+**Verificación:** contenido/derechos, suite/build, teclado, requests y capturas 320/768/1440.
+**Modelo recomendado:** LUNA → SOL REVIEW.
+
+## M4.11.5 — CTA emocional y Footer diseñado
+
+**Estado:** PENDING
+**Objetivo:** cerrar la historia con una conversión integrada y un Footer con marca, contacto y crédito secundarios.
+**Alcance:** rediseñar CTA conservando copy/WhatsApp existentes; integrar WhatsApp Business, email e Instagram aprobados; mantener navegación real; separar `© {YEAR}` de la firma cuando mejore jerarquía; conservar enlace Antonio MDM y año de build único.
+**Fuera de alcance:** otras redes, horarios/políticas, identidad legal inventada, formulario, CRM o plantilla de producto M5.1.
+**Dependencias:** M4.11.4.
+**Assets necesarios:** contactos READY en `content-readiness.md`; foto horizontal de packaging es deseable pero no bloqueante.
+**Criterios de aceptación:** CTA pertenece al mismo sistema, contacto accesible, enlaces reales, foco AA, Footer ordenado a 320/768/1440, cero JS añadido sólo por el año.
+**Verificación:** suite/build, HTML/hrefs, teclado, contraste y capturas.
+**Modelo recomendado:** LUNA → SOL REVIEW.
+
+## M4.11.6 — Motion y ornamentación progresiva
+
+**Estado:** PENDING
+**Objetivo:** añadir únicamente movimiento y materialidad que ordenen la lectura o conecten capítulos.
+**Alcance:** línea/hilo, subrayado orgánico y puntos o marcas de papel; hover/focus equivalentes; reveal/draw sólo si mejora la lectura; API nativa y JS mínimo si se demuestra necesario.
+**Fuera de alcance:** emojis, librería de animación, canvas/WebGL, autoplay, gran parallax, ornamentos de identidad no aprobados o animaciones de layout.
+**Dependencias:** M4.11.5.
+**Criterios de aceptación:** nada se mueve sin propósito; contenido completo sin JS; reduced motion deja estado estable; sin CLS/INP ni coste fuera de budget.
+**Verificación:** teclado, `prefers-reduced-motion`, JS deshabilitado, performance y capturas.
+**Modelo recomendado:** LUNA → SOL REVIEW.
+
+## M4.11.7 — Descubrimiento editorial e ideas para regalar
+
+**Estado:** BLOCKED
+**Objetivo:** convertir tipo/ocasión/persona e ideas destacadas en entradas visuales, útiles y honestas.
+**Alcance:** eliminar todos los “Pronto podrás…” públicos; ocultar módulos vacíos sin hueco; cuando exista contenido, crear cards visuales clicables con datos, rutas y fotografías reales aprobadas, sin grid ecommerce genérico.
+**Fuera de alcance:** inventar productos, categorías, precios, textos, destinos o reutilizar fotos de la referencia.
+**Dependencias:** M4.11.3 y catálogo/taxonomías aprobados.
+**Assets necesarios:** catálogo productivo, taxonomías/copy y relaciones aprobadas; portadas/alt/derechos; fotos 4:3 u horizontales asociables a cada intención.
+**Bloqueo:** `src/content/{products,categories,occasions,recipients}` está vacío y readiness mantiene esos datos en `TBD`. La parte inmediata de eliminación de placeholders puede ejecutarse, pero el contrato visual de descubrimiento no puede cerrarse sin contenido real.
+**Criterios de aceptación:** cero placeholders; sólo publicados; cards semánticas y accionables sin hover; composición visual con ritmo y estados vacíos no publicables.
+**Verificación:** queries/build/link check, contenido/derechos, teclado y capturas 320/768/1440.
+**Modelo recomendado:** SOL → LUNA.
+
+## M4.11.8 — Responsive, visual QA y performance
+
+**Estado:** PENDING
+**Objetivo:** cerrar de nuevo G4 únicamente con evidencia técnica y visual contra la referencia aprobada.
+**Alcance:** ajustes directos; matriz 320/768/1440 e intermedios; teclado, zoom, no-JS, reduced motion, contraste, overflow, recortes, CLS/INP/LCP, tamaños y comparación explícita de similitud.
+**Fuera de alcance:** aceptar fallos por tener build verde, avanzar M5, crear contenido o reabrir arquitectura no relacionada.
+**Dependencias:** M4.11.2–M4.11.7 en DONE; contenido bloqueante resuelto.
+**Criterios de aceptación:** tests/lint/typecheck/build/performance/a11y PASS; capturas finales; escala, jerarquía, fotografía, calidez, ritmo, materialidad, sofisticación, CTA y Footer claramente alineados; cero placeholder/overflow/rotura responsive.
+**Verificación:** suite contractual, budgets, smoke, capturas completas y checklist manual de `docs/design/home-art-direction-recovery.md`.
+**Modelo recomendado:** SOL.
+**Gate:** sólo esta subtarea puede volver a declarar G4 satisfecho.
 
 ---
 
@@ -520,30 +639,33 @@
 
 ## M5.1 — Extensión del builder WhatsApp para producto
 
-**Estado:** PENDING  
+**Estado:** BLOCKED
 **Objetivo:** completar el builder compartido con enlaces de producto correctos, centralizados y testables.  
 **Alcance:** extender el caso personalizado de M4.6 con plantilla de producto, canonical de origen y matriz completa de normalización/URL/message encoding/errores.  
 **Fuera de alcance:** analytics, UI de ficha, API Business o envío automático.  
-**Dependencias:** M4.11.  
+**Dependencias:** M4.11.8 y plantilla de producto aprobada.
 **Archivos/áreas previstas:** `src/lib/whatsapp/`, config y tests.  
 **Contratos afectados:** WhatsApp, config, URLs, privacidad.  
 **Criterios de aceptación:** mensaje nunca vacío; Unicode/acentos/URLs funcionan; no hay doble encoding; funciones puras cubren ambos flujos.  
 **Verificación:** tests de matriz y apertura manual en móvil/desktop sin completar envío.  
 **Modelo recomendado:** LUNA.  
 **Razón del modelo:** utilidad pura con casos definidos.  
-**Evidencia:** —
+**Evidencia:** BLOCKED (2026-08-16) — El builder personalizado existente conserva número/mensaje aprobados, pero `docs/conversion/conversion-strategy.md` mantiene el copy final, saludo y plantilla de producto como `TBD`; `docs/product/content-readiness.md` asigna esa entrada al propietario del negocio con gate M5.1. La recuperación visual reabre además G4 hasta M4.11.8. Sin ambos prerrequisitos no se puede fijar el mensaje de producto ni avanzar a M5.2. Pendiente: cerrar M4.11.8; entregar texto exacto o plantilla parametrizada aprobada, fuente/owner y fecha de aprobación; confirmar si los enlaces abren en la misma pestaña.
 
 ## M5.2 — Ruta y contenido principal de producto
 
 **Estado:** PENDING  
 **Objetivo:** generar una ficha estática comprensible para cada producto publicado.  
-**Alcance:** `[slug]`, breadcrumb visual, nombre, resumen/descripción, precio semántico, contenido del pack y taxonomías; comportamiento ante slug ausente.  
+**Alcance:** `[slug]`, breadcrumb visual, nombre, resumen/descripción, precio semántico, contenido del pack y taxonomías; comportamiento ante slug ausente; composición editorial coherente con M4.11 sin copiar mecánicamente la Home.
+
 **Fuera de alcance:** galería completa, CTA final, relacionados y JSON-LD.  
 **Dependencias:** M5.1.  
 **Archivos/áreas previstas:** `src/pages/productos/[slug].astro`, componentes product.  
 **Contratos afectados:** catálogo, rutas, UI, conversión.  
-**Criterios de aceptación:** una ruta por publicado, ninguna por draft; información coincide con dominio; price variants honestas; estructura semántica correcta.  
-**Verificación:** route tests, build, inspección de variantes y 404.  
+**Criterios de aceptación:** una ruta por publicado, ninguna por draft; información coincide con dominio; price variants honestas; estructura semántica correcta; jerarquía, espacio y superficies continúan “Atelier de pequeños detalles”.
+
+**Verificación:** route tests, build, inspección de variantes/404 y revisión visual 320/768/1440.
+
 **Modelo recomendado:** LUNA → SOL REVIEW.  
 **Razón del modelo:** implementación de ruta con revisión de la principal página de negocio.  
 **Evidencia:** —
@@ -552,13 +674,16 @@
 
 **Estado:** PENDING  
 **Objetivo:** mostrar portada y detalle visual con estabilidad y accesibilidad.  
-**Alcance:** imagen principal, thumbnails/alternativas cuando existan, responsive images, alt/captions y progresión sin JS o JS mínimo justificado.  
+**Alcance:** imagen principal, thumbnails/alternativas cuando existan, responsive images, alt/captions, ratios/recortes/object-position y progresión editorial sin JS o JS mínimo justificado.
+
 **Fuera de alcance:** zoom complejo, lightbox dependiente de librería o edición de fotos.  
 **Dependencias:** M5.2.  
 **Archivos/áreas previstas:** componentes gallery/media y styles/tests.  
 **Contratos afectados:** Media, UI, a11y, performance.  
-**Criterios de aceptación:** dimensiones conocidas, navegación teclado si interactiva, fallback de una imagen, sin CLS perceptible ni descarga innecesaria.  
-**Verificación:** viewports, teclado/sin JS, build y auditoría de requests/imágenes.  
+**Criterios de aceptación:** producto protagonista y color fiel; dimensiones conocidas; navegación teclado si interactiva; fallback de una imagen; composición propia en móvil/escritorio; sin CLS perceptible ni descarga innecesaria.
+
+**Verificación:** revisión 320/768/1440, teclado/sin JS, build y auditoría de requests/imágenes.
+
 **Modelo recomendado:** LUNA → SOL REVIEW.  
 **Razón del modelo:** UI localizada con riesgos de accesibilidad y rendimiento.  
 **Evidencia:** —
@@ -567,12 +692,14 @@
 
 **Estado:** PENDING  
 **Objetivo:** hacer evidente el siguiente paso con contexto suficiente.  
-**Alcance:** precio/resumen, CTA “Pedir por WhatsApp”, mensaje con nombre+canonical, posición mobile/desktop, microcopy aprobado y fallback seguro.  
+**Alcance:** precio/resumen, CTA “Pedir por WhatsApp”, mensaje con nombre+canonical, posición mobile/desktop, microcopy aprobado, transición visual desde la galería y fallback seguro.
+
 **Fuera de alcance:** sticky intrusivo, analytics, formulario o checkout.  
 **Dependencias:** M5.3.  
 **Archivos/áreas previstas:** componentes product/conversion, WhatsApp builder tests.  
 **Contratos afectados:** UI, WhatsApp, conversion.  
-**Criterios de aceptación:** CTA visible y accesible; href correcto sin JS; no oculta contenido/foco; producto/origen inequívocos.  
+**Criterios de aceptación:** CTA visible, accesible e integrado como siguiente paso natural; href correcto sin JS; no oculta contenido/foco ni compite con el producto; producto/origen inequívocos.
+
 **Verificación:** tests de href, prueba móvil/desktop/teclado y mensaje previsualizado.  
 **Modelo recomendado:** LUNA.  
 **Razón del modelo:** integración directa de builder y patrón visual.  
@@ -587,7 +714,8 @@
 **Dependencias:** M5.4 y contenido aprobado.  
 **Archivos/áreas previstas:** componentes product y proyecciones mínimas.  
 **Contratos afectados:** catálogo customization, copy, conversión.  
-**Criterios de aceptación:** secciones sólo aparecen con datos; headings/lectura correctos; no duplican información contradictoria.  
+**Criterios de aceptación:** secciones sólo aparecen con datos; headings/lectura correctos; no duplican información contradictoria; proceso/confianza se perciben como narrativa artesanal y no como cards genéricas repetidas.
+
 **Verificación:** casos con/sin personalización, revisión de copy y visual.  
 **Modelo recomendado:** LUNA.  
 **Razón del modelo:** render condicional sencillo sobre datos válidos.  
@@ -612,13 +740,16 @@
 
 **Estado:** PENDING  
 **Objetivo:** cerrar el camino listado→ficha→WhatsApp y la alternativa personalizada.  
-**Alcance:** smoke de variantes, responsive/teclado/sin JS, mensajes, estados y correcciones directamente relacionadas.  
+**Alcance:** smoke de variantes, continuidad artística M4→M5, responsive/teclado/sin JS, mensajes, estados y correcciones directamente relacionadas.
+
 **Fuera de alcance:** instrumentación analytics o auditoría SEO completa.  
 **Dependencias:** M5.6.  
 **Archivos/áreas previstas:** páginas M4/M5, browser smoke inicial y evidencia.  
 **Contratos afectados:** G5, conversion, UI, WhatsApp.  
-**Criterios de aceptación:** ambos flujos llegan a URL WhatsApp correcta; ningún enlace vacío; no hay blocker visual/a11y crítico en rutas representativas.  
-**Verificación:** suite, build, matriz manual móvil/desktop y smoke sin JS.  
+**Criterios de aceptación:** ambos flujos llegan a URL WhatsApp correcta; ningún enlace vacío; fotografía, jerarquía, ritmo, tokens y motion son coherentes; no hay blocker visual/a11y crítico en rutas representativas.
+
+**Verificación:** suite, build, matriz visual manual 320/768/1440, teclado/reduced-motion y smoke sin JS.
+
 **Modelo recomendado:** LUNA → SOL REVIEW.  
 **Razón del modelo:** Luna corrige; Sol audita el principal contrato comercial.  
 **Evidencia:** —
@@ -694,12 +825,14 @@
 
 **Estado:** PENDING  
 **Objetivo:** publicar identidad global sólo con datos empresariales verificados.  
-**Alcance:** builders desde config, logo/URL/contactPoint/social sólo si confirmados y una inclusión no duplicada.  
+**Alcance:** builders desde config, logo/URL/contactPoint/social sólo si confirmados y una inclusión no duplicada; mantener consistencia con la identidad empresarial visible en Footer sin convertir la firma del creador de M4.11 en identidad de `Organization`.
+
 **Fuera de alcance:** LocalBusiness sin requisitos, SearchAction sin búsqueda o perfiles no verificados.  
 **Dependencias:** M6.4 y datos de identidad aprobados.  
 **Archivos/áreas previstas:** structured-data builders, BaseLayout/home y tests.  
 **Contratos afectados:** configuración, identidad, SEO.  
-**Criterios de aceptación:** schema mínimo válido; campos opcionales se omiten correctamente; una fuente de configuración.  
+**Criterios de aceptación:** schema mínimo válido; campos opcionales se omiten correctamente; una fuente de configuración; autoría web y entidad comercial no se confunden.
+
 **Verificación:** tests, validación externa y comparación con contenido/footer.  
 **Modelo recomendado:** LUNA → SOL REVIEW.  
 **Razón del modelo:** builder simple con revisión semántica crítica.  
@@ -843,12 +976,14 @@
 
 **Estado:** PENDING  
 **Objetivo:** asegurar fotos protagonistas sin degradar CWV ni salud de Git.  
-**Alcance:** AVIF/WebP/fallback, srcset/sizes, lazy/eager correcto, dimensiones, límites de ingestión/repo, fonts y budgets de JS/CSS/imágenes/LCP/CLS.  
+**Alcance:** AVIF/WebP/fallback, srcset/sizes, lazy/eager correcto, dimensiones, límites de ingestión/repo, fonts y budgets de JS/CSS/imágenes/LCP/CLS; medir cualquier reveal, micro-parallax u ornamento implementado.
+
 **Fuera de alcance:** retocar creativamente originales o CDN runtime sin necesidad.  
 **Dependencias:** M8.1 y muestras finales de medios.  
 **Archivos/áreas previstas:** media components/config, asset checks, docs y CI.  
 **Contratos afectados:** Media, performance, repository health.  
-**Criterios de aceptación:** todas las imágenes de rutas muestra cumplen política; LCP priorizado; no originales gigantes; budgets automatizados estables.  
+**Criterios de aceptación:** todas las imágenes de rutas muestra cumplen política; LCP priorizado; no originales gigantes; fuentes no causan CLS; motion secundario no entra en ruta crítica; budgets automatizados estables.
+
 **Verificación:** build stats, request/format audit, Lighthouse repetido y asset checker.  
 **Modelo recomendado:** SOL → LUNA.  
 **Razón del modelo:** Sol calibra budgets; Luna implementa optimización/checks.  
@@ -858,12 +993,14 @@
 
 **Estado:** PENDING  
 **Objetivo:** validar experiencia real en matriz soportada.  
-**Alcance:** 320/375/768/1024/1440+, orientación, touch/pointer, navegadores acordados, no-JS y correcciones directas.  
+**Alcance:** 320/375/768/1024/1440+, orientación, touch/pointer, navegadores acordados, no-JS, reduced-motion y correcciones directas; validar composición móvil propia, no sólo compresión del desktop.
+
 **Fuera de alcance:** navegadores fuera de política o nuevas features.  
 **Dependencias:** M8.2.  
 **Archivos/áreas previstas:** styles/components/pages y visual/browser tests.  
 **Contratos afectados:** responsive, compatibility, conversion.  
-**Criterios de aceptación:** sin overflow/solapamiento; CTAs alcanzables; media/copy legibles; recorrido completo en matriz prioritaria.  
+**Criterios de aceptación:** sin overflow/solapamiento; CTAs alcanzables; media/copy/firma de Footer legibles; ornamentación y parallax se reducen cuando procede; recorrido completo en matriz prioritaria.
+
 **Verificación:** matriz documentada con capturas/smoke y suite.  
 **Modelo recomendado:** LUNA.  
 **Razón del modelo:** comprobación y corrección localizada.  
@@ -902,14 +1039,18 @@
 ## M8.6 — Gate de release candidate
 
 **Estado:** PENDING  
-**Objetivo:** producir un candidato inmutable y decidir go/no-go técnico.  
-**Alcance:** ejecutar todos los gates, Lighthouse, a11y, SEO, smoke, sizes, contenido provisional y lista de blockers/known issues.  
+**Objetivo:** producir un candidato inmutable y decidir go/no-go técnico y visual.
+
+**Alcance:** ejecutar todos los gates, Lighthouse, a11y, SEO, smoke, sizes, contenido provisional, gate visual final y lista de blockers/known issues.
+
 **Fuera de alcance:** producción, DNS o aceptar silenciosamente fallos.  
 **Dependencias:** M8.5.  
 **Archivos/áreas previstas:** `docs/quality/release-candidate.md`, tag/artifact policy y fixes directos.  
 **Contratos afectados:** G8 y todos los contratos V1.  
-**Criterios de aceptación:** checks críticos PASS; no fixture/TBD publicable; artifact identificable; known issues aceptados con owner; rollback posible.  
-**Verificación:** `npm ci`, lint, typecheck, test, build, audits y checksum/commit del artefacto.  
+**Criterios de aceptación:** checks críticos PASS; no fixture/TBD publicable; artifact identificable; known issues aceptados con owner; rollback posible. El gate visual confirma coherencia extremo a extremo, carácter no genérico, jerarquía y ritmo, fotografía protagonista, tokens consistentes, ornamentación moderada, motion/reduced-motion, hover/foco, contraste, ausencia de overflow y de CLS por animaciones/fuentes, y budgets. La firma definida en M4.11 está presente, completa, legible, accesible y secundaria frente a las acciones principales del Footer.
+
+**Verificación:** `npm ci`, lint, typecheck, test, build, audits y checksum/commit del artefacto; revisión visual manual obligatoria con capturas a 1440, 768 y 320 px y checklist de `docs/design/visual-direction.md`. El gate no puede aprobarse sólo con checks automatizados.
+
 **Modelo recomendado:** SOL.  
 **Razón del modelo:** decisión de release requiere auditoría integral.  
 **Evidencia:** —
@@ -925,13 +1066,16 @@
 
 **Estado:** PENDING  
 **Objetivo:** sustituir material provisional por contenido aprobado y trazable.  
-**Alcance:** YAML final, fotos optimizables, alt, marca/favicon/OG, textos y datos legales/config; revisión de derechos y completitud.  
+**Alcance:** YAML final, fotos optimizables, alt, marca/favicon/OG, textos y datos legales/config; revisión de derechos y completitud; selección final coherente con las reglas hero/producto/trabajos/proceso/detalle de la dirección artística. Si se amplía “Cada detalle cuenta”, incorporar sólo material aprobado de manos, preparación, materiales/packaging y producto terminado.
+
 **Fuera de alcance:** inventar contenido, cambiar schemas sin necesidad o migrar originales gigantes.  
 **Dependencias:** M8.6 y entradas M0.3 disponibles.  
 **Archivos/áreas previstas:** content/assets/config y checklist readiness.  
 **Contratos afectados:** catálogo, marca, SEO, legal, media.  
-**Criterios de aceptación:** todo publicado está aprobado; cero fixture/TBD; derechos/fuentes registrados; catálogo/build y visual QA pasan.  
-**Verificación:** validation suite, asset/license checklist, build, revisión editorial completa.  
+**Criterios de aceptación:** todo publicado está aprobado; cero fixture/TBD; derechos/fuentes registrados; fotografía conserva color/punto focal y recortes 320/768/1440; catálogo/build y visual QA pasan sin romper el gate aprobado en M8.6.
+
+**Verificación:** validation suite, asset/license checklist, build y revisión editorial/visual completa contra la dirección autoritativa.
+
 **Modelo recomendado:** LUNA → SOL REVIEW.  
 **Razón del modelo:** carga sistemática con revisión de coherencia global.  
 **Evidencia:** —
@@ -1148,3 +1292,7 @@ No avanzar a la siguiente milestone.
 - 2026-08-16 — M4.6 completada: CTA emocional “Cuéntanos tu idea”, builder puro WhatsApp con mensaje Unicode codificado una vez, enlace nativo sin JS, 136 tests y checks contractuales/build en PASS. Siguiente tarea: M4.7 (modelo LUNA).
 - 2026-08-16 — M4.7 completada: índice estático `/productos/`, H1/introducción, listado de publicados ordenado por dominio, estado vacío honesto, 138 tests y link check/build en PASS. Siguiente tarea: M4.8 (modelo LUNA).
 - 2026-08-16 — M4.10 completada: índice `/regalos/` y landings por persona reutilizan el patrón compartido, excluyen drafts/vacíos, mantienen rutas y orden deterministas, evitan jerga interna visible y pasan 142 tests, build y link check. Siguiente tarea: M4.11 (modelo LUNA → SOL REVIEW).
+- 2026-08-16 — Roadmap recalibrado documentalmente con la dirección aprobada “Atelier de pequeños detalles”. M4.11 pasa a integrar dirección artística, QA visual 320/768/1440 y la firma secundaria del creador en el Footer; M4.1 conserva `DONE`. M5–M9 heredan criterios visuales, de accesibilidad, reduced-motion, performance y gate final sin ejecutar ni completar ninguna milestone. Siguiente tarea: M4.11 (modelo LUNA → SOL REVIEW).
+- 2026-08-16 — M4.11 completada: Home, shell y listados integran “Atelier de pequeños detalles”, navegación estática corregida, Footer firmado, QA visual 320/768/1440, contraste, reduced motion, budgets, 144 tests, build y smoke sin JS en PASS. G4 satisfecho. Siguiente tarea: M5.1 (modelo SOL → LUNA).
+- 2026-08-16 — M5.1 bloqueada: el número y el mensaje personalizado están aprobados, pero el saludo/copy/plantilla de producto y la política de nueva pestaña siguen `TBD` en el contrato de conversión y readiness. No se inventa contenido ni se avanza a M5.2. Reanudar M5.1 cuando el propietario entregue la plantilla aprobada (modelo LUNA).
+- 2026-08-16 — M4.11.1 completada como corrección trazable: se registra la referencia aprobada y una auditoría reproducible demuestra que el primer cierre de M4.11 fue técnicamente correcto pero visualmente insuficiente. G4 se reabre, M5 permanece detenido y se crean M4.11.2–M4.11.8. Descubrimiento/ideas queda `BLOCKED` por catálogo, taxonomías y fotografías asociables no aprobados; el resto reutiliza hero y cuatro trabajos reales. Siguiente tarea: M4.11.2 (modelo SOL → LUNA).

@@ -8,7 +8,7 @@ Cada concepto tiene una fuente autoritativa; `ROADMAP.md` conserva únicamente p
 - Catálogo: `architecture/catalog-contract.md`.
 - Build/deploy: `architecture/deployment.md`.
 - Riesgos/TBD: `architecture/risks-and-open-decisions.md`.
-- Diseño: `design/design-principles.md` y `design/visual-direction.md`.
+- Diseño: `design/design-principles.md`, `design/visual-direction.md` y la auditoría `design/home-art-direction-recovery.md`.
 - SEO/URLs: `seo/seo-strategy.md`.
 - WhatsApp/analytics: `conversion/conversion-strategy.md`.
 - Tests/calidad: `quality/testing-strategy.md`.

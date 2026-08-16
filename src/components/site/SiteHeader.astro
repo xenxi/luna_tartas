@@ -16,5 +16,8 @@ const { currentPath } = Astro.props;
       <summary>Menú</summary>
       <PrimaryNavigation currentPath={currentPath} />
     </details>
+    <div class="site-navigation--desktop">
+      <PrimaryNavigation currentPath={currentPath} />
+    </div>
   </div>
 </header>

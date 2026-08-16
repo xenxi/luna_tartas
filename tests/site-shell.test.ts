@@ -55,7 +55,9 @@ describe('public site shell', () => {
     expect(navigation).toContain("'page'");
     expect(header).not.toContain('<script');
     expect(navigation).not.toContain('client:');
-    expect(styles).toContain('.site-menu:not([open]) > .primary-navigation');
+    expect(header).toContain('class="site-navigation--desktop"');
+    expect(styles).toContain('.site-navigation--desktop');
+    expect(styles).toContain('.site-menu {');
   });
 
   it('never exposes pending brand or unconfirmed contact and legal data', () => {
@@ -65,5 +67,17 @@ describe('public site shell', () => {
     expect(`${layout}${header}${footer}`).not.toMatch(
       /whatsapp|tel:|mailto:|copyright|dirección/i,
     );
+  });
+
+  it('renders the approved creator signature once at build time without hydration', () => {
+    expect(footer).toContain('const buildYear = new Date().getUTCFullYear();');
+    expect(footer).toContain('Hecho con mimo para Luna · Creado por');
+    expect(footer).toContain('href="https://antoniomdm.dev/"');
+    expect(footer).toContain('Antonio MDM');
+    expect(footer).toContain('© {buildYear}');
+    expect(footer).not.toContain('target="_blank"');
+    expect(footer).not.toContain('<script');
+    expect(footer).not.toContain('client:');
+    expect(styles).toContain('.site-footer__signature a:focus-visible');
   });
 });

@@ -20,6 +20,7 @@
 
 .content-section__heading p {
   color: var(--color-text-muted);
+  font-size: var(--font-size-lg);
 }
 
 .content-section__actions:empty {
@@ -41,12 +42,12 @@
 }
 
 .content-empty-state {
-  padding: var(--space-8);
-  border: 1px dashed var(--color-border);
-  border-radius: var(--radius-lg);
-  background: var(--color-surface);
+  padding: var(--space-6) 0;
+  border-block: 1px solid var(--color-border);
   color: var(--color-text-muted);
-  text-align: center;
+  font-family: var(--font-display);
+  font-size: var(--font-size-lg);
+  font-style: italic;
 }
 
 @media (min-width: 40rem) {

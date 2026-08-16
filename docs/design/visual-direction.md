@@ -2,11 +2,13 @@
 
 ## Estado y autoridad
 
-Este documento convierte los principios de producto y diseño en una dirección implementable para M3.2–M5. No aprueba una identidad comercial ni sustituye una guía de marca. A fecha de 2026-08-16 no se han recibido nombre comercial aprobado, logo, favicon, iconos, tipografías ni evidencia de derechos; por tanto, todos los elementos de identidad permanecen bloqueados y no son publicables.
+Este documento convierte los principios de producto y diseño en una dirección implementable para la recuperación M4.11.2–M4.11.8 y su continuidad en M5–M9. No aprueba una identidad comercial ni sustituye una guía de marca. A fecha de 2026-08-16 no se han recibido nombre comercial aprobado, logo, favicon, iconos ni tipografías; esos elementos de identidad permanecen bloqueados y no son publicables. La fotografía y contenido aprobados durante M4 se pueden usar conforme a su readiness y derechos trazados.
+
+La referencia visual aprobada de la Home está registrada en [`reference/luna-home-art-direction-reference.png`](reference/luna-home-art-direction-reference.png) y su auditoría trazable vive en [`home-art-direction-recovery.md`](home-art-direction-recovery.md). La imagen define dirección artística, composición, jerarquía, densidad, ritmo, escala, proporciones, tratamiento fotográfico, cards, tipografía, ornamentación, superficies, paleta, CTA, Footer y calidad percibida. No es un contrato pixel-perfect ni una fuente de contenido: no autoriza productos, fotografías, textos, categorías, iconos funcionales o datos ficticios y no sustituye los contratos funcionales existentes.
 
 La dirección provisional sí queda aprobada técnicamente para construir el sistema visual. Debe poder sustituirse mediante configuración, tokens y assets, sin reescribir componentes ni contenido.
 
-La lámina interna [`visual-direction-review.svg`](visual-direction-review.svg) permite revisar paleta, jerarquía tipográfica y composición móvil/escritorio. Está marcada como documentación no publicable y no es un asset de marca ni una implementación de página.
+La lámina interna [`visual-direction-review.svg`](visual-direction-review.svg) conserva la revisión histórica de M3.1. Está marcada como documentación no publicable y no es un asset de marca, una implementación de página ni la referencia aprobada de la Home.
 
 Fuentes autoritativas relacionadas:
 
@@ -17,44 +19,44 @@ Fuentes autoritativas relacionadas:
 
 ## Inventario de marca revisado
 
-| Entrada | Estado | Evidencia revisada | Uso permitido ahora | Condición de salida |
-| --- | --- | --- | --- | --- |
-| Nombre comercial | `BLOCKED` | No existe fuente o aprobación entregada | Sólo la referencia interna del proyecto; nunca como identidad publicada | Nombre, variante escrita, owner, fuente, fecha y aprobación |
-| Logo y variantes | `BLOCKED` | No existen masters ni guía de uso | Ningún logo inventado; reservar una región semántica reemplazable | Masters web, variantes, área de seguridad, tamaños mínimos y aprobación |
-| Favicon e iconos de marca | `BLOCKED` | No existen archivos ni derechos acreditados | Ningún monograma, luna o símbolo provisional en producción | SVG/PNG masters, autor, licencia o permiso y aprobación |
-| Tipografías de marca | `BLOCKED` | No existen nombres, archivos, proveedor ni licencia | Stacks del sistema definidos en este documento | Familia, pesos necesarios, archivos/proveedor, licencia y aprobación |
-| Fotografía de producto | `TBD` para M9.1 | No hay selección ni derechos/alt entregados | Sólo fixtures aislados en tests; nunca moodboard o build público | Originales, selección, autor/permiso, alt y aprobación |
-| Guía de voz o identidad | `TBD` | No existe documento entregado | Aplicar sólo los principios de producto ya aprobados | Guía o aprobación explícita del owner |
+| Entrada                   | Estado          | Evidencia revisada                                  | Uso permitido ahora                                                     | Condición de salida                                                     |
+| ------------------------- | --------------- | --------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- |
+| Nombre comercial          | `BLOCKED`       | No existe fuente o aprobación entregada             | Sólo la referencia interna del proyecto; nunca como identidad publicada | Nombre, variante escrita, owner, fuente, fecha y aprobación             |
+| Logo y variantes          | `BLOCKED`       | No existen masters ni guía de uso                   | Ningún logo inventado; reservar una región semántica reemplazable       | Masters web, variantes, área de seguridad, tamaños mínimos y aprobación |
+| Favicon e iconos de marca | `BLOCKED`       | No existen archivos ni derechos acreditados         | Ningún monograma, luna o símbolo provisional en producción              | SVG/PNG masters, autor, licencia o permiso y aprobación                 |
+| Tipografías de marca      | `BLOCKED`       | No existen nombres, archivos, proveedor ni licencia | Stacks del sistema definidos en este documento                          | Familia, pesos necesarios, archivos/proveedor, licencia y aprobación    |
+| Fotografía de producto    | `TBD` para M9.1 | No hay selección ni derechos/alt entregados         | Sólo fixtures aislados en tests; nunca moodboard o build público        | Originales, selección, autor/permiso, alt y aprobación                  |
+| Guía de voz o identidad   | `TBD`           | No existe documento entregado                       | Aplicar sólo los principios de producto ya aprobados                    | Guía o aprobación explícita del owner                                   |
 
 No se incorpora ningún asset de marca en M3.1. La ausencia es deliberada: un placeholder técnico no debe parecer una propuesta de logo ni cruzar al artefacto público.
 
-## Concepto rector: obrador editorial cálido
+## Concepto rector: Atelier de pequeños detalles
 
-La experiencia debe sentirse artesanal, cercana, dulce y profesional sin convertirse en una pastelería infantil ni en una plantilla de ecommerce. La referencia es una mesa de trabajo cuidada: fondos luminosos y cálidos, tinta oscura, composiciones con aire, fotografía grande y pequeños acentos de color.
+La experiencia debe sentirse como un pequeño atelier/boutique artesanal digital: cercana, delicada, creativa y profesional, con composición editorial contemporánea. La referencia anterior “obrador editorial cálido” queda absorbida por este concepto más preciso; no se crea una segunda dirección ni se invalida el sistema construido en M3.
 
-Palabras guía: **cálido, hecho con cuidado, sereno, personal y nítido**.
+Palabras guía: **artesanía, mimo, detalle, emoción, cercanía, calidad, carácter, sereno y nítido**.
 
-Evitar: ilustraciones lunares literales sin aprobación, exceso de rosa, script ornamental, texturas que reduzcan legibilidad, sombras de tarjeta genéricas, badges promocionales agresivos, carruseles automáticos y decoración que compita con la fotografía.
+Evitar: estructura repetitiva hero→grid→grid→grid→CTA, ilustraciones lunares literales sin aprobación, exceso de rosa, script ornamental, texturas que reduzcan legibilidad, sombras de tarjeta genéricas, badges promocionales agresivos, carruseles automáticos y decoración que compita con la fotografía. Tampoco debe derivar hacia una estética infantil, scrapbook o landing genérica.
 
 La emoción debe venir de producto y copy reales. Cuando falte una imagen se usa un fallback neutro y accesible, no una fotografía sintética que pueda confundirse con oferta comercial.
 
 ## Paleta provisional
 
-Los valores son una propuesta técnica para convertirse en tokens semánticos en M3.2. No constituyen colores de marca aprobados. Los ratios se calcularon con WCAG para sRGB; deben comprobarse de nuevo sobre la combinación final y en todos los estados.
+Los tokens implementados en M3.2 son el baseline, no una identidad inmutable. La referencia recalibrada (`#FAF7F2`, `#FFFDFC`, `#352C29`, `#C98287`, `#E8C7C5`, `#B96F62`, `#9BA58F`, `#D9C6AC`) orienta la atmósfera, pero no se adopta a ciegas: M4.11 debe mapearla contra roles existentes, medir contraste y cambiar sólo valores/roles que aporten una mejora demostrable. Los productos y fotografías aportan la mayor parte del color; no se llenan grandes superficies de rosa pastel. Los ratios siguientes corresponden al baseline ya implementado y deben recalcularse tras cualquier ajuste.
 
-| Rol propuesto | Valor | Uso | Contraste comprobado |
-| --- | --- | --- | --- |
-| Lienzo cálido | `#FFF8F0` | Fondo principal | Tinta 14.70:1; texto secundario 6.12:1 |
-| Superficie | `#FFFFFF` | Superficies que necesitan separación real | Tinta 15.48:1; texto secundario 6.45:1 |
-| Tinta | `#2F211D` | Texto y pictogramas principales | 14.70:1 sobre lienzo; 15.48:1 sobre superficie |
-| Texto secundario | `#6F5A51` | Metadata y texto auxiliar de tamaño normal | 6.12:1 sobre lienzo; 6.45:1 sobre superficie |
-| Acción | `#8F294B` | Enlaces, CTA y controles activos | 7.71:1 sobre lienzo; blanco sobre acción 8.12:1 |
-| Acción intensa | `#74203C` | Hover/active con puntero | Blanco sobre acción intensa 10.42:1 |
-| Acento artesanal | `#C45E47` | Detalle, ilustración o superficie amplia no textual | 3.96:1 sobre lienzo: no usar para texto normal ni foco |
-| Borde suave | `#D8C5B9` | Separación decorativa secundaria | 1.58:1 sobre lienzo: no delimita por sí solo un control o estado |
-| Foco/información | `#155E75` | Anillo de foco y mensajes informativos | 6.90:1 sobre lienzo; 7.27:1 sobre superficie |
-| Éxito | `#2F6B4F` | Mensaje o estado positivo, acompañado de texto/icono | 5.97:1 sobre lienzo; 6.29:1 sobre superficie |
-| Error | `#9B2C2C` | Error, acompañado de texto/icono | 7.15:1 sobre lienzo; 7.53:1 sobre superficie |
+| Rol propuesto    | Valor     | Uso                                                  | Contraste comprobado                                             |
+| ---------------- | --------- | ---------------------------------------------------- | ---------------------------------------------------------------- |
+| Lienzo cálido    | `#FFF8F0` | Fondo principal                                      | Tinta 14.70:1; texto secundario 6.12:1                           |
+| Superficie       | `#FFFFFF` | Superficies que necesitan separación real            | Tinta 15.48:1; texto secundario 6.45:1                           |
+| Tinta            | `#2F211D` | Texto y pictogramas principales                      | 14.70:1 sobre lienzo; 15.48:1 sobre superficie                   |
+| Texto secundario | `#6F5A51` | Metadata y texto auxiliar de tamaño normal           | 6.12:1 sobre lienzo; 6.45:1 sobre superficie                     |
+| Acción           | `#8F294B` | Enlaces, CTA y controles activos                     | 7.71:1 sobre lienzo; blanco sobre acción 8.12:1                  |
+| Acción intensa   | `#74203C` | Hover/active con puntero                             | Blanco sobre acción intensa 10.42:1                              |
+| Acento artesanal | `#C45E47` | Detalle, ilustración o superficie amplia no textual  | 3.96:1 sobre lienzo: no usar para texto normal ni foco           |
+| Borde suave      | `#D8C5B9` | Separación decorativa secundaria                     | 1.58:1 sobre lienzo: no delimita por sí solo un control o estado |
+| Foco/información | `#155E75` | Anillo de foco y mensajes informativos               | 6.90:1 sobre lienzo; 7.27:1 sobre superficie                     |
+| Éxito            | `#2F6B4F` | Mensaje o estado positivo, acompañado de texto/icono | 5.97:1 sobre lienzo; 6.29:1 sobre superficie                     |
+| Error            | `#9B2C2C` | Error, acompañado de texto/icono                     | 7.15:1 sobre lienzo; 7.53:1 sobre superficie                     |
 
 Reglas de uso:
 
@@ -67,12 +69,12 @@ Reglas de uso:
 
 ## Dirección tipográfica provisional
 
-Hasta recibir una fuente aprobada se usarán familias instaladas por el sistema, sin requests de red, archivos redistribuidos ni dependencia de proveedor:
+Hasta recibir una fuente aprobada se mantienen familias instaladas por el sistema, sin requests de red, archivos redistribuidos ni dependencia de proveedor:
 
 - **Display/editorial:** `ui-serif, Georgia, Cambria, "Times New Roman", serif` para títulos cortos.
 - **Lectura/UI:** `ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif` para cuerpo, navegación, precios y controles.
 
-El contraste entre serif y sans aporta carácter sin comprometer carga ni licencias de webfont. La implementación debe tolerar métricas distintas: alturas fluidas, sin recortes, sin fijar bloques de texto por píxeles y con fallbacks visibles desde el primer render.
+El contraste entre serif editorial y sans cálida/legible ya cumple la intención sin coste de red, por lo que se conserva como decisión provisional. M4.11.2 puede ajustar escala, peso, medida y ritmo antes de proponer una nueva familia. Si más adelante una fuente aporta valor suficiente, debe ser WOFF2 self-hosted, con licencia y subsets documentados, `font-display` y fallback métricamente seguro; no se acepta una regresión de LCP/CLS por estética.
 
 Contrato para M3.2/M3.3:
 
@@ -85,7 +87,9 @@ Contrato para M3.2/M3.3:
 
 ## Fotografía, forma e iconografía
 
-La fotografía será el elemento expresivo principal cuando exista material aprobado. Debe mostrar producto real con color natural, detalle de acabado y contexto suficiente, evitando filtros que falseen el resultado. Los encuadres previstos son vertical o cuadrado para cards y horizontal controlado para hero; el punto focal debe sobrevivir al recorte responsive.
+La fotografía real aprobada es el elemento expresivo principal. Debe mostrar producto con color natural, detalle de acabado y contexto suficiente, evitando filtros que falseen el resultado. Hero: producto y punto focal protegidos, espacio negativo útil y `object-position` decidido por viewport. Producto: ratios consistentes cuando comparar ayuda. Trabajos/proceso: se permiten proporciones variadas y asimetría controlada para construir narrativa. Detalle/macro: reservado a acabado, materiales, lazos o packaging, nunca como sustituto ambiguo de la vista completa. Todo recorte responsive se revisa a 320/768/1440 y conserva dimensiones intrínsecas para evitar CLS.
+
+Futuras sesiones deberían cubrir manos preparando productos, montaje, lazos, packaging, materiales, detalles, producto terminado y preparación/entrega. Cada activo necesita original, autor/permiso, aprobación, alt y decisión de recorte/object-position antes de producción. M4.11.2–M4.11.8 trabajan sólo con material ya aprobado; M9.1 incorpora la selección final.
 
 Las formas usan radios suaves y consistentes, no cápsulas en todos los elementos. Sombras sólo cuando expliquen elevación; la separación normal se resuelve con espacio, contraste de superficie y borde. Los detalles orgánicos pueden aparecer como recortes o líneas discretas, nunca detrás de texto de lectura.
 
@@ -95,7 +99,7 @@ Los iconos funcionales deben ser SVG simples, de trazo coherente, con nombre acc
 
 ### Móvil: referencia primaria (320–767 px)
 
-- Una columna y jerarquía lineal: propuesta, producto/idea, evidencia y CTA.
+- Jerarquía lineal clara, pero con composición propia: propuesta, producto/idea, evidencia y CTA; no es el desktop comprimido.
 - Fotografía antes que ornamentación; contenido esencial visible sin interacción horizontal.
 - CTA principal de ancho cómodo, target mínimo de 44 × 44 CSS px y separación que evite pulsaciones accidentales.
 - Navegación corta y progresiva; no esconder la conversión detrás de un carrusel o hover.
@@ -110,16 +114,55 @@ Los iconos funcionales deben ser SVG simples, de trazo coherente, con nombre acc
 - Hover enriquece, pero ninguna información o acción depende de él.
 - Fotografía puede ganar escala; el texto mantiene su medida y CTA cercano al contexto que convierte.
 
-No se define un breakpoint por dispositivo. M3.2 elegirá puntos donde el contenido deje de caber, y M3.3 comprobará 320, 768 y 1440 px.
+No se define un breakpoint por dispositivo. Los puntos responden al contenido; cada milestone visual comprueba 320, 768 y 1440 px.
 
-## Accesibilidad y movimiento
+## Ritmo editorial y narrativa
+
+La Home alterna zonas de densidad y descanso, fotografía grande, cambios sutiles de superficie, proporciones diversas, asimetrías controladas y espacio negativo. Las cards siguen siendo reutilizables, pero no todas las secciones deben parecer la misma rejilla. Categorías, ocasiones, destinatarios, destacados, trabajos, proceso y CTA final deben leerse como capítulos conectados.
+
+“Trabajos realizados” es la principal oportunidad de composición editorial: imágenes de diferentes proporciones, superposición o desplazamiento controlado y profundidad sutil, sin alterar el orden semántico. “Cuéntanos tu idea” funciona como cierre emocional y conduce a WhatsApp conservando el contrato aprobado, no como bloque funcional aislado.
+
+El proceso equivalente a “Cada detalle cuenta” ya tiene una base implementada en M4.5. M4.11.4 puede integrarla visualmente y usar el flujo aprobado, pero no inventa una sección/copy alternativo. Una ampliación fotográfica requiere imágenes reales de manos, preparación, materiales/packaging y producto terminado con derechos y alt; se solicita como contenido para M9.1 si no está disponible.
+
+## Lenguaje gráfico e imperfección controlada
+
+El vocabulario permitido incluye líneas dibujadas o hilo, lazos, pequeñas estrellas/puntos, etiquetas, papel, corazones muy puntuales y subrayados ligeramente imperfectos. Se prefieren pocas intervenciones memorables; una línea/hilo orgánico puede conectar ocasionalmente secciones sin atravesar toda la página. Ningún adorno puede sustituir copy, información, foco o fotografía.
+
+La imperfección puede usar rotaciones aproximadas de ±0.5–1.5 grados, posiciones levemente desplazadas, líneas no perfectamente geométricas y superposiciones fotográficas controladas. Debe conservar legibilidad, alineación percibida y profesionalidad; se reduce en móvil cuando cause ruido o riesgo de overflow.
+
+## Motion system
+
+Regla: **nada se mueve porque sí**. El vocabulario inicial queda limitado a:
+
+1. **Reveal:** opacity y desplazamiento vertical pequeño, duración contenida y stagger sólo cuando ordene la lectura.
+2. **Micro-parallax:** opcional y editorial, nunca fondo agresivo; desplazamientos relativos orientativos de 10–20 px en media secundaria y hasta 20–40 px en un detalle decorativo. Se usa sólo con coste medido y preferencia por CSS/API nativa.
+3. **Hover/focus:** cambios discretos (por ejemplo `translateY` de −2/−3 px, escala interior 1.01–1.02, sombra/color o desplazamiento de pocos píxeles) durante aproximadamente 180–300 ms. Foco por teclado es como mínimo igual de claro y no depende de movimiento.
+4. **Draw/reveal de ornamentos:** reservado a líneas o detalles pequeños que aporten continuidad visual.
+
+No hay autoplay ni transiciones de layout. Ningún efecto bloquea interacción, provoca CLS, oculta contenido o justifica una librería pesada. `prefers-reduced-motion: reduce` elimina parallax, desplazamientos, draw y efectos no esenciales; el estado final queda visible sin depender de JavaScript. Mobile puede omitir cualquier movimiento que no aporte.
+
+## Firma del creador en el Footer
+
+La firma es un detalle final que conecta el cuidado del producto con el cuidado de la experiencia digital. Copy aprobado único:
+
+**Hecho con mimo para Luna · Creado por Antonio MDM · © {YEAR}**
+
+- Aparece en la zona inferior del Footer, después de navegación/contacto/legal y con separación suficiente. Tiene jerarquía tipográfica secundaria, buena legibilidad, roles de color existentes y contraste WCAG AA; no funciona como CTA ni como publicidad protagonista.
+- `Antonio MDM` enlaza a `https://antoniomdm.dev/` mediante un `<a>` real que funciona sin JavaScript, conserva navegación por teclado y un foco claramente visible. No usa `target="_blank"` salvo que una convención futura del proyecto lo justifique; en ese caso requiere el `rel` seguro correspondiente.
+- `{YEAR}` se calcula una sola vez durante el build de Astro, preferentemente con una constante en el frontmatter del Footer. No se hardcodea en varios lugares, no añade dependencia, hidratación ni JavaScript cliente.
+- El enlace puede recibir subrayado fino y una transición de color o desplazamiento mínimo coherente con el motion system. No se anima si no aporta; reduced motion sigue gobernando.
+- No se sustituye el copy por iconos de corazón, emojis u ornamentación. Debe responder a 320/768/1440 sin overflow y no competir con las acciones principales del Footer.
+
+M4.11.2–M4.11.8 son la recuperación trazable de implementación de este contrato. M4.1 y el primer cierre de M4.11 conservan su estado histórico `DONE`; M8.6 verifica después el cumplimiento por referencia, sin borrar la recuperación ni redefinirla.
+
+## Accesibilidad
 
 - Objetivo WCAG 2.2 AA para contraste, teclado, foco, zoom y targets.
 - HTML y orden de lectura gobiernan la composición; el CSS no crea una lectura visual distinta de la semántica.
 - El color nunca es la única señal. Enlaces, errores, selección y disponibilidad tienen texto, forma o icono adicional.
 - El foco es persistente, no queda oculto por cabeceras y contrasta contra lienzo y superficie.
 - A 200 % de zoom y 320 CSS px no se pierde contenido ni aparece scroll horizontal, salvo medios que lo requieran por naturaleza.
-- El movimiento es breve y funcional. No hay autoplay, parallax ni transiciones de layout. `prefers-reduced-motion: reduce` elimina desplazamiento y efectos no esenciales.
+- El motion system anterior se aplica como mejora progresiva y `prefers-reduced-motion: reduce` conserva una experiencia completa y estable.
 - Los fallbacks de imagen conservan dimensiones y una descripción útil; el alt pertenece al contenido aprobado, no se deriva del nombre de archivo.
 
 ## Contrato de sustitución de marca
@@ -134,28 +177,28 @@ La identidad futura se integra por bordes explícitos:
 
 Un activo sólo puede pasar a producción con esta ficha mínima:
 
-| Campo | Requisito |
-| --- | --- |
-| Identificador y versión | Nombre estable y fecha/versión del master |
-| Fuente | Archivo, entrega o referencia trazable |
-| Autor/owner | Persona o entidad identificada |
-| Derechos | Licencia o permiso, alcance web y restricciones |
-| Aprobación | Responsable y fecha |
-| Variantes | Formato, fondo, tamaño mínimo y uso permitido |
-| Accesibilidad | Nombre/alt cuando proceda; decorativo declarado cuando no |
-| Técnica | Dimensiones, peso, formato y revisión de contenido activo/externo |
+| Campo                   | Requisito                                                         |
+| ----------------------- | ----------------------------------------------------------------- |
+| Identificador y versión | Nombre estable y fecha/versión del master                         |
+| Fuente                  | Archivo, entrega o referencia trazable                            |
+| Autor/owner             | Persona o entidad identificada                                    |
+| Derechos                | Licencia o permiso, alcance web y restricciones                   |
+| Aprobación              | Responsable y fecha                                               |
+| Variantes               | Formato, fondo, tamaño mínimo y uso permitido                     |
+| Accesibilidad           | Nombre/alt cuando proceda; decorativo declarado cuando no         |
+| Técnica                 | Dimensiones, peso, formato y revisión de contenido activo/externo |
 
 ## Decisiones y blockers al cierre de M3.1
 
 ### Aprobado para implementación provisional
 
-- Concepto “obrador editorial cálido” y jerarquía producto/contenido/CTA.
+- Concepto “Atelier de pequeños detalles”, evolución compatible de “obrador editorial cálido”, y jerarquía producto/contenido/CTA.
 - Paleta funcional propuesta con restricciones y ratios registrados.
 - Serif de sistema para display y sans de sistema para lectura/UI.
 - Mobile first, composición editorial progresiva y fotografía protagonista sólo cuando sea real y aprobada.
 - Contrato de sustitución por configuración, tokens y assets separados.
 
-### Bloquea la identidad definitiva, no M3.2–M3.6
+### Bloquea la identidad definitiva, no la dirección provisional M4.11.2–M9
 
 - Nombre comercial y escritura aprobada.
 - Logo, favicon, iconos, variantes y reglas de uso.
@@ -166,13 +209,13 @@ Owner: **Propietario del negocio**. Acción: entregar cada entrada con la ficha 
 
 ## Revisión M3.1
 
-| Comprobación | Móvil | Escritorio | Resultado |
-| --- | --- | --- | --- |
-| Jerarquía y orden de lectura definidos | Una columna desde 320 px | Expansión sin cambiar DOM | `PASS` de especificación |
-| Conversión accesible | CTA contextual, target 44 × 44 px | CTA cercano al contenido; hover no obligatorio | `PASS` de especificación |
-| Contraste de texto/acciones/foco | Ratios AA registrados | Mismas combinaciones semánticas | `PASS` calculado |
-| Tipo y carga | Fallbacks sin recorte ni red | Medida de lectura limitada | `PASS` de contrato |
-| Medios y estabilidad | Dimensiones reservadas, sin carrusel obligatorio | Escala sin desbordar container | `PASS` de especificación |
-| Licencias/propiedad | No se incorpora material sin evidencia | Mismo contrato | `PASS`: 0 assets incorporados; blockers explícitos |
+| Comprobación                           | Móvil                                            | Escritorio                                     | Resultado                                          |
+| -------------------------------------- | ------------------------------------------------ | ---------------------------------------------- | -------------------------------------------------- |
+| Jerarquía y orden de lectura definidos | Una columna desde 320 px                         | Expansión sin cambiar DOM                      | `PASS` de especificación                           |
+| Conversión accesible                   | CTA contextual, target 44 × 44 px                | CTA cercano al contenido; hover no obligatorio | `PASS` de especificación                           |
+| Contraste de texto/acciones/foco       | Ratios AA registrados                            | Mismas combinaciones semánticas                | `PASS` calculado                                   |
+| Tipo y carga                           | Fallbacks sin recorte ni red                     | Medida de lectura limitada                     | `PASS` de contrato                                 |
+| Medios y estabilidad                   | Dimensiones reservadas, sin carrusel obligatorio | Escala sin desbordar container                 | `PASS` de especificación                           |
+| Licencias/propiedad                    | No se incorpora material sin evidencia           | Mismo contrato                                 | `PASS`: 0 assets incorporados; blockers explícitos |
 
-La revisión es de dirección, no de componentes renderizados: M3.1 no implementa home ni foundations. M3.2 codifica la propuesta en tokens y M3.3 valida visualmente la base renderizada en 320/768/1440 px, teclado, zoom y reduced motion.
+Esta tabla conserva la evidencia histórica de M3.1 y no se reabre. La recalibración posterior se implementa y valida en M4.11; M5 propaga la dirección a producto/conversión y M8.6 ejecuta el gate visual final en 320/768/1440 px, teclado, zoom, reduced motion, rendimiento y ausencia de CLS.

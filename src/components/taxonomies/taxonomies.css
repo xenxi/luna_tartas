@@ -5,12 +5,17 @@
 }
 
 .taxonomies-page {
-  padding-block: var(--space-section);
+  padding-block: var(--space-8) var(--space-section);
 }
 
 .taxonomies-page__header,
 .taxonomy-landing__header {
-  max-inline-size: var(--container-copy);
+  position: relative;
+  max-inline-size: none;
+  padding: clamp(var(--space-8), 6vw, var(--space-16));
+  overflow: hidden;
+  border-radius: var(--radius-xl);
+  background: var(--color-surface-sage);
 }
 
 .taxonomies-page__header h1,
@@ -21,7 +26,21 @@
 .taxonomies-page__header p,
 .taxonomy-landing__header p {
   margin-block-start: var(--space-3);
+  max-inline-size: var(--measure-copy);
   color: var(--color-text-muted);
+  font-size: var(--font-size-lg);
+}
+
+.taxonomies-page__header::after,
+.taxonomy-landing__header::after {
+  position: absolute;
+  inset-inline-end: -3rem;
+  inset-block-start: -4rem;
+  inline-size: clamp(9rem, 18vw, 15rem);
+  aspect-ratio: 1;
+  border: 1px solid rgb(53 44 41 / 14%);
+  border-radius: 50%;
+  content: '';
 }
 
 .taxonomy-landing {
@@ -31,5 +50,24 @@
 }
 
 .taxonomy-landing .content-section {
-  padding-block-start: var(--space-4);
+  padding-block: var(--space-10) var(--space-4);
+}
+
+.taxonomies-page .content-section {
+  padding-block: var(--space-12) 0;
+}
+
+@media (min-width: 64rem) {
+  .taxonomies-page__header,
+  .taxonomy-landing__header {
+    display: grid;
+    grid-template-columns: minmax(16rem, 0.8fr) minmax(20rem, 1.2fr);
+    align-items: end;
+    column-gap: var(--space-16);
+  }
+
+  .taxonomies-page__header p,
+  .taxonomy-landing__header p {
+    margin-block: 0 var(--space-2);
+  }
 }

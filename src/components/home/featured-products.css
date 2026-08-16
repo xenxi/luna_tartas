@@ -1,8 +1,26 @@
 .featured-products {
-  padding-inline: var(--space-gutter);
+  padding: var(--space-6) var(--gutter) var(--space-16);
 }
 
 .featured-products .content-section {
-  inline-size: min(100%, var(--container-wide));
+  inline-size: min(100%, var(--container-max));
   margin-inline: auto;
+  padding: clamp(var(--space-8), 6vw, var(--space-16));
+  border-radius: var(--radius-xl);
+  background: var(--color-surface-sage);
+}
+
+.featured-products .content-section__heading::before {
+  display: block;
+  inline-size: 4rem;
+  block-size: 1px;
+  margin-block-end: var(--space-3);
+  background: var(--color-accent);
+  content: '';
+}
+
+@media (min-width: 64rem) {
+  .featured-products .content-section__header {
+    inline-size: min(46rem, 72%);
+  }
 }

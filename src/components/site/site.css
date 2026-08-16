@@ -2,7 +2,7 @@
   position: relative;
   z-index: var(--z-header);
   border-block-end: 1px solid var(--color-border);
-  background: var(--color-surface);
+  background: color-mix(in srgb, var(--color-surface) 94%, transparent);
 }
 
 .site-header__inner {
@@ -26,6 +26,14 @@
   text-decoration: none;
 }
 
+.brand-home::before {
+  inline-size: 1.75rem;
+  block-size: 1px;
+  margin-inline-end: var(--space-3);
+  background: var(--color-accent);
+  content: '';
+}
+
 .brand-home:hover {
   color: var(--color-action-hover);
 }
@@ -44,6 +52,10 @@
 
 .site-menu {
   position: relative;
+}
+
+.site-navigation--desktop {
+  display: none;
 }
 
 .site-menu > summary {
@@ -125,13 +137,40 @@
 .site-footer {
   margin-block-start: auto;
   border-block-start: 1px solid var(--color-border);
-  background: var(--color-surface);
+  background: var(--color-surface-soft);
 }
 
 .site-footer__inner {
   display: grid;
+  gap: var(--space-8);
+  padding-block: var(--space-10) var(--space-6);
+}
+
+.site-footer__main {
+  display: grid;
   gap: var(--space-6);
-  padding-block: var(--space-8);
+}
+
+.site-footer__signature {
+  max-inline-size: none;
+  padding-block-start: var(--space-5);
+  border-block-start: 1px solid var(--color-border);
+  color: var(--color-text-muted);
+  font-size: var(--font-size-xs);
+  text-align: center;
+  text-wrap: balance;
+}
+
+.site-footer__signature a {
+  color: inherit;
+  font-weight: var(--font-weight-semibold);
+  text-decoration-thickness: 0.08em;
+  text-underline-offset: 0.22em;
+}
+
+.site-footer__signature a:hover,
+.site-footer__signature a:focus-visible {
+  color: var(--color-action);
 }
 
 .primary-navigation--footer ul {
@@ -143,19 +182,12 @@
 }
 
 @media (min-width: 48rem) {
-  .site-menu > summary {
+  .site-menu {
     display: none;
   }
 
-  .site-menu:not([open]) > .primary-navigation,
-  .site-menu > .primary-navigation {
-    position: static;
+  .site-navigation--desktop {
     display: block;
-    inline-size: auto;
-    padding: 0;
-    border: 0;
-    background: transparent;
-    box-shadow: none;
   }
 
   .primary-navigation ul {
@@ -165,6 +197,10 @@
   }
 
   .site-footer__inner {
+    gap: var(--space-10);
+  }
+
+  .site-footer__main {
     grid-template-columns: auto 1fr;
     align-items: start;
   }

@@ -7,11 +7,19 @@ interface Props {
 }
 
 const { currentPath } = Astro.props;
+const buildYear = new Date().getUTCFullYear();
 ---
 
 <footer class="site-footer">
   <div class="site-footer__inner container">
-    <BrandHomeLink currentPath={currentPath} />
-    <PrimaryNavigation currentPath={currentPath} location="footer" />
+    <div class="site-footer__main">
+      <BrandHomeLink currentPath={currentPath} />
+      <PrimaryNavigation currentPath={currentPath} location="footer" />
+    </div>
+    <p class="site-footer__signature">
+      Hecho con mimo para Luna · Creado por <a href="https://antoniomdm.dev/"
+        >Antonio MDM</a
+      > · © {buildYear}
+    </p>
   </div>
 </footer>
