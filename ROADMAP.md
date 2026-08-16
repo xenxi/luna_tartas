@@ -9,7 +9,7 @@
 - Se ejecuta exclusivamente la tarea solicitada; no se anticipa la siguiente.
 - `DONE` exige todos los criterios y verificaciones en `PASS`, con evidencia registrada aquí.
 - Orden normal: de arriba abajo. Una tarea posterior sólo puede comenzar si todas sus dependencias están `DONE`.
-- **Siguiente tarea:** `M4.7 — Índice /productos/`.
+- **Siguiente tarea:** `M4.8 — Índice y landings de categorías`.
 
 ## Gates de programa
 
@@ -438,7 +438,7 @@
 
 ## M4.7 — Índice `/productos/`
 
-**Estado:** PENDING  
+**Estado:** DONE
 **Objetivo:** publicar una vista completa y rastreable del catálogo vigente.  
 **Alcance:** ruta estática, introducción, lista ordenada, estado vacío no publicable y enlaces a fichas.  
 **Fuera de alcance:** filtros cliente, paginación sin necesidad o ficha.  
@@ -449,7 +449,7 @@
 **Verificación:** build, conteo catálogo↔HTML y link check.  
 **Modelo recomendado:** LUNA.  
 **Razón del modelo:** ruta estática mecánica.  
-**Evidencia:** —
+**Evidencia:** PASS (2026-08-16) — `src/pages/productos/index.astro` publica la ruta estática `/productos/` con un único H1, introducción editorial y carga del catálogo validado; `ProductListing.astro` compone `ContentSection`, `CardList` y `ProductCard` sin hidratación. `product-listing.ts` usa exclusivamente `getPublishedProducts`, conserva el orden del dominio, excluye drafts, genera cada enlace con `routes.product` y mantiene las variantes de precio mediante el formatter compartido. El estado sin catálogo es honesto y no publica placeholders. `product-listing.test.ts` cubre orden, exclusión de draft, rutas, precio, H1, estado vacío y ausencia de `client:`. `npm run format`, `npm run lint`, `npm run typecheck` (0 errores/warnings/hints), `npm test` (21 archivos, 138 tests), `npm run build` (2 páginas estáticas, incluida `/productos/`) y `git diff --check`: PASS. Link check del HTML generado: 1 H1, 0 fichas publicadas esperadas con catálogo productivo vacío y 0 scripts. Los únicos avisos del build son los informativos esperados por las cuatro colecciones productivas vacías.
 
 ## M4.8 — Índice y landings de categorías
 
@@ -1146,3 +1146,4 @@ No avanzar a la siguiente milestone.
 - 2026-08-16 — Revisión de ejecución M4.5: el bloqueo sigue vigente tras comprobar `content-readiness.md`; no se añaden componentes, claims ni assets. Siguiente tarea: M4.5 cuando el propietario entregue y apruebe el material requerido (modelo LUNA).
 - 2026-08-16 — M4.5 completada tras el handoff aprobado: bloque de proceso literal, galería estática de cuatro trabajos reales, derechos/alt/readiness trazables, variantes responsive bajo budget, 132 tests y QA 320/768/1440 en PASS. Siguiente tarea: M4.6 (modelo LUNA).
 - 2026-08-16 — M4.6 completada: CTA emocional “Cuéntanos tu idea”, builder puro WhatsApp con mensaje Unicode codificado una vez, enlace nativo sin JS, 136 tests y checks contractuales/build en PASS. Siguiente tarea: M4.7 (modelo LUNA).
+- 2026-08-16 — M4.7 completada: índice estático `/productos/`, H1/introducción, listado de publicados ordenado por dominio, estado vacío honesto, 138 tests y link check/build en PASS. Siguiente tarea: M4.8 (modelo LUNA).

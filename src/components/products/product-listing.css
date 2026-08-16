@@ -1,0 +1,8 @@
+.product-listing {
+  margin-inline: var(--gutter);
+}
+
+.product-listing .content-section {
+  inline-size: min(100%, var(--container-max));
+  margin-inline: auto;
+}

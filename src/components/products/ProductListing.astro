@@ -1,0 +1,29 @@
+---
+import type { Catalog } from '../../lib/catalog/domain/model';
+import CardList from '../patterns/CardList.astro';
+import ContentSection from '../patterns/ContentSection.astro';
+import ProductCard from '../catalog/ProductCard.astro';
+import { projectProductListing } from './product-listing';
+import './product-listing.css';
+
+interface Props {
+  catalog: Catalog;
+}
+
+const { catalog } = Astro.props;
+const listing = projectProductListing(catalog);
+---
+
+<div class="product-listing">
+  <ContentSection id="product-list" title={listing.title} intro={listing.intro}>
+    <CardList count={listing.items.length} emptyMessage={listing.emptyMessage}>
+      {
+        listing.items.map((product) => (
+          <li>
+            <ProductCard product={product} />
+          </li>
+        ))
+      }
+    </CardList>
+  </ContentSection>
+</div>

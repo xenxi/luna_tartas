@@ -1,0 +1,17 @@
+.products-page {
+  display: grid;
+  gap: var(--space-10);
+  padding-block: var(--space-section);
+}
+
+.products-page__header {
+  inline-size: min(
+    calc(100% - (2 * var(--gutter))),
+    var(--container-copy)
+  );
+  margin-inline: auto;
+}
+
+.products-page__header h1 {
+  max-inline-size: 16ch;
+}

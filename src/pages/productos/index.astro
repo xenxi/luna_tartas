@@ -1,0 +1,18 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ProductListing from '../../components/products/ProductListing.astro';
+import { loadCatalog } from '../../lib/catalog/source';
+import './products.css';
+
+const catalog = await loadCatalog();
+---
+
+<BaseLayout title="Regalos personalizados">
+  <div class="products-page">
+    <header class="products-page__header">
+      <h1>Regalos personalizados</h1>
+      <p>Ideas hechas con mimo para celebrar a las personas especiales.</p>
+    </header>
+    <ProductListing catalog={catalog} />
+  </div>
+</BaseLayout>
