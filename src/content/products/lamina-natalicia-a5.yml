@@ -1,0 +1,28 @@
+id: lamina-natalicia-a5
+slug: lamina-natalicia-a5
+status: draft
+name: Lámina natalicia personalizada A5
+summary: El comienzo de una historia merece ser recordado en una lámina creada especialmente para ese bebé.
+description: Lámina natalicia A5 personalizada con nombre, fecha de nacimiento, hora, peso y medida. Impresa en cartulina blanca de 180 g para conservar cómo empezó todo.
+categories:
+  - laminas-personalizadas
+occasions:
+  - nacimiento
+recipients:
+  - bebe
+price:
+  kind: fixed
+  amountMinor: 200
+  currency: EUR
+customization:
+  kind: available
+  options:
+    - Nombre
+    - Fecha de nacimiento
+    - Hora
+    - Peso
+    - Medida
+    - Diseño personalizado
+  description: La composición se crea con los datos del nacimiento y un diseño elegido para el bebé.
+featured: true
+order: 50

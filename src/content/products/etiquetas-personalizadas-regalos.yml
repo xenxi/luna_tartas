@@ -1,0 +1,24 @@
+id: etiquetas-personalizadas-regalos
+slug: etiquetas-personalizadas-regalos
+status: draft
+name: Etiquetas personalizadas para regalos
+summary: Etiquetas personalizadas para dar un acabado especial a regalos y detalles de celebración.
+description: Etiquetas diseñadas con nombre, fecha y temática para acompañar regalos y pequeños detalles. Precio por unidad: 0,20 €. Pedido mínimo de 24 unidades.
+categories:
+  - papeleria-personalizada
+occasions:
+  - comunion
+recipients:
+  - alguien-especial
+price:
+  kind: fixed
+  amountMinor: 20
+  currency: EUR
+customization:
+  kind: available
+  options:
+    - Nombre
+    - Fecha
+    - Diseño de la celebración
+  description: El diseño se personaliza para la celebración. El pedido mínimo es de 24 unidades.
+order: 30

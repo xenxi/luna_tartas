@@ -1,0 +1,26 @@
+id: invitacion-marcapaginas-personalizada
+slug: invitacion-marcapaginas-personalizada
+status: draft
+name: Invitación marcapáginas personalizada
+summary: Una invitación que también se queda como recuerdo, personalizada con los detalles de la celebración.
+description: Invitación en formato marcapáginas personalizada con nombre, fecha y los detalles de la celebración para que, después del evento, pueda seguir acompañando a esa persona como recuerdo.
+categories:
+  - papeleria-personalizada
+occasions:
+  - cumpleanos
+recipients:
+  - ninos
+price:
+  kind: fixed
+  amountMinor: 250
+  currency: EUR
+customization:
+  kind: available
+  options:
+    - Nombre
+    - Fecha
+    - Hora
+    - Lugar
+    - Diseño personalizado
+  description: La información y el diseño se adaptan a cada celebración.
+order: 70

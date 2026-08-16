@@ -1,0 +1,25 @@
+id: tarjeta-felicitacion-personalizada-a6
+slug: tarjeta-felicitacion-personalizada-a6
+status: draft
+name: Tarjeta de felicitación personalizada A6
+summary: Una felicitación pensada para alguien concreto y convertida en un pequeño recuerdo personalizado.
+description: Tarjeta de felicitación personalizada en tamaño A6 y a doble cara, con nombre, mensaje y diseño adaptados a la ocasión.
+categories:
+  - papeleria-personalizada
+occasions:
+  - cumpleanos
+recipients:
+  - ninos
+  - alguien-especial
+price:
+  kind: fixed
+  amountMinor: 200
+  currency: EUR
+customization:
+  kind: available
+  options:
+    - Nombre
+    - Mensaje
+    - Diseño personalizado
+  description: El nombre, el mensaje y el diseño se preparan para la persona y la ocasión elegidas.
+order: 80

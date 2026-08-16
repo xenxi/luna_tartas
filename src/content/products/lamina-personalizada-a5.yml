@@ -1,0 +1,22 @@
+id: lamina-personalizada-a5
+slug: lamina-personalizada-a5
+status: draft
+name: Lámina personalizada A5
+summary: Una pequeña lámina creada especialmente para esa persona, con su nombre y un diseño pensado para ella.
+description: Lámina personalizada en tamaño A5, impresa en cartulina blanca de 180 g y diseñada alrededor del nombre elegido.
+categories:
+  - laminas-personalizadas
+recipients:
+  - alguien-especial
+price:
+  kind: fixed
+  amountMinor: 200
+  currency: EUR
+customization:
+  kind: available
+  options:
+    - Nombre
+    - Diseño personalizado
+  description: El nombre y el diseño se adaptan al encargo.
+featured: true
+order: 40
