@@ -35,6 +35,14 @@ const patternStyles = readFileSync(
   'src/components/patterns/patterns.css',
   'utf8',
 );
+const taxonomyDiscovery = readFileSync(
+  'src/components/home/TaxonomyDiscovery.astro',
+  'utf8',
+);
+const taxonomyDiscoveryProjection = readFileSync(
+  'src/components/home/taxonomy-discovery.ts',
+  'utf8',
+);
 
 describe('catalog and contextual navigation patterns', () => {
   it('accepts explicit typed presentation projections', () => {
@@ -102,5 +110,16 @@ describe('catalog and contextual navigation patterns', () => {
         '\n',
       ),
     ).not.toContain('client:');
+  });
+
+  it('keeps home discovery driven by published taxonomies and route builders', () => {
+    expect(taxonomyDiscovery).toContain('<ContentSection');
+    expect(taxonomyDiscovery).toContain('<CardList');
+    expect(taxonomyDiscovery).toContain('<TaxonomyCard');
+    expect(taxonomyDiscoveryProjection).toContain('getPublishedTaxonomies');
+    expect(taxonomyDiscoveryProjection).toContain('routes.taxonomy');
+    expect(taxonomyDiscoveryProjection).not.toMatch(/categories:\s*\[/);
+    expect(taxonomyDiscoveryProjection).not.toMatch(/occasions:\s*\[/);
+    expect(taxonomyDiscoveryProjection).not.toMatch(/recipients:\s*\[/);
   });
 });

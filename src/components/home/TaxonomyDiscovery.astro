@@ -1,0 +1,38 @@
+---
+import CardList from '../patterns/CardList.astro';
+import ContentSection from '../patterns/ContentSection.astro';
+import TaxonomyCard from '../catalog/TaxonomyCard.astro';
+import type { Catalog } from '../../lib/catalog/domain/model';
+import { projectTaxonomyDiscovery } from './taxonomy-discovery';
+import './taxonomy-discovery.css';
+
+interface Props {
+  catalog: Catalog;
+}
+
+const { catalog } = Astro.props;
+const sections = projectTaxonomyDiscovery(catalog);
+---
+
+<div class="taxonomy-discovery">
+  {
+    sections.map((section) => (
+      <ContentSection
+        id={section.id}
+        title={section.title}
+        intro={section.intro}
+      >
+        <CardList
+          count={section.items.length}
+          emptyMessage={section.emptyMessage}
+        >
+          {section.items.map((taxonomy) => (
+            <li>
+              <TaxonomyCard taxonomy={taxonomy} />
+            </li>
+          ))}
+        </CardList>
+      </ContentSection>
+    ))
+  }
+</div>

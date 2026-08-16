@@ -14,6 +14,7 @@ import {
   getPublishedTaxonomies,
   getRelatedProducts,
 } from '../src/lib/catalog/domain/queries';
+import { projectTaxonomyDiscovery } from '../src/components/home/taxonomy-discovery';
 
 const taxonomy = (
   id: string,
@@ -113,5 +114,23 @@ describe('catalog queries', () => {
       'second',
     ]);
     expect(getRelatedProducts(catalog, 'draft')).toEqual([]);
+  });
+
+  it('projects home discovery from published taxonomies in editorial order', () => {
+    const [categories, occasions, recipients] =
+      projectTaxonomyDiscovery(catalog);
+
+    expect(categories.items.map(({ href, name }) => ({ href, name }))).toEqual([
+      { href: '/categorias/cakes/', name: 'cakes' },
+    ]);
+    expect(
+      occasions.items.map(({ href, itemCountLabel }) => ({
+        href,
+        itemCountLabel,
+      })),
+    ).toEqual([{ href: '/ocasiones/birthday/', itemCountLabel: '2 ideas' }]);
+    expect(recipients.items.map(({ href }) => href)).toEqual([
+      '/regalos/family/',
+    ]);
   });
 });

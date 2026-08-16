@@ -9,7 +9,7 @@
 - Se ejecuta exclusivamente la tarea solicitada; no se anticipa la siguiente.
 - `DONE` exige todos los criterios y verificaciones en `PASS`, con evidencia registrada aquí.
 - Orden normal: de arriba abajo. Una tarea posterior sólo puede comenzar si todas sus dependencias están `DONE`.
-- **Siguiente tarea:** `M4.3 — Navegación de categorías, ocasiones y destinatarios`.
+- **Siguiente tarea:** `M4.4 — Ideas/productos destacados`.
 
 ## Gates de programa
 
@@ -378,7 +378,7 @@
 
 ## M4.3 — Navegación de categorías, ocasiones y destinatarios
 
-**Estado:** PENDING  
+**Estado:** DONE
 **Objetivo:** ofrecer varias formas claras de encontrar un regalo.  
 **Alcance:** secciones home basadas en queries del catálogo, cards/enlaces y orden editorial con fallback.  
 **Fuera de alcance:** páginas destino, filtros dinámicos o facetas combinatorias.  
@@ -389,7 +389,7 @@
 **Verificación:** tests de proyección, build e inspección de enlaces.  
 **Modelo recomendado:** LUNA.  
 **Razón del modelo:** composición directa de contratos existentes.  
-**Evidencia:** —
+**Evidencia:** PASS (2026-08-16) — `taxonomy-discovery.ts` proyecta tres secciones home (`category`, `occasion`, `recipient`) desde `getPublishedTaxonomies`, sin entidades hardcodeadas; filtra drafts mediante la query de dominio, conserva orden editorial con fallback existente y genera cada enlace con `routes.taxonomy`. `TaxonomyDiscovery.astro` compone `ContentSection`, `CardList` y `TaxonomyCard`, con estados vacíos honestos mientras las colecciones productivas estén vacías; no añade JS ni páginas destino. Home carga el catálogo validado una vez y renderiza las tres secciones. Tests unitarios y de composición cubren publicación, orden, conteos relacionales, rutas con barra final, semántica y ausencia de taxonomías hardcodeadas. `npm run format`, `npm run lint`, `npm run typecheck` (0 errores/warnings/hints), `npm test` (18 archivos, 126 tests), `npm run build` (1 página estática), inspección de `dist/index.html` y `git diff --check`: PASS. El build sólo conserva los avisos informativos esperados por las cuatro colecciones productivas vacías.
 
 ## M4.4 — Ideas/productos destacados
 

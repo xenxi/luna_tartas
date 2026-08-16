@@ -1,0 +1,8 @@
+.taxonomy-discovery {
+  padding-inline: var(--space-gutter);
+}
+
+.taxonomy-discovery .content-section {
+  inline-size: min(100%, var(--container-wide));
+  margin-inline: auto;
+}
