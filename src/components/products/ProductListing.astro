@@ -14,16 +14,22 @@ const { catalog } = Astro.props;
 const listing = projectProductListing(catalog);
 ---
 
-<div class="product-listing">
-  <ContentSection id="product-list" title={listing.title} intro={listing.intro}>
-    <CardList count={listing.items.length} emptyMessage={listing.emptyMessage}>
-      {
-        listing.items.map((product) => (
-          <li>
-            <ProductCard product={product} />
-          </li>
-        ))
-      }
-    </CardList>
-  </ContentSection>
-</div>
+{
+  listing.items.length > 0 && (
+    <div class="product-listing">
+      <ContentSection
+        id="product-list"
+        title={listing.title}
+        intro={listing.intro}
+      >
+        <CardList count={listing.items.length}>
+          {listing.items.map((product) => (
+            <li>
+              <ProductCard product={product} />
+            </li>
+          ))}
+        </CardList>
+      </ContentSection>
+    </div>
+  )
+}

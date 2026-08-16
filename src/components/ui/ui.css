@@ -76,6 +76,75 @@
   vertical-align: middle;
 }
 
+.ornament {
+  display: block;
+  max-inline-size: 100%;
+  overflow: visible;
+  color: var(--color-accent);
+  opacity: var(--ornament-opacity);
+  pointer-events: none;
+}
+
+.ornament path {
+  stroke: currentColor;
+  stroke-width: var(--ornament-stroke);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+}
+
+/*
+ * Draw is progressive enhancement: the default and reduced-motion states are
+ * the complete ornament. Supporting desktop browsers may bind the small
+ * stroke change to view progress, without timers, script or layout animation.
+ */
+.ornament--draw path {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 0;
+}
+
+.ornament--thread {
+  inline-size: clamp(9rem, 26vw, 18rem);
+}
+
+.ornament--underline {
+  inline-size: clamp(7rem, 18vw, 14rem);
+}
+
+.ornament--dots {
+  inline-size: clamp(4.5rem, 10vw, 6rem);
+}
+
+.ornament--dots circle {
+  fill: currentColor;
+}
+
+.ornament--dots circle:nth-child(even) {
+  opacity: 0.48;
+}
+
+@media (min-width: 48rem) and (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) and (animation-range: entry 0%) {
+    .ornament--draw path {
+      animation-name: ornament-draw;
+      animation-timeline: view(block);
+      animation-range: entry 0% entry 100%;
+      animation-timing-function: linear;
+      animation-fill-mode: both;
+    }
+  }
+}
+
+@keyframes ornament-draw {
+  from {
+    stroke-dashoffset: 1;
+  }
+
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
 .badge {
   display: inline-flex;
   min-block-size: 1.75rem;
@@ -110,5 +179,10 @@
   .action-link:hover,
   .action-link:focus-visible {
     transform: none;
+  }
+
+  .ornament--draw path {
+    animation: none;
+    stroke-dashoffset: 0;
   }
 }

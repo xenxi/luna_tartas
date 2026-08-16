@@ -4,6 +4,7 @@ import { describe, expect, it } from 'vitest';
 const button = readFileSync('src/components/ui/Button.astro', 'utf8');
 const actionLink = readFileSync('src/components/ui/ActionLink.astro', 'utf8');
 const icon = readFileSync('src/components/ui/Icon.astro', 'utf8');
+const ornament = readFileSync('src/components/ui/Ornament.astro', 'utf8');
 const badge = readFileSync('src/components/ui/Badge.astro', 'utf8');
 const styles = readFileSync('src/components/ui/ui.css', 'utf8');
 
@@ -26,5 +27,23 @@ describe('UI primitives', () => {
     expect(icon).toContain("role={label ? 'img' : undefined}");
     expect(icon).toContain('focusable="false"');
     expect(badge).toContain("'neutral' | 'success' | 'error'");
+  });
+
+  it('keeps the reduced ornament vocabulary decorative and local', () => {
+    expect(ornament).toContain("'thread' | 'underline' | 'dots'");
+    expect(ornament).toContain("motion?: 'none' | 'draw'");
+    expect(ornament).toContain("'ornament--draw': motion === 'draw'");
+    expect(ornament).toContain('aria-hidden="true"');
+    expect(ornament).toContain('focusable="false"');
+    expect(ornament).not.toContain('label?:');
+    expect(ornament).not.toContain('client:');
+    expect(styles).toContain('.ornament--thread');
+    expect(styles).toContain('.ornament--underline');
+    expect(styles).toContain('.ornament--dots');
+    expect(styles).toContain('var(--ornament-stroke)');
+    expect(styles).toContain('@supports (animation-timeline: view())');
+    expect(styles).toContain('animation-range: entry 0% entry 100%');
+    expect(styles).toContain('@keyframes ornament-draw');
+    expect(styles).toContain('stroke-dashoffset: 0');
   });
 });

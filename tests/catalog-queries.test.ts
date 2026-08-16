@@ -138,6 +138,17 @@ describe('catalog queries', () => {
     ]);
   });
 
+  it('omits empty discovery sections and taxonomies without products', () => {
+    const discovery = projectTaxonomyDiscovery({
+      categories: [taxonomy('empty-category', 'category', 0)],
+      occasions: [],
+      recipients: [],
+      products: [],
+    });
+
+    expect(discovery).toEqual([]);
+  });
+
   it('projects only featured products and preserves every public price variant', () => {
     const featured = projectFeaturedProducts({
       ...catalog,

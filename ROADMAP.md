@@ -9,7 +9,7 @@
 - Se ejecuta exclusivamente la tarea solicitada; no se anticipa la siguiente.
 - `DONE` exige todos los criterios y verificaciones en `PASS`, con evidencia registrada aquí.
 - Orden normal: de arriba abajo. Una tarea posterior sólo puede comenzar si todas sus dependencias están `DONE`.
-- **Siguiente tarea:** `M4.11.2 — Design system, tipografía y ritmo`.
+- **Siguiente tarea:** `M4.11.7 — Descubrimiento editorial e ideas para regalar` (`BLOCKED`: contenido pendiente).
 
 ## Gates de programa
 
@@ -548,7 +548,7 @@
 
 ## M4.11.2 — Design system, tipografía y ritmo
 
-**Estado:** PENDING
+**Estado:** DONE
 **Objetivo:** evolucionar el sistema M3 para sostener la referencia sin valores oportunistas ni un sistema paralelo.
 **Alcance:** diferenciar medidas `visual/content/copy`; recalibrar escala tipográfica, espacios de capítulo, superficies, radios/sombras y continuidad cromática; fijar vocabulario de 2–4 motivos locales; documentar migración de consumidores.
 **Fuera de alcance:** rediseñar secciones completas, añadir webfonts sin archivos/licencia, imágenes sintéticas o librerías.
@@ -557,10 +557,11 @@
 **Criterios de aceptación:** roles semánticos reutilizables; lectura 45–70 caracteres; contraste AA; ritmo no uniforme; motivos ignorados por AT; sin regresión de CSS/CLS.
 **Verificación:** lint, typecheck, tests, build, contraste, showcase y revisión 320/768/1440.
 **Modelo recomendado:** SOL → LUNA.
+**Evidencia:** PASS (2026-08-16) — el sistema M3 evoluciona sin aliases ni sistema paralelo: medidas semánticas `visual/content/reading/copy/compact`, ritmos `compact/standard/spacious/chapter`, escala tipográfica y tracking recalibrados, y superficies `warm/calm` migradas en todos los consumidores. `Ornament.astro` limita el vocabulario local a `thread`, `underline` y `dots`, queda oculto a tecnologías de asistencia y no hidrata JavaScript; el showcase y tests cubren sus variantes. La documentación fija roles, decisiones y mapa de migración. Contraste WCAG: mínimo 6.03:1 en las combinaciones de texto verificadas. QA real a 1440/768/320 px: 0 overflow horizontal, 0 errores/warnings de consola y escala H1 progresiva 78.88/53.76/44 px; capturas en `docs/design/evidence/m4-11-2-foundations/`. `npm run lint`, `npm run typecheck` (0 errores/warnings/hints), `npm test` (22 archivos, 145 tests), `npm run build` (5 páginas, 23,601 bytes CSS y 0 JS), Prettier específico y `git diff --check`: PASS. Los únicos avisos del build son los esperados por las cuatro colecciones productivas vacías. No se rediseñó ninguna sección ni se ejecutó M4.11.3.
 
 ## M4.11.3 — Header y Hero editorial
 
-**Estado:** PENDING
+**Estado:** DONE
 **Objetivo:** corregir la prioridad máxima con aproximadamente 45 % contenido y 55 % fotografía en desktop, y una composición propia en móvil.
 **Alcance:** header más respirado manteniendo sólo navegación real; H1 aprobado con ruptura editorial adaptable; fotografía hero real grande y bien encuadrada; ambos CTA/destinos existentes; transición orgánica a la siguiente sección.
 **Fuera de alcance:** logo inventado, iconos de ecommerce, copy nuevo, otra fotografía, script caligráfico no licenciado o posicionamiento hardcodeado a 1440.
@@ -569,10 +570,11 @@
 **Criterios de aceptación:** producto inequívocamente protagonista; H1 no domina; LCP y dimensiones estables; CTA táctiles; sin recorte dañino ni overflow a 320/768/1440.
 **Verificación:** suite/build, HTML, teclado, contraste, requests/LCP inicial y capturas comparadas.
 **Modelo recomendado:** LUNA → SOL REVIEW.
+**Evidencia:** PASS (2026-08-16) — el Header usa la medida `visual`, gana respiración (81 px móvil/89 px desktop) y mantiene exclusivamente los cuatro destinos reales más el fallback honesto “Inicio”, sin logo ni iconos inventados. El Hero conserva H1, copy, fotografía y ambos destinos aprobados; en desktop sus tracks útiles miden 529.19/646.81 px, reparto 45/55 sin contar el gap, y la fotografía alcanza 646.81×608 px frente a 529.19×303.25 px del título. En 768/320 adopta composición propia título→producto→copy/CTA; el producto mide 691.55×388.98 y 289×216.75 px, con punto focal al 100 % para no añadir recorte al borde derecho ya presente en el original. QA real 1440/768/320: 0 overflow horizontal, targets CTA de 48 px, menú móvil 94.38×44 px, foco visible, 0 errores/warnings de consola y contraste mínimo 6.03:1. HTML estático: imagen AVIF/WebP/JPG responsive, `width="1672" height="941"`, `loading="eager"`, `fetchpriority="high"`, un `currentSrc` AVIF responsive y 0 scripts; el ornamento `thread` ignorado por AT enlaza visualmente el siguiente capítulo. Capturas en `docs/design/evidence/m4-11-3-header-hero/`. `npm run lint`, `npm run typecheck` (0 errores/warnings/hints), `npm test` (22 archivos, 146 tests), `npm run build` (5 páginas), Prettier específico y `git diff --check`: PASS. Los avisos del build siguen siendo los esperados por las cuatro colecciones productivas vacías. No se ejecutó M4.11.4.
 
 ## M4.11.4 — Storytelling artesanal y trabajos realizados
 
-**Estado:** PENDING
+**Estado:** DONE
 **Objetivo:** transformar proceso y galería en una historia compacta de cuidado, evidencia y producto real.
 **Alcance:** mantener el significado aprobado de los tres pasos; conectar visualmente la secuencia; evolucionar el collage con superficie editorial, proporciones, asimetría y profundidad controladas; permitir futuras fotos de proceso sin exigirlas ahora.
 **Fuera de alcance:** claims, reseñas, cifras, fotografías nuevas, carrusel, feed social o parallax sin coste demostrado.
@@ -581,10 +583,11 @@
 **Criterios de aceptación:** narrativa legible, collage no reducible a grid, orden DOM correcto, alt/dimensiones preservados, lazy loading y reduced motion.
 **Verificación:** contenido/derechos, suite/build, teclado, requests y capturas 320/768/1440.
 **Modelo recomendado:** LUNA → SOL REVIEW.
+**Evidencia:** PASS (2026-08-16) — el proceso mantiene literalmente los tres pasos aprobados y los convierte en una secuencia conectada: `ol`/`li` en el mismo orden DOM, numeración nativa reforzada visualmente y motivo `thread` ignorado por AT; en 1440 sus tres capítulos miden 362.66×192.36 px y en 768 miden 209.19×262.03 px, mientras que a 320 pasan a un recorrido vertical de 736.31 px sin perder orden ni lectura. “Trabajos realizados por Luna” conserva las cuatro fotografías, alt, derechos y orden aprobados dentro de una superficie editorial; el título lateral y las escalas 450.56×597.12, 330.89×250.03, 160.49×213.12 y 193.26×146.25 px en 1440 forman un collage asimétrico con profundidad controlada, no una cuadrícula uniforme. A 320 la composición propia mantiene escalas 229×286.25, 185.97×232.45, 200.31×200.31 y 162.08×121.55 px, sin carrusel ni overflow. HTML estático: las cuatro imágenes preservan `width="1536" height="2048"`, AVIF/WebP/JPG, `loading="lazy"` y orden semántico; inventario inicial confirma 0 requests de trabajos y 0 scripts. Reduced motion anula el único zoom de hover; la sección no añade controles, tab stops ni trampas de teclado. QA 1440/768/320: 0 overflow horizontal y 0 errores/warnings de consola; capturas de proceso y collage en `docs/design/evidence/m4-11-4-storytelling-work/`. Contenido/derechos READY verificados contra readiness y tests. `npm run lint`, `npm run typecheck` (0 errores/warnings/hints), `npm test` (22 archivos, 147 tests), `npm run build` (5 páginas), Prettier específico y `git diff --check`: PASS. Los avisos del build siguen siendo los esperados por las cuatro colecciones productivas vacías. La foto horizontal de packaging continúa como mejora deseable no bloqueante y no se ejecutó M4.11.5.
 
 ## M4.11.5 — CTA emocional y Footer diseñado
 
-**Estado:** PENDING
+**Estado:** DONE
 **Objetivo:** cerrar la historia con una conversión integrada y un Footer con marca, contacto y crédito secundarios.
 **Alcance:** rediseñar CTA conservando copy/WhatsApp existentes; integrar WhatsApp Business, email e Instagram aprobados; mantener navegación real; separar `© {YEAR}` de la firma cuando mejore jerarquía; conservar enlace Antonio MDM y año de build único.
 **Fuera de alcance:** otras redes, horarios/políticas, identidad legal inventada, formulario, CRM o plantilla de producto M5.1.
@@ -594,9 +597,11 @@
 **Verificación:** suite/build, HTML/hrefs, teclado, contraste y capturas.
 **Modelo recomendado:** LUNA → SOL REVIEW.
 
+**Evidencia:** PASS (2026-08-16) — el CTA conserva literalmente copy, destino WhatsApp y acción de 48 px, y cierra la Home como una superficie editorial cálida enlazada visualmente con el Footer mediante ornamentos `thread`/`dots` ignorados por AT. El Footer mantiene identidad y navegación reales e integra exclusivamente los contactos READY: WhatsApp Business `+34 697 63 71 80` con el mensaje aprobado, `mailto:encargosmgr@gmail.com` e Instagram `@lunatartas`; los tres son enlaces nativos dentro de `address`, sin `target="_blank"` ni datos inventados. Copyright `© 2026` y firma secundaria “Hecho con mimo para Luna · Creado por Antonio MDM” quedan separados, con un único año de build y el enlace del creador preservado. QA real 1440/768/320: orden CTA→identidad→navegación→contacto→copyright→firma, 0 overflow horizontal, CTA de 48 px, navegación/contactos de al menos 44 px, foco visible de 6 px, contraste mínimo 5.03:1, 0 scripts y 0 errores/warnings de consola. Capturas en `docs/design/evidence/m4-11-5-cta-footer/`. HTML estático y `href` exactos comprobados en `dist/index.html`; `npm run format`, `npm run lint`, `npm run typecheck` (0 errores/warnings/hints), `npm test` (22 archivos, 153 tests), `npm run build` (5 páginas) y `git diff --check`: PASS. Los avisos del build siguen siendo los esperados por las cuatro colecciones productivas vacías. No se ejecutó M4.11.6.
+
 ## M4.11.6 — Motion y ornamentación progresiva
 
-**Estado:** PENDING
+**Estado:** DONE
 **Objetivo:** añadir únicamente movimiento y materialidad que ordenen la lectura o conecten capítulos.
 **Alcance:** línea/hilo, subrayado orgánico y puntos o marcas de papel; hover/focus equivalentes; reveal/draw sólo si mejora la lectura; API nativa y JS mínimo si se demuestra necesario.
 **Fuera de alcance:** emojis, librería de animación, canvas/WebGL, autoplay, gran parallax, ornamentos de identidad no aprobados o animaciones de layout.
@@ -604,6 +609,7 @@
 **Criterios de aceptación:** nada se mueve sin propósito; contenido completo sin JS; reduced motion deja estado estable; sin CLS/INP ni coste fuera de budget.
 **Verificación:** teclado, `prefers-reduced-motion`, JS deshabilitado, performance y capturas.
 **Modelo recomendado:** LUNA → SOL REVIEW.
+**Evidencia:** PASS (2026-08-16) — `Ornament.astro` conserva exclusivamente `thread`/`underline`/`dots` y añade la opción acotada `motion="none" | "draw"`: el estado base es el trazo completo y sólo cuatro hilos/subrayados que conectan Hero, transición, proceso y CTA usan dibujo progresivo. En escritorio compatible se vincula a `animation-timeline: view()` mediante `@supports`; móvil, navegadores sin soporte y `prefers-reduced-motion: reduce` reciben el trazo final estático (`animation-name: none`, `stroke-dashoffset: 0` a 320), sin polyfill, autoplay temporal, parallax, librería ni JavaScript. El subrayado orgánico refuerza el énfasis del H1 sin invadir texto y se retiró el zoom sin función de la galería no interactiva; navegación, cards y CTA emparejan hover con `focus-visible`/`focus-within`, manteniendo anillo de foco de 6 px y desplazamientos máximos de 2–3 px sólo en controles. QA real a 1440/768/320: 0 px de overflow, 0 scripts, 0 errores/warnings de consola, 5/5 imágenes cargadas, CTA móviles de 48 px y capturas de Hero/proceso/cierre/foco en `docs/design/evidence/m4-11-6-motion/`. La carga lazy no alteró altura ni posiciones de proceso, galería, CTA o Footer (delta medido: 0 px), y todas las imágenes mantienen dimensiones intrínsecas. Budgets Home: HTML 3.56 KiB gzip, CSS total 6.90 KiB gzip, JS 0 KiB, transferencia inicial móvil aproximada 22.14 KiB y variante LCP AVIF de 11,959 bytes. `npm run format`, `npm run lint`, `npm run typecheck` (0 errores/warnings/hints), `npm test` (22 archivos, 153 tests), `npm run build` (5 páginas) y `git diff --check`: PASS. Los avisos de build siguen siendo los esperados por las cuatro colecciones productivas vacías. No se ejecutó M4.11.7, que conserva su bloqueo editorial.
 
 ## M4.11.7 — Descubrimiento editorial e ideas para regalar
 
@@ -617,6 +623,7 @@
 **Criterios de aceptación:** cero placeholders; sólo publicados; cards semánticas y accionables sin hover; composición visual con ritmo y estados vacíos no publicables.
 **Verificación:** queries/build/link check, contenido/derechos, teclado y capturas 320/768/1440.
 **Modelo recomendado:** SOL → LUNA.
+**Evidencia:** BLOCKED (2026-08-16) — ejecutada y verificada toda la parte inmediata que no depende de contenido: se eliminaron de `src/` los once mensajes públicos “Pronto podrás…”, y Home, destacados, listados e índices/landings ya no renderizan `ContentSection`, `CardList`, wrapper ni hueco cuando su proyección está vacía. El descubrimiento Home excluye además taxonomías publicadas sin productos, por lo que no enlaza landings que `getStaticPaths` no genera; `CardList` sólo exige mensaje cuando se usa deliberadamente como patrón interno de estado vacío. Con el catálogo productivo vacío, el HTML final tiene 0 módulos `taxonomy-discovery`/`featured-products`, 0 `[data-content-state="empty"]`, 0 ocurrencias del placeholder y 0 scripts. QA Browser en Home a 320/768/1440: 0 px de overflow y 0 px entre el final de Hero y el inicio de proceso, sin errores/warnings de consola; `/`, `/productos/`, `/categorias/`, `/ocasiones/` y `/regalos/` conservan un H1 y no publican módulos vacíos. `npm run lint`, `npm run typecheck` (0 errores/warnings/hints), `npm test` (22 archivos, 155 tests), `npm run build` (5 páginas) y comprobaciones de fuentes/HTML: PASS; los cuatro avisos de colecciones vacías son el bloqueo esperado. No se marca `DONE`: `src/content/{products,categories,occasions,recipients}` continúa vacío y las filas de catálogo, taxonomías, portadas/galerías, alt y derechos siguen `TBD` en readiness. Pendiente del propietario: entregar catálogo/taxonomías/copy y relaciones aprobados, junto con fotografías reales 4:3 u horizontales asociadas a cada intención, alt, derechos y evidencia de aprobación; entonces se podrán implementar y validar las cards editoriales finales y sus capturas.
 
 ## M4.11.8 — Responsive, visual QA y performance
 
@@ -1296,3 +1303,8 @@ No avanzar a la siguiente milestone.
 - 2026-08-16 — M4.11 completada: Home, shell y listados integran “Atelier de pequeños detalles”, navegación estática corregida, Footer firmado, QA visual 320/768/1440, contraste, reduced motion, budgets, 144 tests, build y smoke sin JS en PASS. G4 satisfecho. Siguiente tarea: M5.1 (modelo SOL → LUNA).
 - 2026-08-16 — M5.1 bloqueada: el número y el mensaje personalizado están aprobados, pero el saludo/copy/plantilla de producto y la política de nueva pestaña siguen `TBD` en el contrato de conversión y readiness. No se inventa contenido ni se avanza a M5.2. Reanudar M5.1 cuando el propietario entregue la plantilla aprobada (modelo LUNA).
 - 2026-08-16 — M4.11.1 completada como corrección trazable: se registra la referencia aprobada y una auditoría reproducible demuestra que el primer cierre de M4.11 fue técnicamente correcto pero visualmente insuficiente. G4 se reabre, M5 permanece detenido y se crean M4.11.2–M4.11.8. Descubrimiento/ideas queda `BLOCKED` por catálogo, taxonomías y fotografías asociables no aprobados; el resto reutiliza hero y cuatro trabajos reales. Siguiente tarea: M4.11.2 (modelo SOL → LUNA).
+- 2026-08-16 — M4.11.2 completada: roles de medida y ritmo, escala tipográfica, superficies semánticas y tres ornamentos accesibles migrados sin aliases ni hidratación; contraste, 145 tests, build y QA 320/768/1440 en PASS. Siguiente tarea: M4.11.3 (modelo LUNA → SOL REVIEW).
+- 2026-08-16 — M4.11.3 completada: Header más respirado sin identidad inventada y Hero editorial 45/55 con fotografía real protagonista, composición propia móvil, H1/copy/CTA aprobados, contraste, HTML/LCP estable, 146 tests, build y QA 320/768/1440 en PASS. Siguiente tarea: M4.11.4 (modelo LUNA → SOL REVIEW).
+- 2026-08-16 — M4.11.4 completada: proceso aprobado convertido en secuencia conectada y collage editorial asimétrico con las cuatro fotografías reales, alt/dimensiones/lazy loading preservados, reduced motion, 147 tests, build y QA 320/768/1440 en PASS. Siguiente tarea: M4.11.5 (modelo LUNA → SOL REVIEW).
+- 2026-08-16 — M4.11.5 completada: CTA emocional integrado y Footer editorial con navegación real, WhatsApp Business, email e Instagram aprobados, copyright/firma separados, foco y targets accesibles, 153 tests, build y QA 320/768/1440 en PASS. Siguiente tarea: M4.11.6 (modelo LUNA → SOL REVIEW).
+- 2026-08-16 — M4.11.6 completada: subrayado e hilos usan draw progresivo nativo sólo en escritorio compatible, con fallback/reduced-motion estáticos, 0 JS, 0 desplazamiento de layout, hover/foco equivalentes, 153 tests, build, budgets y QA 320/768/1440 en PASS. Siguiente tarea: M4.11.7, que permanece `BLOCKED` hasta recibir catálogo, taxonomías y fotografías aprobadas (modelo SOL → LUNA).

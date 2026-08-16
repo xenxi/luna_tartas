@@ -28,10 +28,22 @@ describe('global presentation foundation', () => {
 
   it('maps the atelier direction to semantic tokens and real containers', () => {
     expect(tokens).toContain('--color-canvas: #faf7f2');
-    expect(tokens).toContain('--color-surface-rose: #f3dfdc');
-    expect(tokens).toContain('--color-surface-sage: #e2e6df');
+    expect(tokens).toContain('--color-surface-warm: #f3dfdc');
+    expect(tokens).toContain('--color-surface-calm: #e2e6df');
+    expect(tokens).toContain('--container-content: 72rem');
+    expect(tokens).toContain('--container-visual: 77.5rem');
+    expect(tokens).toContain('--measure-compact: 42ch');
+    expect(tokens).toContain('--space-section-compact:');
+    expect(tokens).toContain('--space-section-standard:');
+    expect(tokens).toContain('--space-section-spacious:');
+    expect(tokens).toContain('--font-size-display: clamp(');
+    expect(tokens).toContain('5.25rem');
+    expect(tokens).not.toContain('--container-max:');
+    expect(tokens).not.toContain('--space-section:');
+    expect(foundations).toContain('.visual-container');
+    expect(foundations).toContain('.prose--compact');
     expect(taxonomyDiscovery).toContain('var(--gutter)');
-    expect(taxonomyDiscovery).toContain('var(--container-max)');
+    expect(taxonomyDiscovery).toContain('var(--container-content)');
     expect(taxonomyDiscovery).not.toContain('var(--space-gutter)');
     expect(taxonomyDiscovery).not.toContain('var(--container-wide)');
   });

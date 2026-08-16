@@ -1,7 +1,7 @@
 .content-section {
   display: grid;
   gap: var(--space-8);
-  padding-block: var(--space-section);
+  padding-block: var(--space-section-standard);
 }
 
 .content-section__header {

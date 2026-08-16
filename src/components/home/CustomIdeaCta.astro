@@ -2,6 +2,7 @@
 import { customIdeaContent } from '../../content/home/custom-idea';
 import ActionLink from '../ui/ActionLink.astro';
 import ContentSection from '../patterns/ContentSection.astro';
+import Ornament from '../ui/Ornament.astro';
 import './custom-idea.css';
 ---
 
@@ -11,6 +12,8 @@ import './custom-idea.css';
     title={customIdeaContent.title}
     intro={customIdeaContent.copy}
   >
+    <Ornament variant="thread" motion="draw" class="custom-idea__thread" />
+    <Ornament variant="dots" class="custom-idea__dots" />
     <div class="custom-idea__action">
       <ActionLink href={customIdeaContent.action.href}>
         {customIdeaContent.action.label}

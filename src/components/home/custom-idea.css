@@ -1,55 +1,80 @@
 .custom-idea {
-  margin: var(--space-12) var(--gutter) var(--space-16);
+  margin: var(--space-12) var(--gutter) 0;
 }
 
 .custom-idea .content-section {
   position: relative;
-  inline-size: min(100%, var(--container-max));
+  isolation: isolate;
+  inline-size: min(100%, var(--container-visual));
   margin-inline: auto;
   overflow: hidden;
   padding: clamp(var(--space-10), 7vw, var(--space-20))
     clamp(var(--space-6), 7vw, var(--space-16));
-  border-radius: var(--radius-sm);
-  background: var(--color-text);
-  color: var(--color-on-action);
+  border: 1px solid color-mix(in srgb, var(--color-border) 68%, transparent);
+  border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+  background: linear-gradient(
+    125deg,
+    var(--color-surface-warm),
+    color-mix(in srgb, var(--color-surface-warm) 58%, var(--color-canvas))
+  );
+  box-shadow: var(--shadow-soft);
 }
 
-.custom-idea .content-section::after {
+.custom-idea .content-section::before {
   position: absolute;
-  inset-inline-end: clamp(-4rem, -5vw, -1rem);
-  inset-block-end: clamp(-5rem, -7vw, -2rem);
-  inline-size: clamp(10rem, 24vw, 21rem);
+  z-index: -1;
+  inset-block-start: clamp(-7rem, -8vw, -3rem);
+  inset-inline-end: clamp(-6rem, -7vw, -2rem);
+  inline-size: clamp(12rem, 26vw, 22rem);
   aspect-ratio: 1;
-  border: 1px solid rgb(255 255 255 / 20%);
+  border: 1px solid color-mix(in srgb, var(--color-accent) 30%, transparent);
   border-radius: 50%;
   content: '';
 }
 
-.custom-idea .content-section__heading {
+.custom-idea .content-section__header,
+.custom-idea__action {
+  position: relative;
   z-index: var(--z-raised);
 }
 
+.custom-idea .content-section__heading {
+  max-inline-size: var(--measure-compact);
+}
+
 .custom-idea .content-section__heading p {
-  color: inherit;
+  color: var(--color-text-muted);
 }
 
 .custom-idea__action {
   display: flex;
-  z-index: var(--z-raised);
-  margin-block-start: var(--space-6);
+  margin-block-start: var(--space-5);
 }
 
 .custom-idea .action-link {
-  background: var(--color-surface);
-  color: var(--color-action);
+  min-block-size: 3rem;
 }
 
-.custom-idea .action-link:hover {
-  background: var(--color-canvas);
-  color: var(--color-action-hover);
+.custom-idea__thread {
+  position: absolute;
+  inset-inline-end: 8%;
+  inset-block-end: var(--space-4);
+  inline-size: min(24rem, 56vw);
+  opacity: 0.52;
+}
+
+.custom-idea__dots {
+  position: absolute;
+  inset-block-start: var(--space-6);
+  inset-inline-end: var(--space-6);
+  opacity: 0.46;
 }
 
 @media (min-width: 40rem) {
+  .custom-idea {
+    margin-block-start: var(--space-16);
+  }
+
   .custom-idea .content-section {
     grid-template-columns: minmax(0, 1fr) auto;
     align-items: end;
@@ -58,5 +83,10 @@
 
   .custom-idea__action {
     margin: 0;
+  }
+
+  .custom-idea__thread {
+    inset-inline-end: 12%;
+    inline-size: min(30rem, 38vw);
   }
 }

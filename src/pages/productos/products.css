@@ -1,17 +1,17 @@
 .products-page {
   display: grid;
   gap: var(--space-6);
-  padding-block: var(--space-8) var(--space-section);
+  padding-block: var(--space-8) var(--space-section-standard);
 }
 
 .products-page__header {
   position: relative;
-  inline-size: min(calc(100% - (2 * var(--gutter))), var(--container-max));
+  inline-size: min(calc(100% - (2 * var(--gutter))), var(--container-content));
   margin-inline: auto;
   padding: clamp(var(--space-8), 6vw, var(--space-16));
   overflow: hidden;
   border-radius: var(--radius-xl);
-  background: var(--color-surface-rose);
+  background: var(--color-surface-warm);
 }
 
 .products-page__header h1 {

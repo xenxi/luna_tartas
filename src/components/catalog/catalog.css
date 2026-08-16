@@ -77,7 +77,8 @@
   position: relative;
 }
 
-.catalog-card__title a:hover {
+.catalog-card__title a:hover,
+.catalog-card__title a:focus-visible {
   color: var(--color-action-hover);
   text-decoration-color: currentColor;
 }

@@ -24,7 +24,7 @@ Los activos de marca definitivos permanecen bloqueados. La dirección provisiona
 - **Patterns:** card de producto/taxonomía, breadcrumb, CTA, grupo de confianza, galería y firma secundaria de Footer.
 - **Sections:** hero, descubrimiento, destacados, prueba social, trabajos e idea personalizada.
 
-Los nombres expresan intención (`--color-action`, `--space-section`) y evitan colores/medidas repetidos. Los componentes aceptan variaciones explícitas; no se crea una API genérica para casos hipotéticos.
+Los nombres expresan intención (`--color-action`, `--space-section-standard`, `--container-visual`) y evitan colores/medidas repetidos. Los componentes aceptan variaciones explícitas; no se crea una API genérica para casos hipotéticos.
 
 ## Estados obligatorios
 

@@ -1,5 +1,10 @@
 import { describe, expect, it } from 'vitest';
-import { validateWhatsAppConfig, whatsappConfig } from '../src/config/contact';
+import {
+  publicContactConfig,
+  validatePublicContactConfig,
+  validateWhatsAppConfig,
+  whatsappConfig,
+} from '../src/config/contact';
 
 describe('approved WhatsApp direct contact', () => {
   it('normalizes the direct URL and preserves the approved Unicode message', () => {
@@ -23,5 +28,49 @@ describe('approved WhatsApp direct contact', () => {
     ['empty message', { number: '34697637180', message: '   ' }],
   ])('rejects %s', (_case, value) => {
     expect(() => validateWhatsAppConfig(value)).toThrow();
+  });
+});
+
+describe('approved public Footer contacts', () => {
+  it('publishes only the approved WhatsApp, email and Instagram destinations', () => {
+    expect(publicContactConfig).toEqual({
+      whatsapp: {
+        label: '+34 697 63 71 80',
+        href: whatsappConfig.href,
+      },
+      email: {
+        label: 'encargosmgr@gmail.com',
+        href: 'mailto:encargosmgr@gmail.com',
+      },
+      instagram: {
+        label: '@lunatartas',
+        href: 'https://www.instagram.com/lunatartas/',
+      },
+    });
+    expect(Object.isFrozen(publicContactConfig)).toBe(true);
+    expect(Object.values(publicContactConfig).every(Object.isFrozen)).toBe(
+      true,
+    );
+  });
+
+  it.each([
+    undefined,
+    {
+      whatsappLabel: '+34 000 00 00 00',
+      email: 'encargosmgr@gmail.com',
+      instagramHandle: '@lunatartas',
+    },
+    {
+      whatsappLabel: '+34 697 63 71 80',
+      email: 'not-an-email',
+      instagramHandle: '@lunatartas',
+    },
+    {
+      whatsappLabel: '+34 697 63 71 80',
+      email: 'encargosmgr@gmail.com',
+      instagramHandle: 'lunatartas',
+    },
+  ])('rejects unapproved or malformed public contact data', (value) => {
+    expect(() => validatePublicContactConfig(value, whatsappConfig)).toThrow();
   });
 });

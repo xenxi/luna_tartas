@@ -14,23 +14,22 @@ const { catalog } = Astro.props;
 const featured = projectFeaturedProducts(catalog);
 ---
 
-<div class="featured-products">
-  <ContentSection
-    id="featured-products"
-    title={featured.title}
-    intro={featured.intro}
-  >
-    <CardList
-      count={featured.items.length}
-      emptyMessage={featured.emptyMessage}
-    >
-      {
-        featured.items.map((product) => (
-          <li>
-            <ProductCard product={product} />
-          </li>
-        ))
-      }
-    </CardList>
-  </ContentSection>
-</div>
+{
+  featured.items.length > 0 && (
+    <div class="featured-products">
+      <ContentSection
+        id="featured-products"
+        title={featured.title}
+        intro={featured.intro}
+      >
+        <CardList count={featured.items.length}>
+          {featured.items.map((product) => (
+            <li>
+              <ProductCard product={product} />
+            </li>
+          ))}
+        </CardList>
+      </ContentSection>
+    </div>
+  )
+}

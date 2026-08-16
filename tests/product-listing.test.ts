@@ -77,19 +77,19 @@ describe('product index listing', () => {
     ]);
   });
 
-  it('keeps the empty catalog honest and non-client', () => {
+  it('keeps the empty catalog out of the public module without client code', () => {
     const page = readFileSync('src/pages/productos/index.astro', 'utf8');
     const component = readFileSync(
       'src/components/products/ProductListing.astro',
       'utf8',
     );
 
-    expect(projectProductListing(emptyCatalog).emptyMessage).not.toContain(
-      'TBD',
-    );
+    expect(projectProductListing(emptyCatalog).items).toEqual([]);
     expect(page.match(/<h1\b/g)).toHaveLength(1);
+    expect(component).toContain('listing.items.length > 0');
     expect(component).toContain('<CardList');
     expect(component).toContain('<ProductCard');
+    expect(component).not.toMatch(/Pronto podrás/i);
     expect(page).not.toContain('client:');
   });
 });

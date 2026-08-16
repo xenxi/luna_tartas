@@ -11,7 +11,6 @@ export interface TaxonomyDiscoverySection {
   readonly id: string;
   readonly title: string;
   readonly intro: string;
-  readonly emptyMessage: string;
   readonly items: readonly TaxonomyCardProjection[];
 }
 
@@ -21,34 +20,47 @@ const sectionDefinitions: readonly Omit<TaxonomyDiscoverySection, 'items'>[] = [
     id: 'discover-categories',
     title: 'Explora por tipo',
     intro: 'Encuentra una creación que encaje con lo que imaginas.',
-    emptyMessage: 'Pronto podrás explorar nuestras categorías.',
   },
   {
     kind: 'occasion',
     id: 'discover-occasions',
     title: 'Elige una ocasión',
     intro: 'Un punto de partida para celebrar cada momento.',
-    emptyMessage: 'Pronto podrás explorar nuestras ocasiones.',
   },
   {
     kind: 'recipient',
     id: 'discover-recipients',
     title: 'Piensa en quién lo recibe',
     intro: 'Ideas para encontrar un regalo con intención.',
-    emptyMessage: 'Pronto podrás explorar regalos para cada persona.',
   },
 ];
 
 export function projectTaxonomyDiscovery(
   catalog: Catalog,
 ): readonly TaxonomyDiscoverySection[] {
-  return sectionDefinitions.map((section) => ({
-    ...section,
-    items: getPublishedTaxonomies(catalog, section.kind).map((taxonomy) => ({
-      href: routes.taxonomy(section.kind, taxonomy.slug),
-      name: taxonomy.name,
-      summary: taxonomy.summary,
-      itemCountLabel: `${getProductsForTaxonomy(catalog, section.kind, taxonomy.id).length} ideas`,
-    })),
-  }));
+  return sectionDefinitions
+    .map((section) => ({
+      ...section,
+      items: getPublishedTaxonomies(catalog, section.kind).flatMap(
+        (taxonomy) => {
+          const productCount = getProductsForTaxonomy(
+            catalog,
+            section.kind,
+            taxonomy.id,
+          ).length;
+
+          return productCount > 0
+            ? [
+                {
+                  href: routes.taxonomy(section.kind, taxonomy.slug),
+                  name: taxonomy.name,
+                  summary: taxonomy.summary,
+                  itemCountLabel: `${productCount} ideas`,
+                },
+              ]
+            : [];
+        },
+      ),
+    }))
+    .filter((section) => section.items.length > 0);
 }

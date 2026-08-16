@@ -3,11 +3,11 @@
 }
 
 .featured-products .content-section {
-  inline-size: min(100%, var(--container-max));
+  inline-size: min(100%, var(--container-content));
   margin-inline: auto;
   padding: clamp(var(--space-8), 6vw, var(--space-16));
   border-radius: var(--radius-xl);
-  background: var(--color-surface-sage);
+  background: var(--color-surface-calm);
 }
 
 .featured-products .content-section__heading::before {

@@ -7,7 +7,6 @@ import type { ProductCardProjection } from '../catalog/types';
 export interface FeaturedProductsProjection {
   readonly title: string;
   readonly intro: string;
-  readonly emptyMessage: string;
   readonly items: readonly ProductCardProjection[];
 }
 
@@ -19,7 +18,6 @@ export function projectFeaturedProducts(
   return {
     title: 'Ideas para regalar',
     intro: 'Una selección de creaciones para encontrar tu próximo detalle.',
-    emptyMessage: 'Pronto podrás descubrir aquí nuestras ideas destacadas.',
     items: getFeaturedProducts(catalog).map((product) => ({
       href: routes.product(product.slug),
       name: product.name,

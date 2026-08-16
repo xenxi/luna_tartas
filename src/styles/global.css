@@ -65,7 +65,15 @@
 }
 
 .section {
-  padding-block: var(--space-section);
+  padding-block: var(--space-section-standard);
+}
+
+.section--compact {
+  padding-block: var(--space-section-compact);
+}
+
+.section--spacious {
+  padding-block: var(--space-section-spacious);
 }
 
 .prose {

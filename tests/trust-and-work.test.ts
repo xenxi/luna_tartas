@@ -72,16 +72,32 @@ describe('approved trust and work showcase', () => {
   });
 
   it('uses semantic static lists and a responsive primary image without hydration', () => {
+    expect(component).toContain('<div class="trust-story">');
+    expect(component).toMatch(/<Ornament\s+variant="thread"\s+motion="draw"/);
     expect(component).toContain('<ol class="trust-list">');
+    expect(component).toContain('<div class="work-showcase__canvas">');
+    expect(component).toContain('<Ornament variant="dots"');
     expect(component).toContain('<ul class="work-gallery"');
     expect(component).toContain('<figure class="work-gallery__figure">');
     expect(component).not.toContain('client:');
     expect(styles).toContain('@media (min-width: 40rem)');
     expect(styles).toContain('@media (min-width: 64rem)');
-    expect(styles).toContain('grid-column: 1 / -1');
-    expect(styles).toContain('inline-size: 52rem');
-    expect(styles).toContain('max-inline-size: 100%');
+    expect(styles).toContain('counter-increment: trust-step');
+    expect(styles).toContain('.trust-list::before');
+    expect(styles).toContain('grid-column: 1 / span 7');
+    expect(styles).toContain('inline-size: 82%');
     expect(styles).not.toContain('overflow-x: auto');
+    expect(styles).not.toContain('.work-gallery__item:hover');
+    expect(styles).not.toContain('transition: transform');
     expect(page).toContain('<TrustAndWork />');
+  });
+
+  it('keeps process and work order in the approved DOM sequence', () => {
+    expect(component).toContain('trustAndWorkContent.trust.steps.map');
+    expect(component).toContain('trustAndWorkContent.showcase.images.map');
+    expect(component.indexOf('trust-story')).toBeLessThan(
+      component.indexOf('work-showcase__canvas'),
+    );
+    expect(component).not.toMatch(/carousel|slider|client:/i);
   });
 });

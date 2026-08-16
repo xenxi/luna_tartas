@@ -6,6 +6,7 @@ import pinkCakeDetail from '../../assets/home/work-showcase/tarta-rosa-detalle.p
 import stitchCake from '../../assets/home/work-showcase/tarta-stitch-completa.png';
 import { trustAndWorkContent } from '../../content/home/trust-and-work';
 import ContentSection from '../patterns/ContentSection.astro';
+import Ornament from '../ui/Ornament.astro';
 import './trust-and-work.css';
 
 const imageAssets = {
@@ -18,52 +19,60 @@ const imageAssets = {
 
 <div class="trust-and-work">
   <ContentSection id="trust" title={trustAndWorkContent.trust.title}>
-    <ol class="trust-list">
-      {
-        trustAndWorkContent.trust.steps.map((step) => (
-          <li class="trust-card">
-            <h3>{step.title}</h3>
-            <p>{step.copy}</p>
-          </li>
-        ))
-      }
-    </ol>
+    <div class="trust-story">
+      <Ornament variant="thread" motion="draw" class="trust-story__thread" />
+      <ol class="trust-list">
+        {
+          trustAndWorkContent.trust.steps.map((step) => (
+            <li class="trust-card">
+              <h3>{step.title}</h3>
+              <p>{step.copy}</p>
+            </li>
+          ))
+        }
+      </ol>
+    </div>
   </ContentSection>
 
   <ContentSection id="work-showcase" title={trustAndWorkContent.showcase.title}>
-    <ul class="work-gallery" aria-label="Selección de trabajos realizados">
-      {
-        trustAndWorkContent.showcase.images.map((image) => (
-          <li
-            class:list={[
-              'work-gallery__item',
-              { 'work-gallery__item--primary': image.primary },
-            ]}
-          >
-            <figure class="work-gallery__figure">
-              <Picture
-                src={imageAssets[image.id]}
-                alt={image.alt}
-                formats={['avif', 'webp']}
-                fallbackFormat="jpg"
-                quality={50}
-                widths={
-                  image.primary ? [320, 480, 768, 1024, 1536] : [320, 480, 640]
-                }
-                sizes={
-                  image.primary
-                    ? '(min-width: 72rem) 52rem, 100vw'
-                    : '(min-width: 72rem) 22rem, (min-width: 40rem) 30vw, 100vw'
-                }
-                loading="lazy"
-                decoding="async"
-                class="work-gallery__image"
-                pictureAttributes={{ class: 'work-gallery__picture' }}
-              />
-            </figure>
-          </li>
-        ))
-      }
-    </ul>
+    <div class="work-showcase__canvas">
+      <Ornament variant="dots" class="work-showcase__dots" />
+      <ul class="work-gallery" aria-label="Selección de trabajos realizados">
+        {
+          trustAndWorkContent.showcase.images.map((image) => (
+            <li
+              class:list={[
+                'work-gallery__item',
+                { 'work-gallery__item--primary': image.primary },
+              ]}
+            >
+              <figure class="work-gallery__figure">
+                <Picture
+                  src={imageAssets[image.id]}
+                  alt={image.alt}
+                  formats={['avif', 'webp']}
+                  fallbackFormat="jpg"
+                  quality={50}
+                  widths={
+                    image.primary
+                      ? [320, 480, 768, 1024, 1536]
+                      : [320, 480, 640]
+                  }
+                  sizes={
+                    image.primary
+                      ? '(min-width: 90rem) 32rem, (min-width: 64rem) 38vw, (min-width: 40rem) 58vw, calc(100vw - 2rem)'
+                      : '(min-width: 90rem) 22rem, (min-width: 64rem) 30vw, (min-width: 40rem) 36vw, 82vw'
+                  }
+                  loading="lazy"
+                  decoding="async"
+                  class="work-gallery__image"
+                  pictureAttributes={{ class: 'work-gallery__picture' }}
+                />
+              </figure>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
   </ContentSection>
 </div>

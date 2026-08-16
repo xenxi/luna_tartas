@@ -1,0 +1,49 @@
+---
+import './ui.css';
+
+interface Props {
+  variant: 'thread' | 'underline' | 'dots';
+  motion?: 'none' | 'draw';
+  class?: string;
+}
+
+const { variant, motion = 'none', class: className } = Astro.props;
+---
+
+<svg
+  class:list={[
+    'ornament',
+    `ornament--${variant}`,
+    { 'ornament--draw': motion === 'draw' },
+    className,
+  ]}
+  viewBox={variant === 'dots' ? '0 0 96 28' : '0 0 240 32'}
+  fill="none"
+  focusable="false"
+  aria-hidden="true"
+  data-ornament={variant}
+>
+  {
+    variant === 'thread' && (
+      <path
+        d="M2 20C32 5 65 6 92 18c30 14 62 12 91-1 20-9 38-10 55-3"
+        pathLength="1"
+      />
+    )
+  }
+  {
+    variant === 'underline' && (
+      <path d="M3 19c47-7 91-8 132-4 37 4 69 3 102-4" pathLength="1" />
+    )
+  }
+  {
+    variant === 'dots' && (
+      <>
+        <circle cx="13" cy="15" r="4" />
+        <circle cx="38" cy="9" r="2.5" />
+        <circle cx="61" cy="18" r="3.5" />
+        <circle cx="84" cy="11" r="2" />
+      </>
+    )
+  }
+</svg>

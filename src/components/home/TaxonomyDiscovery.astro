@@ -14,25 +14,24 @@ const { catalog } = Astro.props;
 const sections = projectTaxonomyDiscovery(catalog);
 ---
 
-<div class="taxonomy-discovery">
-  {
-    sections.map((section) => (
-      <ContentSection
-        id={section.id}
-        title={section.title}
-        intro={section.intro}
-      >
-        <CardList
-          count={section.items.length}
-          emptyMessage={section.emptyMessage}
+{
+  sections.length > 0 && (
+    <div class="taxonomy-discovery">
+      {sections.map((section) => (
+        <ContentSection
+          id={section.id}
+          title={section.title}
+          intro={section.intro}
         >
-          {section.items.map((taxonomy) => (
-            <li>
-              <TaxonomyCard taxonomy={taxonomy} />
-            </li>
-          ))}
-        </CardList>
-      </ContentSection>
-    ))
-  }
-</div>
+          <CardList count={section.items.length}>
+            {section.items.map((taxonomy) => (
+              <li>
+                <TaxonomyCard taxonomy={taxonomy} />
+              </li>
+            ))}
+          </CardList>
+        </ContentSection>
+      ))}
+    </div>
+  )
+}

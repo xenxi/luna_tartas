@@ -3,7 +3,7 @@ import './patterns.css';
 
 interface Props {
   count: number;
-  emptyMessage: string;
+  emptyMessage?: string;
   columns?: 2 | 3;
 }
 
@@ -12,7 +12,7 @@ const { count, emptyMessage, columns = 3 } = Astro.props;
 if (!Number.isSafeInteger(count) || count < 0) {
   throw new Error('CardList requires a non-negative integer count');
 }
-if (emptyMessage.trim() === '') {
+if (count === 0 && (emptyMessage === undefined || emptyMessage.trim() === '')) {
   throw new Error('CardList requires an honest empty-state message');
 }
 ---

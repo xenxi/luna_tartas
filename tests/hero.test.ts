@@ -33,22 +33,42 @@ describe('approved home hero', () => {
     expect(component).toContain('variant="secondary"');
     expect(page).toContain('<Hero />');
     expect(page).not.toContain('<h1');
+    expect(component).toContain('headingLead');
+    expect(component).toContain('headingEmphasis');
+    expect(styles).toContain("'title media'");
+    expect(styles).toContain("'body media'");
   });
 
   it('prioritizes responsive optimized media with intrinsic source dimensions', () => {
     expect(component).toContain("formats={['avif', 'webp']}");
     expect(component).toContain('fallbackFormat="jpg"');
-    expect(component).toContain('widths={[480, 768, 1200, 1672]}');
+    expect(component).toContain(
+      'widths={[320, 480, 640, 768, 960, 1200, 1672]}',
+    );
     expect(component).toContain('loading="eager"');
     expect(component).toContain('fetchpriority="high"');
     expect(image.subarray(16, 24).readUInt32BE(0)).toBe(1672);
     expect(image.subarray(16, 24).readUInt32BE(4)).toBe(941);
   });
 
-  it('preserves the full image and adds an opaque content surface on wide screens', () => {
-    expect(styles).toContain('@media (min-width: 64rem)');
-    expect(styles).toContain('block-size: auto');
-    expect(styles).toContain('background: var(--color-canvas)');
-    expect(styles).not.toContain('object-fit: cover');
+  it('uses a mobile-specific order and protects the product focal point', () => {
+    expect(component.indexOf('hero__title')).toBeLessThan(
+      component.indexOf('hero__media'),
+    );
+    expect(component.indexOf('hero__media')).toBeLessThan(
+      component.indexOf('hero__body'),
+    );
+    expect(styles).toContain("'title'\n    'media'\n    'body'");
+    expect(styles).toContain('object-fit: cover');
+    expect(styles).toContain('object-position: 100% 48%');
+    expect(styles).toContain('@media (min-width: 60rem)');
+  });
+
+  it('connects the hero to the next chapter with an accessible ornament', () => {
+    expect(component).toContain('<Ornament variant="thread"');
+    expect(component).toContain('variant="underline"');
+    expect(component.match(/motion="draw"/g)).toHaveLength(2);
+    expect(component).toContain('class="hero__heading-underline"');
+    expect(component).toContain('class="hero__transition"');
   });
 });

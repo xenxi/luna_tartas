@@ -42,7 +42,7 @@ La emoción debe venir de producto y copy reales. Cuando falte una imagen se usa
 
 ## Paleta provisional
 
-Los tokens implementados en M3.2 son el baseline, no una identidad inmutable. La referencia recalibrada (`#FAF7F2`, `#FFFDFC`, `#352C29`, `#C98287`, `#E8C7C5`, `#B96F62`, `#9BA58F`, `#D9C6AC`) orienta la atmósfera, pero no se adopta a ciegas: M4.11 debe mapearla contra roles existentes, medir contraste y cambiar sólo valores/roles que aporten una mejora demostrable. Los productos y fotografías aportan la mayor parte del color; no se llenan grandes superficies de rosa pastel. Los ratios siguientes corresponden al baseline ya implementado y deben recalcularse tras cualquier ajuste.
+Los tokens implementados en M3.2 son el baseline, no una identidad inmutable. La referencia recalibrada (`#FAF7F2`, `#FFFDFC`, `#352C29`, `#C98287`, `#E8C7C5`, `#B96F62`, `#9BA58F`, `#D9C6AC`) orienta la atmósfera, pero no se adopta a ciegas: M4.11.2 la mapea contra roles existentes, conserva los valores que ya cumplen contraste y cambia nombres/medidas sólo cuando resuelven un problema demostrado. Los productos y fotografías aportan la mayor parte del color; no se llenan grandes superficies de rosa pastel.
 
 | Rol propuesto    | Valor     | Uso                                                  | Contraste comprobado                                             |
 | ---------------- | --------- | ---------------------------------------------------- | ---------------------------------------------------------------- |
@@ -126,7 +126,7 @@ El proceso equivalente a “Cada detalle cuenta” ya tiene una base implementad
 
 ## Lenguaje gráfico e imperfección controlada
 
-El vocabulario permitido incluye líneas dibujadas o hilo, lazos, pequeñas estrellas/puntos, etiquetas, papel, corazones muy puntuales y subrayados ligeramente imperfectos. Se prefieren pocas intervenciones memorables; una línea/hilo orgánico puede conectar ocasionalmente secciones sin atravesar toda la página. Ningún adorno puede sustituir copy, información, foco o fotografía.
+El vocabulario implementable queda reducido en M4.11.2 a tres motivos: línea/hilo, subrayado ligeramente imperfecto y puntos. `Ornament.astro` los proyecta como SVG inline siempre decorativo y oculto a tecnologías asistivas. No se incorporan lazo, estrella, etiqueta, corazón o luna mientras esos tres motivos cubran la necesidad. Se prefieren pocas intervenciones memorables; una línea/hilo orgánico puede conectar ocasionalmente secciones sin atravesar toda la página. Ningún adorno puede sustituir copy, información, foco o fotografía.
 
 La imperfección puede usar rotaciones aproximadas de ±0.5–1.5 grados, posiciones levemente desplazadas, líneas no perfectamente geométricas y superposiciones fotográficas controladas. Debe conservar legibilidad, alineación percibida y profesionalidad; se reduce en móvil cuando cause ruido o riesgo de overflow.
 

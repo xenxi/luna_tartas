@@ -10,6 +10,7 @@ const component = readFileSync(
   'src/components/home/CustomIdeaCta.astro',
   'utf8',
 );
+const styles = readFileSync('src/components/home/custom-idea.css', 'utf8');
 const page = readFileSync('src/pages/index.astro', 'utf8');
 
 describe('home custom idea CTA', () => {
@@ -39,7 +40,12 @@ describe('home custom idea CTA', () => {
       /^https:\/\/wa\.me\/34697637180\?text=/,
     );
     expect(component).toContain('<ActionLink');
+    expect(component).toContain('<Ornament variant="thread"');
+    expect(component).toContain('motion="draw"');
+    expect(component).toContain('<Ornament variant="dots"');
     expect(component).not.toContain('<form');
+    expect(styles).toContain('var(--color-surface-warm)');
+    expect(styles).toContain('var(--container-visual)');
     expect(page).toContain('<CustomIdeaCta />');
   });
 });

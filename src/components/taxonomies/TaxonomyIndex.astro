@@ -13,20 +13,11 @@ interface Props {
   intro: string;
   sectionTitle: string;
   sectionIntro: string;
-  emptyMessage: string;
   itemLabel: string;
 }
 
-const {
-  catalog,
-  kind,
-  title,
-  intro,
-  sectionTitle,
-  sectionIntro,
-  emptyMessage,
-  itemLabel,
-} = Astro.props;
+const { catalog, kind, title, intro, sectionTitle, sectionIntro, itemLabel } =
+  Astro.props;
 const listing = projectTaxonomyIndex(catalog, kind, itemLabel);
 ---
 
@@ -35,15 +26,21 @@ const listing = projectTaxonomyIndex(catalog, kind, itemLabel);
     <h1>{title}</h1>
     <p>{intro}</p>
   </header>
-  <ContentSection id={`${kind}-list`} title={sectionTitle} intro={sectionIntro}>
-    <CardList count={listing.items.length} emptyMessage={emptyMessage}>
-      {
-        listing.items.map((taxonomy) => (
-          <li>
-            <TaxonomyCard taxonomy={taxonomy} />
-          </li>
-        ))
-      }
-    </CardList>
-  </ContentSection>
+  {
+    listing.items.length > 0 && (
+      <ContentSection
+        id={`${kind}-list`}
+        title={sectionTitle}
+        intro={sectionIntro}
+      >
+        <CardList count={listing.items.length}>
+          {listing.items.map((taxonomy) => (
+            <li>
+              <TaxonomyCard taxonomy={taxonomy} />
+            </li>
+          ))}
+        </CardList>
+      </ContentSection>
+    )
+  }
 </div>

@@ -6,7 +6,7 @@
 
 .taxonomy-discovery .content-section {
   position: relative;
-  inline-size: min(calc(100% - (2 * var(--gutter))), var(--container-max));
+  inline-size: min(calc(100% - (2 * var(--gutter))), var(--container-content));
   margin-inline: auto;
   padding-block: var(--space-10);
 }
@@ -35,7 +35,7 @@
   inline-size: min(calc(100% - (2 * var(--gutter))), 78rem);
   padding-inline: clamp(var(--space-5), 4vw, var(--space-12));
   border-radius: var(--radius-xl);
-  background: var(--color-surface-rose);
+  background: var(--color-surface-warm);
 }
 
 .taxonomy-discovery #discover-recipients {
@@ -66,14 +66,12 @@
   }
 
   .taxonomy-discovery .content-section__header,
-  .taxonomy-discovery .card-list,
-  .taxonomy-discovery .content-empty-state {
+  .taxonomy-discovery .card-list {
     grid-column: 2;
   }
 
   .taxonomy-discovery #discover-occasions .content-section__header,
-  .taxonomy-discovery #discover-occasions .card-list,
-  .taxonomy-discovery #discover-occasions .content-empty-state {
+  .taxonomy-discovery #discover-occasions .card-list {
     grid-column: auto;
   }
 

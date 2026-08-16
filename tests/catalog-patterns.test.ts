@@ -51,6 +51,22 @@ const featuredProductsProjection = readFileSync(
   'src/components/home/featured-products.ts',
   'utf8',
 );
+const publicDiscoverySources = [
+  taxonomyDiscovery,
+  taxonomyDiscoveryProjection,
+  featuredProducts,
+  featuredProductsProjection,
+  readFileSync('src/components/products/ProductListing.astro', 'utf8'),
+  readFileSync('src/components/products/product-listing.ts', 'utf8'),
+  readFileSync('src/components/taxonomies/TaxonomyIndex.astro', 'utf8'),
+  readFileSync('src/components/taxonomies/TaxonomyLanding.astro', 'utf8'),
+  readFileSync('src/pages/categorias/index.astro', 'utf8'),
+  readFileSync('src/pages/categorias/[slug].astro', 'utf8'),
+  readFileSync('src/pages/ocasiones/index.astro', 'utf8'),
+  readFileSync('src/pages/ocasiones/[slug].astro', 'utf8'),
+  readFileSync('src/pages/regalos/index.astro', 'utf8'),
+  readFileSync('src/pages/regalos/[slug].astro', 'utf8'),
+].join('\n');
 
 describe('catalog and contextual navigation patterns', () => {
   it('accepts explicit typed presentation projections', () => {
@@ -139,5 +155,12 @@ describe('catalog and contextual navigation patterns', () => {
     expect(featuredProductsProjection).toContain('routes.product');
     expect(featuredProductsProjection).toContain('formatPriceLabel');
     expect(featuredProductsProjection).not.toContain('client:');
+  });
+
+  it('does not publish discovery placeholders or empty modules', () => {
+    expect(publicDiscoverySources).not.toMatch(/Pronto podrás/i);
+    expect(taxonomyDiscovery).toContain('sections.length > 0');
+    expect(featuredProducts).toContain('featured.items.length > 0');
+    expect(publicDiscoverySources).not.toContain('data-content-state="empty"');
   });
 });

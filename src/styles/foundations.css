@@ -83,7 +83,7 @@ textarea {
 }
 
 :where(h1, h2) {
-  letter-spacing: -0.025em;
+  letter-spacing: var(--letter-spacing-heading);
 }
 
 :where(h1) {
@@ -106,9 +106,14 @@ textarea {
   -webkit-tap-highlight-color: transparent;
 }
 
-.container {
-  width: min(100% - (2 * var(--gutter)), var(--container-max));
+.container,
+.visual-container {
+  width: min(100% - (2 * var(--gutter)), var(--container-content));
   margin-inline: auto;
+}
+
+.visual-container {
+  width: min(100% - (2 * var(--gutter)), var(--container-visual));
 }
 
 .eyebrow {
@@ -120,7 +125,11 @@ textarea {
 }
 
 .prose {
-  max-width: var(--container-copy);
+  max-width: var(--measure-reading);
+}
+
+.prose--compact {
+  max-width: var(--measure-compact);
 }
 
 @media (min-width: 48rem) {

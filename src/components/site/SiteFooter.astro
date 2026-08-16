@@ -1,4 +1,5 @@
 ---
+import { publicContactConfig } from '../../config/contact';
 import BrandHomeLink from './BrandHomeLink.astro';
 import PrimaryNavigation from './PrimaryNavigation.astro';
 
@@ -11,15 +12,49 @@ const buildYear = new Date().getUTCFullYear();
 ---
 
 <footer class="site-footer">
-  <div class="site-footer__inner container">
+  <div class="site-footer__inner visual-container">
     <div class="site-footer__main">
-      <BrandHomeLink currentPath={currentPath} />
-      <PrimaryNavigation currentPath={currentPath} location="footer" />
+      <div class="site-footer__identity">
+        <BrandHomeLink currentPath={currentPath} />
+      </div>
+
+      <div class="site-footer__navigation">
+        <p class="site-footer__label">Explorar</p>
+        <PrimaryNavigation currentPath={currentPath} location="footer" />
+      </div>
+
+      <address class="site-footer__contact">
+        <p class="site-footer__label">Contacto</p>
+        <ul>
+          <li>
+            <a href={publicContactConfig.whatsapp.href}>
+              <span>WhatsApp</span>
+              <span>{publicContactConfig.whatsapp.label}</span>
+            </a>
+          </li>
+          <li>
+            <a href={publicContactConfig.email.href}>
+              <span>Email</span>
+              <span>{publicContactConfig.email.label}</span>
+            </a>
+          </li>
+          <li>
+            <a href={publicContactConfig.instagram.href}>
+              <span>Instagram</span>
+              <span>{publicContactConfig.instagram.label}</span>
+            </a>
+          </li>
+        </ul>
+      </address>
     </div>
-    <p class="site-footer__signature">
-      Hecho con mimo para Luna · Creado por <a href="https://antoniomdm.dev/"
-        >Antonio MDM</a
-      > · © {buildYear}
-    </p>
+
+    <div class="site-footer__closing">
+      <p class="site-footer__copyright">© {buildYear}</p>
+      <p class="site-footer__signature">
+        Hecho con mimo para Luna · Creado por <a href="https://antoniomdm.dev/"
+          >Antonio MDM</a
+        >
+      </p>
+    </div>
   </div>
 </footer>

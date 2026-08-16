@@ -44,6 +44,7 @@ describe('public site shell', () => {
     expect(layout).toContain('<main id="main-content" tabindex="-1">');
     expect(layout).toContain('<SiteFooter currentPath={Astro.url.pathname} />');
     expect(header).toContain('<header');
+    expect(header).toContain('class="site-header__inner visual-container"');
     expect(footer).toContain('<footer');
     expect(brand).toContain("isCurrent ? 'page' : undefined");
   });
@@ -58,15 +59,23 @@ describe('public site shell', () => {
     expect(header).toContain('class="site-navigation--desktop"');
     expect(styles).toContain('.site-navigation--desktop');
     expect(styles).toContain('.site-menu {');
+    expect(styles).toContain('min-block-size: 5.5rem');
   });
 
-  it('never exposes pending brand or unconfirmed contact and legal data', () => {
+  it('keeps pending brand and unconfirmed legal data out of the shell', () => {
     expect(brand).toContain("brandName ?? 'Inicio'");
     expect(brand).toContain('brandName ?');
     expect(`${layout}${header}${footer}${brand}`).not.toContain('TBD');
-    expect(`${layout}${header}${footer}`).not.toMatch(
-      /whatsapp|tel:|mailto:|copyright|dirección/i,
-    );
+    expect(`${layout}${header}`).not.toMatch(/tel:|mailto:|dirección/i);
+  });
+
+  it('publishes the three approved Footer contacts as native links', () => {
+    expect(footer).toContain('import { publicContactConfig }');
+    expect(footer).toContain('publicContactConfig.whatsapp.href');
+    expect(footer).toContain('publicContactConfig.email.href');
+    expect(footer).toContain('publicContactConfig.instagram.href');
+    expect(footer).toContain('<address class="site-footer__contact">');
+    expect(footer).not.toContain('target="_blank"');
   });
 
   it('renders the approved creator signature once at build time without hydration', () => {
@@ -75,6 +84,8 @@ describe('public site shell', () => {
     expect(footer).toContain('href="https://antoniomdm.dev/"');
     expect(footer).toContain('Antonio MDM');
     expect(footer).toContain('© {buildYear}');
+    expect(footer).toContain('class="site-footer__copyright"');
+    expect(footer).toContain('class="site-footer__signature"');
     expect(footer).not.toContain('target="_blank"');
     expect(footer).not.toContain('<script');
     expect(footer).not.toContain('client:');

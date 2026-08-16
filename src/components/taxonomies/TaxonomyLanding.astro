@@ -19,7 +19,6 @@ interface Props {
   indexHref: string;
   productsTitle: string;
   productsIntro: string;
-  emptyMessage: string;
 }
 
 const {
@@ -30,7 +29,6 @@ const {
   indexHref,
   productsTitle,
   productsIntro,
-  emptyMessage,
 } = Astro.props;
 const landing = projectTaxonomyLanding(catalog, kind, taxonomy);
 ---
@@ -47,19 +45,21 @@ const landing = projectTaxonomyLanding(catalog, kind, taxonomy);
     <h1>{taxonomy.name}</h1>
     <p>{taxonomy.description ?? taxonomy.summary}</p>
   </header>
-  <ContentSection
-    id={`${kind}-products`}
-    title={productsTitle}
-    intro={productsIntro}
-  >
-    <CardList count={landing.products.length} emptyMessage={emptyMessage}>
-      {
-        landing.products.map((product) => (
-          <li>
-            <ProductCard product={product} />
-          </li>
-        ))
-      }
-    </CardList>
-  </ContentSection>
+  {
+    landing.products.length > 0 && (
+      <ContentSection
+        id={`${kind}-products`}
+        title={productsTitle}
+        intro={productsIntro}
+      >
+        <CardList count={landing.products.length}>
+          {landing.products.map((product) => (
+            <li>
+              <ProductCard product={product} />
+            </li>
+          ))}
+        </CardList>
+      </ContentSection>
+    )
+  }
 </div>
