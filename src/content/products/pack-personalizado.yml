@@ -1,0 +1,23 @@
+id: pack-personalizado
+slug: pack-personalizado
+status: draft
+name: Pack personalizado
+summary: "Tres pequeños detalles, pensados como uno solo: lámina, marcapáginas y libreta A6."
+description: Un pack personalizado que combina lámina, marcapáginas y libreta A6 para crear un regalo sencillo, bonito y hecho especialmente para esa persona.
+categories:
+  - packs-personalizados
+  - papeleria-personalizada
+recipients:
+  - alguien-especial
+price:
+  kind: fixed
+  amountMinor: 500
+  currency: EUR
+customization:
+  kind: available
+  options:
+    - Nombre
+    - Diseño coordinado
+  description: Las tres piezas comparten una misma línea visual y se personalizan para el destinatario.
+featured: true
+order: 60

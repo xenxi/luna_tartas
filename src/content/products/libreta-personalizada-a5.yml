@@ -1,0 +1,23 @@
+id: libreta-personalizada-a5
+slug: libreta-personalizada-a5
+status: draft
+name: Libreta personalizada A5
+summary: Libreta A5 personalizada con nombre e inicial para convertir un pequeño detalle en algo sólo suyo.
+description: Libreta personalizada en tamaño A5 con 20 hojas, 40 páginas y un diseño creado alrededor del nombre o la inicial elegidos.
+categories:
+  - papeleria-personalizada
+recipients:
+  - alguien-especial
+price:
+  kind: fixed
+  amountMinor: 200
+  currency: EUR
+customization:
+  kind: available
+  options:
+    - Nombre
+    - Inicial
+    - Diseño personalizado
+  description: El diseño se adapta al nombre y a la estética elegida para el encargo.
+featured: true
+order: 20
