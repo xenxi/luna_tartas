@@ -1,0 +1,48 @@
+---
+import type { GetStaticPaths } from 'astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import TaxonomyLanding from '../../components/taxonomies/TaxonomyLanding.astro';
+import { loadCatalog } from '../../lib/catalog/source';
+import {
+  findPublishedTaxonomyBySlug,
+  getProductsForTaxonomy,
+  getPublishedTaxonomies,
+} from '../../lib/catalog/domain/queries';
+import { routes } from '../../lib/catalog/domain/routes';
+
+export const getStaticPaths = (async () => {
+  const catalog = await loadCatalog();
+
+  return getPublishedTaxonomies(catalog, 'recipient')
+    .filter(
+      (recipient) =>
+        getProductsForTaxonomy(catalog, 'recipient', recipient.id).length > 0,
+    )
+    .map((recipient) => ({
+      params: { slug: recipient.slug },
+      props: { catalog, recipient },
+    }));
+}) satisfies GetStaticPaths;
+
+const { catalog, recipient } = Astro.props;
+const resolvedRecipient =
+  recipient ??
+  findPublishedTaxonomyBySlug(catalog, 'recipient', Astro.params.slug ?? '');
+
+if (resolvedRecipient === undefined) {
+  throw new Error('Gift landing was generated without a published recipient');
+}
+---
+
+<BaseLayout title={`Regalos para ${resolvedRecipient.name}`}>
+  <TaxonomyLanding
+    catalog={catalog}
+    kind="recipient"
+    taxonomy={resolvedRecipient}
+    indexLabel="Regalos"
+    indexHref={routes.taxonomyIndex('recipient')}
+    productsTitle={`Ideas para ${resolvedRecipient.name.toLocaleLowerCase('es')}`}
+    productsIntro="Explora regalos pensados para hacer sentir especial a esa persona."
+    emptyMessage="Pronto podrás descubrir ideas de regalo para esta persona."
+  />
+</BaseLayout>

@@ -32,6 +32,7 @@ const product = (
   categories: readonly string[],
   occasions: readonly string[],
   order: number,
+  recipients: readonly string[] = [],
 ): PublishedProduct => ({
   id,
   slug: id,
@@ -41,6 +42,7 @@ const product = (
   description: `${id} description`,
   categories,
   occasions,
+  recipients,
   price: { kind: 'on_request' },
   media: {
     cover: {
@@ -70,10 +72,14 @@ const catalog: Catalog = {
     taxonomy('empty', 'occasion', 2),
     taxonomy('draft', 'occasion', 0, 'draft'),
   ],
-  recipients: [],
+  recipients: [
+    taxonomy('family', 'recipient', 1),
+    taxonomy('empty-recipient', 'recipient', 2),
+    taxonomy('draft-recipient', 'recipient', 0, 'draft'),
+  ],
   products: [
-    product('second', ['cakes'], ['birthday'], 2),
-    product('first', ['cakes'], ['birthday'], 1),
+    product('second', ['cakes'], ['birthday'], 2, ['family']),
+    product('first', ['cakes'], ['birthday'], 1, ['family']),
   ],
 };
 
@@ -107,6 +113,27 @@ describe('shared taxonomy index and landings', () => {
     ]);
   });
 
+  it('maps recipients to useful gift routes without publishing empty entries', () => {
+    expect(
+      getTaxonomiesWithProducts(catalog, 'recipient').map(({ id }) => id),
+    ).toEqual(['family']);
+    expect(projectTaxonomyIndex(catalog, 'recipient', 'ideas').items).toEqual([
+      {
+        href: '/regalos/family/',
+        name: 'family',
+        summary: 'family summary',
+        itemCountLabel: '2 ideas',
+      },
+    ]);
+    expect(
+      projectTaxonomyLanding(
+        catalog,
+        'recipient',
+        taxonomy('family', 'recipient', 1),
+      ).products.map(({ href }) => href),
+    ).toEqual(['/productos/first/', '/productos/second/']);
+  });
+
   it('reuses the same static presentation pattern without hydration', () => {
     const index = readFileSync('src/pages/ocasiones/index.astro', 'utf8');
     const landing = readFileSync('src/pages/ocasiones/[slug].astro', 'utf8');
@@ -115,9 +142,19 @@ describe('shared taxonomy index and landings', () => {
       'utf8',
     );
 
+    const giftIndex = readFileSync('src/pages/regalos/index.astro', 'utf8');
+    const giftLanding = readFileSync('src/pages/regalos/[slug].astro', 'utf8');
+
     expect(index).toContain('<TaxonomyIndex');
     expect(landing).toContain('getStaticPaths');
+    expect(giftIndex).toContain('<TaxonomyIndex');
+    expect(giftLanding).toContain('getStaticPaths');
+    expect(giftLanding).toContain("routes.taxonomyIndex('recipient')");
+    expect(giftIndex).not.toMatch(/destinatari/i);
+    expect(giftLanding).not.toMatch(/destinatari/i);
     expect(component).toContain('<ProductCard');
-    expect(`${index}\n${landing}\n${component}`).not.toContain('client:');
+    expect(
+      `${index}\n${landing}\n${giftIndex}\n${giftLanding}\n${component}`,
+    ).not.toContain('client:');
   });
 });

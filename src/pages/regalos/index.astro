@@ -1,0 +1,20 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import TaxonomyIndex from '../../components/taxonomies/TaxonomyIndex.astro';
+import { loadCatalog } from '../../lib/catalog/source';
+
+const catalog = await loadCatalog();
+---
+
+<BaseLayout title="Regalos para cada persona">
+  <TaxonomyIndex
+    catalog={catalog}
+    kind="recipient"
+    title="Regalos para cada persona"
+    intro="Encuentra un detalle pensado para la persona especial que quieres sorprender."
+    sectionTitle="Piensa en quién lo recibe"
+    sectionIntro="Explora ideas de regalo según la persona con la que quieres compartir el momento."
+    emptyMessage="Pronto podrás explorar ideas de regalo para cada persona."
+    itemLabel="ideas"
+  />
+</BaseLayout>

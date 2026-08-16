@@ -9,7 +9,7 @@
 - Se ejecuta exclusivamente la tarea solicitada; no se anticipa la siguiente.
 - `DONE` exige todos los criterios y verificaciones en `PASS`, con evidencia registrada aquí.
 - Orden normal: de arriba abajo. Una tarea posterior sólo puede comenzar si todas sus dependencias están `DONE`.
-- **Siguiente tarea:** `M4.8 — Índice y landings de categorías`.
+- **Siguiente tarea:** `M4.11 — Integración y QA de descubrimiento`.
 
 ## Gates de programa
 
@@ -483,7 +483,7 @@
 
 ## M4.10 — Índice y landings de destinatarios
 
-**Estado:** PENDING  
+**Estado:** DONE
 **Objetivo:** publicar la intención `/regalos/` por persona destinataria.  
 **Alcance:** `/regalos/` y `/regalos/[slug]/`, copy de intención, productos y estado vacío/ausente reutilizando el patrón.  
 **Fuera de alcance:** categorías, ocasiones, combinación de facetas o metadata avanzada de M6.  
@@ -494,7 +494,7 @@
 **Verificación:** test de rutas/conteos, build y link check de regalos.  
 **Modelo recomendado:** LUNA → SOL REVIEW.  
 **Razón del modelo:** implementación mecánica con review SEO del mapping Recipient→regalos.  
-**Evidencia:** —
+**Evidencia:** PASS (2026-08-16) — `src/pages/regalos/index.astro` publica `/regalos/` con un único H1, copy centrado en la persona y estado vacío honesto, sin exponer la jerga interna `Recipient/destinatario`. `src/pages/regalos/[slug].astro` reutiliza el patrón compartido y genera sólo landings para destinatarios publicados con al menos un producto publicado; incluye breadcrumb, contenido editorial, productos en orden de dominio y enlaces construidos con `routes`. La proyección sintética excluye drafts y destinatarios vacíos y confirma `/regalos/family/` con sus dos productos ordenados. `npm run format`, `npm run lint`, `npm run typecheck` (0 errores/warnings/hints), `npm test` (22 archivos, 142 tests), `npm run build` (5 páginas estáticas; 0 landings de regalo porque el catálogo productivo está vacío) y `git diff --check`: PASS. Inspección de `dist/regalos/index.html`: canonical `/regalos/`, un H1, cero scripts, 6 enlaces internos y 0 rotos. Los únicos avisos son los informativos esperados por las cuatro colecciones productivas vacías.
 
 ## M4.11 — Integración y QA de descubrimiento
 
@@ -1147,3 +1147,4 @@ No avanzar a la siguiente milestone.
 - 2026-08-16 — M4.5 completada tras el handoff aprobado: bloque de proceso literal, galería estática de cuatro trabajos reales, derechos/alt/readiness trazables, variantes responsive bajo budget, 132 tests y QA 320/768/1440 en PASS. Siguiente tarea: M4.6 (modelo LUNA).
 - 2026-08-16 — M4.6 completada: CTA emocional “Cuéntanos tu idea”, builder puro WhatsApp con mensaje Unicode codificado una vez, enlace nativo sin JS, 136 tests y checks contractuales/build en PASS. Siguiente tarea: M4.7 (modelo LUNA).
 - 2026-08-16 — M4.7 completada: índice estático `/productos/`, H1/introducción, listado de publicados ordenado por dominio, estado vacío honesto, 138 tests y link check/build en PASS. Siguiente tarea: M4.8 (modelo LUNA).
+- 2026-08-16 — M4.10 completada: índice `/regalos/` y landings por persona reutilizan el patrón compartido, excluyen drafts/vacíos, mantienen rutas y orden deterministas, evitan jerga interna visible y pasan 142 tests, build y link check. Siguiente tarea: M4.11 (modelo LUNA → SOL REVIEW).
