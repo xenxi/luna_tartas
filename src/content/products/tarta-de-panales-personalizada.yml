@@ -58,6 +58,6 @@ featured: true
 order: 10
 approval:
   source: Handoff editorial del propietario del proyecto
-  sourceDate: "2026-08-16"
+  sourceDate: '2026-08-16'
   approvedBy: Propietario del proyecto
-  approvedAt: "2026-08-16"
+  approvedAt: '2026-08-16'
