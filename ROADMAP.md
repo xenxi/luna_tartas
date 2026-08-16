@@ -408,7 +408,7 @@
 
 ## M4.5 — Confianza y muestra de trabajos
 
-**Estado:** PENDING  
+**Estado:** BLOCKED
 **Objetivo:** reducir incertidumbre mediante señales y fotografías reales verificables.  
 **Alcance:** bloque de proceso/confianza y galería editorial de trabajos aprobados; atribución si aplica.  
 **Fuera de alcance:** inventar reseñas/cifras, consumir feeds sociales o carrusel complejo.  
@@ -419,7 +419,7 @@
 **Verificación:** revisión de contenido, derechos/alt, build y visual.  
 **Modelo recomendado:** LUNA.  
 **Razón del modelo:** implementación local condicionada a contenido validado.  
-**Evidencia:** —
+**Evidencia:** BLOCKED (2026-08-16) — la dependencia de contenido aprobado no está satisfecha: `docs/product/content-readiness.md` mantiene `Fotos` (L33), `Derechos` (L34), `Accesibilidad` (L35) y `Prueba social` (L40) en `TBD`, con el propietario del negocio como owner y entrega requerida antes de M4.5/publicación. No se implementan claims, reseñas, cifras, fotografías ni una galería sintética. Pendiente: entregar selección de trabajos, originales, alt, derechos/atribución y fuentes/permisos de cualquier prueba social; después reanudar M4.5.
 
 ## M4.6 — CTA “Cuéntanos tu idea” en Home
 
@@ -1142,3 +1142,4 @@ No avanzar a la siguiente milestone.
 - 2026-08-16 — M4.2 completada: hero aprobado con ambos CTA, enlace directo WhatsApp codificado, fotografía responsive optimizada, 124 tests, artifact sin JS/TBD, QA 320/768/1440 y LCP local 32/40 ms en PASS. Siguiente tarea: M4.3 (modelo LUNA).
 - 2026-08-16 — M4.3 completada: navegación home por categorías, ocasiones y destinatarios proyectada desde taxonomías publicables, con orden determinista, estados vacíos, rutas SEO y 126 tests/checks en PASS. Siguiente tarea: M4.4 (modelo LUNA).
 - 2026-08-16 — M4.4 completada: bloque de ideas destacadas con ProductCard, orden/featured del dominio, precios fixed/from/on_request sin tergiversación, estado vacío y 128 tests/checks en PASS. Siguiente tarea: M4.5 (modelo LUNA).
+- 2026-08-16 — M4.5 bloqueada: fotos, derechos, alt y prueba social permanecen `TBD` en el contrato de readiness; no se inventan claims ni assets. Pendiente entrega del propietario del negocio antes de reanudar M4.5.
