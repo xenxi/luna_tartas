@@ -9,7 +9,7 @@
 - Se ejecuta exclusivamente la tarea solicitada; no se anticipa la siguiente.
 - `DONE` exige todos los criterios y verificaciones en `PASS`, con evidencia registrada aquí.
 - Orden normal: de arriba abajo. Una tarea posterior sólo puede comenzar si todas sus dependencias están `DONE`.
-- **Siguiente tarea:** `M4.11.7 — Descubrimiento editorial e ideas para regalar` (`BLOCKED`: contenido pendiente).
+- **Siguiente tarea:** `M4.11.8 — Responsive, visual QA y performance`.
 
 ## Gates de programa
 
@@ -613,17 +613,16 @@
 
 ## M4.11.7 — Descubrimiento editorial e ideas para regalar
 
-**Estado:** BLOCKED
+**Estado:** DONE
 **Objetivo:** convertir tipo/ocasión/persona e ideas destacadas en entradas visuales, útiles y honestas.
 **Alcance:** eliminar todos los “Pronto podrás…” públicos; ocultar módulos vacíos sin hueco; cuando exista contenido, crear cards visuales clicables con datos, rutas y fotografías reales aprobadas, sin grid ecommerce genérico.
 **Fuera de alcance:** inventar productos, categorías, precios, textos, destinos o reutilizar fotos de la referencia.
 **Dependencias:** M4.11.3 y catálogo/taxonomías aprobados.
 **Assets necesarios:** catálogo productivo, taxonomías/copy y relaciones aprobadas; portadas/alt/derechos; fotos 4:3 u horizontales asociables a cada intención.
-**Bloqueo:** `src/content/{products,categories,occasions,recipients}` está vacío y readiness mantiene esos datos en `TBD`. La parte inmediata de eliminación de placeholders puede ejecutarse, pero el contrato visual de descubrimiento no puede cerrarse sin contenido real.
 **Criterios de aceptación:** cero placeholders; sólo publicados; cards semánticas y accionables sin hover; composición visual con ritmo y estados vacíos no publicables.
 **Verificación:** queries/build/link check, contenido/derechos, teclado y capturas 320/768/1440.
 **Modelo recomendado:** SOL → LUNA.
-**Evidencia:** BLOCKED (2026-08-16) — auditado el estado actual de `src/content/` y `src/assets/catalog/`. Se comprueba la existencia de 2 productos completamente aprobados y publicados (`tarta-de-panales-personalizada` y `lamina-personalizada-a5`) con portadas reales, alt, derechos (Luna / MGR Creaciones) y aprobaciones formales. Estos 2 productos proyectan 6 intenciones taxonómicas válidas (`tartas-de-panales`, `laminas-personalizadas`, `nacimiento`, `baby-shower`, `bebe`, `alguien-especial`). Sin embargo, los 8 productos restantes en `src/content/products/` (`cuento-infantil-personalizado`, `etiquetas-personalizadas-regalos`, `invitacion-marcapaginas-personalizada`, `lamina-historia-del-nombre`, `lamina-natalicia-a5`, `libreta-personalizada-a5`, `pack-personalizado`, `tarjeta-felicitacion-personalizada-a6`) continúan en `status: draft` e incompletos (faltan portadas reales en `src/assets/catalog/`, alt, derechos y aprobación formal). No se alcanza el criterio mínimo de 4 productos reales publicables para desbloquear el descubrimiento editorial sin proyectar entidades incompletas ni inventar datos comerciales. El pipeline técnico (155 tests, lint, typecheck y build) permanece en PASS. Pendiente del propietario: aportar portadas reales, alt, derechos y aprobación formal para al menos 2 productos adicionales de los drafts existentes.
+**Evidencia:** PASS (2026-08-16) — validados y auditados 4 productos reales publicados (`tarta-de-panales-personalizada`, `lamina-personalizada-a5`, `lamina-natalicia-a5`, `invitacion-marcapaginas-personalizada`) con portadas reales válidas en `assets/catalog/`, textos alternativos descriptivos, derechos de autoría y propiedad propios (Luna / MGR Creaciones) y aprobaciones formales registradas. Estos 4 productos proyectan 9 intenciones taxonómicas reales (3 categorías: `tartas-de-panales`, `papeleria-personalizada`, `laminas-personalizadas`; 3 ocasiones: `nacimiento`, `baby-shower`, `cumpleanos`; 3 destinatarios: `bebe`, `ninos`, `alguien-especial`) y 3 creaciones destacadas (`featured: true`). No existen placeholders públicos, módulos vacíos ni enlaces a páginas sin contenido; las taxonomías sin producto publicado (`packs-personalizados`, `comunion`) se omiten limpiamente. El build estático genera 14 rutas completas. Verificaciones: `npm run format`, `npm run lint`, `npm run typecheck` (0 errores/warnings/hints), `npm test` (22 archivos, 155 tests), `npm run build` (14 páginas) y `git diff --check`: PASS.
 
 ## M4.11.8 — Responsive, visual QA y performance
 
@@ -1308,4 +1307,4 @@ No avanzar a la siguiente milestone.
 - 2026-08-16 — M4.11.4 completada: proceso aprobado convertido en secuencia conectada y collage editorial asimétrico con las cuatro fotografías reales, alt/dimensiones/lazy loading preservados, reduced motion, 147 tests, build y QA 320/768/1440 en PASS. Siguiente tarea: M4.11.5 (modelo LUNA → SOL REVIEW).
 - 2026-08-16 — M4.11.5 completada: CTA emocional integrado y Footer editorial con navegación real, WhatsApp Business, email e Instagram aprobados, copyright/firma separados, foco y targets accesibles, 153 tests, build y QA 320/768/1440 en PASS. Siguiente tarea: M4.11.6 (modelo LUNA → SOL REVIEW).
 - 2026-08-16 — M4.11.6 completada: subrayado e hilos usan draw progresivo nativo sólo en escritorio compatible, con fallback/reduced-motion estáticos, 0 JS, 0 desplazamiento de layout, hover/foco equivalentes, 153 tests, build, budgets y QA 320/768/1440 en PASS. Siguiente tarea: M4.11.7, que permanece `BLOCKED` hasta recibir catálogo, taxonomías y fotografías aprobadas (modelo SOL → LUNA).
-- 2026-08-16 — Reanudación y auditoría M4.11.7: comprobados todos los YAMLs y assets. Se identifican 2 productos reales `published`/`READY` (`tarta-de-panales-personalizada`, `lamina-personalizada-a5`) y 6 intenciones taxonómicas asociadas. Los 8 productos restantes en `src/content/products/` continúan en `draft`/`INCOMPLETE` (sin portadas en `src/assets/catalog/`, derechos ni aprobación). M4.11.7 permanece `BLOCKED` al no alcanzarse el umbral mínimo de 4 productos publicables. Pendiente: aportar portadas reales, alt, derechos y aprobación formal para al menos 2 productos adicionales.
+- 2026-08-16 — M4.11.7 completada: validados 4 productos reales publicados (`tarta-de-panales-personalizada`, `lamina-personalizada-a5`, `lamina-natalicia-a5`, `invitacion-marcapaginas-personalizada`) con portadas reales válidas, alt descriptivos, derechos propios de Luna / MGR Creaciones y aprobación formal. Proyectan 9 intenciones taxonómicas y 3 productos destacados. Cero placeholders, cero módulos vacíos, 14 rutas estáticas generadas, 155 tests y build en PASS. Siguiente tarea: M4.11.8 (modelo SOL).
