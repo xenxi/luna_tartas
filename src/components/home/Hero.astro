@@ -1,0 +1,40 @@
+---
+import { Picture } from 'astro:assets';
+import heroImage from '../../assets/home/tarta-hero.png';
+import { heroContent } from '../../content/home/hero';
+import ActionLink from '../ui/ActionLink.astro';
+import './hero.css';
+---
+
+<section class="hero" aria-labelledby="hero-heading">
+  <div class="hero__frame container">
+    <div class="hero__content">
+      <h1 id="hero-heading">{heroContent.heading}</h1>
+      <p>{heroContent.copy.join(' ')}</p>
+      <div class="hero__actions">
+        <ActionLink href={heroContent.primaryAction.href}>
+          {heroContent.primaryAction.label}
+        </ActionLink>
+        <ActionLink href={heroContent.secondaryAction.href} variant="secondary">
+          {heroContent.secondaryAction.label}
+        </ActionLink>
+      </div>
+    </div>
+
+    <div class="hero__media">
+      <Picture
+        src={heroImage}
+        alt={heroContent.image.alt}
+        formats={['avif', 'webp']}
+        fallbackFormat="jpg"
+        widths={[480, 768, 1200, 1672]}
+        sizes="(min-width: 72rem) 72rem, calc(100vw - (2 * var(--gutter)))"
+        loading="eager"
+        decoding="async"
+        fetchpriority="high"
+        class="hero__image"
+        pictureAttributes={{ class: 'hero__picture' }}
+      />
+    </div>
+  </div>
+</section>

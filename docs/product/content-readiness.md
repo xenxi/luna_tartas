@@ -33,6 +33,7 @@ Cada fila debe tener exactamente un estado, un propietario, una fecha o `TBD`, y
 | Fotos | Portada y galería con dimensiones y contexto | `TBD` | Propietario del negocio | antes de M9.1 | Entregar selección y originales; optimización técnica posterior |
 | Derechos | Autor, licencia/permiso, alcance y fecha por foto, logo, fuente y texto | `TBD` | Propietario del negocio | antes de publicar cualquier asset | Aportar confirmación trazable; sin evidencia el asset no se publica |
 | Accesibilidad | Alt text significativo por imagen y caption/atribución si aplica | `TBD` | Propietario del negocio | junto con cada asset | Entregar alt aprobado; técnico valida presencia y relación |
+| Home hero | H1, copy, ambos CTA, fotografía, alt, derechos y aprobación | `READY` | Responsable del proyecto | M4.2 | Handoff aprobado 2026-08-16; original `tarta_hero.png`, autora/propietaria Luna; enlace directo WhatsApp y mensaje aprobados |
 | Precios | Caso `fixed`, `from` u `on_request`, importe entero menor cuando aplique y moneda | `TBD` | Propietario del negocio | antes de M9.1 | Confirmar precio y moneda; no crear Offers ficticios |
 | WhatsApp | Número público, saludo, plantilla, horario/reglas de atención y copy | `TBD` | Propietario del negocio | antes de M4.6/M5.1 | Entregar datos aprobados; el número puede versionarse, nunca credenciales |
 | Identidad legal | Nombre legal/comercial, contacto, zona, plazos y políticas que se quieran afirmar | `TBD` | Propietario del negocio | antes de M9.1 | Entregar fuentes verificables y aprobación de publicación |
@@ -97,3 +98,5 @@ La revisión de esta checklist se repite al iniciar M3.1, M4.5, M7.1, M9.1 y M9.
 ## Historial de revisiones
 
 - 2026-08-16 — Inicio de M3.1: las tres entradas de marca vencieron su gate sin material ni evidencia nueva. Cambian de `TBD` a `BLOCKED`, conservan como owner al propietario del negocio y dejan acciones concretas. La dirección provisional documentada en [`../design/visual-direction.md`](../design/visual-direction.md) permite continuar M3.2 sin publicar una identidad inventada; los demás estados no cambian.
+- 2026-08-16 — Handoff M4.2: H1, copy, CTA principal, fotografía hero, alt, autoría/derechos y aprobación pasan a `READY`. El CTA “Cuéntanos tu idea” queda aprobado como texto, pero su destino WhatsApp no es publicable hasta recibir número y plantilla; la fila global de WhatsApp permanece `TBD`.
+- 2026-08-16 — Reanudación M4.2: número WhatsApp Business normalizado y mensaje precargado recibidos y aprobados para publicación. El enlace directo del hero pasa a `READY`; email e Instagram aportados se reservan para milestones posteriores. La fila global de WhatsApp permanece `TBD` para el alcance adicional de M4.6/M5.1 que aún requiere sus propias reglas.

@@ -1,13 +1,11 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/home/Hero.astro';
 import { loadCatalog } from '../lib/catalog/source';
 
 await loadCatalog();
 ---
 
-<BaseLayout title="Sitio en preparación">
-  <div class="container section prose">
-    <h1>Sitio en preparación</h1>
-    <p>Scaffold técnico V1.</p>
-  </div>
+<BaseLayout title="Hecho para alguien. No para cualquiera.">
+  <Hero />
 </BaseLayout>

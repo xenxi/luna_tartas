@@ -9,7 +9,7 @@
 - Se ejecuta exclusivamente la tarea solicitada; no se anticipa la siguiente.
 - `DONE` exige todos los criterios y verificaciones en `PASS`, con evidencia registrada aquí.
 - Orden normal: de arriba abajo. Una tarea posterior sólo puede comenzar si todas sus dependencias están `DONE`.
-- **Siguiente tarea:** `M4.2 — Hero emocional`.
+- **Siguiente tarea:** `M4.3 — Navegación de categorías, ocasiones y destinatarios`.
 
 ## Gates de programa
 
@@ -363,7 +363,7 @@
 
 ## M4.2 — Hero emocional
 
-**Estado:** PENDING  
+**Estado:** DONE
 **Objetivo:** comunicar propuesta y primer camino de descubrimiento sin perjudicar LCP.  
 **Alcance:** H1/copy aprobado, CTA principal/secundario, composición visual y media optimizada/responsive.  
 **Fuera de alcance:** sliders, vídeo pesado, analytics o copy no aprobado.  
@@ -374,7 +374,7 @@
 **Verificación:** build, inspección visual, HTML y medición LCP inicial.  
 **Modelo recomendado:** LUNA.  
 **Razón del modelo:** sección visual acotada sobre sistema existente.  
-**Evidencia:** —
+**Evidencia:** PASS (2026-08-16) — Handoff completo registrado en `src/content/home/hero.ts`: H1/copy, ambos CTA, fotografía original 1672 × 941, alt, autoría/derechos y aprobación. `Hero.astro` proyecta un único H1, CTA `/productos/` y enlace directo `wa.me` al número normalizado `34697637180`; `src/config/contact.ts` valida 8–15 dígitos internacionales, mensaje no vacío y genera la URL codificada, cuya decodificación reproduce exactamente el texto aprobado. No se anticipó el builder contextual ni el resto de M4.6. Astro genera cuatro anchos AVIF/WebP/JPEG (AVIF 6–34 KiB, WebP 10–66 KiB, JPEG 15–118 KiB), con dimensiones intrínsecas, `sizes`, eager y `fetchpriority="high"`. QA real con ambos CTA: 320 px apilado, acciones de 46 px y ancho exacto 320; 768 px apilado sin colisión; 1440 px overlay opaco 496 × 599 dentro de media 1150 × 647, producto a la derecha y ancho estable. Medición LCP final en navegador local con caché caliente mediante observador temporal retirado antes del build: imagen hero candidata, 32 ms/45.961 px² a 320 px (AVIF 480) y 40 ms/743.906 px² a 1440 px (AVIF 1200). Artifact final: 1 H1, ambos href, cero scripts, cero `TBD`, prioridad alta. `npm run lint`, `npm run format`, `npm run typecheck` (0 errores/warnings/hints), `npm test` (18 archivos, 124 tests), `npm run build` y `git diff --check`: PASS. Los únicos avisos son las cuatro colecciones productivas deliberadamente vacías.
 
 ## M4.3 — Navegación de categorías, ocasiones y destinatarios
 
@@ -1139,3 +1139,4 @@ No avanzar a la siguiente milestone.
 - 2026-08-16 — M3.4 completada: primitives nativos Button/ActionLink/Icon/Badge, variantes, targets táctiles, estados y modos accesibles de icono implementados sin hidratación; 103 tests, build y checks de formato en PASS. Siguiente tarea: M3.5 (modelo LUNA → SOL REVIEW).
 - 2026-08-16 — M3.5 completada: cards, media responsive dimensionada, breadcrumb y patrones de sección/lista tipados, semánticos, accesibles y sin hidratación; 108 tests, HTML estático y revisión 320/768/1440 en PASS. G3 satisfecho. Siguiente tarea: M4.1 (modelo LUNA → SOL REVIEW).
 - 2026-08-16 — M4.1 completada: shell global responsive con header, navegación y footer centralizados, menú móvil HTML nativo, estado actual y foco accesibles, datos no aprobados excluidos, 113 tests y revisión 320/768/1440 en PASS. Siguiente tarea: M4.2 (modelo SOL).
+- 2026-08-16 — M4.2 completada: hero aprobado con ambos CTA, enlace directo WhatsApp codificado, fotografía responsive optimizada, 124 tests, artifact sin JS/TBD, QA 320/768/1440 y LCP local 32/40 ms en PASS. Siguiente tarea: M4.3 (modelo LUNA).
