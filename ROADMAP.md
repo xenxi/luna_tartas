@@ -453,7 +453,7 @@
 
 ## M4.8 — Índice y landings de categorías
 
-**Estado:** PENDING  
+**Estado:** DONE
 **Objetivo:** publicar navegación útil por tipo de producto.  
 **Alcance:** `/categorias/` y `/categorias/[slug]/`, introducción editorial, productos relacionados y comportamiento de categoría vacía/ausente.  
 **Fuera de alcance:** ocasiones, destinatarios, facetas combinadas o metadata avanzada de M6.  
@@ -464,7 +464,7 @@
 **Verificación:** test de rutas/conteos, build y link check de categorías.  
 **Modelo recomendado:** LUNA.  
 **Razón del modelo:** primera aplicación acotada del patrón de landing.  
-**Evidencia:** —
+**Evidencia:** PASS (2026-08-16) — `src/pages/categorias/index.astro` publica `/categorias/` con H1, introducción editorial y estado vacío honesto. `src/pages/categorias/[slug].astro` genera únicamente landings estáticas para categorías publicadas con al menos un producto publicado; cada landing incluye breadcrumb, copy de `summary/description`, productos relacionados ordenados por dominio y enlaces `routes.product`. El índice usa sólo `getPublishedTaxonomies` + `getProductsForTaxonomy`, excluye drafts y categorías vacías, y no añade JavaScript. Tests de proyección, orden, conteos, rutas, H1 y ausencia de `client:`: PASS (22 archivos, 141 tests). `npm run lint`, `npm run format`, `npm run typecheck` (0 errores/warnings/hints), `npm test`, `npm run build` (3 páginas estáticas: home, productos y categorías; 0 landings porque el catálogo productivo sigue vacío) y `git diff --check`: PASS. Inspección de `dist/categorias/index.html`: canonical `/categorias/`, un H1, estado vacío y cero scripts. Los avisos son los informativos esperados por las colecciones productivas vacías.`
 
 ## M4.9 — Índice y landings de ocasiones
 

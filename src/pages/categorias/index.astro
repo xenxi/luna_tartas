@@ -1,0 +1,11 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import CategoryIndex from '../../components/categories/CategoryIndex.astro';
+import { loadCatalog } from '../../lib/catalog/source';
+
+const catalog = await loadCatalog();
+---
+
+<BaseLayout title="Categorías de regalos">
+  <CategoryIndex catalog={catalog} />
+</BaseLayout>

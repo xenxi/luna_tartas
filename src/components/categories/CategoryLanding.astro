@@ -1,0 +1,49 @@
+---
+import type { Catalog, Taxonomy } from '../../lib/catalog/domain/model';
+import Breadcrumb from '../navigation/Breadcrumb.astro';
+import CardList from '../patterns/CardList.astro';
+import ContentSection from '../patterns/ContentSection.astro';
+import ProductCard from '../catalog/ProductCard.astro';
+import { projectCategoryLanding } from './category-listing';
+import './categories.css';
+
+interface Props {
+  catalog: Catalog;
+  category: Taxonomy;
+}
+
+const { catalog, category } = Astro.props;
+const landing = projectCategoryLanding(catalog, category);
+---
+
+<div class="category-landing">
+  <Breadcrumb
+    items={[
+      { label: 'Inicio', href: '/' },
+      { label: 'Categorías', href: '/categorias/' },
+      { label: category.name, current: true },
+    ]}
+  />
+  <header class="category-landing__header">
+    <h1>{category.name}</h1>
+    <p>{category.description ?? category.summary}</p>
+  </header>
+  <ContentSection
+    id="category-products"
+    title={`Regalos de ${category.name.toLocaleLowerCase('es')}`}
+    intro="Explora las ideas disponibles en esta categoría."
+  >
+    <CardList
+      count={landing.products.length}
+      emptyMessage="Pronto podrás descubrir productos en esta categoría."
+    >
+      {
+        landing.products.map((product) => (
+          <li>
+            <ProductCard product={product} />
+          </li>
+        ))
+      }
+    </CardList>
+  </ContentSection>
+</div>

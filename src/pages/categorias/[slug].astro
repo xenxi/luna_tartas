@@ -1,0 +1,40 @@
+---
+import type { GetStaticPaths } from 'astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import CategoryLanding from '../../components/categories/CategoryLanding.astro';
+import { loadCatalog } from '../../lib/catalog/source';
+import {
+  findPublishedTaxonomyBySlug,
+  getProductsForTaxonomy,
+  getPublishedTaxonomies,
+} from '../../lib/catalog/domain/queries';
+
+export const getStaticPaths = (async () => {
+  const catalog = await loadCatalog();
+
+  return getPublishedTaxonomies(catalog, 'category')
+    .filter(
+      (category) =>
+        getProductsForTaxonomy(catalog, 'category', category.id).length > 0,
+    )
+    .map((category) => ({
+      params: { slug: category.slug },
+      props: { catalog, category },
+    }));
+}) satisfies GetStaticPaths;
+
+const { catalog, category } = Astro.props;
+const resolvedCategory =
+  category ??
+  findPublishedTaxonomyBySlug(catalog, 'category', Astro.params.slug ?? '');
+
+if (resolvedCategory === undefined) {
+  throw new Error(
+    'Category landing was generated without a published category',
+  );
+}
+---
+
+<BaseLayout title={`${resolvedCategory.name} | Categorías de regalos`}>
+  <CategoryLanding catalog={catalog} category={resolvedCategory} />
+</BaseLayout>
