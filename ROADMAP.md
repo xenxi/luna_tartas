@@ -9,7 +9,7 @@
 - Se ejecuta exclusivamente la tarea solicitada; no se anticipa la siguiente.
 - `DONE` exige todos los criterios y verificaciones en `PASS`, con evidencia registrada aquí.
 - Orden normal: de arriba abajo. Una tarea posterior sólo puede comenzar si todas sus dependencias están `DONE`.
-- **Siguiente tarea:** `M4.5 — Confianza y muestra de trabajos`.
+- **Siguiente tarea:** `M4.7 — Índice /productos/`.
 
 ## Gates de programa
 
@@ -50,7 +50,7 @@
 
 ## M0.2 — Cierre de decisiones técnicas y presupuestos iniciales
 
-**Estado:** DONE  
+**Estado:** DONE
 **Objetivo:** ratificar las decisiones que condicionan scaffold y operación.  
 **Alcance:** confirmar Astro/SSG/Pages, repositorio público como frontera de seguridad, npm/Node, trailing slash, capa de redirects, política de imágenes/repo, soporte de navegadores, targets de accesibilidad/performance y criterios para dependencias.  
 **Fuera de alcance:** instalar paquetes, implementar pipeline o elegir estética final.  
@@ -408,7 +408,7 @@
 
 ## M4.5 — Confianza y muestra de trabajos
 
-**Estado:** BLOCKED
+**Estado:** DONE
 **Objetivo:** reducir incertidumbre mediante señales y fotografías reales verificables.  
 **Alcance:** bloque de proceso/confianza y galería editorial de trabajos aprobados; atribución si aplica.  
 **Fuera de alcance:** inventar reseñas/cifras, consumir feeds sociales o carrusel complejo.  
@@ -419,11 +419,11 @@
 **Verificación:** revisión de contenido, derechos/alt, build y visual.  
 **Modelo recomendado:** LUNA.  
 **Razón del modelo:** implementación local condicionada a contenido validado.  
-**Evidencia:** BLOCKED (2026-08-16, revisión de ejecución) — la dependencia de contenido aprobado no está satisfecha: `docs/product/content-readiness.md` mantiene `Fotos` (L33), `Derechos` (L34), `Accesibilidad` (L35) y `Prueba social` (L40) en `TBD`, con el propietario del negocio como owner y entrega requerida antes de M4.5/publicación. No se implementan claims, reseñas, cifras, fotografías ni una galería sintética. Pendiente: entregar selección de trabajos, originales, alt, derechos/atribución y fuentes/permisos de cualquier prueba social; después reanudar M4.5. Suite existente sin cambios de código.
+**Evidencia:** PASS (2026-08-16) — el handoff aprobado por el propietario el 2026-08-16 resuelve el bloqueo anterior: `content-readiness.md` registra como `READY` la muestra Home, sus derechos, los cuatro alt y la decisión de no publicar reseñas/cifras. `trust-and-work.ts` centraliza literalmente el proceso aprobado, orden editorial, alt, owner, alcance y fecha; `TrustAndWork.astro` publica un bloque semántico de tres pasos y una lista estática de cuatro trabajos sin carrusel, feed, hidratación, reseñas ni claims adicionales. Los cuatro originales se copiaron sin modificarlos bajo `src/assets/home/work-showcase/` (1536 × 2048 px cada uno; SHA-256 `36F129…E163`, `5D0E09…8632`, `8E3F7C…6DB1`, `BFA63D…9A0E`) y Astro genera AVIF/WebP/JPEG a 320/480/640 para secundarios y hasta 1536 para la principal, con `width`/`height`, alt y `loading="lazy"`; la variante mayor pesa 202.786 bytes (198,0 KiB), bajo el límite de 200 KiB. Artefacto: 11.580 bytes de HTML, 4 imágenes de galería dimensionadas y 0 `<script>`. QA Browser sobre build de producción en 320/768/1440: PASS, sin overflow horizontal; contenido de 288/691,6/1152 px, confianza 1/2/3 columnas, galería 1/3/3 columnas, principal centrada hasta 832 px y cuatro imágenes cargadas. Instalación limpia aislada y suite contractual: `npm ci`, `npm run format`, `npm run lint`, `npm run typecheck` (0 errores/warnings/hints), `npm test` (19 archivos, 132 tests) y `npm run build` (1 página, 57 variantes totales incluyendo hero): PASS. Los únicos avisos son los informativos esperados por las cuatro colecciones productivas vacías.
 
 ## M4.6 — CTA “Cuéntanos tu idea” en Home
 
-**Estado:** PENDING  
+**Estado:** DONE
 **Objetivo:** ofrecer conversión a visitantes sin producto exacto.  
 **Alcance:** sección emocional, CTA accesible y builder puro limitado al mensaje personalizado desde configuración central (instrumentación posterior).  
 **Fuera de alcance:** formulario, CRM, analytics o builder completo de producto.  
@@ -434,7 +434,7 @@
 **Verificación:** test de URL/mensaje básico, enlace real y prueba móvil.  
 **Modelo recomendado:** LUNA.  
 **Razón del modelo:** CTA acotado con configuración ya definida.  
-**Evidencia:** —
+**Evidencia:** PASS (2026-08-16) — `src/lib/whatsapp/custom.ts` implementa un builder puro para el flujo personalizado: valida 8–15 dígitos internacionales, rechaza mensaje vacío, construye sólo `https://wa.me/{number}` y codifica el mensaje una vez mediante `URLSearchParams`, sin repetir el teléfono en el texto. `contact.ts` reutiliza ese builder y mantiene la configuración central validada; `CustomIdeaCta.astro` publica la sección emocional aprobada con un enlace `ActionLink` nativo, sin formulario, JavaScript ni instrumentación. Home integra el bloque después de confianza/muestra y `custom-idea.test.ts` cubre URL, Unicode, errores, copy y ausencia de JS. `npm run format`, `npm run lint`, `npm run typecheck` (0 errores/warnings/hints), `npm test` (20 archivos, 136 tests), `npm run build` (1 página estática, 57 variantes de imagen) y `git diff --check`: PASS. El build conserva únicamente los avisos informativos esperados por las cuatro colecciones productivas vacías.
 
 ## M4.7 — Índice `/productos/`
 
@@ -1144,3 +1144,5 @@ No avanzar a la siguiente milestone.
 - 2026-08-16 — M4.4 completada: bloque de ideas destacadas con ProductCard, orden/featured del dominio, precios fixed/from/on_request sin tergiversación, estado vacío y 128 tests/checks en PASS. Siguiente tarea: M4.5 (modelo LUNA).
 - 2026-08-16 — M4.5 bloqueada: fotos, derechos, alt y prueba social permanecen `TBD` en el contrato de readiness; no se inventan claims ni assets. Pendiente entrega del propietario del negocio antes de reanudar M4.5.
 - 2026-08-16 — Revisión de ejecución M4.5: el bloqueo sigue vigente tras comprobar `content-readiness.md`; no se añaden componentes, claims ni assets. Siguiente tarea: M4.5 cuando el propietario entregue y apruebe el material requerido (modelo LUNA).
+- 2026-08-16 — M4.5 completada tras el handoff aprobado: bloque de proceso literal, galería estática de cuatro trabajos reales, derechos/alt/readiness trazables, variantes responsive bajo budget, 132 tests y QA 320/768/1440 en PASS. Siguiente tarea: M4.6 (modelo LUNA).
+- 2026-08-16 — M4.6 completada: CTA emocional “Cuéntanos tu idea”, builder puro WhatsApp con mensaje Unicode codificado una vez, enlace nativo sin JS, 136 tests y checks contractuales/build en PASS. Siguiente tarea: M4.7 (modelo LUNA).

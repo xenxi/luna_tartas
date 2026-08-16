@@ -1,0 +1,20 @@
+---
+import { customIdeaContent } from '../../content/home/custom-idea';
+import ActionLink from '../ui/ActionLink.astro';
+import ContentSection from '../patterns/ContentSection.astro';
+import './custom-idea.css';
+---
+
+<div class="custom-idea">
+  <ContentSection
+    id="custom-idea"
+    title={customIdeaContent.title}
+    intro={customIdeaContent.copy}
+  >
+    <div class="custom-idea__action">
+      <ActionLink href={customIdeaContent.action.href}>
+        {customIdeaContent.action.label}
+      </ActionLink>
+    </div>
+  </ContentSection>
+</div>

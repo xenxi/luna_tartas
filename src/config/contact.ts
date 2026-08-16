@@ -1,3 +1,5 @@
+import { buildCustomWhatsAppUrl } from '../lib/whatsapp/custom';
+
 export interface WhatsAppConfig {
   readonly number: string;
   readonly message: string;
@@ -30,13 +32,10 @@ export function validateWhatsAppConfig(value: unknown): WhatsAppConfig {
   }
 
   const message = value.message.trim();
-  const url = new URL(`https://wa.me/${value.number}`);
-  url.searchParams.set('text', message);
-
   return Object.freeze({
     number: value.number,
     message,
-    href: url.href,
+    href: buildCustomWhatsAppUrl({ number: value.number, message }),
   });
 }
 

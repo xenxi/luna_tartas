@@ -1,0 +1,43 @@
+.custom-idea {
+  margin-inline: var(--gutter);
+}
+
+.custom-idea .content-section {
+  inline-size: min(100%, var(--container-max));
+  margin-inline: auto;
+  padding: var(--space-10) var(--space-6);
+  border-radius: var(--radius-xl);
+  background: var(--color-action);
+  color: var(--color-on-action);
+  text-align: center;
+}
+
+.custom-idea .content-section__heading {
+  margin-inline: auto;
+}
+
+.custom-idea .content-section__heading p {
+  color: inherit;
+}
+
+.custom-idea__action {
+  display: flex;
+  justify-content: center;
+  margin-block-start: var(--space-6);
+}
+
+.custom-idea .action-link {
+  background: var(--color-surface);
+  color: var(--color-action);
+}
+
+.custom-idea .action-link:hover {
+  background: var(--color-canvas);
+  color: var(--color-action-hover);
+}
+
+@media (min-width: 40rem) {
+  .custom-idea .content-section {
+    padding: var(--space-12) var(--space-10);
+  }
+}

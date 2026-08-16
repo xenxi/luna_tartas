@@ -3,6 +3,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Hero from '../components/home/Hero.astro';
 import TaxonomyDiscovery from '../components/home/TaxonomyDiscovery.astro';
 import FeaturedProducts from '../components/home/FeaturedProducts.astro';
+import TrustAndWork from '../components/home/TrustAndWork.astro';
+import CustomIdeaCta from '../components/home/CustomIdeaCta.astro';
 import { loadCatalog } from '../lib/catalog/source';
 
 const catalog = await loadCatalog();
@@ -12,4 +14,6 @@ const catalog = await loadCatalog();
   <Hero />
   <TaxonomyDiscovery catalog={catalog} />
   <FeaturedProducts catalog={catalog} />
+  <TrustAndWork />
+  <CustomIdeaCta />
 </BaseLayout>
