@@ -1,0 +1,65 @@
+---
+import type {
+  Catalog,
+  Taxonomy,
+  TaxonomyKind,
+} from '../../lib/catalog/domain/model';
+import Breadcrumb from '../navigation/Breadcrumb.astro';
+import CardList from '../patterns/CardList.astro';
+import ContentSection from '../patterns/ContentSection.astro';
+import ProductCard from '../catalog/ProductCard.astro';
+import { projectTaxonomyLanding } from './taxonomy-listing';
+import './taxonomies.css';
+
+interface Props {
+  catalog: Catalog;
+  kind: TaxonomyKind;
+  taxonomy: Taxonomy;
+  indexLabel: string;
+  indexHref: string;
+  productsTitle: string;
+  productsIntro: string;
+  emptyMessage: string;
+}
+
+const {
+  catalog,
+  kind,
+  taxonomy,
+  indexLabel,
+  indexHref,
+  productsTitle,
+  productsIntro,
+  emptyMessage,
+} = Astro.props;
+const landing = projectTaxonomyLanding(catalog, kind, taxonomy);
+---
+
+<div class="taxonomy-landing">
+  <Breadcrumb
+    items={[
+      { label: 'Inicio', href: '/' },
+      { label: indexLabel, href: indexHref },
+      { label: taxonomy.name, current: true },
+    ]}
+  />
+  <header class="taxonomy-landing__header">
+    <h1>{taxonomy.name}</h1>
+    <p>{taxonomy.description ?? taxonomy.summary}</p>
+  </header>
+  <ContentSection
+    id={`${kind}-products`}
+    title={productsTitle}
+    intro={productsIntro}
+  >
+    <CardList count={landing.products.length} emptyMessage={emptyMessage}>
+      {
+        landing.products.map((product) => (
+          <li>
+            <ProductCard product={product} />
+          </li>
+        ))
+      }
+    </CardList>
+  </ContentSection>
+</div>

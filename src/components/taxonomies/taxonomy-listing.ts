@@ -6,6 +6,7 @@ import type {
   Catalog,
   PublishedProduct,
   Taxonomy,
+  TaxonomyKind,
 } from '../../lib/catalog/domain/model';
 import { routes } from '../../lib/catalog/domain/routes';
 import { formatPriceLabel } from '../catalog/price';
@@ -14,12 +15,12 @@ import type {
   TaxonomyCardProjection,
 } from '../catalog/types';
 
-export interface CategoryIndexProjection {
+export interface TaxonomyIndexProjection {
   readonly items: readonly TaxonomyCardProjection[];
 }
 
-export interface CategoryLandingProjection {
-  readonly category: Taxonomy;
+export interface TaxonomyLandingProjection {
+  readonly taxonomy: Taxonomy;
   readonly products: readonly ProductCardProjection[];
 }
 
@@ -32,35 +33,38 @@ function productProjection(product: PublishedProduct): ProductCardProjection {
   };
 }
 
-export function getCategoriesWithProducts(
+export function getTaxonomiesWithProducts(
   catalog: Catalog,
+  kind: TaxonomyKind,
 ): readonly Taxonomy[] {
-  return getPublishedTaxonomies(catalog, 'category').filter(
-    (category) =>
-      getProductsForTaxonomy(catalog, 'category', category.id).length > 0,
+  return getPublishedTaxonomies(catalog, kind).filter(
+    (taxonomy) => getProductsForTaxonomy(catalog, kind, taxonomy.id).length > 0,
   );
 }
 
-export function projectCategoryIndex(
+export function projectTaxonomyIndex(
   catalog: Catalog,
-): CategoryIndexProjection {
+  kind: TaxonomyKind,
+  itemLabel: string,
+): TaxonomyIndexProjection {
   return {
-    items: getCategoriesWithProducts(catalog).map((category) => ({
-      href: routes.taxonomy('category', category.slug),
-      name: category.name,
-      summary: category.summary,
-      itemCountLabel: `${getProductsForTaxonomy(catalog, 'category', category.id).length} productos`,
+    items: getTaxonomiesWithProducts(catalog, kind).map((taxonomy) => ({
+      href: routes.taxonomy(kind, taxonomy.slug),
+      name: taxonomy.name,
+      summary: taxonomy.summary,
+      itemCountLabel: `${getProductsForTaxonomy(catalog, kind, taxonomy.id).length} ${itemLabel}`,
     })),
   };
 }
 
-export function projectCategoryLanding(
+export function projectTaxonomyLanding(
   catalog: Catalog,
-  category: Taxonomy,
-): CategoryLandingProjection {
+  kind: TaxonomyKind,
+  taxonomy: Taxonomy,
+): TaxonomyLandingProjection {
   return {
-    category,
-    products: getProductsForTaxonomy(catalog, 'category', category.id).map(
+    taxonomy,
+    products: getProductsForTaxonomy(catalog, kind, taxonomy.id).map(
       productProjection,
     ),
   };

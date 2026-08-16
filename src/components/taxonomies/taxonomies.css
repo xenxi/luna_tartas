@@ -1,0 +1,35 @@
+.taxonomies-page,
+.taxonomy-landing {
+  inline-size: min(calc(100% - (2 * var(--gutter))), var(--container-max));
+  margin-inline: auto;
+}
+
+.taxonomies-page {
+  padding-block: var(--space-section);
+}
+
+.taxonomies-page__header,
+.taxonomy-landing__header {
+  max-inline-size: var(--container-copy);
+}
+
+.taxonomies-page__header h1,
+.taxonomy-landing__header h1 {
+  max-inline-size: 18ch;
+}
+
+.taxonomies-page__header p,
+.taxonomy-landing__header p {
+  margin-block-start: var(--space-3);
+  color: var(--color-text-muted);
+}
+
+.taxonomy-landing {
+  display: grid;
+  gap: var(--space-6);
+  padding-block: var(--space-6) var(--space-section);
+}
+
+.taxonomy-landing .content-section {
+  padding-block-start: var(--space-4);
+}

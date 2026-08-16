@@ -468,7 +468,7 @@
 
 ## M4.9 — Índice y landings de ocasiones
 
-**Estado:** PENDING  
+**Estado:** DONE
 **Objetivo:** publicar navegación útil por momento o celebración.  
 **Alcance:** `/ocasiones/` y `/ocasiones/[slug]/` reutilizando el patrón aprobado, con contenido, productos y estado vacío/ausente.  
 **Fuera de alcance:** categorías, destinatarios, facetas combinadas o metadata avanzada de M6.  
@@ -479,7 +479,7 @@
 **Verificación:** test de rutas/conteos, build y link check de ocasiones.  
 **Modelo recomendado:** LUNA.  
 **Razón del modelo:** extensión mecánica de un patrón ya validado.  
-**Evidencia:** —
+**Evidencia:** PASS (2026-08-16) — Se creó el patrón compartido `src/components/taxonomies/` para índice y landing, reutilizado por categorías y ocasiones sin duplicación accidental. `src/pages/ocasiones/index.astro` publica `/ocasiones/` con H1, copy de intención y estado vacío honesto; `src/pages/ocasiones/[slug].astro` genera únicamente landings estáticas para ocasiones publicadas con productos publicados, con breadcrumb, contenido editorial y productos relacionados ordenados por dominio. El índice y las landings usan `routes.taxonomy('occasion', ...)`, excluyen drafts y taxonomías vacías, y no hidratan JavaScript. Tests de taxonomías, conteos, orden, rutas, patrón compartido y ausencia de `client:`: PASS (22 archivos, 141 tests). `npm run lint`, `npm run format`, `npm run typecheck` (0 errores/warnings/hints), `npm test`, `npm run build` (4 páginas estáticas: home, productos, categorías y ocasiones; 0 landings porque el catálogo productivo sigue vacío) y `git diff --check`: PASS. Inspección de `dist/ocasiones/index.html`: canonical `/ocasiones/`, un H1, estado vacío y cero scripts. Los avisos son los informativos esperados por las colecciones productivas vacías.`
 
 ## M4.10 — Índice y landings de destinatarios
 

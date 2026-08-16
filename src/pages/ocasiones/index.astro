@@ -1,0 +1,20 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import TaxonomyIndex from '../../components/taxonomies/TaxonomyIndex.astro';
+import { loadCatalog } from '../../lib/catalog/source';
+
+const catalog = await loadCatalog();
+---
+
+<BaseLayout title="Ocasiones para regalar">
+  <TaxonomyIndex
+    catalog={catalog}
+    kind="occasion"
+    title="Ocasiones para regalar"
+    intro="Encuentra un detalle pensado para celebrar cada momento especial."
+    sectionTitle="Elige una ocasión"
+    sectionIntro="Explora ideas agrupadas por celebración y momento."
+    emptyMessage="Pronto podrás explorar nuestras ocasiones para regalar."
+    itemLabel="productos"
+  />
+</BaseLayout>

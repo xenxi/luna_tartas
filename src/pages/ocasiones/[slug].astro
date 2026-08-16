@@ -1,0 +1,49 @@
+---
+import type { GetStaticPaths } from 'astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import TaxonomyLanding from '../../components/taxonomies/TaxonomyLanding.astro';
+import { loadCatalog } from '../../lib/catalog/source';
+import {
+  findPublishedTaxonomyBySlug,
+  getProductsForTaxonomy,
+  getPublishedTaxonomies,
+} from '../../lib/catalog/domain/queries';
+
+export const getStaticPaths = (async () => {
+  const catalog = await loadCatalog();
+
+  return getPublishedTaxonomies(catalog, 'occasion')
+    .filter(
+      (occasion) =>
+        getProductsForTaxonomy(catalog, 'occasion', occasion.id).length > 0,
+    )
+    .map((occasion) => ({
+      params: { slug: occasion.slug },
+      props: { catalog, occasion },
+    }));
+}) satisfies GetStaticPaths;
+
+const { catalog, occasion } = Astro.props;
+const resolvedOccasion =
+  occasion ??
+  findPublishedTaxonomyBySlug(catalog, 'occasion', Astro.params.slug ?? '');
+
+if (resolvedOccasion === undefined) {
+  throw new Error(
+    'Occasion landing was generated without a published occasion',
+  );
+}
+---
+
+<BaseLayout title={`${resolvedOccasion.name} | Ocasiones para regalar`}>
+  <TaxonomyLanding
+    catalog={catalog}
+    kind="occasion"
+    taxonomy={resolvedOccasion}
+    indexLabel="Ocasiones"
+    indexHref="/ocasiones/"
+    productsTitle={`Regalos para ${resolvedOccasion.name.toLocaleLowerCase('es')}`}
+    productsIntro="Explora las ideas disponibles para esta ocasión."
+    emptyMessage="Pronto podrás descubrir productos para esta ocasión."
+  />
+</BaseLayout>

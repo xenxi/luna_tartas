@@ -1,0 +1,49 @@
+---
+import type { Catalog, TaxonomyKind } from '../../lib/catalog/domain/model';
+import CardList from '../patterns/CardList.astro';
+import ContentSection from '../patterns/ContentSection.astro';
+import TaxonomyCard from '../catalog/TaxonomyCard.astro';
+import { projectTaxonomyIndex } from './taxonomy-listing';
+import './taxonomies.css';
+
+interface Props {
+  catalog: Catalog;
+  kind: TaxonomyKind;
+  title: string;
+  intro: string;
+  sectionTitle: string;
+  sectionIntro: string;
+  emptyMessage: string;
+  itemLabel: string;
+}
+
+const {
+  catalog,
+  kind,
+  title,
+  intro,
+  sectionTitle,
+  sectionIntro,
+  emptyMessage,
+  itemLabel,
+} = Astro.props;
+const listing = projectTaxonomyIndex(catalog, kind, itemLabel);
+---
+
+<div class="taxonomies-page">
+  <header class="taxonomies-page__header">
+    <h1>{title}</h1>
+    <p>{intro}</p>
+  </header>
+  <ContentSection id={`${kind}-list`} title={sectionTitle} intro={sectionIntro}>
+    <CardList count={listing.items.length} emptyMessage={emptyMessage}>
+      {
+        listing.items.map((taxonomy) => (
+          <li>
+            <TaxonomyCard taxonomy={taxonomy} />
+          </li>
+        ))
+      }
+    </CardList>
+  </ContentSection>
+</div>

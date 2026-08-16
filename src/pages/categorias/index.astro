@@ -1,11 +1,20 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import CategoryIndex from '../../components/categories/CategoryIndex.astro';
+import TaxonomyIndex from '../../components/taxonomies/TaxonomyIndex.astro';
 import { loadCatalog } from '../../lib/catalog/source';
 
 const catalog = await loadCatalog();
 ---
 
 <BaseLayout title="Categorías de regalos">
-  <CategoryIndex catalog={catalog} />
+  <TaxonomyIndex
+    catalog={catalog}
+    kind="category"
+    title="Categorías de regalos"
+    intro="Encuentra una idea especial según el tipo de detalle que quieres preparar."
+    sectionTitle="Elige por tipo de regalo"
+    sectionIntro="Descubre ideas agrupadas para encontrar más rápido el detalle que buscas."
+    emptyMessage="Pronto podrás explorar nuestras categorías de regalos."
+    itemLabel="productos"
+  />
 </BaseLayout>

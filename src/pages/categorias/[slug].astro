@@ -1,7 +1,7 @@
 ---
 import type { GetStaticPaths } from 'astro';
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import CategoryLanding from '../../components/categories/CategoryLanding.astro';
+import TaxonomyLanding from '../../components/taxonomies/TaxonomyLanding.astro';
 import { loadCatalog } from '../../lib/catalog/source';
 import {
   findPublishedTaxonomyBySlug,
@@ -36,5 +36,14 @@ if (resolvedCategory === undefined) {
 ---
 
 <BaseLayout title={`${resolvedCategory.name} | Categorías de regalos`}>
-  <CategoryLanding catalog={catalog} category={resolvedCategory} />
+  <TaxonomyLanding
+    catalog={catalog}
+    kind="category"
+    taxonomy={resolvedCategory}
+    indexLabel="Categorías"
+    indexHref="/categorias/"
+    productsTitle={`Regalos de ${resolvedCategory.name.toLocaleLowerCase('es')}`}
+    productsIntro="Explora las ideas disponibles en esta categoría."
+    emptyMessage="Pronto podrás descubrir productos en esta categoría."
+  />
 </BaseLayout>
