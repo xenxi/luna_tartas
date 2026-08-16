@@ -1,6 +1,6 @@
 id: lamina-natalicia-a5
 slug: lamina-natalicia-a5
-status: draft
+status: published
 name: Lámina natalicia personalizada A5
 summary: El comienzo de una historia merece ser recordado en una lámina creada especialmente para ese bebé.
 description: Lámina natalicia A5 personalizada con nombre, fecha de nacimiento, hora, peso y medida. Impresa en cartulina blanca de 180 g para conservar cómo empezó todo.
@@ -14,6 +14,14 @@ price:
   kind: fixed
   amountMinor: 200
   currency: EUR
+media:
+  cover:
+    src: laminas/lamina-natalicia-clara.png
+    alt: Lámina natalicia personalizada con el nombre Clara, un conejito con globos y sus datos de nacimiento.
+    rights:
+      owner: Luna / MGR Creaciones
+      licenseOrPermission: Diseño y producto propios; publicación autorizada en lunatartas.es.
+      evidence: Confirmación directa del propietario en conversación de proyecto, 2026-08-16.
 customization:
   kind: available
   options:
@@ -26,3 +34,8 @@ customization:
   description: La composición se crea con los datos del nacimiento y un diseño elegido para el bebé.
 featured: true
 order: 50
+approval:
+  source: Handoff editorial del propietario del proyecto
+  sourceDate: "2026-08-16"
+  approvedBy: Propietario del proyecto
+  approvedAt: "2026-08-16"

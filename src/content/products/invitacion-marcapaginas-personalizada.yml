@@ -1,6 +1,6 @@
 id: invitacion-marcapaginas-personalizada
 slug: invitacion-marcapaginas-personalizada
-status: draft
+status: published
 name: Invitación marcapáginas personalizada
 summary: Una invitación que también se queda como recuerdo, personalizada con los detalles de la celebración.
 description: Invitación en formato marcapáginas personalizada con nombre, fecha y los detalles de la celebración para que, después del evento, pueda seguir acompañando a esa persona como recuerdo.
@@ -14,6 +14,14 @@ price:
   kind: fixed
   amountMinor: 250
   currency: EUR
+media:
+  cover:
+    src: papeleria/invitacion-marcapaginas-sofia.webp
+    alt: Invitación marcapáginas personalizada en tonos rosas con ilustración floral de flamenco y nombre personalizado.
+    rights:
+      owner: Luna / MGR Creaciones
+      licenseOrPermission: Fotografía, diseño y producto propios; publicación autorizada en lunatartas.es.
+      evidence: Confirmación directa del propietario en conversación de proyecto, 2026-08-16.
 customization:
   kind: available
   options:
@@ -24,3 +32,8 @@ customization:
     - Diseño personalizado
   description: La información y el diseño se adaptan a cada celebración.
 order: 70
+approval:
+  source: Handoff editorial del propietario del proyecto
+  sourceDate: "2026-08-16"
+  approvedBy: Propietario del proyecto
+  approvedAt: "2026-08-16"
