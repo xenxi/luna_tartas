@@ -4,6 +4,8 @@ import CardList from '../patterns/CardList.astro';
 import ContentSection from '../patterns/ContentSection.astro';
 import TaxonomyCard from '../catalog/TaxonomyCard.astro';
 import { projectTaxonomyIndex } from './taxonomy-listing';
+import Breadcrumb from '../navigation/Breadcrumb.astro';
+import { taxonomyIndexBreadcrumb } from '../../lib/seo/navigation';
 import './taxonomies.css';
 
 interface Props {
@@ -22,6 +24,7 @@ const listing = projectTaxonomyIndex(catalog, kind, itemLabel);
 ---
 
 <div class="taxonomies-page">
+  <Breadcrumb items={taxonomyIndexBreadcrumb(kind)} />
   <header class="taxonomies-page__header">
     <h1>{title}</h1>
     <p>{intro}</p>

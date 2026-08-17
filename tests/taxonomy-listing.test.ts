@@ -151,7 +151,7 @@ describe('shared taxonomy index and landings', () => {
     expect(landing).toContain('getStaticPaths');
     expect(giftIndex).toContain('<TaxonomyIndex');
     expect(giftLanding).toContain('getStaticPaths');
-    expect(giftLanding).toContain("routes.taxonomyIndex('recipient')");
+    expect(component).toContain('taxonomyBreadcrumb(kind, taxonomy.name)');
     expect(giftIndex).not.toMatch(/destinatari/i);
     expect(giftLanding).not.toMatch(/destinatari/i);
     expect(component).toContain('<ProductCard');

@@ -4,6 +4,8 @@ import ProductListing from '../../components/products/ProductListing.astro';
 import { loadCatalog } from '../../lib/catalog/source';
 import { routes } from '../../lib/catalog/domain/routes';
 import './products.css';
+import Breadcrumb from '../../components/navigation/Breadcrumb.astro';
+import { productsBreadcrumb } from '../../lib/seo/navigation';
 
 const catalog = await loadCatalog();
 ---
@@ -14,6 +16,7 @@ const catalog = await loadCatalog();
   fallbackDescription="Explora regalos personalizados hechos a mano para celebrar momentos y personas especiales."
 >
   <div class="products-page">
+    <Breadcrumb items={productsBreadcrumb()} />
     <header class="products-page__header">
       <h1>Regalos personalizados</h1>
       <p>Ideas hechas con mimo para celebrar a las personas especiales.</p>

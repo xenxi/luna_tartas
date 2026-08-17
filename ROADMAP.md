@@ -9,7 +9,7 @@
 - Se ejecuta exclusivamente la tarea solicitada; no se anticipa la siguiente.
 - `DONE` exige todos los criterios y verificaciones en `PASS`, con evidencia registrada aquí.
 - Orden normal: de arriba abajo. Una tarea posterior sólo puede comenzar si todas sus dependencias están `DONE`.
-- **Siguiente tarea:** `M5.7 — QA del recorrido de conversión`.
+- **Siguiente tarea:** `M6.4 — Product, Offer y BreadcrumbList JSON-LD`.
 
 ## Gates de programa
 
@@ -787,7 +787,7 @@
 
 ## M6.2 — Sitemap, robots y política de crawl
 
-**Estado:** PENDING  
+**Estado:** DONE
 **Objetivo:** exponer únicamente URLs canónicas publicables.  
 **Alcance:** sitemap estático/integración Astro justificada, robots con sitemap, 404 y exclusión de drafts/técnicas.  
 **Fuera de alcance:** redirects históricos o Search Console.  
@@ -798,11 +798,11 @@
 **Verificación:** comparación automatizada catálogo/rutas/sitemap, build y parse XML.  
 **Modelo recomendado:** LUNA → SOL REVIEW.  
 **Razón del modelo:** implementación estándar con review SEO del conjunto publicado.  
-**Evidencia:** —
+**Evidencia:** PASS (2026-08-17) — `src/lib/seo/crawl.ts` proyecta el conjunto indexable desde catálogo y `routes`: home, índice de productos, índices taxonómicos, productos publicados y sólo taxonomías publicadas con productos publicados. Los endpoints estáticos `sitemap.xml.ts` y `robots.txt.ts` generan URLs únicas, HTTPS/apex/con barra final y la referencia canónica al sitemap, sin añadir dependencias. La 404 estática se marca `noindex,nofollow`; drafts, showcases y rutas técnicas no entran al sitemap. `tests/seo-crawl.test.ts` cubre la exclusión de drafts/taxonomías vacías, canonicalidad, XML y robots; `scripts/verify-crawl.mjs` inspecciona el HTML/XML/TXT de `dist`, compara canonical/robots por URL y comprueba la 404. `npm run lint`, `npm run typecheck` (0 errores/warnings/hints), `npm test` (26 archivos, 179 tests), `npm run build` (25 artefactos), `npm run verify:seo`, `npm run verify:crawl` y `git diff --check`: PASS. `npm run format` conserva únicamente dos avisos preexistentes fuera de alcance: `src/components/catalog/media-projection.ts` y `src/components/home/FeaturedProducts.astro`. Siguiente tarea: M6.3 (modelo LUNA).
 
 ## M6.3 — Breadcrumbs semánticos e internal linking
 
-**Estado:** PENDING  
+**Estado:** DONE
 **Objetivo:** alinear navegación visible, jerarquía y enlaces rastreables.  
 **Alcance:** modelo único de breadcrumb, enlaces contextuales y auditoría de huérfanas/dead links; preparar proyección para JSON-LD.  
 **Fuera de alcance:** schema BreadcrumbList final o rediseño de navegación.  
@@ -813,7 +813,7 @@
 **Verificación:** graph/link check de `dist`, tests de rutas y teclado.  
 **Modelo recomendado:** LUNA.  
 **Razón del modelo:** consolidación explícita sobre rutas existentes.  
-**Evidencia:** —
+**Evidencia:** PASS (2026-08-17) — `src/lib/seo/navigation.ts` centraliza las proyecciones de breadcrumb para índices, landings taxonómicas y fichas usando `routes`; `Breadcrumb.astro` conserva `nav` + `ol`, enlaces internos de ancestros y un único último `aria-current="page"`. Se incorporan breadcrumbs visibles en los tres índices taxonómicos y el índice de productos, y se eliminan rutas/etiquetas duplicadas de las landings. `scripts/verify-links.mjs` audita el grafo del artefacto, destinos internos existentes, URLs del sitemap sin huérfanas y un breadcrumb semántico por URL indexable; no usa JavaScript cliente ni dependencias. Tests cubren las cuatro proyecciones y la integración existente: 27 archivos, 181 tests. `npm run lint`, `npm run typecheck` (0 errores/warnings/hints), `npm test`, `npm run build` (25 páginas), `npm run verify:seo`, `npm run verify:crawl`, `npm run verify:links` (25 HTML, 24 indexables, 0 rotos, 0 huérfanas, 0 problemas de breadcrumb), Prettier específico y `git diff --check`: PASS. Siguiente tarea: M6.4 (modelo SOL).`
 
 ## M6.4 — Product, Offer y BreadcrumbList JSON-LD
 
@@ -1339,3 +1339,4 @@ No avanzar a la siguiente milestone.
 - 2026-08-17 — M5.4 completada: panel de conversión estático tras la galería con resumen, precio, CTA seguro a WhatsApp y mensaje contextual con canonical; 169 tests, build y QA 320/768/1440/teclado en PASS. Siguiente tarea: M5.5 (modelo LUNA).
  - 2026-08-17 — M5.5 completada: personalización condicional desde `customization`, contenido editorial del producto y proceso/confianza aprobado en secuencia narrativa, sin FAQ/configurador/claims inventados ni JavaScript; 169 tests, lint/typecheck/build y revisión HTML en PASS. Siguiente tarea: M5.6 (modelo LUNA).
 - 2026-08-17 — M5.6 completada: relacionados deterministas por taxonomías compartidas, exclusión de actual/drafts, máximo 3, media y enlaces internos; 170 tests, lint/typecheck/build e inspección HTML sin scripts en PASS. Siguiente tarea: M5.7 (modelo LUNA → SOL REVIEW).
+- 2026-08-17 — M6.3 completada: breadcrumb semántico único para índices, landings y fichas, internal linking canónico y auditoría estática de enlaces/huérfanas; 181 tests, build de 25 páginas y link graph en PASS. Siguiente tarea: M6.4 (modelo SOL).

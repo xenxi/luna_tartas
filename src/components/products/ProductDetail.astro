@@ -5,6 +5,7 @@ import type {
   TaxonomyKind,
 } from '../../lib/catalog/domain/model';
 import { routes } from '../../lib/catalog/domain/routes';
+import { productBreadcrumb } from '../../lib/seo/navigation';
 import Breadcrumb from '../navigation/Breadcrumb.astro';
 import ProductConversionPanel from './ProductConversionPanel.astro';
 import ProductGallery from './ProductGallery.astro';
@@ -35,13 +36,7 @@ const taxonomyGroups = [
 ---
 
 <div class="product-detail">
-  <Breadcrumb
-    items={[
-      { label: 'Inicio', href: '/' },
-      { label: 'Productos', href: routes.products() },
-      { label: product.name, current: true },
-    ]}
-  />
+  <Breadcrumb items={productBreadcrumb(product.name)} />
 
   <article class="product-detail__article">
     <header class="product-detail__header">

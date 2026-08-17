@@ -12,6 +12,7 @@ import { projectTaxonomyLanding } from './taxonomy-listing';
 import { catalogImageMap } from '../catalog/catalog-images';
 import { buildSimpleMediaProjection } from '../catalog/media-projection';
 import { getProductsForTaxonomy } from '../../lib/catalog/domain/queries';
+import { taxonomyBreadcrumb } from '../../lib/seo/navigation';
 import type { ProductCardProjection } from '../catalog/types';
 import './taxonomies.css';
 
@@ -19,21 +20,11 @@ interface Props {
   catalog: Catalog;
   kind: TaxonomyKind;
   taxonomy: Taxonomy;
-  indexLabel: string;
-  indexHref: string;
   productsTitle: string;
   productsIntro: string;
 }
 
-const {
-  catalog,
-  kind,
-  taxonomy,
-  indexLabel,
-  indexHref,
-  productsTitle,
-  productsIntro,
-} = Astro.props;
+const { catalog, kind, taxonomy, productsTitle, productsIntro } = Astro.props;
 const landing = projectTaxonomyLanding(catalog, kind, taxonomy);
 const domainProducts = getProductsForTaxonomy(catalog, kind, taxonomy.id);
 
@@ -55,13 +46,7 @@ const productsWithMedia: ProductCardProjection[] = landing.products.map(
 ---
 
 <div class="taxonomy-landing">
-  <Breadcrumb
-    items={[
-      { label: 'Inicio', href: '/' },
-      { label: indexLabel, href: indexHref },
-      { label: taxonomy.name, current: true },
-    ]}
-  />
+  <Breadcrumb items={taxonomyBreadcrumb(kind, taxonomy.name)} />
   <header class="taxonomy-landing__header">
     <h1>{taxonomy.name}</h1>
     <p>{taxonomy.description ?? taxonomy.summary}</p>
