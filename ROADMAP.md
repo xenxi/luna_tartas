@@ -1,6 +1,6 @@
 # ROADMAP — Luna Estudio
 
-Única fuente de verdad sobre prioridad, estado y siguiente tarea. Última actualización: 2026-08-16.
+Única fuente de verdad sobre prioridad, estado y siguiente tarea. Última actualización: 2026-08-17.
 
 ## Uso
 
@@ -9,7 +9,7 @@
 - Se ejecuta exclusivamente la tarea solicitada; no se anticipa la siguiente.
 - `DONE` exige todos los criterios y verificaciones en `PASS`, con evidencia registrada aquí.
 - Orden normal: de arriba abajo. Una tarea posterior sólo puede comenzar si todas sus dependencias están `DONE`.
-- **Siguiente tarea:** `M7.1 — Decisión de analytics y privacidad`.
+- **Siguiente tarea:** `M7.2 — Facade y adaptador de analytics`.
 
 ## Gates de programa
 
@@ -886,7 +886,7 @@
 
 ## M7.1 — Decisión de analytics y privacidad
 
-**Estado:** PENDING  
+**Estado:** DONE
 **Objetivo:** seleccionar medición proporcional y legalmente operable antes de cargar scripts.  
 **Alcance:** requisitos, proveedor/alternativas, cookies/consentimiento, retención, ownership, exclusión interna, performance y diccionario final de eventos.  
 **Fuera de alcance:** implementar tags o asesoramiento legal definitivo.  
@@ -897,7 +897,7 @@
 **Verificación:** revisión contra eventos/legales/performance y aprobación del owner.  
 **Modelo recomendado:** SOL.  
 **Razón del modelo:** tradeoff transversal entre negocio, privacidad y rendimiento.  
-**Evidencia:** —
+**Evidencia:** PASS (2026-08-17) — `docs/conversion/analytics-decision.md` decide Matomo On-Premise en instancia dedicada dentro del EEE, desactivado por defecto y cargable sólo tras consentimiento analítico explícito; no se invoca una exención de cookies. Fija responsable (titular de Luna Tartas), rol de operación/encargo, minimización, IP anonimizada, prohibición de cookies persistentes/User ID/publicidad/recording, retención de 13 meses y agregados no reidentificables hasta 25 meses, exclusión interna fuera de Git y transferencia sólo EEE. Evalúa no medir, GA4/GTM y SaaS cookieless; confirma Matomo como alternativa proporcional. Define contrato `analytics` global, PII prohibida y diccionario final de los cuatro eventos V1, además de los checks para M7.2/M7.5. `conversion-strategy.md`, `catalog-contract.md`, `content-readiness.md` y el registro de riesgos quedan consistentes. Revisión contra conversión, despliegue, readiness y presupuesto de JS: PASS; `npm run lint`, `npm run typecheck`, `npm test`, `npm run build` y `git diff --check`: PASS. No se añadió tracker, endpoint, ID, cookie ni dato personal. La habilitación de producción sigue requiriendo instancia EEE, acuerdo aplicable, identidad/política publicadas y aprobación explícita de la titular. Siguiente tarea: M7.2 (modelo SOL → LUNA).
 
 ## M7.2 — Facade y adaptador de analytics
 

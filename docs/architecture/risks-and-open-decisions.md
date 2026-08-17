@@ -8,7 +8,7 @@
 | Apex proxied por Cloudflare, `www` NXDOMAIN y configuración/acceso desconocidos | corte, canonicalización o HTTPS incorrectos | exportar zona/reglas/TTL y preparar rollback en M9.3; no cambiar DNS durante discovery | OPEN |
 | Catálogo, fotos, copy y exports no entregados | páginas finales no publicables | M0.1 registra cada ausencia con owner; contrato de entradas en M0.3 y gate final en M9.1 | OPEN |
 | Marca/licencias no confirmadas | retrabajo y riesgo legal | M3.1 no consolida assets sin aprobación | OPEN |
-| Analytics/consentimiento sin decidir | medición o privacidad incorrecta | decisión explícita en M7.1 antes de scripts | OPEN |
+| Analytics/consentimiento sin decidir | medición o privacidad incorrecta | M7.1 selecciona Matomo On-Premise EEE, opt-in y estado desactivado; M7.2/M9.4 verifican instancia, política y habilitación | CONTROLLED — owner: titular de Luna Tartas |
 | Pages tiene redirects HTTP por path limitados | migración SEO incompleta | Cloudflare cubre 301/308; si faltan acceso/capacidad o se requieren 410 reales, M9.2 sustituye Pages o añade edge explícito | OPEN — owner: propietario del negocio |
 | Fotos originales pesadas en Git | repositorio lento a largo plazo | hard limits M0.2 (8 MiB/24 MP por raster; 100 MiB binarios) y archivo externo; checks en M2/M8 | CONTROLLED — owner: equipo técnico |
 | Exposición accidental de secretos en repositorio público, historial, logs o `dist` | compromiso de cuentas/servicios | `.gitignore`, Secrets, permisos mínimos y scans antes de release | OPEN |
@@ -16,7 +16,6 @@
 ## Decisiones abiertas no bloqueantes para arquitectura
 
 - Proveedor y fuente de tipografía: resolver con identidad/licencias en M3.1.
-- Proveedor analytics/consent mode: M7.1.
 - Preview por pull request: M1.4 sólo si su valor supera complejidad.
 
 Los umbrales de M0.2 son gates iniciales, no `TBD`: M8.2 puede endurecerlos y sólo puede relajarlos con evidencia, owner y aceptación explícita.

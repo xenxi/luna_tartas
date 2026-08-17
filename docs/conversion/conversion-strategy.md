@@ -46,7 +46,7 @@ No se envían contenido del mensaje, teléfono, nombre del visitante ni otros da
 
 Los componentes declaran nombre/payload mediante una API pequeña o atributos de datos. Un adaptador cliente único traduce al proveedor elegido. Sin consentimiento/proveedor, los enlaces siguen funcionando y el código no arroja errores.
 
-Proveedor, measurement ID, modo de consentimiento y banner legal son `TBD`. M7.1 decide con requisitos de privacidad y rendimiento; no se presupone GA4.
+La decisión de M7.1 selecciona Matomo On-Premise dentro del EEE, con estado inicial desactivado y consentimiento analítico explícito antes de cargarlo. El contrato de configuración, retención, exclusiones y diccionario definitivo están en [`analytics-decision.md`](analytics-decision.md). La identidad legal y la política pública se completan en M9.4; hasta entonces producción no habilita medición.
 
 ## Medición y QA
 
