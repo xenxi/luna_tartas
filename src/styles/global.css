@@ -60,8 +60,9 @@
   min-width: 0;
 }
 
-:where(main:focus) {
-  outline: none;
+:where(main:focus-visible) {
+  outline: 0.1875rem solid var(--color-focus);
+  outline-offset: 0.25rem;
 }
 
 .section {

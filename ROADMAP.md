@@ -9,7 +9,7 @@
 - Se ejecuta exclusivamente la tarea solicitada; no se anticipa la siguiente.
 - `DONE` exige todos los criterios y verificaciones en `PASS`, con evidencia registrada aquí.
 - Orden normal: de arriba abajo. Una tarea posterior sólo puede comenzar si todas sus dependencias están `DONE`.
-- **Siguiente tarea:** `M8.1 — Auditoría y corrección de accesibilidad`.
+- **Siguiente tarea:** `M8.2 — Pipeline de imágenes y presupuestos de rendimiento`.
 
 ## Gates de programa
 
@@ -968,7 +968,7 @@
 
 ## M8.1 — Auditoría y corrección de accesibilidad
 
-**Estado:** PENDING  
+**Estado:** DONE
 **Objetivo:** eliminar barreras WCAG 2.2 AA relevantes en recorridos V1.  
 **Alcance:** semántica, teclado, foco, contraste, nombres, alt, headings, landmarks, zoom, reduced motion y axe/manual; fixes directos.  
 **Fuera de alcance:** certificación legal o rediseño no relacionado.  
@@ -979,7 +979,7 @@
 **Verificación:** axe, keyboard/zoom/reader spot check y suite/build.  
 **Modelo recomendado:** LUNA → SOL REVIEW.  
 **Razón del modelo:** correcciones concretas seguidas de auditoría experta.  
-**Evidencia:** —
+**Evidencia:** PASS (2026-08-17) — La auditoría detectó y corrigió en `src/styles/global.css` la pérdida de foco visible del destino del skip link: `main:focus` pasó a `main:focus-visible` con token y offset de foco. Se añadió `scripts/verify-accessibility.mjs` como auditor estático del artefacto y `npm run verify:accessibility`: 25 HTML inspeccionados, exactamente un `h1` por página, landmarks globales, enlaces/botones con nombre, imágenes con `alt` y cero IDs duplicados. `tests/accessibility.test.ts` protege el foco y el shell semántico. La revisión reproducible de teclado/zoom/reflow/lector/reduced-motion queda documentada en `docs/quality/accessibility-audit.md`; el lector de pantalla y la matriz de navegadores se reservan a M8.3 sin inventar ejecución. `npm run lint`, `npm run typecheck` (0 errores/warnings/hints), `npm test` (34 archivos, 220 tests), `npm run build` (25 páginas), `npm run verify:accessibility`, Prettier específico y `git diff --check`: PASS. `npm run format` mantiene únicamente avisos preexistentes fuera de alcance en `src/components/catalog/media-projection.ts`, `src/components/home/FeaturedProducts.astro`, `src/pages/regalos/[slug].astro` y `tests/taxonomy-listing.test.ts`. Siguiente tarea: M8.2 (modelo SOL → LUNA).`
 
 ## M8.2 — Pipeline de imágenes y presupuestos de rendimiento
 
@@ -1341,3 +1341,4 @@ No avanzar a la siguiente milestone.
 - 2026-08-17 — M5.6 completada: relacionados deterministas por taxonomías compartidas, exclusión de actual/drafts, máximo 3, media y enlaces internos; 170 tests, lint/typecheck/build e inspección HTML sin scripts en PASS. Siguiente tarea: M5.7 (modelo LUNA → SOL REVIEW).
 - 2026-08-17 — M6.3 completada: breadcrumb semántico único para índices, landings y fichas, internal linking canónico y auditoría estática de enlaces/huérfanas; 181 tests, build de 25 páginas y link graph en PASS. Siguiente tarea: M6.4 (modelo SOL).
 - 2026-08-17 — M7.5 completada: runbook de medición con matriz de eventos/rutas/payloads, modos de consentimiento, debug controlado, captura de red redactada, tráfico interno, alertas y procedimiento postrelease; test contractual y checks de suite en PASS. Siguiente tarea: M8.1 (modelo LUNA → SOL REVIEW).
+- 2026-08-17 — M8.1 completada: foco del skip link corregido, auditor estático del artefacto añadido, revisión semántica/teclado/zoom/reflow/reduced-motion documentada, 220 tests y checks de build en PASS. Siguiente tarea: M8.2 (modelo SOL → LUNA).
