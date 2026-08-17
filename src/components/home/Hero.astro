@@ -50,7 +50,15 @@ const [headingLead, headingEmphasis] = heroContent.heading.split(
         <ActionLink href={heroContent.primaryAction.href}>
           {heroContent.primaryAction.label}
         </ActionLink>
-        <ActionLink href={heroContent.secondaryAction.href} variant="secondary">
+        <ActionLink
+          href={heroContent.secondaryAction.href}
+          variant="secondary"
+          analytics={{
+            event: 'custom_whatsapp_click',
+            ctaLocation: 'home-hero',
+            sourcePage: '/',
+          }}
+        >
           {heroContent.secondaryAction.label}
         </ActionLink>
       </div>

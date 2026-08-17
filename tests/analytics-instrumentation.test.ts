@@ -1,6 +1,7 @@
 import { readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
 import { createProductAnalyticsData } from '../src/lib/analytics/product';
+import { trackSafely } from '../src/lib/analytics/instrumentation';
 import type { PublishedProduct } from '../src/lib/catalog/domain/model';
 
 const product: PublishedProduct = {
@@ -64,11 +65,38 @@ describe('view and selection instrumentation', () => {
       'src/components/site/AnalyticsInstrumentation.astro',
       'utf8',
     );
+    const actionLink = readFileSync(
+      'src/components/ui/ActionLink.astro',
+      'utf8',
+    );
+    const conversion = readFileSync(
+      'src/components/products/ProductConversionPanel.astro',
+      'utf8',
+    );
+    const footer = readFileSync('src/components/site/SiteFooter.astro', 'utf8');
 
     expect(card).toContain('data-analytics-select-item');
     expect(detail).toContain('data-analytics-view-item');
+    expect(actionLink).toContain('data-analytics-whatsapp-click');
+    expect(actionLink).toContain('data-analytics-custom-whatsapp-click');
+    expect(conversion).toContain("event: 'whatsapp_click'");
+    expect(footer).toContain('data-analytics-custom-whatsapp-click');
     expect(instrumentation).toContain('siteConfig.analytics.enabled &&');
     expect(instrumentation).toContain('bindAnalyticsInstrumentation');
     expect(`${card}${detail}`).not.toContain('matomo');
+  });
+
+  it('swallows adapter failures so the native CTA remains usable', () => {
+    expect(() =>
+      trackSafely(
+        {
+          load: async () => false,
+          track: () => {
+            throw new Error('tracker unavailable');
+          },
+        },
+        { name: 'custom_whatsapp_click' },
+      ),
+    ).not.toThrow();
   });
 });

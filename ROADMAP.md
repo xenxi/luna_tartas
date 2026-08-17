@@ -9,7 +9,7 @@
 - Se ejecuta exclusivamente la tarea solicitada; no se anticipa la siguiente.
 - `DONE` exige todos los criterios y verificaciones en `PASS`, con evidencia registrada aquí.
 - Orden normal: de arriba abajo. Una tarea posterior sólo puede comenzar si todas sus dependencias están `DONE`.
-- **Siguiente tarea:** `M7.4 — Instrumentación de WhatsApp`.
+- **Siguiente tarea:** `M7.5 — QA de medición y runbook`.
 
 ## Gates de programa
 
@@ -931,7 +931,7 @@
 
 ## M7.4 — Instrumentación de WhatsApp
 
-**Estado:** PENDING  
+**Estado:** DONE
 **Objetivo:** medir `whatsapp_click` y `custom_whatsapp_click` sin perjudicar conversión.  
 **Alcance:** CTAs de ficha/home/globales, location/source/product payload y navegación resiliente.  
 **Fuera de alcance:** contenido de conversaciones, entrega/venta o delayed navigation largo.  
@@ -942,7 +942,7 @@
 **Verificación:** tests con adapter fallido, debug/network y prueba real de enlace sin envío.  
 **Modelo recomendado:** LUNA → SOL REVIEW.  
 **Razón del modelo:** código pequeño con revisión del evento comercial principal.  
-**Evidencia:** —
+**Evidencia:** PASS (2026-08-17) — `ActionLink.astro` y `SiteFooter.astro` exponen marcas declarativas para `whatsapp_click` y `custom_whatsapp_click` sin incluir teléfono, mensaje, URL de WhatsApp ni datos de usuario. `ProductConversionPanel.astro` envía únicamente el payload público de producto de M7.3 más `cta_location: product-detail`; Hero, CTA de idea personalizada y Footer global envían sólo `cta_location` y `source_page` canónico. `src/lib/analytics/instrumentation.ts` captura activaciones `click` de puntero y teclado mediante delegación, usa el adapter único y no llama `preventDefault`, por lo que los enlaces nativos navegan aun sin consentimiento, proveedor o ante fallo del tracker; `trackSafely` absorbe excepciones del adapter. Tests cubren las marcas de los CTAs, payloads permitidos, ausencia de campos prohibidos y fallo del adapter: PASS (32 archivos, 215 tests). `npm run lint`, `npm run typecheck` (0 errores/warnings/hints), `npm test`, `npm run build` (25 páginas) y `git diff --check`: PASS. `npm run format` conserva cuatro avisos de formato preexistentes fuera de alcance (`media-projection.ts`, `FeaturedProducts.astro`, `regalos/[slug].astro`, `taxonomy-listing.test.ts`). Inspección del artifact confirma los CTAs WhatsApp declarados y ningún atributo `data-analytics` de teléfono/mensaje/URL; no se hizo envío real ni se guardó tráfico o conversación. Siguiente tarea: M7.5 (modelo LUNA → SOL REVIEW).
 
 ## M7.5 — QA de medición y runbook
 

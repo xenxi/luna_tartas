@@ -7,9 +7,26 @@ interface Props {
   ariaLabel?: string;
   target?: '_blank';
   rel?: string;
+  analytics?: {
+    event: 'whatsapp_click' | 'custom_whatsapp_click';
+    ctaLocation: string;
+    sourcePage: string;
+    productId?: string;
+    productName?: string;
+    category?: string;
+    price?: number;
+    currency?: string;
+  };
 }
 
-const { href, variant = 'primary', ariaLabel, target, rel } = Astro.props;
+const {
+  href,
+  variant = 'primary',
+  ariaLabel,
+  target,
+  rel,
+  analytics,
+} = Astro.props;
 
 if (!href || href.startsWith('javascript:')) {
   throw new Error('ActionLink requires a safe href');
@@ -22,6 +39,20 @@ if (!href || href.startsWith('javascript:')) {
   aria-label={ariaLabel}
   target={target}
   rel={rel}
+  data-analytics-whatsapp-click={analytics?.event === 'whatsapp_click'
+    ? ''
+    : undefined}
+  data-analytics-custom-whatsapp-click={analytics?.event ===
+  'custom_whatsapp_click'
+    ? ''
+    : undefined}
+  data-analytics-cta-location={analytics?.ctaLocation}
+  data-analytics-source-page={analytics?.sourcePage}
+  data-analytics-product-id={analytics?.productId}
+  data-analytics-product-name={analytics?.productName}
+  data-analytics-category={analytics?.category}
+  data-analytics-price={analytics?.price}
+  data-analytics-currency={analytics?.currency}
 >
   <slot />
 </a>

@@ -15,7 +15,14 @@ import './custom-idea.css';
     <Ornament variant="thread" motion="draw" class="custom-idea__thread" />
     <Ornament variant="dots" class="custom-idea__dots" />
     <div class="custom-idea__action">
-      <ActionLink href={customIdeaContent.action.href}>
+      <ActionLink
+        href={customIdeaContent.action.href}
+        analytics={{
+          event: 'custom_whatsapp_click',
+          ctaLocation: 'home-custom-idea',
+          sourcePage: '/',
+        }}
+      >
         {customIdeaContent.action.label}
       </ActionLink>
     </div>

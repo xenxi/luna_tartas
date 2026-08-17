@@ -27,7 +27,12 @@ const buildYear = new Date().getUTCFullYear();
         <p class="site-footer__label">Contacto</p>
         <ul>
           <li>
-            <a href={publicContactConfig.whatsapp.href}>
+            <a
+              href={publicContactConfig.whatsapp.href}
+              data-analytics-custom-whatsapp-click
+              data-analytics-cta-location="site-footer"
+              data-analytics-source-page={currentPath}
+            >
               <span>WhatsApp</span>
               <span>{publicContactConfig.whatsapp.label}</span>
             </a>

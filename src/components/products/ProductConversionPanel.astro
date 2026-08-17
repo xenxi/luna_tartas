@@ -4,6 +4,7 @@ import { routes } from '../../lib/catalog/domain/routes';
 import { whatsappConfig } from '../../config/contact';
 import { getCanonicalUrl } from '../../config/site';
 import { buildProductWhatsAppUrl } from '../../lib/whatsapp/product';
+import { createProductAnalyticsData } from '../../lib/analytics/product';
 import { formatPriceLabel } from '../catalog/price';
 import ActionLink from '../ui/ActionLink.astro';
 import './product-conversion-panel.css';
@@ -19,6 +20,10 @@ const href = buildProductWhatsAppUrl({
   productName: product.name,
   productUrl,
 });
+const analytics = createProductAnalyticsData(
+  product,
+  routes.product(product.slug),
+);
 ---
 
 <aside class="product-conversion" aria-labelledby="product-conversion-title">
@@ -34,6 +39,11 @@ const href = buildProductWhatsAppUrl({
       ariaLabel={`Pedir ${product.name} por WhatsApp`}
       target="_blank"
       rel="noopener noreferrer"
+      analytics={{
+        event: 'whatsapp_click',
+        ctaLocation: 'product-detail',
+        ...analytics,
+      }}
     >
       Pedir por WhatsApp
     </ActionLink>
