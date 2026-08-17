@@ -1,6 +1,8 @@
 ---
 import ResponsiveMedia from './ResponsiveMedia.astro';
 import type { TaxonomyCardProjection } from './types';
+import { catalogImageMap } from './catalog-images';
+import { buildSimpleMediaProjection } from './media-projection';
 import './catalog.css';
 
 interface Props {
@@ -10,6 +12,14 @@ interface Props {
 
 const { taxonomy, headingLevel = 3 } = Astro.props;
 const Heading = `h${headingLevel}` as 'h2' | 'h3';
+const media =
+  taxonomy.media ??
+  (taxonomy.mediaSource && catalogImageMap[taxonomy.mediaSource.src]
+    ? buildSimpleMediaProjection(
+        catalogImageMap[taxonomy.mediaSource.src],
+        taxonomy.mediaSource.alt,
+      )
+    : undefined);
 
 if (!taxonomy.href.startsWith('/') || taxonomy.href.startsWith('//')) {
   throw new Error('TaxonomyCard requires an internal absolute-path href');
@@ -17,7 +27,7 @@ if (!taxonomy.href.startsWith('/') || taxonomy.href.startsWith('//')) {
 ---
 
 <article class="catalog-card catalog-card--taxonomy">
-  <ResponsiveMedia media={taxonomy.media} />
+  <ResponsiveMedia media={media} />
   <div class="catalog-card__body">
     <Heading class="catalog-card__title">
       <a href={taxonomy.href}>{taxonomy.name}</a>

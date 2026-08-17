@@ -1,9 +1,9 @@
 id: pack-personalizado
 slug: pack-personalizado
-status: draft
+status: published
 name: Pack personalizado
-summary: 'Tres pequeños detalles, pensados como uno solo: lámina, marcapáginas y libreta A6.'
-description: Un pack personalizado que combina lámina, marcapáginas y libreta A6 para crear un regalo sencillo, bonito y hecho especialmente para esa persona.
+summary: Un conjunto de lámina, marcapáginas y libreta A6 coordinados para crear un regalo personalizado y especial.
+description: Un pack personalizado que reúne una lámina, un marcapáginas y una libreta A6 con un diseño coordinado. Las tres piezas se preparan alrededor del nombre y del estilo elegido para convertir un detalle sencillo en un recuerdo pensado especialmente para esa persona.
 categories:
   - packs-personalizados
   - papeleria-personalizada
@@ -13,6 +13,14 @@ price:
   kind: fixed
   amountMinor: 500
   currency: EUR
+media:
+  cover:
+    src: papeleria/pack-lamina-marcapaginas-libreta-a6.webp
+    alt: Pack de papelería personalizada con una lámina, un marcapáginas y una libreta A6 en tonos rosas.
+    rights:
+      owner: Luna / MGR Creaciones
+      licenseOrPermission: Fotografía, diseño y productos propios; publicación autorizada en lunatartas.es.
+      evidence: Confirmación directa del propietario del proyecto, 2026-08-17.
 customization:
   kind: available
   options:
@@ -21,3 +29,8 @@ customization:
   description: Las tres piezas comparten una misma línea visual y se personalizan para el destinatario.
 featured: true
 order: 60
+approval:
+  source: Información proporcionada por el propietario del proyecto
+  sourceDate: '2026-08-17'
+  approvedBy: Propietario del proyecto
+  approvedAt: '2026-08-17'

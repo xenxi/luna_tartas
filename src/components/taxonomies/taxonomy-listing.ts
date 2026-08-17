@@ -48,12 +48,21 @@ export function projectTaxonomyIndex(
   itemLabel: string,
 ): TaxonomyIndexProjection {
   return {
-    items: getTaxonomiesWithProducts(catalog, kind).map((taxonomy) => ({
-      href: routes.taxonomy(kind, taxonomy.slug),
-      name: taxonomy.name,
-      summary: taxonomy.summary,
-      itemCountLabel: `${getProductsForTaxonomy(catalog, kind, taxonomy.id).length} ${itemLabel}`,
-    })),
+    items: getTaxonomiesWithProducts(catalog, kind).map((taxonomy) => {
+      const products = getProductsForTaxonomy(catalog, kind, taxonomy.id);
+      return {
+        href: routes.taxonomy(kind, taxonomy.slug),
+        name: taxonomy.name,
+        summary: taxonomy.summary,
+        itemCountLabel: `${products.length} ${itemLabel}`,
+        mediaSource: products[0]?.media?.cover
+          ? {
+              src: products[0].media.cover.src,
+              alt: products[0].media.cover.alt,
+            }
+          : undefined,
+      };
+    }),
   };
 }
 

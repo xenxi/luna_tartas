@@ -124,8 +124,18 @@ describe('catalog queries', () => {
     const [categories, occasions, recipients] =
       projectTaxonomyDiscovery(catalog);
 
-    expect(categories.items.map(({ href, name }) => ({ href, name }))).toEqual([
-      { href: '/categorias/cakes/', name: 'cakes' },
+    expect(
+      categories.items.map(({ href, name, mediaSource }) => ({
+        href,
+        name,
+        mediaSource,
+      })),
+    ).toEqual([
+      {
+        href: '/categorias/cakes/',
+        name: 'cakes',
+        mediaSource: { src: 'first.jpg', alt: 'first cake' },
+      },
     ]);
     expect(
       occasions.items.map(({ href, itemCountLabel }) => ({

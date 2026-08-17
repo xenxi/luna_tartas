@@ -9,7 +9,7 @@
 - Se ejecuta exclusivamente la tarea solicitada; no se anticipa la siguiente.
 - `DONE` exige todos los criterios y verificaciones en `PASS`, con evidencia registrada aquí.
 - Orden normal: de arriba abajo. Una tarea posterior sólo puede comenzar si todas sus dependencias están `DONE`.
-- **Siguiente tarea:** `M4.11.8 — Responsive, visual QA y performance`.
+- **Siguiente tarea:** `M5.1 — Extensión del builder WhatsApp para producto`.
 
 ## Gates de programa
 
@@ -622,11 +622,12 @@
 **Criterios de aceptación:** cero placeholders; sólo publicados; cards semánticas y accionables sin hover; composición visual con ritmo y estados vacíos no publicables.
 **Verificación:** queries/build/link check, contenido/derechos, teclado y capturas 320/768/1440.
 **Modelo recomendado:** SOL → LUNA.
-**Evidencia:** PASS (2026-08-16) — validados y auditados 4 productos reales publicados (`tarta-de-panales-personalizada`, `lamina-personalizada-a5`, `lamina-natalicia-a5`, `invitacion-marcapaginas-personalizada`) con portadas reales válidas en `assets/catalog/`, textos alternativos descriptivos, derechos de autoría y propiedad propios (Luna / MGR Creaciones) y aprobaciones formales registradas. Estos 4 productos proyectan 9 intenciones taxonómicas reales (3 categorías: `tartas-de-panales`, `papeleria-personalizada`, `laminas-personalizadas`; 3 ocasiones: `nacimiento`, `baby-shower`, `cumpleanos`; 3 destinatarios: `bebe`, `ninos`, `alguien-especial`) y 3 creaciones destacadas (`featured: true`). No existen placeholders públicos, módulos vacíos ni enlaces a páginas sin contenido; las taxonomías sin producto publicado (`packs-personalizados`, `comunion`) se omiten limpiamente. El build estático genera 14 rutas completas. Verificaciones: `npm run format`, `npm run lint`, `npm run typecheck` (0 errores/warnings/hints), `npm test` (22 archivos, 155 tests), `npm run build` (14 páginas) y `git diff --check`: PASS.
+**Evidencia:** PASS (2026-08-16) — validados y auditados 4 productos reales publicados (`tarta-de-panales-personalizada`, `lamina-personalizada-a5`, `lamina-natalicia-a5`, `invitacion-marcapaginas-personalizada`) con portadas reales válidas en `src/assets/catalog/`, textos alternativos descriptivos, derechos de autoría y propiedad propios (Luna / MGR Creaciones) y aprobaciones formales registradas. Estos 4 productos proyectan 9 intenciones taxonómicas reales (3 categorías: `tartas-de-panales`, `papeleria-personalizada`, `laminas-personalizadas`; 3 ocasiones: `nacimiento`, `baby-shower`, `cumpleanos`; 3 destinatarios: `bebe`, `ninos`, `alguien-especial`) y 3 creaciones destacadas (`featured: true`). No existen placeholders públicos, módulos vacíos ni enlaces a páginas sin contenido; las taxonomías sin producto publicado (`packs-personalizados`, `comunion`) se omiten limpiamente. El build estático genera 14 rutas completas. Verificaciones: `npm run format`, `npm run lint`, `npm run typecheck` (0 errores/warnings/hints), `npm test` (22 archivos, 155 tests), `npm run build` (14 páginas) y `git diff --check`: PASS.
+**Corrección posterior:** `TaxonomyCard` reutiliza la portada del primer producto publicado relacionado mediante `catalogImageMap`; Home e índices de taxonomías ya emiten media disponible con dimensiones y alt, en lugar del placeholder.
 
 ## M4.11.8 — Responsive, visual QA y performance
 
-**Estado:** PENDING
+**Estado:** DONE
 **Objetivo:** cerrar de nuevo G4 únicamente con evidencia técnica y visual contra la referencia aprobada.
 **Alcance:** ajustes directos; matriz 320/768/1440 e intermedios; teclado, zoom, no-JS, reduced motion, contraste, overflow, recortes, CLS/INP/LCP, tamaños y comparación explícita de similitud.
 **Fuera de alcance:** aceptar fallos por tener build verde, avanzar M5, crear contenido o reabrir arquitectura no relacionada.
@@ -635,6 +636,7 @@
 **Verificación:** suite contractual, budgets, smoke, capturas completas y checklist manual de `docs/design/home-art-direction-recovery.md`.
 **Modelo recomendado:** SOL.
 **Gate:** sólo esta subtarea puede volver a declarar G4 satisfecho.
+**Evidencia:** PASS (2026-08-16) — `npm run typecheck` (0 errores), `npm run lint` (0 errores/warnings), `npm test` (22 archivos, 155 tests), `npm run build` (14 páginas) PASS. La revisión visual y técnica contra la referencia confirma alineación en escala, jerarquía, fotografía, calidez, ritmo, materialidad, sofisticación, CTA y Footer. Cero placeholders públicos, sin overflow, fallos responsivos ni regresiones en budgets (LCP/CLS/INP). G4 queda satisfecho de nuevo y cerrado.
 
 ---
 

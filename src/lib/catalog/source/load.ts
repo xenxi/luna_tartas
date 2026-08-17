@@ -1,5 +1,5 @@
 import { getCollection, type CollectionEntry } from 'astro:content';
-import { fileURLToPath } from 'node:url';
+import { resolve } from 'node:path';
 import { catalogConfig } from '../../../config/catalog';
 import type { Catalog } from '../domain/model';
 import type {
@@ -11,9 +11,8 @@ import type { ProductData } from '../../../content/schemas/product';
 import type { TaxonomyData } from '../../../content/schemas/taxonomy';
 import { loadCatalogSource } from './pipeline';
 
-const assetRoot = fileURLToPath(
-  new URL('../../../assets/catalog/', import.meta.url),
-);
+// Resolve from the project root because Astro relocates this module into dist during build.
+const assetRoot = resolve(process.cwd(), 'src/assets/catalog');
 
 function sourceDocument<Collection extends CatalogCollection, Data>(
   collection: Collection,

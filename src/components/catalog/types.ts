@@ -28,5 +28,9 @@ export interface TaxonomyCardProjection {
   readonly name: string;
   readonly summary: string;
   readonly itemCountLabel?: string;
+  readonly mediaSource?: {
+    readonly src: string;
+    readonly alt: string;
+  };
   readonly media?: MediaProjection;
 }

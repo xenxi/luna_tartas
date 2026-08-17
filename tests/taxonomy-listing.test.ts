@@ -96,6 +96,7 @@ describe('shared taxonomy index and landings', () => {
         name: 'birthday',
         summary: 'birthday summary',
         itemCountLabel: '2 productos',
+        mediaSource: { src: 'first.jpg', alt: 'first image' },
       },
     ]);
   });
@@ -123,6 +124,7 @@ describe('shared taxonomy index and landings', () => {
         name: 'family',
         summary: 'family summary',
         itemCountLabel: '2 ideas',
+        mediaSource: { src: 'first.jpg', alt: 'first image' },
       },
     ]);
     expect(

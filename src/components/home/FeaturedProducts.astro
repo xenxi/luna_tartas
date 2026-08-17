@@ -4,6 +4,10 @@ import ContentSection from '../patterns/ContentSection.astro';
 import ProductCard from '../catalog/ProductCard.astro';
 import type { Catalog } from '../../lib/catalog/domain/model';
 import { projectFeaturedProducts } from './featured-products';
+import { catalogImageMap } from '../catalog/catalog-images';
+import { buildSimpleMediaProjection } from '../catalog/media-projection';
+import { getFeaturedProducts } from '../../lib/catalog/domain/queries';
+import type { ProductCardProjection } from '../catalog/types';
 import './featured-products.css';
 
 interface Props {
@@ -12,18 +16,32 @@ interface Props {
 
 const { catalog } = Astro.props;
 const featured = projectFeaturedProducts(catalog);
+
+// Enriquecer cada item con su media resuelta
+const featuredWithMedia: ProductCardProjection[] = featured.items.map((item, i) => {
+  const domainProduct = getFeaturedProducts(catalog)[i];
+  const coverSrc = domainProduct?.media?.cover?.src;
+  const coverAlt = domainProduct?.media?.cover?.alt ?? '';
+  const imageMetadata = coverSrc ? catalogImageMap[coverSrc] : undefined;
+  return {
+    ...item,
+    media: imageMetadata
+      ? buildSimpleMediaProjection(imageMetadata, coverAlt)
+      : undefined,
+  };
+});
 ---
 
 {
-  featured.items.length > 0 && (
+  featuredWithMedia.length > 0 && (
     <div class="featured-products">
       <ContentSection
         id="featured-products"
         title={featured.title}
         intro={featured.intro}
       >
-        <CardList count={featured.items.length}>
-          {featured.items.map((product) => (
+        <CardList count={featuredWithMedia.length}>
+          {featuredWithMedia.map((product) => (
             <li>
               <ProductCard product={product} />
             </li>

@@ -9,6 +9,10 @@ import CardList from '../patterns/CardList.astro';
 import ContentSection from '../patterns/ContentSection.astro';
 import ProductCard from '../catalog/ProductCard.astro';
 import { projectTaxonomyLanding } from './taxonomy-listing';
+import { catalogImageMap } from '../catalog/catalog-images';
+import { buildSimpleMediaProjection } from '../catalog/media-projection';
+import { getProductsForTaxonomy } from '../../lib/catalog/domain/queries';
+import type { ProductCardProjection } from '../catalog/types';
 import './taxonomies.css';
 
 interface Props {
@@ -31,6 +35,23 @@ const {
   productsIntro,
 } = Astro.props;
 const landing = projectTaxonomyLanding(catalog, kind, taxonomy);
+const domainProducts = getProductsForTaxonomy(catalog, kind, taxonomy.id);
+
+// Enriquecer cada product card con su media resuelta
+const productsWithMedia: ProductCardProjection[] = landing.products.map(
+  (item, i) => {
+    const domainProduct = domainProducts[i];
+    const coverSrc = domainProduct?.media?.cover?.src;
+    const coverAlt = domainProduct?.media?.cover?.alt ?? '';
+    const imageMetadata = coverSrc ? catalogImageMap[coverSrc] : undefined;
+    return {
+      ...item,
+      media: imageMetadata
+        ? buildSimpleMediaProjection(imageMetadata, coverAlt)
+        : undefined,
+    };
+  },
+);
 ---
 
 <div class="taxonomy-landing">
@@ -46,14 +67,14 @@ const landing = projectTaxonomyLanding(catalog, kind, taxonomy);
     <p>{taxonomy.description ?? taxonomy.summary}</p>
   </header>
   {
-    landing.products.length > 0 && (
+    productsWithMedia.length > 0 && (
       <ContentSection
         id={`${kind}-products`}
         title={productsTitle}
         intro={productsIntro}
       >
-        <CardList count={landing.products.length}>
-          {landing.products.map((product) => (
+        <CardList count={productsWithMedia.length}>
+          {productsWithMedia.map((product) => (
             <li>
               <ProductCard product={product} />
             </li>

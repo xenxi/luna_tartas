@@ -14,7 +14,7 @@ price:
   currency: EUR
 media:
   cover:
-    src: laminas/lamina-personalizada-lea.webp
+    src: laminas/lamina-personalizada-lea.jpeg
     alt: Lámina A5 personalizada con el nombre Lea y una ilustración floral de una ovejita en tonos suaves.
     rights:
       owner: Luna / MGR Creaciones

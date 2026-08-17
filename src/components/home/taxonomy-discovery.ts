@@ -49,6 +49,12 @@ export function projectTaxonomyDiscovery(
             taxonomy.id,
           ).length;
 
+          const firstProduct = getProductsForTaxonomy(
+            catalog,
+            section.kind,
+            taxonomy.id,
+          )[0];
+
           return productCount > 0
             ? [
                 {
@@ -56,6 +62,12 @@ export function projectTaxonomyDiscovery(
                   name: taxonomy.name,
                   summary: taxonomy.summary,
                   itemCountLabel: `${productCount} ideas`,
+                  mediaSource: firstProduct?.media?.cover
+                    ? {
+                        src: firstProduct.media.cover.src,
+                        alt: firstProduct.media.cover.alt,
+                      }
+                    : undefined,
                 },
               ]
             : [];
