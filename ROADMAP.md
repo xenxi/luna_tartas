@@ -9,7 +9,7 @@
 - Se ejecuta exclusivamente la tarea solicitada; no se anticipa la siguiente.
 - `DONE` exige todos los criterios y verificaciones en `PASS`, con evidencia registrada aquí.
 - Orden normal: de arriba abajo. Una tarea posterior sólo puede comenzar si todas sus dependencias están `DONE`.
-- **Siguiente tarea:** `M9.1 — Catálogo, copy y assets finales`.
+- **Siguiente tarea:** `M9.2 — Mapa y ejecución de redirects`.
 
 ## Gates de programa
 
@@ -1073,7 +1073,7 @@
 
 ## M9.1 — Catálogo, copy y assets finales
 
-**Estado:** PENDING  
+**Estado:** DONE
 **Objetivo:** sustituir material provisional por contenido aprobado y trazable.  
 **Alcance:** YAML final, fotos optimizables, alt, marca/favicon/OG, textos y datos legales/config; revisión de derechos y completitud; selección final coherente con las reglas hero/producto/trabajos/proceso/detalle de la dirección artística. Si se amplía “Cada detalle cuenta”, incorporar sólo material aprobado de manos, preparación, materiales/packaging y producto terminado.
 
@@ -1087,13 +1087,13 @@
 
 **Modelo recomendado:** LUNA → SOL REVIEW.  
 **Razón del modelo:** carga sistemática con revisión de coherencia global.  
-**Evidencia:** Actualización parcial recibida (2026-08-17) —
+**Evidencia:** PASS (2026-08-17) — `docs/product/m9-1-content-release.md` y `docs/product/content-readiness.md` registran el cierre editorial: 8 productos, 4 categorías, 4 ocasiones y 3 destinatarios publicados, con copy, precios, relaciones, personalización, orden/destacado, aprobación, derechos y alt trazables. Las portadas y galerías resuelven dentro de `src/assets/catalog/`; el logo aprobado se reutiliza sin modificación como favicon PNG y en Organization JSON-LD. No se inventan variantes de marca, claims, datos legales ni placeholders. La imagen social sigue siendo el hero aprobado. Se añadió regresión de shell para el favicon. `npm run lint`, `npm run typecheck` (0 errores/warnings/hints), `npm test` (38 archivos, 231 tests), `npm run build` (25 páginas), `npm run verify:catalog` (8 productos), `npm run verify:seo` (24 HTML), `npm run verify:crawl` (24 URLs), `npm run verify:links` (0 rotos/0 huérfanos/0 problemas de breadcrumbs), `npm run verify:structured-data`, `npm run verify:assets` (31 archivos, 29.647 KiB), `npm run verify:accessibility`, `npm run verify:performance`, `npm run verify:responsive`, `npm run verify:artifact`, `npm run verify:determinism` (486 archivos), `npm run verify:security`, `npm run verify:dependencies`, `npm run verify:mutation` y `git diff --check`: PASS. `npm run format` conserva únicamente dos avisos preexistentes fuera de alcance en `src/pages/regalos/[slug].astro` y `tests/taxonomy-listing.test.ts`. Siguiente tarea: M9.2 (modelo SOL).
 `src/content/products/lamina-personalizada-a5.yml` conserva el ID estable y
 actualiza nombre, copy, precio de 2 €, personalización y aprobación; incorpora
 la portada existente y 9 imágenes de galería con alt y derechos registrados.
 Los 10 archivos referenciados existen bajo `src/assets/catalog/laminas/`.
-M9.1 permanece `PENDING` porque esta entrega no completa el catálogo, la
-revisión global de assets ni el resto de entradas editoriales.
+Esta entrega parcial no completaba el catálogo; el cierre global posterior queda
+registrado en la evidencia PASS de M9.1.
 
 Actualización parcial adicional (2026-08-17) — se actualiza el producto
 existente `tarjeta-felicitacion-personalizada-a6.yml` a `published`, con precio

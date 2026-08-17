@@ -1,5 +1,6 @@
 ---
 import socialImage from '../assets/home/tarta-hero.png';
+import brandLogo from '../assets/brand/logo-luna-tartas.png';
 import { siteConfig } from '../config/site';
 import {
   createPageMetadata,
@@ -58,6 +59,7 @@ const metadata = createPageMetadata({
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <link rel="icon" type="image/png" href={brandLogo.src} />
     <link rel="canonical" href={metadata.canonicalUrl} />
     <meta name="description" content={metadata.description} />
     <meta name="robots" content={metadata.robots} />

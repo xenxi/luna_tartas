@@ -78,6 +78,15 @@ describe('public site shell', () => {
     expect(footer).not.toContain('target="_blank"');
   });
 
+  it('publishes the approved logo as the favicon without deriving a brand mark', () => {
+    expect(layout).toContain(
+      "import brandLogo from '../assets/brand/logo-luna-tartas.png';",
+    );
+    expect(layout).toContain(
+      '<link rel="icon" type="image/png" href={brandLogo.src} />',
+    );
+  });
+
   it('renders the approved creator signature once at build time without hydration', () => {
     expect(footer).toContain('const buildYear = new Date().getUTCFullYear();');
     expect(footer).toContain('Hecho con mimo para Luna · Creado por');

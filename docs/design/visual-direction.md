@@ -23,13 +23,15 @@ Fuentes autoritativas relacionadas:
 | --------------------------- | --------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ----------------------------------------------------------------------- |
 | Nombre comercial            | `READY`         | Aprobación directa de Luna, 2026-08-17                                    | «Luna Tartas» y alternativa «Luna Estudio» en web/JSON-LD                 | Mantener fuente, owner, fecha y aprobación                              |
 | Logo oficial                | `READY`         | `src/assets/brand/logo-luna-tartas.png`, entregado por Luna el 2026-08-17 | Uso en `Organization` JSON-LD; no deriva variantes ni iconos              | Mantener archivo, derechos y aprobación                                 |
-| Variantes, favicon e iconos | `BLOCKED`       | No existen masters ni guía de uso                                         | Ningún asset derivado o inventado; reservar región semántica reemplazable | Masters web, variantes, área de seguridad, tamaños mínimos y aprobación |
-| Favicon e iconos de marca   | `BLOCKED`       | No existen archivos ni derechos acreditados                               | Ningún monograma, luna o símbolo provisional en producción                | SVG/PNG masters, autor, licencia o permiso y aprobación                 |
+| Variantes, favicon e iconos | `READY`         | Logo oficial aprobado reutilizado sin modificación                         | El logo PNG aprobado se usa como favicon; no se derivan marcas ni iconos   | Mantener el archivo oficial y añadir variantes sólo con nueva aprobación |
+| Favicon e iconos de marca   | `READY`         | `BaseLayout.astro` enlaza el logo oficial como favicon PNG                 | No se publica ningún monograma, luna o símbolo derivado                    | Master específico sólo si el propietario lo entrega y aprueba            |
 | Tipografías de marca        | `BLOCKED`       | No existen nombres, archivos, proveedor ni licencia                       | Stacks del sistema definidos en este documento                            | Familia, pesos necesarios, archivos/proveedor, licencia y aprobación    |
-| Fotografía de producto      | `TBD` para M9.1 | No hay selección ni derechos/alt entregados                               | Sólo fixtures aislados en tests; nunca moodboard o build público          | Originales, selección, autor/permiso, alt y aprobación                  |
+| Fotografía de producto      | `READY`         | Selección final en `src/assets/catalog/`, con derechos y alt por media     | Portadas y galerías publicadas tras validación del catálogo                | Mantener fuente, selección, autor/permiso, alt y aprobación             |
 | Guía de voz o identidad     | `TBD`           | No existe documento entregado                                             | Aplicar sólo los principios de producto ya aprobados                      | Guía o aprobación explícita del owner                                   |
 
-No se incorpora ningún asset de marca en M3.1. La ausencia es deliberada: un placeholder técnico no debe parecer una propuesta de logo ni cruzar al artefacto público.
+No se incorporó ningún asset de marca en M3.1. En M9.1 se incorpora únicamente
+el logo oficial entregado y aprobado; reutilizar el mismo PNG como favicon no
+crea una variante ni una propuesta de identidad.
 
 ## Concepto rector: Atelier de pequeños detalles
 
