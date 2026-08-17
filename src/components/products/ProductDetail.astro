@@ -1,0 +1,87 @@
+---
+import type {
+  PublishedProduct,
+  Taxonomy,
+  TaxonomyKind,
+} from '../../lib/catalog/domain/model';
+import { routes } from '../../lib/catalog/domain/routes';
+import { formatPriceLabel } from '../catalog/price';
+import Breadcrumb from '../navigation/Breadcrumb.astro';
+import './product-detail.css';
+
+interface Props {
+  product: PublishedProduct;
+  taxonomies: Readonly<Record<TaxonomyKind, readonly Taxonomy[]>>;
+}
+
+const { product, taxonomies } = Astro.props;
+
+function linkedTaxonomies(kind: TaxonomyKind, ids: readonly string[]) {
+  return ids
+    .map((id) => taxonomies[kind].find((taxonomy) => taxonomy.id === id))
+    .filter((taxonomy): taxonomy is Taxonomy => taxonomy !== undefined);
+}
+
+const categories = linkedTaxonomies('category', product.categories);
+const occasions = linkedTaxonomies('occasion', product.occasions ?? []);
+const recipients = linkedTaxonomies('recipient', product.recipients ?? []);
+const taxonomyGroups = [
+  { kind: 'category' as const, label: 'Tipo', items: categories },
+  { kind: 'occasion' as const, label: 'Ocasión', items: occasions },
+  { kind: 'recipient' as const, label: 'Para', items: recipients },
+].filter(({ items }) => items.length > 0);
+---
+
+<div class="product-detail">
+  <Breadcrumb
+    items={[
+      { label: 'Inicio', href: '/' },
+      { label: 'Productos', href: routes.products() },
+      { label: product.name, current: true },
+    ]}
+  />
+
+  <article class="product-detail__article">
+    <header class="product-detail__header">
+      <p class="product-detail__eyebrow">Una creación de Luna</p>
+      <h1>{product.name}</h1>
+      <p class="product-detail__summary">{product.summary}</p>
+      <p class="product-detail__price">{formatPriceLabel(product.price)}</p>
+    </header>
+
+    <div class="product-detail__body">
+      <section aria-labelledby="product-description-title">
+        <h2 id="product-description-title">Sobre esta creación</h2>
+        {
+          product.description
+            .split('\n\n')
+            .map((paragraph) => <p>{paragraph}</p>)
+        }
+      </section>
+
+      {
+        taxonomyGroups.length > 0 && (
+          <section aria-labelledby="product-context-title">
+            <h2 id="product-context-title">Encuéntralo por intención</h2>
+            <div class="product-detail__taxonomy-groups">
+              {taxonomyGroups.map(({ kind, label, items }) => (
+                <div>
+                  <h3>{label}</h3>
+                  <ul>
+                    {items.map((taxonomy) => (
+                      <li>
+                        <a href={routes.taxonomy(kind, taxonomy.slug)}>
+                          {taxonomy.name}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+          </section>
+        )
+      }
+    </div>
+  </article>
+</div>

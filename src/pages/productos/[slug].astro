@@ -1,0 +1,34 @@
+---
+import type { GetStaticPaths } from 'astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ProductDetail from '../../components/products/ProductDetail.astro';
+import { loadCatalog } from '../../lib/catalog/source';
+import {
+  getPublishedProducts,
+  getPublishedTaxonomies,
+} from '../../lib/catalog/domain/queries';
+
+export const getStaticPaths = (async () => {
+  const catalog = await loadCatalog();
+  const products = getPublishedProducts(catalog);
+
+  return products.map((product) => ({
+    params: { slug: product.slug },
+    props: {
+      product,
+      taxonomies: {
+        category: getPublishedTaxonomies(catalog, 'category'),
+        occasion: getPublishedTaxonomies(catalog, 'occasion'),
+        recipient: getPublishedTaxonomies(catalog, 'recipient'),
+      },
+    },
+  }));
+}) satisfies GetStaticPaths;
+
+const { product, taxonomies } = Astro.props;
+const title = product.seo?.title ?? product.name;
+---
+
+<BaseLayout title={title}>
+  <ProductDetail product={product} taxonomies={taxonomies} />
+</BaseLayout>

@@ -9,7 +9,7 @@
 - Se ejecuta exclusivamente la tarea solicitada; no se anticipa la siguiente.
 - `DONE` exige todos los criterios y verificaciones en `PASS`, con evidencia registrada aquí.
 - Orden normal: de arriba abajo. Una tarea posterior sólo puede comenzar si todas sus dependencias están `DONE`.
-- **Siguiente tarea:** `M5.1 — Extensión del builder WhatsApp para producto`.
+- **Siguiente tarea:** `M5.2 — Ruta y contenido principal de producto`.
 
 ## Gates de programa
 
@@ -648,7 +648,7 @@
 
 ## M5.1 — Extensión del builder WhatsApp para producto
 
-**Estado:** BLOCKED
+**Estado:** DONE
 **Objetivo:** completar el builder compartido con enlaces de producto correctos, centralizados y testables.  
 **Alcance:** extender el caso personalizado de M4.6 con plantilla de producto, canonical de origen y matriz completa de normalización/URL/message encoding/errores.  
 **Fuera de alcance:** analytics, UI de ficha, API Business o envío automático.  
@@ -659,11 +659,11 @@
 **Verificación:** tests de matriz y apertura manual en móvil/desktop sin completar envío.  
 **Modelo recomendado:** LUNA.  
 **Razón del modelo:** utilidad pura con casos definidos.  
-**Evidencia:** BLOCKED (2026-08-16) — El builder personalizado existente conserva número/mensaje aprobados, pero `docs/conversion/conversion-strategy.md` mantiene el copy final, saludo y plantilla de producto como `TBD`; `docs/product/content-readiness.md` asigna esa entrada al propietario del negocio con gate M5.1. La recuperación visual reabre además G4 hasta M4.11.8. Sin ambos prerrequisitos no se puede fijar el mensaje de producto ni avanzar a M5.2. Pendiente: cerrar M4.11.8; entregar texto exacto o plantilla parametrizada aprobada, fuente/owner y fecha de aprobación; confirmar si los enlaces abren en la misma pestaña.
+**Evidencia:** PASS (2026-08-17) — Se registra la aprobación editorial de Luna en `docs/conversion/conversion-strategy.md` y `docs/product/content-readiness.md`: saludo “Hola, me interesa {productName} 😊”, consulta de disponibilidad/precio/personalización sin inventar datos, nombre de producto publicado, URL canónica absoluta y apertura en contexto nuevo con `target="_blank"` + `rel="noopener noreferrer"`. `src/lib/whatsapp/product.ts` añade builders puros de mensaje/URL, valida número internacional, nombre no vacío, origen HTTPS canónico `https://lunatartas.es`, ruta `/productos/`, barra final y ausencia de query/hash/credenciales; aplica `encodeURIComponent` una sola vez. `tests/product-whatsapp.test.ts` cubre plantilla, URL, Unicode/acentos/ñ/símbolos/emoji, encoding, canonicalidad y errores. `npm run lint`, `npm run typecheck` (0 errores/warnings/hints), `npm test` (23 archivos, 164 tests), `npm run build` (16 páginas), Prettier específico y `git diff --check`: PASS. No se implementó UI de ficha ni analytics; siguiente tarea M5.2.
 
 ## M5.2 — Ruta y contenido principal de producto
 
-**Estado:** PENDING  
+**Estado:** IN_PROGRESS
 **Objetivo:** generar una ficha estática comprensible para cada producto publicado.  
 **Alcance:** `[slug]`, breadcrumb visual, nombre, resumen/descripción, precio semántico, contenido del pack y taxonomías; comportamiento ante slug ausente; composición editorial coherente con M4.11 sin copiar mecánicamente la Home.
 
@@ -677,7 +677,7 @@
 
 **Modelo recomendado:** LUNA → SOL REVIEW.  
 **Razón del modelo:** implementación de ruta con revisión de la principal página de negocio.  
-**Evidencia:** —
+**Evidencia:** IN_PROGRESS (2026-08-17) — `src/pages/productos/[slug].astro` genera una ruta estática por cada producto publicado mediante `getPublishedProducts`; los drafts no generan paths y los slugs ausentes quedan fuera del artefacto estático. `ProductDetail.astro` presenta breadcrumb, nombre, resumen, descripción, precio semántico y taxonomías enlazadas con los route builders, sin galería, CTA, relacionados, JSON-LD ni JavaScript adelantado. `tests/product-detail.test.ts` cubre publicación frente a draft, rutas, `fixed/from/on_request`, semántica y ausencia de hidratación. `npm run lint`, `npm run typecheck` (0 errores/warnings/hints), `npm test` (24 archivos, 169 tests), `npm run build` (24 páginas, 8 fichas de producto) y `git diff --check`: PASS. El formato global conserva dos avisos preexistentes en `src/components/catalog/media-projection.ts` y `src/components/home/FeaturedProducts.astro`, ajenos a M5.2. Pendiente para cerrar: review visual manual a 320/768/1440 y comprobación explícita de composición con el modelo de review elegido.
 
 ## M5.3 — Galería responsive de producto
 
@@ -1333,3 +1333,4 @@ No avanzar a la siguiente milestone.
 - 2026-08-16 — M4.11.5 completada: CTA emocional integrado y Footer editorial con navegación real, WhatsApp Business, email e Instagram aprobados, copyright/firma separados, foco y targets accesibles, 153 tests, build y QA 320/768/1440 en PASS. Siguiente tarea: M4.11.6 (modelo LUNA → SOL REVIEW).
 - 2026-08-16 — M4.11.6 completada: subrayado e hilos usan draw progresivo nativo sólo en escritorio compatible, con fallback/reduced-motion estáticos, 0 JS, 0 desplazamiento de layout, hover/foco equivalentes, 153 tests, build, budgets y QA 320/768/1440 en PASS. Siguiente tarea: M4.11.7, que permanece `BLOCKED` hasta recibir catálogo, taxonomías y fotografías aprobadas (modelo SOL → LUNA).
 - 2026-08-16 — M4.11.7 completada: validados 4 productos reales publicados (`tarta-de-panales-personalizada`, `lamina-personalizada-a5`, `lamina-natalicia-a5`, `invitacion-marcapaginas-personalizada`) con portadas reales válidas, alt descriptivos, derechos propios de Luna / MGR Creaciones y aprobación formal. Proyectan 9 intenciones taxonómicas y 3 productos destacados. Cero placeholders, cero módulos vacíos, 14 rutas estáticas generadas, 155 tests y build en PASS. Siguiente tarea: M4.11.8 (modelo SOL).
+- 2026-08-17 — M5.1 completada: aprobación editorial registrada, builder puro de producto con URL canónica y encoding único, matriz de Unicode/errores, 164 tests, lint/typecheck/build y diff check en PASS. Siguiente tarea: M5.2 (modelo LUNA → SOL REVIEW).

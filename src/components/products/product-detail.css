@@ -1,0 +1,108 @@
+.product-detail {
+  display: grid;
+  gap: var(--space-8);
+  padding-block: var(--space-6) var(--space-12);
+}
+
+.product-detail__article {
+  display: grid;
+  gap: var(--space-chapter);
+  max-inline-size: var(--measure-reading);
+  margin-inline: auto;
+}
+
+.product-detail__header {
+  display: grid;
+  gap: var(--space-4);
+  max-inline-size: 42rem;
+  padding-block: var(--space-6) var(--space-4);
+  border-block-end: 1px solid var(--color-border);
+}
+
+.product-detail__eyebrow {
+  margin: 0;
+  color: var(--color-action);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: var(--letter-spacing-heading);
+  text-transform: uppercase;
+}
+
+.product-detail__header h1 {
+  max-inline-size: 12ch;
+  margin: 0;
+}
+
+.product-detail__summary,
+.product-detail__price {
+  margin: 0;
+}
+
+.product-detail__summary {
+  max-inline-size: 55ch;
+  color: var(--color-text-muted);
+  font-size: var(--font-size-lg);
+}
+
+.product-detail__price {
+  color: var(--color-action);
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-semibold);
+}
+
+.product-detail__body {
+  display: grid;
+  gap: var(--space-chapter);
+}
+
+.product-detail__body section {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.product-detail__body h2,
+.product-detail__body h3,
+.product-detail__body p {
+  margin: 0;
+}
+
+.product-detail__body p {
+  max-inline-size: 65ch;
+}
+
+.product-detail__taxonomy-groups {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-5);
+}
+
+.product-detail__taxonomy-groups > div {
+  display: grid;
+  align-content: start;
+  gap: var(--space-2);
+  padding: var(--space-4);
+  border-block-start: 2px solid var(--color-accent);
+  background: var(--color-surface-warm);
+}
+
+.product-detail__taxonomy-groups h3 {
+  color: var(--color-text-muted);
+  font-size: var(--font-size-sm);
+  letter-spacing: var(--letter-spacing-heading);
+  text-transform: uppercase;
+}
+
+.product-detail__taxonomy-groups ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2) var(--space-4);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+@media (max-width: 48rem) {
+  .product-detail__taxonomy-groups {
+    grid-template-columns: 1fr;
+  }
+}

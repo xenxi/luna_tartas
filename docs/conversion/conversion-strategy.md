@@ -8,13 +8,28 @@ El recorrido prioritario es `ver -> entender -> desear -> contactar`. El CTA pri
 
 - Teléfono y plantilla base viven en configuración global validada.
 - Un builder puro genera URL HTTPS oficial y mensaje codificado.
-- El mensaje de producto incluye saludo, nombre, intención de pedido y URL canónica.
+- El mensaje de producto incluye el saludo aprobado, nombre, intención de consulta y URL canónica.
 - El mensaje personalizado incluye contexto/origen cuando sea útil, sin inventar producto.
 - La función admite datos Unicode, espacios y URLs sin doble codificación.
 - Si falta configuración requerida, el build falla; no se publica un enlace vacío/roto.
 - El enlace es un `<a>` funcional sin JavaScript. La medición es enhancement y no impide navegar.
 
-El copy final, teléfono, saludo y política de nueva pestaña son `TBD` de negocio/UX.
+El copy de producto aprobado el 2026-08-17 es:
+
+```text
+Hola, me interesa {productName} 😊
+
+He visto este producto en vuestra web:
+{productUrl}
+
+¿Podríais darme más información sobre disponibilidad, precio y opciones de personalización?
+
+¡Gracias!
+```
+
+- `{productName}` procede del nombre público exacto de un producto publicado y `{productUrl}` es su URL canónica absoluta.
+- El CTA de producto abre WhatsApp en un contexto nuevo con `target="_blank"` y `rel="noopener noreferrer"`.
+- La aprobación editorial pertenece a Luna, con fecha 2026-08-17 y fuente “aprobación directa del propietario del contenido para M5.1”.
 
 ## Taxonomía mínima de eventos
 
@@ -40,4 +55,3 @@ Proveedor, measurement ID, modo de consentimiento y banner legal son `TBD`. M7.1
 - Debug de proveedor y una captura/matriz de eventos sirven como evidencia.
 - Se documentan exclusión de tráfico interno, retención y propiedad de cuentas cuando aplique.
 - Tras release se verifica recepción real sin registrar datos personales.
-
