@@ -9,7 +9,7 @@
 - Se ejecuta exclusivamente la tarea solicitada; no se anticipa la siguiente.
 - `DONE` exige todos los criterios y verificaciones en `PASS`, con evidencia registrada aquí.
 - Orden normal: de arriba abajo. Una tarea posterior sólo puede comenzar si todas sus dependencias están `DONE`.
-- **Siguiente tarea:** `M5.6 — Productos relacionados y continuidad`.
+- **Siguiente tarea:** `M5.7 — QA del recorrido de conversión`.
 
 ## Gates de programa
 
@@ -732,7 +732,7 @@
 
 ## M5.6 — Productos relacionados y continuidad
 
-**Estado:** PENDING  
+**Estado:** DONE
 **Objetivo:** evitar callejones sin salida y facilitar alternativas pertinentes.  
 **Alcance:** relacionados deterministas por taxonomía/orden, navegación a categoría/ocasión/destinatario y fallback.  
 **Fuera de alcance:** personalización algorítmica, tracking o motor de recomendaciones.  
@@ -743,7 +743,7 @@
 **Verificación:** tests de query/casos límite, build y link check.  
 **Modelo recomendado:** LUNA.  
 **Razón del modelo:** regla determinista y UI reutilizada.  
-**Evidencia:** —
+**Evidencia:** PASS (2026-08-17) — `getRelatedProducts` devuelve sólo publicados, excluye el producto actual y puntúa taxonomías compartidas con desempate estable por `order`, nombre e ID; valida límites no negativos y no duplica candidatos. `projectRelatedProducts` transforma el resultado en proyecciones de `ProductCard`, con máximo 3 elementos, rutas internas y precio semántico. `ProductRelated.astro` resuelve portadas desde el catálogo, usa `CardList`/`ProductCard` sin JavaScript y omite completamente la sección cuando no hay alternativas. La ficha recibe el catálogo validado desde `getStaticPaths` y mantiene los enlaces de contexto a categoría, ocasión y destinatario. Tests cubren exclusión de draft/actual, puntuación, límites, orden y composición; el build real emite relacionados con media y enlaces internos válidos en las fichas publicadas. `npm run lint`, `npm run typecheck` (0 errores/warnings/hints), `npm test` (24 archivos, 170 tests), `npm run build` (24 páginas), Prettier específico, inspección HTML sin scripts y `git diff --check`: PASS. Siguiente tarea: M5.7 (modelo LUNA → SOL REVIEW).`
 
 ## M5.7 — QA del recorrido de conversión
 
@@ -1337,4 +1337,5 @@ No avanzar a la siguiente milestone.
 - 2026-08-17 — M5.2 completada: ficha estática por producto publicado, variantes de precio honestas, taxonomías enlazadas y composición editorial responsive revisada a 320/768/1440; 169 tests, lint/typecheck/build y diff check en PASS. Siguiente tarea: M5.3 (modelo LUNA → SOL REVIEW).
 - 2026-08-17 — M5.3 completada: galería estática de portada y alternativas aprobadas, responsive AVIF/WebP con dimensiones conocidas, portada prioritaria, vistas adicionales lazy y composición móvil/escritorio sin JavaScript; 169 tests, build y QA 320/768/1440 en PASS. Siguiente tarea: M5.4 (modelo LUNA → SOL REVIEW).
 - 2026-08-17 — M5.4 completada: panel de conversión estático tras la galería con resumen, precio, CTA seguro a WhatsApp y mensaje contextual con canonical; 169 tests, build y QA 320/768/1440/teclado en PASS. Siguiente tarea: M5.5 (modelo LUNA).
-- 2026-08-17 — M5.5 completada: personalización condicional desde `customization`, contenido editorial del producto y proceso/confianza aprobado en secuencia narrativa, sin FAQ/configurador/claims inventados ni JavaScript; 169 tests, lint/typecheck/build y revisión HTML en PASS. Siguiente tarea: M5.6 (modelo LUNA).
+ - 2026-08-17 — M5.5 completada: personalización condicional desde `customization`, contenido editorial del producto y proceso/confianza aprobado en secuencia narrativa, sin FAQ/configurador/claims inventados ni JavaScript; 169 tests, lint/typecheck/build y revisión HTML en PASS. Siguiente tarea: M5.6 (modelo LUNA).
+- 2026-08-17 — M5.6 completada: relacionados deterministas por taxonomías compartidas, exclusión de actual/drafts, máximo 3, media y enlaces internos; 170 tests, lint/typecheck/build e inspección HTML sin scripts en PASS. Siguiente tarea: M5.7 (modelo LUNA → SOL REVIEW).

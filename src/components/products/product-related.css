@@ -1,0 +1,8 @@
+.product-related {
+  inline-size: 100%;
+  margin-block-start: var(--space-4);
+}
+
+.product-related .content-section {
+  padding-block: var(--space-10);
+}

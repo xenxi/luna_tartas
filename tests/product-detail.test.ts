@@ -94,6 +94,28 @@ describe('product detail route', () => {
     expect(component).toContain('<ProductGallery product={product} />');
     expect(component).toContain('<ProductConversionPanel product={product} />');
     expect(component).toContain('<ProductPersonalization product={product} />');
+    const relatedPage = readFileSync(
+      'src/pages/productos/[slug].astro',
+      'utf8',
+    );
+    const relatedComponent = readFileSync(
+      'src/components/products/ProductRelated.astro',
+      'utf8',
+    );
+    const relatedProjection = readFileSync(
+      'src/components/products/product-related.ts',
+      'utf8',
+    );
+
+    expect(relatedPage).toContain(
+      '<ProductRelated catalog={catalog} product={product} />',
+    );
+    expect(relatedComponent).toContain(
+      'projectRelatedProducts(catalog, product)',
+    );
+    expect(relatedComponent).toContain('itemsWithMedia.length > 0');
+    expect(relatedProjection).toContain('getRelatedProducts');
+    expect(relatedProjection).toContain('limit = 3');
     expect(gallery).toContain(
       '[product.media.cover, ...(product.media.gallery ?? [])]',
     );
@@ -137,7 +159,7 @@ describe('product detail route', () => {
     expect(personalizationStyles).toContain('counter-reset: product-step');
     expect(`${component}\n${personalization}`).not.toContain('FAQ');
     expect(
-      `${page}\n${component}\n${gallery}\n${conversion}\n${personalization}`,
+      `${page}\n${component}\n${gallery}\n${conversion}\n${personalization}\n${relatedPage}\n${relatedComponent}`,
     ).not.toContain('client:');
     expect(
       `${page}\n${component}\n${gallery}\n${conversion}\n${personalization}`,

@@ -1,0 +1,61 @@
+---
+import type { Catalog, PublishedProduct } from '../../lib/catalog/domain/model';
+import { catalogImageMap } from '../catalog/catalog-images';
+import { buildSimpleMediaProjection } from '../catalog/media-projection';
+import { getPublishedProducts } from '../../lib/catalog/domain/queries';
+import { routes } from '../../lib/catalog/domain/routes';
+import CardList from '../patterns/CardList.astro';
+import ContentSection from '../patterns/ContentSection.astro';
+import ProductCard from '../catalog/ProductCard.astro';
+import type { ProductCardProjection } from '../catalog/types';
+import { projectRelatedProducts } from './product-related';
+import './product-related.css';
+
+interface Props {
+  catalog: Catalog;
+  product: PublishedProduct;
+}
+
+const { catalog, product } = Astro.props;
+const related = projectRelatedProducts(catalog, product);
+const productsByHref = new Map(
+  getPublishedProducts(catalog).map((candidate) => [
+    routes.product(candidate.slug),
+    candidate,
+  ]),
+);
+const itemsWithMedia: ProductCardProjection[] = related.items.map((item) => {
+  const relatedProduct = productsByHref.get(item.href);
+  const cover = relatedProduct?.media.cover;
+  const imageMetadata =
+    cover === undefined ? undefined : catalogImageMap[cover.src];
+
+  return {
+    ...item,
+    media:
+      imageMetadata === undefined || cover === undefined
+        ? undefined
+        : buildSimpleMediaProjection(imageMetadata, cover.alt),
+  };
+});
+---
+
+{
+  itemsWithMedia.length > 0 && (
+    <div class="product-related">
+      <ContentSection
+        id="product-related-title"
+        title={related.title}
+        intro={related.intro}
+      >
+        <CardList count={itemsWithMedia.length} columns={3}>
+          {itemsWithMedia.map((relatedProduct) => (
+            <li>
+              <ProductCard product={relatedProduct} />
+            </li>
+          ))}
+        </CardList>
+      </ContentSection>
+    </div>
+  )
+}

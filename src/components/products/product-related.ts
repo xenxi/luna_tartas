@@ -1,0 +1,29 @@
+import { getRelatedProducts } from '../../lib/catalog/domain/queries';
+import type { Catalog, PublishedProduct } from '../../lib/catalog/domain/model';
+import { routes } from '../../lib/catalog/domain/routes';
+import { formatPriceLabel } from '../catalog/price';
+import type { ProductCardProjection } from '../catalog/types';
+
+export interface ProductRelatedProjection {
+  readonly title: string;
+  readonly intro: string;
+  readonly items: readonly ProductCardProjection[];
+}
+
+export function projectRelatedProducts(
+  catalog: Catalog,
+  product: PublishedProduct,
+  limit = 3,
+): ProductRelatedProjection {
+  return {
+    title: 'También puede interesarte',
+    intro: 'Otras creaciones que comparten parte de esta intención.',
+    items: getRelatedProducts(catalog, product.id, limit).map((related) => ({
+      href: routes.product(related.slug),
+      name: related.name,
+      summary: related.summary,
+      priceLabel: formatPriceLabel(related.price),
+      eyebrow: 'Otra idea de Luna',
+    })),
+  };
+}

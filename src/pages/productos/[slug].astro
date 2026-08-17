@@ -2,6 +2,7 @@
 import type { GetStaticPaths } from 'astro';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import ProductDetail from '../../components/products/ProductDetail.astro';
+import ProductRelated from '../../components/products/ProductRelated.astro';
 import { loadCatalog } from '../../lib/catalog/source';
 import {
   getPublishedProducts,
@@ -21,14 +22,16 @@ export const getStaticPaths = (async () => {
         occasion: getPublishedTaxonomies(catalog, 'occasion'),
         recipient: getPublishedTaxonomies(catalog, 'recipient'),
       },
+      catalog,
     },
   }));
 }) satisfies GetStaticPaths;
 
-const { product, taxonomies } = Astro.props;
+const { product, taxonomies, catalog } = Astro.props;
 const title = product.seo?.title ?? product.name;
 ---
 
 <BaseLayout title={title}>
   <ProductDetail product={product} taxonomies={taxonomies} />
+  <ProductRelated catalog={catalog} product={product} />
 </BaseLayout>

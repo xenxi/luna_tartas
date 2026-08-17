@@ -120,6 +120,25 @@ describe('catalog queries', () => {
     expect(getRelatedProducts(catalog, 'draft')).toEqual([]);
   });
 
+  it('scores shared taxonomies before editorial order and respects the limit', () => {
+    const products = [
+      product('one', 30, { occasions: ['birthday'] }),
+      product('two', 10, { occasions: ['birthday'], recipients: ['family'] }),
+      product('three', 0, { recipients: ['family'] }),
+      product('unrelated', 0, { categories: ['other'] }),
+    ];
+    const source = { ...catalog, products };
+
+    expect(getRelatedProducts(source, 'one', 2).map(({ id }) => id)).toEqual([
+      'two',
+      'three',
+    ]);
+    expect(getRelatedProducts(source, 'one', 0)).toEqual([]);
+    expect(() => getRelatedProducts(source, 'one', -1)).toThrow(
+      'non-negative safe integer',
+    );
+  });
+
   it('projects home discovery from published taxonomies in editorial order', () => {
     const [categories, occasions, recipients] =
       projectTaxonomyDiscovery(catalog);
