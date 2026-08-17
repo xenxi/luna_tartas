@@ -1,0 +1,47 @@
+---
+import type { PublishedProduct } from '../../lib/catalog/domain/model';
+import { trustAndWorkContent } from '../../content/home/trust-and-work';
+import './product-personalization.css';
+
+interface Props {
+  product: PublishedProduct;
+}
+
+const { product } = Astro.props;
+const customization = product.customization;
+const hasCustomization = customization.kind === 'available';
+---
+
+<div class="product-personalization">
+  {
+    hasCustomization && (
+      <section aria-labelledby="product-customization-title">
+        <p class="product-personalization__eyebrow">A tu manera</p>
+        <h2 id="product-customization-title">Qué podemos personalizar</h2>
+        <p>{customization.description}</p>
+        <ul class="product-personalization__options">
+          {customization.options.map((option) => (
+            <li>{option}</li>
+          ))}
+        </ul>
+      </section>
+    )
+  }
+
+  {
+    hasCustomization && (
+      <section class="product-process" aria-labelledby="product-process-title">
+        <p class="product-personalization__eyebrow">El proceso</p>
+        <h2 id="product-process-title">Cómo preparamos tu encargo</h2>
+        <ol>
+          {trustAndWorkContent.trust.steps.map((step) => (
+            <li>
+              <h3>{step.title}</h3>
+              <p>{step.copy}</p>
+            </li>
+          ))}
+        </ol>
+      </section>
+    )
+  }
+</div>

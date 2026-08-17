@@ -1,0 +1,53 @@
+---
+import type { PublishedProduct } from '../../lib/catalog/domain/model';
+import { catalogImageMap } from '../catalog/catalog-images';
+import { buildMediaProjection } from '../catalog/media-projection';
+import ResponsiveMedia from '../catalog/ResponsiveMedia.astro';
+import './product-gallery.css';
+
+interface Props {
+  product: PublishedProduct;
+}
+
+const { product } = Astro.props;
+const galleryItems = [product.media.cover, ...(product.media.gallery ?? [])];
+
+const media = await Promise.all(
+  galleryItems.map(async (item, index) => {
+    const image = catalogImageMap[item.src];
+
+    if (image === undefined) {
+      throw new Error(`Product gallery image is missing: ${item.src}`);
+    }
+
+    return buildMediaProjection(image, item.alt, {
+      widths: index === 0 ? [480, 720, 960, 1200] : [320, 480, 640, 800],
+      sizes:
+        index === 0
+          ? '(min-width: 90rem) 42rem, (min-width: 48rem) 52vw, calc(100vw - 2 * var(--gutter))'
+          : '(min-width: 90rem) 20rem, (min-width: 48rem) 25vw, calc(50vw - 2 * var(--gutter))',
+    });
+  }),
+);
+
+const [cover, ...alternatives] = media;
+---
+
+<section class="product-gallery" aria-label={`Imágenes de ${product.name}`}>
+  <div class="product-gallery__cover">
+    <ResponsiveMedia media={cover} loading="eager" fetchPriority="high" />
+  </div>
+
+  {
+    alternatives.length > 0 && (
+      <div
+        class="product-gallery__alternatives"
+        aria-label="Más vistas del producto"
+      >
+        {alternatives.map((alternative) => (
+          <ResponsiveMedia media={alternative} />
+        ))}
+      </div>
+    )
+  }
+</section>

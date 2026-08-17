@@ -1,0 +1,44 @@
+---
+import type { PublishedProduct } from '../../lib/catalog/domain/model';
+import { routes } from '../../lib/catalog/domain/routes';
+import { whatsappConfig } from '../../config/contact';
+import { getCanonicalUrl } from '../../config/site';
+import { buildProductWhatsAppUrl } from '../../lib/whatsapp/product';
+import { formatPriceLabel } from '../catalog/price';
+import ActionLink from '../ui/ActionLink.astro';
+import './product-conversion-panel.css';
+
+interface Props {
+  product: PublishedProduct;
+}
+
+const { product } = Astro.props;
+const productUrl = getCanonicalUrl(routes.product(product.slug));
+const href = buildProductWhatsAppUrl({
+  number: whatsappConfig.number,
+  productName: product.name,
+  productUrl,
+});
+---
+
+<aside class="product-conversion" aria-labelledby="product-conversion-title">
+  <div class="product-conversion__summary">
+    <p class="product-conversion__eyebrow">Tu creación</p>
+    <h2 id="product-conversion-title">{product.name}</h2>
+    <p class="product-conversion__price">{formatPriceLabel(product.price)}</p>
+  </div>
+
+  <div class="product-conversion__action">
+    <ActionLink
+      href={href}
+      ariaLabel={`Pedir ${product.name} por WhatsApp`}
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      Pedir por WhatsApp
+    </ActionLink>
+    <p>
+      Te responderemos con disponibilidad, precio y opciones de personalización.
+    </p>
+  </div>
+</aside>

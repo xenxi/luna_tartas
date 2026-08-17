@@ -9,7 +9,7 @@
 - Se ejecuta exclusivamente la tarea solicitada; no se anticipa la siguiente.
 - `DONE` exige todos los criterios y verificaciones en `PASS`, con evidencia registrada aquí.
 - Orden normal: de arriba abajo. Una tarea posterior sólo puede comenzar si todas sus dependencias están `DONE`.
-- **Siguiente tarea:** `M5.2 — Ruta y contenido principal de producto`.
+- **Siguiente tarea:** `M5.6 — Productos relacionados y continuidad`.
 
 ## Gates de programa
 
@@ -39,7 +39,7 @@
 
 # M0 — Discovery + Architecture
 
-**Estado:** PENDING  
+**Estado:** DONE
 **Gate:** G0.
 
 ## M0.1 — Inventario verificable de producción, SEO y activos
@@ -663,7 +663,7 @@
 
 ## M5.2 — Ruta y contenido principal de producto
 
-**Estado:** IN_PROGRESS
+**Estado:** DONE
 **Objetivo:** generar una ficha estática comprensible para cada producto publicado.  
 **Alcance:** `[slug]`, breadcrumb visual, nombre, resumen/descripción, precio semántico, contenido del pack y taxonomías; comportamiento ante slug ausente; composición editorial coherente con M4.11 sin copiar mecánicamente la Home.
 
@@ -677,7 +677,7 @@
 
 **Modelo recomendado:** LUNA → SOL REVIEW.  
 **Razón del modelo:** implementación de ruta con revisión de la principal página de negocio.  
-**Evidencia:** IN_PROGRESS (2026-08-17) — `src/pages/productos/[slug].astro` genera una ruta estática por cada producto publicado mediante `getPublishedProducts`; los drafts no generan paths y los slugs ausentes quedan fuera del artefacto estático. `ProductDetail.astro` presenta breadcrumb, nombre, resumen, descripción, precio semántico y taxonomías enlazadas con los route builders, sin galería, CTA, relacionados, JSON-LD ni JavaScript adelantado. `tests/product-detail.test.ts` cubre publicación frente a draft, rutas, `fixed/from/on_request`, semántica y ausencia de hidratación. `npm run lint`, `npm run typecheck` (0 errores/warnings/hints), `npm test` (24 archivos, 169 tests), `npm run build` (24 páginas, 8 fichas de producto) y `git diff --check`: PASS. El formato global conserva dos avisos preexistentes en `src/components/catalog/media-projection.ts` y `src/components/home/FeaturedProducts.astro`, ajenos a M5.2. Pendiente para cerrar: review visual manual a 320/768/1440 y comprobación explícita de composición con el modelo de review elegido.
+**Evidencia:** PASS (2026-08-17) — `src/pages/productos/[slug].astro` genera una ruta estática por cada producto publicado mediante `getPublishedProducts`; los drafts no generan paths y los slugs ausentes quedan fuera del artefacto estático. `ProductDetail.astro` presenta breadcrumb, nombre, resumen, descripción, precio semántico y taxonomías enlazadas con los route builders, sin galería, CTA, relacionados, JSON-LD ni JavaScript adelantado. Se corrigió el sizing móvil del contenedor para preservar gutter y wrapping real a 320 px, sin alterar la composición de lectura a 768/1440 px. Capturas headless de la ruta `tarta-de-panales-personalizada` a 320/768/1440 revisadas: jerarquía, espacio, superficies cálidas, serif/sans, taxonomías responsive y ausencia de overflow visual PASS. `tests/product-detail.test.ts` cubre publicación frente a draft, rutas, `fixed/from/on_request`, semántica y ausencia de hidratación. `npm run lint`, `npm run typecheck` (0 errores/warnings/hints), `npm test` (24 archivos, 169 tests), `npm run build` (24 páginas, 8 fichas de producto) y `git diff --check`: PASS. `npm run format` mantiene dos avisos preexistentes en `src/components/catalog/media-projection.ts` y `src/components/home/FeaturedProducts.astro`, ajenos a M5.2.
 
 ## M5.3 — Galería responsive de producto
 
@@ -695,11 +695,11 @@
 
 **Modelo recomendado:** LUNA → SOL REVIEW.  
 **Razón del modelo:** UI localizada con riesgos de accesibilidad y rendimiento.  
-**Evidencia:** —
+**Evidencia:** PASS (2026-08-17) — `ProductGallery.astro` proyecta siempre la portada aprobada y, cuando existen, las alternativas de `media.gallery` desde el dominio sin catálogo hardcodeado ni controles que requieran JavaScript. La portada usa AVIF/WebP responsive, dimensiones intrínsecas, `loading="eager"` y `fetchpriority="high"`; las alternativas conservan su alt/caption aprobados, `width`/`height`, `sizes` ajustados a su columna y carga `lazy`. La composición pasa de portada seguida de alternativas en una cuadrícula móvil a portada dominante con columna de vistas adicionales desde 768 px; el texto mantiene medida de lectura y la galería aprovecha el container de contenido en escritorio. El fallback natural de un único asset se conserva al omitir la columna de alternativas. Revisión local de `tarta-de-panales-personalizada` a 320/768/1440: 0 overflow horizontal, 0 scripts, portada con prioridad alta y 3 alternativas lazy; HTML generado: 4 `picture`/`img` con dimensiones conocidas. `tests/product-detail.test.ts` cubre la composición portada+galería, prioridad, fallback, dimensiones y ausencia de hidratación. `npm run lint`, `npm run typecheck` (0 errores/warnings/hints), `npm test` (24 archivos, 169 tests), `npm run build` (24 páginas) y `git diff --check`: PASS.
 
 ## M5.4 — Panel de conversión y CTA de producto
 
-**Estado:** PENDING  
+**Estado:** DONE
 **Objetivo:** hacer evidente el siguiente paso con contexto suficiente.  
 **Alcance:** precio/resumen, CTA “Pedir por WhatsApp”, mensaje con nombre+canonical, posición mobile/desktop, microcopy aprobado, transición visual desde la galería y fallback seguro.
 
@@ -712,11 +712,11 @@
 **Verificación:** tests de href, prueba móvil/desktop/teclado y mensaje previsualizado.  
 **Modelo recomendado:** LUNA.  
 **Razón del modelo:** integración directa de builder y patrón visual.  
-**Evidencia:** —
+**Evidencia:** PASS (2026-08-17) — `ProductConversionPanel.astro` conecta la galería con el siguiente paso mediante resumen del producto, precio honesto y CTA estático “Pedir por WhatsApp”. Reutiliza el builder puro con el nombre público y `getCanonicalUrl(routes.product(product.slug))`; el enlace generado abre en contexto nuevo con `target="_blank"` y `rel="noopener noreferrer"`, sin JavaScript. El panel ocupa una columna íntegra en móvil y organiza resumen/acción en dos columnas desde 768 px, sin sticky ni ocultar contenido. `tests/product-detail.test.ts` cubre la integración, builder, canonical, precio, atributos seguros, breakpoint y ausencia de hidratación; `tests/product-whatsapp.test.ts` previsualiza y valida el mensaje aprobado. QA local de `tarta-de-panales-personalizada` a 320/768/1440: CTA accesible por teclado, sin overflow horizontal; HTML generado contiene `wa.me`, nombre de producto, canonical absoluto y mensaje URL-codificado una sola vez. `npm run lint`, `npm run typecheck` (0 errores/warnings/hints), `npm test` (24 archivos, 169 tests), `npm run build` (24 páginas) y `git diff --check`: PASS. `npm run format` queda bloqueado únicamente por formato preexistente en `src/components/catalog/media-projection.ts` y `src/components/home/FeaturedProducts.astro`, fuera del alcance de M5.4.
 
 ## M5.5 — Personalización y confianza en ficha
 
-**Estado:** PENDING  
+**Estado:** DONE
 **Objetivo:** responder dudas clave sin promesas no verificadas.  
 **Alcance:** capacidades de personalización, contenido incluido, proceso/confianza y avisos aprobados condicionados al modelo.  
 **Fuera de alcance:** configurador, cálculo dinámico, FAQ global o claims inventados.  
@@ -728,7 +728,7 @@
 **Verificación:** casos con/sin personalización, revisión de copy y visual.  
 **Modelo recomendado:** LUNA.  
 **Razón del modelo:** render condicional sencillo sobre datos válidos.  
-**Evidencia:** —
+**Evidencia:** PASS (2026-08-17) — `ProductPersonalization.astro` proyecta `customization.options` y su descripción sólo cuando el discriminador es `available`; para `none` no emite sección ni hueco editorial. La descripción del producto continúa siendo la única fuente del contenido incluido, sin duplicar precio ni prometer capacidades nuevas. El bloque de proceso/confianza reutiliza los tres pasos aprobados de `trust-and-work.ts` en una secuencia narrativa semántica `ol`, no en cards genéricas, y conserva el orden editorial. `ProductDetail.astro` lo integra después del CTA como continuidad natural hacia la información y el contexto. Tests cubren la condición, opciones, fuente de confianza, headings, lista ordenada y ausencia de `client:`/FAQ/configurador. En el build real, las fichas publicadas con personalización muestran ambas secciones, con copy y opciones provenientes de YAML; no se generó JavaScript. `npm run lint`, `npm run typecheck` (0 errores/warnings/hints), `npm test` (24 archivos, 169 tests), `npm run build` (24 páginas), Prettier específico, inspección HTML de fichas y `git diff --check` (sin errores de contenido; sólo advertencias de conversión CRLF de Git): PASS.`
 
 ## M5.6 — Productos relacionados y continuidad
 
@@ -1334,3 +1334,7 @@ No avanzar a la siguiente milestone.
 - 2026-08-16 — M4.11.6 completada: subrayado e hilos usan draw progresivo nativo sólo en escritorio compatible, con fallback/reduced-motion estáticos, 0 JS, 0 desplazamiento de layout, hover/foco equivalentes, 153 tests, build, budgets y QA 320/768/1440 en PASS. Siguiente tarea: M4.11.7, que permanece `BLOCKED` hasta recibir catálogo, taxonomías y fotografías aprobadas (modelo SOL → LUNA).
 - 2026-08-16 — M4.11.7 completada: validados 4 productos reales publicados (`tarta-de-panales-personalizada`, `lamina-personalizada-a5`, `lamina-natalicia-a5`, `invitacion-marcapaginas-personalizada`) con portadas reales válidas, alt descriptivos, derechos propios de Luna / MGR Creaciones y aprobación formal. Proyectan 9 intenciones taxonómicas y 3 productos destacados. Cero placeholders, cero módulos vacíos, 14 rutas estáticas generadas, 155 tests y build en PASS. Siguiente tarea: M4.11.8 (modelo SOL).
 - 2026-08-17 — M5.1 completada: aprobación editorial registrada, builder puro de producto con URL canónica y encoding único, matriz de Unicode/errores, 164 tests, lint/typecheck/build y diff check en PASS. Siguiente tarea: M5.2 (modelo LUNA → SOL REVIEW).
+- 2026-08-17 — M5.2 completada: ficha estática por producto publicado, variantes de precio honestas, taxonomías enlazadas y composición editorial responsive revisada a 320/768/1440; 169 tests, lint/typecheck/build y diff check en PASS. Siguiente tarea: M5.3 (modelo LUNA → SOL REVIEW).
+- 2026-08-17 — M5.3 completada: galería estática de portada y alternativas aprobadas, responsive AVIF/WebP con dimensiones conocidas, portada prioritaria, vistas adicionales lazy y composición móvil/escritorio sin JavaScript; 169 tests, build y QA 320/768/1440 en PASS. Siguiente tarea: M5.4 (modelo LUNA → SOL REVIEW).
+- 2026-08-17 — M5.4 completada: panel de conversión estático tras la galería con resumen, precio, CTA seguro a WhatsApp y mensaje contextual con canonical; 169 tests, build y QA 320/768/1440/teclado en PASS. Siguiente tarea: M5.5 (modelo LUNA).
+- 2026-08-17 — M5.5 completada: personalización condicional desde `customization`, contenido editorial del producto y proceso/confianza aprobado en secuencia narrativa, sin FAQ/configurador/claims inventados ni JavaScript; 169 tests, lint/typecheck/build y revisión HTML en PASS. Siguiente tarea: M5.6 (modelo LUNA).

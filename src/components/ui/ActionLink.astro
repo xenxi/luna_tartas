@@ -5,9 +5,11 @@ interface Props {
   href: string;
   variant?: 'primary' | 'secondary' | 'quiet';
   ariaLabel?: string;
+  target?: '_blank';
+  rel?: string;
 }
 
-const { href, variant = 'primary', ariaLabel } = Astro.props;
+const { href, variant = 'primary', ariaLabel, target, rel } = Astro.props;
 
 if (!href || href.startsWith('javascript:')) {
   throw new Error('ActionLink requires a safe href');
@@ -18,6 +20,8 @@ if (!href || href.startsWith('javascript:')) {
   class:list={['action-link', `action-link--${variant}`]}
   href={href}
   aria-label={ariaLabel}
+  target={target}
+  rel={rel}
 >
   <slot />
 </a>

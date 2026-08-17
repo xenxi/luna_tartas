@@ -77,15 +77,70 @@ describe('product detail route', () => {
       'src/components/products/ProductDetail.astro',
       'utf8',
     );
+    const gallery = readFileSync(
+      'src/components/products/ProductGallery.astro',
+      'utf8',
+    );
+    const responsiveMedia = readFileSync(
+      'src/components/catalog/ResponsiveMedia.astro',
+      'utf8',
+    );
 
     expect(page).toContain('getStaticPaths');
     expect(page).toContain('getPublishedProducts');
     expect(component).toContain('<Breadcrumb');
     expect(component).toContain('<h1>{product.name}</h1>');
-    expect(component).toContain('formatPriceLabel');
     expect(component).toContain('routes.taxonomy');
-    expect(`${page}\n${component}`).not.toContain('client:');
-    expect(`${page}\n${component}`).not.toContain('ProductJsonLd');
-    expect(`${page}\n${component}`).not.toContain('buildProductWhatsAppUrl');
+    expect(component).toContain('<ProductGallery product={product} />');
+    expect(component).toContain('<ProductConversionPanel product={product} />');
+    expect(component).toContain('<ProductPersonalization product={product} />');
+    expect(gallery).toContain(
+      '[product.media.cover, ...(product.media.gallery ?? [])]',
+    );
+    expect(gallery).toContain('loading="eager"');
+    expect(gallery).toContain('fetchPriority="high"');
+    expect(gallery).toContain('alternatives.length > 0');
+    expect(responsiveMedia).toContain('width={media.width}');
+    expect(responsiveMedia).toContain('height={media.height}');
+    expect(responsiveMedia).toContain('fetchpriority={fetchPriority}');
+    const conversion = readFileSync(
+      'src/components/products/ProductConversionPanel.astro',
+      'utf8',
+    );
+    const conversionStyles = readFileSync(
+      'src/components/products/product-conversion-panel.css',
+      'utf8',
+    );
+
+    expect(conversion).toContain('buildProductWhatsAppUrl');
+    expect(conversion).toContain(
+      'getCanonicalUrl(routes.product(product.slug))',
+    );
+    expect(conversion).toContain('formatPriceLabel(product.price)');
+    expect(conversion).toContain('Pedir por WhatsApp');
+    expect(conversion).toContain('target="_blank"');
+    expect(conversion).toContain('rel="noopener noreferrer"');
+    expect(conversionStyles).toContain('@media (min-width: 48rem)');
+    const personalization = readFileSync(
+      'src/components/products/ProductPersonalization.astro',
+      'utf8',
+    );
+    const personalizationStyles = readFileSync(
+      'src/components/products/product-personalization.css',
+      'utf8',
+    );
+
+    expect(personalization).toContain("customization.kind === 'available'");
+    expect(personalization).toContain('customization.options.map');
+    expect(personalization).toContain('trustAndWorkContent.trust.steps.map');
+    expect(personalization).toContain('<ol>');
+    expect(personalizationStyles).toContain('counter-reset: product-step');
+    expect(`${component}\n${personalization}`).not.toContain('FAQ');
+    expect(
+      `${page}\n${component}\n${gallery}\n${conversion}\n${personalization}`,
+    ).not.toContain('client:');
+    expect(
+      `${page}\n${component}\n${gallery}\n${conversion}\n${personalization}`,
+    ).not.toContain('ProductJsonLd');
   });
 });

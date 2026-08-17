@@ -5,12 +5,14 @@ import './catalog.css';
 interface Props {
   media?: MediaProjection;
   loading?: 'eager' | 'lazy';
+  fetchPriority?: 'high' | 'low' | 'auto';
   missingLabel?: string;
 }
 
 const {
   media,
   loading = 'lazy',
+  fetchPriority,
   missingLabel = 'Imagen no disponible',
 } = Astro.props;
 
@@ -52,6 +54,7 @@ if (media !== undefined) {
           height={media.height}
           sizes={media.sizes}
           loading={loading}
+          fetchpriority={fetchPriority}
           decoding="async"
         />
       </picture>

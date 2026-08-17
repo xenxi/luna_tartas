@@ -5,8 +5,10 @@ import type {
   TaxonomyKind,
 } from '../../lib/catalog/domain/model';
 import { routes } from '../../lib/catalog/domain/routes';
-import { formatPriceLabel } from '../catalog/price';
 import Breadcrumb from '../navigation/Breadcrumb.astro';
+import ProductConversionPanel from './ProductConversionPanel.astro';
+import ProductGallery from './ProductGallery.astro';
+import ProductPersonalization from './ProductPersonalization.astro';
 import './product-detail.css';
 
 interface Props {
@@ -46,8 +48,13 @@ const taxonomyGroups = [
       <p class="product-detail__eyebrow">Una creación de Luna</p>
       <h1>{product.name}</h1>
       <p class="product-detail__summary">{product.summary}</p>
-      <p class="product-detail__price">{formatPriceLabel(product.price)}</p>
     </header>
+
+    <ProductGallery product={product} />
+
+    <ProductConversionPanel product={product} />
+
+    <ProductPersonalization product={product} />
 
     <div class="product-detail__body">
       <section aria-labelledby="product-description-title">
