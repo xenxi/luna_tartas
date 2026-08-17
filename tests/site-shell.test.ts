@@ -18,6 +18,7 @@ const styles = readFileSync('src/components/site/site.css', 'utf8');
 describe('public site shell', () => {
   it('centralizes stable, trailing-slash primary destinations', () => {
     expect(primaryNavigation).toEqual([
+      { label: 'Inicio', href: '/' },
       { label: 'Productos', href: '/productos/' },
       { label: 'Categorías', href: '/categorias/' },
       { label: 'Ocasiones', href: '/ocasiones/' },
@@ -46,7 +47,12 @@ describe('public site shell', () => {
     expect(header).toContain('<header');
     expect(header).toContain('class="site-header__inner visual-container"');
     expect(footer).toContain('<footer');
-    expect(brand).toContain("isCurrent ? 'page' : undefined");
+    expect(brand).toContain(
+      "import brandLogo from '../../assets/brand/logo-luna-tartas.png'",
+    );
+    expect(brand).toContain('<Image');
+    expect(brand).toContain('width={230}');
+    expect(brand).toContain('height={153}');
   });
 
   it('uses native disclosure with navigation available without JavaScript', () => {
@@ -59,12 +65,29 @@ describe('public site shell', () => {
     expect(header).toContain('class="site-navigation--desktop"');
     expect(styles).toContain('.site-navigation--desktop');
     expect(styles).toContain('.site-menu {');
-    expect(styles).toContain('min-block-size: 5.5rem');
+    expect(styles).toContain('min-block-size: 7.5rem');
+    expect(styles).toContain('.primary-navigation--header a[aria-current=');
+  });
+
+  it('uses the official logo and a non-interactive responsive heart divider', () => {
+    expect(header).toContain('<BrandHomeLink location="header" />');
+    expect(footer).toContain('<BrandHomeLink location="footer" />');
+    expect(header).toContain('class="site-header__divider" aria-hidden="true"');
+    expect(header).toContain('preserveAspectRatio="none"');
+    expect(header).toContain('focusable="false"');
+    expect(header).toContain('variant="heart"');
+    expect(styles).toContain('.site-header__divider-line');
+    expect(styles).toContain('pointer-events: none');
+    expect(styles).not.toMatch(/#[0-9a-f]{3,8}|rgb\(/i);
   });
 
   it('keeps the approved brand and unconfirmed legal data separated in the shell', () => {
     expect(brand).toContain('getPublishableText(siteConfig.brandName)');
-    expect(brand).toContain('brandName ?');
+    expect(brand).toContain(
+      "const accessibleBrandName = brandName ?? 'Luna Tartas'",
+    );
+    expect(brand).toContain('aria-label={accessibleBrandName}');
+    expect(brand).toContain('alt={accessibleBrandName}');
     expect(`${layout}${header}${footer}${brand}`).not.toContain('TBD');
     expect(`${layout}${header}`).not.toMatch(/tel:|mailto:|dirección/i);
   });

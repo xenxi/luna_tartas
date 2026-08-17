@@ -31,8 +31,22 @@ describe('UI primitives', () => {
     expect(badge).toContain("'neutral' | 'success' | 'error'");
   });
 
-  it('keeps the reduced ornament vocabulary decorative and local', () => {
-    expect(ornament).toContain("'thread' | 'underline' | 'dots'");
+  it('keeps the Luna ornament vocabulary decorative and local', () => {
+    for (const variant of [
+      'thread',
+      'underline',
+      'dots',
+      'heart',
+      'heart-trail',
+      'sparkle',
+      'mini-hearts',
+      'dotted-curve',
+      'cloud',
+      'watercolor',
+    ]) {
+      expect(ornament).toContain(`'${variant}'`);
+    }
+    expect(ornament).toContain("tone?: 'accent' | 'blush' | 'blue'");
     expect(ornament).toContain("motion?: 'none' | 'draw'");
     expect(ornament).toContain("'ornament--draw': motion === 'draw'");
     expect(ornament).toContain('aria-hidden="true"');
@@ -42,6 +56,10 @@ describe('UI primitives', () => {
     expect(styles).toContain('.ornament--thread');
     expect(styles).toContain('.ornament--underline');
     expect(styles).toContain('.ornament--dots');
+    expect(styles).toContain('.ornament--cloud');
+    expect(styles).toContain('.ornament--watercolor');
+    expect(styles).toContain('.ornament__dashed');
+    expect(styles).toContain('.ornament__wash');
     expect(styles).toContain('var(--ornament-stroke)');
     expect(styles).toContain('@supports (animation-timeline: view())');
     expect(styles).toContain('animation-range: entry 0% entry 100%');

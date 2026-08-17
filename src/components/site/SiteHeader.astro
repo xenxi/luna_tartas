@@ -1,4 +1,5 @@
 ---
+import Ornament from '../ui/Ornament.astro';
 import BrandHomeLink from './BrandHomeLink.astro';
 import PrimaryNavigation from './PrimaryNavigation.astro';
 
@@ -11,7 +12,7 @@ const { currentPath } = Astro.props;
 
 <header class="site-header">
   <div class="site-header__inner visual-container">
-    <BrandHomeLink currentPath={currentPath} />
+    <BrandHomeLink location="header" />
     <details class="site-menu">
       <summary>Menú</summary>
       <PrimaryNavigation currentPath={currentPath} />
@@ -19,5 +20,21 @@ const { currentPath } = Astro.props;
     <div class="site-navigation--desktop">
       <PrimaryNavigation currentPath={currentPath} />
     </div>
+  </div>
+  <div class="site-header__divider" aria-hidden="true">
+    <svg
+      class="site-header__divider-line"
+      viewBox="0 0 1440 28"
+      preserveAspectRatio="none"
+      focusable="false"
+    >
+      <path d="M0 14C210 5 356 25 560 15C642 11 677 9 704 12"></path>
+      <path d="M736 13C805 19 864 23 954 15C1116 1 1265 6 1440 16"></path>
+    </svg>
+    <Ornament
+      variant="heart"
+      tone="accent"
+      class="site-header__divider-heart"
+    />
   </div>
 </header>

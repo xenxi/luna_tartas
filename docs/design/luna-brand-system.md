@@ -138,3 +138,6 @@ el outline sin sustitución.
 4. Ninguna riqueza visual permite superar budgets o introducir JS decorativo.
 5. M8.9.1 no equivale a aprobación visual. La comparación completa y la
    aprobación del propietario sólo ocurren en M8.9.11.
+
+La evolución implementada de estos foundations se inventaría en
+[`luna-decorative-system.md`](luna-decorative-system.md).

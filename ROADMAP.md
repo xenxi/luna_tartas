@@ -9,7 +9,7 @@
 - Se ejecuta exclusivamente la tarea solicitada; no se anticipa la siguiente.
 - `DONE` exige todos los criterios y verificaciones en `PASS`, con evidencia registrada aquí.
 - Orden normal: de arriba abajo. Una tarea posterior sólo puede comenzar si todas sus dependencias están `DONE`.
-- **Siguiente tarea:** `M8.9.2 — Fondo global, nubes, acuarelas y sistema decorativo`.
+- **Siguiente tarea:** `M8.9.5 — Encuentra el regalo perfecto`.
 - **Pausa de release:** M9 permanece temporalmente pausada por alineación visual;
   M9.2 conserva su bloqueo operativo de Cloudflare y no se reanuda hasta que
   M8.9.11 obtenga `VISUAL QA: PASS` y `OWNER APPROVAL: APPROVED`.
@@ -1144,7 +1144,7 @@ visual completa y aprobación siguen PENDING hasta M8.9.11.
 
 ## M8.9.2 — Fondo global, nubes, acuarelas y sistema decorativo
 
-**Estado:** PENDING
+**Estado:** DONE
 **Objetivo:** crear primitivas Luna reutilizables para fondo continuo, corazones,
 destellos, líneas orgánicas, nubes y acuarelas sin duplicación ni contenido
 semántico falso.
@@ -1154,11 +1154,31 @@ events/CLS/JS decorativo; texturas raster sólo si aportan acuarela real y bajo
 budget; inventario de assets y blockers explícito.
 **Verificación:** suite/build, a11y, assets, performance y revisión 1280/1440/1920.
 **Modelo recomendado:** LUNA → SOL REVIEW.
-**Evidencia:** —
+**Evidencia:** PASS (2026-08-17) — `Ornament.astro` evoluciona el primitive
+existente con corazón, corazón-trazo, sparkle de cuatro puntas, corazones
+pequeños, curva punteada, nube y acuarela vectorial, además de tonos semánticos;
+preserva `thread`, `underline` y `dots` sin crear una segunda librería.
+`DecorativeBackdrop` integra un lienzo global continuo con cinco SVG inline y
+gradientes CSS, fijo y contenido desde el primer paint: `aria-hidden`,
+`focusable=false`, `pointer-events:none`, sin CLS, requests, raster, dependencia
+o JavaScript decorativo. `luna-decorative-system.md` registra inventario,
+budget y blockers: la mascota aislada permanece `BLOCKED` porque sólo existe
+dentro del logo oficial y no se recorta/redibuja sin master aprobado; las
+tipografías de marca siguen bloqueadas. `npm run lint`, `npm run typecheck` (0
+errores/warnings/hints), `npm test` (39 archivos, 238 tests), `npm run build`
+(25 páginas), `verify:accessibility` (25 HTML), `verify:assets` (31 archivos,
+30.359.026 bytes), `verify:performance` (91.419 bytes máximo inicial a 375 px),
+`verify:responsive`, `verify:links`, `verify:security` y `git diff --check`:
+PASS. Revisión local 1280/1440/1920: scrollWidth=clientWidth en los tres,
+backdrop fijo/continuo, cinco ornamentos globales, sin solape de contenido o
+acciones. `npm run format` conserva sólo los dos avisos preexistentes fuera de
+alcance en `src/pages/regalos/[slug].astro` y
+`tests/taxonomy-listing.test.ts`. La aprobación visual final permanece en
+M8.9.11. Siguiente tarea: M8.9.3 (modelo LUNA → SOL REVIEW).
 
 ## M8.9.3 — Header y navegación
 
-**Estado:** PENDING
+**Estado:** DONE
 **Objetivo:** alinear logo, navegación y separador inferior de trazo-corazón con
 la referencia, preservando únicamente destinos y funcionalidades reales.
 **Dependencias:** M8.9.2.
@@ -1167,11 +1187,30 @@ SVG responsive orgánico, navegación/teclado/foco intactos y fallback móvil
 funcional; cero icono o función ficticia.
 **Verificación:** suite/build, teclado, enlaces y QA 1280/1440/1920.
 **Modelo recomendado:** LUNA → SOL REVIEW.
-**Evidencia:** —
+**Evidencia:** PASS (2026-08-17) — El Header usa el PNG oficial mediante
+`astro:assets`, dimensionado y optimizado sin recorte ni marca derivada; el
+enlace conserva nombre accesible y las imágenes generadas pesan 8/21 KiB. La
+navegación central incorpora únicamente cinco destinos existentes (Inicio,
+Productos, Categorías, Ocasiones y Para regalar), marca la ruta actual en coral
+y preserva descendientes. Un SVG fluido con trazo orgánico y el primitive de
+corazón forman el separador, ambos `aria-hidden`/sin eventos; no se añadieron
+iconos o funciones ficticias ni JavaScript de Header. El fallback móvil mantiene
+`details`/`summary`, panel opaco sobre la decoración, objetivo de 44 px, foco
+visible y los cinco enlaces nativos. `npm run lint`, `npm run typecheck` (0
+errores/warnings/hints), `npm test` (39 archivos, 239 tests), `npm run build`
+(25 páginas), `verify:links` (0 rotos/huérfanos), `verify:accessibility` (25
+HTML), `verify:responsive`, `verify:assets` (31 archivos, 30.359.026 bytes),
+`verify:performance` (93.235 bytes máximo inicial a 375 px),
+`verify:security`, Prettier de archivos tocados y `git diff --check`: PASS. QA
+local 1280/1440/1920: logo 179–184 × 119–122 px, navegación desktop visible,
+Inicio activo y `scrollWidth=clientWidth`; a 320/375 el menú abre sobre el
+contenido sin overflow, mantiene enlaces reales y foco visible. Navegación real
+a `/categorias/`: PASS; 0 errores/warnings de navegador. Siguiente tarea:
+M8.9.4 (modelo LUNA → SOL REVIEW).
 
 ## M8.9.4 — Hero
 
-**Estado:** PENDING
+**Estado:** DONE
 **Objetivo:** reproducir la composición unitaria de la referencia con el H1,
 frase manuscrita, fotografía y destinos reales aprobados.
 **Dependencias:** M8.9.3.
@@ -1180,7 +1219,28 @@ preservados; CTAs y WhatsApp reales; fotografía autorizada protagonista;
 ornamentación controlada; LCP/dimensiones/contraste estables.
 **Verificación:** suite/build, HTML, performance, a11y y QA 1280/1440/1920.
 **Modelo recomendado:** LUNA → SOL REVIEW.
-**Evidencia:** —
+**Evidencia:** PASS (2026-08-17) — El Hero recompone la referencia como una
+escena unitaria: H1 editorial en dos líneas, “No para cualquiera.” en la voz
+script aprobada y una sola línea desktop, fotografía autorizada a sangre en la
+mitad derecha, copy y ambos CTA reales en la mitad izquierda. El CTA principal
+mantiene `/productos/` y usa el icono de flecha existente; el secundario conserva
+el `wa.me` aprobado, su mensaje codificado y la instrumentación sin PII. Tres
+ornamentos reutilizables y el cierre ondulado con corazón son decorativos,
+ignorados por AT, sin eventos ni JavaScript. La imagen conserva alt, dimensiones
+intrínsecas 1672 × 941, AVIF/WebP/JPEG responsive, `sizes` ajustado a la mitad
+visual, `loading="eager"` y `fetchpriority="high"`. El artifact de producción a
+1440 mide 597,59 px de alto; la media 712,5 × 597,59 px llega exactamente a los
+bordes superior, derecho e inferior. QA real 1280/1440/1920: Hero 544/597,59/608
+px, media al 50 %, `scrollWidth=clientWidth`, CTA de 48 px, foco visible y foto
+cargada; el fallback 320 conserva orden propio, CTAs apilados y cero overflow.
+Artifact: 1 H1, 0 scripts cliente, ambos href y consola sin errores/avisos.
+`npm run lint`, `npm run typecheck` (0 errores/warnings/hints), `npm test` (39
+archivos, 239 tests), `npm run build` (25 páginas), `verify:accessibility` (25
+HTML), `verify:performance` (96.702 bytes máximo inicial a 375 px),
+`verify:responsive`, `verify:assets` (31 archivos, 30.359.026 bytes),
+`verify:links`, Prettier de archivos tocados y `git diff --check`: PASS. La
+aprobación visual final permanece en M8.9.11. Siguiente tarea: M8.9.5 (modelo
+SOL → LUNA).
 
 ## M8.9.5 — Encuentra el regalo perfecto
 
@@ -1592,3 +1652,18 @@ No avanzar a la siguiente milestone.
   links, a11y, performance, security y smoke 1440 en PASS. La referencia móvil
   recibida queda reservada para M8.10. M9 continúa pausada y M9.2 conserva su
   bloqueo Cloudflare. Siguiente tarea: M8.9.2 (modelo LUNA → SOL REVIEW).
+- 2026-08-17 — M8.9.2 completada: primitive decorativo Luna ampliado y fondo
+  global continuo con corazones, sparkle, líneas, nubes y washes vectoriales;
+  cero raster/JS/CLS, 238 tests, build, auditorías y QA 1280/1440/1920 en PASS.
+  Mascota aislada y tipografías de marca permanecen bloqueadas con salida
+  explícita. Siguiente tarea: M8.9.3 (modelo LUNA → SOL REVIEW).
+- 2026-08-17 — M8.9.3 completada: logo oficial responsive, cinco destinos
+  reales, activo coral y separador orgánico trazo-corazón; fallback nativo móvil
+  sin overflow, foco visible y cero función ficticia. 239 tests, build,
+  auditorías y QA 1280/1440/1920/320 en PASS. Siguiente tarea: M8.9.4 (modelo
+  LUNA → SOL REVIEW).
+- 2026-08-17 — M8.9.4 completada: Hero unitario con H1 editorial, frase script,
+  fotografía autorizada a sangre, ambos CTA reales y cierre orgánico; media LCP
+  responsive dimensionada, cero JS/overflow, foco visible, 239 tests, build,
+  auditorías y QA 1280/1440/1920/320 en PASS. Siguiente tarea: M8.9.5 (modelo
+  SOL → LUNA).

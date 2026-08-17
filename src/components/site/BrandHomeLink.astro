@@ -1,29 +1,31 @@
 ---
+import { Image } from 'astro:assets';
+import brandLogo from '../../assets/brand/logo-luna-tartas.png';
 import { getPublishableText, siteConfig } from '../../config/site';
 import { routes } from '../../lib/catalog/domain/routes';
 
 interface Props {
-  currentPath: string;
+  location?: 'header' | 'footer';
 }
 
-const { currentPath } = Astro.props;
+const { location = 'header' } = Astro.props;
 const brandName = getPublishableText(siteConfig.brandName);
-const isCurrent = currentPath === routes.home();
+const accessibleBrandName = brandName ?? 'Luna Tartas';
 ---
 
 <a
-  class="brand-home"
+  class:list={['brand-home', `brand-home--${location}`]}
   href={routes.home()}
-  aria-label={brandName ?? 'Inicio'}
-  aria-current={isCurrent ? 'page' : undefined}
+  aria-label={accessibleBrandName}
 >
-  {
-    brandName ? (
-      <span>{brandName}</span>
-    ) : (
-      <span class="brand-home__fallback" aria-hidden="true">
-        Inicio
-      </span>
-    )
-  }
+  <Image
+    class="brand-home__logo"
+    src={brandLogo}
+    alt={accessibleBrandName}
+    width={230}
+    height={153}
+    densities={[1, 2]}
+    loading="eager"
+    decoding="async"
+  />
 </a>

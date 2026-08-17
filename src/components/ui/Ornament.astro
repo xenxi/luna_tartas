@@ -2,22 +2,52 @@
 import './ui.css';
 
 interface Props {
-  variant: 'thread' | 'underline' | 'dots';
+  variant:
+    | 'thread'
+    | 'underline'
+    | 'dots'
+    | 'heart'
+    | 'heart-trail'
+    | 'sparkle'
+    | 'mini-hearts'
+    | 'dotted-curve'
+    | 'cloud'
+    | 'watercolor';
+  tone?: 'accent' | 'blush' | 'blue' | 'peach' | 'sage' | 'ink';
   motion?: 'none' | 'draw';
   class?: string;
 }
 
-const { variant, motion = 'none', class: className } = Astro.props;
+const {
+  variant,
+  tone = 'accent',
+  motion = 'none',
+  class: className,
+} = Astro.props;
+
+const viewBoxes: Record<Props['variant'], string> = {
+  thread: '0 0 240 32',
+  underline: '0 0 240 32',
+  dots: '0 0 96 28',
+  heart: '0 0 64 64',
+  'heart-trail': '0 0 240 64',
+  sparkle: '0 0 64 64',
+  'mini-hearts': '0 0 120 64',
+  'dotted-curve': '0 0 240 64',
+  cloud: '0 0 320 160',
+  watercolor: '0 0 360 220',
+};
 ---
 
 <svg
   class:list={[
     'ornament',
     `ornament--${variant}`,
+    `ornament--tone-${tone}`,
     { 'ornament--draw': motion === 'draw' },
     className,
   ]}
-  viewBox={variant === 'dots' ? '0 0 96 28' : '0 0 240 32'}
+  viewBox={viewBoxes[variant]}
   fill="none"
   focusable="false"
   aria-hidden="true"
@@ -43,6 +73,88 @@ const { variant, motion = 'none', class: className } = Astro.props;
         <circle cx="38" cy="9" r="2.5" />
         <circle cx="61" cy="18" r="3.5" />
         <circle cx="84" cy="11" r="2" />
+      </>
+    )
+  }
+  {
+    variant === 'heart' && (
+      <path d="M32 54C27 48 9 37 9 23 9 9 26 6 32 18 38 6 55 9 55 23c0 14-18 25-23 31Z" />
+    )
+  }
+  {
+    variant === 'heart-trail' && (
+      <>
+        <path d="M3 42c45-10 84-12 123-4 23 5 41 4 55-1" pathLength="1" />
+        <path d="M184 34c-7-16 19-21 22-4 5-15 30-7 22 8-6 11-21 17-22 18-2-2-17-9-22-22Z" />
+      </>
+    )
+  }
+  {
+    variant === 'sparkle' && (
+      <>
+        <path
+          class="ornament__fill"
+          d="M32 3c2 18 9 25 29 29-20 4-27 11-29 29C29 43 22 36 3 32 22 28 29 21 32 3Z"
+        />
+        <circle class="ornament__fill" cx="52" cy="10" r="3" />
+      </>
+    )
+  }
+  {
+    variant === 'mini-hearts' && (
+      <>
+        <path
+          class="ornament__fill"
+          d="M21 29C8 20 15 7 24 17c9-10 16 3 3 12l-3 2-3-2Z"
+        />
+        <path
+          class="ornament__fill"
+          d="M52 51c-18-13-8-31 4-17 12-14 22 4 4 17l-4 3-4-3Z"
+        />
+        <path
+          class="ornament__fill"
+          d="M91 26C77 16 84 2 94 13c10-11 18 3 4 13l-4 3-3-3Z"
+        />
+      </>
+    )
+  }
+  {
+    variant === 'dotted-curve' && (
+      <path
+        class="ornament__dashed"
+        d="M3 40c44-30 80-29 116 0 36 28 72 27 118-5"
+      />
+    )
+  }
+  {
+    variant === 'cloud' && (
+      <>
+        <path
+          class="ornament__wash ornament__wash--soft"
+          d="M23 116c-12-24 5-49 32-50C57 35 89 20 115 43c20-33 72-28 85 9 30-14 62 7 60 38 31 2 45 40 22 59H53c-17 0-31-13-30-33Z"
+        />
+        <path
+          class="ornament__wash"
+          d="M45 123c-8-19 7-37 29-36 2-28 36-43 59-25 21-27 64-18 71 15 25-10 50 9 46 35 18 4 26 21 20 37H61c-13 0-22-12-16-26Z"
+        />
+      </>
+    )
+  }
+  {
+    variant === 'watercolor' && (
+      <>
+        <path
+          class="ornament__wash ornament__wash--pale"
+          d="M19 108C1 62 51 22 104 35c37-30 89-20 111 13 48-13 102 13 119 56 18 47-23 91-77 85-41 26-91 21-120-5-48 18-98-13-118-76Z"
+        />
+        <path
+          class="ornament__wash ornament__wash--soft"
+          d="M42 124C22 85 65 49 116 58c30-25 71-13 87 16 45-14 94 12 104 49 9 35-28 63-72 55-34 24-73 14-95-8-42 17-82-10-98-46Z"
+        />
+        <path
+          class="ornament__wash"
+          d="M77 125c-8-29 23-55 60-46 24-21 57-5 65 19 31-12 66 4 72 31 6 25-22 42-53 34-24 18-52 7-63-8-33 13-72-3-81-30Z"
+        />
       </>
     )
   }

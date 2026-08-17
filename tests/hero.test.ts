@@ -30,6 +30,7 @@ describe('approved home hero', () => {
     expect(component.match(/<h1\b/g)).toHaveLength(1);
     expect(component).toContain('heroContent.primaryAction.href');
     expect(component).toContain('heroContent.secondaryAction.href');
+    expect(component).toContain('<Icon name="arrow-right" />');
     expect(component).toContain('variant="secondary"');
     expect(page).toContain('<Hero />');
     expect(page).not.toContain('<h1');
@@ -37,6 +38,8 @@ describe('approved home hero', () => {
     expect(component).toContain('headingEmphasis');
     expect(styles).toContain("'title media'");
     expect(styles).toContain("'body media'");
+    expect(styles).toContain('font-family: var(--font-script)');
+    expect(styles).toContain('white-space: nowrap');
   });
 
   it('prioritizes responsive optimized media with intrinsic source dimensions', () => {
@@ -65,10 +68,20 @@ describe('approved home hero', () => {
   });
 
   it('connects the hero to the next chapter with an accessible ornament', () => {
-    expect(component).toContain('<Ornament variant="thread"');
     expect(component).toContain('variant="underline"');
-    expect(component.match(/motion="draw"/g)).toHaveLength(2);
+    expect(component.match(/motion="draw"/g)).toHaveLength(1);
     expect(component).toContain('class="hero__heading-underline"');
     expect(component).toContain('class="hero__transition"');
+    expect(component).toContain('class="hero__transition-line"');
+    expect(component).toContain('class="hero__transition-heart"');
+    expect(component).toContain(
+      'class="hero__decoration hero__decoration--hearts"',
+    );
+    expect(component).toContain(
+      'class="hero__decoration hero__decoration--sparkle"',
+    );
+    expect(component).toContain(
+      'class="hero__decoration hero__decoration--heart"',
+    );
   });
 });

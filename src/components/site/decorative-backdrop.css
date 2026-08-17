@@ -1,0 +1,64 @@
+.decorative-backdrop {
+  position: fixed;
+  z-index: -1;
+  inset: 0;
+  contain: strict;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 8% 18%, var(--color-surface-calm), transparent 22rem),
+    radial-gradient(circle at 92% 72%, var(--color-surface-warm), transparent 26rem),
+    linear-gradient(180deg, var(--color-canvas), var(--color-surface-soft));
+  opacity: var(--backdrop-opacity);
+  pointer-events: none;
+}
+
+.decorative-backdrop .ornament {
+  position: absolute;
+}
+
+.decorative-backdrop__wash--top {
+  inset-block-start: -8rem;
+  inset-inline-end: -12rem;
+  transform: rotate(-8deg);
+}
+
+.decorative-backdrop__cloud--top {
+  inset-block-start: 30%;
+  inset-inline-start: -8rem;
+  transform: rotate(3deg);
+}
+
+.decorative-backdrop__wash--bottom {
+  inset-block-end: -9rem;
+  inset-inline-start: 12%;
+  transform: rotate(8deg);
+}
+
+.decorative-backdrop__hearts {
+  inset-block-start: 42%;
+  inset-inline-end: 2.5%;
+  transform: rotate(8deg);
+}
+
+.decorative-backdrop__sparkle {
+  inset-block-start: 18%;
+  inset-inline-start: 4%;
+  transform: rotate(-5deg);
+}
+
+@media (max-width: 47.99rem) {
+  .decorative-backdrop {
+    opacity: calc(var(--backdrop-opacity) * 0.62);
+  }
+
+  .decorative-backdrop__hearts,
+  .decorative-backdrop__sparkle {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .decorative-backdrop .ornament {
+    transform: none;
+  }
+}

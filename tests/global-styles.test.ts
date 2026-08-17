@@ -5,6 +5,14 @@ const globalStyles = readFileSync('src/styles/global.css', 'utf8');
 const foundations = readFileSync('src/styles/foundations.css', 'utf8');
 const layout = readFileSync('src/layouts/BaseLayout.astro', 'utf8');
 const tokens = readFileSync('src/styles/tokens.css', 'utf8');
+const backdrop = readFileSync(
+  'src/components/site/DecorativeBackdrop.astro',
+  'utf8',
+);
+const backdropStyles = readFileSync(
+  'src/components/site/decorative-backdrop.css',
+  'utf8',
+);
 const taxonomyDiscovery = readFileSync(
   'src/components/home/taxonomy-discovery.css',
   'utf8',
@@ -26,6 +34,16 @@ describe('global presentation foundation', () => {
     expect(layout).toContain('id="main-content" tabindex="-1"');
   });
 
+  it('provides a stable, non-interactive global decorative layer', () => {
+    expect(layout).toContain('<DecorativeBackdrop />');
+    expect(backdrop).toContain('aria-hidden="true"');
+    expect(backdrop).not.toContain('client:');
+    expect(backdropStyles).toContain('position: fixed');
+    expect(backdropStyles).toContain('contain: strict');
+    expect(backdropStyles).toContain('pointer-events: none');
+    expect(backdropStyles).not.toMatch(/#[0-9a-f]{3,8}|rgb\(/i);
+  });
+
   it('maps the Luna direction to source palette and semantic roles', () => {
     expect(tokens).toContain('--luna-cream: #fff9f3');
     expect(tokens).toContain('--luna-coral: #ea6175');
@@ -34,6 +52,7 @@ describe('global presentation foundation', () => {
     expect(tokens).toContain('--color-canvas: var(--luna-cream)');
     expect(tokens).toContain('--color-surface-warm: var(--luna-blush-soft)');
     expect(tokens).toContain('--color-surface-calm: var(--luna-blue-soft)');
+    expect(tokens).toContain('--color-decoration-blue: var(--luna-blue)');
     expect(tokens).toContain('--color-action: var(--luna-coral-dark)');
     expect(tokens).toContain('--font-script:');
     expect(tokens).not.toContain("'Times New Roman'");

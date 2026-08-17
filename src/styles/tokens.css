@@ -25,6 +25,12 @@
   --color-surface-soft: var(--luna-cream-2);
   --color-surface-warm: var(--luna-blush-soft);
   --color-surface-calm: var(--luna-blue-soft);
+  --color-decoration-accent: var(--luna-coral);
+  --color-decoration-blush: var(--luna-blush);
+  --color-decoration-blue: var(--luna-blue);
+  --color-decoration-peach: var(--luna-peach);
+  --color-decoration-sage: var(--luna-sage);
+  --color-decoration-ink: var(--luna-brown-soft);
   --color-text: var(--luna-brown);
   --color-text-muted: var(--luna-brown-soft);
   --color-action: var(--luna-coral-dark);
@@ -139,4 +145,5 @@
   /* Shared drawing language for decorative, non-semantic ornaments. */
   --ornament-stroke: 1.5;
   --ornament-opacity: 0.78;
+  --backdrop-opacity: 0.72;
 }

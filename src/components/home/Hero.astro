@@ -3,6 +3,7 @@ import { Picture } from 'astro:assets';
 import heroImage from '../../assets/home/tarta-hero.png';
 import { heroContent } from '../../content/home/hero';
 import ActionLink from '../ui/ActionLink.astro';
+import Icon from '../ui/Icon.astro';
 import Ornament from '../ui/Ornament.astro';
 import './hero.css';
 
@@ -13,10 +14,10 @@ const [headingLead, headingEmphasis] = heroContent.heading.split(
 ---
 
 <section class="hero" aria-labelledby="hero-heading">
-  <div class="hero__frame visual-container">
+  <div class="hero__frame">
     <div class="hero__title">
       <h1 id="hero-heading">
-        <span>{headingLead}</span>
+        <span class="hero__heading-lead">{headingLead}</span>
         <span class="hero__heading-emphasis">
           {headingEmphasis}
           <Ornament
@@ -35,7 +36,7 @@ const [headingLead, headingEmphasis] = heroContent.heading.split(
         formats={['avif', 'webp']}
         fallbackFormat="jpg"
         widths={[320, 480, 640, 768, 960, 1200, 1672]}
-        sizes="(min-width: 90rem) 43rem, (min-width: 60rem) 53vw, (min-width: 40rem) 92vw, calc(100vw - 2rem)"
+        sizes="(min-width: 60rem) 50vw, (min-width: 40rem) 92vw, calc(100vw - 2rem)"
         loading="eager"
         decoding="async"
         fetchpriority="high"
@@ -44,11 +45,28 @@ const [headingLead, headingEmphasis] = heroContent.heading.split(
       />
     </div>
 
+    <Ornament
+      variant="mini-hearts"
+      tone="accent"
+      class="hero__decoration hero__decoration--hearts"
+    />
+    <Ornament
+      variant="sparkle"
+      tone="peach"
+      class="hero__decoration hero__decoration--sparkle"
+    />
+    <Ornament
+      variant="heart"
+      tone="blue"
+      class="hero__decoration hero__decoration--heart"
+    />
+
     <div class="hero__body">
       <p>{heroContent.copy.join(' ')}</p>
       <div class="hero__actions">
         <ActionLink href={heroContent.primaryAction.href}>
           {heroContent.primaryAction.label}
+          <Icon name="arrow-right" />
         </ActionLink>
         <ActionLink
           href={heroContent.secondaryAction.href}
@@ -64,5 +82,16 @@ const [headingLead, headingEmphasis] = heroContent.heading.split(
       </div>
     </div>
   </div>
-  <Ornament variant="thread" motion="draw" class="hero__transition" />
+  <div class="hero__transition" aria-hidden="true">
+    <svg
+      class="hero__transition-line"
+      viewBox="0 0 1440 56"
+      preserveAspectRatio="none"
+      focusable="false"
+    >
+      <path d="M0 31C192 1 306 52 512 28c91-11 154-29 221-14"></path>
+      <path d="M765 17c119 31 226-8 343 5 117 12 213 37 332 11"></path>
+    </svg>
+    <Ornament variant="heart" tone="accent" class="hero__transition-heart" />
+  </div>
 </section>

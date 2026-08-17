@@ -1,14 +1,13 @@
 .site-header {
   position: relative;
   z-index: var(--z-header);
-  border-block-end: 1px solid
-    color-mix(in srgb, var(--color-border) 62%, transparent);
+  padding-block-end: var(--space-3);
   background: color-mix(in srgb, var(--color-canvas) 96%, transparent);
 }
 
 .site-header__inner {
   display: flex;
-  min-block-size: 5rem;
+  min-block-size: 6.5rem;
   align-items: center;
   justify-content: space-between;
   gap: var(--space-4);
@@ -16,46 +15,60 @@
 
 .brand-home {
   display: inline-flex;
-  min-block-size: 2.75rem;
   align-items: center;
   flex: 0 0 auto;
-  color: var(--color-text);
-  font-family: var(--font-display);
-  font-size: var(--font-size-md);
-  font-weight: var(--font-weight-semibold);
-  line-height: 1.2;
   text-decoration: none;
 }
 
-.brand-home::before {
-  inline-size: 2.25rem;
-  block-size: 1px;
-  margin-inline-end: var(--space-3);
-  background: var(--color-accent);
-  content: '';
+.brand-home__logo {
+  inline-size: clamp(7.75rem, 36vw, 9rem);
+  block-size: auto;
 }
 
-.brand-home:hover,
-.brand-home:focus-visible {
-  color: var(--color-action-hover);
+.brand-home--footer .brand-home__logo {
+  inline-size: clamp(8rem, 26vw, 10rem);
 }
 
-.brand-home[aria-current='page'] {
-  color: var(--color-action);
-  text-decoration: underline;
-  text-decoration-thickness: 0.12em;
-  text-underline-offset: 0.25em;
+.brand-home:hover .brand-home__logo,
+.brand-home:focus-visible .brand-home__logo {
+  filter: saturate(1.08) contrast(1.02);
 }
 
-.brand-home__fallback {
-  font-family: var(--font-body);
-  font-size: var(--font-size-sm);
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+.site-header__divider {
+  position: absolute;
+  inset-inline: 0;
+  inset-block-end: 0;
+  block-size: 1.75rem;
+  overflow: hidden;
+  color: var(--color-decoration-accent);
+  pointer-events: none;
+}
+
+.site-header__divider-line {
+  inline-size: 100%;
+  block-size: 100%;
+  overflow: visible;
+}
+
+.site-header__divider-line path {
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-width: var(--ornament-stroke);
+  vector-effect: non-scaling-stroke;
+}
+
+.site-header__divider-heart {
+  position: absolute;
+  inset-block-start: 50%;
+  inset-inline-start: 50%;
+  inline-size: 1.35rem;
+  transform: translate(-50%, -48%) rotate(-7deg);
 }
 
 .site-menu {
   position: relative;
+  z-index: var(--z-raised);
 }
 
 .site-navigation--desktop {
@@ -67,8 +80,9 @@
   min-block-size: 2.75rem;
   align-items: center;
   padding: var(--space-2) var(--space-4);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-sm);
+  border: var(--border-action);
+  border-radius: var(--radius-action);
+  background: color-mix(in srgb, var(--color-surface) 84%, transparent);
   color: var(--color-action);
   cursor: pointer;
   font-size: var(--font-size-sm);
@@ -121,7 +135,7 @@
   min-block-size: 2.75rem;
   align-items: center;
   padding: var(--space-2) var(--space-3);
-  border-radius: var(--radius-sm);
+  border-radius: var(--radius-action);
   color: var(--color-text);
   font-weight: var(--font-weight-semibold);
   text-decoration: none;
@@ -133,11 +147,18 @@
 }
 
 .primary-navigation a[aria-current='page'] {
-  background: var(--color-canvas);
   color: var(--color-action);
-  text-decoration: underline;
-  text-decoration-thickness: 0.12em;
-  text-underline-offset: 0.25em;
+  text-decoration: none;
+}
+
+.primary-navigation--header a[aria-current='page']::after {
+  position: absolute;
+  inset-inline: var(--space-3);
+  inset-block-end: 0.2rem;
+  block-size: var(--border-width-hairline);
+  border-radius: var(--radius-pill);
+  background: currentColor;
+  content: '';
 }
 
 .site-footer {
@@ -252,7 +273,11 @@
 
 @media (min-width: 48rem) {
   .site-header__inner {
-    min-block-size: 5.5rem;
+    min-block-size: 7.5rem;
+  }
+
+  .brand-home--header .brand-home__logo {
+    inline-size: clamp(9.75rem, 14vw, 11.5rem);
   }
 
   .site-menu {
@@ -267,6 +292,14 @@
     flex-direction: row;
     align-items: center;
     gap: clamp(var(--space-2), 1.5vw, var(--space-5));
+  }
+
+  .primary-navigation--header a {
+    position: relative;
+    min-block-size: 3.25rem;
+    padding-inline: clamp(var(--space-2), 0.7vw, var(--space-3));
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-regular);
   }
 
   .site-footer__inner {

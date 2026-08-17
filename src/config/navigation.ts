@@ -6,6 +6,7 @@ export interface NavigationItem {
 }
 
 export const primaryNavigation: readonly NavigationItem[] = Object.freeze([
+  { label: 'Inicio', href: routes.home() },
   { label: 'Productos', href: routes.products() },
   { label: 'Categorías', href: routes.taxonomyIndex('category') },
   { label: 'Ocasiones', href: routes.taxonomyIndex('occasion') },
