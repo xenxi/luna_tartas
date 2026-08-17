@@ -1,9 +1,9 @@
 id: lamina-personalizada-a5
 slug: lamina-personalizada-a5
 status: published
-name: Lámina personalizada A5
-summary: Una pequeña lámina creada especialmente para esa persona, con su nombre y un diseño pensado para ella.
-description: Lámina personalizada en tamaño A5, impresa en cartulina blanca de 180 g y diseñada alrededor del nombre elegido.
+name: Lámina personalizada con nombre A5
+summary: Lámina personalizada con nombre, pensada para decorar o enmarcar.
+description: Diseño creado en lámina tamaño A5, impreso en cartulina blanca.
 categories:
   - laminas-personalizadas
 recipients:
@@ -15,11 +15,66 @@ price:
 media:
   cover:
     src: laminas/lamina-personalizada-lea.jpeg
-    alt: Lámina A5 personalizada con el nombre Lea y una ilustración floral de una ovejita en tonos suaves.
+    alt: Lámina A5 personalizada con el nombre Lea, pensada para decorar o enmarcar.
     rights:
       owner: Luna / MGR Creaciones
       licenseOrPermission: Fotografía y producto propios; publicación autorizada en lunatartas.es.
-      evidence: Confirmación directa del propietario en conversación de proyecto, 2026-08-16.
+      evidence: Confirmación directa del propietario en conversación de proyecto, 2026-08-17.
+  gallery:
+    - src: laminas/lamina-personalizada-lea-marco.jpeg
+      alt: Lámina A5 personalizada con el nombre Lea, presentada en un marco.
+      rights:
+        owner: Luna / MGR Creaciones
+        licenseOrPermission: Diseño y producto propios; publicación autorizada en lunatartas.es.
+        evidence: Confirmación directa del propietario en conversación de proyecto, 2026-08-17.
+    - src: laminas/lamina-personalizada-rafa.jpeg
+      alt: Lámina A5 personalizada con el nombre Rafa, pensada para decorar o enmarcar.
+      rights:
+        owner: Luna / MGR Creaciones
+        licenseOrPermission: Diseño y producto propios; publicación autorizada en lunatartas.es.
+        evidence: Confirmación directa del propietario en conversación de proyecto, 2026-08-17.
+    - src: laminas/lamina-personalizada-paula.jpeg
+      alt: Lámina A5 personalizada con el nombre Paula, pensada para decorar o enmarcar.
+      rights:
+        owner: Luna / MGR Creaciones
+        licenseOrPermission: Diseño y producto propios; publicación autorizada en lunatartas.es.
+        evidence: Confirmación directa del propietario en conversación de proyecto, 2026-08-17.
+    - src: laminas/lamina-personalizada-gabriel.jpeg
+      alt: Lámina A5 personalizada con el nombre Gabriel, pensada para decorar o enmarcar.
+      rights:
+        owner: Luna / MGR Creaciones
+        licenseOrPermission: Diseño y producto propios; publicación autorizada en lunatartas.es.
+        evidence: Confirmación directa del propietario en conversación de proyecto, 2026-08-17.
+    - src: laminas/lamina-personalizada-luca.jpeg
+      alt: Lámina A5 personalizada con el nombre Luca, pensada para decorar o enmarcar.
+      rights:
+        owner: Luna / MGR Creaciones
+        licenseOrPermission: Diseño y producto propios; publicación autorizada en lunatartas.es.
+        evidence: Confirmación directa del propietario en conversación de proyecto, 2026-08-17.
+    - src: laminas/lamina-personalizada-sofia.jpeg
+      alt: Lámina A5 personalizada con el nombre Sofía, pensada para decorar o enmarcar.
+      rights:
+        owner: Luna / MGR Creaciones
+        licenseOrPermission: Diseño y producto propios; publicación autorizada en lunatartas.es.
+        evidence: Confirmación directa del propietario en conversación de proyecto, 2026-08-17.
+    - src: laminas/lamina-personalizada-carlos.jpeg
+      alt: Lámina A5 personalizada con el nombre Carlos, pensada para decorar o enmarcar.
+      rights:
+        owner: Luna / MGR Creaciones
+        licenseOrPermission: Diseño y producto propios; publicación autorizada en lunatartas.es.
+        evidence: Confirmación directa del propietario en conversación de proyecto, 2026-08-17.
+    - src: laminas/lamina-personalizada-zoe.jpeg
+      alt: Lámina A5 personalizada con el nombre Zoe, pensada para decorar o enmarcar.
+      rights:
+        owner: Luna / MGR Creaciones
+        licenseOrPermission: Diseño y producto propios; publicación autorizada en lunatartas.es.
+        evidence: Confirmación directa del propietario en conversación de proyecto, 2026-08-17.
+    - src: laminas/lamina-personalizada-miriam.jpeg
+      alt: Lámina A5 personalizada con el nombre Miriam, pensada para decorar o enmarcar.
+      rights:
+        owner: Luna / MGR Creaciones
+        licenseOrPermission: Diseño y producto propios; publicación autorizada en lunatartas.es.
+        evidence: Confirmación directa del propietario en conversación de proyecto, 2026-08-17.
 customization:
   kind: available
   options:
@@ -30,6 +85,6 @@ featured: true
 order: 40
 approval:
   source: Handoff editorial del propietario del proyecto
-  sourceDate: '2026-08-16'
+  sourceDate: '2026-08-17'
   approvedBy: Propietario del proyecto
-  approvedAt: '2026-08-16'
+  approvedAt: '2026-08-17'

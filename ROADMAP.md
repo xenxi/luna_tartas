@@ -1086,7 +1086,29 @@
 
 **Modelo recomendado:** LUNA → SOL REVIEW.  
 **Razón del modelo:** carga sistemática con revisión de coherencia global.  
-**Evidencia:** —
+**Evidencia:** Actualización parcial recibida (2026-08-17) —
+`src/content/products/lamina-personalizada-a5.yml` conserva el ID estable y
+actualiza nombre, copy, precio de 2 €, personalización y aprobación; incorpora
+la portada existente y 9 imágenes de galería con alt y derechos registrados.
+Los 10 archivos referenciados existen bajo `src/assets/catalog/laminas/`.
+M9.1 permanece `PENDING` porque esta entrega no completa el catálogo, la
+revisión global de assets ni el resto de entradas editoriales.
+
+Actualización parcial adicional (2026-08-17) — se actualiza el producto
+existente `tarjeta-felicitacion-personalizada-a6.yml` a `published`, con precio
+de 2 €, portada `papeleria/tarjeta-felicitacion-leo.jpeg`, alt, derechos y
+aprobación editorial. El asset fue normalizado desde el nombre recibido y
+validado dentro de `src/assets/catalog/papeleria/`.
+
+Actualización parcial adicional (2026-08-17) — `etiquetas-personalizadas-regalos.yml`
+queda publicado con nombre “Etiquetas para regalos”, precio de 0,20 € por unidad,
+pedido mínimo de 24 unidades, portada `papeleria/etiquetas-comunion-claudia.jpeg`,
+alt, derechos y aprobación editorial.
+
+Actualización parcial adicional (2026-08-17) — `libreta-personalizada-a5.yml`
+queda publicada con precio de 2 €, formato A5, 20 hojas/40 páginas, portada,
+galería de 3 imágenes, alt, derechos y aprobación editorial. Los cuatro assets
+referenciados existen bajo `src/assets/catalog/papeleria/`.
 
 ## M9.2 — Mapa y ejecución de redirects
 

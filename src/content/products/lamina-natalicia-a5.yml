@@ -16,12 +16,19 @@ price:
   currency: EUR
 media:
   cover:
-    src: laminas/lamina-personalizada-lea.jpeg
+    src: laminas/lamina-natalicia-clara.jpeg
     alt: Lámina natalicia personalizada con el nombre Clara, un conejito con globos y sus datos de nacimiento.
     rights:
       owner: Luna / MGR Creaciones
       licenseOrPermission: Diseño y producto propios; publicación autorizada en lunatartas.es.
       evidence: Confirmación directa del propietario en conversación de proyecto, 2026-08-16.
+  gallery:
+    - src: laminas/lamina-natalicia-lucia.jpeg
+      alt: Lámina natalicia personalizada con el nombre Lucía, un caballito de mar y sus datos de nacimiento.
+      rights:
+        owner: Luna / MGR Creaciones
+        licenseOrPermission: Diseño y producto propios; publicación autorizada en lunatartas.es.
+        evidence: Confirmación directa del propietario en conversación de proyecto, 2026-08-17.
 customization:
   kind: available
   options:

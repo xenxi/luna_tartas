@@ -1,9 +1,9 @@
 id: etiquetas-personalizadas-regalos
 slug: etiquetas-personalizadas-regalos
-status: draft
-name: Etiquetas personalizadas para regalos
+status: published
+name: Etiquetas para regalos
 summary: Etiquetas personalizadas para dar un acabado especial a regalos y detalles de celebración.
-description: 'Etiquetas diseñadas con nombre, fecha y temática para acompañar regalos y pequeños detalles. Precio por unidad: 0,20 €. Pedido mínimo de 24 unidades.'
+description: 'Etiquetas para regalos personalizadas. Precio por unidad: 0,20 €. Pedido mínimo de 24 unidades.'
 categories:
   - papeleria-personalizada
 occasions:
@@ -14,6 +14,14 @@ price:
   kind: fixed
   amountMinor: 20
   currency: EUR
+media:
+  cover:
+    src: papeleria/etiquetas-comunion-claudia.jpeg
+    alt: Etiquetas personalizadas para regalos de comunión con el nombre Claudia.
+    rights:
+      owner: Luna / MGR Creaciones
+      licenseOrPermission: Fotografía, diseño y producto propios; publicación autorizada en lunatartas.es.
+      evidence: Confirmación directa del propietario en conversación de proyecto, 2026-08-17.
 customization:
   kind: available
   options:
@@ -22,3 +30,8 @@ customization:
     - Diseño de la celebración
   description: El diseño se personaliza para la celebración. El pedido mínimo es de 24 unidades.
 order: 30
+approval:
+  source: Handoff editorial del propietario del proyecto
+  sourceDate: '2026-08-17'
+  approvedBy: Propietario del proyecto
+  approvedAt: '2026-08-17'

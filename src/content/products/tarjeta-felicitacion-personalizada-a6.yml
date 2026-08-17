@@ -1,6 +1,6 @@
 id: tarjeta-felicitacion-personalizada-a6
 slug: tarjeta-felicitacion-personalizada-a6
-status: draft
+status: published
 name: Tarjeta de felicitación personalizada A6
 summary: Una felicitación pensada para alguien concreto y convertida en un pequeño recuerdo personalizado.
 description: Tarjeta de felicitación personalizada en tamaño A6 y a doble cara, con nombre, mensaje y diseño adaptados a la ocasión.
@@ -15,6 +15,14 @@ price:
   kind: fixed
   amountMinor: 200
   currency: EUR
+media:
+  cover:
+    src: papeleria/tarjeta-felicitacion-leo.jpeg
+    alt: Tarjeta de felicitación A6 personalizada con el nombre Leo, abierta y decorada con banderines y un elefante.
+    rights:
+      owner: Luna / MGR Creaciones
+      licenseOrPermission: Fotografía, diseño y producto propios; publicación autorizada en lunatartas.es.
+      evidence: Confirmación directa del propietario en conversación de proyecto, 2026-08-17.
 customization:
   kind: available
   options:
@@ -23,3 +31,8 @@ customization:
     - Diseño personalizado
   description: El nombre, el mensaje y el diseño se preparan para la persona y la ocasión elegidas.
 order: 80
+approval:
+  source: Handoff editorial del propietario del proyecto
+  sourceDate: '2026-08-17'
+  approvedBy: Propietario del proyecto
+  approvedAt: '2026-08-17'

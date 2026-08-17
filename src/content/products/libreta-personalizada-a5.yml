@@ -1,6 +1,6 @@
 id: libreta-personalizada-a5
 slug: libreta-personalizada-a5
-status: draft
+status: published
 name: Libreta personalizada A5
 summary: Libreta A5 personalizada con nombre e inicial para convertir un pequeño detalle en algo sólo suyo.
 description: Libreta personalizada en tamaño A5 con 20 hojas, 40 páginas y un diseño creado alrededor del nombre o la inicial elegidos.
@@ -12,6 +12,33 @@ price:
   kind: fixed
   amountMinor: 200
   currency: EUR
+media:
+  cover:
+    src: papeleria/libreta-claudia-1.jpeg
+    alt: Libreta personalizada A5 con el nombre Claudia.
+    rights:
+      owner: Luna / MGR Creaciones
+      licenseOrPermission: Fotografía, diseño y producto propios; publicación autorizada en lunatartas.es.
+      evidence: Confirmación directa del propietario en conversación de proyecto, 2026-08-17.
+  gallery:
+    - src: papeleria/libreta-claudia-2.jpeg
+      alt: Detalle de la libreta personalizada A5 de Claudia.
+      rights:
+        owner: Luna / MGR Creaciones
+        licenseOrPermission: Fotografía, diseño y producto propios; publicación autorizada en lunatartas.es.
+        evidence: Confirmación directa del propietario en conversación de proyecto, 2026-08-17.
+    - src: papeleria/libreta-claudia-3.jpeg
+      alt: Interior de la libreta personalizada A5 de Claudia.
+      rights:
+        owner: Luna / MGR Creaciones
+        licenseOrPermission: Fotografía, diseño y producto propios; publicación autorizada en lunatartas.es.
+        evidence: Confirmación directa del propietario en conversación de proyecto, 2026-08-17.
+    - src: papeleria/libreta-claudia-4.jpeg
+      alt: Vista de la libreta personalizada A5 de Claudia.
+      rights:
+        owner: Luna / MGR Creaciones
+        licenseOrPermission: Fotografía, diseño y producto propios; publicación autorizada en lunatartas.es.
+        evidence: Confirmación directa del propietario en conversación de proyecto, 2026-08-17.
 customization:
   kind: available
   options:
@@ -21,3 +48,8 @@ customization:
   description: El diseño se adapta al nombre y a la estética elegida para el encargo.
 featured: true
 order: 20
+approval:
+  source: Handoff editorial del propietario del proyecto
+  sourceDate: '2026-08-17'
+  approvedBy: Propietario del proyecto
+  approvedAt: '2026-08-17'
