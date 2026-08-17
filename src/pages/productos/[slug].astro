@@ -3,6 +3,8 @@ import type { GetStaticPaths } from 'astro';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import ProductDetail from '../../components/products/ProductDetail.astro';
 import ProductRelated from '../../components/products/ProductRelated.astro';
+import JsonLd from '../../components/seo/JsonLd.astro';
+import { siteConfig } from '../../config/site';
 import { loadCatalog } from '../../lib/catalog/source';
 import {
   getPublishedProducts,
@@ -10,6 +12,9 @@ import {
 } from '../../lib/catalog/domain/queries';
 import { routes } from '../../lib/catalog/domain/routes';
 import { catalogImageMap } from '../../components/catalog/catalog-images';
+import { productBreadcrumb } from '../../lib/seo/navigation';
+import { createBreadcrumbListJsonLd } from '../../lib/seo/structured-data/breadcrumb';
+import { createProductJsonLd } from '../../lib/seo/structured-data/product';
 
 export const getStaticPaths = (async () => {
   const catalog = await loadCatalog();
@@ -36,6 +41,26 @@ const image = catalogImageMap[product.media.cover.src];
 if (image === undefined) {
   throw new Error(`Missing social image for published product ${product.id}`);
 }
+
+const breadcrumbs = productBreadcrumb(product.name);
+const imageUrls = [product.media.cover, ...(product.media.gallery ?? [])].map(
+  (media) => {
+    const catalogImage = catalogImageMap[media.src];
+
+    if (catalogImage === undefined) {
+      throw new Error(
+        `Missing structured-data image for published product ${product.id}: ${media.src}`,
+      );
+    }
+
+    return new URL(catalogImage.src, siteConfig.siteUrl).href;
+  },
+);
+const productJsonLd = createProductJsonLd({ product, imageUrls });
+const breadcrumbJsonLd = createBreadcrumbListJsonLd({
+  items: breadcrumbs,
+  currentPath: routes.product(product.slug),
+});
 ---
 
 <BaseLayout
@@ -45,10 +70,16 @@ if (image === undefined) {
   fallbackDescription={product.summary}
   pageType="product"
   image={{
-    url: new URL(image.src, Astro.url.origin).href,
+    url: new URL(image.src, siteConfig.siteUrl).href,
     alt: product.media.cover.alt,
   }}
 >
-  <ProductDetail product={product} taxonomies={taxonomies} />
+  <JsonLd data={productJsonLd} />
+  <JsonLd data={breadcrumbJsonLd} />
+  <ProductDetail
+    product={product}
+    taxonomies={taxonomies}
+    breadcrumbs={breadcrumbs}
+  />
   <ProductRelated catalog={catalog} product={product} />
 </BaseLayout>

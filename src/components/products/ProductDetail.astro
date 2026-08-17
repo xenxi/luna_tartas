@@ -5,7 +5,7 @@ import type {
   TaxonomyKind,
 } from '../../lib/catalog/domain/model';
 import { routes } from '../../lib/catalog/domain/routes';
-import { productBreadcrumb } from '../../lib/seo/navigation';
+import type { BreadcrumbItem } from '../../lib/seo/navigation';
 import Breadcrumb from '../navigation/Breadcrumb.astro';
 import ProductConversionPanel from './ProductConversionPanel.astro';
 import ProductGallery from './ProductGallery.astro';
@@ -15,9 +15,10 @@ import './product-detail.css';
 interface Props {
   product: PublishedProduct;
   taxonomies: Readonly<Record<TaxonomyKind, readonly Taxonomy[]>>;
+  breadcrumbs: readonly BreadcrumbItem[];
 }
 
-const { product, taxonomies } = Astro.props;
+const { product, taxonomies, breadcrumbs } = Astro.props;
 
 function linkedTaxonomies(kind: TaxonomyKind, ids: readonly string[]) {
   return ids
@@ -36,7 +37,7 @@ const taxonomyGroups = [
 ---
 
 <div class="product-detail">
-  <Breadcrumb items={productBreadcrumb(product.name)} />
+  <Breadcrumb items={breadcrumbs} />
 
   <article class="product-detail__article">
     <header class="product-detail__header">

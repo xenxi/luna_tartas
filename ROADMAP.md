@@ -9,7 +9,7 @@
 - Se ejecuta exclusivamente la tarea solicitada; no se anticipa la siguiente.
 - `DONE` exige todos los criterios y verificaciones en `PASS`, con evidencia registrada aquí.
 - Orden normal: de arriba abajo. Una tarea posterior sólo puede comenzar si todas sus dependencias están `DONE`.
-- **Siguiente tarea:** `M6.4 — Product, Offer y BreadcrumbList JSON-LD`.
+- **Siguiente tarea:** `M6.5 — Organization y WebSite JSON-LD`.
 
 ## Gates de programa
 
@@ -817,7 +817,7 @@
 
 ## M6.4 — Product, Offer y BreadcrumbList JSON-LD
 
-**Estado:** PENDING  
+**Estado:** DONE
 **Objetivo:** describir fichas con datos estructurados veraces y consistentes con HTML.  
 **Alcance:** builders puros, Product/BreadcrumbList y Offer sólo para price cases correctos; URLs/imágenes absolutas.  
 **Fuera de alcance:** ratings, availability, shipping o políticas no confirmadas.  
@@ -828,7 +828,7 @@
 **Verificación:** tests snapshot semánticos, validator/schema tool y rich-results manual en muestra.  
 **Modelo recomendado:** SOL.  
 **Razón del modelo:** datos estructurados incorrectos generan riesgo SEO directo.  
-**Evidencia:** —
+**Evidencia:** PASS (2026-08-17) — `src/lib/seo/structured-data/` incorpora builders puros de `Product`, `Offer`/`AggregateOffer` y `BreadcrumbList`, además de serialización JSON segura para contenido editorial. Las fichas comparten exactamente la proyección de breadcrumb visible, URL canónica e imágenes optimizadas absolutas. `fixed` publica un `Offer` con precio decimal exacto; `from` publica sólo `AggregateOffer.lowPrice`, sin inventar máximo ni número de ofertas; `on_request` no publica oferta. No se emiten ratings, disponibilidad, envío ni políticas no confirmadas. `tests/seo-structured-data.test.ts` cubre snapshots semánticos de los tres precios, URLs, breadcrumb y escape; `scripts/verify-structured-data.mjs` valida 8 fichas de `dist` (JSON, schema shape, canonical, assets y ausencia de claims falsos). Schema.org Validator validó la muestra `Product` y `BreadcrumbList` con 0 errores/advertencias; Google Rich Results detectó ambos elementos como válidos. Sus únicos cuatro avisos son opcionales (`review`, `aggregateRating`, `offerCount`, `highPrice`) y se omiten deliberadamente por no contar con datos aprobados. `npm run lint`, `npm run typecheck` (0 errores/warnings/hints), `npm test` (28 archivos, 188 tests), `npm run build` (25 páginas), `npm run verify:seo`, `npm run verify:crawl`, `npm run verify:links`, `npm run verify:structured-data`, Prettier específico y `git diff --check`: PASS. `npm run format` mantiene únicamente dos avisos preexistentes fuera de alcance: `src/components/catalog/media-projection.ts` y `src/components/home/FeaturedProducts.astro`. Siguiente tarea: M6.5 (modelo LUNA → SOL REVIEW).
 
 ## M6.5 — Organization y WebSite JSON-LD
 
@@ -1337,6 +1337,6 @@ No avanzar a la siguiente milestone.
 - 2026-08-17 — M5.2 completada: ficha estática por producto publicado, variantes de precio honestas, taxonomías enlazadas y composición editorial responsive revisada a 320/768/1440; 169 tests, lint/typecheck/build y diff check en PASS. Siguiente tarea: M5.3 (modelo LUNA → SOL REVIEW).
 - 2026-08-17 — M5.3 completada: galería estática de portada y alternativas aprobadas, responsive AVIF/WebP con dimensiones conocidas, portada prioritaria, vistas adicionales lazy y composición móvil/escritorio sin JavaScript; 169 tests, build y QA 320/768/1440 en PASS. Siguiente tarea: M5.4 (modelo LUNA → SOL REVIEW).
 - 2026-08-17 — M5.4 completada: panel de conversión estático tras la galería con resumen, precio, CTA seguro a WhatsApp y mensaje contextual con canonical; 169 tests, build y QA 320/768/1440/teclado en PASS. Siguiente tarea: M5.5 (modelo LUNA).
- - 2026-08-17 — M5.5 completada: personalización condicional desde `customization`, contenido editorial del producto y proceso/confianza aprobado en secuencia narrativa, sin FAQ/configurador/claims inventados ni JavaScript; 169 tests, lint/typecheck/build y revisión HTML en PASS. Siguiente tarea: M5.6 (modelo LUNA).
+- 2026-08-17 — M5.5 completada: personalización condicional desde `customization`, contenido editorial del producto y proceso/confianza aprobado en secuencia narrativa, sin FAQ/configurador/claims inventados ni JavaScript; 169 tests, lint/typecheck/build y revisión HTML en PASS. Siguiente tarea: M5.6 (modelo LUNA).
 - 2026-08-17 — M5.6 completada: relacionados deterministas por taxonomías compartidas, exclusión de actual/drafts, máximo 3, media y enlaces internos; 170 tests, lint/typecheck/build e inspección HTML sin scripts en PASS. Siguiente tarea: M5.7 (modelo LUNA → SOL REVIEW).
 - 2026-08-17 — M6.3 completada: breadcrumb semántico único para índices, landings y fichas, internal linking canónico y auditoría estática de enlaces/huérfanas; 181 tests, build de 25 páginas y link graph en PASS. Siguiente tarea: M6.4 (modelo SOL).

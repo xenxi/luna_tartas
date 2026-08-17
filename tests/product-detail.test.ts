@@ -161,8 +161,9 @@ describe('product detail route', () => {
     expect(
       `${page}\n${component}\n${gallery}\n${conversion}\n${personalization}\n${relatedPage}\n${relatedComponent}`,
     ).not.toContain('client:');
-    expect(
-      `${page}\n${component}\n${gallery}\n${conversion}\n${personalization}`,
-    ).not.toContain('ProductJsonLd');
+    expect(page).toContain('createProductJsonLd');
+    expect(page).toContain('createBreadcrumbListJsonLd');
+    expect(page).toContain('<JsonLd data={productJsonLd} />');
+    expect(component).toContain('<Breadcrumb items={breadcrumbs} />');
   });
 });
