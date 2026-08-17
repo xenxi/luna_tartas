@@ -9,7 +9,7 @@
 - Se ejecuta exclusivamente la tarea solicitada; no se anticipa la siguiente.
 - `DONE` exige todos los criterios y verificaciones en `PASS`, con evidencia registrada aquí.
 - Orden normal: de arriba abajo. Una tarea posterior sólo puede comenzar si todas sus dependencias están `DONE`.
-- **Siguiente tarea:** `M6.7 — Auditoría SEO técnica pre-analytics`.
+- **Siguiente tarea:** `M7.1 — Decisión de analytics y privacidad`.
 
 ## Gates de programa
 
@@ -864,7 +864,7 @@
 
 ## M6.7 — Auditoría SEO técnica pre-analytics
 
-**Estado:** PENDING  
+**Estado:** DONE  
 **Objetivo:** cerrar G6 con evidencia sobre todo el artefacto.  
 **Alcance:** titles/descriptions/canonical/headings/OG, crawl, 404, links, JSON-LD, catalog JSON, render sin JS y riesgos de contenido fino.  
 **Fuera de alcance:** redirects de release, DNS o mejoras de contenido no aprobado.  
@@ -875,7 +875,7 @@
 **Verificación:** suite/build, crawler local y validadores estructurados con evidencia fechada.  
 **Modelo recomendado:** SOL.  
 **Razón del modelo:** auditoría transversal y priorización de riesgo SEO.  
-**Evidencia:** —
+**Evidencia:** PASS (2026-08-17) — auditoría completa del artefacto (25 HTML: 24 indexables + 404) registrada en `docs/seo/technical-audit.md`: titles y descriptions 25/25 únicos, canonical único/apex/barra final consistente con sitemap y catalog JSON, H1 único en todas las páginas, OG/Twitter completos con imagen social existente, imágenes con alt descriptivo y dimensiones enteras, robots.txt/sitemap/404-noindex conformes, 0 enlaces rotos, 0 huérfanos, breadcrumbs con un único `aria-current`, 0 scripts ejecutables (render completo sin JS) y catalog.json determinista sin campos internos. Muestras externas: los 6 JSON-LD representativos (Organization, WebSite, Product+Offer, Product+AggregateOffer y 2 BreadcrumbList) extraídos del build obtuvieron 0 errores en el validador oficial `validator.schema.org`. Se detectó y corrigió un issue alto: las landings `/regalos/` duplicaban la preposición en title/H2 (`Regalos para Para bebés`, `Ideas para para bebés`); `src/pages/regalos/[slug].astro` normaliza el nombre editorial y `tests/taxonomy-listing.test.ts` añade guarda contractual. Abiertos sin bloqueo: AUD-1 medio (favicon ausente por marca `BLOCKED`; propietario: marca/Luna, salida M9.1), AUD-2 medio (landings taxonómicas de 50–133 palabras; propietario: contenido/Luna, salida M9.1 sin texto autogenerado) y AUD-3 bajo (2 titles de categoría de 71–72 caracteres; propietario: contenido/Luna). `npm run lint`, `npm run typecheck` (0 errores/warnings/hints), `npm test` (30 archivos, 201 tests), `npm run build` (25 páginas), `npm run verify:seo` (24 HTML), `npm run verify:crawl` (24 URLs), `npm run verify:links` (0 rotos/0 huérfanos/0 breadcrumb issues), `npm run verify:structured-data` (8 productos + identidad home), `npm run verify:catalog` (8 productos/8 HTML), barrido independiente del artefacto y `git diff --check`: PASS. `npm run format` conserva exclusivamente los dos avisos preexistentes fuera de alcance: `src/components/catalog/media-projection.ts` y `src/components/home/FeaturedProducts.astro`. G6 satisfecho. Siguiente tarea: M7.1 (modelo SOL).
 
 ---
 

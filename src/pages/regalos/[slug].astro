@@ -32,10 +32,14 @@ const resolvedRecipient =
 if (resolvedRecipient === undefined) {
   throw new Error('Gift landing was generated without a published recipient');
 }
+
+const recipientDisplayName = resolvedRecipient.name
+  .replace(/^para\s+/i, '')
+  .toLocaleLowerCase('es');
 ---
 
 <BaseLayout
-  title={`Regalos para ${resolvedRecipient.name}`}
+  title={`Regalos para ${recipientDisplayName}`}
   canonicalPath={routes.taxonomy('recipient', resolvedRecipient.slug)}
   description={resolvedRecipient.seo?.description}
   fallbackDescription={resolvedRecipient.summary}
@@ -44,7 +48,7 @@ if (resolvedRecipient === undefined) {
     catalog={catalog}
     kind="recipient"
     taxonomy={resolvedRecipient}
-    productsTitle={`Ideas para ${resolvedRecipient.name.toLocaleLowerCase('es')}`}
+    productsTitle={`Ideas para ${recipientDisplayName}`}
     productsIntro="Explora regalos pensados para hacer sentir especial a esa persona."
   />
 </BaseLayout>

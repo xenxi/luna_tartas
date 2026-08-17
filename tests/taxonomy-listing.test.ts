@@ -154,6 +154,15 @@ describe('shared taxonomy index and landings', () => {
     expect(component).toContain('taxonomyBreadcrumb(kind, taxonomy.name)');
     expect(giftIndex).not.toMatch(/destinatari/i);
     expect(giftLanding).not.toMatch(/destinatari/i);
+    // Los nombres de recipient publicados empiezan por "Para ..."; el title y el
+    // encabezado de productos deben normalizarlo para no duplicar la preposición.
+    expect(giftLanding).toContain("replace(/^para\\s+/i, '')");
+    expect(giftLanding).toContain(
+      'title={`Regalos para ${recipientDisplayName}`}',
+    );
+    expect(giftLanding).toContain(
+      'productsTitle={`Ideas para ${recipientDisplayName}`}',
+    );
     expect(component).toContain('<ProductCard');
     expect(
       `${index}\n${landing}\n${giftIndex}\n${giftLanding}\n${component}`,
