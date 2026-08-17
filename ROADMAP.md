@@ -1113,7 +1113,7 @@ referenciados existen bajo `src/assets/catalog/papeleria/`.
 
 ## M9.2 — Mapa y ejecución de redirects
 
-**Estado:** PENDING  
+**Estado:** BLOCKED
 **Objetivo:** preservar cualquier señal histórica conocida.  
 **Alcance:** deduplicar inventario old→new, decidir 301/410/conservar, implementar en capa viable (Cloudflare/hosting) y detectar cadenas/loops.  
 **Fuera de alcance:** redirects especulativos masivos o cambiar slugs nuevos sin motivo.  
@@ -1124,7 +1124,21 @@ referenciados existen bajo `src/assets/catalog/papeleria/`.
 **Verificación:** HTTP checker sobre entorno previo/provisional y muestreo manual.  
 **Modelo recomendado:** SOL.  
 **Razón del modelo:** migración SEO y limitaciones de Pages requieren juicio experto.  
-**Evidencia:** —
+**Evidencia:** BLOCKED (2026-08-17) — La segunda auditoría externa resolvió
+el falso negativo de red de M0.1: `lunatartas.es` sirve una aplicación Flutter
+anterior por HTTP/HTTPS y su bundle público confirma 15 rutas de aplicación.
+`docs/seo/redirect-map.csv` deduplica 16 decisiones: portada preservada, seis
+equivalencias semánticas con 301/query preservada y nueve herramientas/rutas
+privadas sin equivalente con 410/query descartada. Se prepararon un CSV sin
+cabecera importable en Cloudflare Bulk Redirects, un Worker edge para los 410,
+checker local/remoto y tests; mapa, duplicados, chains, loops y respuestas 410:
+PASS. El muestreo previo confirma que las 15 rutas aún responden 200; `www`
+sigue NXDOMAIN, `robots.txt` concatena HTML y `sitemap.xml` es el fallback SPA.
+No hay acceso/export/conexión de Cloudflare ni exports privados de Search
+Console/logs/backlinks: los 301/410 no pueden activarse ni comprobarse como
+respuestas reales. Reanudar M9.2 cuando el propietario facilite acceso o aplique
+los artefactos preparados; después ejecutar
+`npm run verify:redirects -- --origin=https://lunatartas.es`. No avanzar a M9.3.
 
 ## M9.3 — DNS, dominio, HTTPS y deploy productivo
 
@@ -1346,3 +1360,4 @@ No avanzar a la siguiente milestone.
 - 2026-08-17 — M8.4 completada: hardening del artefacto, smoke estático crítico, determinismo byte a byte en dos builds y mutación controlada rechazada; CI/Pages integran los gates, 224 tests repetidos y auditorías completas en PASS. Siguiente tarea: M8.5 (modelo SOL).
 - 2026-08-17 — M8.5 completada: gates de secretos/historial/workflows/superficie pública y supply chain integrados; 539 dependencias/licencias y cinco advisories mitigados evaluados, 228 tests y auditorías completas en PASS. Siguiente tarea: M8.6 (modelo SOL).
 - 2026-08-17 — M8.6 completada: candidato `m8.6-rc.1` inmutable con manifiesto SHA-256, 230 tests y auditorías completas en PASS; revisión visual 1440/768/320, tres Lighthouse y corrección del overflow de breadcrumb móvil. GO técnico/visual con known issues asignados. Siguiente tarea: M9.1 (modelo LUNA → SOL REVIEW).
+- 2026-08-17 — M9.2 bloqueada tras descubrir la aplicación Flutter anterior activa y 15 rutas en su bundle público: mapa de 16 decisiones, CSV Bulk Redirects, Worker 410 y checker quedan preparados y validados, pero no hay acceso/export de Cloudflare para activar ni verificar respuestas reales. Reanudar M9.2 con acceso operativo (modelo SOL); no avanzar a M9.3.

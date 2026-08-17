@@ -25,6 +25,7 @@
     "verify:assets": "node scripts/verify-assets.mjs",
     "verify:performance": "node scripts/verify-performance.mjs",
     "verify:responsive": "node scripts/verify-responsive.mjs",
+    "verify:redirects": "node scripts/verify-redirects.mjs",
     "release:manifest": "node scripts/create-release-manifest.mjs"
   },
   "engines": {

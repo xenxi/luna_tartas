@@ -8,6 +8,14 @@ Inventario ejecutado el **2026-08-15** para `M0.1`. Sólo registra evidencia pú
 
 Consecuencia: el desarrollo puede partir de cero, pero `M9.2` debe conservar el gate de redirects. Sólo podrá producir un acta de “sin redirects” tras recibir exports/listados o una confirmación explícita del propietario del negocio de que no hubo sitio ni URLs anteriores.
 
+> **Actualización M9.2 (2026-08-17):** una nueva comprobación desde una salida
+> de red sin el bloqueo inicial confirmó una aplicación Flutter anterior activa
+> y quince rutas de aplicación en su bundle público. Ya no aplica la posible
+> acta de “sin redirects”. El inventario actualizado y sus decisiones viven en
+> [`../seo/url-inventory.csv`](../seo/url-inventory.csv) y
+> [`../seo/redirect-map.csv`](../seo/redirect-map.csv). La activación del edge
+> permanece bloqueada por falta de acceso/export de Cloudflare.
+
 ## Fuentes y límites de la auditoría
 
 | ID | Fuente comprobada | Fecha | Resultado reproducible | Límite |
@@ -79,4 +87,3 @@ El estado individual de todas las URLs conocidas durante esta auditoría está e
 - Las ausencias quedan como `TBD` con propietario y acción concreta.
 - No se copiaron contenidos ni activos y no se realizaron cambios de DNS, hosting o cuentas.
 - Los riesgos de migración, DNS, activos y redirects permanecen abiertos hasta recibir evidencia privada o una confirmación explícita de ausencia.
-

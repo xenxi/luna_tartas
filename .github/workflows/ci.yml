@@ -49,6 +49,9 @@ jobs:
       - name: Test
         run: npm test
 
+      - name: Verify redirect migration map
+        run: npm run verify:redirects
+
       - name: Build
         run: npm run build
 

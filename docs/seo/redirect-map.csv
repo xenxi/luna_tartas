@@ -1,0 +1,17 @@
+source_path,match_type,decision,target,status_code,query_policy,discovery_source,implementation_state,reason
+/,exact,preserve,/,200,preserve,M0.1+M9.2-live-check,LIVE_LEGACY_ORIGIN,La portada conserva su URL canonica
+/servicios,exact,redirect,/productos/,301,preserve,M9.2-flutter-route,READY_TO_APPLY,El catalogo sustituye la antigua pagina de servicios
+/portfolio,exact,redirect,/#work-showcase,301,preserve,M9.2-flutter-route,READY_TO_APPLY,La muestra de trabajos sustituye la antigua inspiracion
+/precios,exact,redirect,/productos/,301,preserve,M9.2-flutter-route,READY_TO_APPLY,Los precios aprobados viven en el catalogo
+/contacto,exact,redirect,/#custom-idea,301,preserve,M9.2-flutter-route,READY_TO_APPLY,El CTA y el footer contienen los canales de contacto aprobados
+/editor/etiquetas,exact,redirect,/productos/etiquetas-personalizadas-regalos/,301,preserve,M9.2-flutter-route,READY_TO_APPLY,Existe un producto publicado semanticamente equivalente
+/editor/tarta-panales,exact,redirect,/productos/tarta-de-panales-personalizada/,301,preserve,M9.2-flutter-route,READY_TO_APPLY,Existe un producto publicado semanticamente equivalente
+/servicios/curriculum,exact,gone,,410,discard,M9.2-flutter-route,BLOCKED_NO_EDGE,La herramienta de curriculum no pertenece al alcance V1
+/dashboard,exact,gone,,410,discard,M9.2-flutter-route,BLOCKED_NO_EDGE,El area privada anterior se retira sin equivalente publico
+/apps,exact,gone,,410,discard,M9.2-flutter-route,BLOCKED_NO_EDGE,Las herramientas IA anteriores se retiran sin equivalente V1
+/editor/tarjeta-nombre,exact,gone,,410,discard,M9.2-flutter-route,BLOCKED_NO_EDGE,El editor anterior se retira sin equivalente aprobado
+/editor/flyer,exact,gone,,410,discard,M9.2-flutter-route,BLOCKED_NO_EDGE,El editor anterior se retira sin equivalente aprobado
+/pedidos,exact,gone,,410,discard,M9.2-flutter-route,BLOCKED_NO_EDGE,El area privada de pedidos se retira
+/pedidos/{id},pattern,gone,,410,discard,M9.2-flutter-route,BLOCKED_NO_EDGE,Las fichas privadas de pedido se retiran
+/perfil,exact,gone,,410,discard,M9.2-flutter-route,BLOCKED_NO_EDGE,El perfil privado anterior se retira
+/suscripcion,exact,gone,,410,discard,M9.2-flutter-route,BLOCKED_NO_EDGE,La suscripcion anterior se retira sin equivalente aprobado

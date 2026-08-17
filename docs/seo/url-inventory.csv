@@ -1,9 +1,22 @@
 url,scope,discovery_source,checked_at,observed_state,historical_signal,migration_state,owner,next_action
-http://lunatartas.es/,apex-home,S3+S4,2026-08-15T20:49:35+02:00,INCONCLUSIVE_NETWORK_BLOCK,UNKNOWN,TBD,Propietario del negocio,Verificar desde otra red y contrastar con hosting y Search Console
-https://lunatartas.es/,apex-home,S3+S4+S6,2026-08-15T20:49:35+02:00,UNREACHABLE_FROM_AUDIT_ENVIRONMENT,UNKNOWN,TBD,Propietario del negocio,Revisar Cloudflare SSL y origin y aportar histórico de Search Console
-http://www.lunatartas.es/,www-home,S3,2026-08-15T20:49:35+02:00,DNS_NXDOMAIN,UNKNOWN,TBD,Propietario del negocio,Confirmar histórico y futura redirección www a apex
-https://www.lunatartas.es/,www-home,S3,2026-08-15T20:49:35+02:00,DNS_NXDOMAIN,UNKNOWN,TBD,Propietario del negocio,Confirmar histórico y futura redirección www a apex
-http://lunatartas.es/robots.txt,seo-endpoint,S4,2026-08-15T20:49:35+02:00,INCONCLUSIVE_NETWORK_BLOCK,UNKNOWN,TBD,Propietario del negocio,Recuperar desde hosting o verificar origin autorizado
-https://lunatartas.es/robots.txt,seo-endpoint,S4,2026-08-15T20:49:35+02:00,UNREACHABLE_FROM_AUDIT_ENVIRONMENT,UNKNOWN,TBD,Propietario del negocio,Recuperar desde hosting o verificar origin autorizado
-http://lunatartas.es/sitemap.xml,seo-endpoint,S4,2026-08-15T20:49:35+02:00,INCONCLUSIVE_NETWORK_BLOCK,UNKNOWN,TBD,Propietario del negocio,Recuperar desde hosting y comparar con Search Console
-https://lunatartas.es/sitemap.xml,seo-endpoint,S4,2026-08-15T20:49:35+02:00,UNREACHABLE_FROM_AUDIT_ENVIRONMENT,UNKNOWN,TBD,Propietario del negocio,Recuperar desde hosting y comparar con Search Console
+http://lunatartas.es/,apex-home,M9.2-live-check,2026-08-17T19:06:49+02:00,HTTP_200_LEGACY_FLUTTER,CONFIRMED,PRESERVE,Propietario del negocio,Cortar al candidato M9.1 solo despues de activar y verificar redirects
+https://lunatartas.es/,apex-home,M9.2-live-check,2026-08-17T19:06:49+02:00,HTTP_200_LEGACY_FLUTTER,CONFIRMED,PRESERVE,Propietario del negocio,Cortar al candidato M9.1 solo despues de activar y verificar redirects
+http://www.lunatartas.es/,www-home,M9.2-dns-check,2026-08-17T19:06:49+02:00,DNS_NXDOMAIN,UNKNOWN,M9.3_HOST_CANONICALIZATION,Propietario del negocio,Crear www y redirigir a apex durante M9.3
+https://www.lunatartas.es/,www-home,M9.2-dns-check,2026-08-17T19:06:49+02:00,DNS_NXDOMAIN,UNKNOWN,M9.3_HOST_CANONICALIZATION,Propietario del negocio,Crear www y redirigir a apex durante M9.3
+https://lunatartas.es/robots.txt,seo-endpoint,M9.2-live-check,2026-08-17T19:07:35+02:00,HTTP_200_INVALID_APPENDED_HTML,CONFIRMED,REPLACE_WITH_M9.1_ARTIFACT,Equipo tecnico,Verificar el robots valido tras el corte M9.3
+https://lunatartas.es/sitemap.xml,seo-endpoint,M9.2-live-check,2026-08-17T19:07:35+02:00,HTTP_200_SPA_FALLBACK_HTML,CONFIRMED,REPLACE_WITH_M9.1_ARTIFACT,Equipo tecnico,Verificar el sitemap XML tras el corte M9.3
+https://lunatartas.es/servicios,legacy-marketing,M9.2-flutter-route,2026-08-17T19:11:00+02:00,HTTP_200_SPA_ROUTE,CONFIRMED,301_TO_/productos/,Equipo tecnico,Activar Bulk Redirect y verificar Location
+https://lunatartas.es/portfolio,legacy-marketing,M9.2-flutter-route,2026-08-17T19:11:00+02:00,HTTP_200_SPA_ROUTE,CONFIRMED,301_TO_/#work-showcase,Equipo tecnico,Activar Bulk Redirect y verificar Location
+https://lunatartas.es/precios,legacy-marketing,M9.2-flutter-route,2026-08-17T19:11:00+02:00,HTTP_200_SPA_ROUTE,CONFIRMED,301_TO_/productos/,Equipo tecnico,Activar Bulk Redirect y verificar Location
+https://lunatartas.es/contacto,legacy-marketing,M9.2-flutter-route,2026-08-17T19:11:00+02:00,HTTP_200_SPA_ROUTE,CONFIRMED,301_TO_/#custom-idea,Equipo tecnico,Activar Bulk Redirect y verificar Location
+https://lunatartas.es/editor/etiquetas,legacy-tool,M9.2-flutter-route,2026-08-17T19:11:00+02:00,HTTP_200_SPA_ROUTE,CONFIRMED,301_TO_PRODUCT,Equipo tecnico,Activar Bulk Redirect y verificar Location
+https://lunatartas.es/editor/tarta-panales,legacy-tool,M9.2-flutter-route,2026-08-17T19:11:00+02:00,HTTP_200_SPA_ROUTE,CONFIRMED,301_TO_PRODUCT,Equipo tecnico,Activar Bulk Redirect y verificar Location
+https://lunatartas.es/servicios/curriculum,legacy-tool,M9.2-flutter-route,2026-08-17T19:11:00+02:00,HTTP_200_SPA_ROUTE,CONFIRMED,410,Equipo tecnico,Activar respuesta edge 410
+https://lunatartas.es/dashboard,legacy-private,M9.2-flutter-route,2026-08-17T19:11:00+02:00,HTTP_200_SPA_ROUTE,CONFIRMED,410,Equipo tecnico,Activar respuesta edge 410
+https://lunatartas.es/apps,legacy-private,M9.2-flutter-route,2026-08-17T19:11:00+02:00,HTTP_200_SPA_ROUTE,CONFIRMED,410,Equipo tecnico,Activar respuesta edge 410
+https://lunatartas.es/editor/tarjeta-nombre,legacy-tool,M9.2-flutter-route,2026-08-17T19:11:00+02:00,HTTP_200_SPA_ROUTE,CONFIRMED,410,Equipo tecnico,Activar respuesta edge 410
+https://lunatartas.es/editor/flyer,legacy-tool,M9.2-flutter-route,2026-08-17T19:11:00+02:00,HTTP_200_SPA_ROUTE,CONFIRMED,410,Equipo tecnico,Activar respuesta edge 410
+https://lunatartas.es/pedidos,legacy-private,M9.2-flutter-route,2026-08-17T19:11:00+02:00,HTTP_200_SPA_ROUTE,CONFIRMED,410,Equipo tecnico,Activar respuesta edge 410
+https://lunatartas.es/pedidos/{id},legacy-private-pattern,M9.2-flutter-route,2026-08-17T19:11:00+02:00,HTTP_200_SPA_ROUTE,CONFIRMED,410,Equipo tecnico,Activar respuesta edge 410
+https://lunatartas.es/perfil,legacy-private,M9.2-flutter-route,2026-08-17T19:11:00+02:00,HTTP_200_SPA_ROUTE,CONFIRMED,410,Equipo tecnico,Activar respuesta edge 410
+https://lunatartas.es/suscripcion,legacy-private,M9.2-flutter-route,2026-08-17T19:11:00+02:00,HTTP_200_SPA_ROUTE,CONFIRMED,410,Equipo tecnico,Activar respuesta edge 410
