@@ -52,3 +52,12 @@ jobs:
 
       - name: Verify performance budgets
         run: npm run verify:performance
+
+      - name: Verify public artifact
+        run: npm run verify:artifact
+
+      - name: Verify deterministic build
+        run: npm run verify:determinism
+
+      - name: Verify representative mutation is rejected
+        run: npm run verify:mutation

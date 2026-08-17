@@ -9,7 +9,7 @@
 - Se ejecuta exclusivamente la tarea solicitada; no se anticipa la siguiente.
 - `DONE` exige todos los criterios y verificaciones en `PASS`, con evidencia registrada aquí.
 - Orden normal: de arriba abajo. Una tarea posterior sólo puede comenzar si todas sus dependencias están `DONE`.
-- **Siguiente tarea:** `M8.4 — Hardening de tests y artefacto`.
+- **Siguiente tarea:** `M8.5 — Seguridad, dependencias y superficie pública`.
 
 ## Gates de programa
 
@@ -1017,7 +1017,7 @@
 
 ## M8.4 — Hardening de tests y artefacto
 
-**Estado:** PENDING  
+**Estado:** DONE
 **Objetivo:** cubrir regresiones de mayor riesgo sin tests triviales.  
 **Alcance:** gaps de catálogo/rutas/WhatsApp/SEO/structured data/events, browser smoke crítico, link/HTML checks y determinismo de build.  
 **Fuera de alcance:** perseguir porcentaje de coverage arbitrario o snapshots frágiles de toda UI.  
@@ -1028,7 +1028,7 @@
 **Verificación:** suite repetida, build limpio y revisión de casos por contrato.  
 **Modelo recomendado:** LUNA → SOL REVIEW.  
 **Razón del modelo:** implementación amplia de tests con revisión de valor real.  
-**Evidencia:** —
+**Evidencia:** PASS (2026-08-17) — Se añadieron `verify:artifact`, `verify:determinism` y `verify:mutation`. El gate del artefacto inspecciona las 25 páginas HTML, exige doctype/main/único H1, rechaza placeholders, scripts externos, atributos vacíos y enlaces internos rotos, y ejecuta el smoke estático Home → `/productos/` → 8 fichas → CTA WhatsApp; también exige `sitemap.xml` y `robots.txt`. La mutación controlada de un CTA crítico a `href=""` fue rechazada por el gate y el directorio temporal se eliminó. Dos builds consecutivos fueron byte a byte idénticos en 486 archivos. CI y Pages ejecutan el gate del artefacto; CI añade determinismo y mutación, sin dependencias browser nuevas ni snapshots frágiles. `npm run lint`, `npm run typecheck` (0 errores/warnings/hints), `npm test` repetido (36 archivos, 224 tests PASS en ambas ejecuciones), `npm run build`, `npm run verify:seo`, `npm run verify:crawl`, `npm run verify:links`, `npm run verify:structured-data`, `npm run verify:catalog`, `npm run verify:accessibility`, `npm run verify:assets`, `npm run verify:performance`, `npm run verify:responsive`, `npm run verify:artifact`, `npm run verify:determinism`, `npm run verify:mutation` y `git diff --check`: PASS. `npm run format` conserva únicamente los avisos preexistentes fuera de alcance en `src/pages/regalos/[slug].astro` y `tests/taxonomy-listing.test.ts`. Siguiente tarea: M8.5 (modelo SOL).`
 
 ## M8.5 — Seguridad, dependencias y superficie pública
 
@@ -1343,3 +1343,4 @@ No avanzar a la siguiente milestone.
 - 2026-08-17 — M7.5 completada: runbook de medición con matriz de eventos/rutas/payloads, modos de consentimiento, debug controlado, captura de red redactada, tráfico interno, alertas y procedimiento postrelease; test contractual y checks de suite en PASS. Siguiente tarea: M8.1 (modelo LUNA → SOL REVIEW).
 - 2026-08-17 — M8.1 completada: foco del skip link corregido, auditor estático del artefacto añadido, revisión semántica/teclado/zoom/reflow/reduced-motion documentada, 220 tests y checks de build en PASS. Siguiente tarea: M8.2 (modelo SOL → LUNA).
 - 2026-08-17 — M8.3 completada: overflow móvil del Hero corregido, auditor responsive del artefacto añadido, capturas 320/768/1440 y matriz Chrome/Edge documentadas; 224 tests, build, auditorías de responsive/a11y/performance/assets y checks de calidad en PASS. Siguiente tarea: M8.4 (modelo LUNA → SOL REVIEW).
+- 2026-08-17 — M8.4 completada: hardening del artefacto, smoke estático crítico, determinismo byte a byte en dos builds y mutación controlada rechazada; CI/Pages integran los gates, 224 tests repetidos y auditorías completas en PASS. Siguiente tarea: M8.5 (modelo SOL).
