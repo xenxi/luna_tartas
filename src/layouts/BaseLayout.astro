@@ -10,6 +10,7 @@ import {
 import SiteFooter from '../components/site/SiteFooter.astro';
 import SiteHeader from '../components/site/SiteHeader.astro';
 import AnalyticsConsent from '../components/site/AnalyticsConsent.astro';
+import AnalyticsInstrumentation from '../components/site/AnalyticsInstrumentation.astro';
 import '../components/site/site.css';
 import '../styles/global.css';
 
@@ -81,5 +82,6 @@ const metadata = createPageMetadata({
     </main>
     <SiteFooter currentPath={Astro.url.pathname} />
     <AnalyticsConsent />
+    <AnalyticsInstrumentation />
   </body>
 </html>

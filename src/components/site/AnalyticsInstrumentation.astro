@@ -1,0 +1,14 @@
+---
+import { siteConfig } from '../../config/site';
+---
+
+{
+  siteConfig.analytics.enabled && (
+    <script>
+      import {bindAnalyticsInstrumentation} from
+      '../../lib/analytics/instrumentation'; import {siteConfig} from
+      '../../config/site'; bindAnalyticsInstrumentation(siteConfig.analytics,
+      document, window);
+    </script>
+  )
+}

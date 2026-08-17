@@ -108,6 +108,7 @@ describe('catalog and contextual navigation patterns', () => {
     expect(productCard.match(/<a\b/g)).toHaveLength(1);
     expect(taxonomyCard.match(/<a\b/g)).toHaveLength(1);
     expect(productCard).toContain('<article');
+    expect(productCard).toContain('data-analytics-select-item');
     expect(taxonomyCard).toContain('<article');
     expect(productCard).not.toMatch(/<a[^>]*>[\s\S]*<slot/);
     expect(taxonomyCard).not.toMatch(/<a[^>]*>[\s\S]*<slot/);

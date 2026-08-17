@@ -6,6 +6,7 @@ import type {
 } from '../../lib/catalog/domain/model';
 import { routes } from '../../lib/catalog/domain/routes';
 import type { BreadcrumbItem } from '../../lib/seo/navigation';
+import { createProductAnalyticsData } from '../../lib/analytics/product';
 import Breadcrumb from '../navigation/Breadcrumb.astro';
 import ProductConversionPanel from './ProductConversionPanel.astro';
 import ProductGallery from './ProductGallery.astro';
@@ -19,6 +20,10 @@ interface Props {
 }
 
 const { product, taxonomies, breadcrumbs } = Astro.props;
+const analytics = createProductAnalyticsData(
+  product,
+  routes.product(product.slug),
+);
 
 function linkedTaxonomies(kind: TaxonomyKind, ids: readonly string[]) {
   return ids
@@ -39,7 +44,16 @@ const taxonomyGroups = [
 <div class="product-detail">
   <Breadcrumb items={breadcrumbs} />
 
-  <article class="product-detail__article">
+  <article
+    class="product-detail__article"
+    data-analytics-view-item
+    data-analytics-product-id={analytics.productId}
+    data-analytics-product-name={analytics.productName}
+    data-analytics-category={analytics.category}
+    data-analytics-source-page={analytics.sourcePage}
+    data-analytics-price={analytics.price}
+    data-analytics-currency={analytics.currency}
+  >
     <header class="product-detail__header">
       <p class="product-detail__eyebrow">Una creación de Luna</p>
       <h1>{product.name}</h1>

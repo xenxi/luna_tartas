@@ -8,6 +8,7 @@ import CardList from '../patterns/CardList.astro';
 import ContentSection from '../patterns/ContentSection.astro';
 import ProductCard from '../catalog/ProductCard.astro';
 import type { ProductCardProjection } from '../catalog/types';
+import { createProductAnalyticsData } from '../../lib/analytics/product';
 import { projectRelatedProducts } from './product-related';
 import './product-related.css';
 
@@ -24,20 +25,33 @@ const productsByHref = new Map(
     candidate,
   ]),
 );
-const itemsWithMedia: ProductCardProjection[] = related.items.map((item) => {
-  const relatedProduct = productsByHref.get(item.href);
-  const cover = relatedProduct?.media.cover;
-  const imageMetadata =
-    cover === undefined ? undefined : catalogImageMap[cover.src];
+const itemsWithMedia: ProductCardProjection[] = related.items.map(
+  (item, index) => {
+    const relatedProduct = productsByHref.get(item.href);
+    const cover = relatedProduct?.media.cover;
+    const imageMetadata =
+      cover === undefined ? undefined : catalogImageMap[cover.src];
 
-  return {
-    ...item,
-    media:
-      imageMetadata === undefined || cover === undefined
-        ? undefined
-        : buildSimpleMediaProjection(imageMetadata, cover.alt),
-  };
-});
+    return {
+      ...item,
+      analytics:
+        relatedProduct === undefined
+          ? undefined
+          : createProductAnalyticsData(
+              relatedProduct,
+              routes.product(product.slug),
+              {
+                listId: 'product-related',
+                position: index + 1,
+              },
+            ),
+      media:
+        imageMetadata === undefined || cover === undefined
+          ? undefined
+          : buildSimpleMediaProjection(imageMetadata, cover.alt),
+    };
+  },
+);
 ---
 
 {

@@ -9,7 +9,7 @@
 - Se ejecuta exclusivamente la tarea solicitada; no se anticipa la siguiente.
 - `DONE` exige todos los criterios y verificaciones en `PASS`, con evidencia registrada aquí.
 - Orden normal: de arriba abajo. Una tarea posterior sólo puede comenzar si todas sus dependencias están `DONE`.
-- **Siguiente tarea:** `M7.3 — Instrumentación de vistas y selección`.
+- **Siguiente tarea:** `M7.4 — Instrumentación de WhatsApp`.
 
 ## Gates de programa
 
@@ -864,7 +864,7 @@
 
 ## M6.7 — Auditoría SEO técnica pre-analytics
 
-**Estado:** DONE  
+**Estado:** DONE
 **Objetivo:** cerrar G6 con evidencia sobre todo el artefacto.  
 **Alcance:** titles/descriptions/canonical/headings/OG, crawl, 404, links, JSON-LD, catalog JSON, render sin JS y riesgos de contenido fino.  
 **Fuera de alcance:** redirects de release, DNS o mejoras de contenido no aprobado.  
@@ -916,7 +916,7 @@
 
 ## M7.3 — Instrumentación de vistas y selección
 
-**Estado:** PENDING  
+**Estado:** DONE
 **Objetivo:** medir `view_item` y `select_item` sin duplicados ni lógica de proveedor en cards/fichas.  
 **Alcance:** fichas, destacados/listados/taxonomías, list_id/position/source y price optional.  
 **Fuera de alcance:** clic WhatsApp o funnels server-side.  
@@ -927,7 +927,7 @@
 **Verificación:** tests/event capture y debug del proveedor en rutas representativas.  
 **Modelo recomendado:** LUNA.  
 **Razón del modelo:** instrumentación repetitiva según contrato fuerte.  
-**Evidencia:** —
+**Evidencia:** PASS (2026-08-17) — `src/lib/analytics/product.ts` proyecta únicamente identidad pública, primera categoría, `source_page`, precio opcional en unidades mayores/moneda y contexto `list_id`/`position`; no incluye teléfono, mensaje, URL de WhatsApp ni datos de usuario. `ProductCard.astro` emite una única marca declarativa `select_item` en el enlace real, y `ProductDetail.astro` una única marca `view_item` por ficha. Las proyecciones de home destacados, índice de productos, landings taxonómicas y relacionados asignan list IDs estables (`home-featured`, `products-all`, `{kind}-{slug}`, `product-related`) y posiciones 1-based; drafts nunca llegan a estas proyecciones. `AnalyticsInstrumentation.astro` sólo se incluye con `analytics.enabled`; su listener compartido captura vistas una vez al cargar el documento y selecciones por activación `click`, delegando sanitización/carga al adapter único de M7.2. Sin consentimiento o si el tracker falla, no intercepta ni bloquea los enlaces. Tests nuevos cubren payload de precio/lista, marcas declarativas y ausencia de Matomo en componentes; suite: PASS (32 archivos, 214 tests). `npm run lint`, `npm run typecheck` (0 errores/warnings/hints), `npm test`, `npm run build` (25 páginas) y `git diff --check`: PASS. Inspección del artifact con `analytics.enabled: false`: 8 fichas contienen marca de vista, listados/landings contienen marcas de selección, no se incluye el módulo cliente de analytics ni recursos Matomo; los únicos `<script>` son JSON-LD existentes. `npm run format` deja únicamente avisos preexistentes fuera de alcance en `media-projection.ts`, `FeaturedProducts.astro`, `regalos/[slug].astro` y `taxonomy-listing.test.ts`. Siguiente tarea: M7.4 (modelo LUNA → SOL REVIEW).
 
 ## M7.4 — Instrumentación de WhatsApp
 

@@ -78,6 +78,27 @@ describe('product index listing', () => {
         priceLabel: 'Consultar precio',
       },
     ]);
+
+    expect(listing.items.map((item) => item.analytics)).toEqual([
+      {
+        productId: 'first',
+        productName: 'first',
+        category: 'gifts',
+        sourcePage: '/productos/',
+        price: 30,
+        currency: 'EUR',
+        listId: 'products-all',
+        position: 1,
+      },
+      {
+        productId: 'second',
+        productName: 'second',
+        category: 'gifts',
+        sourcePage: '/productos/',
+        listId: 'products-all',
+        position: 2,
+      },
+    ]);
   });
 
   it('resolves listing products by route when the domain order differs', () => {

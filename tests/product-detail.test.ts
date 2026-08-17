@@ -92,6 +92,8 @@ describe('product detail route', () => {
     expect(component).toContain('<h1>{product.name}</h1>');
     expect(component).toContain('routes.taxonomy');
     expect(component).toContain('<ProductGallery product={product} />');
+    expect(component).toContain('data-analytics-view-item');
+    expect(component).toContain('createProductAnalyticsData');
     expect(component).toContain('<ProductConversionPanel product={product} />');
     expect(component).toContain('<ProductPersonalization product={product} />');
     const relatedPage = readFileSync(

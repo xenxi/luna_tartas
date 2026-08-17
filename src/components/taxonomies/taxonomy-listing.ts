@@ -14,6 +14,7 @@ import type {
   ProductCardProjection,
   TaxonomyCardProjection,
 } from '../catalog/types';
+import { createProductAnalyticsData } from '../../lib/analytics/product';
 
 export interface TaxonomyIndexProjection {
   readonly items: readonly TaxonomyCardProjection[];
@@ -24,12 +25,21 @@ export interface TaxonomyLandingProjection {
   readonly products: readonly ProductCardProjection[];
 }
 
-function productProjection(product: PublishedProduct): ProductCardProjection {
+function productProjection(
+  product: PublishedProduct,
+  sourcePage: string,
+  position: number,
+  listId: string,
+): ProductCardProjection {
   return {
     href: routes.product(product.slug),
     name: product.name,
     summary: product.summary,
     priceLabel: formatPriceLabel(product.price),
+    analytics: createProductAnalyticsData(product, sourcePage, {
+      listId,
+      position,
+    }),
   };
 }
 
@@ -74,7 +84,13 @@ export function projectTaxonomyLanding(
   return {
     taxonomy,
     products: getProductsForTaxonomy(catalog, kind, taxonomy.id).map(
-      productProjection,
+      (product, index) =>
+        productProjection(
+          product,
+          routes.taxonomy(kind, taxonomy.slug),
+          index + 1,
+          `${kind}-${taxonomy.slug}`,
+        ),
     ),
   };
 }
