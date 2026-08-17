@@ -9,7 +9,7 @@
 - Se ejecuta exclusivamente la tarea solicitada; no se anticipa la siguiente.
 - `DONE` exige todos los criterios y verificaciones en `PASS`, con evidencia registrada aquí.
 - Orden normal: de arriba abajo. Una tarea posterior sólo puede comenzar si todas sus dependencias están `DONE`.
-- **Siguiente tarea:** `M7.5 — QA de medición y runbook`.
+- **Siguiente tarea:** `M8.1 — Auditoría y corrección de accesibilidad`.
 
 ## Gates de programa
 
@@ -946,7 +946,7 @@
 
 ## M7.5 — QA de medición y runbook
 
-**Estado:** PENDING  
+**Estado:** DONE
 **Objetivo:** demostrar recepción y documentar operación sin datos personales.  
 **Alcance:** matriz evento/ruta/payload, consent modes, debug, tráfico interno, alertas básicas disponibles y guía de verificación postrelease.  
 **Fuera de alcance:** dashboards avanzados, atribución perfecta o integración CRM.  
@@ -957,7 +957,7 @@
 **Verificación:** sesión de debug fechada, network capture redactada y suite.  
 **Modelo recomendado:** LUNA → SOL REVIEW.  
 **Razón del modelo:** ejecución sistemática con revisión final de privacidad y cobertura.  
-**Evidencia:** —
+**Evidencia:** PASS (2026-08-17) — `docs/conversion/analytics-runbook.md` registra owner, estado productivo desactivado, matriz de los cuatro eventos contra home/listados/taxonomías/fichas/relacionados/404, payload permitido, duplicación esperada, modos off/sin consentimiento/rechazo/aceptación/retirada, storage bloqueado, fallo del tracker, exclusión interna, alertas básicas y procedimiento postrelease. La sesión de debug controlada usa endpoint/site ID ficticios y captura de red completamente redactada: con analytics apagado o sin consentimiento no hay script, request ni cola; con consentimiento se valida una única carga diferida, privacidad Matomo y evento sanitizado; campos prohibidos, query/hash y PII son rechazados; el fallo del adapter no interrumpe el href nativo. La recepción productiva queda honestamente condicionada a instancia EEE, política/acuerdo y aprobación M9.4. `tests/analytics-runbook.test.ts` protege la matriz, rutas, modos de consentimiento, config `enabled: false` y ausencia de PII; `npm run lint`, `npm run format`, `npm run typecheck`, `npm test`, `npm run build` y `git diff --check`: PASS. No se contactó proveedor, no se registró tráfico real ni se versionaron endpoint, credenciales, site ID productivo, IPs o conversaciones. Siguiente tarea: M8.1 (modelo LUNA → SOL REVIEW).
 
 ---
 
@@ -1340,3 +1340,4 @@ No avanzar a la siguiente milestone.
 - 2026-08-17 — M5.5 completada: personalización condicional desde `customization`, contenido editorial del producto y proceso/confianza aprobado en secuencia narrativa, sin FAQ/configurador/claims inventados ni JavaScript; 169 tests, lint/typecheck/build y revisión HTML en PASS. Siguiente tarea: M5.6 (modelo LUNA).
 - 2026-08-17 — M5.6 completada: relacionados deterministas por taxonomías compartidas, exclusión de actual/drafts, máximo 3, media y enlaces internos; 170 tests, lint/typecheck/build e inspección HTML sin scripts en PASS. Siguiente tarea: M5.7 (modelo LUNA → SOL REVIEW).
 - 2026-08-17 — M6.3 completada: breadcrumb semántico único para índices, landings y fichas, internal linking canónico y auditoría estática de enlaces/huérfanas; 181 tests, build de 25 páginas y link graph en PASS. Siguiente tarea: M6.4 (modelo SOL).
+- 2026-08-17 — M7.5 completada: runbook de medición con matriz de eventos/rutas/payloads, modos de consentimiento, debug controlado, captura de red redactada, tráfico interno, alertas y procedimiento postrelease; test contractual y checks de suite en PASS. Siguiente tarea: M8.1 (modelo LUNA → SOL REVIEW).
