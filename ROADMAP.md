@@ -9,7 +9,7 @@
 - Se ejecuta exclusivamente la tarea solicitada; no se anticipa la siguiente.
 - `DONE` exige todos los criterios y verificaciones en `PASS`, con evidencia registrada aquí.
 - Orden normal: de arriba abajo. Una tarea posterior sólo puede comenzar si todas sus dependencias están `DONE`.
-- **Siguiente tarea:** `M8.3 — Responsive y compatibilidad de navegadores`.
+- **Siguiente tarea:** `M8.4 — Hardening de tests y artefacto`.
 
 ## Gates de programa
 
@@ -1000,7 +1000,7 @@
 
 ## M8.3 — Responsive y compatibilidad de navegadores
 
-**Estado:** PENDING  
+**Estado:** DONE
 **Objetivo:** validar experiencia real en matriz soportada.  
 **Alcance:** 320/375/768/1024/1440+, orientación, touch/pointer, navegadores acordados, no-JS, reduced-motion y correcciones directas; validar composición móvil propia, no sólo compresión del desktop.
 
@@ -1013,7 +1013,7 @@
 **Verificación:** matriz documentada con capturas/smoke y suite.  
 **Modelo recomendado:** LUNA.  
 **Razón del modelo:** comprobación y corrección localizada.  
-**Evidencia:** —
+**Evidencia:** PASS (2026-08-17) — Se corrigio en `src/components/home/hero.css` el overflow movil detectado en la captura de Chrome: el enfasis del H1 reduce escala en movil, los tracks y copy aceptan `min-width: 0`/wrapping y los CTA permanecen apilados hasta 48 rem; desktop conserva la composicion editorial. `scripts/verify-responsive.mjs` y `npm run verify:responsive` auditan 25 HTML del artefacto, viewport/zoom, `main`, JSON-LD permitido sin JavaScript cliente, enlaces no vacios, dimensiones/alt de imagenes y CSS de reduced-motion, min-width, medios y targets tactiles. Capturas Home 320/768/1440 quedan en `docs/quality/evidence/m8-3-responsive/`; inspeccion manual del preview de produccion confirma sin overflow/solapamiento, CTAs legibles, fotografia/copy/Footer/firma estables, navegacion nativa sin JS y reduced-motion estatico. Chrome estable 139.0.7258.67 y Edge estable 140.0.3485.54: PASS en la matriz documentada; Firefox/Safari/iOS Safari/Chrome Android no estan disponibles y quedan explicitos como no ejecutados, sin inventar resultados. `npm run lint`, `npm run typecheck` (0 errores/warnings/hints), `npm test` (36 archivos, 224 tests), `npm run build` (25 paginas), `npm run verify:responsive`, `npm run verify:accessibility`, `npm run verify:performance`, `npm run verify:assets`, Prettier especifico y `git diff --check`: PASS. `npm run format` conserva unicamente avisos preexistentes fuera de alcance en `src/pages/regalos/[slug].astro` y `tests/taxonomy-listing.test.ts`. Siguiente tarea: M8.4 (modelo LUNA -> SOL REVIEW).`
 
 ## M8.4 — Hardening de tests y artefacto
 
@@ -1342,3 +1342,4 @@ No avanzar a la siguiente milestone.
 - 2026-08-17 — M6.3 completada: breadcrumb semántico único para índices, landings y fichas, internal linking canónico y auditoría estática de enlaces/huérfanas; 181 tests, build de 25 páginas y link graph en PASS. Siguiente tarea: M6.4 (modelo SOL).
 - 2026-08-17 — M7.5 completada: runbook de medición con matriz de eventos/rutas/payloads, modos de consentimiento, debug controlado, captura de red redactada, tráfico interno, alertas y procedimiento postrelease; test contractual y checks de suite en PASS. Siguiente tarea: M8.1 (modelo LUNA → SOL REVIEW).
 - 2026-08-17 — M8.1 completada: foco del skip link corregido, auditor estático del artefacto añadido, revisión semántica/teclado/zoom/reflow/reduced-motion documentada, 220 tests y checks de build en PASS. Siguiente tarea: M8.2 (modelo SOL → LUNA).
+- 2026-08-17 — M8.3 completada: overflow móvil del Hero corregido, auditor responsive del artefacto añadido, capturas 320/768/1440 y matriz Chrome/Edge documentadas; 224 tests, build, auditorías de responsive/a11y/performance/assets y checks de calidad en PASS. Siguiente tarea: M8.4 (modelo LUNA → SOL REVIEW).
