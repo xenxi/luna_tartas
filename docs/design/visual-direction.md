@@ -4,7 +4,9 @@
 
 Este documento convierte los principios de producto y diseño en una dirección implementable para la recuperación M4.11.2–M4.11.8 y su continuidad en M5–M9. No sustituye una guía de marca completa. El 2026-08-17 Luna aprobó el nombre público «Luna Tartas», la alternativa «Luna Estudio» y el logo oficial para publicación web y JSON-LD; favicon, iconos, variantes y tipografías continúan bloqueados. La fotografía y contenido aprobados durante M4 se pueden usar conforme a su readiness y derechos trazados.
 
-La referencia visual aprobada de la Home está registrada en [`reference/luna-home-art-direction-reference.png`](reference/luna-home-art-direction-reference.png) y su auditoría trazable vive en [`home-art-direction-recovery.md`](home-art-direction-recovery.md). La imagen define dirección artística, composición, jerarquía, densidad, ritmo, escala, proporciones, tratamiento fotográfico, cards, tipografía, ornamentación, superficies, paleta, CTA, Footer y calidad percibida. No es un contrato pixel-perfect ni una fuente de contenido: no autoriza productos, fotografías, textos, categorías, iconos funcionales o datos ficticios y no sustituye los contratos funcionales existentes.
+La referencia visual desktop vigente de la Home está registrada en [`reference/luna-home-art-direction-reference.png`](reference/luna-home-art-direction-reference.png). El propietario la sustituyó el 2026-08-17 y la versión anterior con lockup serif queda obsoleta para M8.9. La imagen vigente es el **DESKTOP VISUAL REFERENCE / ART DIRECTION CONTRACT**: define dirección artística, composición, jerarquía, densidad, ritmo, escala, proporciones, tratamiento fotográfico, cards, tipografía, ornamentación, superficies, paleta, CTA, Footer y calidad percibida. No autoriza productos, fotografías, textos, categorías, iconos funcionales o datos ficticios y no sustituye los contratos funcionales existentes.
+
+La referencia móvil recibida en [`reference/luna-home-art-direction-reference-mobile.png`](reference/luna-home-art-direction-reference-mobile.png) queda reservada para la futura M8.10. En M8.9 no se implementan las funciones ficticias de carrito, favoritos o cuenta que muestra la maqueta, ni se cierra el diseño móvil.
 
 La dirección provisional sí queda aprobada técnicamente para construir el sistema visual. Debe poder sustituirse mediante configuración, tokens y assets, sin reescribir componentes ni contenido.
 
@@ -39,7 +41,7 @@ La experiencia debe sentirse como un pequeño atelier/boutique artesanal digital
 
 Palabras guía: **artesanía, mimo, detalle, emoción, cercanía, calidad, carácter, sereno y nítido**.
 
-Evitar: estructura repetitiva hero→grid→grid→grid→CTA, ilustraciones lunares literales sin aprobación, exceso de rosa, script ornamental, texturas que reduzcan legibilidad, sombras de tarjeta genéricas, badges promocionales agresivos, carruseles automáticos y decoración que compita con la fotografía. Tampoco debe derivar hacia una estética infantil, scrapbook o landing genérica.
+Evitar: estructura repetitiva hero→grid→grid→grid→CTA, ilustraciones lunares no aprobadas, exceso de rosa sin contraste, script ornamental en texto largo, texturas que reduzcan legibilidad, sombras de tarjeta genéricas, badges promocionales agresivos, carruseles automáticos y decoración que compita con la fotografía. La mascota, corazones, estrellas y acuarelas de la referencia vigente sí forman parte del contrato, pero deben proceder de assets aprobados o de primitivas SVG/CSS coherentes.
 
 La emoción debe venir de producto y copy reales. Cuando falte una imagen se usa un fallback neutro y accesible, no una fotografía sintética que pueda confundirse con oferta comercial.
 
@@ -129,7 +131,14 @@ El proceso equivalente a “Cada detalle cuenta” ya tiene una base implementad
 
 ## Lenguaje gráfico e imperfección controlada
 
-El vocabulario implementable queda reducido en M4.11.2 a tres motivos: línea/hilo, subrayado ligeramente imperfecto y puntos. `Ornament.astro` los proyecta como SVG inline siempre decorativo y oculto a tecnologías asistivas. No se incorporan lazo, estrella, etiqueta, corazón o luna mientras esos tres motivos cubran la necesidad. Se prefieren pocas intervenciones memorables; una línea/hilo orgánico puede conectar ocasionalmente secciones sin atravesar toda la página. Ningún adorno puede sustituir copy, información, foco o fotografía.
+El vocabulario histórico de M4.11.2 (`thread`, `underline`, `dots`) ya no basta
+para la referencia vigente. M8.9.2 debe evolucionarlo, sin crear duplicación,
+para representar corazón dibujado, corazón con trazo, sparkle de cuatro puntas,
+pequeños corazones, línea curva/punteada, nube/acuarela azul, wash rosa y la
+mascota sólo cuando exista un asset oficial adecuado. Todo ornamento sigue
+siendo decorativo, oculto a tecnologías asistivas, sin pointer events ni
+JavaScript. No se usan emoji Unicode ni se sustituye copy, información, foco o
+fotografía.
 
 La imperfección puede usar rotaciones aproximadas de ±0.5–1.5 grados, posiciones levemente desplazadas, líneas no perfectamente geométricas y superposiciones fotográficas controladas. Debe conservar legibilidad, alineación percibida y profesionalidad; se reduce en móvil cuando cause ruido o riesgo de overflow.
 

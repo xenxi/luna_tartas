@@ -1,13 +1,13 @@
 .button,
 .action-link {
   display: inline-flex;
-  min-block-size: 2.75rem;
+  min-block-size: var(--button-min-block-size);
   align-items: center;
   justify-content: center;
-  gap: var(--space-2);
-  padding: var(--space-3) var(--space-5);
-  border: 1px solid transparent;
-  border-radius: var(--radius-sm);
+  gap: var(--button-gap);
+  padding: var(--button-padding-block) var(--button-padding-inline);
+  border: var(--border-width-hairline) solid transparent;
+  border-radius: var(--radius-action);
   font: inherit;
   font-weight: var(--font-weight-semibold);
   line-height: 1.25;
@@ -23,6 +23,7 @@
 
 .button--primary,
 .action-link--primary {
+  border-color: var(--color-action);
   background: var(--color-action);
   color: var(--color-on-action);
 }
@@ -38,8 +39,8 @@
 
 .button--secondary,
 .action-link--secondary {
-  border-color: var(--color-action);
-  background: var(--color-surface);
+  border: var(--border-action);
+  background: var(--color-canvas);
   color: var(--color-action);
 }
 

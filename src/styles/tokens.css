@@ -1,26 +1,48 @@
 :root {
   color-scheme: light;
 
+  /* Luna source palette. Components consume the semantic roles below. */
+  --luna-cream: #fff9f3;
+  --luna-cream-2: #fff5ec;
+  --luna-paper: #fffcf8;
+  --luna-coral: #ea6175;
+  --luna-coral-dark: #c4475f;
+  --luna-coral-deep: #ad384f;
+  --luna-coral-soft: #f48b9b;
+  --luna-blush: #f8d9dc;
+  --luna-blush-soft: #fcebec;
+  --luna-blue: #bcd5e9;
+  --luna-blue-soft: #e5f0f7;
+  --luna-peach: #f4c4a8;
+  --luna-sage: #dde3d8;
+  --luna-brown: #392723;
+  --luna-brown-soft: #5c4842;
+  --luna-border: rgb(196 71 95 / 30%);
+
   /* Semantic colors. Replace roles, not component-specific values. */
-  --color-canvas: #faf7f2;
-  --color-surface: #fffdfc;
-  --color-surface-soft: #f4ede4;
-  --color-surface-warm: #f3dfdc;
-  --color-surface-calm: #e2e6df;
-  --color-text: #352c29;
-  --color-text-muted: #6f5a51;
-  --color-action: #8f294b;
-  --color-action-hover: #74203c;
-  --color-accent: #b96f62;
-  --color-border: #d9c6ac;
+  --color-canvas: var(--luna-cream);
+  --color-surface: var(--luna-paper);
+  --color-surface-soft: var(--luna-cream-2);
+  --color-surface-warm: var(--luna-blush-soft);
+  --color-surface-calm: var(--luna-blue-soft);
+  --color-text: var(--luna-brown);
+  --color-text-muted: var(--luna-brown-soft);
+  --color-action: var(--luna-coral-dark);
+  --color-action-hover: var(--luna-coral-deep);
+  --color-accent: var(--luna-coral);
+  --color-border: var(--luna-border);
+  --color-border-subtle: rgb(57 39 35 / 14%);
   --color-focus: #155e75;
   --color-success: #2f6b4f;
   --color-error: #9b2c2c;
-  --color-on-action: #ffffff;
+  --color-on-action: var(--luna-paper);
 
-  /* System stacks avoid network requests and remain replaceable. */
-  --font-display: ui-serif, Georgia, Cambria, 'Times New Roman', serif;
-  --font-body: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  /* Three system voices avoid network requests and remain replaceable. */
+  --font-display:
+    'Iowan Old Style', 'Palatino Linotype', 'Book Antiqua', Georgia, serif;
+  --font-body:
+    Aptos, 'Segoe UI', ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-script: 'Segoe Print', 'Bradley Hand', 'Brush Script MT', cursive;
   --font-size-xs: 0.875rem;
   --font-size-sm: 0.9375rem;
   --font-size-md: 1rem;
@@ -28,10 +50,13 @@
   --font-size-xl: clamp(1.75rem, 1.5rem + 1.1vw, 2.75rem);
   --font-size-2xl: clamp(2.25rem, 1.8rem + 2vw, 4rem);
   --font-size-display: clamp(2.75rem, 2.05rem + 3.2vw, 5.25rem);
+  --font-size-script: clamp(2rem, 1.55rem + 2vw, 3.75rem);
   --line-height-body: 1.6;
   --line-height-display: 1.08;
+  --line-height-script: 1.15;
   --letter-spacing-heading: -0.02em;
   --letter-spacing-display: -0.035em;
+  --letter-spacing-script: -0.025em;
   --font-weight-regular: 400;
   --font-weight-semibold: 600;
   --font-weight-bold: 700;
@@ -51,30 +76,57 @@
   --space-12: 3rem;
   --space-16: 4rem;
   --space-20: 5rem;
+  --space-24: 6rem;
+  --space-28: 7rem;
+  --space-32: 8rem;
   --space-section-compact: clamp(2.5rem, 5vw, 4.5rem);
   --space-section-standard: clamp(3.5rem, 7vw, 6.5rem);
   --space-section-spacious: clamp(4.5rem, 9vw, 8rem);
   --space-chapter: clamp(2rem, 4vw, 4rem);
 
-  --radius-sm: 0.25rem;
-  --radius-md: 0.5rem;
+  --radius-sm: 0.5rem;
+  --radius-md: 0.75rem;
   --radius-lg: 1rem;
   --radius-xl: 1.5rem;
   --radius-pill: 999px;
+  --radius-action: 0.625rem;
+  --radius-card: 1rem;
 
-  --shadow-soft: 0 0.5rem 1.5rem rgb(53 44 41 / 9%);
-  --shadow-editorial: 0 1.25rem 3rem rgb(53 44 41 / 13%);
+  --border-width-hairline: 1px;
+  --border-action: var(--border-width-hairline) solid var(--color-action);
+
+  --shadow-soft: 0 0.5rem 1.5rem rgb(57 39 35 / 6%);
+  --shadow-editorial: 0 1.25rem 3rem rgb(57 39 35 / 10%);
   --shadow-focus:
     0 0 0 0.1875rem var(--color-canvas), 0 0 0 0.375rem var(--color-focus);
 
   --container-content: 72rem;
-  --container-visual: 77.5rem;
+  --container-visual: 80rem;
   --gutter: clamp(1rem, 4vw, 3rem);
+  --breakpoint-compact: 40rem;
   --breakpoint-content: 48rem;
+  --breakpoint-desktop: 64rem;
   --breakpoint-wide: 90rem;
 
+  --button-min-block-size: 3rem;
+  --button-padding-block: 0.75rem;
+  --button-padding-inline: 1.5rem;
+  --button-gap: 0.5rem;
+  --card-gap: clamp(1rem, 2vw, 1.5rem);
+  --card-min-block-size: 18rem;
+  --card-featured-min-block-size: clamp(19rem, 27vw, 24rem);
+
+  --decoration-size-xs: 0.75rem;
+  --decoration-size-sm: 1.25rem;
+  --decoration-size-md: 2rem;
+  --decoration-size-lg: 4rem;
+  --decoration-cloud-size: clamp(12rem, 28vw, 30rem);
+  --decoration-watercolor-size: clamp(16rem, 36vw, 42rem);
+
   --z-base: 0;
+  --z-decoration: 0;
   --z-raised: 1;
+  --z-content: 2;
   --z-header: 10;
   --z-overlay: 20;
   --z-modal: 30;

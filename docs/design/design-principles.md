@@ -10,7 +10,9 @@ Los activos de marca definitivos permanecen bloqueados. La dirección provisiona
 
 1. **Claridad antes que decoración.** Cada pantalla deja visible el siguiente paso.
 2. **Emoción apoyada en producto real.** Fotografía y copy construyen deseo sin promesas inventadas.
-3. **Mobile first real.** Jerarquía, targets táctiles, galerías y CTA se diseñan primero para móvil.
+3. **Desktop contractual en M8.9.** La referencia de 1440 px gobierna esta fase;
+   1280/1920 validan expansión y mobile conserva un fallback funcional hasta
+   recibir su contrato visual independiente.
 4. **Sistema pequeño y coherente.** Tokens semánticos controlan color, tipo, espacio, radio, sombra, container, breakpoints y motion.
 5. **Accesible por defecto.** Contraste, foco, orden de lectura, reduced motion y controles nativos son parte del diseño.
 6. **Rendimiento visible.** Layout estable, fuentes eficientes y medios responsivos; la animación nunca bloquea contenido ni conversión.
@@ -32,4 +34,9 @@ Hover cuando exista puntero, foco visible, active, disabled cuando semánticamen
 
 ## Evidencia de calidad
 
-M3 conserva la base histórica; M4.11.2–M4.11.8 recuperan la dirección aprobada en Home/shell y M5 la extiende a producto. M8 audita teclado, contraste, zoom, reduced motion, rendimiento y composición manual a 320/768/1440. Las decisiones visuales que requieran marca o fotografía real quedan como gate, no se rellenan con material falso en producción. Tests/lint/build son condición necesaria, no evidencia visual suficiente.
+M3 conserva la base histórica; M4.11.2–M4.11.8 documentan la recuperación
+anterior y M8.9 formaliza la alineación desktop definitiva. M8.9.1 establece los
+foundations; M8.9.2–M8.9.10 implementan y cohesionan la Home; M8.9.11 exige QA
+visual y aprobación explícita del propietario. Las decisiones que requieran
+marca o fotografía real quedan como gate, no se rellenan con material falso.
+Tests/lint/build son condición necesaria, no evidencia visual suficiente.

@@ -1,12 +1,12 @@
 # CSS foundations
 
-M3.2 creó la única capa de tokens semánticos en [`../../src/styles/tokens.css`](../../src/styles/tokens.css) y la base de [`../../src/styles/foundations.css`](../../src/styles/foundations.css). M4.11.2 evoluciona esa misma capa para separar medida, ritmo y lenguaje gráfico sin crear otro sistema. `BaseLayout` importa la foundation, que a su vez importa los tokens; no hay JavaScript ni fuentes remotas.
+M3.2 creó la única capa de tokens semánticos en [`../../src/styles/tokens.css`](../../src/styles/tokens.css) y la base de [`../../src/styles/foundations.css`](../../src/styles/foundations.css). M4.11.2 separó medida y ritmo; M8.9.1 recalibra esa misma capa para el contrato visual Luna sin crear otro sistema. La auditoría, paleta, tres voces tipográficas y dimensiones normalizadas viven en [`luna-brand-system.md`](luna-brand-system.md). `BaseLayout` importa la foundation, que a su vez importa los tokens; no hay JavaScript ni fuentes remotas.
 
 ## Medidas de composición
 
 | Rol       | Token/clase                                | Uso                                                                         |
 | --------- | ------------------------------------------ | --------------------------------------------------------------------------- |
-| Visual    | `--container-visual` / `.visual-container` | Fotografía, collages y composiciones editoriales; máximo 77.5 rem (1240 px) |
+| Visual    | `--container-visual` / `.visual-container` | Fotografía, collages y composiciones editoriales; máximo 80 rem (1280 px) |
 | Contenido | `--container-content` / `.container`       | Shell, navegación y bloques generales; máximo 72 rem                        |
 | Lectura   | `--measure-reading` / `.prose`             | Texto largo; máximo 68 caracteres aproximados                               |
 | Copy      | `--measure-copy`                           | Entradillas y copy de sección; máximo 58 caracteres aproximados             |
@@ -29,14 +29,14 @@ repitan el mismo padding.
 
 ## Tipografía
 
-- Se conservan las dos familias de sistema: serif editorial y sans de lectura/UI.
+- Se definen tres voces de sistema: serif editorial, sans de lectura/UI y script
+  para accents breves. El rol script no se usa en párrafos.
 - `--font-size-display` queda limitado a 5.25 rem y usa
   `--letter-spacing-display`; evita que un titular sustituya a la fotografía.
 - `--font-size-2xl` queda limitado a 4 rem y los subtítulos a 2.75 rem.
 - Los headings usan `--line-height-display: 1.08` y
   `--letter-spacing-heading`; no requieren saltos manuales para funcionar.
-- No se añade una tercera familia ni una webfont sin archivos, licencia y
-  comparación de LCP/CLS.
+- No se añade una webfont sin archivos, licencia y comparación de LCP/CLS.
 
 ## Superficies y lenguaje gráfico
 
@@ -59,7 +59,10 @@ pero conservan `--ornament-stroke` y `--ornament-opacity`.
 
 ## Contraste y sustitución
 
-La paleta provisional sigue los ratios registrados en `visual-direction.md`: texto principal/secundario, acción, foco, éxito y error tienen combinaciones AA previstas sobre canvas/surface. `--color-accent` y `--color-border` son decorativos y no deben comunicar texto, foco ni límites interactivos por sí solos.
+La paleta Luna y sus ratios están registrados en `luna-brand-system.md`: texto
+principal/secundario, acción, foco, éxito y error tienen combinaciones AA
+previstas sobre canvas/surface. `--color-accent` y los pasteles son decorativos
+y no deben comunicar texto, foco ni límites interactivos por sí solos.
 
 La futura identidad sustituye valores en los roles de `:root`. Después de cambiar color o tipografía hay que repetir el checker de contraste, comprobar métricas a 320/768/1440 px y revisar el peso/licencia de cualquier fuente nueva.
 

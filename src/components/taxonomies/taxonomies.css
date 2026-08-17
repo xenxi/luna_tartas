@@ -38,7 +38,7 @@
   inset-block-start: -4rem;
   inline-size: clamp(9rem, 18vw, 15rem);
   aspect-ratio: 1;
-  border: 1px solid rgb(53 44 41 / 14%);
+  border: var(--border-width-hairline) solid var(--color-border-subtle);
   border-radius: 50%;
   content: '';
 }

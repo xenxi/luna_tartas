@@ -14,7 +14,9 @@ describe('UI primitives', () => {
     expect(button).toContain('disabled={disabled}');
     expect(actionLink).toContain('<a');
     expect(actionLink).toContain('href={href}');
-    expect(styles).toContain('min-block-size: 2.75rem');
+    expect(styles).toContain('min-block-size: var(--button-min-block-size)');
+    expect(styles).toContain('border-radius: var(--radius-action)');
+    expect(styles).toContain('border: var(--border-action)');
     expect(styles).toContain('prefers-reduced-motion: reduce');
     expect(button).not.toContain('client:');
     expect(actionLink).not.toContain('client:');

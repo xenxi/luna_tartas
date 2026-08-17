@@ -11,9 +11,11 @@ describe('responsive contract', () => {
       'utf8',
     );
     const ui = readFileSync(resolve(root, 'src/components/ui/ui.css'), 'utf8');
+    const tokens = readFileSync(resolve(root, 'src/styles/tokens.css'), 'utf8');
     expect(foundations).toContain('width: min(100% - (2 * var(--gutter))');
     expect(foundations).toContain('prefers-reduced-motion: reduce');
-    expect(ui).toContain('min-block-size: 2.75rem');
+    expect(ui).toContain('min-block-size: var(--button-min-block-size)');
+    expect(tokens).toContain('--button-min-block-size: 3rem');
     expect(ui).toContain('.ornament--draw path');
   });
 

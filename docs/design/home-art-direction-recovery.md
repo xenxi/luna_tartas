@@ -1,5 +1,11 @@
 # Recuperación de dirección artística de la Home
 
+> Nota de supersesión (2026-08-17): este documento conserva la auditoría
+> histórica de M4.11 contra la referencia anterior (SHA-256 `747E4453…B283`).
+> El propietario sustituyó el archivo contractual por la nueva referencia
+> desktop (SHA-256 `989DE73B…C1BE`). Las decisiones nuevas se registran en
+> `luna-brand-system.md` y M8.9; no se reutiliza la captura obsoleta como objetivo.
+
 ## Estado y propósito
 
 Auditoría ejecutada el 2026-08-16 como `M4.11.1`, después del primer cierre de

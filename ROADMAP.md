@@ -9,7 +9,10 @@
 - Se ejecuta exclusivamente la tarea solicitada; no se anticipa la siguiente.
 - `DONE` exige todos los criterios y verificaciones en `PASS`, con evidencia registrada aquí.
 - Orden normal: de arriba abajo. Una tarea posterior sólo puede comenzar si todas sus dependencias están `DONE`.
-- **Siguiente tarea:** `M9.2 — Mapa y ejecución de redirects`.
+- **Siguiente tarea:** `M8.9.2 — Fondo global, nubes, acuarelas y sistema decorativo`.
+- **Pausa de release:** M9 permanece temporalmente pausada por alineación visual;
+  M9.2 conserva su bloqueo operativo de Cloudflare y no se reanuda hasta que
+  M8.9.11 obtenga `VISUAL QA: PASS` y `OWNER APPROVAL: APPROVED`.
 
 ## Gates de programa
 
@@ -34,6 +37,13 @@
 - M4.11.2–M4.11.8 recuperan la dirección de Home y shell; M5 la continúa en ficha, galería y conversión; M6 preserva su coherencia cuando SEO/legal afecten al layout; M8 ejecuta las auditorías transversales y el gate visual final; M9 sustituye contenido provisional por material aprobado sin reabrir el diseño.
 - Una milestone visual no puede cerrarse sólo con lint, tests o build: requiere inspección manual documentada a 320, 768 y 1440 px. Los efectos deben respetar `prefers-reduced-motion`, no provocar CLS ni convertir JavaScript secundario en crítico.
 - La referencia contractual de la Home está registrada en `docs/design/reference/luna-home-art-direction-reference.png`; su función y el gap del primer cierre de M4.11 se documentan en `docs/design/home-art-direction-recovery.md`. G4 queda reabierto hasta completar M4.11.8 y M5 no avanza mientras tanto.
+- La reorientación aprobada el 2026-08-17 eleva esa referencia a
+  **DESKTOP VISUAL REFERENCE / ART DIRECTION CONTRACT**: composición,
+  jerarquía, proporciones, paleta, tipografía, ritmo, superficies, fotografía y
+  ornamentación dejan de ser una aproximación inspiracional. M8.9 ejecuta la
+  alineación a 1440 px como viewport contractual, con comprobaciones de
+  comportamiento a 1280 y 1920 px. Mobile conserva un fallback funcional, pero
+  su contrato visual definitivo queda fuera de esta fase.
 
 ---
 
@@ -1066,9 +1076,224 @@
 
 ---
 
+# M8.9 — Visual alignment & Luna brand system
+
+**Estado:** PENDING
+**Gate:** alineación visual desktop previa a reanudar M9.
+**Objetivo:** alinear la Home con la referencia desktop aprobada y convertir su
+lenguaje gráfico en un sistema Luna reutilizable, accesible y eficiente.
+**Referencia contractual:**
+`docs/design/reference/luna-home-art-direction-reference.png`.
+**Viewport contractual:** 1440 px; comprobaciones complementarias a 1280 y
+1920 px.
+**Regla responsive de fase:** no definir todavía el diseño móvil definitivo;
+preservar navegación, lectura, CTA y ausencia de overflow mediante un fallback
+funcional.
+**Condición de salida:** M9 sólo puede reanudarse cuando M8.9.11 registre
+`VISUAL QA: PASS` y `OWNER APPROVAL: APPROVED`.
+
+## M8.9.1 — Design system: colores, tipografías y tokens
+
+**Estado:** DONE
+**Objetivo:** auditar y normalizar los cimientos visuales que sostendrán la
+alineación sin rediseñar todavía las secciones de la Home.
+**Alcance:** inventario de estilos, fuentes, componentes y duplicación;
+paleta Luna centralizada y roles semánticos; tres voces tipográficas; escalas
+de espacio, radio, borde, sombra, anchura, ritmo de sección, botones, cards,
+decoración, z-index y breakpoints; documentación de consumo y contraste.
+**Fuera de alcance:** rediseñar Header, Hero, secciones, Footer o mobile;
+introducir fuentes remotas o assets de decoración; cambiar contenido, catálogo,
+routing, SEO, analytics o WhatsApp.
+**Dependencias:** M8.6, referencia contractual disponible y baseline editorial
+aprobado de M9.1.
+**Archivos/áreas previstas:** `src/styles/tokens.css`, foundations/primitives,
+`docs/design/` y tests de contratos visuales.
+**Contratos afectados:** design system, UI, accesibilidad, responsive y
+performance.
+**Criterios de aceptación:** una única fuente de verdad; colores de componentes
+sin hex oportunistas; roles tipográficos display/body/script; botones coherentes
+y foco visible; contraste AA en texto/acciones; todas las dimensiones mínimas
+solicitadas expresadas como tokens; sin regresión funcional ni de build.
+**Verificación:** auditoría de hardcodes y fuentes, contraste, lint, typecheck,
+tests, build, checks de artefacto/a11y/performance y diff check.
+**Modelo recomendado:** SOL → LUNA.
+**Evidencia:** PASS (2026-08-17) — Se repitió la auditoría tras la sustitución
+de la referencia desktop: el contrato vigente queda identificado como PNG
+1024 × 1536, 2.098.629 bytes y SHA-256 `989DE73…C1BE`; la referencia anterior
+queda explícitamente obsoleta. La captura móvil nueva (853 × 1844, SHA-256
+`BDACE245…516`) se versiona como input de M8.10 sin ejecutarla ni copiar sus
+funciones ficticias. `docs/design/luna-brand-system.md` registra arquitectura,
+inventario, fuentes, assets y la discrepancia entre el logo oficial existente y
+el lockup de la maqueta. `tokens.css` centraliza 15 colores fuente Luna y los
+mapea a roles semánticos; el coral de acción se ajusta a `#C4475F` para alcanzar
+4.55:1 sobre crema, mientras tinta principal/secundaria alcanzan 13.50:1 y
+8.17:1. Se definen display/body/script, escalas de espacio/radio/borde/sombra,
+containers, secciones, botones de 48 px, cards, decoración, z-index y breakpoints.
+Button/ActionLink consumen dimensiones y bordes comunes; se eliminan los dos
+RGB de marca locales encontrados en taxonomías/productos. No se rediseñó ninguna
+sección ni se cambió catálogo, SEO, rutas, WhatsApp, analytics o dominio.
+`npm run lint`, `npm run typecheck` (0 errores/warnings/hints), `npm test`
+(39 archivos, 237 tests), `npm run build` (25 páginas),
+`npm run verify:links` (0 rotos/huérfanos), `verify:accessibility`,
+`verify:performance` (85.912 bytes máximo inicial a 375 px),
+`verify:security` y `git diff --check`: PASS. Smoke local a 1440 px: documento
+1425/1425 px sin overflow, CTA 48 px, fondo/tinta correctos y 0 scripts cliente.
+`npm run format` conserva sólo los dos avisos preexistentes fuera de alcance en
+`src/pages/regalos/[slug].astro` y `tests/taxonomy-listing.test.ts`. La fidelidad
+visual completa y aprobación siguen PENDING hasta M8.9.11.
+
+## M8.9.2 — Fondo global, nubes, acuarelas y sistema decorativo
+
+**Estado:** PENDING
+**Objetivo:** crear primitivas Luna reutilizables para fondo continuo, corazones,
+destellos, líneas orgánicas, nubes y acuarelas sin duplicación ni contenido
+semántico falso.
+**Dependencias:** M8.9.1.
+**Criterios de aceptación:** SVG/CSS accesibles, `aria-hidden`, sin pointer
+events/CLS/JS decorativo; texturas raster sólo si aportan acuarela real y bajo
+budget; inventario de assets y blockers explícito.
+**Verificación:** suite/build, a11y, assets, performance y revisión 1280/1440/1920.
+**Modelo recomendado:** LUNA → SOL REVIEW.
+**Evidencia:** —
+
+## M8.9.3 — Header y navegación
+
+**Estado:** PENDING
+**Objetivo:** alinear logo, navegación y separador inferior de trazo-corazón con
+la referencia, preservando únicamente destinos y funcionalidades reales.
+**Dependencias:** M8.9.2.
+**Criterios de aceptación:** logo oficial, active nav coral, proporción desktop,
+SVG responsive orgánico, navegación/teclado/foco intactos y fallback móvil
+funcional; cero icono o función ficticia.
+**Verificación:** suite/build, teclado, enlaces y QA 1280/1440/1920.
+**Modelo recomendado:** LUNA → SOL REVIEW.
+**Evidencia:** —
+
+## M8.9.4 — Hero
+
+**Estado:** PENDING
+**Objetivo:** reproducir la composición unitaria de la referencia con el H1,
+frase manuscrita, fotografía y destinos reales aprobados.
+**Dependencias:** M8.9.3.
+**Criterios de aceptación:** “Hecho para alguien.” y “No para cualquiera.”
+preservados; CTAs y WhatsApp reales; fotografía autorizada protagonista;
+ornamentación controlada; LCP/dimensiones/contraste estables.
+**Verificación:** suite/build, HTML, performance, a11y y QA 1280/1440/1920.
+**Modelo recomendado:** LUNA → SOL REVIEW.
+**Evidencia:** —
+
+## M8.9.5 — Encuentra el regalo perfecto
+
+**Estado:** PENDING
+**Objetivo:** sustituir el descubrimiento actual por exactamente tres cards
+desktop: 01 Por tipo, 02 Por ocasión y 03 Para quién, con un producto real por
+dimensión.
+**Dependencias:** M8.9.4.
+**Regla de selección:** sólo publicados de la dimensión; destacado primero;
+si hay varios, el primero por orden editorial estable; sin destacado, primer
+publicado por ese orden; nunca random, filesystem accidental, duplicación de
+relleno ni contrato nuevo silencioso.
+**Criterios de aceptación:** lógica pura y testeada para múltiples destacados,
+fallback, exclusión de unpublished y orden estable; tres cards forman una sola
+composición y mantienen rutas reales.
+**Verificación:** tests de dominio/proyección, build, links, a11y, performance y
+QA 1280/1440/1920.
+**Modelo recomendado:** SOL → LUNA.
+**Evidencia:** —
+
+## M8.9.6 — Cada detalle cuenta
+
+**Estado:** PENDING
+**Objetivo:** alinear la secuencia ligera y conectada de los tres pasos aprobados
+sin convertirla en cards convencionales.
+**Dependencias:** M8.9.5.
+**Criterios de aceptación:** exactamente los tres pasos y orden existentes;
+iconos circulares, numeración editorial, línea orgánica/punteada y ornamentos
+consistentes; DOM y lectura accesibles.
+**Verificación:** contenido, suite/build, a11y y QA 1280/1440/1920.
+**Modelo recomendado:** LUNA → SOL REVIEW.
+**Evidencia:** —
+
+## M8.9.7 — Trabajos realizados por Luna
+
+**Estado:** PENDING
+**Objetivo:** convertir la muestra aprobada en un portfolio/mosaico editorial
+equivalente a la referencia.
+**Dependencias:** M8.9.6.
+**Criterios de aceptación:** sólo fotografías autorizadas; prioridad published +
+featured y orden editorial estable; pieza principal y secundarios con ratios
+variados; sin carousel, grid ecommerce ni nombre/precio añadido.
+**Verificación:** derechos/alt, suite/build, assets, performance y QA
+1280/1440/1920.
+**Modelo recomendado:** LUNA → SOL REVIEW.
+**Evidencia:** —
+
+## M8.9.8 — ¿Tienes algo en mente?
+
+**Estado:** PENDING
+**Objetivo:** alinear la banda editorial de cierre con fondo blush/acuarela,
+fotografía autorizada, decoración Luna y WhatsApp real.
+**Dependencias:** M8.9.7.
+**Criterios de aceptación:** titular/copy/CTA aprobados; composición texto +
+fotografía equivalente a referencia; no card genérica; href y tracking intactos.
+**Verificación:** suite/build, WhatsApp, analytics, a11y, performance y QA
+1280/1440/1920.
+**Modelo recomendado:** LUNA → SOL REVIEW.
+**Evidencia:** —
+
+## M8.9.9 — Footer
+
+**Estado:** PENDING
+**Objetivo:** alinear el Footer con la referencia usando sólo logo, navegación,
+contacto, redes, copyright y crédito reales ya autorizados.
+**Dependencias:** M8.9.8.
+**Criterios de aceptación:** jerarquía ligera, divisores sutiles, iconografía
+coral coherente, foco/targets/contraste; crédito de Antonio MDM y año de build
+preservados; cero enlace ficticio.
+**Verificación:** suite/build, hrefs, teclado, a11y y QA 1280/1440/1920.
+**Modelo recomendado:** LUNA → SOL REVIEW.
+**Evidencia:** —
+
+## M8.9.10 — Integración visual desktop
+
+**Estado:** PENDING
+**Objetivo:** convertir las secciones implementadas en una composición continua
+mediante una pasada específica de ritmo, fondos, densidad, escala y repetición.
+**Dependencias:** M8.9.9.
+**Criterios de aceptación:** continuidad de crema/nubes/acuarelas, ornamentos no
+repetitivos, proporciones fotográficas y botones/tipografía consistentes; no se
+perciben bloques independientes apilados; mobile sigue funcional sin cierre
+visual definitivo.
+**Verificación:** suite completa, budgets y QA comparativa 1280/1440/1920.
+**Modelo recomendado:** SOL → LUNA.
+**Evidencia:** —
+
+## M8.9.11 — Visual QA desktop + aprobación del propietario
+
+**Estado:** PENDING
+**Objetivo:** comparar sistemáticamente la implementación completa contra la
+referencia aprobada y obtener la decisión explícita del propietario.
+**Dependencias:** M8.9.10.
+**Criterios de aceptación:** checks técnicos completos en PASS; capturas a
+1280/1440/1920; comparación documentada de Header, logo, Hero, H1/script,
+corazón/separador, cards, fondos, proceso, portfolio, CTA, Footer, whitespace,
+proporciones y jerarquía; `VISUAL QA: PASS`; `OWNER APPROVAL: APPROVED`.
+**Estado de cierre obligatorio:** `PENDING APPROVAL` hasta recibir aprobación
+explícita; M9 continúa pausada.
+**Verificación:** lint, typecheck, tests, build, links, security, performance,
+a11y, responsive y revisión visual manual; tests verdes no bastan.
+**Modelo recomendado:** SOL.
+**Evidencia:** `VISUAL QA: PENDING`; `OWNER APPROVAL: PENDING`.
+
+**Placeholder futuro:** M8.10 — Mobile visual alignment. La referencia móvil ya
+está recibida y versionada, pero no se formaliza ni ejecuta hasta aprobar
+desktop; sus funciones ficticias no modifican los contratos reales.
+
+---
+
 # M9 — Migration + Production Release
 
-**Estado:** PENDING  
+**Estado:** PENDING (PAUSED BY M8.9 VISUAL ALIGNMENT)
 **Gate:** G9.
 
 ## M9.1 — Catálogo, copy y assets finales
@@ -1361,3 +1586,9 @@ No avanzar a la siguiente milestone.
 - 2026-08-17 — M8.5 completada: gates de secretos/historial/workflows/superficie pública y supply chain integrados; 539 dependencias/licencias y cinco advisories mitigados evaluados, 228 tests y auditorías completas en PASS. Siguiente tarea: M8.6 (modelo SOL).
 - 2026-08-17 — M8.6 completada: candidato `m8.6-rc.1` inmutable con manifiesto SHA-256, 230 tests y auditorías completas en PASS; revisión visual 1440/768/320, tres Lighthouse y corrección del overflow de breadcrumb móvil. GO técnico/visual con known issues asignados. Siguiente tarea: M9.1 (modelo LUNA → SOL REVIEW).
 - 2026-08-17 — M9.2 bloqueada tras descubrir la aplicación Flutter anterior activa y 15 rutas en su bundle público: mapa de 16 decisiones, CSV Bulk Redirects, Worker 410 y checker quedan preparados y validados, pero no hay acceso/export de Cloudflare para activar ni verificar respuestas reales. Reanudar M9.2 con acceso operativo (modelo SOL); no avanzar a M9.3.
+- 2026-08-17 — M8.9.1 completada contra la referencia desktop actualizada:
+  paleta Luna/roles accesibles, tres voces tipográficas y contratos de
+  dimensión/composición centralizados; primitives migrados, 237 tests, build,
+  links, a11y, performance, security y smoke 1440 en PASS. La referencia móvil
+  recibida queda reservada para M8.10. M9 continúa pausada y M9.2 conserva su
+  bloqueo Cloudflare. Siguiente tarea: M8.9.2 (modelo LUNA → SOL REVIEW).
