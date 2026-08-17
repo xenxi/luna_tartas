@@ -62,8 +62,8 @@ describe('public site shell', () => {
     expect(styles).toContain('min-block-size: 5.5rem');
   });
 
-  it('keeps pending brand and unconfirmed legal data out of the shell', () => {
-    expect(brand).toContain("brandName ?? 'Inicio'");
+  it('keeps the approved brand and unconfirmed legal data separated in the shell', () => {
+    expect(brand).toContain('getPublishableText(siteConfig.brandName)');
     expect(brand).toContain('brandName ?');
     expect(`${layout}${header}${footer}${brand}`).not.toContain('TBD');
     expect(`${layout}${header}`).not.toMatch(/tel:|mailto:|dirección/i);

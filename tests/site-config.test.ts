@@ -11,6 +11,11 @@ const validConfig = {
   siteUrl: 'https://example.com',
   locale: 'es-ES',
   brandName: { status: CONTENT_STATUS.ready, value: 'Marca aprobada' },
+  brandAlternateName: {
+    status: CONTENT_STATUS.ready,
+    value: 'Marca alternativa aprobada',
+  },
+  organizationSameAs: ['https://www.instagram.com/marca/'],
 };
 
 describe('site configuration', () => {
@@ -20,6 +25,11 @@ describe('site configuration', () => {
       locale: 'es-ES',
       language: 'es',
       brandName: { status: CONTENT_STATUS.ready, value: 'Marca aprobada' },
+      brandAlternateName: {
+        status: CONTENT_STATUS.ready,
+        value: 'Marca alternativa aprobada',
+      },
+      organizationSameAs: ['https://www.instagram.com/marca/'],
     });
   });
 
@@ -39,6 +49,28 @@ describe('site configuration', () => {
     ['invalid locale', { ...validConfig, locale: 'not_a_locale' }],
     ['non-canonical locale', { ...validConfig, locale: 'ES-es' }],
     ['missing brand status', { ...validConfig, brandName: {} }],
+    [
+      'missing alternate brand status',
+      { ...validConfig, brandAlternateName: {} },
+    ],
+    [
+      'missing organization profiles',
+      { ...validConfig, organizationSameAs: {} },
+    ],
+    [
+      'relative organization profile',
+      { ...validConfig, organizationSameAs: ['/marca/'] },
+    ],
+    [
+      'duplicate organization profile',
+      {
+        ...validConfig,
+        organizationSameAs: [
+          'https://www.instagram.com/marca/',
+          'https://www.instagram.com/marca/',
+        ],
+      },
+    ],
     [
       'value attached to a pending brand',
       {
@@ -64,9 +96,14 @@ describe('site configuration', () => {
     expect(() => validateSiteConfig(config)).toThrow();
   });
 
-  it('keeps pending brand content out of the public projection', () => {
-    expect(siteConfig.brandName).toEqual({ status: CONTENT_STATUS.pending });
-    expect(getPublishableText(siteConfig.brandName)).toBeUndefined();
+  it('exposes only the approved public brand identity', () => {
+    expect(getPublishableText(siteConfig.brandName)).toBe('Luna Tartas');
+    expect(getPublishableText(siteConfig.brandAlternateName)).toBe(
+      'Luna Estudio',
+    );
+    expect(siteConfig.organizationSameAs).toEqual([
+      'https://www.instagram.com/lunatartas/',
+    ]);
   });
 
   it('derives canonical URLs from the configured origin', () => {

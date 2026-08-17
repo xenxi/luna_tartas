@@ -2,7 +2,7 @@
 
 ## Estado y autoridad
 
-Este documento convierte los principios de producto y diseño en una dirección implementable para la recuperación M4.11.2–M4.11.8 y su continuidad en M5–M9. No aprueba una identidad comercial ni sustituye una guía de marca. A fecha de 2026-08-16 no se han recibido nombre comercial aprobado, logo, favicon, iconos ni tipografías; esos elementos de identidad permanecen bloqueados y no son publicables. La fotografía y contenido aprobados durante M4 se pueden usar conforme a su readiness y derechos trazados.
+Este documento convierte los principios de producto y diseño en una dirección implementable para la recuperación M4.11.2–M4.11.8 y su continuidad en M5–M9. No sustituye una guía de marca completa. El 2026-08-17 Luna aprobó el nombre público «Luna Tartas», la alternativa «Luna Estudio» y el logo oficial para publicación web y JSON-LD; favicon, iconos, variantes y tipografías continúan bloqueados. La fotografía y contenido aprobados durante M4 se pueden usar conforme a su readiness y derechos trazados.
 
 La referencia visual aprobada de la Home está registrada en [`reference/luna-home-art-direction-reference.png`](reference/luna-home-art-direction-reference.png) y su auditoría trazable vive en [`home-art-direction-recovery.md`](home-art-direction-recovery.md). La imagen define dirección artística, composición, jerarquía, densidad, ritmo, escala, proporciones, tratamiento fotográfico, cards, tipografía, ornamentación, superficies, paleta, CTA, Footer y calidad percibida. No es un contrato pixel-perfect ni una fuente de contenido: no autoriza productos, fotografías, textos, categorías, iconos funcionales o datos ficticios y no sustituye los contratos funcionales existentes.
 
@@ -19,14 +19,15 @@ Fuentes autoritativas relacionadas:
 
 ## Inventario de marca revisado
 
-| Entrada                   | Estado          | Evidencia revisada                                  | Uso permitido ahora                                                     | Condición de salida                                                     |
-| ------------------------- | --------------- | --------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- |
-| Nombre comercial          | `BLOCKED`       | No existe fuente o aprobación entregada             | Sólo la referencia interna del proyecto; nunca como identidad publicada | Nombre, variante escrita, owner, fuente, fecha y aprobación             |
-| Logo y variantes          | `BLOCKED`       | No existen masters ni guía de uso                   | Ningún logo inventado; reservar una región semántica reemplazable       | Masters web, variantes, área de seguridad, tamaños mínimos y aprobación |
-| Favicon e iconos de marca | `BLOCKED`       | No existen archivos ni derechos acreditados         | Ningún monograma, luna o símbolo provisional en producción              | SVG/PNG masters, autor, licencia o permiso y aprobación                 |
-| Tipografías de marca      | `BLOCKED`       | No existen nombres, archivos, proveedor ni licencia | Stacks del sistema definidos en este documento                          | Familia, pesos necesarios, archivos/proveedor, licencia y aprobación    |
-| Fotografía de producto    | `TBD` para M9.1 | No hay selección ni derechos/alt entregados         | Sólo fixtures aislados en tests; nunca moodboard o build público        | Originales, selección, autor/permiso, alt y aprobación                  |
-| Guía de voz o identidad   | `TBD`           | No existe documento entregado                       | Aplicar sólo los principios de producto ya aprobados                    | Guía o aprobación explícita del owner                                   |
+| Entrada                     | Estado          | Evidencia revisada                                                        | Uso permitido ahora                                                       | Condición de salida                                                     |
+| --------------------------- | --------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ----------------------------------------------------------------------- |
+| Nombre comercial            | `READY`         | Aprobación directa de Luna, 2026-08-17                                    | «Luna Tartas» y alternativa «Luna Estudio» en web/JSON-LD                 | Mantener fuente, owner, fecha y aprobación                              |
+| Logo oficial                | `READY`         | `src/assets/brand/logo-luna-tartas.png`, entregado por Luna el 2026-08-17 | Uso en `Organization` JSON-LD; no deriva variantes ni iconos              | Mantener archivo, derechos y aprobación                                 |
+| Variantes, favicon e iconos | `BLOCKED`       | No existen masters ni guía de uso                                         | Ningún asset derivado o inventado; reservar región semántica reemplazable | Masters web, variantes, área de seguridad, tamaños mínimos y aprobación |
+| Favicon e iconos de marca   | `BLOCKED`       | No existen archivos ni derechos acreditados                               | Ningún monograma, luna o símbolo provisional en producción                | SVG/PNG masters, autor, licencia o permiso y aprobación                 |
+| Tipografías de marca        | `BLOCKED`       | No existen nombres, archivos, proveedor ni licencia                       | Stacks del sistema definidos en este documento                            | Familia, pesos necesarios, archivos/proveedor, licencia y aprobación    |
+| Fotografía de producto      | `TBD` para M9.1 | No hay selección ni derechos/alt entregados                               | Sólo fixtures aislados en tests; nunca moodboard o build público          | Originales, selección, autor/permiso, alt y aprobación                  |
+| Guía de voz o identidad     | `TBD`           | No existe documento entregado                                             | Aplicar sólo los principios de producto ya aprobados                      | Guía o aprobación explícita del owner                                   |
 
 No se incorpora ningún asset de marca en M3.1. La ausencia es deliberada: un placeholder técnico no debe parecer una propuesta de logo ni cruzar al artefacto público.
 

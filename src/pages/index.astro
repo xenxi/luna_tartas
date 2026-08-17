@@ -1,14 +1,21 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import logo from '../assets/brand/logo-luna-tartas.png';
 import Hero from '../components/home/Hero.astro';
 import TaxonomyDiscovery from '../components/home/TaxonomyDiscovery.astro';
 import FeaturedProducts from '../components/home/FeaturedProducts.astro';
 import TrustAndWork from '../components/home/TrustAndWork.astro';
 import CustomIdeaCta from '../components/home/CustomIdeaCta.astro';
+import JsonLd from '../components/seo/JsonLd.astro';
+import { siteConfig } from '../config/site';
 import { loadCatalog } from '../lib/catalog/source';
 import { routes } from '../lib/catalog/domain/routes';
+import { createApprovedSiteIdentityJsonLd } from '../lib/seo/structured-data/organization';
 
 const catalog = await loadCatalog();
+const siteIdentity = createApprovedSiteIdentityJsonLd(
+  new URL(logo.src, siteConfig.siteUrl).href,
+);
 ---
 
 <BaseLayout
@@ -16,6 +23,8 @@ const catalog = await loadCatalog();
   canonicalPath={routes.home()}
   fallbackDescription="Detalles personalizados hechos a mano para convertir una idea en un regalo pensado para alguien especial."
 >
+  <JsonLd data={siteIdentity.organization} />
+  <JsonLd data={siteIdentity.website} />
   <Hero />
   <TaxonomyDiscovery catalog={catalog} />
   <FeaturedProducts catalog={catalog} />

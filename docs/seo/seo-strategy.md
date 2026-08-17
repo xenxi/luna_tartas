@@ -51,8 +51,8 @@ M0.1 ratificó una implementación greenfield con migración SEO/contenido todav
 
 ## Agent discoverability
 
-La fuente primaria sigue siendo HTML semántico y JSON-LD. `/catalog.json` expone una proyección versionable del catálogo publicado con URLs absolutas. No se introduce MCP/UCP ni un agente propio en V1 sin un caso y consumidor demostrados.
+La fuente primaria sigue siendo HTML semántico y JSON-LD. [`/catalog.json`](catalog-json-schema.md) expone una proyección versionable del catálogo publicado con URLs absolutas. No se introduce MCP/UCP ni un agente propio en V1 sin un caso y consumidor demostrados.
 
 ## Verificación
 
-Build, sitemap/canonical consistency, ausencia de drafts, tests de JSON-LD, enlaces internos, render sin JS y validación manual con herramientas de resultados enriquecidos/Search Console antes y después del release.
+Build, sitemap/canonical consistency, ausencia de drafts, tests de JSON-LD, enlaces internos, [`catalog.json`](catalog-json-schema.md) y su comparación con HTML, render sin JS y validación manual con herramientas de resultados enriquecidos/Search Console antes y después del release.

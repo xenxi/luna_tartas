@@ -12,12 +12,16 @@ export interface SiteConfig {
   locale: string;
   language: string;
   brandName: PublishableText;
+  brandAlternateName: PublishableText;
+  organizationSameAs: readonly string[];
 }
 
 const configuredSite: unknown = {
   siteUrl: 'https://lunatartas.es',
   locale: 'es-ES',
-  brandName: { status: CONTENT_STATUS.pending },
+  brandName: { status: CONTENT_STATUS.ready, value: 'Luna Tartas' },
+  brandAlternateName: { status: CONTENT_STATUS.ready, value: 'Luna Estudio' },
+  organizationSameAs: ['https://www.instagram.com/lunatartas/'],
 };
 
 function isRecord(value: unknown): value is Record<string, unknown> {
@@ -113,6 +117,45 @@ function validatePublishableText(
   throw new Error(`${field} status must be READY or TBD`);
 }
 
+function validateOrganizationSameAs(value: unknown): readonly string[] {
+  if (!Array.isArray(value)) {
+    throw new Error(
+      'organizationSameAs must be an array of absolute HTTPS URLs',
+    );
+  }
+
+  const urls = value.map((entry) => {
+    if (typeof entry !== 'string') {
+      throw new Error(
+        'organizationSameAs must contain only absolute HTTPS URLs',
+      );
+    }
+
+    let url: URL;
+    try {
+      url = new URL(entry);
+    } catch {
+      throw new Error(
+        'organizationSameAs must contain only absolute HTTPS URLs',
+      );
+    }
+
+    if (url.protocol !== 'https:' || url.username || url.password) {
+      throw new Error(
+        'organizationSameAs must contain only absolute HTTPS URLs',
+      );
+    }
+
+    return url.href;
+  });
+
+  if (new Set(urls).size !== urls.length) {
+    throw new Error('organizationSameAs cannot contain duplicate URLs');
+  }
+
+  return Object.freeze(urls);
+}
+
 export function validateSiteConfig(value: unknown): SiteConfig {
   if (!isRecord(value)) {
     throw new Error('Site configuration is required');
@@ -121,8 +164,22 @@ export function validateSiteConfig(value: unknown): SiteConfig {
   const siteUrl = validateSiteUrl(value.siteUrl);
   const { locale, language } = validateLocale(value.locale);
   const brandName = validatePublishableText(value.brandName, 'brandName');
+  const brandAlternateName = validatePublishableText(
+    value.brandAlternateName,
+    'brandAlternateName',
+  );
+  const organizationSameAs = validateOrganizationSameAs(
+    value.organizationSameAs,
+  );
 
-  return Object.freeze({ siteUrl, locale, language, brandName });
+  return Object.freeze({
+    siteUrl,
+    locale,
+    language,
+    brandName,
+    brandAlternateName,
+    organizationSameAs,
+  });
 }
 
 export function getPublishableText(value: PublishableText): string | undefined {

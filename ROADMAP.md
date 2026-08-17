@@ -9,7 +9,7 @@
 - Se ejecuta exclusivamente la tarea solicitada; no se anticipa la siguiente.
 - `DONE` exige todos los criterios y verificaciones en `PASS`, con evidencia registrada aquí.
 - Orden normal: de arriba abajo. Una tarea posterior sólo puede comenzar si todas sus dependencias están `DONE`.
-- **Siguiente tarea:** `M6.5 — Organization y WebSite JSON-LD`.
+- **Siguiente tarea:** `M6.7 — Auditoría SEO técnica pre-analytics`.
 
 ## Gates de programa
 
@@ -832,7 +832,7 @@
 
 ## M6.5 — Organization y WebSite JSON-LD
 
-**Estado:** PENDING  
+**Estado:** DONE
 **Objetivo:** publicar identidad global sólo con datos empresariales verificados.  
 **Alcance:** builders desde config, logo/URL/contactPoint/social sólo si confirmados y una inclusión no duplicada; mantener consistencia con la identidad empresarial visible en Footer sin convertir la firma del creador de M4.11 en identidad de `Organization`.
 
@@ -845,11 +845,11 @@
 **Verificación:** tests, validación externa y comparación con contenido/footer.  
 **Modelo recomendado:** LUNA → SOL REVIEW.  
 **Razón del modelo:** builder simple con revisión semántica crítica.  
-**Evidencia:** —
+**Evidencia:** PASS (2026-08-17) — La aprobación directa de Luna queda registrada en `docs/product/content-readiness.md` y `docs/design/visual-direction.md`: «Luna Tartas», alternativa «Luna Estudio», URL oficial, Instagram único y logo recibido con autorización explícita de publicación y JSON-LD. `src/config/site.ts` centraliza y valida la identidad, incluidos perfiles HTTPS únicos; `src/lib/seo/structured-data/organization.ts` crea los builders puros mínimos. La portada emite una sola vez `Organization` (`https://lunatartas.es/#organization`) y `WebSite` (`https://lunatartas.es/#website`), con `publisher.@id` hacia la organización, URL canónica absoluta, `sameAs` limitado al Instagram aprobado y logo publicado como asset absoluto. No se emiten `legalName`, `contactPoint`, identidad fiscal, otras redes ni Antonio MDM. `tests/seo-organization.test.ts`, `tests/site-config.test.ts` y el auditor de `dist` cubren tipos, nombre, URL, IDs, relación, asset y ausencia de `TBD`. Schema.org Validator reconoce el marcado con 0 errores y 0 advertencias. `npm run lint`, `npm run typecheck` (0 errores/warnings/hints), `npm test` (29 archivos, 198 tests), `npm run build` (25 páginas), `npm run verify:seo`, `npm run verify:crawl`, `npm run verify:links`, `npm run verify:structured-data` y `git diff --check`: PASS. `npm run format` mantiene exclusivamente dos avisos preexistentes fuera de alcance: `src/components/catalog/media-projection.ts` y `src/components/home/FeaturedProducts.astro`. Siguiente tarea: M6.6 (modelo LUNA → SOL REVIEW).
 
 ## M6.6 — `/catalog.json` público
 
-**Estado:** PENDING  
+**Estado:** DONE
 **Objetivo:** ofrecer una proyección machine-readable estable del catálogo publicado.  
 **Alcance:** endpoint/archivo estático, versión de schema, generatedAt reproducible o política explícita, entidades/relaciones/URLs/precios/media públicos y cache headers posibles en Pages.  
 **Fuera de alcance:** API runtime, búsqueda, drafts, rutas internas o protocolo agentic.  
@@ -860,7 +860,7 @@
 **Verificación:** schema test, diff reproducible entre builds y comparación con catálogo/HTML.  
 **Modelo recomendado:** LUNA → SOL REVIEW.  
 **Razón del modelo:** proyección mecánica con revisión de superficie pública.  
-**Evidencia:** —
+**Evidencia:** PASS (2026-08-17) — `src/pages/catalog.json.ts` genera la proyección estática `1.0` desde el dominio validado: 8 productos y taxonomías publicados, URLs HTTPS canónicas absolutas, relaciones públicas, precios decimales exactos, capacidades de personalización y una portada WebP optimizada por Astro. No incluye `generatedAt`, por política explícita de reproducibilidad byte a byte; tampoco expone drafts, rutas de origen, aprobaciones, derechos, evidencias, galerías ni configuración interna. `docs/seo/catalog-json-schema.md` fija schema, compatibilidad y política de caché; `tests/public-catalog.test.ts` cubre determinismo, exclusión, relaciones, precios y validación de media. `scripts/verify-catalog.mjs` contrasta el artefacto con assets, relaciones y canonical HTML. `npm run lint`, `npm run typecheck` (0 errores/warnings/hints), `npm test` (30 archivos, 201 tests), dos builds con hash idéntico de `dist/catalog.json`, `npm run verify:seo`, `npm run verify:crawl`, `npm run verify:links`, `npm run verify:structured-data`, `npm run verify:catalog` (8 productos/8 HTML) y `git diff --check`: PASS. `npm run format` conserva exclusivamente dos avisos preexistentes fuera de alcance: `src/components/catalog/media-projection.ts` y `src/components/home/FeaturedProducts.astro`. Siguiente tarea: M6.7 (modelo SOL).
 
 ## M6.7 — Auditoría SEO técnica pre-analytics
 

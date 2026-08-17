@@ -14,7 +14,8 @@
     "verify:seo": "node scripts/verify-seo.mjs",
     "verify:crawl": "node scripts/verify-crawl.mjs",
     "verify:links": "node scripts/verify-links.mjs",
-    "verify:structured-data": "node scripts/verify-structured-data.mjs"
+    "verify:structured-data": "node scripts/verify-structured-data.mjs",
+    "verify:catalog": "node scripts/verify-catalog.mjs"
   },
   "engines": {
     "node": ">=24.19.0 <25"

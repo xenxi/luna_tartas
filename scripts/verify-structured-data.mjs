@@ -168,12 +168,112 @@ function verifyBreadcrumbDocument(document, canonical, file) {
   );
 }
 
+async function verifyOrganizationDocument(document, canonical, file) {
+  required(
+    document['@context'] === 'https://schema.org',
+    `${file} has an invalid Organization context`,
+  );
+  required(
+    document['@type'] === 'Organization',
+    `${file} has an invalid Organization type`,
+  );
+  required(
+    document['@id'] === `${canonical}#organization`,
+    `${file} Organization ID differs from canonical`,
+  );
+  required(
+    document.name === 'Luna Tartas' && document.url === canonical,
+    `${file} Organization identity differs from approved data`,
+  );
+  required(
+    document.alternateName === 'Luna Estudio',
+    `${file} Organization alternate name differs from approved data`,
+  );
+  required(
+    Array.isArray(document.sameAs) &&
+      document.sameAs.length === 1 &&
+      document.sameAs[0] === 'https://www.instagram.com/lunatartas/',
+    `${file} Organization social profile differs from approved data`,
+  );
+  required(
+    typeof document.logo === 'string',
+    `${file} Organization has no approved logo`,
+  );
+
+  const logo = new URL(document.logo);
+  required(
+    logo.origin === siteUrl && logo.protocol === 'https:',
+    `${file} Organization logo is not canonical HTTPS`,
+  );
+  await stat(resolve(distDirectory, `.${logo.pathname}`));
+  required(
+    !(
+      'legalName' in document ||
+      'contactPoint' in document ||
+      'founder' in document ||
+      'telephone' in document ||
+      'email' in document ||
+      'address' in document
+    ),
+    `${file} Organization publishes unapproved identity data`,
+  );
+  required(
+    !JSON.stringify(document).includes('TBD'),
+    `${file} Organization contains a placeholder`,
+  );
+}
+
+function verifyWebSiteDocument(document, canonical, organization, file) {
+  required(
+    document['@context'] === 'https://schema.org',
+    `${file} has an invalid WebSite context`,
+  );
+  required(
+    document['@type'] === 'WebSite',
+    `${file} has an invalid WebSite type`,
+  );
+  required(
+    document['@id'] === `${canonical}#website`,
+    `${file} WebSite ID differs from canonical`,
+  );
+  required(
+    document.name === 'Luna Tartas' &&
+      document.alternateName === 'Luna Estudio' &&
+      document.url === canonical,
+    `${file} WebSite identity differs from approved data`,
+  );
+  required(
+    document.publisher?.['@id'] === organization['@id'],
+    `${file} WebSite publisher is not the Organization`,
+  );
+  required(
+    !('potentialAction' in document),
+    `${file} WebSite invents a search action`,
+  );
+  required(
+    !JSON.stringify(document).includes('TBD'),
+    `${file} WebSite contains a placeholder`,
+  );
+}
+
 const files = await htmlFiles(distDirectory);
 const productFiles = [];
+const organizationDocuments = [];
+const webSiteDocuments = [];
+const homeFile = resolve(distDirectory, 'index.html');
 
 for (const file of files) {
   const html = await readFile(file, 'utf8');
   const documents = jsonLdDocuments(html, file);
+
+  documents.forEach((document) => {
+    if (document['@type'] === 'Organization') {
+      organizationDocuments.push({ document, file, html });
+    }
+    if (document['@type'] === 'WebSite') {
+      webSiteDocuments.push({ document, file, html });
+    }
+  });
 
   if (!isProductPage(html)) {
     required(
@@ -202,6 +302,27 @@ for (const file of files) {
 }
 
 required(productFiles.length > 0, 'No product pages were found to validate');
+required(
+  organizationDocuments.length === 1 && webSiteDocuments.length === 1,
+  'Global Organization and WebSite JSON-LD must each be emitted once',
+);
+
+const [
+  { document: organization, file: organizationFile, html: organizationHtml },
+] = organizationDocuments;
+const [{ document: website, file: websiteFile, html: websiteHtml }] =
+  webSiteDocuments;
+required(
+  organizationFile === homeFile && websiteFile === homeFile,
+  'Global Organization and WebSite JSON-LD must be emitted on the homepage',
+);
+const homeCanonical = canonicalUrl(organizationHtml, organizationFile);
+required(
+  canonicalUrl(websiteHtml, websiteFile) === homeCanonical,
+  'Organization and WebSite must share the homepage canonical URL',
+);
+await verifyOrganizationDocument(organization, homeCanonical, organizationFile);
+verifyWebSiteDocument(website, homeCanonical, organization, websiteFile);
 console.log(
-  `Structured data verified in ${productFiles.length} product pages.`,
+  `Structured data verified in ${productFiles.length} product pages and the homepage identity.`,
 );
