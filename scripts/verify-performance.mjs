@@ -1,8 +1,11 @@
 import { readdir, readFile, stat } from 'node:fs/promises';
 import { gzipSync } from 'node:zlib';
-import { relative, resolve, sep } from 'node:path';
+import { relative, resolve } from 'node:path';
+import { artifactPath } from './performance-paths.mjs';
 
 const DIST = resolve('dist');
+const DEPLOYMENT_BASE =
+  process.env.ASTRO_BASE_PATH ?? process.env.PAGES_BASE_PATH ?? '/';
 const BUDGETS = {
   htmlGzip: 50 * 1024,
   cssGzip: 50 * 1024,
@@ -46,17 +49,11 @@ function candidateFor375px(srcset) {
 }
 
 function localFile(url, page) {
-  if (!url?.startsWith('/') || url.startsWith('//')) {
-    throw new Error(`${page}: expected a local artifact URL, got ${url}`);
+  try {
+    return artifactPath(url, DIST, DEPLOYMENT_BASE);
+  } catch (error) {
+    throw new Error(`${page}: ${error.message}`, { cause: error });
   }
-  const file = resolve(
-    DIST,
-    decodeURIComponent(url.split(/[?#]/, 1)[0]).slice(1),
-  );
-  if (!file.startsWith(`${DIST}${sep}`)) {
-    throw new Error(`${page}: asset path escapes dist: ${url}`);
-  }
-  return file;
 }
 
 async function fileSize(url, page) {
