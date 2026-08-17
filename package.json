@@ -16,7 +16,9 @@
     "verify:links": "node scripts/verify-links.mjs",
     "verify:structured-data": "node scripts/verify-structured-data.mjs",
     "verify:catalog": "node scripts/verify-catalog.mjs",
-    "verify:accessibility": "node scripts/verify-accessibility.mjs"
+    "verify:accessibility": "node scripts/verify-accessibility.mjs",
+    "verify:assets": "node scripts/verify-assets.mjs",
+    "verify:performance": "node scripts/verify-performance.mjs"
   },
   "engines": {
     "node": ">=24.19.0 <25"

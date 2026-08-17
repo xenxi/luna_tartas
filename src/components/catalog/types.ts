@@ -8,6 +8,7 @@ export interface ResponsiveSourceProjection {
 
 export interface MediaProjection {
   readonly src: string;
+  readonly srcSet?: string;
   readonly alt: string;
   readonly width: number;
   readonly height: number;

@@ -1,7 +1,7 @@
 ---
 import type { Catalog, PublishedProduct } from '../../lib/catalog/domain/model';
 import { catalogImageMap } from '../catalog/catalog-images';
-import { buildSimpleMediaProjection } from '../catalog/media-projection';
+import { buildMediaProjection } from '../catalog/media-projection';
 import { getPublishedProducts } from '../../lib/catalog/domain/queries';
 import { routes } from '../../lib/catalog/domain/routes';
 import CardList from '../patterns/CardList.astro';
@@ -25,8 +25,8 @@ const productsByHref = new Map(
     candidate,
   ]),
 );
-const itemsWithMedia: ProductCardProjection[] = related.items.map(
-  (item, index) => {
+const itemsWithMedia: ProductCardProjection[] = await Promise.all(
+  related.items.map(async (item, index) => {
     const relatedProduct = productsByHref.get(item.href);
     const cover = relatedProduct?.media.cover;
     const imageMetadata =
@@ -48,9 +48,9 @@ const itemsWithMedia: ProductCardProjection[] = related.items.map(
       media:
         imageMetadata === undefined || cover === undefined
           ? undefined
-          : buildSimpleMediaProjection(imageMetadata, cover.alt),
+          : await buildMediaProjection(imageMetadata, cover.alt),
     };
-  },
+  }),
 );
 ---
 

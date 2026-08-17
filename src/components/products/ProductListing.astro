@@ -8,7 +8,7 @@ import {
   projectProductListing,
 } from './product-listing';
 import { catalogImageMap } from '../catalog/catalog-images';
-import { buildSimpleMediaProjection } from '../catalog/media-projection';
+import { buildMediaProjection } from '../catalog/media-projection';
 import { getPublishedProducts } from '../../lib/catalog/domain/queries';
 import type { ProductCardProjection } from '../catalog/types';
 import './product-listing.css';
@@ -24,18 +24,20 @@ const productsByListingHref =
   indexPublishedProductsByListingHref(domainProducts);
 
 // Enriquecer cada item con su media resuelta
-const itemsWithMedia: ProductCardProjection[] = listing.items.map((item) => {
-  const domainProduct = productsByListingHref.get(item.href);
-  const coverSrc = domainProduct?.media?.cover?.src;
-  const coverAlt = domainProduct?.media?.cover?.alt ?? '';
-  const imageMetadata = coverSrc ? catalogImageMap[coverSrc] : undefined;
-  return {
-    ...item,
-    media: imageMetadata
-      ? buildSimpleMediaProjection(imageMetadata, coverAlt)
-      : undefined,
-  };
-});
+const itemsWithMedia: ProductCardProjection[] = await Promise.all(
+  listing.items.map(async (item) => {
+    const domainProduct = productsByListingHref.get(item.href);
+    const coverSrc = domainProduct?.media?.cover?.src;
+    const coverAlt = domainProduct?.media?.cover?.alt ?? '';
+    const imageMetadata = coverSrc ? catalogImageMap[coverSrc] : undefined;
+    return {
+      ...item,
+      media: imageMetadata
+        ? await buildMediaProjection(imageMetadata, coverAlt)
+        : undefined,
+    };
+  }),
+);
 ---
 
 {

@@ -2,7 +2,7 @@
 import ResponsiveMedia from './ResponsiveMedia.astro';
 import type { TaxonomyCardProjection } from './types';
 import { catalogImageMap } from './catalog-images';
-import { buildSimpleMediaProjection } from './media-projection';
+import { buildMediaProjection } from './media-projection';
 import './catalog.css';
 
 interface Props {
@@ -15,7 +15,7 @@ const Heading = `h${headingLevel}` as 'h2' | 'h3';
 const media =
   taxonomy.media ??
   (taxonomy.mediaSource && catalogImageMap[taxonomy.mediaSource.src]
-    ? buildSimpleMediaProjection(
+    ? await buildMediaProjection(
         catalogImageMap[taxonomy.mediaSource.src],
         taxonomy.mediaSource.alt,
       )

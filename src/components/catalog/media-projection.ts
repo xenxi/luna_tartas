@@ -22,12 +22,13 @@ export async function buildMediaProjection(
     options?.sizes ??
     '(min-width: 60rem) 25vw, (min-width: 40rem) 40vw, calc(50vw - 2rem)';
 
-  // Generamos la imagen optimizada base (fallback JPEG/WebP)
-  const optimized = await getImage({
-    src: imageMetadata,
-    format: 'webp',
-    width: widths[widths.length - 1],
-  });
+  // El <img> mantiene JPEG como fallback compatible; AVIF y WebP viven en
+  // <source>, por delante del fallback, para no depender de un formato moderno.
+  const fallbackSources = await Promise.all(
+    widths.map((width) =>
+      getImage({ src: imageMetadata, format: 'jpg', width }),
+    ),
+  );
 
   // Generamos sources AVIF y WebP para distintos anchos
   const avifSources = await Promise.all(
@@ -42,7 +43,10 @@ export async function buildMediaProjection(
   );
 
   return {
-    src: optimized.src,
+    src: fallbackSources[fallbackSources.length - 1].src,
+    srcSet: fallbackSources
+      .map((image, index) => `${image.src} ${widths[index]}w`)
+      .join(', '),
     alt,
     width: imageMetadata.width,
     height: imageMetadata.height,
@@ -50,33 +54,16 @@ export async function buildMediaProjection(
     sources: [
       {
         type: 'image/avif',
-        srcSet: avifSources.map((img, i) => `${img.src} ${widths[i]}w`).join(', '),
+        srcSet: avifSources
+          .map((img, i) => `${img.src} ${widths[i]}w`)
+          .join(', '),
       },
       {
         type: 'image/webp',
-        srcSet: webpSources.map((img, i) => `${img.src} ${widths[i]}w`).join(', '),
+        srcSet: webpSources
+          .map((img, i) => `${img.src} ${widths[i]}w`)
+          .join(', '),
       },
     ],
-  };
-}
-
-/**
- * Versión simplificada que usa la imagen original sin optimización de variantes,
- * útil cuando ya tenemos solo el src string y no queremos duplicar la complejidad.
- * Devuelve undefined si no se puede resolver la imagen.
- */
-export function buildSimpleMediaProjection(
-  imageMetadata: ImageMetadata,
-  alt: string,
-  sizes?: string,
-): MediaProjection {
-  return {
-    src: imageMetadata.src,
-    alt,
-    width: imageMetadata.width,
-    height: imageMetadata.height,
-    sizes:
-      sizes ??
-      '(min-width: 60rem) 25vw, (min-width: 40rem) 40vw, calc(50vw - 2rem)',
   };
 }

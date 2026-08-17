@@ -10,7 +10,7 @@ import ContentSection from '../patterns/ContentSection.astro';
 import ProductCard from '../catalog/ProductCard.astro';
 import { projectTaxonomyLanding } from './taxonomy-listing';
 import { catalogImageMap } from '../catalog/catalog-images';
-import { buildSimpleMediaProjection } from '../catalog/media-projection';
+import { buildMediaProjection } from '../catalog/media-projection';
 import { getProductsForTaxonomy } from '../../lib/catalog/domain/queries';
 import { routes } from '../../lib/catalog/domain/routes';
 import { taxonomyBreadcrumb } from '../../lib/seo/navigation';
@@ -31,8 +31,8 @@ const landing = projectTaxonomyLanding(catalog, kind, taxonomy);
 const domainProducts = getProductsForTaxonomy(catalog, kind, taxonomy.id);
 
 // Enriquecer cada product card con su media resuelta
-const productsWithMedia: ProductCardProjection[] = landing.products.map(
-  (item, i) => {
+const productsWithMedia: ProductCardProjection[] = await Promise.all(
+  landing.products.map(async (item, i) => {
     const domainProduct = domainProducts[i];
     const coverSrc = domainProduct?.media?.cover?.src;
     const coverAlt = domainProduct?.media?.cover?.alt ?? '';
@@ -45,10 +45,10 @@ const productsWithMedia: ProductCardProjection[] = landing.products.map(
         { listId: `${kind}-${taxonomy.slug}`, position: i + 1 },
       ),
       media: imageMetadata
-        ? buildSimpleMediaProjection(imageMetadata, coverAlt)
+        ? await buildMediaProjection(imageMetadata, coverAlt)
         : undefined,
     };
-  },
+  }),
 );
 ---
 

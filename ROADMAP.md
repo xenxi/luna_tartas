@@ -9,7 +9,7 @@
 - Se ejecuta exclusivamente la tarea solicitada; no se anticipa la siguiente.
 - `DONE` exige todos los criterios y verificaciones en `PASS`, con evidencia registrada aquí.
 - Orden normal: de arriba abajo. Una tarea posterior sólo puede comenzar si todas sus dependencias están `DONE`.
-- **Siguiente tarea:** `M8.2 — Pipeline de imágenes y presupuestos de rendimiento`.
+- **Siguiente tarea:** `M8.3 — Responsive y compatibilidad de navegadores`.
 
 ## Gates de programa
 
@@ -983,7 +983,7 @@
 
 ## M8.2 — Pipeline de imágenes y presupuestos de rendimiento
 
-**Estado:** PENDING  
+**Estado:** DONE
 **Objetivo:** asegurar fotos protagonistas sin degradar CWV ni salud de Git.  
 **Alcance:** AVIF/WebP/fallback, srcset/sizes, lazy/eager correcto, dimensiones, límites de ingestión/repo, fonts y budgets de JS/CSS/imágenes/LCP/CLS; medir cualquier reveal, micro-parallax u ornamento implementado.
 
@@ -996,7 +996,7 @@
 **Verificación:** build stats, request/format audit, Lighthouse repetido y asset checker.  
 **Modelo recomendado:** SOL → LUNA.  
 **Razón del modelo:** Sol calibra budgets; Luna implementa optimización/checks.  
-**Evidencia:** —
+**Evidencia:** PASS (2026-08-17) — Todas las rutas que muestran catálogo usan ahora `picture` con AVIF/WebP y `srcset` JPEG de fallback; conservan `sizes`, dimensiones intrínsecas y lazy loading, excepto el único candidato LCP eager/high-priority de Home o ficha. Se añadieron `npm run verify:assets` (31 fuentes, 30.359.026 bytes; hard limits de 8 MiB raster, 250 KiB SVG y 100 MiB de repositorio) y `npm run verify:performance`, que audita el artefacto: 25 HTML, 109 `picture` responsivos, formatos/fallback, dimensiones, prioridad, gzip HTML/CSS/JS, variantes a 375 px y transferencia inicial máxima de 84.022 bytes frente a 1,5 MiB. Ambos se ejecutan en CI y Pages; los contratos viven en `docs/quality/performance-audit.md` y `tests/performance-budget.test.ts`. La preview a 375 × 812 confirmó Home y ficha sin overflow, un LCP priorizado y fuentes modernas/dimensionadas. No hay fuente web ni JS de cliente habilitado; la ornamentación sigue secundaria en SVG/CSS. Lighthouse no está instalado en este entorno, por lo que no se inventa puntuación: el gate estático reproducible y la comprobación de preview pasan, y las tres corridas Lighthouse móvil quedan registradas para M8.3 junto a la matriz de navegadores. `npm run lint`, `npm run typecheck` (0 errores/warnings/hints), `npm test` (35 archivos, 222 tests), `npm run build` (25 páginas), `npm run verify:assets`, `npm run verify:performance` y `git diff --check`: PASS. `npm run format` mantiene únicamente avisos preexistentes fuera de alcance en `src/pages/regalos/[slug].astro` y `tests/taxonomy-listing.test.ts`. Siguiente tarea: M8.3 (modelo LUNA).`
 
 ## M8.3 — Responsive y compatibilidad de navegadores
 
