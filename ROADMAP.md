@@ -9,7 +9,7 @@
 - Se ejecuta exclusivamente la tarea solicitada; no se anticipa la siguiente.
 - `DONE` exige todos los criterios y verificaciones en `PASS`, con evidencia registrada aquí.
 - Orden normal: de arriba abajo. Una tarea posterior sólo puede comenzar si todas sus dependencias están `DONE`.
-- **Siguiente tarea:** `M8.5 — Seguridad, dependencias y superficie pública`.
+- **Siguiente tarea:** `M8.6 — Gate de release candidate`.
 
 ## Gates de programa
 
@@ -1032,7 +1032,7 @@
 
 ## M8.5 — Seguridad, dependencias y superficie pública
 
-**Estado:** PENDING  
+**Estado:** DONE
 **Objetivo:** minimizar riesgos antes del release.  
 **Alcance:** secretos en archivos/historial/logs, reglas `.gitignore`, Actions Secrets/permissions, dependencias/licencias, npm audit evaluado, headers posibles, enlaces externos, JSON injection y datos expuestos en dist/catalog/source maps.  
 **Fuera de alcance:** pentest de backend inexistente o upgrades no relacionados sin análisis.  
@@ -1043,7 +1043,7 @@
 **Verificación:** secret/dependency scans sobre worktree e historial, revisión Actions/logs y búsqueda de datos prohibidos en artefacto/source maps.  
 **Modelo recomendado:** SOL.  
 **Razón del modelo:** revisión de seguridad transversal y basada en riesgo.  
-**Evidencia:** —
+**Evidencia:** PASS (2026-08-17) — Se añadieron `verify:security` y `verify:dependencies`: el gate offline revisa 330 archivos versionados, 76 revisiones Git, 2 workflows y 486 archivos del artefacto sin imprimir valores; exige `.gitignore`, actions fijadas a SHA, permisos mínimos, checkout sin credenciales persistentes, ausencia de secretos/source maps/campos editoriales, orígenes externos HTTPS aprobados, `noopener` y JSON-LD válido. CI/deploy descargan historial completo e integran los gates; el layout limita referrer con `strict-origin-when-cross-origin`. El lock contiene 539 paquetes con versiones directas exactas y licencias evaluadas. `npm audit` reporta 0 critical y cinco causas conocidas agrupadas en 2 high/1 low: quedan documentadas como no explotables en la superficie estática (Sharp sólo procesa medios versionados durante build; sin SSR/uploads; sin View Transitions/islands; dev server no publicado), con fallo ante cualquier advisory nuevo o excepción obsoleta; no se forzó Astro 7 ni overrides fuera de rango. GitHub Pages no permite headers HTTP arbitrarios: CSP/HSTS/headers reales quedan para edge/M9.3, sin simular soporte. `npm ci` limpio, lint, typecheck (0 errores/warnings/hints), 37 archivos/228 tests, build de 25 páginas, gates SEO/crawl/links/structured-data/catalog/a11y/assets/performance/responsive/artifact/security/dependencies/determinism/mutation y `git diff --check`: PASS. `npm run format` conserva sólo los dos avisos preexistentes fuera de alcance en `src/pages/regalos/[slug].astro` y `tests/taxonomy-listing.test.ts`. Siguiente tarea: M8.6 (modelo SOL).
 
 ## M8.6 — Gate de release candidate
 
@@ -1344,3 +1344,4 @@ No avanzar a la siguiente milestone.
 - 2026-08-17 — M8.1 completada: foco del skip link corregido, auditor estático del artefacto añadido, revisión semántica/teclado/zoom/reflow/reduced-motion documentada, 220 tests y checks de build en PASS. Siguiente tarea: M8.2 (modelo SOL → LUNA).
 - 2026-08-17 — M8.3 completada: overflow móvil del Hero corregido, auditor responsive del artefacto añadido, capturas 320/768/1440 y matriz Chrome/Edge documentadas; 224 tests, build, auditorías de responsive/a11y/performance/assets y checks de calidad en PASS. Siguiente tarea: M8.4 (modelo LUNA → SOL REVIEW).
 - 2026-08-17 — M8.4 completada: hardening del artefacto, smoke estático crítico, determinismo byte a byte en dos builds y mutación controlada rechazada; CI/Pages integran los gates, 224 tests repetidos y auditorías completas en PASS. Siguiente tarea: M8.5 (modelo SOL).
+- 2026-08-17 — M8.5 completada: gates de secretos/historial/workflows/superficie pública y supply chain integrados; 539 dependencias/licencias y cinco advisories mitigados evaluados, 228 tests y auditorías completas en PASS. Siguiente tarea: M8.6 (modelo SOL).

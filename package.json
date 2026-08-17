@@ -19,6 +19,8 @@
     "verify:artifact": "node scripts/verify-artifact.mjs",
     "verify:determinism": "node scripts/verify-determinism.mjs",
     "verify:mutation": "node scripts/verify-mutation.mjs",
+    "verify:security": "node scripts/verify-security.mjs",
+    "verify:dependencies": "node scripts/verify-dependencies.mjs",
     "verify:accessibility": "node scripts/verify-accessibility.mjs",
     "verify:assets": "node scripts/verify-assets.mjs",
     "verify:performance": "node scripts/verify-performance.mjs",

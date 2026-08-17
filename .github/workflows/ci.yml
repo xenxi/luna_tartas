@@ -17,6 +17,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          fetch-depth: 0
 
       - name: Setup Node.js
         uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
@@ -34,6 +36,9 @@ jobs:
 
       - name: Install dependencies
         run: npm ci
+
+      - name: Review dependency security and licenses
+        run: npm run verify:dependencies
 
       - name: Lint
         run: npm run lint
@@ -55,6 +60,9 @@ jobs:
 
       - name: Verify public artifact
         run: npm run verify:artifact
+
+      - name: Verify security and public surface
+        run: npm run verify:security
 
       - name: Verify deterministic build
         run: npm run verify:determinism

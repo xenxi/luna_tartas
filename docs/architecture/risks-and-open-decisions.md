@@ -11,7 +11,7 @@
 | Analytics/consentimiento sin decidir | medición o privacidad incorrecta | M7.1 selecciona Matomo On-Premise EEE, opt-in y estado desactivado; M7.2/M9.4 verifican instancia, política y habilitación | CONTROLLED — owner: titular de Luna Tartas |
 | Pages tiene redirects HTTP por path limitados | migración SEO incompleta | Cloudflare cubre 301/308; si faltan acceso/capacidad o se requieren 410 reales, M9.2 sustituye Pages o añade edge explícito | OPEN — owner: propietario del negocio |
 | Fotos originales pesadas en Git | repositorio lento a largo plazo | hard limits M0.2 (8 MiB/24 MP por raster; 100 MiB binarios) y archivo externo; checks en M2/M8 | CONTROLLED — owner: equipo técnico |
-| Exposición accidental de secretos en repositorio público, historial, logs o `dist` | compromiso de cuentas/servicios | `.gitignore`, Secrets, permisos mínimos y scans antes de release | OPEN |
+| Exposición accidental de secretos en repositorio público, historial, logs o `dist` | compromiso de cuentas/servicios | `.gitignore`, permisos mínimos y gates de repo/historial/workflows/artefacto en M8.5; logs remotos se reinspeccionan en M8.6/M9.3 | CONTROLLED — owner: equipo técnico |
 
 ## Decisiones abiertas no bloqueantes para arquitectura
 
