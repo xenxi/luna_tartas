@@ -34,7 +34,12 @@ if (resolvedRecipient === undefined) {
 }
 ---
 
-<BaseLayout title={`Regalos para ${resolvedRecipient.name}`}>
+<BaseLayout
+  title={`Regalos para ${resolvedRecipient.name}`}
+  canonicalPath={routes.taxonomy('recipient', resolvedRecipient.slug)}
+  description={resolvedRecipient.seo?.description}
+  fallbackDescription={resolvedRecipient.summary}
+>
   <TaxonomyLanding
     catalog={catalog}
     kind="recipient"

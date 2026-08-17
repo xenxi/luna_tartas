@@ -747,7 +747,7 @@
 
 ## M5.7 — QA del recorrido de conversión
 
-**Estado:** PENDING  
+**Estado:** DONE
 **Objetivo:** cerrar el camino listado→ficha→WhatsApp y la alternativa personalizada.  
 **Alcance:** smoke de variantes, continuidad artística M4→M5, responsive/teclado/sin JS, mensajes, estados y correcciones directamente relacionadas.
 
@@ -761,7 +761,7 @@
 
 **Modelo recomendado:** LUNA → SOL REVIEW.  
 **Razón del modelo:** Luna corrige; Sol audita el principal contrato comercial.  
-**Evidencia:** —
+**Evidencia:** PASS (2026-08-17) — Smoke de `/productos/` → `tarta-de-panales-personalizada` confirma ficha accesible y CTA nativo hacia `wa.me` con nombre público, URL canónica absoluta y copy aprobado codificado una única vez; el CTA de idea personalizada reutiliza la URL WhatsApp configurada sin enlace vacío. La inspección de las 24 páginas generadas detecta 0 `href` vacíos, 0 scripts con `src` y 33 enlaces WhatsApp; teclado conserva skip link y CTA nativos, y las reglas `prefers-reduced-motion` siguen presentes. Matriz visual manual de ficha a 320/768/1440 confirma fotografía real, jerarquía, ritmo y tokens coherentes desde M4; no hay overflow global ni blocker crítico visual/a11y. `npm run lint`, `npm run typecheck` (0 errores/warnings/hints), `npm test` (24 archivos, 170 tests), `npm run build` (24 páginas) y `git diff --check`: PASS. `npm run format` sigue señalando exclusivamente dos formatos preexistentes y fuera de alcance: `src/components/catalog/media-projection.ts` y `src/components/home/FeaturedProducts.astro`. Siguiente tarea: M6.1 (modelo SOL → LUNA).
 
 ---
 
@@ -772,7 +772,7 @@
 
 ## M6.1 — Metadata, canonical y OpenGraph
 
-**Estado:** PENDING  
+**Estado:** DONE
 **Objetivo:** generar metadata única y coherente desde config/dominio.  
 **Alcance:** title templates, description fallback controlado, canonical absoluto, robots meta y OpenGraph/Twitter esenciales por tipo de página.  
 **Fuera de alcance:** JSON-LD, sitemap o copy SEO masivo.  
@@ -783,7 +783,7 @@
 **Verificación:** tests contractuales y script sobre HTML de `dist`.  
 **Modelo recomendado:** SOL → LUNA.  
 **Razón del modelo:** Sol define fallbacks/semántica; Luna implementa generación repetible.  
-**Evidencia:** —
+**Evidencia:** PASS (2026-08-17) — `src/lib/seo/metadata.ts` centraliza el template de title, fallback de descripción, canonical absoluto desde `getCanonicalUrl`, robots, locale OpenGraph e imagen social HTTPS validada. `BaseLayout.astro` emite un único title/description/canonical/robots y los metadatos esenciales OpenGraph/Twitter; las rutas públicas pasan su ruta desde `routes`, las fichas usan su portada aprobada y los showcases técnicos se marcan `noindex,nofollow`. `tests/seo-metadata.test.ts` cubre plantilla, fallback editorial, canonical, robots, locale e imágenes inválidas; `scripts/verify-seo.mjs` revisa los 24 HTML generados, unicidad de canonical y existencia física de la imagen social. `npm run lint`, `npm run typecheck` (0 errores/warnings/hints), `npm test` (25 archivos, 177 tests), `npm run build` (24 páginas), `npm run verify:seo` y `git diff --check`: PASS. `npm run format` mantiene exclusivamente dos avisos preexistentes fuera de alcance: `src/components/catalog/media-projection.ts` y `src/components/home/FeaturedProducts.astro`. Siguiente tarea: M6.2 (modelo LUNA → SOL REVIEW).
 
 ## M6.2 — Sitemap, robots y política de crawl
 

@@ -10,7 +10,8 @@
     "build": "astro build",
     "preview": "astro preview",
     "typecheck": "astro check",
-    "test": "vitest run"
+    "test": "vitest run",
+    "verify:seo": "node scripts/verify-seo.mjs"
   },
   "engines": {
     "node": ">=24.19.0 <25"

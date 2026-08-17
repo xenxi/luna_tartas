@@ -1,5 +1,12 @@
 ---
-import { getCanonicalUrl, siteConfig } from '../config/site';
+import socialImage from '../assets/home/tarta-hero.png';
+import { siteConfig } from '../config/site';
+import {
+  createPageMetadata,
+  type MetadataPageType,
+  type MetadataRobots,
+  type SocialImage,
+} from '../lib/seo/metadata';
 import SiteFooter from '../components/site/SiteFooter.astro';
 import SiteHeader from '../components/site/SiteHeader.astro';
 import '../components/site/site.css';
@@ -7,18 +14,40 @@ import '../styles/global.css';
 
 interface Props {
   title: string;
+  canonicalPath?: string;
+  description?: string;
+  fallbackDescription?: string;
+  image?: SocialImage;
+  pageType?: MetadataPageType;
+  robots?: MetadataRobots;
 }
 
-const { title } = Astro.props;
+const {
+  title,
+  canonicalPath = Astro.url.pathname,
+  description,
+  fallbackDescription,
+  image,
+  pageType,
+  robots,
+} = Astro.props;
 
 if (typeof title !== 'string' || title.trim() === '') {
   throw new Error('BaseLayout requires a non-empty title');
 }
 
-const canonicalUrl = getCanonicalUrl(
-  Astro.url.pathname,
-  import.meta.env.BASE_URL,
-);
+const metadata = createPageMetadata({
+  title,
+  canonicalPath,
+  description,
+  fallbackDescription,
+  image: image ?? {
+    url: new URL(socialImage.src, siteConfig.siteUrl).href,
+    alt: 'Detalle artesanal personalizado creado por Luna.',
+  },
+  pageType,
+  robots,
+});
 ---
 
 <!doctype html>
@@ -26,8 +55,22 @@ const canonicalUrl = getCanonicalUrl(
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="canonical" href={canonicalUrl} />
-    <title>{title}</title>
+    <link rel="canonical" href={metadata.canonicalUrl} />
+    <meta name="description" content={metadata.description} />
+    <meta name="robots" content={metadata.robots} />
+    <title>{metadata.title}</title>
+    <meta property="og:title" content={metadata.title} />
+    <meta property="og:description" content={metadata.description} />
+    <meta property="og:url" content={metadata.canonicalUrl} />
+    <meta property="og:type" content={metadata.pageType} />
+    <meta property="og:locale" content={metadata.ogLocale} />
+    <meta property="og:image" content={metadata.image.url} />
+    <meta property="og:image:alt" content={metadata.image.alt} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={metadata.title} />
+    <meta name="twitter:description" content={metadata.description} />
+    <meta name="twitter:image" content={metadata.image.url} />
+    <meta name="twitter:image:alt" content={metadata.image.alt} />
   </head>
   <body>
     <a class="skip-link" href="#main-content">Saltar al contenido principal</a>

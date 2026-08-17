@@ -8,6 +8,7 @@ import {
   getProductsForTaxonomy,
   getPublishedTaxonomies,
 } from '../../lib/catalog/domain/queries';
+import { routes } from '../../lib/catalog/domain/routes';
 
 export const getStaticPaths = (async () => {
   const catalog = await loadCatalog();
@@ -35,7 +36,12 @@ if (resolvedOccasion === undefined) {
 }
 ---
 
-<BaseLayout title={`${resolvedOccasion.name} | Ocasiones para regalar`}>
+<BaseLayout
+  title={`${resolvedOccasion.name} | Ocasiones para regalar`}
+  canonicalPath={routes.taxonomy('occasion', resolvedOccasion.slug)}
+  description={resolvedOccasion.seo?.description}
+  fallbackDescription={resolvedOccasion.summary}
+>
   <TaxonomyLanding
     catalog={catalog}
     kind="occasion"

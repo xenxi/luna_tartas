@@ -4,19 +4,27 @@ import Badge from '../../components/ui/Badge.astro';
 import Button from '../../components/ui/Button.astro';
 import Icon from '../../components/ui/Icon.astro';
 import Ornament from '../../components/ui/Ornament.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
 ---
 
-<section aria-labelledby="ui-showcase-title">
-  <h1 id="ui-showcase-title">UI primitives showcase</h1>
-  <Button>Acción</Button>
-  <Button variant="secondary" disabled>Desactivado</Button>
-  <ActionLink href="/productos/" variant="secondary">Ver productos</ActionLink>
-  <Icon name="arrow-right" />
-  <Icon name="info" label="Información" />
-  <Badge>Estado</Badge>
-  <Badge tone="success">Disponible</Badge>
-  <Badge tone="error">Revisar</Badge>
-  <Ornament variant="thread" />
-  <Ornament variant="underline" />
-  <Ornament variant="dots" />
-</section>
+<BaseLayout
+  title="Showcase interno de componentes"
+  canonicalPath="/_showcase/ui/"
+  robots="noindex,nofollow"
+>
+  <section aria-labelledby="ui-showcase-title">
+    <h1 id="ui-showcase-title">UI primitives showcase</h1>
+    <Button>Acción</Button>
+    <Button variant="secondary" disabled>Desactivado</Button>
+    <ActionLink href="/productos/" variant="secondary">Ver productos</ActionLink
+    >
+    <Icon name="arrow-right" />
+    <Icon name="info" label="Información" />
+    <Badge>Estado</Badge>
+    <Badge tone="success">Disponible</Badge>
+    <Badge tone="error">Revisar</Badge>
+    <Ornament variant="thread" />
+    <Ornament variant="underline" />
+    <Ornament variant="dots" />
+  </section>
+</BaseLayout>

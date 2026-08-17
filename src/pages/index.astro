@@ -6,11 +6,16 @@ import FeaturedProducts from '../components/home/FeaturedProducts.astro';
 import TrustAndWork from '../components/home/TrustAndWork.astro';
 import CustomIdeaCta from '../components/home/CustomIdeaCta.astro';
 import { loadCatalog } from '../lib/catalog/source';
+import { routes } from '../lib/catalog/domain/routes';
 
 const catalog = await loadCatalog();
 ---
 
-<BaseLayout title="Hecho para alguien. No para cualquiera.">
+<BaseLayout
+  title="Hecho para alguien. No para cualquiera."
+  canonicalPath={routes.home()}
+  fallbackDescription="Detalles personalizados hechos a mano para convertir una idea en un regalo pensado para alguien especial."
+>
   <Hero />
   <TaxonomyDiscovery catalog={catalog} />
   <FeaturedProducts catalog={catalog} />

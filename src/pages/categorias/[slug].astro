@@ -8,6 +8,7 @@ import {
   getProductsForTaxonomy,
   getPublishedTaxonomies,
 } from '../../lib/catalog/domain/queries';
+import { routes } from '../../lib/catalog/domain/routes';
 
 export const getStaticPaths = (async () => {
   const catalog = await loadCatalog();
@@ -35,7 +36,12 @@ if (resolvedCategory === undefined) {
 }
 ---
 
-<BaseLayout title={`${resolvedCategory.name} | Categorías de regalos`}>
+<BaseLayout
+  title={`${resolvedCategory.name} | Categorías de regalos`}
+  canonicalPath={routes.taxonomy('category', resolvedCategory.slug)}
+  description={resolvedCategory.seo?.description}
+  fallbackDescription={resolvedCategory.summary}
+>
   <TaxonomyLanding
     catalog={catalog}
     kind="category"
