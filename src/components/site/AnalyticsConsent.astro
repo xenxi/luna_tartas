@@ -1,0 +1,45 @@
+---
+import { siteConfig } from '../../config/site';
+---
+
+{
+  siteConfig.analytics.enabled && (
+    <>
+      <aside
+        id="analytics-consent"
+        class="analytics-consent"
+        aria-labelledby="analytics-consent-title"
+      >
+        <h2 id="analytics-consent-title">Medición opcional</h2>
+        <p>
+          ¿Nos ayudas a entender qué páginas y CTAs funcionan? La medición es
+          opcional y no afecta a tu navegación.
+        </p>
+        <div class="analytics-consent__actions">
+          <button type="button" data-analytics-consent="accept">
+            Aceptar medición
+          </button>
+          <button type="button" data-analytics-consent="reject">
+            Rechazar
+          </button>
+          <button type="button" data-analytics-consent="revoke" hidden>
+            Retirar consentimiento
+          </button>
+        </div>
+      </aside>
+      <button
+        id="analytics-consent-reopen"
+        class="analytics-consent__reopen"
+        type="button"
+        hidden
+      >
+        Configurar medición
+      </button>
+      <script>
+        import {bindAnalyticsConsentUi} from '../../lib/analytics/consent-ui';
+        import {siteConfig} from '../../config/site'; bindAnalyticsConsentUi(
+        siteConfig.analytics, document, window, window.localStorage, );
+      </script>
+    </>
+  )
+}

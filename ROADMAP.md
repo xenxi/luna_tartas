@@ -9,7 +9,7 @@
 - Se ejecuta exclusivamente la tarea solicitada; no se anticipa la siguiente.
 - `DONE` exige todos los criterios y verificaciones en `PASS`, con evidencia registrada aquí.
 - Orden normal: de arriba abajo. Una tarea posterior sólo puede comenzar si todas sus dependencias están `DONE`.
-- **Siguiente tarea:** `M7.2 — Facade y adaptador de analytics`.
+- **Siguiente tarea:** `M7.3 — Instrumentación de vistas y selección`.
 
 ## Gates de programa
 
@@ -901,7 +901,7 @@
 
 ## M7.2 — Facade y adaptador de analytics
 
-**Estado:** PENDING  
+**Estado:** DONE
 **Objetivo:** desacoplar intents de UI del proveedor y degradar con seguridad.  
 **Alcance:** tipos/event validation, atributos/API mínima, carga condicional por config/consentimiento y adapter único.  
 **Fuera de alcance:** instrumentar todas las páginas o crear un data layer genérico hipotético.  
@@ -912,7 +912,7 @@
 **Verificación:** tests unitarios, network check en modos on/off y build size diff.  
 **Modelo recomendado:** SOL → LUNA.  
 **Razón del modelo:** Sol fija boundary; Luna implementa adapter acotado.  
-**Evidencia:** —
+**Evidencia:** PASS (2026-08-17) — `src/config/site.ts` incorpora una configuración global validada de Matomo, desactivada por defecto, que sólo admite `endpoint` HTTPS sin credenciales y `siteId` público cuando se habilite. `src/lib/analytics/` aporta el único adaptador, consentimiento denegado por defecto y sanitización estricta de los cuatro eventos: rechaza campos ajenos/PII, query/hash y payloads inválidos. Con consentimiento sólo se configura Matomo con cookies deshabilitadas, DNT, tracker diferido y un único script; sin proveedor/configuración/consentimiento es un no-op que no arroja errores ni encola/envía. `AnalyticsConsent.astro` ofrece aceptar, rechazar, reabrir y retirar consentimiento cuando el alta futura active analytics; el layout lo integra sin instrumentar vistas ni CTAs. Tests de configuración, consentimiento, payload y red simulada cubren modos off/sin consent/on (carga única diferida). `npm run lint`, `npm run typecheck` (0 errores/warnings/hints), `npm test` (31 archivos, 212 tests) y `npm run build` (25 páginas): PASS. Inspección de HTML y servidor local de preview: 9 recursos, 0 scripts y 0 recursos/marcas de analytics con `enabled: false`; transferencia inicial añadida: 0 KiB. `npm run format` sólo mantiene cuatro avisos preexistentes fuera de alcance (`media-projection.ts`, `FeaturedProducts.astro`, `regalos/[slug].astro`, `taxonomy-listing.test.ts`). `git diff --check`: PASS. Siguiente tarea: M7.3 (modelo LUNA).
 
 ## M7.3 — Instrumentación de vistas y selección
 

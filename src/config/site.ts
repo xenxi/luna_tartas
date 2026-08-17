@@ -7,6 +7,15 @@ type PublishableText =
   | { status: typeof CONTENT_STATUS.pending }
   | { status: typeof CONTENT_STATUS.ready; value: string };
 
+export interface AnalyticsConfig {
+  enabled: boolean;
+  provider: 'matomo';
+  endpoint?: string;
+  siteId?: string;
+  consentRequired: true;
+  retentionMonths: 13;
+}
+
 export interface SiteConfig {
   siteUrl: string;
   locale: string;
@@ -14,6 +23,7 @@ export interface SiteConfig {
   brandName: PublishableText;
   brandAlternateName: PublishableText;
   organizationSameAs: readonly string[];
+  analytics: AnalyticsConfig;
 }
 
 const configuredSite: unknown = {
@@ -22,6 +32,12 @@ const configuredSite: unknown = {
   brandName: { status: CONTENT_STATUS.ready, value: 'Luna Tartas' },
   brandAlternateName: { status: CONTENT_STATUS.ready, value: 'Luna Estudio' },
   organizationSameAs: ['https://www.instagram.com/lunatartas/'],
+  analytics: {
+    enabled: false,
+    provider: 'matomo',
+    consentRequired: true,
+    retentionMonths: 13,
+  },
 };
 
 function isRecord(value: unknown): value is Record<string, unknown> {
@@ -156,6 +172,90 @@ function validateOrganizationSameAs(value: unknown): readonly string[] {
   return Object.freeze(urls);
 }
 
+function validateAnalyticsEndpoint(value: unknown): string {
+  if (typeof value !== 'string') {
+    throw new Error('analytics.endpoint must be an absolute HTTPS URL');
+  }
+
+  let url: URL;
+  try {
+    url = new URL(value);
+  } catch {
+    throw new Error('analytics.endpoint must be an absolute HTTPS URL');
+  }
+
+  if (
+    url.protocol !== 'https:' ||
+    url.username ||
+    url.password ||
+    url.search ||
+    url.hash ||
+    url.pathname !== '/'
+  ) {
+    throw new Error(
+      'analytics.endpoint must be a credential-free HTTPS origin',
+    );
+  }
+
+  return url.origin;
+}
+
+export function validateAnalyticsConfig(value: unknown): AnalyticsConfig {
+  if (!isRecord(value)) {
+    throw new Error('analytics configuration is required');
+  }
+
+  if (typeof value.enabled !== 'boolean') {
+    throw new Error('analytics.enabled must be a boolean');
+  }
+
+  if (value.provider !== 'matomo') {
+    throw new Error('analytics.provider must be matomo');
+  }
+
+  if (value.consentRequired !== true) {
+    throw new Error('analytics.consentRequired must be true');
+  }
+
+  if (value.retentionMonths !== 13) {
+    throw new Error('analytics.retentionMonths must be 13');
+  }
+
+  if (!value.enabled) {
+    if ('endpoint' in value || 'siteId' in value) {
+      throw new Error(
+        'analytics.endpoint and analytics.siteId must be absent while analytics is disabled',
+      );
+    }
+
+    return Object.freeze({
+      enabled: false,
+      provider: 'matomo',
+      consentRequired: true,
+      retentionMonths: 13,
+    });
+  }
+
+  const endpoint = validateAnalyticsEndpoint(value.endpoint);
+  if (
+    typeof value.siteId !== 'string' ||
+    !/^[A-Za-z0-9_-]{1,64}$/.test(value.siteId)
+  ) {
+    throw new Error(
+      'analytics.siteId must be a non-secret public identifier with letters, numbers, underscores or hyphens',
+    );
+  }
+
+  return Object.freeze({
+    enabled: true,
+    provider: 'matomo',
+    endpoint,
+    siteId: value.siteId,
+    consentRequired: true,
+    retentionMonths: 13,
+  });
+}
+
 export function validateSiteConfig(value: unknown): SiteConfig {
   if (!isRecord(value)) {
     throw new Error('Site configuration is required');
@@ -171,6 +271,7 @@ export function validateSiteConfig(value: unknown): SiteConfig {
   const organizationSameAs = validateOrganizationSameAs(
     value.organizationSameAs,
   );
+  const analytics = validateAnalyticsConfig(value.analytics);
 
   return Object.freeze({
     siteUrl,
@@ -179,6 +280,7 @@ export function validateSiteConfig(value: unknown): SiteConfig {
     brandName,
     brandAlternateName,
     organizationSameAs,
+    analytics,
   });
 }
 

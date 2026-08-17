@@ -4,6 +4,7 @@ import {
   getCanonicalUrl,
   getPublishableText,
   siteConfig,
+  validateAnalyticsConfig,
   validateSiteConfig,
 } from '../src/config/site';
 
@@ -16,6 +17,12 @@ const validConfig = {
     value: 'Marca alternativa aprobada',
   },
   organizationSameAs: ['https://www.instagram.com/marca/'],
+  analytics: {
+    enabled: false,
+    provider: 'matomo',
+    consentRequired: true,
+    retentionMonths: 13,
+  },
 };
 
 describe('site configuration', () => {
@@ -30,6 +37,12 @@ describe('site configuration', () => {
         value: 'Marca alternativa aprobada',
       },
       organizationSameAs: ['https://www.instagram.com/marca/'],
+      analytics: {
+        enabled: false,
+        provider: 'matomo',
+        consentRequired: true,
+        retentionMonths: 13,
+      },
     });
   });
 
@@ -104,6 +117,77 @@ describe('site configuration', () => {
     expect(siteConfig.organizationSameAs).toEqual([
       'https://www.instagram.com/lunatartas/',
     ]);
+    expect(siteConfig.analytics).toEqual({
+      enabled: false,
+      provider: 'matomo',
+      consentRequired: true,
+      retentionMonths: 13,
+    });
+  });
+
+  it.each([
+    ['missing analytics configuration', undefined],
+    [
+      'enabled analytics without an endpoint and site ID',
+      {
+        enabled: true,
+        provider: 'matomo',
+        consentRequired: true,
+        retentionMonths: 13,
+      },
+    ],
+    [
+      'disabled analytics with a production identifier',
+      {
+        enabled: false,
+        provider: 'matomo',
+        endpoint: 'https://metrics.example.com',
+        consentRequired: true,
+        retentionMonths: 13,
+      },
+    ],
+    [
+      'analytics endpoint with credentials',
+      {
+        enabled: true,
+        provider: 'matomo',
+        endpoint: 'https://user:secret@metrics.example.com',
+        siteId: 'luna',
+        consentRequired: true,
+        retentionMonths: 13,
+      },
+    ],
+    [
+      'analytics without mandatory consent',
+      {
+        enabled: false,
+        provider: 'matomo',
+        consentRequired: false,
+        retentionMonths: 13,
+      },
+    ],
+  ])('rejects %s analytics configuration', (_case, analytics) => {
+    expect(() => validateAnalyticsConfig(analytics)).toThrow();
+  });
+
+  it('allows a complete approved Matomo configuration only when enabled', () => {
+    expect(
+      validateAnalyticsConfig({
+        enabled: true,
+        provider: 'matomo',
+        endpoint: 'https://metrics.example.com/',
+        siteId: 'luna-production',
+        consentRequired: true,
+        retentionMonths: 13,
+      }),
+    ).toEqual({
+      enabled: true,
+      provider: 'matomo',
+      endpoint: 'https://metrics.example.com',
+      siteId: 'luna-production',
+      consentRequired: true,
+      retentionMonths: 13,
+    });
   });
 
   it('derives canonical URLs from the configured origin', () => {
