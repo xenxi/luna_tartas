@@ -3,7 +3,10 @@ import type { Catalog } from '../../lib/catalog/domain/model';
 import CardList from '../patterns/CardList.astro';
 import ContentSection from '../patterns/ContentSection.astro';
 import ProductCard from '../catalog/ProductCard.astro';
-import { projectProductListing } from './product-listing';
+import {
+  indexPublishedProductsByListingHref,
+  projectProductListing,
+} from './product-listing';
 import { catalogImageMap } from '../catalog/catalog-images';
 import { buildSimpleMediaProjection } from '../catalog/media-projection';
 import { getPublishedProducts } from '../../lib/catalog/domain/queries';
@@ -17,10 +20,12 @@ interface Props {
 const { catalog } = Astro.props;
 const listing = projectProductListing(catalog);
 const domainProducts = getPublishedProducts(catalog);
+const productsByListingHref =
+  indexPublishedProductsByListingHref(domainProducts);
 
 // Enriquecer cada item con su media resuelta
-const itemsWithMedia: ProductCardProjection[] = listing.items.map((item, i) => {
-  const domainProduct = domainProducts[i];
+const itemsWithMedia: ProductCardProjection[] = listing.items.map((item) => {
+  const domainProduct = productsByListingHref.get(item.href);
   const coverSrc = domainProduct?.media?.cover?.src;
   const coverAlt = domainProduct?.media?.cover?.alt ?? '';
   const imageMetadata = coverSrc ? catalogImageMap[coverSrc] : undefined;

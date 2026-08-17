@@ -4,7 +4,10 @@ import type {
   Catalog,
   PublishedProduct,
 } from '../src/lib/catalog/domain/model';
-import { projectProductListing } from '../src/components/products/product-listing';
+import {
+  indexPublishedProductsByListingHref,
+  projectProductListing,
+} from '../src/components/products/product-listing';
 
 const product = (
   id: string,
@@ -77,6 +80,22 @@ describe('product index listing', () => {
     ]);
   });
 
+  it('resolves listing products by route when the domain order differs', () => {
+    const first = product('first', 1);
+    const second = product('second', 2);
+    const listing = projectProductListing({
+      ...emptyCatalog,
+      products: [first, second],
+    });
+    const productsByHref = indexPublishedProductsByListingHref([second, first]);
+
+    expect(
+      listing.items.map(
+        (item) => productsByHref.get(item.href)?.media.cover.src,
+      ),
+    ).toEqual(['first.jpg', 'second.jpg']);
+  });
+
   it('keeps the empty catalog out of the public module without client code', () => {
     const page = readFileSync('src/pages/productos/index.astro', 'utf8');
     const component = readFileSync(
@@ -86,7 +105,9 @@ describe('product index listing', () => {
 
     expect(projectProductListing(emptyCatalog).items).toEqual([]);
     expect(page.match(/<h1\b/g)).toHaveLength(1);
-    expect(component).toContain('listing.items.length > 0');
+    expect(component).toContain('itemsWithMedia.length > 0');
+    expect(component).toContain('productsByListingHref.get(item.href)');
+    expect(component).not.toContain('domainProducts[i]');
     expect(component).toContain('<CardList');
     expect(component).toContain('<ProductCard');
     expect(component).not.toMatch(/Pronto podrás/i);

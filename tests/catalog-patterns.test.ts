@@ -160,7 +160,7 @@ describe('catalog and contextual navigation patterns', () => {
   it('does not publish discovery placeholders or empty modules', () => {
     expect(publicDiscoverySources).not.toMatch(/Pronto podrás/i);
     expect(taxonomyDiscovery).toContain('sections.length > 0');
-    expect(featuredProducts).toContain('featured.items.length > 0');
+    expect(featuredProducts).toContain('featuredWithMedia.length > 0');
     expect(publicDiscoverySources).not.toContain('data-content-state="empty"');
   });
 });

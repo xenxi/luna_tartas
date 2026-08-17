@@ -1,5 +1,5 @@
 import { getPublishedProducts } from '../../lib/catalog/domain/queries';
-import type { Catalog } from '../../lib/catalog/domain/model';
+import type { Catalog, PublishedProduct } from '../../lib/catalog/domain/model';
 import { routes } from '../../lib/catalog/domain/routes';
 import { formatPriceLabel } from '../catalog/price';
 import type { ProductCardProjection } from '../catalog/types';
@@ -8,6 +8,15 @@ export interface ProductListingProjection {
   readonly title: string;
   readonly intro: string;
   readonly items: readonly ProductCardProjection[];
+}
+
+export function indexPublishedProductsByListingHref(
+  products: readonly PublishedProduct[],
+): ReadonlyMap<string, PublishedProduct> {
+  // The validated slug is the stable identity encoded in every listing route.
+  return new Map(
+    products.map((product) => [routes.product(product.slug), product]),
+  );
 }
 
 export function projectProductListing(
