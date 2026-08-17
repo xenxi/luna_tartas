@@ -9,7 +9,7 @@
 - Se ejecuta exclusivamente la tarea solicitada; no se anticipa la siguiente.
 - `DONE` exige todos los criterios y verificaciones en `PASS`, con evidencia registrada aquí.
 - Orden normal: de arriba abajo. Una tarea posterior sólo puede comenzar si todas sus dependencias están `DONE`.
-- **Siguiente tarea:** `M8.6 — Gate de release candidate`.
+- **Siguiente tarea:** `M9.1 — Catálogo, copy y assets finales`.
 
 ## Gates de programa
 
@@ -1047,7 +1047,7 @@
 
 ## M8.6 — Gate de release candidate
 
-**Estado:** PENDING  
+**Estado:** DONE
 **Objetivo:** producir un candidato inmutable y decidir go/no-go técnico y visual.
 
 **Alcance:** ejecutar todos los gates, Lighthouse, a11y, SEO, smoke, sizes, contenido provisional, gate visual final y lista de blockers/known issues.
@@ -1062,7 +1062,7 @@
 
 **Modelo recomendado:** SOL.  
 **Razón del modelo:** decisión de release requiere auditoría integral.  
-**Evidencia:** —
+**Evidencia:** PASS (2026-08-17) — `m8.6-rc.1` obtiene GO técnico y visual; `docs/quality/release-candidate.md` registra decisión, rollback, owners, known issues y las capturas manuales de Home/producto/navegación/Footer a 1440/768/320 px contra la dirección visual. La inspección en navegador detectó y corrigió un blocker real: una miga larga provocaba overflow y truncado a 320 px; ahora envuelve y tiene regresión contractual. Tres corridas Lighthouse 13.4.1 coinciden en 100 performance, 100 accesibilidad, 96 best practices y 100 SEO, LCP 1,13 s, CLS 0 y TBT 0 ms; el único descuento es `/favicon.ico` pendiente del master aprobado, aceptado como RC-1 con owner marca/Luna y salida M9.1, pero bloqueante antes de producción. El artefacto determinista contiene 486 archivos/39.782.637 bytes y queda identificado por `m8.6-rc.1` + SHA-256 raíz `35123a975fcc24b669b33deff65d3d76ae19316e246ffb06b475421ed6c9bbaa`; `release:manifest` permite reproducirlo sin timestamps. `npm ci`, lint, typecheck (0 errores/warnings/hints), 38 archivos/230 tests, build de 25 páginas, gates SEO/crawl/links/structured-data/catalog/a11y/assets/performance/responsive/artifact/security/dependencies/determinism/mutation y `git diff --check`: PASS. No hay `TBD`/`FIXTURE`/`draft` publicable ni blocker crítico desconocido. G9 de candidato satisfecho; producción, DNS, edge y sustitución final de contenido permanecen en M9. Siguiente tarea: M9.1 (modelo LUNA → SOL REVIEW).
 
 ---
 
@@ -1345,3 +1345,4 @@ No avanzar a la siguiente milestone.
 - 2026-08-17 — M8.3 completada: overflow móvil del Hero corregido, auditor responsive del artefacto añadido, capturas 320/768/1440 y matriz Chrome/Edge documentadas; 224 tests, build, auditorías de responsive/a11y/performance/assets y checks de calidad en PASS. Siguiente tarea: M8.4 (modelo LUNA → SOL REVIEW).
 - 2026-08-17 — M8.4 completada: hardening del artefacto, smoke estático crítico, determinismo byte a byte en dos builds y mutación controlada rechazada; CI/Pages integran los gates, 224 tests repetidos y auditorías completas en PASS. Siguiente tarea: M8.5 (modelo SOL).
 - 2026-08-17 — M8.5 completada: gates de secretos/historial/workflows/superficie pública y supply chain integrados; 539 dependencias/licencias y cinco advisories mitigados evaluados, 228 tests y auditorías completas en PASS. Siguiente tarea: M8.6 (modelo SOL).
+- 2026-08-17 — M8.6 completada: candidato `m8.6-rc.1` inmutable con manifiesto SHA-256, 230 tests y auditorías completas en PASS; revisión visual 1440/768/320, tres Lighthouse y corrección del overflow de breadcrumb móvil. GO técnico/visual con known issues asignados. Siguiente tarea: M9.1 (modelo LUNA → SOL REVIEW).

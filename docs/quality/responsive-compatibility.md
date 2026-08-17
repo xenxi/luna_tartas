@@ -50,5 +50,5 @@ una feature nueva para cerrar una fila no ejecutable.
 
 Capturas de Home para 320, 768 y 1440 px: `docs/quality/evidence/m8-3-responsive/`.
 
-No se ejecuta Lighthouse en esta submilestone porque no esta instalado; sus
-tres corridas moviles permanecen reservadas al gate documentado de M8.2/M8.6.
+M8.6 completó las tres corridas móviles de Lighthouse y la revisión visual
+final; resultados y capturas quedan en `docs/quality/release-candidate.md`.

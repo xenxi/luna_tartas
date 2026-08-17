@@ -1,14 +1,15 @@
 .breadcrumb {
-  overflow-x: auto;
   color: var(--color-text-muted);
   font-size: var(--font-size-sm);
+  overflow-wrap: anywhere;
 }
 
 .breadcrumb ol {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   gap: var(--space-2);
-  min-inline-size: max-content;
+  min-inline-size: 0;
   margin: 0;
   padding: var(--space-3) 0;
   list-style: none;
@@ -16,6 +17,7 @@
 
 .breadcrumb li {
   display: flex;
+  min-inline-size: 0;
   align-items: center;
   gap: var(--space-2);
   margin: 0;
@@ -29,6 +31,7 @@
 }
 
 .breadcrumb [aria-current='page'] {
+  min-inline-size: 0;
   color: var(--color-text);
   font-weight: var(--font-weight-semibold);
 }

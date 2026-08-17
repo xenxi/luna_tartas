@@ -23,4 +23,16 @@ describe('responsive contract', () => {
       '"verify:responsive": "node scripts/verify-responsive.mjs"',
     );
   });
+
+  it('wraps long breadcrumbs instead of requiring horizontal scrolling', () => {
+    const navigation = readFileSync(
+      resolve(root, 'src/components/navigation/navigation.css'),
+      'utf8',
+    );
+
+    expect(navigation).toContain('flex-wrap: wrap');
+    expect(navigation).toContain('overflow-wrap: anywhere');
+    expect(navigation).not.toContain('overflow-x: auto');
+    expect(navigation).not.toContain('min-inline-size: max-content');
+  });
 });

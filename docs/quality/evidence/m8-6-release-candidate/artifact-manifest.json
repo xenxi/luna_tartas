@@ -1,0 +1,10 @@
+{
+  "schemaVersion": 1,
+  "candidateId": "m8.6-rc.1",
+  "algorithm": "sha256(file) + bytes + POSIX path, sorted by path",
+  "artifact": {
+    "fileCount": 486,
+    "totalBytes": 39782637,
+    "rootSha256": "35123a975fcc24b669b33deff65d3d76ae19316e246ffb06b475421ed6c9bbaa"
+  }
+}

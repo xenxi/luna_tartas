@@ -1,0 +1,45 @@
+{
+  "lighthouseVersion": "13.4.1",
+  "profile": "mobile simulated throttling",
+  "runs": [
+    {
+      "performance": 100,
+      "accessibility": 100,
+      "bestPractices": 96,
+      "seo": 100,
+      "fcpMs": 906.4576,
+      "lcpMs": 1131.4576,
+      "cls": 0,
+      "tbtMs": 0
+    },
+    {
+      "performance": 100,
+      "accessibility": 100,
+      "bestPractices": 96,
+      "seo": 100,
+      "fcpMs": 906.2315,
+      "lcpMs": 1131.2315,
+      "cls": 0,
+      "tbtMs": 0
+    },
+    {
+      "performance": 100,
+      "accessibility": 100,
+      "bestPractices": 96,
+      "seo": 100,
+      "fcpMs": 905.4856,
+      "lcpMs": 1130.4856,
+      "cls": 0,
+      "tbtMs": 0
+    }
+  ],
+  "acceptedIssue": {
+    "id": "RC-1",
+    "audit": "errors-in-console",
+    "detail": "/favicon.ico returns 404 because the approved brand master is BLOCKED",
+    "owner": "marca / Luna",
+    "exitGate": "M9.1",
+    "releaseCandidateBlocking": false
+  },
+  "rawReportsVersioned": false
+}

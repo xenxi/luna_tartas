@@ -24,7 +24,8 @@
     "verify:accessibility": "node scripts/verify-accessibility.mjs",
     "verify:assets": "node scripts/verify-assets.mjs",
     "verify:performance": "node scripts/verify-performance.mjs",
-    "verify:responsive": "node scripts/verify-responsive.mjs"
+    "verify:responsive": "node scripts/verify-responsive.mjs",
+    "release:manifest": "node scripts/create-release-manifest.mjs"
   },
   "engines": {
     "node": ">=24.19.0 <25"
