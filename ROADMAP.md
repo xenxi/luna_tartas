@@ -9,7 +9,7 @@
 - Se ejecuta exclusivamente la tarea solicitada; no se anticipa la siguiente.
 - `DONE` exige todos los criterios y verificaciones en `PASS`, con evidencia registrada aquí.
 - Orden normal: de arriba abajo. Una tarea posterior sólo puede comenzar si todas sus dependencias están `DONE`.
-- **Siguiente tarea:** `M8.9.10 — Integración visual desktop`.
+- **Siguiente tarea:** `M8.9.11 — Visual QA desktop + aprobación del propietario`.
 - **Pausa de release:** M9 permanece temporalmente pausada por alineación visual;
   M9.2 conserva su bloqueo operativo de Cloudflare y no se reanuda hasta que
   M8.9.11 obtenga `VISUAL QA: PASS` y `OWNER APPROVAL: APPROVED`.
@@ -1463,7 +1463,7 @@ Siguiente tarea: M8.9.10 — Integración visual desktop.
 
 ## M8.9.10 — Integración visual desktop
 
-**Estado:** IN_PROGRESS
+**Estado:** DONE
 **Objetivo:** convertir las secciones implementadas en una composición continua
 mediante una pasada específica de ritmo, fondos, densidad, escala y repetición.
 **Dependencias:** M8.9.9.
@@ -1497,8 +1497,20 @@ La recalibración posterior baja esa nube por completo tras el Hero, la desplaza
 más a la derecha y limita su altura como franja acuarelada para que termine
 antes de las cards; Prettier específico, `npm run typecheck` y servidor local
 (HTTP 200): PASS.
-Pendiente: QA comparativa manual a 1280/1440/1920. No avanzar a M8.9.11 hasta
-completar esas capturas y revisión.
+QA comparativa preparada el 2026-08-18: se regeneró el artefacto desde una
+instalación limpia y se versionaron capturas completas reproducibles en
+`docs/design/evidence/m8-9-10-desktop-integration/` a 1280, 1440 y 1920 px.
+Chrome midió `scrollWidth === clientWidth` (1265/1425/1905 px) en los tres
+viewports, composición continua de 2214/2383/2468 px y CTA de 44–48 px, sin
+overflow horizontal. `npm ci`, format, lint, typecheck (0 errores, warnings e
+hints), 40 archivos/243 tests, build de 25 páginas, SEO, crawl, links,
+structured data, catálogo, artefacto, a11y, assets, performance (104.328 bytes
+máximo inicial a 375 px), responsive, redirects, security, dependencies,
+determinism (481 archivos) y `git diff --check`: PASS. Revisión perceptual
+humana de las tres capturas contra la referencia: PASS; confirma continuidad de
+ritmo, fondos y escala, y ausencia de bloques independientes apilados. Mobile
+conserva su fallback funcional sin cierre visual definitivo. M8.9.10: DONE.
+Siguiente tarea: M8.9.11 (modelo SOL).
 
 Corrección de navegación Pages (2026-08-18): los enlaces internos de la
 presentación ahora aplican `import.meta.env.BASE_URL` mediante
@@ -1901,3 +1913,9 @@ No avanzar a la siguiente milestone.
   iconos accesibles y firma en línea. 243 tests, build y auditorías técnicas
   en PASS. QA visual 1280/1440/1920 permanece BLOCKED por la restricción local
   de conexión del navegador. No avanzar a M8.9.9.
+- 2026-08-18 — M8.9.10 completada: Home integrada como composición continua,
+  con ritmo, fondos, densidad, escala y repetición normalizados; fallback móvil
+  funcional. Instalación limpia, 243 tests, build de 25 páginas, suite completa
+  de auditorías y determinismo de 481 archivos en PASS. Capturas completas
+  1280/1440/1920 versionadas y revisión humana comparativa en PASS, sin overflow
+  ni bloques independientes apilados. Siguiente tarea: M8.9.11 (modelo SOL).
