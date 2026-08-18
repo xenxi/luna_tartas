@@ -80,8 +80,8 @@ describe('approved home hero', () => {
     expect(component).toContain('src={watercolorCloud}');
     expect(component).toContain('alt="Nube azul de acuarela decorativa."');
     expect(component).toContain('format="webp"');
-    expect(cloud.subarray(16, 24).readUInt32BE(0)).toBe(1774);
-    expect(cloud.subarray(16, 24).readUInt32BE(4)).toBe(887);
+    expect(cloud.subarray(16, 24).readUInt32BE(0)).toBe(1939);
+    expect(cloud.subarray(16, 24).readUInt32BE(4)).toBe(811);
     expect(cloud[25]).toBe(6);
     expect(component).toContain('class="hero__transition-heart"');
     expect(styles).toContain('fill: var(--color-canvas)');

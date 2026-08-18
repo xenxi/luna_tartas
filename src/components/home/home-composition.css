@@ -16,9 +16,17 @@
 }
 
 @media (min-width: 64rem) {
+  .hero {
+    z-index: var(--z-base);
+  }
+
+  .hero__transition {
+    z-index: var(--z-base);
+  }
+
   .taxonomy-discovery-section {
     position: relative;
-    z-index: var(--z-raised);
+    z-index: var(--z-content);
     padding-block: var(--space-8) var(--space-16);
   }
 

@@ -1489,6 +1489,14 @@ y `git diff --check`: PASS. Se resolvió el error local de servidor que mostraba
 `FailedToLoadModuleSSR`: coexistían un proceso Vite fallido por IPv6 y una
 previsualización por IPv4 en el mismo puerto. Tras reiniciar exclusivamente esos
 procesos, `http://localhost:4321/` y `http://127.0.0.1:4321/` responden 200.
+El ajuste posterior solicitado sitúa la nube de transición bajo los ítems de
+descubrimiento, sobre el fondo, con una escala mayor y desplazamiento a la
+derecha para que se introduzca bajo la fotografía del Hero; `npm run typecheck`
+y `npm run build`: PASS.
+La recalibración posterior baja esa nube por completo tras el Hero, la desplaza
+más a la derecha y limita su altura como franja acuarelada para que termine
+antes de las cards; Prettier específico, `npm run typecheck` y servidor local
+(HTTP 200): PASS.
 Pendiente: QA comparativa manual a 1280/1440/1920. No avanzar a M8.9.11 hasta
 completar esas capturas y revisión.
 

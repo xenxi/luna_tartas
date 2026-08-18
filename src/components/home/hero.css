@@ -29,7 +29,7 @@
   letter-spacing: var(--letter-spacing-display);
 }
 
-.hero__title h1 > span {
+.hero__title h1>span {
   display: block;
 }
 
@@ -62,7 +62,7 @@
   padding-inline: var(--space-2);
 }
 
-.hero__body > p {
+.hero__body>p {
   min-width: 0;
   max-width: var(--measure-copy);
   color: var(--color-text-muted);
@@ -95,8 +95,7 @@
 .hero__media::before {
   position: absolute;
   z-index: -1;
-  inset: var(--space-6) calc(-1 * var(--space-3)) calc(-1 * var(--space-3))
-    var(--space-6);
+  inset: var(--space-6) calc(-1 * var(--space-3)) calc(-1 * var(--space-3)) var(--space-6);
   border-radius: var(--radius-xl);
   background: var(--color-surface-warm);
   content: '';
@@ -129,7 +128,7 @@
 
 .hero__transition {
   position: absolute;
-  z-index: var(--z-content);
+  z-index: auto; /* CORREGIDO: Evita el contexto de apilamiento cerrado */
   inset-inline: 0;
   inset-block-end: 0;
   block-size: 3.5rem;
@@ -139,7 +138,7 @@
 
 .hero__transition-line {
   position: absolute;
-  z-index: 2;
+  z-index: calc(var(--z-content) + 2); /* CORREGIDO: Delega el z-index */
   inset-block-start: 0;
   inset-inline: 0;
   inline-size: 100%;
@@ -162,11 +161,15 @@
 
 .hero__transition-heart {
   position: absolute;
-  z-index: 3;
+  z-index: calc(var(--z-content) + 3); /* CORREGIDO: Delega el z-index */
   inset-block-start: 0.15rem;
   inset-inline-start: 52%;
   inline-size: 1.7rem;
   transform: translateX(-50%) rotate(-8deg);
+}
+
+.hero__transition-sparkle {
+  display: none;
 }
 
 @media (min-width: 48rem) {
@@ -209,11 +212,9 @@
     overflow: visible;
     padding-block: 0;
     background:
-      linear-gradient(
-        90deg,
+      linear-gradient(90deg,
         color-mix(in srgb, var(--color-canvas) 97%, transparent) 0 50%,
-        transparent 50% 100%
-      ),
+        transparent 50% 100%),
       color-mix(in srgb, var(--color-canvas) 84%, transparent);
   }
 
@@ -235,11 +236,8 @@
   .hero__title {
     align-self: start;
     padding-block-start: clamp(var(--space-8), 3.4vw, var(--space-12));
-    padding-inline: max(
-        var(--gutter),
-        calc((100vw - var(--container-visual)) / 2 + var(--space-16))
-      )
-      clamp(var(--space-8), 4vw, var(--space-16));
+    padding-inline: max(var(--gutter),
+        calc((100vw - var(--container-visual)) / 2 + var(--space-16))) clamp(var(--space-8), 4vw, var(--space-16));
   }
 
   .hero__title h1 {
@@ -264,20 +262,18 @@
   .hero__body {
     align-self: start;
     gap: var(--space-6);
-    padding-inline: max(
-        var(--gutter),
-        calc((100vw - var(--container-visual)) / 2 + var(--space-16))
-      )
-      clamp(var(--space-8), 4vw, var(--space-16));
+    padding-inline: max(var(--gutter),
+        calc((100vw - var(--container-visual)) / 2 + var(--space-16))) clamp(var(--space-8), 4vw, var(--space-16));
   }
 
-  .hero__body > p {
+  .hero__body>p {
     max-width: 42ch;
     line-height: 1.55;
   }
 
   .hero__media {
     position: absolute;
+    z-index: var(--z-base);
     inset-block-start: -1.75rem;
     inset-block-end: 0;
     inset-inline-start: 50%;
@@ -334,12 +330,17 @@
   }
 
   .hero__transition {
+    position: absolute;
+    z-index: auto; /* CORREGIDO: Evita el contexto de apilamiento cerrado */
+    inset-inline: 0;
+    inset-block-end: 0;
     block-size: calc(var(--space-16) + var(--space-8));
+    pointer-events: none;
   }
 
   .hero__transition-cutout {
     position: absolute;
-    z-index: 0;
+    z-index: var(--z-content); /* CORREGIDO: Posiciona la base sólida */
     inset: 0;
     display: block;
     inline-size: 100%;
@@ -350,34 +351,59 @@
     fill: var(--color-canvas);
   }
 
-  .hero__transition-line {
-    block-size: 3.5rem;
+  .hero__transition-cloud {
+    mix-blend-mode: multiply;
   }
 
   .hero__transition .hero__transition-cloud {
     position: absolute;
-    z-index: 1;
-    inset-block-start: var(--space-2);
-    inset-inline-end: 0;
+    z-index: calc(var(--z-content) + 1); /* CORREGIDO: Mantiene la mancha sobre el recorte y se fusiona hacia abajo */
+    inset-block-start: clamp(-3rem, -12.5vw, -1rem);
+    inset-inline-end: clamp(-41rem, -13vw, -1rem);
     display: block;
-    inline-size: clamp(28rem, 42vw, 36rem);
+    inline-size: clamp(32rem, 46vw, 52rem);
     block-size: auto;
-    aspect-ratio: 2 / 1;
-    opacity: 0.68;
-    -webkit-mask-image: linear-gradient(
-      to bottom,
-      transparent 0,
-      #000 10%,
-      #000 82%,
-      transparent 100%
-    );
-    mask-image: linear-gradient(
-      to bottom,
-      transparent 0,
-      #000 10%,
-      #000 82%,
-      transparent 100%
-    );
+    opacity: 0.85;
+    pointer-events: none;
     transform: none;
   }
+
+  .hero__transition-line {
+    position: absolute;
+    z-index: calc(var(--z-content) + 2); /* CORREGIDO */
+    block-size: 3.5rem;
+  }
+
+  .hero__transition-sparkle {
+    position: absolute;
+    z-index: calc(var(--z-content) + 4); /* CORREGIDO */
+    inset-block-start: clamp(3.2rem, 4.2vw, 4.8rem);
+    inset-inline-end: clamp(20rem, 32vw, 38rem);
+    display: block;
+    inline-size: clamp(1.3rem, 1.7vw, 2rem);
+    color: var(--color-decoration-peach);
+  }
+  /* 1. Rompemos la caja contenedora a la fuerza en todas las resoluciones */
+.hero__transition {
+  z-index: auto !important;
+  isolation: auto !important;
+}
+
+/* 2. Definimos el fondo opaco por encima de la fotografía */
+.hero__transition-cutout {
+  z-index: 900 !important;
+}
+
+/* 3. Colocamos la mancha por encima del recorte, libre para fusionarse hacia abajo */
+.hero__transition .hero__transition-cloud,
+.hero__transition-cloud {
+  z-index: 901 !important;
+  mix-blend-mode: multiply !important;
+  opacity: 0.85 !important;
+}
+
+/* 4. Mantenemos las decoraciones por encima de la mancha */
+.hero__transition-line { z-index: 902 !important; }
+.hero__transition-heart { z-index: 903 !important; }
+.hero__transition-sparkle { z-index: 904 !important; }
 }
