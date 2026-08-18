@@ -1,81 +1,220 @@
+.taxonomy-discovery-section {
+  inline-size: min(
+    calc(100% - (2 * var(--gutter))),
+    calc(var(--container-visual) + (2 * var(--space-20)))
+  );
+  margin-inline: auto;
+  padding-block: var(--space-10) var(--space-12);
+}
+
+.taxonomy-discovery-section__header {
+  margin-block-end: clamp(var(--space-6), 3vw, var(--space-10));
+  color: var(--color-text);
+  text-align: center;
+}
+
+.taxonomy-discovery-section__header h2 {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin: 0;
+  font-size: clamp(2rem, 1.75rem + 0.6vw, 2.5rem);
+  font-weight: var(--font-weight-semibold);
+  line-height: 1.05;
+  letter-spacing: var(--letter-spacing-heading);
+}
+
+.taxonomy-discovery-section__heart {
+  inline-size: clamp(1.5rem, 1.2rem + 0.8vw, 1.875rem);
+  flex: none;
+  transform: translateY(0.08em);
+}
+
+.taxonomy-discovery-section__header p {
+  max-inline-size: 50rem;
+  margin: var(--space-3) auto 0;
+  color: var(--color-text-muted);
+  font-size: var(--font-size-md);
+  line-height: var(--line-height-body);
+}
+
 .taxonomy-discovery {
   display: grid;
-  gap: var(--space-6);
-  padding-block: var(--space-8) var(--space-16);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  inline-size: 100%;
+  gap: var(--card-gap);
+  margin: 0 auto;
+  padding: 0;
+  list-style: none;
 }
 
-.taxonomy-discovery .content-section {
+.taxonomy-discovery__card {
+  --taxonomy-discovery-content-width: 50%;
+  --taxonomy-discovery-media-width: 50%;
+  --taxonomy-discovery-tone: var(--color-surface-warm);
+
   position: relative;
-  inline-size: min(calc(100% - (2 * var(--gutter))), var(--container-content));
-  margin-inline: auto;
-  padding-block: var(--space-10);
+  display: block;
+  aspect-ratio: 3 / 2;
+  overflow: hidden;
+  border-radius: var(--radius-card);
+  color: var(--color-text);
+  isolation: isolate;
+  background: var(--taxonomy-discovery-tone);
+  text-decoration: none;
 }
 
-.taxonomy-discovery .content-section::before {
-  position: absolute;
-  inset-block-start: var(--space-10);
-  inset-inline-end: 0;
-  color: var(--color-border);
-  content: '0' counter(discovery-chapter);
-  counter-increment: discovery-chapter;
+.taxonomy-discovery__item--occasion .taxonomy-discovery__card {
+  --taxonomy-discovery-tone: var(--color-surface-calm);
+}
+
+.taxonomy-discovery__item--recipient .taxonomy-discovery__card {
+  --taxonomy-discovery-tone: color-mix(
+    in srgb,
+    var(--color-surface-soft) 68%,
+    var(--color-decoration-peach)
+  );
+}
+
+.taxonomy-discovery__body {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  block-size: 100%;
+  inline-size: var(--taxonomy-discovery-content-width);
+  padding: clamp(var(--space-5), 2vw, var(--space-8));
+}
+
+.taxonomy-discovery__number {
+  display: block;
+  margin-block-end: var(--space-3);
+  color: var(--color-accent);
   font-family: var(--font-display);
-  font-size: clamp(2.5rem, 8vw, 5rem);
-  line-height: 0.75;
+  font-size: clamp(2.75rem, 2.2rem + 1vw, 3.375rem);
+  font-weight: var(--font-weight-regular);
+  line-height: 1;
 }
 
-.taxonomy-discovery {
-  counter-reset: discovery-chapter;
+.taxonomy-discovery__item--occasion .taxonomy-discovery__number {
+  color: var(--color-blue);
 }
 
-.taxonomy-discovery .content-section__header {
-  padding-inline-end: clamp(var(--space-12), 12vw, 8rem);
+.taxonomy-discovery__item--recipient .taxonomy-discovery__number {
+  color: var(--color-peach);
 }
 
-.taxonomy-discovery #discover-occasions {
-  inline-size: min(calc(100% - (2 * var(--gutter))), 78rem);
-  padding-inline: clamp(var(--space-5), 4vw, var(--space-12));
-  border-radius: var(--radius-xl);
-  background: var(--color-surface-warm);
+.taxonomy-discovery__body h3 {
+  margin: 0;
+  font-size: clamp(1.5rem, 1.25rem + 0.65vw, 1.875rem);
+  line-height: 1.1;
+  white-space: nowrap;
 }
 
-.taxonomy-discovery #discover-recipients {
-  border-block-start: 1px solid var(--color-border);
+.taxonomy-discovery__description {
+  margin: var(--space-3) 0 0;
+  color: var(--color-text-muted);
+  font-size: var(--font-size-md);
+  line-height: 1.5;
 }
 
-@media (min-width: 64rem) {
+.taxonomy-discovery__action {
+  display: inline-block;
+  margin-block-start: auto;
+  color: var(--color-text);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  text-decoration: none;
+}
+
+.taxonomy-discovery__media {
+  position: absolute;
+  z-index: 0;
+  inset-block: 0;
+  inset-inline: auto 0;
+  inline-size: var(--taxonomy-discovery-media-width);
+  isolation: isolate;
+}
+
+.taxonomy-discovery__media::before {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    var(--taxonomy-discovery-tone) 0%,
+    var(--taxonomy-discovery-tone) 10%,
+    color-mix(in srgb, var(--taxonomy-discovery-tone) 76%, transparent) 20%,
+    color-mix(in srgb, var(--taxonomy-discovery-tone) 30%, transparent) 32%,
+    transparent 38%
+  );
+  content: '';
+  pointer-events: none;
+}
+
+.taxonomy-discovery__media .responsive-media,
+.taxonomy-discovery__media picture,
+.taxonomy-discovery__media img {
+  block-size: 100%;
+  border-radius: 0;
+}
+
+.taxonomy-discovery__media img {
+  object-fit: cover;
+  object-position: center;
+}
+
+.taxonomy-discovery__item--occasion .taxonomy-discovery__media img {
+  object-position: right center;
+}
+
+.taxonomy-discovery__item--recipient .taxonomy-discovery__media img {
+  object-position: right center;
+}
+
+.taxonomy-discovery__card:hover .taxonomy-discovery__action,
+.taxonomy-discovery__card:focus-visible .taxonomy-discovery__action {
+  color: var(--color-action-hover);
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
+@media (max-width: 63.99rem) {
+  .taxonomy-discovery-section {
+    padding-block: var(--space-8) var(--space-10);
+  }
+
   .taxonomy-discovery {
-    gap: var(--space-12);
-    padding-block-end: var(--space-20);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .taxonomy-discovery .content-section {
-    grid-template-columns: minmax(15rem, 0.72fr) minmax(0, 1.28fr);
-    align-items: start;
-    column-gap: clamp(var(--space-10), 7vw, var(--space-20));
+  .taxonomy-discovery__item--recipient {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 39.99rem) {
+  .taxonomy-discovery-section__header h2 {
+    font-size: var(--font-size-xl);
   }
 
-  .taxonomy-discovery .content-section__header {
-    position: sticky;
-    inset-block-start: var(--space-8);
-    padding-inline-end: 0;
+  .taxonomy-discovery-section__header p {
+    font-size: var(--font-size-sm);
   }
 
-  .taxonomy-discovery .content-section::before {
-    inset-inline: 0 auto;
-    inset-block-start: calc(-1 * var(--space-6));
+  .taxonomy-discovery {
+    grid-template-columns: minmax(0, 1fr);
   }
 
-  .taxonomy-discovery .content-section__header,
-  .taxonomy-discovery .card-list {
-    grid-column: 2;
-  }
-
-  .taxonomy-discovery #discover-occasions .content-section__header,
-  .taxonomy-discovery #discover-occasions .card-list {
+  .taxonomy-discovery__item--recipient {
     grid-column: auto;
   }
 
-  .taxonomy-discovery #discover-occasions .content-section__header {
-    grid-column: 1;
+  .taxonomy-discovery__card {
+    min-block-size: 16rem;
+  }
+
+  .taxonomy-discovery__body {
+    inline-size: 60%;
   }
 }

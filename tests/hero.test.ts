@@ -6,6 +6,7 @@ const component = readFileSync('src/components/home/Hero.astro', 'utf8');
 const styles = readFileSync('src/components/home/hero.css', 'utf8');
 const page = readFileSync('src/pages/index.astro', 'utf8');
 const image = readFileSync('src/assets/home/tarta-hero.png');
+const cloud = readFileSync('src/assets/home/hero-watercolor-cloud.png');
 
 describe('approved home hero', () => {
   it('keeps the handoff and approval metadata centralized', () => {
@@ -73,7 +74,17 @@ describe('approved home hero', () => {
     expect(component).toContain('class="hero__heading-underline"');
     expect(component).toContain('class="hero__transition"');
     expect(component).toContain('class="hero__transition-line"');
+    expect(component).toContain('class="hero__transition-cutout"');
+    expect(component).toContain('class="hero__transition-cloud"');
+    expect(component).toContain('import watercolorCloud from');
+    expect(component).toContain('src={watercolorCloud}');
+    expect(component).toContain('alt="Nube azul de acuarela decorativa."');
+    expect(component).toContain('format="webp"');
+    expect(cloud.subarray(16, 24).readUInt32BE(0)).toBe(1774);
+    expect(cloud.subarray(16, 24).readUInt32BE(4)).toBe(887);
+    expect(cloud[25]).toBe(6);
     expect(component).toContain('class="hero__transition-heart"');
+    expect(styles).toContain('fill: var(--color-canvas)');
     expect(component).toContain(
       'class="hero__decoration hero__decoration--hearts"',
     );

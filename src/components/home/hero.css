@@ -138,6 +138,10 @@
 }
 
 .hero__transition-line {
+  position: absolute;
+  z-index: 2;
+  inset-block-start: 0;
+  inset-inline: 0;
   inline-size: 100%;
   block-size: 100%;
   overflow: visible;
@@ -151,8 +155,14 @@
   vector-effect: non-scaling-stroke;
 }
 
+.hero__transition-cutout,
+.hero__transition-cloud {
+  display: none;
+}
+
 .hero__transition-heart {
   position: absolute;
+  z-index: 3;
   inset-block-start: 0.15rem;
   inset-inline-start: 52%;
   inline-size: 1.7rem;
@@ -193,8 +203,10 @@
 
 @media (min-width: 60rem) {
   .hero {
-    block-size: clamp(34rem, 41.5vw, 38rem);
+    z-index: var(--z-raised);
+    block-size: calc(clamp(34rem, 41.5vw, 38rem) + var(--space-16));
     min-block-size: 0;
+    overflow: visible;
     padding-block: 0;
     background:
       linear-gradient(
@@ -208,7 +220,7 @@
   .hero__frame {
     position: relative;
     width: 100%;
-    block-size: 100%;
+    block-size: calc(100% - var(--space-10));
     margin-inline: 0;
     grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
     grid-template-rows: auto auto;
@@ -266,7 +278,8 @@
 
   .hero__media {
     position: absolute;
-    inset-block: 0;
+    inset-block-start: -1.75rem;
+    inset-block-end: 0;
     inset-inline-start: 50%;
     inline-size: 50%;
     grid-area: auto;
@@ -318,5 +331,53 @@
     inset-inline-start: 34%;
     inline-size: clamp(1rem, 1.6vw, 1.5rem);
     transform: rotate(8deg);
+  }
+
+  .hero__transition {
+    block-size: calc(var(--space-16) + var(--space-8));
+  }
+
+  .hero__transition-cutout {
+    position: absolute;
+    z-index: 0;
+    inset: 0;
+    display: block;
+    inline-size: 100%;
+    block-size: 100%;
+  }
+
+  .hero__transition-cutout path {
+    fill: var(--color-canvas);
+  }
+
+  .hero__transition-line {
+    block-size: 3.5rem;
+  }
+
+  .hero__transition .hero__transition-cloud {
+    position: absolute;
+    z-index: 1;
+    inset-block-start: var(--space-2);
+    inset-inline-end: 0;
+    display: block;
+    inline-size: clamp(28rem, 42vw, 36rem);
+    block-size: auto;
+    aspect-ratio: 2 / 1;
+    opacity: 0.68;
+    -webkit-mask-image: linear-gradient(
+      to bottom,
+      transparent 0,
+      #000 10%,
+      #000 82%,
+      transparent 100%
+    );
+    mask-image: linear-gradient(
+      to bottom,
+      transparent 0,
+      #000 10%,
+      #000 82%,
+      transparent 100%
+    );
+    transform: none;
   }
 }

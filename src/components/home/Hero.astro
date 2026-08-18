@@ -1,5 +1,6 @@
 ---
-import { Picture } from 'astro:assets';
+import { Image, Picture } from 'astro:assets';
+import watercolorCloud from '../../assets/home/hero-watercolor-cloud.png';
 import heroImage from '../../assets/home/tarta-hero.png';
 import { heroContent } from '../../content/home/hero';
 import ActionLink from '../ui/ActionLink.astro';
@@ -83,6 +84,27 @@ const [headingLead, headingEmphasis] = heroContent.heading.split(
     </div>
   </div>
   <div class="hero__transition" aria-hidden="true">
+    <svg
+      class="hero__transition-cutout"
+      viewBox="0 0 1440 96"
+      preserveAspectRatio="none"
+      focusable="false"
+    >
+      <path
+        d="M0 31C192 1 306 52 512 28c91-11 154-29 221-14l32 3c119 31 226-8 343 5 117 12 213 37 332 11v63H0Z"
+      ></path>
+    </svg>
+    <Image
+      src={watercolorCloud}
+      alt="Nube azul de acuarela decorativa."
+      width={512}
+      height={256}
+      densities={[1, 2]}
+      format="webp"
+      loading="lazy"
+      decoding="async"
+      class="hero__transition-cloud"
+    />
     <svg
       class="hero__transition-line"
       viewBox="0 0 1440 56"

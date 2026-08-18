@@ -1226,25 +1226,35 @@ mitad derecha, copy y ambos CTA reales en la mitad izquierda. El CTA principal
 mantiene `/productos/` y usa el icono de flecha existente; el secundario conserva
 el `wa.me` aprobado, su mensaje codificado y la instrumentación sin PII. Tres
 ornamentos reutilizables y el cierre ondulado con corazón son decorativos,
-ignorados por AT, sin eventos ni JavaScript. La imagen conserva alt, dimensiones
-intrínsecas 1672 × 941, AVIF/WebP/JPEG responsive, `sizes` ajustado a la mitad
-visual, `loading="eager"` y `fetchpriority="high"`. El artifact de producción a
-1440 mide 597,59 px de alto; la media 712,5 × 597,59 px llega exactamente a los
-bordes superior, derecho e inferior. QA real 1280/1440/1920: Hero 544/597,59/608
-px, media al 50 %, `scrollWidth=clientWidth`, CTA de 48 px, foco visible y foto
-cargada; el fallback 320 conserva orden propio, CTAs apilados y cero overflow.
-Artifact: 1 H1, 0 scripts cliente, ambos href y consola sin errores/avisos.
+ignorados por AT, sin eventos ni JavaScript. El ajuste visual solicitado extiende
+la fotografía por detrás de la transición y la recorta con un lienzo SVG que
+reproduce exactamente la curva: no queda ningún borde rectangular bajo el lazo.
+El segundo ajuste prolonga además la fotografía 28 px tras el separador superior:
+la cabecera de home rellena sólo el área situada sobre su misma curva SVG y deja
+ver la media por debajo, eliminando también el corte recto de arriba. Debajo a la
+derecha aparece una nube azul original generada como acuarela transparente de
+1774 × 887 px, con silueta de nube, capas blancas/azules y bordes pictóricos; usa
+la referencia únicamente como dirección de estilo, no reproduce ni publica su
+marca de agua. Astro la sirve lazy y dimensionada como WebP responsive de 24/68
+KB, sin requests externos. La fotografía conserva alt, dimensiones intrínsecas
+1672 × 941, AVIF/WebP/JPEG responsive, `sizes` ajustado a la mitad visual,
+`loading="eager"` y `fetchpriority="high"`. QA real 1280/1440/1920: Hero
+608/661,59/672 px, media 596/649,59/660 px al 50 %, ambas ondas visibles, nube de
+537,59/576/576 px, `scrollWidth=clientWidth`, CTA de 48 px, foco visible y fotos
+cargadas; el fallback 320 oculta recortes/nube, conserva orden propio, CTAs
+apilados y cero overflow.
+Artifact: 1 H1, 0 scripts ejecutables cliente, ambos href y consola sin errores.
 `npm run lint`, `npm run typecheck` (0 errores/warnings/hints), `npm test` (39
 archivos, 239 tests), `npm run build` (25 páginas), `verify:accessibility` (25
-HTML), `verify:performance` (96.702 bytes máximo inicial a 375 px),
-`verify:responsive`, `verify:assets` (31 archivos, 30.359.026 bytes),
+HTML), `verify:performance` (98.760 bytes máximo inicial a 375 px),
+`verify:responsive`, `verify:assets` (32 archivos, 31.740.577 bytes),
 `verify:links`, Prettier de archivos tocados y `git diff --check`: PASS. La
 aprobación visual final permanece en M8.9.11. Siguiente tarea: M8.9.5 (modelo
 SOL → LUNA).
 
 ## M8.9.5 — Encuentra el regalo perfecto
 
-**Estado:** PENDING
+**Estado:** BLOCKED
 **Objetivo:** sustituir el descubrimiento actual por exactamente tres cards
 desktop: 01 Por tipo, 02 Por ocasión y 03 Para quién, con un producto real por
 dimensión.
@@ -1259,7 +1269,32 @@ composición y mantienen rutas reales.
 **Verificación:** tests de dominio/proyección, build, links, a11y, performance y
 QA 1280/1440/1920.
 **Modelo recomendado:** SOL → LUNA.
-**Evidencia:** —
+**Evidencia:** AJUSTE VISUAL Y VALIDACIÓN AUTOMATIZADA: PASS (2026-08-18) —
+`taxonomy-discovery.ts` conserva la selección determinista de tres productos
+publicados, destacados y distintos, y deriva las descripciones de las
+taxonomías publicadas. `TaxonomyDiscovery.astro` recompone la cabecera editorial
+centrada con subtítulo y corazón SVG Luna, y las tres cards 01/02/03 conservan
+fotografías responsive y rutas de índice reales. En la segunda iteración, CSS
+mantiene el ancho visual máximo de 90 rem, el grid desktop de tres columnas y
+el ratio 3:2, pero deja de usar la fotografía como fondo completo: la desplaza
+a una franja derecha del 58 %, conserva un plano pastel independiente para el
+contenido y limita el degradado de unión al tramo central. La tarta usa `cover`
+lateral y la lámina/libreta `contain` lateral para evitar recortes; el subtítulo
+centrado tiene un máximo de 50 rem. El artefacto contiene el subtítulo, tres
+descripciones y tres cards. En la tercera iteración, las tres cards comparten
+variables de ancho del 50 % para texto y media, una única capa de degradado
+sobre la media y `object-fit: cover`; sólo varían el tono y, cuando hace falta,
+`object-position`, eliminando el corte de la card de destinatario. La cuarta
+iteración adelanta de forma uniforme el final transparente del degradado para
+dejar una mayor porción limpia de las tres fotografías. `npm run
+lint`, `npm run typecheck` (0 errores/warnings/hints), `npm test` (39 archivos,
+241 tests), `npm run build`
+(25 páginas), `verify:links`, `verify:accessibility` (25 HTML),
+`verify:performance` (87.789 bytes máximo inicial a 375 px),
+`verify:responsive`, `verify:assets` (32 archivos, 31.740.577 bytes) y
+`git diff --check`: PASS. **VISUAL QA 1280/1440/1920: BLOCKED** — el navegador
+local no puede inicializarse en este entorno; no se marca `DONE` ni se avanza a
+M8.9.6 hasta revisar visualmente la composición en esos viewports.
 
 ## M8.9.6 — Cada detalle cuenta
 
@@ -1667,3 +1702,13 @@ No avanzar a la siguiente milestone.
   responsive dimensionada, cero JS/overflow, foco visible, 239 tests, build,
   auditorías y QA 1280/1440/1920/320 en PASS. Siguiente tarea: M8.9.5 (modelo
   SOL → LUNA).
+- 2026-08-17 — Ajuste visual solicitado de M8.9.4 completado: la fotografía se
+  recorta con el mismo perfil del lazo y la transición incorpora una nube azul de
+  acuarela vectorial original, sin usar el ejemplo con marca de agua; build,
+  auditorías y QA 1280/1440/1920/320 en PASS. Siguiente tarea: M8.9.5 (modelo
+  SOL → LUNA).
+- 2026-08-17 — Segundo ajuste visual solicitado de M8.9.4 completado: la foto se
+  prolonga detrás de la onda superior, la nube vectorial se sustituye por una
+  acuarela transparente original optimizada a WebP y se elimina el overflow
+  detectado en QA; 239 tests, build, auditorías y QA 1280/1440/1920/320 en PASS.
+  Siguiente tarea: M8.9.5 (modelo SOL → LUNA).

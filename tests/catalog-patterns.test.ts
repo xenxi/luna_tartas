@@ -137,12 +137,16 @@ describe('catalog and contextual navigation patterns', () => {
     ).not.toContain('client:');
   });
 
-  it('keeps home discovery driven by published taxonomies and route builders', () => {
-    expect(taxonomyDiscovery).toContain('<ContentSection');
-    expect(taxonomyDiscovery).toContain('<CardList');
-    expect(taxonomyDiscovery).toContain('<TaxonomyCard');
+  it('keeps home discovery driven by published products and route builders', () => {
+    expect(taxonomyDiscovery).toContain('<section');
+    expect(taxonomyDiscovery).toContain('<ResponsiveMedia');
+    expect(taxonomyDiscovery).toContain('<Ornament');
+    expect(taxonomyDiscovery).toContain('variant="heart"');
+    expect(taxonomyDiscovery).toContain('{discovery.intro}');
+    expect(taxonomyDiscovery).toContain('{card.description}');
     expect(taxonomyDiscoveryProjection).toContain('getPublishedTaxonomies');
-    expect(taxonomyDiscoveryProjection).toContain('routes.taxonomy');
+    expect(taxonomyDiscoveryProjection).toContain('getPublishedProducts');
+    expect(taxonomyDiscoveryProjection).toContain('routes.taxonomyIndex');
     expect(taxonomyDiscoveryProjection).not.toMatch(/categories:\s*\[/);
     expect(taxonomyDiscoveryProjection).not.toMatch(/occasions:\s*\[/);
     expect(taxonomyDiscoveryProjection).not.toMatch(/recipients:\s*\[/);
@@ -160,7 +164,7 @@ describe('catalog and contextual navigation patterns', () => {
 
   it('does not publish discovery placeholders or empty modules', () => {
     expect(publicDiscoverySources).not.toMatch(/Pronto podrás/i);
-    expect(taxonomyDiscovery).toContain('sections.length > 0');
+    expect(taxonomyDiscovery).toContain('discovery &&');
     expect(featuredProducts).toContain('featuredWithMedia.length > 0');
     expect(publicDiscoverySources).not.toContain('data-content-state="empty"');
   });

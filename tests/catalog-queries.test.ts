@@ -139,43 +139,104 @@ describe('catalog queries', () => {
     );
   });
 
-  it('projects home discovery from published taxonomies in editorial order', () => {
-    const [categories, occasions, recipients] =
-      projectTaxonomyDiscovery(catalog);
+  it('projects three distinct discovery cards from real published products', () => {
+    const discovery = projectTaxonomyDiscovery({
+      ...catalog,
+      products: [
+        ...catalog.products,
+        product('recipient-choice', 2, {
+          categories: ['other'],
+          recipients: ['family'],
+        }),
+      ],
+    });
 
     expect(
-      categories.items.map(({ href, name, mediaSource }) => ({
+      discovery?.cards.map(({ number, href, productName, mediaSource }) => ({
+        number,
         href,
-        name,
+        productName,
         mediaSource,
       })),
     ).toEqual([
       {
-        href: '/categorias/cakes/',
-        name: 'cakes',
+        number: '01',
+        href: '/categorias/',
+        productName: 'first',
         mediaSource: { src: 'first.jpg', alt: 'first cake' },
       },
+      {
+        number: '02',
+        href: '/ocasiones/',
+        productName: 'second',
+        mediaSource: { src: 'second.jpg', alt: 'second cake' },
+      },
+      {
+        number: '03',
+        href: '/regalos/',
+        productName: 'recipient-choice',
+        mediaSource: {
+          src: 'recipient-choice.jpg',
+          alt: 'recipient-choice cake',
+        },
+      },
     ]);
-    expect(
-      occasions.items.map(({ href, itemCountLabel }) => ({
-        href,
-        itemCountLabel,
-      })),
-    ).toEqual([{ href: '/ocasiones/birthday/', itemCountLabel: '2 ideas' }]);
-    expect(recipients.items.map(({ href }) => href)).toEqual([
-      '/regalos/family/',
+    expect(discovery?.intro).toBe(
+      'Explora por tipo, ocasión o destinatario y encuentra la opción ideal.',
+    );
+    expect(discovery?.cards.map(({ description }) => description)).toEqual([
+      'cakes y más.',
+      'birthday y más.',
+      'family y más.',
     ]);
   });
 
-  it('omits empty discovery sections and taxonomies without products', () => {
+  it('prioritizes featured products, excludes drafts and keeps editorial ties stable', () => {
     const discovery = projectTaxonomyDiscovery({
-      categories: [taxonomy('empty-category', 'category', 0)],
-      occasions: [],
-      recipients: [],
-      products: [],
+      categories: [taxonomy('cakes', 'category', 0)],
+      occasions: [taxonomy('birthday', 'occasion', 0)],
+      recipients: [taxonomy('family', 'recipient', 0)],
+      products: [
+        product('type-featured', 20, { featured: true }),
+        product('occasion-beta', 10, {
+          categories: ['unpublished-category'],
+          occasions: ['birthday'],
+          featured: true,
+        }),
+        product('occasion-alpha', 10, {
+          categories: ['unpublished-category'],
+          occasions: ['birthday'],
+          featured: true,
+        }),
+        product('recipient-fallback', 0, {
+          categories: ['unpublished-category'],
+          recipients: ['family'],
+        }),
+        { id: 'draft-featured', slug: 'draft-featured', status: 'draft' },
+      ],
     });
 
-    expect(discovery).toEqual([]);
+    expect(discovery?.cards.map(({ productName }) => productName)).toEqual([
+      'type-featured',
+      'occasion-alpha',
+      'recipient-fallback',
+    ]);
+  });
+
+  it('omits discovery instead of repeating a product as filler', () => {
+    const discovery = projectTaxonomyDiscovery({
+      categories: [taxonomy('cakes', 'category', 0)],
+      occasions: [taxonomy('birthday', 'occasion', 0)],
+      recipients: [taxonomy('family', 'recipient', 0)],
+      products: [
+        product('only-product', 0, {
+          occasions: ['birthday'],
+          recipients: ['family'],
+        }),
+      ],
+    });
+
+    expect(discovery).toBeUndefined();
   });
 
   it('projects only featured products and preserves every public price variant', () => {

@@ -75,6 +75,8 @@ describe('public site shell', () => {
     expect(header).toContain('class="site-header__divider" aria-hidden="true"');
     expect(header).toContain('preserveAspectRatio="none"');
     expect(header).toContain('focusable="false"');
+    expect(header).toContain("'site-header--home': currentPath === '/'");
+    expect(header).toContain('class="site-header__divider-fill"');
     expect(header).toContain('variant="heart"');
     expect(styles).toContain('.site-header__divider-line');
     expect(styles).toContain('pointer-events: none');

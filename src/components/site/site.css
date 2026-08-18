@@ -50,12 +50,17 @@
   overflow: visible;
 }
 
-.site-header__divider-line path {
+.site-header__divider-line > path:not(.site-header__divider-fill) {
   fill: none;
   stroke: currentColor;
   stroke-linecap: round;
   stroke-width: var(--ornament-stroke);
   vector-effect: non-scaling-stroke;
+}
+
+.site-header__divider-fill {
+  display: none;
+  fill: color-mix(in srgb, var(--color-canvas) 96%, transparent);
 }
 
 .site-header__divider-heart {
@@ -318,5 +323,19 @@
   .primary-navigation--footer ul {
     align-items: start;
     flex-direction: column;
+  }
+}
+
+@media (min-width: 60rem) {
+  .site-header--home {
+    background: linear-gradient(
+        color-mix(in srgb, var(--color-canvas) 96%, transparent),
+        color-mix(in srgb, var(--color-canvas) 96%, transparent)
+      )
+      top / 100% calc(100% - 1.75rem) no-repeat;
+  }
+
+  .site-header--home .site-header__divider-fill {
+    display: block;
   }
 }

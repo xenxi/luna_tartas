@@ -1,8 +1,10 @@
 ---
-import CardList from '../patterns/CardList.astro';
-import ContentSection from '../patterns/ContentSection.astro';
-import TaxonomyCard from '../catalog/TaxonomyCard.astro';
+import ResponsiveMedia from '../catalog/ResponsiveMedia.astro';
+import { catalogImageMap } from '../catalog/catalog-images';
+import { buildMediaProjection } from '../catalog/media-projection';
+import type { MediaProjection } from '../catalog/types';
 import type { Catalog } from '../../lib/catalog/domain/model';
+import Ornament from '../ui/Ornament.astro';
 import { projectTaxonomyDiscovery } from './taxonomy-discovery';
 import './taxonomy-discovery.css';
 
@@ -11,27 +13,70 @@ interface Props {
 }
 
 const { catalog } = Astro.props;
-const sections = projectTaxonomyDiscovery(catalog);
+const discovery = projectTaxonomyDiscovery(catalog);
+const cards = await Promise.all(
+  (discovery?.cards ?? []).map(async (card) => {
+    const image = catalogImageMap[card.mediaSource.src];
+    const media: MediaProjection | undefined = image
+      ? await buildMediaProjection(image, card.mediaSource.alt, {
+          sizes:
+            '(min-width: 64rem) 20rem, (min-width: 40rem) 42vw, calc(100vw - 2 * var(--gutter))',
+        })
+      : undefined;
+
+    return { ...card, media };
+  }),
+);
 ---
 
 {
-  sections.length > 0 && (
-    <div class="taxonomy-discovery">
-      {sections.map((section) => (
-        <ContentSection
-          id={section.id}
-          title={section.title}
-          intro={section.intro}
-        >
-          <CardList count={section.items.length}>
-            {section.items.map((taxonomy) => (
-              <li>
-                <TaxonomyCard taxonomy={taxonomy} />
-              </li>
-            ))}
-          </CardList>
-        </ContentSection>
-      ))}
-    </div>
+  discovery && (
+    <section
+      class="taxonomy-discovery-section"
+      id="gift-discovery"
+      aria-labelledby="gift-discovery-title"
+    >
+      <header class="taxonomy-discovery-section__header">
+        <h2 id="gift-discovery-title">
+          <span>{discovery.title}</span>
+          <Ornament
+            variant="heart"
+            tone="accent"
+            class="taxonomy-discovery-section__heart"
+          />
+        </h2>
+        <p>{discovery.intro}</p>
+      </header>
+      <ul class="taxonomy-discovery" aria-label={discovery.title}>
+        {cards.map((card) => (
+          <li
+            class={`taxonomy-discovery__item taxonomy-discovery__item--${card.kind}`}
+          >
+            <a
+              class="taxonomy-discovery__card"
+              href={card.href}
+              aria-label={`${card.actionLabel}: ${card.productName}`}
+            >
+              <div class="taxonomy-discovery__body">
+                <span class="taxonomy-discovery__number" aria-hidden="true">
+                  {card.number}
+                </span>
+                <h3>{card.title}</h3>
+                <p class="taxonomy-discovery__description">
+                  {card.description}
+                </p>
+                <span class="taxonomy-discovery__action">
+                  {card.actionLabel}
+                  <span aria-hidden="true"> →</span>
+                </span>
+              </div>
+              <div class="taxonomy-discovery__media" aria-hidden="true">
+                <ResponsiveMedia media={card.media} />
+              </div>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </section>
   )
 }

@@ -10,7 +10,9 @@ interface Props {
 const { currentPath } = Astro.props;
 ---
 
-<header class="site-header">
+<header
+  class:list={['site-header', { 'site-header--home': currentPath === '/' }]}
+>
   <div class="site-header__inner visual-container">
     <BrandHomeLink location="header" />
     <details class="site-menu">
@@ -28,6 +30,10 @@ const { currentPath } = Astro.props;
       preserveAspectRatio="none"
       focusable="false"
     >
+      <path
+        class="site-header__divider-fill"
+        d="M0 0h1440v16c-175-10-324-15-486-1-90 8-149 4-218-2l-32-1c-27-3-62-1-144 3C356 25 210 5 0 14Z"
+      ></path>
       <path d="M0 14C210 5 356 25 560 15C642 11 677 9 704 12"></path>
       <path d="M736 13C805 19 864 23 954 15C1116 1 1265 6 1440 16"></path>
     </svg>

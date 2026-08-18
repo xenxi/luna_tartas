@@ -1,78 +1,141 @@
 import {
-  getProductsForTaxonomy,
+  getPublishedProducts,
   getPublishedTaxonomies,
 } from '../../lib/catalog/domain/queries';
 import { routes } from '../../lib/catalog/domain/routes';
-import type { Catalog, TaxonomyKind } from '../../lib/catalog/domain/model';
-import type { TaxonomyCardProjection } from '../catalog/types';
+import type {
+  Catalog,
+  PublishedProduct,
+  TaxonomyKind,
+} from '../../lib/catalog/domain/model';
 
-export interface TaxonomyDiscoverySection {
+export interface TaxonomyDiscoveryCard {
   readonly kind: TaxonomyKind;
-  readonly id: string;
+  readonly number: string;
   readonly title: string;
-  readonly intro: string;
-  readonly items: readonly TaxonomyCardProjection[];
+  readonly description: string;
+  readonly actionLabel: string;
+  readonly href: string;
+  readonly productName: string;
+  readonly mediaSource: {
+    readonly src: string;
+    readonly alt: string;
+  };
 }
 
-const sectionDefinitions: readonly Omit<TaxonomyDiscoverySection, 'items'>[] = [
+export interface TaxonomyDiscoveryProjection {
+  readonly title: string;
+  readonly intro: string;
+  readonly cards: readonly TaxonomyDiscoveryCard[];
+}
+
+interface DiscoveryDefinition {
+  readonly kind: TaxonomyKind;
+  readonly number: string;
+  readonly title: string;
+  readonly actionLabel: string;
+}
+
+const cardDefinitions: readonly DiscoveryDefinition[] = [
   {
     kind: 'category',
-    id: 'discover-categories',
-    title: 'Explora por tipo',
-    intro: 'Encuentra una creación que encaje con lo que imaginas.',
+    number: '01',
+    title: 'Por tipo',
+    actionLabel: 'Ver tipos',
   },
   {
     kind: 'occasion',
-    id: 'discover-occasions',
-    title: 'Elige una ocasión',
-    intro: 'Un punto de partida para celebrar cada momento.',
+    number: '02',
+    title: 'Por ocasión',
+    actionLabel: 'Ver ocasiones',
   },
   {
     kind: 'recipient',
-    id: 'discover-recipients',
-    title: 'Piensa en quién lo recibe',
-    intro: 'Ideas para encontrar un regalo con intención.',
+    number: '03',
+    title: 'Para quién',
+    actionLabel: 'Ver destinatarios',
   },
 ];
 
+function hasPublishedTaxonomy(
+  product: PublishedProduct,
+  kind: TaxonomyKind,
+  taxonomyIds: ReadonlySet<string>,
+): boolean {
+  const productTaxonomyIds =
+    kind === 'category'
+      ? product.categories
+      : kind === 'occasion'
+        ? (product.occasions ?? [])
+        : (product.recipients ?? []);
+
+  return productTaxonomyIds.some((taxonomyId) => taxonomyIds.has(taxonomyId));
+}
+
+function selectProductForDimension(
+  catalog: Catalog,
+  kind: TaxonomyKind,
+  excludedProductIds: ReadonlySet<string>,
+): PublishedProduct | undefined {
+  const publishedTaxonomyIds = new Set(
+    getPublishedTaxonomies(catalog, kind).map(({ id }) => id),
+  );
+  const candidates = getPublishedProducts(catalog).filter(
+    (product) =>
+      !excludedProductIds.has(product.id) &&
+      hasPublishedTaxonomy(product, kind, publishedTaxonomyIds),
+  );
+
+  return (
+    candidates.find((product) => product.featured === true) ?? candidates[0]
+  );
+}
+
+function describeDimension(catalog: Catalog, kind: TaxonomyKind): string {
+  const names = getPublishedTaxonomies(catalog, kind)
+    .map(({ name }) => name)
+    .slice(0, 3);
+
+  return `${new Intl.ListFormat('es', {
+    style: 'long',
+    type: 'conjunction',
+  }).format(names)} y más.`;
+}
+
 export function projectTaxonomyDiscovery(
   catalog: Catalog,
-): readonly TaxonomyDiscoverySection[] {
-  return sectionDefinitions
-    .map((section) => ({
-      ...section,
-      items: getPublishedTaxonomies(catalog, section.kind).flatMap(
-        (taxonomy) => {
-          const productCount = getProductsForTaxonomy(
-            catalog,
-            section.kind,
-            taxonomy.id,
-          ).length;
+): TaxonomyDiscoveryProjection | undefined {
+  const selectedProductIds = new Set<string>();
+  const cards = cardDefinitions.flatMap((definition) => {
+    const product = selectProductForDimension(
+      catalog,
+      definition.kind,
+      selectedProductIds,
+    );
 
-          const firstProduct = getProductsForTaxonomy(
-            catalog,
-            section.kind,
-            taxonomy.id,
-          )[0];
+    if (product === undefined) return [];
 
-          return productCount > 0
-            ? [
-                {
-                  href: routes.taxonomy(section.kind, taxonomy.slug),
-                  name: taxonomy.name,
-                  summary: taxonomy.summary,
-                  itemCountLabel: `${productCount} ideas`,
-                  mediaSource: firstProduct?.media?.cover
-                    ? {
-                        src: firstProduct.media.cover.src,
-                        alt: firstProduct.media.cover.alt,
-                      }
-                    : undefined,
-                },
-              ]
-            : [];
+    selectedProductIds.add(product.id);
+    return [
+      {
+        ...definition,
+        description: describeDimension(catalog, definition.kind),
+        href: routes.taxonomyIndex(definition.kind),
+        productName: product.name,
+        mediaSource: {
+          src: product.media.cover.src,
+          alt: product.media.cover.alt,
         },
-      ),
-    }))
-    .filter((section) => section.items.length > 0);
+      },
+    ];
+  });
+
+  return cards.length === cardDefinitions.length
+    ? {
+        title: 'Encuentra el regalo perfecto',
+        intro:
+          'Explora por tipo, ocasión o destinatario y encuentra la opción ideal.',
+        cards,
+      }
+    : undefined;
 }

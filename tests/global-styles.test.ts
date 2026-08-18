@@ -75,7 +75,7 @@ describe('global presentation foundation', () => {
     expect(foundations).toContain('.visual-container');
     expect(foundations).toContain('.prose--compact');
     expect(taxonomyDiscovery).toContain('var(--gutter)');
-    expect(taxonomyDiscovery).toContain('var(--container-content)');
+    expect(taxonomyDiscovery).toContain('var(--container-visual)');
     expect(taxonomyDiscovery).not.toContain('var(--space-gutter)');
     expect(taxonomyDiscovery).not.toContain('var(--container-wide)');
   });
@@ -89,5 +89,21 @@ describe('global presentation foundation', () => {
 
     expect(componentStyles).not.toMatch(componentColorValues);
     expect(componentStyles).toContain('var(--color-border-subtle)');
+  });
+
+  it('normalizes discovery card media geometry and its tonal transition', () => {
+    expect(taxonomyDiscovery).toContain(
+      '--taxonomy-discovery-content-width: 50%',
+    );
+    expect(taxonomyDiscovery).toContain(
+      '--taxonomy-discovery-media-width: 50%',
+    );
+    expect(taxonomyDiscovery).toContain(
+      '.taxonomy-discovery__media::before',
+    );
+    expect(taxonomyDiscovery).toContain('var(--taxonomy-discovery-tone)');
+    expect(taxonomyDiscovery).toContain('transparent 38%');
+    expect(taxonomyDiscovery).toContain('object-fit: cover');
+    expect(taxonomyDiscovery).not.toContain('object-fit: contain');
   });
 });
