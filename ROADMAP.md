@@ -1427,6 +1427,13 @@ Prettier específico y `git diff --check`: PASS. QA visual manual PASS sobre
 solapes ni overflow y el recorte coincide con la referencia solicitada.
 Siguiente tarea: M8.9.9 — Footer (modelo LUNA → SOL REVIEW).
 
+Ajuste solicitado el 2026-08-18: Home ordena las secciones como “Encuentra el
+regalo perfecto” → “Cada detalle cuenta” → “Ideas para regalar” → “¿Tienes
+algo en mente?”. Se elimina por completo la galería “Trabajos realizados por
+Luna”, incluidos sus estilos y proyección editorial; el proceso de tres pasos
+se conserva. `npm run lint`, `npm run typecheck`, `npm test` (39 archivos, 241
+tests), `npm run build` (25 páginas) y `git diff --check`: PASS.
+
 ## M8.9.9 — Footer
 
 **Estado:** BLOCKED

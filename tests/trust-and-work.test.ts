@@ -8,14 +8,7 @@ const component = readFileSync(
 );
 const styles = readFileSync('src/components/home/trust-and-work.css', 'utf8');
 const page = readFileSync('src/pages/index.astro', 'utf8');
-const imagePaths = [
-  'src/assets/home/work-showcase/tarta-rosa-completa.png',
-  'src/assets/home/work-showcase/tarta-stitch-completa.png',
-  'src/assets/home/work-showcase/tarta-azul-completa.png',
-  'src/assets/home/work-showcase/tarta-rosa-detalle.png',
-];
-
-describe('approved trust and work showcase', () => {
+describe('approved trust process', () => {
   it('keeps the approved process copy and source approval centralized', () => {
     expect(trustAndWorkContent.trust.title).toBe('Cada detalle cuenta');
     expect(trustAndWorkContent.trust.intro).toBe(
@@ -43,38 +36,6 @@ describe('approved trust and work showcase', () => {
     expect(trustAndWorkContent.approval.approvedAt).toBe('2026-08-16');
   });
 
-  it('publishes the four approved alternative texts in editorial order', () => {
-    expect(
-      trustAndWorkContent.showcase.images.map((image) => image.alt),
-    ).toEqual([
-      'Tarta de pañales de dos pisos decorada en tonos rosa con temática de dulces.',
-      'Tarta de pañales de dos pisos decorada con personajes y motivos tropicales en rosa y azul.',
-      'Tarta de pañales de dos pisos decorada en tonos azules con motivos infantiles.',
-      'Detalle de una tarta de pañales decorada en tonos rosa con lazo, bloques y motivos infantiles.',
-    ]);
-    expect(trustAndWorkContent.showcase.images[0]?.primary).toBe(true);
-    expect(
-      trustAndWorkContent.showcase.images
-        .slice(1)
-        .every((image) => !image.primary),
-    ).toBe(true);
-  });
-
-  it('preserves dimensioned original PNG files and delegates optimized variants to Astro', () => {
-    for (const imagePath of imagePaths) {
-      const image = readFileSync(imagePath);
-      expect(image.subarray(16, 24).readUInt32BE(0)).toBe(1536);
-      expect(image.subarray(16, 24).readUInt32BE(4)).toBe(2048);
-    }
-
-    expect(component).toContain("formats={['avif', 'webp']}");
-    expect(component).toContain('fallbackFormat="jpg"');
-    expect(component).toContain('quality={50}');
-    expect(component).toContain('[320, 480, 768, 1024, 1536]');
-    expect(component).toContain('[320, 480, 640]');
-    expect(component).toContain('loading="lazy"');
-  });
-
   it('uses the supplied process assets in a semantic, static sequence', () => {
     expect(component).toContain('<div class="trust-story">');
     expect(component).toContain('<section class="trust-process"');
@@ -90,10 +51,8 @@ describe('approved trust and work showcase', () => {
     expect(component).toContain("String(index + 1).padStart(2, '0')");
     expect(component).toContain('id="trust-thread-gradient"');
     expect(component).toContain('aria-hidden="true"');
-    expect(component).toContain('<div class="work-showcase__canvas">');
-    expect(component).toContain('<Ornament variant="dots"');
-    expect(component).toContain('<ul class="work-gallery"');
-    expect(component).toContain('<figure class="work-gallery__figure">');
+    expect(component).not.toContain('work-showcase');
+    expect(component).not.toContain('work-gallery');
     expect(component).not.toContain('client:');
     expect(styles).toContain('@media (min-width: 40rem)');
     expect(styles).toContain('@media (min-width: 64rem)');
@@ -104,20 +63,24 @@ describe('approved trust and work showcase', () => {
     expect(styles).toContain('.trust-card__number--1');
     expect(styles).toContain('.trust-card__number--2');
     expect(styles).toContain('.trust-card__number--3');
-    expect(styles).toContain('grid-column: 1 / span 7');
-    expect(styles).toContain('inline-size: 82%');
     expect(styles).not.toContain('overflow-x: auto');
     expect(styles).not.toContain('.work-gallery__item:hover');
     expect(styles).not.toContain('transition: transform');
     expect(page).toContain('<TrustAndWork />');
   });
 
-  it('keeps process and work order in the approved DOM sequence', () => {
+  it('keeps the process before the final custom idea CTA', () => {
     expect(component).toContain('trustAndWorkContent.trust.steps.map');
-    expect(component).toContain('trustAndWorkContent.showcase.images.map');
-    expect(component.indexOf('trust-story')).toBeLessThan(
-      component.indexOf('work-showcase__canvas'),
-    );
     expect(component).not.toMatch(/carousel|slider|client:/i);
+    expect(page.indexOf('<TaxonomyDiscovery catalog={catalog} />')).toBeLessThan(
+      page.indexOf('<TrustAndWork />'),
+    );
+    expect(page.indexOf('<TrustAndWork />')).toBeLessThan(
+      page.indexOf('<FeaturedProducts catalog={catalog} />'),
+    );
+    expect(page.indexOf('<FeaturedProducts catalog={catalog} />')).toBeLessThan(
+      page.indexOf('<CustomIdeaCta />'),
+    );
+    expect(page).not.toContain('work-showcase');
   });
 });

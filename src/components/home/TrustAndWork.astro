@@ -1,23 +1,10 @@
 ---
-import { Picture } from 'astro:assets';
-import blueCake from '../../assets/home/work-showcase/tarta-azul-completa.png';
-import pinkCake from '../../assets/home/work-showcase/tarta-rosa-completa.png';
-import pinkCakeDetail from '../../assets/home/work-showcase/tarta-rosa-detalle.png';
-import stitchCake from '../../assets/home/work-showcase/tarta-stitch-completa.png';
 import chatStep from '../../assets/home/trust-steps/01-chat.png';
 import handsStep from '../../assets/home/trust-steps/02-manos.png';
 import heartStep from '../../assets/home/trust-steps/03-corazon.png';
 import { trustAndWorkContent } from '../../content/home/trust-and-work';
-import ContentSection from '../patterns/ContentSection.astro';
 import Ornament from '../ui/Ornament.astro';
 import './trust-and-work.css';
-
-const imageAssets = {
-  'tarta-rosa-completa': pinkCake,
-  'tarta-stitch-completa': stitchCake,
-  'tarta-azul-completa': blueCake,
-  'tarta-rosa-detalle': pinkCakeDetail,
-} as const;
 
 const trustStepImages = [chatStep, handsStep, heartStep] as const;
 ---
@@ -120,45 +107,4 @@ const trustStepImages = [chatStep, handsStep, heartStep] as const;
     </div>
   </section>
 
-  <ContentSection id="work-showcase" title={trustAndWorkContent.showcase.title}>
-    <div class="work-showcase__canvas">
-      <Ornament variant="dots" class="work-showcase__dots" />
-      <ul class="work-gallery" aria-label="Selección de trabajos realizados">
-        {
-          trustAndWorkContent.showcase.images.map((image) => (
-            <li
-              class:list={[
-                'work-gallery__item',
-                { 'work-gallery__item--primary': image.primary },
-              ]}
-            >
-              <figure class="work-gallery__figure">
-                <Picture
-                  src={imageAssets[image.id]}
-                  alt={image.alt}
-                  formats={['avif', 'webp']}
-                  fallbackFormat="jpg"
-                  quality={50}
-                  widths={
-                    image.primary
-                      ? [320, 480, 768, 1024, 1536]
-                      : [320, 480, 640]
-                  }
-                  sizes={
-                    image.primary
-                      ? '(min-width: 90rem) 32rem, (min-width: 64rem) 38vw, (min-width: 40rem) 58vw, calc(100vw - 2rem)'
-                      : '(min-width: 90rem) 22rem, (min-width: 64rem) 30vw, (min-width: 40rem) 36vw, 82vw'
-                  }
-                  loading="lazy"
-                  decoding="async"
-                  class="work-gallery__image"
-                  pictureAttributes={{ class: 'work-gallery__picture' }}
-                />
-              </figure>
-            </li>
-          ))
-        }
-      </ul>
-    </div>
-  </ContentSection>
 </div>
