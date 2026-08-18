@@ -181,6 +181,11 @@
 
 ---
 
+**Corrección de mantenimiento (2026-08-18):** restaurada la ejecución de
+`actions/configure-pages` y la aplicación de su `base_path` al build. Esto corrige
+las referencias de assets bajo `https://xenxi.github.io/luna_tartas/` sin cambiar
+el `site` canónico `https://lunatartas.es`.
+
 # M2 — Catalog Domain + Validation
 
 **Estado:** PENDING  
