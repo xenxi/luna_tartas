@@ -103,6 +103,22 @@ describe('public site shell', () => {
     expect(footer).not.toContain('target="_blank"');
   });
 
+  it('keeps the footer compact with real navigation and icon-only contacts', () => {
+    expect(footer).toContain(
+      'const footerNavigation = primaryNavigation.filter',
+    );
+    expect(footer).toContain('aria-label="Navegación del pie"');
+    expect(footer).not.toContain('Explorar');
+    expect(footer).not.toContain('Contacto</p>');
+    expect(footer).toContain('aria-label="Escríbenos por WhatsApp"');
+    expect(footer).toContain('aria-label="Escríbenos por email"');
+    expect(footer).toContain('aria-label="Síguenos en Instagram"');
+    expect(footer.match(/<svg\b/g)).toHaveLength(3);
+    expect(styles).toContain('grid-template-columns: repeat(2, max-content)');
+    expect(styles).toContain('grid-template-columns: repeat(3, 2.75rem)');
+    expect(styles).toContain('min-block-size: 4.5rem');
+  });
+
   it('publishes the approved logo as the favicon without deriving a brand mark', () => {
     expect(layout).toContain(
       "import brandLogo from '../assets/brand/logo-luna-tartas.png';",

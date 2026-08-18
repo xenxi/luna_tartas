@@ -167,32 +167,60 @@
 }
 
 .site-footer {
-  margin-block-start: auto;
-  background: var(--color-surface-soft);
+  margin-block-start: 0;
+  background: color-mix(
+    in srgb,
+    var(--color-canvas) 92%,
+    var(--color-surface-warm)
+  );
 }
 
 .site-footer__inner {
   display: grid;
-  gap: var(--space-10);
-  padding-block: var(--space-12) var(--space-6);
+  gap: var(--space-5);
+  padding-block: var(--space-7);
 }
 
 .site-footer__main {
   display: grid;
-  gap: var(--space-8);
+  gap: var(--space-5);
+  align-items: center;
 }
 
 .site-footer__identity {
-  align-self: start;
+  display: flex;
+  align-items: center;
 }
 
-.site-footer__label {
-  margin-block-end: var(--space-3);
-  color: var(--color-text-muted);
-  font-size: var(--font-size-xs);
-  font-weight: var(--font-weight-bold);
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
+.brand-home--footer .brand-home__logo {
+  inline-size: clamp(8.5rem, 10vw, 9.5rem);
+}
+
+.site-footer__navigation ul,
+.site-footer__contact ul {
+  display: grid;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.site-footer__navigation ul {
+  grid-template-columns: repeat(2, max-content);
+  column-gap: clamp(var(--space-5), 3vw, var(--space-10));
+  row-gap: var(--space-2);
+}
+
+.site-footer__navigation a {
+  color: var(--color-text);
+  font-size: var(--font-size-sm);
+  line-height: 1.35;
+  text-decoration: none;
+}
+
+.site-footer__navigation a:hover,
+.site-footer__navigation a:focus-visible,
+.site-footer__navigation a[aria-current='page'] {
+  color: var(--color-action);
 }
 
 .site-footer__contact {
@@ -200,58 +228,47 @@
 }
 
 .site-footer__contact ul {
-  display: grid;
+  grid-auto-flow: column;
+  grid-template-columns: repeat(3, 2.75rem);
   gap: var(--space-3);
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.site-footer__contact li {
-  margin: 0;
 }
 
 .site-footer__contact a {
   display: grid;
   min-block-size: 2.75rem;
-  align-content: center;
-  gap: var(--space-1);
-  color: var(--color-text);
-  line-height: 1.35;
-  text-decoration: none;
-}
-
-.site-footer__contact a > span:first-child {
-  color: var(--color-text-muted);
-  font-size: var(--font-size-xs);
-}
-
-.site-footer__contact a > span:last-child {
-  font-weight: var(--font-weight-semibold);
-  overflow-wrap: anywhere;
+  place-items: center;
+  border-radius: var(--radius-md);
+  color: var(--color-action);
 }
 
 .site-footer__contact a:hover,
 .site-footer__contact a:focus-visible {
-  color: var(--color-action);
+  background: color-mix(in srgb, var(--color-action) 5%, transparent);
+}
+
+.site-footer__contact svg {
+  inline-size: 1.5rem;
+  block-size: 1.5rem;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.5;
 }
 
 .site-footer__closing {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  gap: var(--space-3) var(--space-8);
+  justify-content: center;
   max-inline-size: none;
-  padding-block-start: var(--space-5);
-  border-block-start: 1px solid var(--color-border);
+  padding: 0;
   color: var(--color-text-muted);
   font-size: var(--font-size-xs);
-  text-wrap: balance;
 }
 
-.site-footer__copyright,
 .site-footer__signature {
   max-inline-size: none;
+  margin: 0;
+  text-align: center;
+  text-wrap: pretty;
 }
 
 .site-footer__signature a {
@@ -266,14 +283,9 @@
   color: var(--color-action);
 }
 
-.primary-navigation--footer ul {
-  align-items: start;
-  flex-direction: column;
-  gap: var(--space-2);
-}
-
-.primary-navigation--footer a {
-  padding-inline: 0;
+.site-footer__heart {
+  margin-inline-start: var(--space-1);
+  color: var(--color-action);
 }
 
 @media (min-width: 48rem) {
@@ -307,22 +319,16 @@
     font-weight: var(--font-weight-regular);
   }
 
-  .site-footer__inner {
-    gap: var(--space-12);
-  }
-
   .site-footer__main {
-    grid-template-columns: minmax(10rem, 0.7fr) minmax(10rem, 0.8fr) minmax(
-        16rem,
-        1.25fr
-      );
-    align-items: start;
-    gap: clamp(var(--space-8), 5vw, var(--space-16));
+    grid-template-columns: minmax(9.5rem, 0.7fr) minmax(16rem, 1fr) auto;
+    gap: clamp(var(--space-6), 4vw, var(--space-14));
   }
 
-  .primary-navigation--footer ul {
-    align-items: start;
-    flex-direction: column;
+  .site-footer__identity {
+    min-block-size: 4.5rem;
+    padding-inline-end: clamp(var(--space-5), 3vw, var(--space-10));
+    border-inline-end: 1px solid
+      color-mix(in srgb, var(--color-border) 76%, transparent);
   }
 }
 

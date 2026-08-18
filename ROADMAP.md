@@ -9,7 +9,7 @@
 - Se ejecuta exclusivamente la tarea solicitada; no se anticipa la siguiente.
 - `DONE` exige todos los criterios y verificaciones en `PASS`, con evidencia registrada aquí.
 - Orden normal: de arriba abajo. Una tarea posterior sólo puede comenzar si todas sus dependencias están `DONE`.
-- **Siguiente tarea:** `M8.9.8 — ¿Tienes algo en mente?`.
+- **Siguiente tarea:** `M8.9.9 — Footer`.
 - **Pausa de release:** M9 permanece temporalmente pausada por alineación visual;
   M9.2 conserva su bloqueo operativo de Cloudflare y no se reanuda hasta que
   M8.9.11 obtenga `VISUAL QA: PASS` y `OWNER APPROVAL: APPROVED`.
@@ -1362,11 +1362,11 @@ composición editorial sin carousel/grid ecommerce, sin solapes ni overflow
 visible. Los cuatro assets conservan derechos/alt y dimensiones fuente; el
 portfolio no añade nombre/precio. `VISUAL QA: PASS` para esta submilestone.
 La aprobación visual global del propietario sigue reservada a M8.9.11.
-Siguiente tarea: M8.9.8 (modelo LUNA → SOL REVIEW).
+Siguiente tarea: M8.9.9 (modelo LUNA → SOL REVIEW).
 
 ## M8.9.8 — ¿Tienes algo en mente?
 
-**Estado:** PENDING
+**Estado:** DONE
 **Objetivo:** alinear la banda editorial de cierre con fondo blush/acuarela,
 fotografía autorizada, decoración Luna y WhatsApp real.
 **Dependencias:** M8.9.7.
@@ -1375,7 +1375,47 @@ fotografía equivalente a referencia; no card genérica; href y tracking intacto
 **Verificación:** suite/build, WhatsApp, analytics, a11y, performance y QA
 1280/1440/1920.
 **Modelo recomendado:** LUNA → SOL REVIEW.
-**Evidencia:** —
+**Evidencia:** Implementación técnica completada el 2026-08-18: la sección
+deja de usar `ContentSection`/card genérica y pasa a ser una banda editorial
+con el fondo blush aportado, las nubes rosa y azul como decoración y la
+fotografía central responsive. El 2026-08-18 la fotografía se sustituyó por el
+PNG transparente actualizado aportado por el propietario; alt, dimensiones y
+autorización directa quedan trazados en `src/content/home/custom-idea.ts`. Se conservan
+sin cambio el titular, copy, enlace de WhatsApp y `custom_whatsapp_click` en
+`home-custom-idea`. `npm run lint`, `npm run typecheck` (0 errores, warnings e
+hints), `npm test` (39 archivos, 242 tests), `npm run build` (25 páginas),
+`verify:links`, `verify:accessibility`, `verify:performance` (104.286 bytes
+máximo de transferencia inicial a 375 px), `verify:responsive`,
+`verify:assets`, `verify:determinism` y `git diff --check`: PASS. La comprobación
+Prettier específica de los archivos de esta tarea: PASS; `npm run format`
+mantiene dos avisos preexistentes y fuera de alcance en
+`src/pages/regalos/[slug].astro` y `tests/taxonomy-listing.test.ts`.
+`VISUAL QA: BLOCKED`: el navegador no pudo inicializarse para capturas
+1280/1440/1920 por una restricción local de conexión de la herramienta. No
+avanzar a M8.9.9 hasta completar ese QA visual.
+
+Actualización solicitada el 2026-08-18: CTA y Footer rediseñados como cierre
+compacto. El CTA es un panel centrado de `min(92%, 1500px)` y
+`clamp(192px, 15vw, 240px)`, con arte transparente recortado desde el borde
+superior, nube azul/rosa parcialmente ocultas, luna `luna-nube.png`, copy
+directamente aprobado, microornamentos y CTA outline con icono de WhatsApp.
+El Footer se compacta con logo, navegación real en dos columnas, iconos de
+contacto accesibles y firma en una línea; no se inventaron enlaces. `npm test`
+(39 archivos, 243 tests), lint, typecheck, build (25 páginas), links, a11y,
+performance (106.934 bytes máximo inicial a 375 px), responsive, assets,
+determinism y `git diff --check`: PASS. Las capturas 1280/1440/1920 siguen
+`BLOCKED` por la restricción local de conexión del navegador; no avanzar.
+
+Ajuste solicitado el 2026-08-18: la fotografía central se desplaza hacia abajo
+en escritorio mediante `inset-block-start: clamp(-1.75rem, -1.5vw, -1rem)`;
+el panel conserva `overflow: hidden`, mostrando algo más de las manos arriba y
+recortando la parte inferior como en la referencia aportada. Test específico,
+lint, typecheck, 243 tests, build (25 páginas), links, a11y, performance,
+responsive, assets, determinismo (522 archivos), auditoría de artefacto,
+Prettier específico y `git diff --check`: PASS. QA visual manual PASS sobre
+`astro preview` con Chrome headless a 1280, 1440 y 1920 px; la banda queda sin
+solapes ni overflow y el recorte coincide con la referencia solicitada.
+Siguiente tarea: M8.9.9 — Footer (modelo LUNA → SOL REVIEW).
 
 ## M8.9.9 — Footer
 
@@ -1767,3 +1807,22 @@ No avanzar a la siguiente milestone.
   categorías, enlaces, copy, CTA, media responsive y ornamentos Luna. Suite,
   build y auditorías en PASS; QA visual 1280/1440/1920 permanece BLOCKED porque
   el navegador integrado no pudo inicializarse. No avanzar a M8.9.8.
+- 2026-08-18 — M8.9.8 implementada técnicamente: banda editorial de cierre sin
+  card genérica, con los cuatro assets aportados (fondo blush, nubes rosa/azul y
+  fotografía central), media responsive, derechos/alt trazables y WhatsApp con
+  analytics intactos. 242 tests, build y auditorías de links, accesibilidad,
+  rendimiento, responsive, assets y determinismo en PASS. El QA visual
+  1280/1440/1920 queda BLOCKED porque el navegador no pudo inicializarse por una
+  restricción local de conexión. No avanzar a M8.9.9.
+- 2026-08-18 — M8.9.8 actualizada con la nueva fotografía central PNG con
+  transparencia aportada por el propietario; se elimina la mezcla visual que
+  compensaba el fondo anterior. Test de la sección, lint, typecheck, build y
+  auditorías de links, accesibilidad, rendimiento, responsive, assets y
+  determinismo: PASS. El QA visual permanece BLOCKED por la misma restricción
+  local de conexión del navegador. No avanzar a M8.9.9.
+- 2026-08-18 — Rediseño solicitado de M8.9.8 y Footer: cierre horizontal
+  compacto con panel blush, arte transparente recortado, luna/nubes reales,
+  CTA outline e icono de WhatsApp; footer compacto con sólo enlaces reales,
+  iconos accesibles y firma en línea. 243 tests, build y auditorías técnicas
+  en PASS. QA visual 1280/1440/1920 permanece BLOCKED por la restricción local
+  de conexión del navegador. No avanzar a M8.9.9.
