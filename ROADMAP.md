@@ -1512,6 +1512,13 @@ inspección de `dist/categorias/index.html`: enlaces internos bajo
 `verify:links` se normaliza con `PAGES_BASE_PATH` y pasa sobre ese artefacto
 (25 HTML, 0 rotos, 0 huérfanos); queda integrado en el job de Pages.
 
+Corrección de contrato de artefacto (2026-08-18): `verify-artifact` normaliza
+los enlaces públicos y el CTA de productos contra `PAGES_BASE_PATH` antes de
+compararlos con las rutas físicas de `dist`; el build Pages ya no rechaza
+`/404.html -> /luna_tartas/`. Build con `--base /luna_tartas/`,
+`verify:links`, `verify:performance`, `verify:artifact`, `verify:security`,
+lint, typecheck, test específico y format: PASS.
+
 ## M8.9.11 — Visual QA desktop + aprobación del propietario
 
 **Estado:** PENDING

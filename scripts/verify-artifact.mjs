@@ -3,6 +3,8 @@ import { extname, join, relative, resolve } from 'node:path';
 
 const dist = resolve(process.env.DIST_DIR ?? 'dist');
 const siteOrigin = 'https://lunatartas.es';
+const deploymentBase =
+  (process.env.PAGES_BASE_PATH ?? '/').replace(/\/+$/, '') || '/';
 const htmlFiles = [];
 
 async function walk(directory) {
@@ -22,6 +24,14 @@ function routeFor(file) {
 
 function fail(message) {
   throw new Error(`Artifact contract failed: ${message}`);
+}
+
+function artifactRoute(href) {
+  if (deploymentBase === '/') return href;
+  if (href === deploymentBase) return '/';
+  return href.startsWith(`${deploymentBase}/`)
+    ? href.slice(deploymentBase.length)
+    : href;
 }
 
 await walk(dist);
@@ -54,7 +64,7 @@ for (const [route, html] of pages) {
   for (const match of html.matchAll(/href="([^"]+)"/g)) {
     const href = match[1];
     if (!href.startsWith('/') || href.startsWith('//')) continue;
-    const target = href.split('#')[0].split('?')[0];
+    const target = artifactRoute(href.split('#')[0].split('?')[0]);
     if (
       target.startsWith('/_astro/') ||
       target.includes('/_astro/') ||
@@ -69,7 +79,9 @@ for (const [route, html] of pages) {
 
 const home = pages.get('/');
 if (home === undefined) fail('homepage is missing');
-if (!home.includes('href="/productos/"')) {
+const productsPath =
+  deploymentBase === '/' ? '/productos/' : `${deploymentBase}/productos/`;
+if (!home.includes(`href="${productsPath}"`)) {
   fail('homepage has no products discovery CTA');
 }
 
