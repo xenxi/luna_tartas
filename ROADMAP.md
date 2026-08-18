@@ -9,7 +9,7 @@
 - Se ejecuta exclusivamente la tarea solicitada; no se anticipa la siguiente.
 - `DONE` exige todos los criterios y verificaciones en `PASS`, con evidencia registrada aquí.
 - Orden normal: de arriba abajo. Una tarea posterior sólo puede comenzar si todas sus dependencias están `DONE`.
-- **Siguiente tarea:** `M8.9.9 — Footer`.
+- **Siguiente tarea:** `M8.9.10 — Integración visual desktop`.
 - **Pausa de release:** M9 permanece temporalmente pausada por alineación visual;
   M9.2 conserva su bloqueo operativo de Cloudflare y no se reanuda hasta que
   M8.9.11 obtenga `VISUAL QA: PASS` y `OWNER APPROVAL: APPROVED`.
@@ -1436,7 +1436,7 @@ tests), `npm run build` (25 páginas) y `git diff --check`: PASS.
 
 ## M8.9.9 — Footer
 
-**Estado:** BLOCKED
+**Estado:** DONE
 **Objetivo:** alinear el Footer con la referencia usando sólo logo, navegación,
 contacto, redes, copyright y crédito reales ya autorizados.
 **Dependencias:** M8.9.8.
@@ -1445,22 +1445,21 @@ coral coherente, foco/targets/contraste; crédito de Antonio MDM y año de build
 preservados; cero enlace ficticio.
 **Verificación:** suite/build, hrefs, teclado, a11y y QA 1280/1440/1920.
 **Modelo recomendado:** LUNA → SOL REVIEW.
-**Evidencia:** Reabierta el 2026-08-18 por revisión visual obligatoria: la
-captura objetivo evidencia diferencias P0 en el asset y tamaño del logo, el
-divisor vertical, la composición de navegación y contacto, el orden/corrección
-de iconos y la posición del crédito. La implementación usa el asset oficial
+**Evidencia:** PASS (2026-08-18) — la implementación usa el asset oficial
 aportado, una grid compacta desktop con divisor de 96 px, dos columnas de
 navegación, redes en orden Instagram → WhatsApp → email y firma integrada bajo
-las redes; se conserva el año UTC, los hrefs autorizados, foco, targets de 44
-px y analítica de WhatsApp. `npm run lint`, `npm run typecheck` (0 errores,
-warnings e hints), `npm test` (39 archivos, 243 tests), `npm run build` (25
-páginas), `verify:links`, `verify:accessibility`, `verify:responsive`,
-`verify:artifact` y `git diff --check`: PASS. `npm run format` conserva dos
-avisos preexistentes y fuera de alcance en `src/pages/regalos/[slug].astro` y
-`tests/taxonomy-listing.test.ts`. QA visual 1280/1440/1920: BLOCKED; el
-navegador integrado no llega a inicializar una pestaña por el error local de
-resolución de dependencia RPC confiable. No avanzar a M8.9.10 hasta poder
-comparar renderizados con la captura objetivo.
+las redes; conserva el año UTC, los hrefs autorizados, foco, targets de 44 px
+y analítica de WhatsApp, sin enlaces ficticios. `npm run lint`,
+`npm run typecheck` (0 errores, warnings e hints), `npm test` (39 archivos,
+241 tests), `npm run build` (25 páginas), `verify:links`,
+`verify:accessibility`, `verify:responsive`, `verify:artifact`,
+`verify:performance` (102.046 bytes máximo inicial a 375 px), `verify:assets`
+(41 archivos, 46.581.759 bytes), `verify:determinism` (481 archivos),
+Prettier específico y `git diff --check`: PASS. QA visual manual PASS con
+Chrome headless estable sobre `astro preview` a 1280/1440/1920 px: logo,
+divisor, navegación, iconos coral y firma coinciden con la referencia sin
+solapes ni overflow visible. El bloqueo previo del navegador queda resuelto.
+Siguiente tarea: M8.9.10 — Integración visual desktop.
 
 ## M8.9.10 — Integración visual desktop
 
