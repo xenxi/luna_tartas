@@ -9,7 +9,7 @@
 - Se ejecuta exclusivamente la tarea solicitada; no se anticipa la siguiente.
 - `DONE` exige todos los criterios y verificaciones en `PASS`, con evidencia registrada aquí.
 - Orden normal: de arriba abajo. Una tarea posterior sólo puede comenzar si todas sus dependencias están `DONE`.
-- **Siguiente tarea:** `M8.9.5 — Encuentra el regalo perfecto`.
+- **Siguiente tarea:** `M8.9.7 — Trabajos realizados por Luna`.
 - **Pausa de release:** M9 permanece temporalmente pausada por alineación visual;
   M9.2 conserva su bloqueo operativo de Cloudflare y no se reanuda hasta que
   M8.9.11 obtenga `VISUAL QA: PASS` y `OWNER APPROVAL: APPROVED`.
@@ -1254,7 +1254,7 @@ SOL → LUNA).
 
 ## M8.9.5 — Encuentra el regalo perfecto
 
-**Estado:** BLOCKED
+**Estado:** DONE
 **Objetivo:** sustituir el descubrimiento actual por exactamente tres cards
 desktop: 01 Por tipo, 02 Por ocasión y 03 Para quién, con un producto real por
 dimensión.
@@ -1292,13 +1292,17 @@ lint`, `npm run typecheck` (0 errores/warnings/hints), `npm test` (39 archivos,
 (25 páginas), `verify:links`, `verify:accessibility` (25 HTML),
 `verify:performance` (87.789 bytes máximo inicial a 375 px),
 `verify:responsive`, `verify:assets` (32 archivos, 31.740.577 bytes) y
-`git diff --check`: PASS. **VISUAL QA 1280/1440/1920: BLOCKED** — el navegador
-local no puede inicializarse en este entorno; no se marca `DONE` ni se avanza a
-M8.9.6 hasta revisar visualmente la composición en esos viewports.
+`git diff --check`: PASS. El fallback móvil anula el ratio en `320 px` para
+mantener las cards dentro del viewport. QA real con Chrome sobre preview HTTP:
+`1280/1440/1920` mantiene tres columnas sin overflow; `320` mantiene una
+columna, tres cards dentro del viewport y sin overflow. Se verificaron H1 único,
+tres href reales, dimensiones de cards y consola sin errores; captura de
+inspección a `1440 px` revisada. Siguiente tarea: M8.9.6 (modelo LUNA → SOL
+REVIEW).
 
 ## M8.9.6 — Cada detalle cuenta
 
-**Estado:** PENDING
+**Estado:** DONE
 **Objetivo:** alinear la secuencia ligera y conectada de los tres pasos aprobados
 sin convertirla en cards convencionales.
 **Dependencias:** M8.9.5.
@@ -1307,11 +1311,23 @@ iconos circulares, numeración editorial, línea orgánica/punteada y ornamentos
 consistentes; DOM y lectura accesibles.
 **Verificación:** contenido, suite/build, a11y y QA 1280/1440/1920.
 **Modelo recomendado:** LUNA → SOL REVIEW.
-**Evidencia:** —
+**Evidencia:** PASS (2026-08-18) — La secuencia conserva exactamente los tres
+pasos aprobados y su `ol` semántico; cada paso tiene icono circular decorativo,
+numeración editorial `01`–`03`, curva punteada y ornamentos Luna ocultos a
+tecnologías asistivas. `tests/trust-and-work.test.ts` protege contenido, orden,
+semántica, iconos, numeración, línea punteada y ausencia de hidratación. `npm run
+lint`, `npm run typecheck` (0 errores/warnings/hints), `npm test` (39 archivos,
+241 tests), `npm run build` (25 páginas), `verify:links`,
+`verify:accessibility`, `verify:performance` (90.623 bytes máximo inicial a
+375 px), `verify:responsive`, `verify:assets` (32 archivos, 31.740.577 bytes),
+Prettier específico y `git diff --check`: PASS. QA real con Chrome sobre preview
+HTTP: a `1280/1440/1920` se mantienen tres columnas, los pasos `01/02/03`,
+iconos, curva y ornamentos sin solapes ni overflow; captura de inspección a
+`1440 px` revisada. Siguiente tarea: M8.9.7 (modelo LUNA → SOL REVIEW).
 
 ## M8.9.7 — Trabajos realizados por Luna
 
-**Estado:** PENDING
+**Estado:** BLOCKED
 **Objetivo:** convertir la muestra aprobada en un portfolio/mosaico editorial
 equivalente a la referencia.
 **Dependencias:** M8.9.6.
@@ -1321,7 +1337,28 @@ variados; sin carousel, grid ecommerce ni nombre/precio añadido.
 **Verificación:** derechos/alt, suite/build, assets, performance y QA
 1280/1440/1920.
 **Modelo recomendado:** LUNA → SOL REVIEW.
-**Evidencia:** —
+**Evidencia:** Implementación técnica PASS (2026-08-18) — la muestra de
+“Ideas para regalar” sustituye las cards por una pieza editorial estática: copy
+aprobado, CTA a `/productos/`, fondo blush orgánico, luna de marca reutilizada,
+ornamentos decorativos ocultos a AT y galería `1 + 2×2`. La luna se sustituye
+por el asset aportado `src/assets/home/luna-nube.png`, sin máscara ni opacidad,
+y se acompaña de cuatro destellos rosa, melocotón y azul. La selección pura
+elige cinco productos publicados, prioriza los cuatro destacados, cubre las
+cuatro categorías destacadas y rellena el quinto hueco con un producto
+publicado real cuando el catálogo no dispone de cinco destacados; el RNG
+inyectable permite pruebas deterministas sin hydration ni cambios de layout.
+Cada fotografía conserva el alt de catálogo y enlaza con semántica nativa a su
+ficha. Tests cubren copy, CTA, cinco enlaces, publicados, prioridad featured y
+variedad de categorías. `npm run lint`, `npm run typecheck` (0 errores,
+warnings/hints), `npm test` (39 archivos, 241 tests), `npm run build` (25
+páginas), `verify:links`, `verify:accessibility`, `verify:performance`
+(100.033 bytes máximo inicial a 375 px), `verify:responsive`, `verify:assets`
+(33 archivos, 32.853.114 bytes),
+`verify:determinism`, Prettier específico y `git diff --check`: PASS.
+**VISUAL QA 1280/1440/1920: BLOCKED** —
+el cliente del navegador integrado no puede inicializarse en este entorno por
+una dependencia confiable no resoluble; no se declara una comparación visual
+ni una aprobación inexistentes.
 
 ## M8.9.8 — ¿Tienes algo en mente?
 
@@ -1712,3 +1749,17 @@ No avanzar a la siguiente milestone.
   acuarela transparente original optimizada a WebP y se elimina el overflow
   detectado en QA; 239 tests, build, auditorías y QA 1280/1440/1920/320 en PASS.
   Siguiente tarea: M8.9.5 (modelo SOL → LUNA).
+- 2026-08-18 — M8.9.5 completada: descubrimiento determinista en tres cards con
+  productos publicados distintos, rutas reales y selección cubierta por tests;
+  corrección del fallback móvil para eliminar overflow a 320 px. 241 tests,
+  build, auditorías de links/a11y/performance/responsive/assets y QA Chrome
+  1280/1440/1920/320 en PASS. Siguiente tarea: M8.9.6 (modelo LUNA → SOL REVIEW).
+- 2026-08-18 — M8.9.6 completada: secuencia de tres pasos con `ol` semántico,
+  iconos circulares, numeración editorial, curva punteada y ornamentos Luna;
+  241 tests, build, auditorías de links/a11y/performance/responsive/assets y QA
+  Chrome 1280/1440/1920 en PASS. Siguiente tarea: M8.9.7 (modelo LUNA → SOL REVIEW).
+- 2026-08-18 — M8.9.7 implementada técnicamente: mosaico editorial de cinco
+  productos publicados, selección prioritaria de destacados con variedad de
+  categorías, enlaces, copy, CTA, media responsive y ornamentos Luna. Suite,
+  build y auditorías en PASS; QA visual 1280/1440/1920 permanece BLOCKED porque
+  el navegador integrado no pudo inicializarse. No avanzar a M8.9.8.

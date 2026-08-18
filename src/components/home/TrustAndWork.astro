@@ -15,18 +15,37 @@ const imageAssets = {
   'tarta-azul-completa': blueCake,
   'tarta-rosa-detalle': pinkCakeDetail,
 } as const;
+
+const trustStepIcons = ['heart', 'sparkle', 'mini-hearts'] as const;
 ---
 
 <div class="trust-and-work">
   <ContentSection id="trust" title={trustAndWorkContent.trust.title}>
     <div class="trust-story">
-      <Ornament variant="thread" motion="draw" class="trust-story__thread" />
+      <Ornament
+        variant="dotted-curve"
+        motion="draw"
+        class="trust-story__thread"
+      />
+      <Ornament
+        variant="mini-hearts"
+        tone="blush"
+        class="trust-story__hearts"
+      />
       <ol class="trust-list">
         {
-          trustAndWorkContent.trust.steps.map((step) => (
+          trustAndWorkContent.trust.steps.map((step, index) => (
             <li class="trust-card">
-              <h3>{step.title}</h3>
-              <p>{step.copy}</p>
+              <span class="trust-card__icon" aria-hidden="true">
+                <Ornament variant={trustStepIcons[index]} />
+              </span>
+              <span class="trust-card__number" aria-hidden="true">
+                {String(index + 1).padStart(2, '0')}
+              </span>
+              <div class="trust-card__body">
+                <h3>{step.title}</h3>
+                <p>{step.copy}</p>
+              </div>
             </li>
           ))
         }

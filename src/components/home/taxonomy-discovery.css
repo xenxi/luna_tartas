@@ -211,6 +211,7 @@
   }
 
   .taxonomy-discovery__card {
+    aspect-ratio: auto;
     min-block-size: 16rem;
   }
 

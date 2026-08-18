@@ -16,8 +16,8 @@ import {
 } from '../src/lib/catalog/domain/queries';
 import { projectTaxonomyDiscovery } from '../src/components/home/taxonomy-discovery';
 import {
-  formatPriceLabel,
   projectFeaturedProducts,
+  selectFeaturedProductMosaic,
 } from '../src/components/home/featured-products';
 
 const taxonomy = (
@@ -239,34 +239,83 @@ describe('catalog queries', () => {
     expect(discovery).toBeUndefined();
   });
 
-  it('projects only featured products and preserves every public price variant', () => {
+  it('projects a five-product editorial mosaic with featured category coverage', () => {
     const featured = projectFeaturedProducts({
       ...catalog,
+      categories: [
+        taxonomy('cakes', 'category', 0),
+        taxonomy('paper', 'category', 1),
+        taxonomy('packs', 'category', 2),
+        taxonomy('prints', 'category', 3),
+      ],
       products: [
-        product('fixed', 0, {
+        product('cake', 0, {
           featured: true,
-          price: { kind: 'fixed', amountMinor: 3000, currency: 'EUR' },
         }),
-        product('from', 1, {
+        product('paper', 1, {
           featured: true,
-          price: { kind: 'from', amountMinor: 3050, currency: 'EUR' },
+          categories: ['paper'],
         }),
-        product('request', 2, {
+        product('pack', 2, {
           featured: true,
-          price: { kind: 'on_request' },
+          categories: ['packs', 'paper'],
         }),
-        product('not-featured', 3),
+        product('print', 3, {
+          featured: true,
+          categories: ['prints'],
+        }),
+        product('published-fallback', 4, { categories: ['paper'] }),
         { id: 'draft', slug: 'draft', status: 'draft' },
       ],
     });
 
-    expect(
-      featured.items.map(({ href, priceLabel }) => ({ href, priceLabel })),
-    ).toEqual([
-      { href: '/productos/fixed/', priceLabel: `30,00\u00a0€` },
-      { href: '/productos/from/', priceLabel: `Desde 30,50\u00a0€` },
-      { href: '/productos/request/', priceLabel: 'Consultar precio' },
+    expect(featured).toMatchObject({
+      eyebrow: 'HECHO A MANO, CON AMOR',
+      title: 'Ideas para regalar',
+      intro:
+        'Algunos de los regalos que hemos preparado con todo nuestro cariño.',
+      action: { href: '/productos/', label: 'Ver más regalos' },
+    });
+    expect(featured?.items).toHaveLength(5);
+    expect(featured?.items.map(({ href }) => href)).toEqual([
+      '/productos/cake/',
+      '/productos/paper/',
+      '/productos/pack/',
+      '/productos/print/',
+      '/productos/published-fallback/',
     ]);
-    expect(formatPriceLabel({ kind: 'on_request' })).toBe('Consultar precio');
+    expect(featured?.items.filter(({ primary }) => primary)).toHaveLength(1);
+
+    const selected = selectFeaturedProductMosaic(
+      {
+        ...catalog,
+        categories: [
+          taxonomy('cakes', 'category', 0),
+          taxonomy('paper', 'category', 1),
+          taxonomy('packs', 'category', 2),
+          taxonomy('prints', 'category', 3),
+        ],
+        products: [
+          product('cake', 0, { featured: true }),
+          product('paper', 1, { featured: true, categories: ['paper'] }),
+          product('pack', 2, {
+            featured: true,
+            categories: ['packs', 'paper'],
+          }),
+          product('print', 3, { featured: true, categories: ['prints'] }),
+          product('published-fallback', 4, { categories: ['paper'] }),
+          { id: 'draft', slug: 'draft', status: 'draft' },
+        ],
+      },
+      { rng: () => 0.5 },
+    );
+    expect(selected).toHaveLength(5);
+    expect(selected.every(({ status }) => status === 'published')).toBe(true);
+    expect(new Set(selected.flatMap(({ categories }) => categories))).toEqual(
+      new Set(['cakes', 'paper', 'packs', 'prints']),
+    );
+    expect(selected.slice(0, 4).every(({ featured: value }) => value)).toBe(
+      true,
+    );
   });
 });

@@ -98,12 +98,11 @@ describe('global presentation foundation', () => {
     expect(taxonomyDiscovery).toContain(
       '--taxonomy-discovery-media-width: 50%',
     );
-    expect(taxonomyDiscovery).toContain(
-      '.taxonomy-discovery__media::before',
-    );
+    expect(taxonomyDiscovery).toContain('.taxonomy-discovery__media::before');
     expect(taxonomyDiscovery).toContain('var(--taxonomy-discovery-tone)');
     expect(taxonomyDiscovery).toContain('transparent 38%');
     expect(taxonomyDiscovery).toContain('object-fit: cover');
     expect(taxonomyDiscovery).not.toContain('object-fit: contain');
+    expect(taxonomyDiscovery).toContain('aspect-ratio: auto');
   });
 });

@@ -73,8 +73,14 @@ describe('approved trust and work showcase', () => {
 
   it('uses semantic static lists and a responsive primary image without hydration', () => {
     expect(component).toContain('<div class="trust-story">');
-    expect(component).toMatch(/<Ornament\s+variant="thread"\s+motion="draw"/);
+    expect(component).toMatch(
+      /<Ornament\s+variant="dotted-curve"\s+motion="draw"/,
+    );
     expect(component).toContain('<ol class="trust-list">');
+    expect(component).toContain('const trustStepIcons');
+    expect(component).toContain('class="trust-card__icon"');
+    expect(component).toContain('class="trust-card__number"');
+    expect(component).toContain("String(index + 1).padStart(2, '0')");
     expect(component).toContain('<div class="work-showcase__canvas">');
     expect(component).toContain('<Ornament variant="dots"');
     expect(component).toContain('<ul class="work-gallery"');
@@ -84,6 +90,8 @@ describe('approved trust and work showcase', () => {
     expect(styles).toContain('@media (min-width: 64rem)');
     expect(styles).toContain('counter-increment: trust-step');
     expect(styles).toContain('.trust-list::before');
+    expect(styles).toContain('border-inline-start: 1px dashed');
+    expect(styles).toContain('.trust-story__hearts');
     expect(styles).toContain('grid-column: 1 / span 7');
     expect(styles).toContain('inline-size: 82%');
     expect(styles).not.toContain('overflow-x: auto');

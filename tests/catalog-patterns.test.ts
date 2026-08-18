@@ -153,19 +153,24 @@ describe('catalog and contextual navigation patterns', () => {
   });
 
   it('keeps featured products semantic and free of client hydration', () => {
-    expect(featuredProducts).toContain('<ContentSection');
-    expect(featuredProducts).toContain('<CardList');
-    expect(featuredProducts).toContain('<ProductCard');
+    expect(featuredProducts).toContain('<section');
+    expect(featuredProducts).toContain('<ResponsiveMedia');
+    expect(featuredProducts).toContain('<Ornament');
+    expect(featuredProducts).toContain('featured-products__gallery');
+    expect(featuredProducts).toContain('mosaicItems.length === 5');
+    expect(featuredProducts).toContain('aria-label={`Ver ${product.name}`}');
     expect(featuredProductsProjection).toContain('getFeaturedProducts');
+    expect(featuredProductsProjection).toContain('getPublishedProducts');
     expect(featuredProductsProjection).toContain('routes.product');
-    expect(featuredProductsProjection).toContain('formatPriceLabel');
+    expect(featuredProductsProjection).toContain('HECHO A MANO, CON AMOR');
+    expect(featuredProductsProjection).toContain('Ver más regalos');
     expect(featuredProductsProjection).not.toContain('client:');
   });
 
   it('does not publish discovery placeholders or empty modules', () => {
     expect(publicDiscoverySources).not.toMatch(/Pronto podrás/i);
     expect(taxonomyDiscovery).toContain('discovery &&');
-    expect(featuredProducts).toContain('featuredWithMedia.length > 0');
+    expect(featuredProducts).toContain('mosaicItems.length === 5');
     expect(publicDiscoverySources).not.toContain('data-content-state="empty"');
   });
 });

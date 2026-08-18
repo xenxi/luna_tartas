@@ -33,6 +33,10 @@
   display: none;
 }
 
+.trust-story__hearts {
+  display: none;
+}
+
 .trust-list,
 .work-gallery {
   display: grid;
@@ -50,10 +54,9 @@
 
 .trust-list::before {
   position: absolute;
-  inset-block: var(--space-8);
+  inset-block: var(--space-6) var(--space-8);
   inset-inline-start: calc(var(--space-6) - 0.5px);
-  inline-size: 1px;
-  background: var(--color-border);
+  border-inline-start: 1px dashed var(--color-border);
   content: '';
 }
 
@@ -66,29 +69,55 @@
 .trust-card {
   position: relative;
   display: grid;
-  align-content: start;
-  gap: var(--space-2);
-  padding: var(--space-5) 0 var(--space-8) var(--space-16);
+  grid-template-columns: 3.5rem minmax(0, 1fr);
+  column-gap: var(--space-5);
+  align-items: start;
+  padding: var(--space-3) 0 var(--space-8);
   counter-increment: trust-step;
 }
 
-.trust-card::before {
-  position: absolute;
+.trust-card__icon {
+  position: relative;
   z-index: var(--z-raised);
-  inset-block-start: var(--space-3);
-  inset-inline-start: 0;
   display: grid;
-  inline-size: 3rem;
-  block-size: 3rem;
+  inline-size: 3.5rem;
+  block-size: 3.5rem;
   place-items: center;
   border: 1px solid var(--color-border);
   border-radius: 50%;
-  background: var(--color-canvas);
+  background: var(--color-surface);
+  color: var(--color-decoration-accent);
+  box-shadow: var(--shadow-soft);
+}
+
+.trust-card__icon .ornament {
+  inline-size: var(--decoration-size-md);
+}
+
+.trust-card__number {
+  grid-row: 1;
+  grid-column: 1;
+  z-index: var(--z-content);
+  justify-self: end;
+  margin: calc(-1 * var(--space-2)) calc(-1 * var(--space-2)) 0 0;
   color: var(--color-action);
-  content: '0' counter(trust-step);
   font-family: var(--font-display);
-  font-size: var(--font-size-lg);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-bold);
   line-height: 1;
+}
+
+.trust-card__body {
+  display: grid;
+  grid-column: 2;
+  gap: var(--space-2);
+  min-inline-size: 0;
+  padding-block-start: var(--space-2);
+}
+
+.trust-card h3,
+.trust-card p {
+  margin: 0;
 }
 
 .trust-card h3 {
@@ -275,11 +304,21 @@
 
   .trust-story__thread {
     position: absolute;
-    inset-block-start: var(--space-5);
-    inset-inline-start: 10%;
+    z-index: var(--z-decoration);
+    inset-block-start: var(--space-6);
+    inset-inline-start: 12%;
     display: block;
-    inline-size: 80%;
+    inline-size: 76%;
     max-inline-size: none;
+  }
+
+  .trust-story__hearts {
+    position: absolute;
+    z-index: var(--z-decoration);
+    inset-block-start: calc(-1 * var(--space-4));
+    inset-inline-end: 7%;
+    display: block;
+    transform: rotate(8deg);
   }
 
   .trust-list {
@@ -288,23 +327,34 @@
   }
 
   .trust-list::before {
-    inset-block: var(--space-10) auto;
-    inset-inline: 8% 8%;
-    inline-size: auto;
-    block-size: 1px;
+    display: none;
   }
 
   .trust-card {
+    grid-template-columns: minmax(0, 1fr);
     justify-items: center;
-    gap: var(--space-3);
-    padding: var(--space-20) var(--space-3) 0;
+    padding: var(--space-10) var(--space-3) 0;
     text-align: center;
   }
 
-  .trust-card::before {
-    inset-block-start: var(--space-4);
-    inset-inline-start: 50%;
-    transform: translateX(-50%);
+  .trust-card__icon {
+    grid-column: 1;
+    grid-row: 1;
+    inline-size: 4rem;
+    block-size: 4rem;
+  }
+
+  .trust-card__number {
+    grid-column: 1;
+    grid-row: 1;
+    justify-self: center;
+    margin: calc(-1 * var(--space-3)) 0 0 var(--space-16);
+  }
+
+  .trust-card__body {
+    grid-column: 1;
+    justify-items: center;
+    padding-block-start: var(--space-5);
   }
 
   .trust-card p {

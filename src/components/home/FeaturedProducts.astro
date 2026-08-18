@@ -1,13 +1,11 @@
 ---
-import CardList from '../patterns/CardList.astro';
-import ContentSection from '../patterns/ContentSection.astro';
-import ProductCard from '../catalog/ProductCard.astro';
+import lunaCloud from '../../assets/home/luna-nube.png';
 import type { Catalog } from '../../lib/catalog/domain/model';
-import { projectFeaturedProducts } from './featured-products';
 import { catalogImageMap } from '../catalog/catalog-images';
 import { buildMediaProjection } from '../catalog/media-projection';
-import { getFeaturedProducts } from '../../lib/catalog/domain/queries';
-import type { ProductCardProjection } from '../catalog/types';
+import ResponsiveMedia from '../catalog/ResponsiveMedia.astro';
+import Ornament from '../ui/Ornament.astro';
+import { projectFeaturedProducts } from './featured-products';
 import './featured-products.css';
 
 interface Props {
@@ -16,40 +14,119 @@ interface Props {
 
 const { catalog } = Astro.props;
 const featured = projectFeaturedProducts(catalog);
-
-// Enriquecer cada item con su media resuelta
-const featuredWithMedia: ProductCardProjection[] = await Promise.all(
-  featured.items.map(async (item, index) => {
-    const domainProduct = getFeaturedProducts(catalog)[index];
-    const coverSrc = domainProduct?.media?.cover?.src;
-    const coverAlt = domainProduct?.media?.cover?.alt ?? '';
-    const imageMetadata = coverSrc ? catalogImageMap[coverSrc] : undefined;
-    return {
-      ...item,
-      media: imageMetadata
-        ? await buildMediaProjection(imageMetadata, coverAlt)
-        : undefined,
-    };
-  }),
-);
+const mosaicItems = featured
+  ? await Promise.all(
+      featured.items.map(async (item) => {
+        const imageMetadata = catalogImageMap[item.mediaSource.src];
+        return {
+          ...item,
+          media: imageMetadata
+            ? await buildMediaProjection(imageMetadata, item.mediaSource.alt, {
+                sizes:
+                  '(min-width: 64rem) 22vw, (min-width: 48rem) 31vw, calc(50vw - 1.5rem)',
+                widths: [320, 480, 640, 800],
+              })
+            : undefined,
+        };
+      }),
+    )
+  : [];
 ---
 
 {
-  featuredWithMedia.length > 0 && (
-    <div class="featured-products">
-      <ContentSection
-        id="featured-products"
-        title={featured.title}
-        intro={featured.intro}
-      >
-        <CardList count={featuredWithMedia.length}>
-          {featuredWithMedia.map((product) => (
-            <li>
-              <ProductCard product={product} />
-            </li>
-          ))}
-        </CardList>
-      </ContentSection>
-    </div>
+  featured && mosaicItems.length === 5 && (
+    <section
+      class="featured-products"
+      id="featured-products"
+      aria-labelledby="featured-products-title"
+    >
+      <Ornament
+        variant="watercolor"
+        tone="blush"
+        class="featured-products__wash"
+      />
+      <Ornament
+        variant="sparkle"
+        tone="accent"
+        class="featured-products__sparkle featured-products__sparkle--top"
+      />
+      <Ornament
+        variant="mini-hearts"
+        tone="blush"
+        class="featured-products__hearts"
+      />
+
+      <div class="featured-products__editorial">
+        <div class="featured-products__luna" aria-hidden="true">
+          <img
+            src={lunaCloud.src}
+            alt="Ilustración decorativa de Luna sobre una nube."
+            width={lunaCloud.width}
+            height={lunaCloud.height}
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
+        <Ornament
+          variant="sparkle"
+          tone="blue"
+          class="featured-products__moon-star featured-products__moon-star--blue"
+        />
+        <Ornament
+          variant="sparkle"
+          tone="peach"
+          class="featured-products__moon-star featured-products__moon-star--peach"
+        />
+        <Ornament
+          variant="sparkle"
+          tone="accent"
+          class="featured-products__moon-star featured-products__moon-star--coral"
+        />
+        <Ornament
+          variant="sparkle"
+          tone="blush"
+          class="featured-products__moon-star featured-products__moon-star--blush"
+        />
+        <Ornament
+          variant="sparkle"
+          tone="blue"
+          class="featured-products__sparkle featured-products__sparkle--left"
+        />
+        <p class="featured-products__eyebrow">{featured.eyebrow}</p>
+        <h2 id="featured-products-title">{featured.title}</h2>
+        <span class="featured-products__rule" aria-hidden="true" />
+        <p class="featured-products__intro">{featured.intro}</p>
+        <a class="featured-products__action" href={featured.action.href}>
+          {featured.action.label}
+          <span aria-hidden="true">→</span>
+        </a>
+      </div>
+
+      <ul class="featured-products__gallery" aria-label="Productos destacados">
+        {mosaicItems.map((product) => (
+          <li
+            class:list={[
+              'featured-products__item',
+              { 'featured-products__item--primary': product.primary },
+            ]}
+          >
+            <a
+              class="featured-products__product-link"
+              href={product.href}
+              aria-label={`Ver ${product.name}`}
+              data-analytics-select-item
+              data-analytics-product-id={product.analytics.productId}
+              data-analytics-product-name={product.analytics.productName}
+              data-analytics-category={product.analytics.category}
+              data-analytics-source-page={product.analytics.sourcePage}
+              data-analytics-list-id={product.analytics.listId}
+              data-analytics-position={product.analytics.position}
+            >
+              <ResponsiveMedia media={product.media} loading="lazy" />
+            </a>
+          </li>
+        ))}
+      </ul>
+    </section>
   )
 }
