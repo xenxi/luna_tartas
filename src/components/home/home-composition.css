@@ -1,0 +1,47 @@
+.home-composition {
+  position: relative;
+  isolation: isolate;
+  overflow: clip;
+  background:
+    radial-gradient(
+      ellipse 34rem 19rem at 3% 39%,
+      color-mix(in srgb, var(--color-surface-calm) 72%, transparent),
+      transparent 72%
+    ),
+    radial-gradient(
+      ellipse 32rem 17rem at 98% 73%,
+      color-mix(in srgb, var(--color-surface-warm) 70%, transparent),
+      transparent 74%
+    );
+}
+
+@media (min-width: 64rem) {
+  .taxonomy-discovery-section {
+    position: relative;
+    z-index: var(--z-raised);
+    padding-block: var(--space-8) var(--space-16);
+  }
+
+  .trust-and-work {
+    background: linear-gradient(
+      180deg,
+      transparent,
+      color-mix(in srgb, var(--color-canvas) 74%, transparent) 12%,
+      color-mix(in srgb, var(--color-canvas) 90%, transparent) 88%,
+      transparent
+    );
+  }
+
+  .trust-process {
+    padding-block: clamp(3.75rem, 5.5vw, 5.25rem) clamp(3.25rem, 4.5vw, 4.75rem);
+  }
+
+  .featured-products {
+    margin-block: var(--space-6) var(--space-6);
+  }
+
+  .custom-idea {
+    margin-block-start: var(--space-3);
+    padding-block-start: var(--space-5);
+  }
+}

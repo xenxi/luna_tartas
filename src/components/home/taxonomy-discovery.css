@@ -97,11 +97,11 @@
 }
 
 .taxonomy-discovery__item--occasion .taxonomy-discovery__number {
-  color: var(--color-blue);
+  color: var(--color-decoration-blue);
 }
 
 .taxonomy-discovery__item--recipient .taxonomy-discovery__number {
-  color: var(--color-peach);
+  color: var(--color-decoration-peach);
 }
 
 .taxonomy-discovery__body h3 {

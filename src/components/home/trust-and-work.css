@@ -122,15 +122,15 @@
 }
 
 .trust-card__number--1 {
-  color: var(--luna-coral-soft);
+  color: var(--color-decoration-accent);
 }
 
 .trust-card__number--2 {
-  color: var(--luna-blue);
+  color: var(--color-decoration-blue);
 }
 
 .trust-card__number--3 {
-  color: var(--luna-peach);
+  color: var(--color-decoration-peach);
 }
 
 .trust-card__body {
@@ -348,5 +348,4 @@
   .trust-card p {
     max-inline-size: 20rem;
   }
-
 }

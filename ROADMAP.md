@@ -1463,7 +1463,7 @@ Siguiente tarea: M8.9.10 — Integración visual desktop.
 
 ## M8.9.10 — Integración visual desktop
 
-**Estado:** PENDING
+**Estado:** IN_PROGRESS
 **Objetivo:** convertir las secciones implementadas en una composición continua
 mediante una pasada específica de ritmo, fondos, densidad, escala y repetición.
 **Dependencias:** M8.9.9.
@@ -1473,7 +1473,24 @@ perciben bloques independientes apilados; mobile sigue funcional sin cierre
 visual definitivo.
 **Verificación:** suite completa, budgets y QA comparativa 1280/1440/1920.
 **Modelo recomendado:** SOL → LUNA.
-**Evidencia:** —
+**Evidencia:** EN PROGRESO (2026-08-18) — se añade una composición de Home que
+conecta los capítulos con washes calm/warm, compacta el ritmo desktop entre
+descubrimiento, proceso, mosaico y CTA, y conserva el fallback móvil sin
+alterar contenido, rutas ni JavaScript. Se corrigen los dos acentos de
+taxonomía que apuntaban a tokens inexistentes y se normalizan los acentos del
+proceso a roles semánticos. `npm run format`, `npm run lint`, `npm run
+typecheck` (0 errores, warnings e hints), `npm test` (39 archivos, 241 tests),
+`npm run build` (25 páginas), `verify:links`, `verify:accessibility`,
+`verify:responsive`, `verify:artifact`, `verify:performance` (103.078 bytes
+máximo inicial a 375 px), `verify:assets` (41 archivos, 46.581.759 bytes),
+`verify:determinism`, `verify:security`, `verify:dependencies`, `verify:seo`,
+`verify:crawl`, `verify:structured-data`, `verify:catalog`, `verify:redirects`
+y `git diff --check`: PASS. Se resolvió el error local de servidor que mostraba
+`FailedToLoadModuleSSR`: coexistían un proceso Vite fallido por IPv6 y una
+previsualización por IPv4 en el mismo puerto. Tras reiniciar exclusivamente esos
+procesos, `http://localhost:4321/` y `http://127.0.0.1:4321/` responden 200.
+Pendiente: QA comparativa manual a 1280/1440/1920. No avanzar a M8.9.11 hasta
+completar esas capturas y revisión.
 
 ## M8.9.11 — Visual QA desktop + aprobación del propietario
 

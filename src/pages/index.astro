@@ -11,6 +11,7 @@ import { siteConfig } from '../config/site';
 import { loadCatalog } from '../lib/catalog/source';
 import { routes } from '../lib/catalog/domain/routes';
 import { createApprovedSiteIdentityJsonLd } from '../lib/seo/structured-data/organization';
+import '../components/home/home-composition.css';
 
 const catalog = await loadCatalog();
 const siteIdentity = createApprovedSiteIdentityJsonLd(
@@ -25,9 +26,11 @@ const siteIdentity = createApprovedSiteIdentityJsonLd(
 >
   <JsonLd data={siteIdentity.organization} />
   <JsonLd data={siteIdentity.website} />
-  <Hero />
-  <TaxonomyDiscovery catalog={catalog} />
-  <TrustAndWork />
-  <FeaturedProducts catalog={catalog} />
-  <CustomIdeaCta />
+  <div class="home-composition">
+    <Hero />
+    <TaxonomyDiscovery catalog={catalog} />
+    <TrustAndWork />
+    <FeaturedProducts catalog={catalog} />
+    <CustomIdeaCta />
+  </div>
 </BaseLayout>

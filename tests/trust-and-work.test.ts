@@ -72,9 +72,9 @@ describe('approved trust process', () => {
   it('keeps the process before the final custom idea CTA', () => {
     expect(component).toContain('trustAndWorkContent.trust.steps.map');
     expect(component).not.toMatch(/carousel|slider|client:/i);
-    expect(page.indexOf('<TaxonomyDiscovery catalog={catalog} />')).toBeLessThan(
-      page.indexOf('<TrustAndWork />'),
-    );
+    expect(
+      page.indexOf('<TaxonomyDiscovery catalog={catalog} />'),
+    ).toBeLessThan(page.indexOf('<TrustAndWork />'));
     expect(page.indexOf('<TrustAndWork />')).toBeLessThan(
       page.indexOf('<FeaturedProducts catalog={catalog} />'),
     );
