@@ -12,6 +12,7 @@ import ProductConversionPanel from './ProductConversionPanel.astro';
 import ProductGallery from './ProductGallery.astro';
 import ProductPersonalization from './ProductPersonalization.astro';
 import './product-detail.css';
+import { withBasePath } from '../../lib/site/urls';
 
 interface Props {
   product: PublishedProduct;
@@ -87,7 +88,12 @@ const taxonomyGroups = [
                   <ul>
                     {items.map((taxonomy) => (
                       <li>
-                        <a href={routes.taxonomy(kind, taxonomy.slug)}>
+                        <a
+                          href={withBasePath(
+                            routes.taxonomy(kind, taxonomy.slug),
+                            import.meta.env.BASE_URL,
+                          )}
+                        >
                           {taxonomy.name}
                         </a>
                       </li>

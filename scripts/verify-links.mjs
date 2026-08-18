@@ -3,6 +3,7 @@ import { extname, join, relative, resolve } from 'node:path';
 
 const dist = resolve('dist');
 const pages = [];
+const deploymentBase = (process.env.PAGES_BASE_PATH ?? '/').replace(/\/+$/, '') || '/';
 
 async function walk(directory) {
   for (const entry of await readdir(directory, { withFileTypes: true })) {
@@ -15,6 +16,15 @@ async function walk(directory) {
 function pagePath(file) {
   const path = relative(dist, file).replaceAll('\\', '/');
   return path === 'index.html' ? '/' : `/${path.replace(/index\.html$/, '')}`;
+}
+
+function artifactPath(href) {
+  if (deploymentBase === '/') return href;
+  return href === deploymentBase
+    ? '/'
+    : href.startsWith(`${deploymentBase}/`)
+      ? href.slice(deploymentBase.length)
+      : href;
 }
 
 await walk(dist);
@@ -48,7 +58,7 @@ for (const file of pages) {
       href.startsWith('/wa.me')
     )
       continue;
-    const path = href.split('#')[0].split('?')[0];
+    const path = artifactPath(href.split('#')[0].split('?')[0]);
     if (
       path.startsWith('/_astro/') ||
       path.endsWith('.xml') ||

@@ -7,6 +7,7 @@ import ResponsiveMedia from '../catalog/ResponsiveMedia.astro';
 import Ornament from '../ui/Ornament.astro';
 import { projectFeaturedProducts } from './featured-products';
 import './featured-products.css';
+import { withBasePath } from '../../lib/site/urls';
 
 interface Props {
   catalog: Catalog;
@@ -96,7 +97,10 @@ const mosaicItems = featured
         <h2 id="featured-products-title">{featured.title}</h2>
         <span class="featured-products__rule" aria-hidden="true" />
         <p class="featured-products__intro">{featured.intro}</p>
-        <a class="featured-products__action" href={featured.action.href}>
+        <a
+          class="featured-products__action"
+          href={withBasePath(featured.action.href, import.meta.env.BASE_URL)}
+        >
           {featured.action.label}
           <span aria-hidden="true">→</span>
         </a>
@@ -112,7 +116,7 @@ const mosaicItems = featured
           >
             <a
               class="featured-products__product-link"
-              href={product.href}
+              href={withBasePath(product.href, import.meta.env.BASE_URL)}
               aria-label={`Ver ${product.name}`}
               data-analytics-select-item
               data-analytics-product-id={product.analytics.productId}

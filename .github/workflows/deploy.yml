@@ -78,8 +78,9 @@ jobs:
         run: |
           test -f dist/index.html
           test -z "$(find dist -type l -print -quit)"
-          npm run verify:assets
-          npm run verify:performance
+           npm run verify:assets
+           npm run verify:links
+           npm run verify:performance
           npm run verify:artifact
           npm run verify:security
 

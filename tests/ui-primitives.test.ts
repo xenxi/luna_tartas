@@ -13,7 +13,9 @@ describe('UI primitives', () => {
     expect(button).toContain('<button');
     expect(button).toContain('disabled={disabled}');
     expect(actionLink).toContain('<a');
-    expect(actionLink).toContain('href={href}');
+    expect(actionLink).toContain(
+      'href={withBasePath(href, import.meta.env.BASE_URL)}',
+    );
     expect(styles).toContain('min-block-size: var(--button-min-block-size)');
     expect(styles).toContain('border-radius: var(--radius-action)');
     expect(styles).toContain('border: var(--border-action)');

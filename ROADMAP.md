@@ -1500,6 +1500,18 @@ antes de las cards; Prettier específico, `npm run typecheck` y servidor local
 Pendiente: QA comparativa manual a 1280/1440/1920. No avanzar a M8.9.11 hasta
 completar esas capturas y revisión.
 
+Corrección de navegación Pages (2026-08-18): los enlaces internos de la
+presentación ahora aplican `import.meta.env.BASE_URL` mediante
+`src/lib/site/urls.ts`; las rutas de dominio y canonical siguen sin prefijo.
+Esto evita que el project site resuelva `/categorias/` contra la raíz de
+`xenxi.github.io` en vez de `/luna_tartas/categorias/`, y normaliza el prefijo
+al calcular `aria-current`. `npm run lint`, `npm run typecheck`, `npm test`
+(40 archivos, 243 tests) y `npm run build -- --base /luna_tartas/`: PASS;
+inspección de `dist/categorias/index.html`: enlaces internos bajo
+`/luna_tartas/`, canonical conservando `https://lunatartas.es/categorias/`.
+`verify:links` se normaliza con `PAGES_BASE_PATH` y pasa sobre ese artefacto
+(25 HTML, 0 rotos, 0 huérfanos); queda integrado en el job de Pages.
+
 ## M8.9.11 — Visual QA desktop + aprobación del propietario
 
 **Estado:** PENDING

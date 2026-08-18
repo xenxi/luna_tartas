@@ -6,6 +6,7 @@ import type { MediaProjection } from '../catalog/types';
 import type { Catalog } from '../../lib/catalog/domain/model';
 import Ornament from '../ui/Ornament.astro';
 import { projectTaxonomyDiscovery } from './taxonomy-discovery';
+import { withBasePath } from '../../lib/site/urls';
 import './taxonomy-discovery.css';
 
 interface Props {
@@ -54,7 +55,7 @@ const cards = await Promise.all(
           >
             <a
               class="taxonomy-discovery__card"
-              href={card.href}
+              href={withBasePath(card.href, import.meta.env.BASE_URL)}
               aria-label={`${card.actionLabel}: ${card.productName}`}
             >
               <div class="taxonomy-discovery__body">

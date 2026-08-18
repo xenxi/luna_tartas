@@ -7,6 +7,7 @@ import {
   primaryNavigation,
 } from '../../config/navigation';
 import { routes } from '../../lib/catalog/domain/routes';
+import { withBasePath, withoutBasePath } from '../../lib/site/urls';
 
 interface Props {
   currentPath: string;
@@ -15,6 +16,7 @@ interface Props {
 const { currentPath } = Astro.props;
 const buildYear = new Date().getUTCFullYear();
 const footerNavigation = primaryNavigation.filter(({ href }) => href !== '/');
+const routePath = withoutBasePath(currentPath, import.meta.env.BASE_URL);
 const footerInformation = [
   'Sobre Luna',
   'Cómo trabajamos',
@@ -28,7 +30,7 @@ const footerInformation = [
     <div class="site-footer__identity">
       <a
         class="brand-home brand-home--footer"
-        href={routes.home()}
+        href={withBasePath(routes.home(), import.meta.env.BASE_URL)}
         aria-label="Luna Tartas"
       >
         <Image
@@ -52,9 +54,9 @@ const footerInformation = [
             footerNavigation.map((item) => (
               <li>
                 <a
-                  href={item.href}
+                  href={withBasePath(item.href, import.meta.env.BASE_URL)}
                   aria-current={
-                    isCurrentNavigationPath(currentPath, item.href)
+                    isCurrentNavigationPath(routePath, item.href)
                       ? 'page'
                       : undefined
                   }
