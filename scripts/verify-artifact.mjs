@@ -57,6 +57,7 @@ for (const [route, html] of pages) {
     const target = href.split('#')[0].split('?')[0];
     if (
       target.startsWith('/_astro/') ||
+      target.includes('/_astro/') ||
       target.endsWith('.xml') ||
       target.endsWith('.txt') ||
       target === '/catalog.json'
@@ -78,7 +79,10 @@ if (!Array.isArray(catalog.products) || catalog.products.length === 0) {
 }
 
 for (const product of catalog.products) {
-  if (typeof product.url !== 'string' || !product.url.startsWith(`${siteOrigin}/`)) {
+  if (
+    typeof product.url !== 'string' ||
+    !product.url.startsWith(`${siteOrigin}/`)
+  ) {
     fail(`product ${product.id} has no canonical URL`);
   }
   const productPath = new URL(product.url).pathname;

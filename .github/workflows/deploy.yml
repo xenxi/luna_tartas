@@ -73,6 +73,8 @@ jobs:
 
       - name: Check public artifact
         shell: bash
+        env:
+          PAGES_BASE_PATH: ${{ steps.pages.outputs.base_path }}
         run: |
           test -f dist/index.html
           test -z "$(find dist -type l -print -quit)"

@@ -29,6 +29,7 @@ describe('performance budget contract', () => {
       'scripts/verify-performance.mjs',
       'utf8',
     );
+    const deploy = await readFile('.github/workflows/deploy.yml', 'utf8');
 
     expect(packageJson).toContain('"verify:assets"');
     expect(packageJson).toContain('"verify:performance"');
@@ -36,6 +37,11 @@ describe('performance budget contract', () => {
     expect(ci).toContain('npm run verify:performance');
     expect(performance).toContain('lcpImage: 300 * 1024');
     expect(performance).toContain('initialTransfer: 1.5 * 1024 * 1024');
+    expect(deploy).toContain(
+      'PAGES_BASE_PATH: ${{ steps.pages.outputs.base_path }}',
+    );
+    const artifact = await readFile('scripts/verify-artifact.mjs', 'utf8');
+    expect(artifact).toContain("target.includes('/_astro/')");
   });
 
   it('maps root public URLs to the artifact root', () => {
