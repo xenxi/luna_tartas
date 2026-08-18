@@ -1,6 +1,6 @@
 # ROADMAP — Luna Estudio
 
-Única fuente de verdad sobre prioridad, estado y siguiente tarea. Última actualización: 2026-08-17.
+Única fuente de verdad sobre prioridad, estado y siguiente tarea. Última actualización: 2026-08-18.
 
 ## Uso
 
@@ -9,7 +9,7 @@
 - Se ejecuta exclusivamente la tarea solicitada; no se anticipa la siguiente.
 - `DONE` exige todos los criterios y verificaciones en `PASS`, con evidencia registrada aquí.
 - Orden normal: de arriba abajo. Una tarea posterior sólo puede comenzar si todas sus dependencias están `DONE`.
-- **Siguiente tarea:** `M8.9.7 — Trabajos realizados por Luna`.
+- **Siguiente tarea:** `M8.9.8 — ¿Tienes algo en mente?`.
 - **Pausa de release:** M9 permanece temporalmente pausada por alineación visual;
   M9.2 conserva su bloqueo operativo de Cloudflare y no se reanuda hasta que
   M8.9.11 obtenga `VISUAL QA: PASS` y `OWNER APPROVAL: APPROVED`.
@@ -1327,7 +1327,7 @@ iconos, curva y ornamentos sin solapes ni overflow; captura de inspección a
 
 ## M8.9.7 — Trabajos realizados por Luna
 
-**Estado:** BLOCKED
+**Estado:** DONE
 **Objetivo:** convertir la muestra aprobada en un portfolio/mosaico editorial
 equivalente a la referencia.
 **Dependencias:** M8.9.6.
@@ -1337,7 +1337,7 @@ variados; sin carousel, grid ecommerce ni nombre/precio añadido.
 **Verificación:** derechos/alt, suite/build, assets, performance y QA
 1280/1440/1920.
 **Modelo recomendado:** LUNA → SOL REVIEW.
-**Evidencia:** Implementación técnica PASS (2026-08-18) — la muestra de
+**Evidencia:** PASS (2026-08-18) — la muestra de
 “Ideas para regalar” sustituye las cards por una pieza editorial estática: copy
 aprobado, CTA a `/productos/`, fondo blush orgánico, luna de marca reutilizada,
 ornamentos decorativos ocultos a AT y galería `1 + 2×2`. La luna se sustituye
@@ -1354,11 +1354,15 @@ warnings/hints), `npm test` (39 archivos, 241 tests), `npm run build` (25
 páginas), `verify:links`, `verify:accessibility`, `verify:performance`
 (100.033 bytes máximo inicial a 375 px), `verify:responsive`, `verify:assets`
 (33 archivos, 32.853.114 bytes),
-`verify:determinism`, Prettier específico y `git diff --check`: PASS.
-**VISUAL QA 1280/1440/1920: BLOCKED** —
-el cliente del navegador integrado no puede inicializarse en este entorno por
-una dependencia confiable no resoluble; no se declara una comparación visual
-ni una aprobación inexistentes.
+`verify:determinism`, Prettier específico y `git diff --check`: PASS. El QA
+visual se completó con Chrome headless estable 139.0.7258.67 sobre `astro
+preview`: capturas reproducibles de Home y del portfolio a 1280/1440/1920
+confirmaron pieza principal dominante, secundarios con ratios variados,
+composición editorial sin carousel/grid ecommerce, sin solapes ni overflow
+visible. Los cuatro assets conservan derechos/alt y dimensiones fuente; el
+portfolio no añade nombre/precio. `VISUAL QA: PASS` para esta submilestone.
+La aprobación visual global del propietario sigue reservada a M8.9.11.
+Siguiente tarea: M8.9.8 (modelo LUNA → SOL REVIEW).
 
 ## M8.9.8 — ¿Tienes algo en mente?
 
