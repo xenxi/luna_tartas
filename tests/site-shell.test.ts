@@ -71,7 +71,10 @@ describe('public site shell', () => {
 
   it('uses the official logo and a non-interactive responsive heart divider', () => {
     expect(header).toContain('<BrandHomeLink location="header" />');
-    expect(footer).toContain('<BrandHomeLink location="footer" />');
+    expect(footer).toContain(
+      "import footerBrandLogo from '../../assets/brand/logo-luna-detalles-hechos-para-emocionar.png'",
+    );
+    expect(footer).toContain('alt="Luna, detalles hechos para emocionar"');
     expect(header).toContain('class="site-header__divider" aria-hidden="true"');
     expect(header).toContain('preserveAspectRatio="none"');
     expect(header).toContain('focusable="false"');
@@ -99,7 +102,8 @@ describe('public site shell', () => {
     expect(footer).toContain('publicContactConfig.whatsapp.href');
     expect(footer).toContain('publicContactConfig.email.href');
     expect(footer).toContain('publicContactConfig.instagram.href');
-    expect(footer).toContain('<address class="site-footer__contact">');
+    expect(footer).toContain('<div class="site-footer__contact">');
+    expect(footer).toContain('<address>');
     expect(footer).not.toContain('target="_blank"');
   });
 
@@ -114,9 +118,13 @@ describe('public site shell', () => {
     expect(footer).toContain('aria-label="Escríbenos por email"');
     expect(footer).toContain('aria-label="Síguenos en Instagram"');
     expect(footer.match(/<svg\b/g)).toHaveLength(3);
-    expect(styles).toContain('grid-template-columns: repeat(2, max-content)');
+    expect(footer).toContain("'Sobre Luna'");
+    expect(footer).toContain("'Cómo trabajamos'");
+    expect(footer).toContain("'Preguntas frecuentes'");
+    expect(footer).toContain("'Contacto'");
+    expect(styles).toContain('grid-template-columns: 13.25rem 1px auto');
     expect(styles).toContain('grid-template-columns: repeat(3, 2.75rem)');
-    expect(styles).toContain('min-block-size: 4.5rem');
+    expect(styles).toContain('min-block-size: 8.125rem');
   });
 
   it('publishes the approved logo as the favicon without deriving a brand mark', () => {

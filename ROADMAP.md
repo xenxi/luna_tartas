@@ -1419,7 +1419,7 @@ Siguiente tarea: M8.9.9 — Footer (modelo LUNA → SOL REVIEW).
 
 ## M8.9.9 — Footer
 
-**Estado:** PENDING
+**Estado:** BLOCKED
 **Objetivo:** alinear el Footer con la referencia usando sólo logo, navegación,
 contacto, redes, copyright y crédito reales ya autorizados.
 **Dependencias:** M8.9.8.
@@ -1428,7 +1428,22 @@ coral coherente, foco/targets/contraste; crédito de Antonio MDM y año de build
 preservados; cero enlace ficticio.
 **Verificación:** suite/build, hrefs, teclado, a11y y QA 1280/1440/1920.
 **Modelo recomendado:** LUNA → SOL REVIEW.
-**Evidencia:** —
+**Evidencia:** Reabierta el 2026-08-18 por revisión visual obligatoria: la
+captura objetivo evidencia diferencias P0 en el asset y tamaño del logo, el
+divisor vertical, la composición de navegación y contacto, el orden/corrección
+de iconos y la posición del crédito. La implementación usa el asset oficial
+aportado, una grid compacta desktop con divisor de 96 px, dos columnas de
+navegación, redes en orden Instagram → WhatsApp → email y firma integrada bajo
+las redes; se conserva el año UTC, los hrefs autorizados, foco, targets de 44
+px y analítica de WhatsApp. `npm run lint`, `npm run typecheck` (0 errores,
+warnings e hints), `npm test` (39 archivos, 243 tests), `npm run build` (25
+páginas), `verify:links`, `verify:accessibility`, `verify:responsive`,
+`verify:artifact` y `git diff --check`: PASS. `npm run format` conserva dos
+avisos preexistentes y fuera de alcance en `src/pages/regalos/[slug].astro` y
+`tests/taxonomy-listing.test.ts`. QA visual 1280/1440/1920: BLOCKED; el
+navegador integrado no llega a inicializar una pestaña por el error local de
+resolución de dependencia RPC confiable. No avanzar a M8.9.10 hasta poder
+comparar renderizados con la captura objetivo.
 
 ## M8.9.10 — Integración visual desktop
 
