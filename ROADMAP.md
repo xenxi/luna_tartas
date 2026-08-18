@@ -1312,18 +1312,21 @@ consistentes; DOM y lectura accesibles.
 **Verificación:** contenido, suite/build, a11y y QA 1280/1440/1920.
 **Modelo recomendado:** LUNA → SOL REVIEW.
 **Evidencia:** PASS (2026-08-18) — La secuencia conserva exactamente los tres
-pasos aprobados y su `ol` semántico; cada paso tiene icono circular decorativo,
-numeración editorial `01`–`03`, curva punteada y ornamentos Luna ocultos a
-tecnologías asistivas. `tests/trust-and-work.test.ts` protege contenido, orden,
-semántica, iconos, numeración, línea punteada y ausencia de hidratación. `npm run
-lint`, `npm run typecheck` (0 errores/warnings/hints), `npm test` (39 archivos,
-241 tests), `npm run build` (25 páginas), `verify:links`,
-`verify:accessibility`, `verify:performance` (90.623 bytes máximo inicial a
-375 px), `verify:responsive`, `verify:assets` (32 archivos, 31.740.577 bytes),
-Prettier específico y `git diff --check`: PASS. QA real con Chrome sobre preview
-HTTP: a `1280/1440/1920` se mantienen tres columnas, los pasos `01/02/03`,
-iconos, curva y ornamentos sin solapes ni overflow; captura de inspección a
-`1440 px` revisada. Siguiente tarea: M8.9.7 (modelo LUNA → SOL REVIEW).
+pasos aprobados y su `ol` semántico; usa `01-chat.png`, `02-manos.png` y
+`03-corazon.png` sin recorte, numeración editorial `01`–`03` con subrayado,
+curva SVG punteada con gradiente rosa/azul/salmón y sólo tres ornamentos Luna,
+todos ocultos a tecnologías asistivas. Desktop usa una retícula máxima de 80rem
+con texto editorial alineado al número; mobile apila cada ilustración y bloque
+sin línea horizontal. `tests/trust-and-work.test.ts` protege contenido, orden,
+semántica, assets, línea y ausencia de hidratación. `npm run lint`,
+`npm run typecheck` (0 errores/warnings/hints), `npm test` (39 archivos, 243
+tests), `npm run build` (25 páginas), `verify:accessibility`,
+`verify:performance` (108.911 bytes máximo inicial a 375 px),
+`verify:responsive`, `verify:assets` (41 archivos, 46.581.759 bytes), Prettier
+específico y `git diff --check`: PASS. Las comprobaciones estáticas de 1280,
+1440 y 1920 conservan contenedor, tres columnas desktop y ausencia de overflow;
+no se encontró Chrome local para captura visual automatizada. Siguiente tarea:
+M8.9.7 (modelo LUNA → SOL REVIEW).
 
 ## M8.9.7 — Trabajos realizados por Luna
 

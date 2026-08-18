@@ -17,18 +17,22 @@ const imagePaths = [
 
 describe('approved trust and work showcase', () => {
   it('keeps the approved process copy and source approval centralized', () => {
+    expect(trustAndWorkContent.trust.title).toBe('Cada detalle cuenta');
+    expect(trustAndWorkContent.trust.intro).toBe(
+      'Así preparamos tu encargo, siempre con cariño.',
+    );
     expect(trustAndWorkContent.trust.steps).toEqual([
       {
-        title: 'Hecho a mano para ti',
-        copy: 'Cada encargo se prepara artesanalmente y de forma individual.',
+        title: 'Nos cuentas tu idea',
+        copy: 'Hablamos de la ocasión, los gustos y todos los detalles importantes.',
       },
       {
-        title: 'Tú nos cuentas la idea',
-        copy: 'Temática, colores, nombre y detalles se acuerdan directamente contigo antes de preparar el regalo.',
+        title: 'Lo hacemos realidad',
+        copy: 'Preparamos cada pieza a mano, con materiales de calidad y mucho mimo.',
       },
       {
-        title: 'Te lo hacemos llegar',
-        copy: 'Entrega en mano cuando la distancia lo permite y, para el resto, envío mediante mensajería.',
+        title: 'Listo para emocionar',
+        copy: 'Lo envolvemos con cuidado para que sea perfecto al entregarlo.',
       },
     ]);
     expect(trustAndWorkContent.rights).toEqual({
@@ -71,16 +75,21 @@ describe('approved trust and work showcase', () => {
     expect(component).toContain('loading="lazy"');
   });
 
-  it('uses semantic static lists and a responsive primary image without hydration', () => {
+  it('uses the supplied process assets in a semantic, static sequence', () => {
     expect(component).toContain('<div class="trust-story">');
-    expect(component).toMatch(
-      /<Ornament\s+variant="dotted-curve"\s+motion="draw"/,
-    );
+    expect(component).toContain('<section class="trust-process"');
     expect(component).toContain('<ol class="trust-list">');
-    expect(component).toContain('const trustStepIcons');
-    expect(component).toContain('class="trust-card__icon"');
+    expect(component).toContain('const trustStepImages');
+    expect(component).toContain("'../../assets/home/trust-steps/01-chat.png'");
+    expect(component).toContain("'../../assets/home/trust-steps/02-manos.png'");
+    expect(component).toContain(
+      "'../../assets/home/trust-steps/03-corazon.png'",
+    );
+    expect(component).toContain('class="trust-card__art"');
     expect(component).toContain('class="trust-card__number"');
     expect(component).toContain("String(index + 1).padStart(2, '0')");
+    expect(component).toContain('id="trust-thread-gradient"');
+    expect(component).toContain('aria-hidden="true"');
     expect(component).toContain('<div class="work-showcase__canvas">');
     expect(component).toContain('<Ornament variant="dots"');
     expect(component).toContain('<ul class="work-gallery"');
@@ -88,10 +97,13 @@ describe('approved trust and work showcase', () => {
     expect(component).not.toContain('client:');
     expect(styles).toContain('@media (min-width: 40rem)');
     expect(styles).toContain('@media (min-width: 64rem)');
-    expect(styles).toContain('counter-increment: trust-step');
-    expect(styles).toContain('.trust-list::before');
-    expect(styles).toContain('border-inline-start: 1px dashed');
-    expect(styles).toContain('.trust-story__hearts');
+    expect(styles).toContain('stroke: url(#trust-thread-gradient)');
+    expect(styles).toContain('stroke-dasharray: 3 10');
+    expect(styles).toContain('object-fit: contain');
+    expect(styles).toContain('.trust-process__header');
+    expect(styles).toContain('.trust-card__number--1');
+    expect(styles).toContain('.trust-card__number--2');
+    expect(styles).toContain('.trust-card__number--3');
     expect(styles).toContain('grid-column: 1 / span 7');
     expect(styles).toContain('inline-size: 82%');
     expect(styles).not.toContain('overflow-x: auto');

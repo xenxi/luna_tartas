@@ -4,6 +4,9 @@ import blueCake from '../../assets/home/work-showcase/tarta-azul-completa.png';
 import pinkCake from '../../assets/home/work-showcase/tarta-rosa-completa.png';
 import pinkCakeDetail from '../../assets/home/work-showcase/tarta-rosa-detalle.png';
 import stitchCake from '../../assets/home/work-showcase/tarta-stitch-completa.png';
+import chatStep from '../../assets/home/trust-steps/01-chat.png';
+import handsStep from '../../assets/home/trust-steps/02-manos.png';
+import heartStep from '../../assets/home/trust-steps/03-corazon.png';
 import { trustAndWorkContent } from '../../content/home/trust-and-work';
 import ContentSection from '../patterns/ContentSection.astro';
 import Ornament from '../ui/Ornament.astro';
@@ -16,33 +19,68 @@ const imageAssets = {
   'tarta-rosa-detalle': pinkCakeDetail,
 } as const;
 
-const trustStepIcons = ['heart', 'sparkle', 'mini-hearts'] as const;
+const trustStepImages = [chatStep, handsStep, heartStep] as const;
 ---
 
 <div class="trust-and-work">
-  <ContentSection id="trust" title={trustAndWorkContent.trust.title}>
+  <section class="trust-process" id="trust" aria-labelledby="trust-title">
+    <header class="trust-process__header">
+      <h2 id="trust-title">
+        {trustAndWorkContent.trust.title}
+        <Ornament variant="heart" class="trust-process__title-heart" />
+      </h2>
+      <p>{trustAndWorkContent.trust.intro}</p>
+    </header>
     <div class="trust-story">
-      <Ornament
-        variant="dotted-curve"
-        motion="draw"
-        class="trust-story__thread"
-      />
-      <Ornament
-        variant="mini-hearts"
-        tone="blush"
-        class="trust-story__hearts"
-      />
       <ol class="trust-list">
         {
           trustAndWorkContent.trust.steps.map((step, index) => (
             <li class="trust-card">
-              <span class="trust-card__icon" aria-hidden="true">
-                <Ornament variant={trustStepIcons[index]} />
-              </span>
-              <span class="trust-card__number" aria-hidden="true">
-                {String(index + 1).padStart(2, '0')}
+              {index === 0 && (
+                <svg
+                  class="trust-story__thread"
+                  viewBox="0 0 1200 180"
+                  preserveAspectRatio="none"
+                  focusable="false"
+                  aria-hidden="true"
+                >
+                  <defs>
+                    <linearGradient
+                      id="trust-thread-gradient"
+                      x1="0"
+                      x2="1"
+                      y1="0"
+                      y2="0"
+                    >
+                      <stop offset="0" stop-color="var(--luna-coral-soft)" />
+                      <stop offset="0.28" stop-color="var(--luna-blush)" />
+                      <stop offset="0.52" stop-color="var(--luna-blue)" />
+                      <stop offset="0.72" stop-color="var(--luna-blue-soft)" />
+                      <stop offset="1" stop-color="var(--luna-peach)" />
+                    </linearGradient>
+                  </defs>
+                  <path d="M276 93c61-34 139-34 205-4 20 9 35 12 52 9" />
+                  <path d="M668 91c50-28 105-35 157-12 35 16 65 14 105-6" />
+                </svg>
+              )}
+              <span class="trust-card__art" aria-hidden="true">
+                <img
+                  src={trustStepImages[index].src}
+                  width={trustStepImages[index].width}
+                  height={trustStepImages[index].height}
+                  alt="Ilustración decorativa del paso"
+                  loading="lazy"
+                  decoding="async"
+                />
               </span>
               <div class="trust-card__body">
+                <span
+                  class="trust-card__number"
+                  class:list={[`trust-card__number--${index + 1}`]}
+                  aria-hidden="true"
+                >
+                  {String(index + 1).padStart(2, '0')}
+                </span>
                 <h3>{step.title}</h3>
                 <p>{step.copy}</p>
               </div>
@@ -50,8 +88,37 @@ const trustStepIcons = ['heart', 'sparkle', 'mini-hearts'] as const;
           ))
         }
       </ol>
+      <Ornament variant="heart" tone="blush" class="trust-story__left-heart" />
+      <Ornament
+        variant="sparkle"
+        tone="blue"
+        class="trust-story__left-sparkle"
+      />
+      <Ornament
+        variant="heart"
+        tone="blush"
+        class="trust-story__left-lower-heart"
+      />
+      <Ornament variant="heart" tone="blush" class="trust-story__line-heart" />
+      <Ornament variant="sparkle" tone="peach" class="trust-story__sparkle" />
+      <Ornament
+        variant="sparkle"
+        tone="peach"
+        class="trust-story__right-sparkle"
+      />
+      <Ornament variant="heart" tone="blush" class="trust-story__heart" />
+      <Ornament
+        variant="heart"
+        tone="accent"
+        class="trust-story__right-heart"
+      />
+      <Ornament
+        variant="heart"
+        tone="blue"
+        class="trust-story__right-blue-heart"
+      />
     </div>
-  </ContentSection>
+  </section>
 
   <ContentSection id="work-showcase" title={trustAndWorkContent.showcase.title}>
     <div class="work-showcase__canvas">
