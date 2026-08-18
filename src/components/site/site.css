@@ -1,7 +1,6 @@
 .site-header {
   position: relative;
   z-index: var(--z-header);
-  padding-block-end: var(--space-3);
   background: color-mix(in srgb, var(--color-canvas) 96%, transparent);
 }
 
@@ -35,12 +34,7 @@
 }
 
 .site-header__divider {
-  position: absolute;
-  inset-inline: 0;
-  inset-block-end: 0;
-  block-size: 1.75rem;
-  overflow: hidden;
-  color: var(--color-decoration-accent);
+  display: none;
   pointer-events: none;
 }
 
@@ -158,9 +152,9 @@
 
 .primary-navigation--header a[aria-current='page']::after {
   position: absolute;
-  inset-inline: var(--space-3);
-  inset-block-end: 0.2rem;
-  block-size: var(--border-width-hairline);
+  inset-inline: 0;
+  inset-block-end: 0;
+  block-size: 0.15rem;
   border-radius: var(--radius-pill);
   background: currentColor;
   content: '';
@@ -304,11 +298,12 @@
 
 @media (min-width: 48rem) {
   .site-header__inner {
-    min-block-size: 7.5rem;
+    min-block-size: 9.5rem;
   }
 
   .brand-home--header .brand-home__logo {
-    inline-size: clamp(9.75rem, 14vw, 11.5rem);
+    inline-size: clamp(15rem, 18vw, 18rem);
+    transform: translateY(1rem);
   }
 
   .site-menu {
@@ -327,9 +322,9 @@
 
   .primary-navigation--header a {
     position: relative;
-    min-block-size: 3.25rem;
-    padding-inline: clamp(var(--space-2), 0.7vw, var(--space-3));
-    font-size: var(--font-size-sm);
+    min-block-size: 4.25rem;
+    padding-inline: clamp(var(--space-4), 1.5vw, var(--space-6));
+    font-size: var(--font-size-md);
     font-weight: var(--font-weight-regular);
   }
 
@@ -366,14 +361,6 @@
 
 @media (min-width: 60rem) {
   .site-header--home {
-    background: linear-gradient(
-        color-mix(in srgb, var(--color-canvas) 96%, transparent),
-        color-mix(in srgb, var(--color-canvas) 96%, transparent)
-      )
-      top / 100% calc(100% - 1.75rem) no-repeat;
-  }
-
-  .site-header--home .site-header__divider-fill {
-    display: block;
+    background: color-mix(in srgb, var(--color-canvas) 96%, transparent);
   }
 }

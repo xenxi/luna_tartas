@@ -1533,7 +1533,7 @@ lint, typecheck, test específico y format: PASS.
 
 ## M8.9.11 — Visual QA desktop + aprobación del propietario
 
-**Estado:** PENDING
+**Estado:** IN_PROGRESS
 **Objetivo:** comparar sistemáticamente la implementación completa contra la
 referencia aprobada y obtener la decisión explícita del propietario.
 **Dependencias:** M8.9.10.
@@ -1546,7 +1546,15 @@ explícita; M9 continúa pausada.
 **Verificación:** lint, typecheck, tests, build, links, security, performance,
 a11y, responsive y revisión visual manual; tests verdes no bastan.
 **Modelo recomendado:** SOL.
-**Evidencia:** `VISUAL QA: PENDING`; `OWNER APPROVAL: PENDING`.
+**Evidencia:** IN_PROGRESS (2026-08-18) — ajuste de header desktop aplicado en
+`src/components/site/site.css`: separador rosa oculto, logo ampliado a
+`15–18rem` y desplazado `1rem` hacia abajo, navegación desktop ampliada y
+estado activo con subrayado de `0.15rem` a todo el ancho de la pestaña. El
+assert del shell se actualizó al nuevo mínimo de `9.5rem`. `npm run lint`,
+`npm run typecheck`, `npm run build`, Prettier y `tests/site-shell.test.ts`:
+PASS. La suite completa queda bloqueada por un fallo ajeno en
+`tests/custom-idea.test.ts`: el asset existente mide `1942` px de ancho frente
+al contrato esperado de `1536` px. `VISUAL QA: PENDING`; `OWNER APPROVAL: PENDING`.
 
 **Placeholder futuro:** M8.10 — Mobile visual alignment. La referencia móvil ya
 está recibida y versionada, pero no se formaliza ni ejecuta hasta aprobar

@@ -65,7 +65,7 @@ describe('public site shell', () => {
     expect(header).toContain('class="site-navigation--desktop"');
     expect(styles).toContain('.site-navigation--desktop');
     expect(styles).toContain('.site-menu {');
-    expect(styles).toContain('min-block-size: 7.5rem');
+    expect(styles).toContain('min-block-size: 9.5rem');
     expect(styles).toContain('.primary-navigation--header a[aria-current=');
   });
 
