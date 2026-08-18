@@ -196,7 +196,7 @@
   .custom-idea__art-picture {
     inset-block-start: auto;
     inset-block-end: -0.5rem;
-    block-size: min(59vw, 27rem);
+    block-size: min(72vw, 32rem);
   }
 
   .custom-idea__moon {
