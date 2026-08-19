@@ -10,8 +10,8 @@ export const customIdeaContent = Object.freeze({
   media: Object.freeze({
     image: Object.freeze({
       alt: 'Manos preparando un regalo envuelto con un lazo rosa junto a unas flores delicadas.',
-      sourceWidth: 1536,
-      sourceHeight: 1024,
+      sourceWidth: 1942,
+      sourceHeight: 809,
     }),
     rights: Object.freeze({
       owner: 'Propietario del proyecto',

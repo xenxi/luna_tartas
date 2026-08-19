@@ -1552,9 +1552,14 @@ a11y, responsive y revisión visual manual; tests verdes no bastan.
 estado activo con subrayado de `0.15rem` a todo el ancho de la pestaña. El
 assert del shell se actualizó al nuevo mínimo de `9.5rem`. `npm run lint`,
 `npm run typecheck`, `npm run build`, Prettier y `tests/site-shell.test.ts`:
-PASS. La suite completa queda bloqueada por un fallo ajeno en
+PASS. La suite completa quedó bloqueada por un fallo ajeno en
 `tests/custom-idea.test.ts`: el asset existente mide `1942` px de ancho frente
 al contrato esperado de `1536` px. `VISUAL QA: PENDING`; `OWNER APPROVAL: PENDING`.
+
+Corrección de consistencia del asset (2026-08-19): el metadata editorial y la
+prueba se sincronizan con el PNG central aportado, cuya cabecera real es
+`1942 × 809` RGBA. El fallo de la suite queda resuelto; `VISUAL QA: PENDING` y
+`OWNER APPROVAL: PENDING` permanecen sin cambios.
 
 **Placeholder futuro:** M8.10 — Mobile visual alignment. La referencia móvil ya
 está recibida y versionada, pero no se formaliza ni ejecuta hasta aprobar

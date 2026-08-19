@@ -75,8 +75,8 @@ describe('home custom idea CTA', () => {
   it('keeps the supplied photo, watercolor and rights metadata traceable', () => {
     expect(customIdeaContent.media.image).toEqual({
       alt: 'Manos preparando un regalo envuelto con un lazo rosa junto a unas flores delicadas.',
-      sourceWidth: 1536,
-      sourceHeight: 1024,
+      sourceWidth: 1942,
+      sourceHeight: 809,
     });
     expect(customIdeaContent.media.rights.owner).toBe(
       'Propietario del proyecto',
@@ -84,8 +84,8 @@ describe('home custom idea CTA', () => {
     expect(customIdeaContent.media.rights.evidence).toContain('M8.9.8');
     expect(background.subarray(16, 24).readUInt32BE(0)).toBe(2172);
     expect(background.subarray(16, 24).readUInt32BE(4)).toBe(724);
-    expect(image.subarray(16, 24).readUInt32BE(0)).toBe(1536);
-    expect(image.subarray(16, 24).readUInt32BE(4)).toBe(1024);
+    expect(image.subarray(16, 24).readUInt32BE(0)).toBe(1942);
+    expect(image.subarray(16, 24).readUInt32BE(4)).toBe(809);
     expect(image[25]).toBe(6);
     expect(pinkCloud.subarray(16, 24).readUInt32BE(0)).toBe(1536);
     expect(pinkCloud.subarray(16, 24).readUInt32BE(4)).toBe(1024);
