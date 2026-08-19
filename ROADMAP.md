@@ -1561,6 +1561,11 @@ prueba se sincronizan con el PNG central aportado, cuya cabecera real es
 `1942 × 809` RGBA. El fallo de la suite queda resuelto; `VISUAL QA: PENDING` y
 `OWNER APPROVAL: PENDING` permanecen sin cambios.
 
+Corrección de base vacía en Pages (2026-08-19): `verify-performance` trata ahora
+una salida vacía de `steps.pages.outputs.base_path` como raíz, igual que los
+verificadores de enlaces y artefacto. Se añade regresión de `artifactPath`; la
+verificación deja pendientes únicamente los gates visuales/aprobación.
+
 **Placeholder futuro:** M8.10 — Mobile visual alignment. La referencia móvil ya
 está recibida y versionada, pero no se formaliza ni ejecuta hasta aprobar
 desktop; sus funciones ficticias no modifican los contratos reales.

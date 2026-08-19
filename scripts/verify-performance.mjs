@@ -5,7 +5,7 @@ import { artifactPath } from './performance-paths.mjs';
 
 const DIST = resolve('dist');
 const DEPLOYMENT_BASE =
-  process.env.ASTRO_BASE_PATH ?? process.env.PAGES_BASE_PATH ?? '/';
+  process.env.ASTRO_BASE_PATH || process.env.PAGES_BASE_PATH || '/';
 const BUDGETS = {
   htmlGzip: 50 * 1024,
   cssGzip: 50 * 1024,

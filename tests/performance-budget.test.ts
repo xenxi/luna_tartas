@@ -50,6 +50,12 @@ describe('performance budget contract', () => {
     );
   });
 
+  it('treats an empty deployment base as the site root', () => {
+    expect(artifactPath('/_astro/site.css', 'dist', '')).toBe(
+      resolve('dist/_astro/site.css'),
+    );
+  });
+
   it('strips a repository base before resolving the physical artifact path', () => {
     expect(artifactPath('/repo/_astro/site.css', 'dist', '/repo/')).toBe(
       resolve('dist/_astro/site.css'),

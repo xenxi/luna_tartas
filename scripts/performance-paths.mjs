@@ -1,6 +1,7 @@
 import { resolve, sep } from 'node:path';
 
 function normalizeBase(base) {
+  if (base === '') return '/';
   if (!base?.startsWith('/') || base.startsWith('//')) {
     throw new Error(`Deployment base must start with exactly one slash: ${base}`);
   }
