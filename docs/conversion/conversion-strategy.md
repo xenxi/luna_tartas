@@ -35,10 +35,9 @@ He visto este producto en vuestra web:
 
 | Evento | Momento | Parámetros permitidos |
 | --- | --- | --- |
-| `view_item` | ficha visible/cargada | `product_id`, `product_name`, `category`, `price`, `currency`, `source_page` |
-| `select_item` | selección desde listado | campos de producto + `list_id`, `position`, `source_page` |
-| `whatsapp_click` | activación CTA de producto | campos de producto + `cta_location`, `source_page` |
-| `custom_whatsapp_click` | activación CTA personalizado | `cta_location`, `source_page` |
+| `page_view` | carga de pagina | `page_path` canonico |
+| `view_item` | ficha visible/cargada | `item_id`, `item_name`, `item_category` |
+| `contact_whatsapp` | activacion de CTA WhatsApp | `source` y campos `item_*` opcionales |
 
 No se envían contenido del mensaje, teléfono, nombre del visitante ni otros datos personales. Los parámetros ausentes se omiten; no se falsifican ceros/precios.
 
@@ -46,12 +45,12 @@ No se envían contenido del mensaje, teléfono, nombre del visitante ni otros da
 
 Los componentes declaran nombre/payload mediante una API pequeña o atributos de datos. Un adaptador cliente único traduce al proveedor elegido. Sin consentimiento/proveedor, los enlaces siguen funcionando y el código no arroja errores.
 
-La decisión de M7.1 selecciona Matomo On-Premise dentro del EEE, con estado inicial desactivado y consentimiento analítico explícito antes de cargarlo. El contrato de configuración, retención, exclusiones y diccionario definitivo están en [`analytics-decision.md`](analytics-decision.md). La identidad legal y la política pública se completan en M9.4; hasta entonces producción no habilita medición.
+La revision de M9.4 adopta GA4 directo, sin GTM, con `enabled: true` en la configuracion productiva aprobada y consentimiento analitico explicito antes de cargar Google tag. El contrato permanente esta en [`analytics-decision.md`](analytics-decision.md) y la evidencia manual en [`analytics-runbook.md`](analytics-runbook.md). La validacion real post-despliegue sigue pendiente en M9.4.
 
 ## Medición y QA
 
 - Vistas no se duplican por navegación/hidratación.
 - El evento de click se intenta antes de navegar sin introducir una demora perceptible.
 - Debug de proveedor y una captura/matriz de eventos sirven como evidencia.
-- Se documentan exclusión de tráfico interno, retención y propiedad de cuentas cuando aplique.
+- Se documentan retencion y propiedad de cuentas; no se usa exclusion por IP porque la conexion administrativa es dinamica y se acepta que visitas administrativas consentidas en produccion puedan contabilizarse.
 - Tras release se verifica recepción real sin registrar datos personales.

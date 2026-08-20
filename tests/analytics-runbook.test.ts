@@ -6,13 +6,8 @@ import { sanitizeAnalyticsEvent } from '../src/lib/analytics/events';
 const runbook = readFileSync('docs/conversion/analytics-runbook.md', 'utf8');
 
 describe('analytics QA runbook', () => {
-  it('keeps the four approved events and representative routes documented', () => {
-    for (const event of [
-      'view_item',
-      'select_item',
-      'whatsapp_click',
-      'custom_whatsapp_click',
-    ]) {
+  it('keeps the three approved events and representative routes documented', () => {
+    for (const event of ['page_view', 'view_item', 'contact_whatsapp']) {
       expect(runbook).toContain(`\`${event}\``);
     }
 
@@ -31,28 +26,32 @@ describe('analytics QA runbook', () => {
 
   it('documents every consent and degradation mode', () => {
     for (const caseName of [
-      'Configuración apagada',
+      'Configuracion apagada',
       'Sin consentimiento',
       'Rechazo',
-      'Aceptación',
+      'Aceptacion',
       'Retirada',
       'Fallo del tracker',
       'Almacenamiento bloqueado',
-      'Tráfico interno',
+      'Trafico interno',
     ]) {
       expect(runbook).toContain(`| ${caseName} |`);
     }
 
-    expect(siteConfig.analytics.enabled).toBe(false);
+    expect(siteConfig.analytics).toEqual({
+      enabled: true,
+      provider: 'ga4',
+      measurementId: 'G-DV6KHV0YMW',
+      consentRequired: true,
+    });
   });
 
   it('keeps prohibited fields rejected and the redacted capture PII-free', () => {
     const event = {
       name: 'view_item',
-      product_id: 'producto-publico',
-      product_name: 'Producto público',
-      category: 'categoria-publica',
-      source_page: '/productos/producto-publico/',
+      item_id: 'producto-publico',
+      item_name: 'Producto público',
+      item_category: 'categoria-publica',
     };
 
     expect(
@@ -61,7 +60,7 @@ describe('analytics QA runbook', () => {
     expect(
       sanitizeAnalyticsEvent({
         ...event,
-        source_page: '/productos/producto-publico/?email=redacted@example.com',
+        item_name: 'redacted@example.com',
       }),
     ).toBeUndefined();
     expect(runbook).toContain('no phone | no email | no WhatsApp message');

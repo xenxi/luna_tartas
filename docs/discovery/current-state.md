@@ -48,6 +48,12 @@ Los estados `TBD` siguientes son pendientes trazables, no afirmaciones de inexis
 
 El estado individual de todas las URLs conocidas durante esta auditoría está en [`../seo/url-inventory.csv`](../seo/url-inventory.csv). No se descubrieron rutas históricas adicionales mediante las fuentes públicas consultadas.
 
+Las filas de la siguiente tabla son la fotografía histórica de M0.1. Para el
+estado operativo vigente de producción, Search Console y analytics quedan
+supersedidos por la evidencia manual de M9.4 en
+[`../conversion/analytics-runbook.md`](../conversion/analytics-runbook.md); no
+deben interpretarse como TBD activos de esos servicios.
+
 | Elemento | Evidencia/estado | Disponibilidad | Propietario | Siguiente acción |
 | --- | --- | --- | --- | --- |
 | `robots.txt` | No verificable en origin; HTTP fue interceptado y HTTPS agotó tiempo (S4) | `TBD` | Propietario del negocio | Recuperar desde hosting/export o comprobar desde otra red/origin autorizado |

@@ -47,7 +47,7 @@ describe('home custom idea CTA', () => {
       /^https:\/\/wa\.me\/34697637180\?text=/,
     );
     expect(component).toContain('<ActionLink');
-    expect(component).toContain("event: 'custom_whatsapp_click'");
+    expect(component).toContain("event: 'contact_whatsapp'");
     expect(component).toContain('variant="secondary"');
     expect(component).toContain('custom-idea__whatsapp-icon');
     expect(component).toContain('src={lunaCloud}');

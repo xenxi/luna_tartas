@@ -3,7 +3,6 @@ import type { Catalog, PublishedProduct } from '../../lib/catalog/domain/model';
 import { routes } from '../../lib/catalog/domain/routes';
 import { formatPriceLabel } from '../catalog/price';
 import type { ProductCardProjection } from '../catalog/types';
-import { createProductAnalyticsData } from '../../lib/analytics/product';
 
 export interface ProductListingProjection {
   readonly title: string;
@@ -26,15 +25,11 @@ export function projectProductListing(
   return {
     title: 'Todas nuestras ideas',
     intro: 'Explora regalos personalizados para encontrar el detalle adecuado.',
-    items: getPublishedProducts(catalog).map((product, index) => ({
+    items: getPublishedProducts(catalog).map((product) => ({
       href: routes.product(product.slug),
       name: product.name,
       summary: product.summary,
       priceLabel: formatPriceLabel(product.price),
-      analytics: createProductAnalyticsData(product, routes.products(), {
-        listId: 'products-all',
-        position: index + 1,
-      }),
     })),
   };
 }

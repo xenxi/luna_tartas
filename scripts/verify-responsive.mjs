@@ -19,6 +19,17 @@ function requireMatch(content, pattern, message) {
   if (!pattern.test(content)) failures.push(message);
 }
 
+function isAllowedAnalyticsModule(attributes) {
+  const src = attributes.match(/\bsrc="([^"]+)"/i)?.[1];
+  return (
+    /\btype="module"/i.test(attributes) &&
+    src !== undefined &&
+    /^\/_astro\/Analytics(?:Consent|Instrumentation)\.astro_astro_type_script_[^/]+\.js$/i.test(
+      src,
+    )
+  );
+}
+
 try {
   await walk(root);
 } catch {
@@ -40,9 +51,12 @@ if (htmlFiles.length === 0) {
     );
     requireMatch(html, /<main\b[^>]*>/i, `${relative}: falta main`);
     for (const script of html.matchAll(/<script\b([^>]*)>/gi)) {
-      if (!/type="application\/ld\+json"/i.test(script[1]))
+      if (
+        !/type="application\/ld\+json"/i.test(script[1]) &&
+        !isAllowedAnalyticsModule(script[1])
+      )
         failures.push(
-          `${relative}: el artefacto no debe requerir JavaScript cliente`,
+          `${relative}: el artefacto carga JavaScript cliente no permitido`,
         );
     }
     if (/<a\b[^>]*href=""/i.test(html))

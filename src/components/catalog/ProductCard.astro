@@ -15,8 +15,6 @@ const Heading = `h${headingLevel}` as 'h2' | 'h3';
 if (!product.href.startsWith('/') || product.href.startsWith('//')) {
   throw new Error('ProductCard requires an internal absolute-path href');
 }
-
-const analytics = product.analytics;
 ---
 
 <article class="catalog-card catalog-card--product">
@@ -24,17 +22,8 @@ const analytics = product.analytics;
   <div class="catalog-card__body">
     {product.eyebrow && <p class="catalog-card__eyebrow">{product.eyebrow}</p>}
     <Heading class="catalog-card__title">
-      <a
-        href={withBasePath(product.href, import.meta.env.BASE_URL)}
-        data-analytics-select-item={analytics ? '' : undefined}
-        data-analytics-product-id={analytics?.productId}
-        data-analytics-product-name={analytics?.productName}
-        data-analytics-category={analytics?.category}
-        data-analytics-source-page={analytics?.sourcePage}
-        data-analytics-price={analytics?.price}
-        data-analytics-currency={analytics?.currency}
-        data-analytics-list-id={analytics?.listId}
-        data-analytics-position={analytics?.position}>{product.name}</a
+      <a href={withBasePath(product.href, import.meta.env.BASE_URL)}
+        >{product.name}</a
       >
     </Heading>
     <p class="catalog-card__summary">{product.summary}</p>

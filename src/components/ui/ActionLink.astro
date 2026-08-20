@@ -9,14 +9,12 @@ interface Props {
   target?: '_blank';
   rel?: string;
   analytics?: {
-    event: 'whatsapp_click' | 'custom_whatsapp_click';
+    event: 'contact_whatsapp';
     ctaLocation: string;
-    sourcePage: string;
+    sourcePage?: string;
     productId?: string;
     productName?: string;
     category?: string;
-    price?: number;
-    currency?: string;
   };
 }
 
@@ -40,20 +38,13 @@ if (!href || href.startsWith('javascript:')) {
   aria-label={ariaLabel}
   target={target}
   rel={rel}
-  data-analytics-whatsapp-click={analytics?.event === 'whatsapp_click'
-    ? ''
-    : undefined}
-  data-analytics-custom-whatsapp-click={analytics?.event ===
-  'custom_whatsapp_click'
+  data-analytics-contact-whatsapp={analytics?.event === 'contact_whatsapp'
     ? ''
     : undefined}
   data-analytics-cta-location={analytics?.ctaLocation}
-  data-analytics-source-page={analytics?.sourcePage}
   data-analytics-product-id={analytics?.productId}
   data-analytics-product-name={analytics?.productName}
   data-analytics-category={analytics?.category}
-  data-analytics-price={analytics?.price}
-  data-analytics-currency={analytics?.currency}
 >
   <slot />
 </a>

@@ -8,7 +8,7 @@
 | Apex proxied por Cloudflare, `www` NXDOMAIN y configuración/acceso desconocidos | corte, canonicalización o HTTPS incorrectos | exportar zona/reglas/TTL y preparar rollback en M9.3; no cambiar DNS durante discovery | OPEN |
 | Catálogo, fotos, copy y exports no entregados | páginas finales no publicables | M0.1 registra cada ausencia con owner; contrato de entradas en M0.3 y gate final en M9.1 | OPEN |
 | Marca/licencias no confirmadas | retrabajo y riesgo legal | M3.1 no consolida assets sin aprobación | OPEN |
-| Analytics/consentimiento sin decidir | medición o privacidad incorrecta | M7.1 selecciona Matomo On-Premise EEE, opt-in y estado desactivado; M7.2/M9.4 verifican instancia, política y habilitación | CONTROLLED — owner: titular de Luna Tartas |
+| Alta GA4 y consentimiento sin aprobacion productiva | medicion o privacidad incorrecta | GA4 directo aprobado y configurado con opt-in; M9.4 conserva el bloqueo hasta verificacion real en Network/Realtime/DebugView | CONTROLLED — owner: titular de Luna Tartas |
 | Pages tiene redirects HTTP por path limitados | migración SEO incompleta | Cloudflare cubre 301/308; si faltan acceso/capacidad o se requieren 410 reales, M9.2 sustituye Pages o añade edge explícito | OPEN — owner: propietario del negocio |
 | Fotos originales pesadas en Git | repositorio lento a largo plazo | hard limits M0.2 (8 MiB/24 MP por raster; 100 MiB binarios) y archivo externo; checks en M2/M8 | CONTROLLED — owner: equipo técnico |
 | Exposición accidental de secretos en repositorio público, historial, logs o `dist` | compromiso de cuentas/servicios | `.gitignore`, permisos mínimos y gates de repo/historial/workflows/artefacto en M8.5; logs remotos se reinspeccionan en M8.6/M9.3 | CONTROLLED — owner: equipo técnico |
@@ -43,7 +43,7 @@ Los umbrales de M0.2 son gates iniciales, no `TBD`: M8.2 puede endurecerlos y s�
 | Permisos de Actions/Pages y custom domain | Propietario GitHub `xenxi` | M1.4/M1.5 y M9.3; no M1.1 | confirmar rol admin y habilitación antes de esos gates |
 | Acceso/export DNS y Redirect Rules de Cloudflare | Propietario del negocio | M9.2/M9.3; no scaffold M1 | identificar usuario con acceso y aportar export sanitizado |
 | Histórico de URLs o confirmación explícita de ausencia | Propietario del negocio | M9.2 | aportar Search Console/hosting/backlinks o acta de ausencia |
-| Política de privacidad y analytics | Propietario del negocio | M7.1/M9.4 | definir responsable y requisitos legales/consentimiento |
+| Validacion productiva de analytics | Titular de Luna Tartas | M9.4 | comprobar Network antes/despues de consentimiento, eventos unicos, PII y revocacion |
 
 **Resultado para M1:** no queda un `TBD` técnico que impida diseñar el scaffold. M1.1 sólo espera la dependencia de roadmap M0.3; los permisos externos están asignados a owner y gate posterior.
 

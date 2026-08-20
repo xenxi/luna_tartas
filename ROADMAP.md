@@ -1,6 +1,6 @@
 # ROADMAP — Luna Estudio
 
-Única fuente de verdad sobre prioridad, estado y siguiente tarea. Última actualización: 2026-08-18.
+Única fuente de verdad sobre prioridad, estado y siguiente tarea. Última actualización: 2026-08-20.
 
 ## Uso
 
@@ -9,10 +9,10 @@
 - Se ejecuta exclusivamente la tarea solicitada; no se anticipa la siguiente.
 - `DONE` exige todos los criterios y verificaciones en `PASS`, con evidencia registrada aquí.
 - Orden normal: de arriba abajo. Una tarea posterior sólo puede comenzar si todas sus dependencias están `DONE`.
-- **Siguiente tarea:** `M8.9.11 — Visual QA desktop + aprobación del propietario`.
-- **Pausa de release:** M9 permanece temporalmente pausada por alineación visual;
-  M9.2 conserva su bloqueo operativo de Cloudflare y no se reanuda hasta que
-  M8.9.11 obtenga `VISUAL QA: PASS` y `OWNER APPROVAL: APPROVED`.
+- **Siguiente tarea:** `M9.4 — Analytics y Search Console en producción`.
+- **Pausa de release:** la alineación visual desktop, la migración de redirects
+  y el corte productivo quedan aprobados; M9.4 permanece `BLOCKED` sólo por la
+  validación humana posterior al despliegue de analytics.
 
 ## Gates de programa
 
@@ -425,7 +425,7 @@ rutas físicas bajo `dist`.
 **Fuera de alcance:** ficha, CTA WhatsApp directo o algoritmo de recomendación.  
 **Dependencias:** M4.3.  
 **Archivos/áreas previstas:** home/components y tests de render/proyección.  
-**Contratos afectados:** catálogo, UI, conversión `select_item` futuro.  
+**Contratos afectados:** catálogo, UI, conversión analytics futura.
 **Criterios de aceptación:** orden/featured vienen del dominio; precio `from/on_request` no se tergiversa; imágenes responsivas.  
 **Verificación:** build, variantes de precio y visual móvil/escritorio.  
 **Modelo recomendado:** LUNA.  
@@ -901,6 +901,11 @@ rutas físicas bajo `dist`.
 **Estado:** PENDING  
 **Gate:** G7.
 
+Las referencias a Matomo en las evidencias históricas de M7 documentan la
+decisión anterior y no constituyen requisitos, configuración ni dependencia
+productiva vigente. La decisión vigente desde 2026-08-20 está en M9.4 y en
+`docs/conversion/analytics-decision.md`.
+
 ## M7.1 — Decisión de analytics y privacidad
 
 **Estado:** DONE
@@ -915,6 +920,10 @@ rutas físicas bajo `dist`.
 **Modelo recomendado:** SOL.  
 **Razón del modelo:** tradeoff transversal entre negocio, privacidad y rendimiento.  
 **Evidencia:** PASS (2026-08-17) — `docs/conversion/analytics-decision.md` decide Matomo On-Premise en instancia dedicada dentro del EEE, desactivado por defecto y cargable sólo tras consentimiento analítico explícito; no se invoca una exención de cookies. Fija responsable (titular de Luna Tartas), rol de operación/encargo, minimización, IP anonimizada, prohibición de cookies persistentes/User ID/publicidad/recording, retención de 13 meses y agregados no reidentificables hasta 25 meses, exclusión interna fuera de Git y transferencia sólo EEE. Evalúa no medir, GA4/GTM y SaaS cookieless; confirma Matomo como alternativa proporcional. Define contrato `analytics` global, PII prohibida y diccionario final de los cuatro eventos V1, además de los checks para M7.2/M7.5. `conversion-strategy.md`, `catalog-contract.md`, `content-readiness.md` y el registro de riesgos quedan consistentes. Revisión contra conversión, despliegue, readiness y presupuesto de JS: PASS; `npm run lint`, `npm run typecheck`, `npm test`, `npm run build` y `git diff --check`: PASS. No se añadió tracker, endpoint, ID, cookie ni dato personal. La habilitación de producción sigue requiriendo instancia EEE, acuerdo aplicable, identidad/política publicadas y aprobación explícita de la titular. Siguiente tarea: M7.2 (modelo SOL → LUNA).
+
+**Decision sustituida (2026-08-20):** este registro se conserva como historico;
+M9.4 adopta GA4 directo. El contrato vigente esta en
+`docs/conversion/analytics-decision.md`.
 
 ## M7.2 — Facade y adaptador de analytics
 
@@ -934,7 +943,7 @@ rutas físicas bajo `dist`.
 ## M7.3 — Instrumentación de vistas y selección
 
 **Estado:** DONE
-**Objetivo:** medir `view_item` y `select_item` sin duplicados ni lógica de proveedor en cards/fichas.  
+**Objetivo:** medir vistas de producto sin duplicados ni logica de proveedor en fichas.
 **Alcance:** fichas, destacados/listados/taxonomías, list_id/position/source y price optional.  
 **Fuera de alcance:** clic WhatsApp o funnels server-side.  
 **Dependencias:** M7.2.  
@@ -949,7 +958,7 @@ rutas físicas bajo `dist`.
 ## M7.4 — Instrumentación de WhatsApp
 
 **Estado:** DONE
-**Objetivo:** medir `whatsapp_click` y `custom_whatsapp_click` sin perjudicar conversión.  
+**Objetivo:** medir la intencion de contacto por WhatsApp sin perjudicar conversion.
 **Alcance:** CTAs de ficha/home/globales, location/source/product payload y navegación resiliente.  
 **Fuera de alcance:** contenido de conversaciones, entrega/venta o delayed navigation largo.  
 **Dependencias:** M7.3.  
@@ -1391,7 +1400,7 @@ con el fondo blush aportado, las nubes rosa y azul como decoración y la
 fotografía central responsive. El 2026-08-18 la fotografía se sustituyó por el
 PNG transparente actualizado aportado por el propietario; alt, dimensiones y
 autorización directa quedan trazados en `src/content/home/custom-idea.ts`. Se conservan
-sin cambio el titular, copy, enlace de WhatsApp y `custom_whatsapp_click` en
+  sin cambio el titular, copy, enlace de WhatsApp y evento de contacto en
 `home-custom-idea`. `npm run lint`, `npm run typecheck` (0 errores, warnings e
 hints), `npm test` (39 archivos, 242 tests), `npm run build` (25 páginas),
 `verify:links`, `verify:accessibility`, `verify:performance` (104.286 bytes
@@ -1533,7 +1542,7 @@ lint, typecheck, test específico y format: PASS.
 
 ## M8.9.11 — Visual QA desktop + aprobación del propietario
 
-**Estado:** IN_PROGRESS
+**Estado:** DONE
 **Objetivo:** comparar sistemáticamente la implementación completa contra la
 referencia aprobada y obtener la decisión explícita del propietario.
 **Dependencias:** M8.9.10.
@@ -1541,8 +1550,8 @@ referencia aprobada y obtener la decisión explícita del propietario.
 1280/1440/1920; comparación documentada de Header, logo, Hero, H1/script,
 corazón/separador, cards, fondos, proceso, portfolio, CTA, Footer, whitespace,
 proporciones y jerarquía; `VISUAL QA: PASS`; `OWNER APPROVAL: APPROVED`.
-**Estado de cierre obligatorio:** `PENDING APPROVAL` hasta recibir aprobación
-explícita; M9 continúa pausada.
+**Estado de cierre obligatorio:** aprobación explícita registrada; M9.2 conserva
+su bloqueo operativo independiente.
 **Verificación:** lint, typecheck, tests, build, links, security, performance,
 a11y, responsive y revisión visual manual; tests verdes no bastan.
 **Modelo recomendado:** SOL.
@@ -1566,6 +1575,23 @@ una salida vacía de `steps.pages.outputs.base_path` como raíz, igual que los
 verificadores de enlaces y artefacto. Se añade regresión de `artifactPath`; la
 verificación deja pendientes únicamente los gates visuales/aprobación.
 
+QA desktop ejecutada el 2026-08-19: `npm ci`, `npm run format`, `npm run lint`,
+`npm run typecheck` (0 errores, warnings e hints), `npm test` (40 archivos,
+244 tests), `npm run build` (25 páginas), `verify:seo`, `verify:crawl`,
+`verify:links`, `verify:structured-data`, `verify:catalog`, `verify:artifact`,
+`verify:determinism`, `verify:mutation`, `verify:security`,
+`verify:dependencies`, `verify:accessibility`, `verify:assets`,
+`verify:performance`, `verify:responsive`, `verify:redirects` y `git diff --check`:
+PASS. La inspección manual de `home-1280.png`, `home-1440.png` y
+`home-1920.png` contra `reference/luna-home-art-direction-reference.png`
+documenta PASS en Header/logo, Hero/H1/script, separador, cards, fondos,
+proceso, portfolio, CTA, Footer, whitespace, proporciones y jerarquía; no hay
+overflow horizontal y los CTA mantienen targets de 44–48 px. `VISUAL QA: PASS`.
+La evidencia queda en `docs/design/evidence/m8-9-10-desktop-integration/`.
+`OWNER APPROVAL: APPROVED` (2026-08-19), recibido explícitamente del propietario.
+M8.9.11 queda `DONE`; M9.2 sigue `BLOCKED` por falta de acceso operativo a
+Cloudflare.
+
 **Placeholder futuro:** M8.10 — Mobile visual alignment. La referencia móvil ya
 está recibida y versionada, pero no se formaliza ni ejecuta hasta aprobar
 desktop; sus funciones ficticias no modifican los contratos reales.
@@ -1574,7 +1600,7 @@ desktop; sus funciones ficticias no modifican los contratos reales.
 
 # M9 — Migration + Production Release
 
-**Estado:** PENDING (PAUSED BY M8.9 VISUAL ALIGNMENT)
+**Estado:** PENDING (PAUSED BY M9.4 PRODUCTION ACCESS GATE)
 **Gate:** G9.
 
 ## M9.1 — Catálogo, copy y assets finales
@@ -1619,7 +1645,7 @@ referenciados existen bajo `src/assets/catalog/papeleria/`.
 
 ## M9.2 — Mapa y ejecución de redirects
 
-**Estado:** BLOCKED
+**Estado:** DONE
 **Objetivo:** preservar cualquier señal histórica conocida.  
 **Alcance:** deduplicar inventario old→new, decidir 301/410/conservar, implementar en capa viable (Cloudflare/hosting) y detectar cadenas/loops.  
 **Fuera de alcance:** redirects especulativos masivos o cambiar slugs nuevos sin motivo.  
@@ -1630,7 +1656,7 @@ referenciados existen bajo `src/assets/catalog/papeleria/`.
 **Verificación:** HTTP checker sobre entorno previo/provisional y muestreo manual.  
 **Modelo recomendado:** SOL.  
 **Razón del modelo:** migración SEO y limitaciones de Pages requieren juicio experto.  
-**Evidencia:** BLOCKED (2026-08-17) — La segunda auditoría externa resolvió
+**Evidencia:** PASS (2026-08-20; bloqueo resuelto) — La segunda auditoría externa resolvió
 el falso negativo de red de M0.1: `lunatartas.es` sirve una aplicación Flutter
 anterior por HTTP/HTTPS y su bundle público confirma 15 rutas de aplicación.
 `docs/seo/redirect-map.csv` deduplica 16 decisiones: portada preservada, seis
@@ -1640,15 +1666,27 @@ cabecera importable en Cloudflare Bulk Redirects, un Worker edge para los 410,
 checker local/remoto y tests; mapa, duplicados, chains, loops y respuestas 410:
 PASS. El muestreo previo confirma que las 15 rutas aún responden 200; `www`
 sigue NXDOMAIN, `robots.txt` concatena HTML y `sitemap.xml` es el fallback SPA.
-No hay acceso/export/conexión de Cloudflare ni exports privados de Search
-Console/logs/backlinks: los 301/410 no pueden activarse ni comprobarse como
-respuestas reales. Reanudar M9.2 cuando el propietario facilite acceso o aplique
-los artefactos preparados; después ejecutar
-`npm run verify:redirects -- --origin=https://lunatartas.es`. No avanzar a M9.3.
+En la ejecución inicial no había acceso/export/conexión de Cloudflare ni exports
+privados de Search Console/logs/backlinks: los 301/410 no podían activarse ni
+comprobarse como respuestas reales. El propietario aplicó los artefactos
+preparados y la revalidación del 2026-08-20 ejecutó
+`npm run verify:redirects -- --origin=https://lunatartas.es` antes de avanzar a
+M9.3.
+
+Revalidación del 2026-08-20: `npm run verify:redirects`: PASS (16 entradas:
+1 preserve, 6 redirect y 9 gone); `npm test -- tests/redirect-map.test.ts`:
+PASS (3 tests). El checker HTTP contra
+`https://lunatartas.es` (`npm run verify:redirects --
+--origin=https://lunatartas.es`): PASS (16 entradas), con las seis respuestas
+`301` y las ocho rutas `gone` exactas verificadas sin seguir redirects; el test
+local del Worker cubre también la ruta patrón `/pedidos/{id}`, las nueve
+respuestas `410` y `X-Robots-Tag: noindex`. Las redirecciones conservan la
+query aprobada. `git diff --check`: PASS. La activación edge queda verificada
+y M9.2 pasa a `DONE`; M9.3 queda como siguiente tarea.
 
 ## M9.3 — DNS, dominio, HTTPS y deploy productivo
 
-**Estado:** PENDING  
+**Estado:** DONE
 **Objetivo:** servir el release candidate en el canonical con rollback controlado.  
 **Alcance:** backup DNS, TTL, Pages custom domain/CNAME, apex/www, Cloudflare proxy si procede, HTTPS, deploy, smoke y rollback window.  
 **Fuera de alcance:** cambios DNS no documentados o release con G8 fallido.  
@@ -1659,22 +1697,81 @@ los artefactos preparados; después ejecutar
 **Verificación:** DNS lookup multi-resolver, HTTP/TLS checks, smoke y comparación de commit/artifact.  
 **Modelo recomendado:** SOL.  
 **Razón del modelo:** operación de alto impacto y recuperación temporal.  
-**Evidencia:** —
+**Evidencia:** PASS (2026-08-20) — El release aprobado está desplegado en
+GitHub Pages desde `main` con SHA
+`733a585fe5c4a279e41319bd4438c53945a215f4`; el run remoto
+`32222663078` (build, deploy y smoke): PASS. La API de Pages confirma
+custom domain `lunatartas.es`, certificado `approved` válido hasta
+2026-11-16 y `https_enforced: true` (activado durante M9.3). El apex responde
+`HTTP 301` de HTTP a HTTPS y `HTTPS 200`; el HTML publicado contiene `<main>`,
+canonical `https://lunatartas.es/` y cero recursos `http://`. `npm ci`, lint,
+typecheck, tests, build, verificadores SEO/crawl/links/structured-data/catalog/
+artifact/security/dependencies/accessibility/assets/performance/responsive/
+determinism/mutation y `git diff --check`: PASS. El rollback queda listo con
+el último run verde y su SHA para revert hacia delante. La revalidación DNS en
+1.1.1.1 y 8.8.8.8 confirma `www.lunatartas.es`; HTTP y HTTPS de `www`
+responden `301` directo a `https://lunatartas.es/`, y el destino final responde
+`200` con `<main>` y canonical del apex. Criterios de M9.3: PASS; siguiente
+tarea: M9.4.
 
 ## M9.4 — Analytics y Search Console en producción
 
-**Estado:** PENDING  
-**Objetivo:** confirmar observabilidad e indexación real tras el corte.  
-**Alcance:** ownership, sitemap submission, URL inspection de muestra, eventos reales sin PII y exclusión interna/consentimiento.  
+**Estado:** BLOCKED
+**Objetivo:** confirmar observabilidad, medicion e indexacion real tras el corte utilizando Google Search Console y Google Analytics 4.
+**Alcance:** ownership, sitemap submission, URL inspection de muestra, propiedad/stream GA4, eventos reales sin PII y exclusion interna/consentimiento.
 **Fuera de alcance:** prometer indexación inmediata o optimización de campañas.  
 **Dependencias:** M9.3.  
 **Archivos/áreas previstas:** runbooks/evidencia privada referenciada sin secretos.  
 **Contratos afectados:** SEO operations, analytics, privacy.  
-**Criterios de aceptación:** propiedad accesible; sitemap aceptado o diagnóstico; eventos llegan una vez; no secretos en repo.  
-**Verificación:** Search Console + realtime/debug provider + network check consent modes.  
+**Criterios de aceptación:** Search Console: propiedad accesible/verificada, `sitemap.xml` enviado con estado real registrado y URL Inspection de muestra registrada; no se exige indexación inmediata tras solicitarla. GA4: propiedad/stream productivo creado, Measurement ID disponible, integración habilitada sólo con configuración y aprobación válidas, consentimiento verificado, evento real visible una vez en Realtime/DebugView, payload sin PII, desarrollo excluido y decisión de tráfico interno documentada. Seguridad: sin secretos ni valores inventados; ausencia de configuración y autorización mantiene analytics desactivado.
+**Verificación:** Search Console + GA4 Realtime/DebugView + Network en modos de consentimiento + suite local sin servidores Google.
 **Modelo recomendado:** LUNA → SOL REVIEW.  
 **Razón del modelo:** pasos operativos concretos con revisión de interpretación.  
-**Evidencia:** —
+**Evidencia:** BLOCKED / PENDING VERIFICATION (2026-08-20) — La configuración
+externa y las decisiones manuales quedan consolidadas en
+`docs/conversion/analytics-decision.md` y `docs/conversion/analytics-runbook.md`.
+
+Search Console: la propiedad de dominio `lunatartas.es` está accesible y
+verificada; `https://lunatartas.es/sitemap.xml` fue procesado correctamente y
+detectó 24 páginas. La home está disponible, es indexable y estaba indexada en
+la comprobación. `/productos/` pasó URL Inspection en tiempo real, es indexable
+y tiene indexación solicitada. La ficha
+`/productos/tarta-de-panales-personalizada/` fue descubierta mediante sitemap y
+se observó inicialmente como "Descubierta: actualmente sin indexar"; la prueba
+en tiempo real posterior confirmó disponibilidad, indexabilidad, un Product
+snippet válido y breadcrumbs válidos, y se solicitó indexación. Solicitar
+indexación no implica indexación inmediata.
+
+GA4: propiedad `Luna Tartas`, Web Data Stream `Luna Tartas - Producción`, URL
+`https://lunatartas.es` y Measurement ID público `G-DV6KHV0YMW`. GA4 directo es
+la decisión aprobada; Matomo On-Premise, GTM y Consent Mode quedan descartados.
+Enhanced Measurement permanece activa; page views, scrolls y outbound clicks
+están activos y formularios desactivados. Google Signals, User-ID, datos
+proporcionados por usuarios, vinculaciones publicitarias y formularios están
+desactivados/no utilizados. Email automático está oculto; no se configura
+ocultación de query parameters porque no existen parámetros sensibles propios.
+Retención: eventos 2 meses, usuarios 14 meses; borrado/reset con nueva
+actividad activo.
+
+No se utiliza filtro por IP: la IP administrativa es dinámica y se eliminó la
+regla de prueba `Internal Traffic`; se acepta que visitas administrativas
+consentidas en producción puedan contabilizarse. La frontera arquitectónica
+excluye localhost, desarrollo, tests, previews y otros hosts. La configuración
+global está habilitada, pero Google tag sólo carga tras opt-in y los eventos
+permitidos son `page_view`, `view_item` y `contact_whatsapp`, sin PII. Falta
+deploy y validación humana post-despliegue en Network y GA4 Realtime/DebugView:
+0 requests antes del consentimiento, 0 tras rechazo, recepción tras aceptación,
+eventos únicos, payloads sin PII y revocación sin emisiones posteriores. M9.4
+no se marca `DONE`.
+
+Verificacion local de la migracion:
+`npm run lint`, `npm run format`, `npm run typecheck` (0 errores, warnings o
+hints), `npm test` (40 archivos, 246 tests), `npm run build` (25 paginas),
+`verify:seo` (24 HTML), `verify:crawl` (24 URLs), `verify:links` (0 rotos,
+0 huerfanos), `verify:security`, `verify:artifact`, `verify:performance` y
+`git diff --check`: PASS. El HTML sólo carga los módulos locales de
+consentimiento/instrumentación; el recurso Google se añade dinámicamente sólo
+tras opt-in y los tests de frontera no contactan servidores externos.
 
 ## M9.5 — Monitorización de lanzamiento y estabilización
 

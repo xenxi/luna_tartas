@@ -1,5 +1,3 @@
-import type { ProductAnalyticsData } from '../../lib/analytics/product';
-
 export interface ResponsiveSourceProjection {
   readonly srcSet: string;
   readonly type: string;
@@ -17,8 +15,6 @@ export interface MediaProjection {
   readonly caption?: string;
 }
 
-export type { ProductAnalyticsData } from '../../lib/analytics/product';
-
 export interface ProductCardProjection {
   readonly href: string;
   readonly name: string;
@@ -26,7 +22,6 @@ export interface ProductCardProjection {
   readonly priceLabel: string;
   readonly eyebrow?: string;
   readonly media?: MediaProjection;
-  readonly analytics?: ProductAnalyticsData;
 }
 
 export interface TaxonomyCardProjection {

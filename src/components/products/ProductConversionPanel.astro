@@ -20,10 +20,7 @@ const href = buildProductWhatsAppUrl({
   productName: product.name,
   productUrl,
 });
-const analytics = createProductAnalyticsData(
-  product,
-  routes.product(product.slug),
-);
+const analytics = createProductAnalyticsData(product);
 ---
 
 <aside class="product-conversion" aria-labelledby="product-conversion-title">
@@ -40,7 +37,7 @@ const analytics = createProductAnalyticsData(
       target="_blank"
       rel="noopener noreferrer"
       analytics={{
-        event: 'whatsapp_click',
+        event: 'contact_whatsapp',
         ctaLocation: 'product-detail',
         ...analytics,
       }}

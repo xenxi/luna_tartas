@@ -12,10 +12,8 @@ import { projectTaxonomyLanding } from './taxonomy-listing';
 import { catalogImageMap } from '../catalog/catalog-images';
 import { buildMediaProjection } from '../catalog/media-projection';
 import { getProductsForTaxonomy } from '../../lib/catalog/domain/queries';
-import { routes } from '../../lib/catalog/domain/routes';
 import { taxonomyBreadcrumb } from '../../lib/seo/navigation';
 import type { ProductCardProjection } from '../catalog/types';
-import { createProductAnalyticsData } from '../../lib/analytics/product';
 import './taxonomies.css';
 
 interface Props {
@@ -39,11 +37,6 @@ const productsWithMedia: ProductCardProjection[] = await Promise.all(
     const imageMetadata = coverSrc ? catalogImageMap[coverSrc] : undefined;
     return {
       ...item,
-      analytics: createProductAnalyticsData(
-        domainProduct,
-        routes.taxonomy(kind, taxonomy.slug),
-        { listId: `${kind}-${taxonomy.slug}`, position: i + 1 },
-      ),
       media: imageMetadata
         ? await buildMediaProjection(imageMetadata, coverAlt)
         : undefined,

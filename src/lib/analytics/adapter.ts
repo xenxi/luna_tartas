@@ -1,7 +1,7 @@
 import type { AnalyticsConfig } from '../../config/site';
-import { sanitizeAnalyticsEvent, type AnalyticsEvent } from './events';
+import { sanitizeAnalyticsEvent } from './events';
 
-export const MATOMO_TRACKER_SCRIPT_ID = 'luna-matomo-tracker';
+export const GA4_TRACKER_SCRIPT_ID = 'luna-ga4-tracker';
 
 export type AnalyticsDocument = Pick<
   Document,
@@ -10,8 +10,9 @@ export type AnalyticsDocument = Pick<
 
 export interface AnalyticsRuntime {
   document: AnalyticsDocument;
-  queue: unknown[][];
+  dispatch(...command: unknown[]): void;
   hasConsent(): boolean;
+  isProduction(): boolean;
 }
 
 export interface AnalyticsAdapter {
@@ -19,49 +20,45 @@ export interface AnalyticsAdapter {
   track(event: unknown): boolean;
 }
 
-function hasActiveMatomoConfig(
+function hasActiveGa4Config(
   config: AnalyticsConfig,
 ): config is AnalyticsConfig & {
   enabled: true;
-  endpoint: string;
-  siteId: string;
+  measurementId: string;
 } {
   return (
     config.enabled &&
-    typeof config.endpoint === 'string' &&
-    typeof config.siteId === 'string' &&
+    config.provider === 'ga4' &&
+    typeof config.measurementId === 'string' &&
     config.consentRequired
   );
 }
 
-function configureMatomo(
-  config: AnalyticsConfig & { enabled: true; endpoint: string; siteId: string },
-  queue: unknown[][],
+function configureGa4(
+  config: AnalyticsConfig & { enabled: true; measurementId: string },
+  runtime: AnalyticsRuntime,
 ): void {
-  const trackerUrl = new URL('matomo.php', `${config.endpoint}/`).href;
-
-  if (queue.some((command) => command[0] === 'setSiteId')) return;
-
-  queue.push(
-    ['disableCookies'],
-    ['setDoNotTrack', true],
-    ['setTrackerUrl', trackerUrl],
-    ['setSiteId', config.siteId],
-  );
+  runtime.dispatch('js', new Date());
+  runtime.dispatch('config', config.measurementId, {
+    allow_ad_personalization_signals: false,
+    allow_google_signals: false,
+    anonymize_ip: true,
+    send_page_view: false,
+  });
 }
 
 function appendTracker(
-  config: AnalyticsConfig & { enabled: true; endpoint: string; siteId: string },
+  config: AnalyticsConfig & { enabled: true; measurementId: string },
   document: AnalyticsDocument,
 ): Promise<boolean> {
-  if (document.getElementById(MATOMO_TRACKER_SCRIPT_ID)) {
+  if (document.getElementById(GA4_TRACKER_SCRIPT_ID)) {
     return Promise.resolve(true);
   }
 
   return new Promise((resolve) => {
     const script = document.createElement('script');
-    script.id = MATOMO_TRACKER_SCRIPT_ID;
-    script.src = new URL('matomo.js', `${config.endpoint}/`).href;
+    script.id = GA4_TRACKER_SCRIPT_ID;
+    script.src = `https://www.googletagmanager.com/gtag/js?id=${encodeURIComponent(config.measurementId)}`;
     script.defer = true;
     script.async = true;
     script.onload = () => resolve(true);
@@ -70,17 +67,22 @@ function appendTracker(
   });
 }
 
-function toMatomoCommand(event: AnalyticsEvent): unknown[] {
-  return ['trackEvent', 'conversion', event.name, undefined, undefined, event];
-}
-
 export function createAnalyticsAdapter(
   config: AnalyticsConfig,
   runtime: AnalyticsRuntime,
 ): AnalyticsAdapter {
-  const activeConfig = hasActiveMatomoConfig(config) ? config : undefined;
+  const activeConfig = hasActiveGa4Config(config) ? config : undefined;
   const canUseAnalytics = () =>
-    activeConfig !== undefined && runtime.hasConsent();
+    activeConfig !== undefined &&
+    runtime.hasConsent() &&
+    runtime.isProduction();
+  let configured = false;
+
+  const configure = () => {
+    if (configured || activeConfig === undefined) return;
+    configureGa4(activeConfig, runtime);
+    configured = true;
+  };
 
   return Object.freeze({
     load(): Promise<boolean> {
@@ -88,7 +90,7 @@ export function createAnalyticsAdapter(
 
       if (activeConfig === undefined) return Promise.resolve(false);
 
-      configureMatomo(activeConfig, runtime.queue);
+      configure();
       return appendTracker(activeConfig, runtime.document);
     },
 
@@ -100,8 +102,9 @@ export function createAnalyticsAdapter(
 
       if (activeConfig === undefined) return false;
 
-      configureMatomo(activeConfig, runtime.queue);
-      runtime.queue.push(toMatomoCommand(sanitizedEvent));
+      configure();
+      const { name, ...parameters } = sanitizedEvent;
+      runtime.dispatch('event', name, parameters);
       void appendTracker(activeConfig, runtime.document);
       return true;
     },

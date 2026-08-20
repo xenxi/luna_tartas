@@ -26,6 +26,21 @@ describe('responsive contract', () => {
     );
   });
 
+  it('allows only the consent and instrumentation modules when analytics is enabled', () => {
+    const artifact = readFileSync(
+      resolve(root, 'scripts/verify-artifact.mjs'),
+      'utf8',
+    );
+    const responsive = readFileSync(
+      resolve(root, 'scripts/verify-responsive.mjs'),
+      'utf8',
+    );
+    expect(artifact).toContain('Analytics(?:Consent|Instrumentation)');
+    expect(responsive).toContain('Analytics(?:Consent|Instrumentation)');
+    expect(artifact).toContain('unexpected client asset');
+    expect(responsive).toContain('JavaScript cliente no permitido');
+  });
+
   it('wraps long breadcrumbs instead of requiring horizontal scrolling', () => {
     const navigation = readFileSync(
       resolve(root, 'src/components/navigation/navigation.css'),

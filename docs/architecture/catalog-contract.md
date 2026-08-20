@@ -52,7 +52,7 @@ Los objetos son estrictos: un campo desconocido falla para hacer visibles los er
 
 ### Configuración global
 
-Marca, URL canónica, locale, moneda permitida, WhatsApp y analytics no se repiten por producto. Las excepciones requieren un campo explícito y justificado. La configuración de analytics es una única sección global validada, con proveedor, endpoint, site ID, estado `enabled`, requisito de consentimiento y retención; no contiene secretos ni datos de visitante. Su contrato operativo se fija en [`../conversion/analytics-decision.md`](../conversion/analytics-decision.md).
+Marca, URL canónica, locale, moneda permitida, WhatsApp y analytics no se repiten por producto. Las excepciones requieren un campo explícito y justificado. La configuración de analytics es una única sección global validada con proveedor GA4, Measurement ID público opcional, estado `enabled` y consentimiento obligatorio; no contiene secretos ni datos de visitante. Su contrato operativo se fija en [`../conversion/analytics-decision.md`](../conversion/analytics-decision.md).
 
 ## Invariantes de publicación
 

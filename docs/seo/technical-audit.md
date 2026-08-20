@@ -82,4 +82,7 @@ Barrido sobre los 25 HTML del artefacto:
 ## Fuera de alcance (registrado)
 
 - Redirects de migración/release, DNS y `www → apex`: pendientes de la capa Cloudflare decidida en la estrategia (M9.2).
-- Validación en Search Console: requiere propiedad verificada en producción (G9).
+- Validación en Search Console: la propiedad ya fue verificada y las muestras
+  manuales de M9.4 quedaron registradas en
+  [`../conversion/analytics-runbook.md`](../conversion/analytics-runbook.md).
+  La indexación posterior de URLs solicitadas no se exige de forma inmediata.

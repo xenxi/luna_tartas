@@ -118,13 +118,6 @@ const mosaicItems = featured
               class="featured-products__product-link"
               href={withBasePath(product.href, import.meta.env.BASE_URL)}
               aria-label={`Ver ${product.name}`}
-              data-analytics-select-item
-              data-analytics-product-id={product.analytics.productId}
-              data-analytics-product-name={product.analytics.productName}
-              data-analytics-category={product.analytics.category}
-              data-analytics-source-page={product.analytics.sourcePage}
-              data-analytics-list-id={product.analytics.listId}
-              data-analytics-position={product.analytics.position}
             >
               <ResponsiveMedia media={product.media} loading="lazy" />
             </a>

@@ -3,12 +3,12 @@ import { getAnalyticsConsent } from './consent';
 import { createAnalyticsAdapter, type AnalyticsDocument } from './adapter';
 
 export interface AnalyticsWindow {
-  _paq?: unknown[][];
+  dataLayer?: unknown[][];
 }
 
 function createBrowserRuntime(document: Document, window: Window) {
   const browserWindow = window as Window & AnalyticsWindow;
-  const queue = (browserWindow._paq ??= []);
+  const queue = (browserWindow.dataLayer ??= []);
   let storage: Storage | undefined;
 
   try {
@@ -19,32 +19,25 @@ function createBrowserRuntime(document: Document, window: Window) {
 
   return {
     document: document as AnalyticsDocument,
-    queue,
+    dispatch: (...command: unknown[]) => queue.push(command),
     hasConsent: () => getAnalyticsConsent(storage) === 'granted',
+    isProduction: () =>
+      window.location.protocol === 'https:' &&
+      window.location.hostname === 'lunatartas.es',
   };
 }
 
 function eventFromElement(
   element: HTMLElement,
-  name:
-    'view_item' | 'select_item' | 'whatsapp_click' | 'custom_whatsapp_click',
+  name: 'view_item' | 'contact_whatsapp',
 ): Record<string, unknown> | undefined {
   const { dataset } = element;
   const isProductEvent =
-    name === 'view_item' || name === 'select_item' || name === 'whatsapp_click';
+    name === 'view_item' || dataset.analyticsProductId !== undefined;
   const productId = dataset.analyticsProductId;
   const productName = dataset.analyticsProductName;
   const category = dataset.analyticsCategory;
-  const sourcePage = dataset.analyticsSourcePage;
-
-  if (sourcePage === undefined) {
-    return undefined;
-  }
-
-  const event: Record<string, unknown> = {
-    name,
-    source_page: sourcePage,
-  };
+  const event: Record<string, unknown> = { name };
 
   if (isProductEvent) {
     if (
@@ -55,33 +48,14 @@ function eventFromElement(
       return undefined;
     }
 
-    event.product_id = productId;
-    event.product_name = productName;
-    event.category = category;
+    event.item_id = productId;
+    event.item_name = productName;
+    event.item_category = category;
   }
 
-  if (dataset.analyticsPrice !== undefined) {
-    const price = Number(dataset.analyticsPrice);
-    if (!Number.isFinite(price)) return undefined;
-    event.price = price;
-    event.currency = dataset.analyticsCurrency;
-  }
-
-  if (name === 'select_item') {
-    const position = Number(dataset.analyticsPosition);
-    if (
-      dataset.analyticsListId === undefined ||
-      !Number.isSafeInteger(position)
-    ) {
-      return undefined;
-    }
-    event.list_id = dataset.analyticsListId;
-    event.position = position;
-  }
-
-  if (name === 'whatsapp_click' || name === 'custom_whatsapp_click') {
+  if (name === 'contact_whatsapp') {
     if (dataset.analyticsCtaLocation === undefined) return undefined;
-    event.cta_location = dataset.analyticsCtaLocation;
+    event.source = dataset.analyticsCtaLocation;
   }
 
   return event;
@@ -99,6 +73,11 @@ export function bindAnalyticsInstrumentation(
     createBrowserRuntime(document, window),
   );
 
+  trackSafely(adapter, {
+    name: 'page_view',
+    page_path: document.location.pathname,
+  });
+
   document
     .querySelectorAll<HTMLElement>('[data-analytics-view-item]')
     .forEach((element) => {
@@ -111,17 +90,11 @@ export function bindAnalyticsInstrumentation(
     if (!(target instanceof Element)) return;
 
     const link = target.closest<HTMLElement>(
-      '[data-analytics-select-item], [data-analytics-whatsapp-click], [data-analytics-custom-whatsapp-click]',
+      '[data-analytics-contact-whatsapp]',
     );
     if (link === null) return;
 
-    const name =
-      link.dataset.analyticsWhatsappClick !== undefined
-        ? 'whatsapp_click'
-        : link.dataset.analyticsCustomWhatsappClick !== undefined
-          ? 'custom_whatsapp_click'
-          : 'select_item';
-    const payload = eventFromElement(link, name);
+    const payload = eventFromElement(link, 'contact_whatsapp');
     if (payload !== undefined) trackSafely(adapter, payload);
   });
 }

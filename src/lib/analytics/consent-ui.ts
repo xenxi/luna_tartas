@@ -8,7 +8,7 @@ import {
 import { createAnalyticsAdapter } from './adapter';
 
 export interface AnalyticsWindow {
-  _paq?: unknown[][];
+  dataLayer?: unknown[][];
 }
 
 function createBrowserRuntime(
@@ -17,11 +17,14 @@ function createBrowserRuntime(
   storage?: ConsentStorage,
 ) {
   const browserWindow = window as Window & AnalyticsWindow;
-  const queue = (browserWindow._paq ??= []);
+  const queue = (browserWindow.dataLayer ??= []);
   return {
     document,
-    queue,
+    dispatch: (...command: unknown[]) => queue.push(command),
     hasConsent: () => getAnalyticsConsent(storage) === 'granted',
+    isProduction: () =>
+      window.location.protocol === 'https:' &&
+      window.location.hostname === 'lunatartas.es',
   };
 }
 
@@ -31,6 +34,14 @@ export function bindAnalyticsConsentUi(
   window: Window,
   storage?: ConsentStorage,
 ): void {
+  if (storage === undefined) {
+    try {
+      storage = window.localStorage;
+    } catch {
+      storage = undefined;
+    }
+  }
+
   const root = document.getElementById('analytics-consent');
   const reopen = document.getElementById('analytics-consent-reopen');
   if (root === null || reopen === null || !config.enabled) return;
@@ -55,12 +66,15 @@ export function bindAnalyticsConsentUi(
     root.hidden = consent !== undefined;
     reopen.hidden = consent === undefined;
     revoke.hidden = consent !== 'granted';
-    if (consent === 'granted') void adapter.load();
   };
 
   accept.addEventListener('click', () => {
     setAnalyticsConsent('granted', storage);
     sync();
+    adapter.track({
+      name: 'page_view',
+      page_path: document.location.pathname,
+    });
   });
   reject.addEventListener('click', () => {
     setAnalyticsConsent('denied', storage);
@@ -68,7 +82,7 @@ export function bindAnalyticsConsentUi(
   });
   revoke.addEventListener('click', () => {
     setAnalyticsConsent('denied', storage);
-    sync();
+    window.location.reload();
   });
   reopen.addEventListener('click', () => {
     root.hidden = false;

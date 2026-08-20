@@ -19,9 +19,8 @@ const validConfig = {
   organizationSameAs: ['https://www.instagram.com/marca/'],
   analytics: {
     enabled: false,
-    provider: 'matomo',
+    provider: 'ga4',
     consentRequired: true,
-    retentionMonths: 13,
   },
 };
 
@@ -39,9 +38,8 @@ describe('site configuration', () => {
       organizationSameAs: ['https://www.instagram.com/marca/'],
       analytics: {
         enabled: false,
-        provider: 'matomo',
+        provider: 'ga4',
         consentRequired: true,
-        retentionMonths: 13,
       },
     });
   });
@@ -118,75 +116,66 @@ describe('site configuration', () => {
       'https://www.instagram.com/lunatartas/',
     ]);
     expect(siteConfig.analytics).toEqual({
-      enabled: false,
-      provider: 'matomo',
+      enabled: true,
+      provider: 'ga4',
+      measurementId: 'G-DV6KHV0YMW',
       consentRequired: true,
-      retentionMonths: 13,
     });
   });
 
   it.each([
     ['missing analytics configuration', undefined],
     [
-      'enabled analytics without an endpoint and site ID',
+      'enabled analytics without a Measurement ID',
       {
         enabled: true,
-        provider: 'matomo',
+        provider: 'ga4',
         consentRequired: true,
-        retentionMonths: 13,
       },
     ],
     [
       'disabled analytics with a production identifier',
       {
         enabled: false,
-        provider: 'matomo',
-        endpoint: 'https://metrics.example.com',
+        provider: 'ga4',
+        measurementId: 'G-ABCDEFGHIJ',
         consentRequired: true,
-        retentionMonths: 13,
       },
     ],
     [
-      'analytics endpoint with credentials',
+      'analytics with an invalid Measurement ID',
       {
         enabled: true,
-        provider: 'matomo',
-        endpoint: 'https://user:secret@metrics.example.com',
-        siteId: 'luna',
+        provider: 'ga4',
+        measurementId: 'UA-123456-1',
         consentRequired: true,
-        retentionMonths: 13,
       },
     ],
     [
       'analytics without mandatory consent',
       {
         enabled: false,
-        provider: 'matomo',
+        provider: 'ga4',
         consentRequired: false,
-        retentionMonths: 13,
       },
     ],
   ])('rejects %s analytics configuration', (_case, analytics) => {
     expect(() => validateAnalyticsConfig(analytics)).toThrow();
   });
 
-  it('allows a complete approved Matomo configuration only when enabled', () => {
+  it('allows a valid public GA4 Measurement ID only when enabled', () => {
     expect(
       validateAnalyticsConfig({
         enabled: true,
-        provider: 'matomo',
-        endpoint: 'https://metrics.example.com/',
-        siteId: 'luna-production',
+        provider: 'ga4',
+        measurementId: 'G-ABCDEFGHIJ',
         consentRequired: true,
-        retentionMonths: 13,
       }),
     ).toEqual({
       enabled: true,
-      provider: 'matomo',
-      endpoint: 'https://metrics.example.com',
-      siteId: 'luna-production',
+      provider: 'ga4',
+      measurementId: 'G-ABCDEFGHIJ',
       consentRequired: true,
-      retentionMonths: 13,
     });
   });
 

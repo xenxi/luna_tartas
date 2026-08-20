@@ -8,7 +8,6 @@ import CardList from '../patterns/CardList.astro';
 import ContentSection from '../patterns/ContentSection.astro';
 import ProductCard from '../catalog/ProductCard.astro';
 import type { ProductCardProjection } from '../catalog/types';
-import { createProductAnalyticsData } from '../../lib/analytics/product';
 import { projectRelatedProducts } from './product-related';
 import './product-related.css';
 
@@ -26,7 +25,7 @@ const productsByHref = new Map(
   ]),
 );
 const itemsWithMedia: ProductCardProjection[] = await Promise.all(
-  related.items.map(async (item, index) => {
+  related.items.map(async (item) => {
     const relatedProduct = productsByHref.get(item.href);
     const cover = relatedProduct?.media.cover;
     const imageMetadata =
@@ -34,17 +33,6 @@ const itemsWithMedia: ProductCardProjection[] = await Promise.all(
 
     return {
       ...item,
-      analytics:
-        relatedProduct === undefined
-          ? undefined
-          : createProductAnalyticsData(
-              relatedProduct,
-              routes.product(product.slug),
-              {
-                listId: 'product-related',
-                position: index + 1,
-              },
-            ),
       media:
         imageMetadata === undefined || cover === undefined
           ? undefined

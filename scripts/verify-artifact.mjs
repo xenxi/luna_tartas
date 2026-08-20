@@ -34,6 +34,15 @@ function artifactRoute(href) {
     : href;
 }
 
+function isAllowedAnalyticsModule(tagName, src) {
+  return (
+    tagName === 'script' &&
+    /^\/_astro\/Analytics(?:Consent|Instrumentation)\.astro_astro_type_script_[^/]+\.js$/i.test(
+      src,
+    )
+  );
+}
+
 await walk(dist);
 if (htmlFiles.length === 0) fail('no HTML pages found');
 
@@ -49,8 +58,12 @@ for (const file of htmlFiles) {
   if ((html.match(/<h1(?:\s|>)/gi) ?? []).length !== 1) {
     fail(`${route} must have exactly one h1`);
   }
-  if (/<(?:script|style)[^>]*src=["'][^"']+["']/i.test(html)) {
-    fail(`${route} loads an unexpected client asset`);
+  for (const match of html.matchAll(
+    /<(script|style)\b[^>]*\bsrc=["']([^"']+)["'][^>]*>/gi,
+  )) {
+    if (!isAllowedAnalyticsModule(match[1].toLowerCase(), match[2])) {
+      fail(`${route} loads an unexpected client asset`);
+    }
   }
   if (/\b(?:TBD|FIXTURE|draft)\b/i.test(html)) {
     fail(`${route} contains a non-public placeholder`);

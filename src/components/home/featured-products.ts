@@ -5,7 +5,6 @@ import {
 } from '../../lib/catalog/domain/queries';
 import type { Catalog, PublishedProduct } from '../../lib/catalog/domain/model';
 import { routes } from '../../lib/catalog/domain/routes';
-import { createProductAnalyticsData } from '../../lib/analytics/product';
 
 const MOSAIC_SIZE = 5;
 const VERTICAL_CATEGORY_ID = 'tartas-de-panales';
@@ -19,7 +18,6 @@ export interface FeaturedMosaicItem {
     readonly alt: string;
   };
   readonly primary: boolean;
-  readonly analytics: ReturnType<typeof createProductAnalyticsData>;
 }
 
 export interface FeaturedProductsProjection {
@@ -164,7 +162,7 @@ export function projectFeaturedProducts(
       href: routes.products(),
       label: 'Ver más regalos',
     },
-    items: ordered.map((product, index) => ({
+    items: ordered.map((product) => ({
       id: product.id,
       href: routes.product(product.slug),
       name: product.name,
@@ -173,10 +171,6 @@ export function projectFeaturedProducts(
         alt: product.media.cover.alt,
       },
       primary: product.id === primary.id,
-      analytics: createProductAnalyticsData(product, routes.home(), {
-        listId: 'home-featured-mosaic',
-        position: index + 1,
-      }),
     })),
   };
 }

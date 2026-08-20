@@ -43,28 +43,22 @@ function createDocument() {
 
 const disabledConfig: AnalyticsConfig = {
   enabled: false,
-  provider: 'matomo',
+  provider: 'ga4',
   consentRequired: true,
-  retentionMonths: 13,
 };
 
 const enabledConfig: AnalyticsConfig = {
   enabled: true,
-  provider: 'matomo',
-  endpoint: 'https://metrics.example.com',
-  siteId: 'luna-production',
+  provider: 'ga4',
+  measurementId: 'G-ABCDEFGHIJ',
   consentRequired: true,
-  retentionMonths: 13,
 };
 
 const validProductEvent = {
   name: 'view_item',
-  product_id: 'tarta-panales',
-  product_name: 'Tarta de pañales',
-  category: 'tartas-de-panales',
-  source_page: '/productos/tarta-panales/',
-  price: 49.95,
-  currency: 'EUR',
+  item_id: 'tarta-panales',
+  item_name: 'Tarta de pañales',
+  item_category: 'tartas-de-panales',
 };
 
 describe('analytics adapter', () => {
@@ -94,48 +88,51 @@ describe('analytics adapter', () => {
 
   it('does not load a script or queue an event when analytics is disabled', async () => {
     const { document, scripts } = createDocument();
-    const queue: unknown[][] = [];
+    const commands: unknown[][] = [];
     const adapter = createAnalyticsAdapter(disabledConfig, {
       document,
-      queue,
+      dispatch: (...command) => commands.push(command),
       hasConsent: () => true,
+      isProduction: () => true,
     });
 
     expect(adapter.track(validProductEvent)).toBe(false);
     await expect(adapter.load()).resolves.toBe(false);
-    expect(queue).toEqual([]);
+    expect(commands).toEqual([]);
     expect(scripts).toEqual([]);
   });
 
   it('does not load a script or queue an event before consent', async () => {
     const { document, scripts } = createDocument();
-    const queue: unknown[][] = [];
+    const commands: unknown[][] = [];
     const adapter = createAnalyticsAdapter(enabledConfig, {
       document,
-      queue,
+      dispatch: (...command) => commands.push(command),
       hasConsent: () => false,
+      isProduction: () => true,
     });
 
     expect(adapter.track(validProductEvent)).toBe(false);
     await expect(adapter.load()).resolves.toBe(false);
-    expect(queue).toEqual([]);
+    expect(commands).toEqual([]);
     expect(scripts).toEqual([]);
   });
 
-  it('queues only a sanitized event and loads Matomo deferred after consent', async () => {
+  it('dispatches one sanitized event and loads Google tag once after consent', async () => {
     const { document, scripts } = createDocument();
-    const queue: unknown[][] = [];
+    const commands: unknown[][] = [];
     const adapter = createAnalyticsAdapter(enabledConfig, {
       document,
-      queue,
+      dispatch: (...command) => commands.push(command),
       hasConsent: () => true,
+      isProduction: () => true,
     });
 
     const loading = adapter.load();
     expect(scripts).toHaveLength(1);
     expect(scripts[0]).toMatchObject({
-      id: 'luna-matomo-tracker',
-      src: 'https://metrics.example.com/matomo.js',
+      id: 'luna-ga4-tracker',
+      src: 'https://www.googletagmanager.com/gtag/js?id=G-ABCDEFGHIJ',
       defer: true,
       async: true,
     });
@@ -144,23 +141,59 @@ describe('analytics adapter', () => {
 
     expect(adapter.track(validProductEvent)).toBe(true);
     expect(scripts).toHaveLength(1);
-    expect(queue).toEqual([
-      ['disableCookies'],
-      ['setDoNotTrack', true],
-      ['setTrackerUrl', 'https://metrics.example.com/matomo.php'],
-      ['setSiteId', 'luna-production'],
+    expect(commands).toEqual([
+      ['js', expect.any(Date)],
       [
-        'trackEvent',
-        'conversion',
+        'config',
+        'G-ABCDEFGHIJ',
+        {
+          allow_ad_personalization_signals: false,
+          allow_google_signals: false,
+          anonymize_ip: true,
+          send_page_view: false,
+        },
+      ],
+      [
+        'event',
         'view_item',
-        undefined,
-        undefined,
-        validProductEvent,
+        {
+          item_id: 'tarta-panales',
+          item_name: 'Tarta de pañales',
+          item_category: 'tartas-de-panales',
+        },
       ],
     ]);
   });
 
+  it('does not track on localhost or non-production origins', async () => {
+    const { document, scripts } = createDocument();
+    const commands: unknown[][] = [];
+    const adapter = createAnalyticsAdapter(enabledConfig, {
+      document,
+      dispatch: (...command) => commands.push(command),
+      hasConsent: () => true,
+      isProduction: () => false,
+    });
+
+    expect(adapter.track(validProductEvent)).toBe(false);
+    await expect(adapter.load()).resolves.toBe(false);
+    expect(commands).toEqual([]);
+    expect(scripts).toEqual([]);
+  });
+
   it('rejects payloads that contain prohibited fields or invalid paths', () => {
+    expect(
+      sanitizeAnalyticsEvent({
+        name: 'page_view',
+        page_path: '/productos/?email=cliente@example.com',
+      }),
+    ).toBeUndefined();
+    expect(
+      sanitizeAnalyticsEvent({
+        name: 'page_view',
+        page_path: '/productos/#contacto',
+      }),
+    ).toBeUndefined();
     expect(
       sanitizeAnalyticsEvent({
         ...validProductEvent,
@@ -170,19 +203,31 @@ describe('analytics adapter', () => {
     expect(
       sanitizeAnalyticsEvent({
         ...validProductEvent,
-        source_page: '/productos/tarta-panales/?email=cliente@example.com',
+        item_name: 'cliente@example.com',
       }),
     ).toBeUndefined();
     expect(
       sanitizeAnalyticsEvent({
-        name: 'custom_whatsapp_click',
-        cta_location: 'site-footer',
-        source_page: '/',
+        name: 'contact_whatsapp',
+        source: 'site-footer',
       }),
     ).toEqual({
-      name: 'custom_whatsapp_click',
-      cta_location: 'site-footer',
-      source_page: '/',
+      name: 'contact_whatsapp',
+      source: 'site-footer',
     });
+    expect(
+      sanitizeAnalyticsEvent({
+        name: 'contact_whatsapp',
+        source: 'site-footer',
+        phone: '+34697637180',
+      }),
+    ).toBeUndefined();
+    expect(
+      sanitizeAnalyticsEvent({
+        name: 'contact_whatsapp',
+        source: 'site-footer',
+        message: 'Quiero una tarta',
+      }),
+    ).toBeUndefined();
   });
 });

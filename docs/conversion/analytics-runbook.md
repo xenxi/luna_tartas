@@ -1,89 +1,104 @@
-# Runbook de analytics (M7.5)
+# Runbook de analytics (M7.5 / M9.4)
 
-**Fecha de revisión:** 2026-08-17  
-**Owner operativo:** titular de Luna Tartas  
-**Proveedor previsto:** Matomo On-Premise en instancia dedicada dentro del EEE  
-**Estado actual:** medición desactivada; no existe endpoint productivo en el repositorio
+**Revision:** 2026-08-20
+**Owner:** titular de Luna Tartas
+**Proveedor previsto:** Google Analytics 4, Google tag directo
+**Estado:** configuracion externa confirmada y `analytics.enabled: true` con Measurement ID productivo; pendiente deploy y validacion humana post-despliegue
 
-Este documento es una guía de verificación, no una autorización para activar medición. La identidad legal, la política publicada, el acuerdo aplicable y la instancia aprobada son requisitos de M9.4 y deben existir antes de cambiar `src/config/site.ts` a `enabled: true`.
+Este runbook no sustituye la validacion humana de produccion. La carga de Google sigue bloqueada hasta el opt-in explicito del usuario.
 
-## Contrato de eventos
+## Decisiones consolidadas
 
-`source_page` siempre es un pathname canónico en minúsculas, con barra final y sin query ni fragmento. `price` y `currency` aparecen juntos u omitidos; el precio está en unidades mayores y nunca se sustituye por cero.
+La fuente duradera de las decisiones de plataforma, privacidad, eventos y
+entornos es [`analytics-decision.md`](analytics-decision.md). Esta seccion
+resume el estado operativo confirmado para que no vuelva a tratarse como TBD:
 
-| Evento | Rutas y disparador | Payload permitido | Duplicación esperada |
+- Proveedor: GA4 directo, sin Google Tag Manager ni Google Consent Mode.
+- Propiedad/stream: `Luna Tartas` / `Luna Tartas - Produccion`.
+- URL: `https://lunatartas.es`.
+- Measurement ID: `G-DV6KHV0YMW`.
+- Enhanced Measurement activada; page views, scrolls y outbound clicks activos;
+  medicion de formularios desactivada. El adaptador usa `send_page_view: false`
+  y emite el `page_view` propio una sola vez para evitar duplicacion.
+- Google Signals, User-ID, datos proporcionados por usuarios y vinculaciones
+  publicitarias desactivados o no utilizados.
+- Email automatico oculto; query parameters sensibles propios no identificados,
+  por lo que no se configura ocultacion de parametros.
+- Retencion: eventos 2 meses, usuarios 14 meses; borrado/reset con nueva
+  actividad activado.
+- No se excluye trafico interno por IP; `Internal Traffic` fue eliminado por
+  IP administrativa dinamica. Visitas administrativas consentidas en
+  produccion pueden contabilizarse.
+
+## Contrato
+
+| Evento | Ruta/disparador | Payload | Duplicacion esperada |
 | --- | --- | --- | --- |
-| `view_item` | `/productos/{slug}/`, al cargar una ficha publicada | `product_id`, `product_name`, `category`, `price?`, `currency?`, `source_page` | 1 por carga de ficha |
-| `select_item` | `/`, `/productos/`, `/categorias/`, `/categorias/{slug}/`, `/ocasiones/`, `/ocasiones/{slug}/`, `/regalos/`, `/regalos/{slug}/`, y relacionados en ficha; activación de una tarjeta | payload de producto + `list_id`, `position` | 1 por activación |
-| `whatsapp_click` | `/productos/{slug}/`; CTA de producto por puntero o teclado | payload de producto + `cta_location` | 1 por activación |
-| `custom_whatsapp_click` | `/`, índices/landings y cualquier página con CTA de idea personalizada; CTA de propuesta por puntero o teclado | `cta_location`, `source_page` | 1 por activación |
+| `page_view` | cualquier pagina instrumentada al cargar | `page_path` sin query/hash | 1 por carga |
+| `view_item` | `/productos/{slug}/` al cargar una ficha | `item_id`, `item_name`, `item_category` | 1 por carga |
+| `contact_whatsapp` | CTA en `/`, `/productos/`, `/productos/{slug}/`, `/categorias/{slug}/`, `/ocasiones/{slug}/`, `/regalos/{slug}/` o footer | `source` y, en producto, campos `item_*` | 1 por activacion |
 
-No se instrumentan `/404/`, showcases ni navegación de enlaces que no declaren una marca de analytics. El footer puede producir `custom_whatsapp_click` en las páginas que lo renderizan.
-
-Campos prohibidos en payloads, atributos, cola, logs y capturas: teléfono, email, nombre del visitante, mensaje o URL de WhatsApp, dirección, IP completa, cookies, User ID, identificadores de dispositivo, query, fragmento, formulario y cualquier dato sensible.
+No se instrumenta `/404/`. No se envia seleccion de tarjetas ni contenido del mensaje. Campos prohibidos: nombre del visitante, email, telefono, direccion, mensaje/URL de WhatsApp, texto personalizado, formulario, query, fragmento, User ID e identificadores personales o de dispositivo.
 
 ## Matriz de QA
 
-| Caso | Preparación | Acción | Resultado esperado |
+| Caso | Preparacion | Accion | Resultado esperado |
 | --- | --- | --- | --- |
-| Configuración apagada | `analytics.enabled: false` | Abrir home, ficha y listado | 0 scripts Matomo, 0 requests al proveedor, 0 eventos en cola; la navegación y WhatsApp funcionan |
-| Sin consentimiento | Configuración habilitada en entorno controlado; `localStorage` sin clave | Abrir una ficha y activar un CTA | Banner visible, 0 scripts/requests de Matomo y ningún evento enviado |
-| Rechazo | Estado inicial sin clave; pulsar `Rechazar` | Recargar y activar CTAs | `luna-analytics-consent=denied`, 0 requests y enlaces nativos intactos |
-| Aceptación | Endpoint de prueba HTTPS sin credenciales y `siteId` ficticio | Pulsar `Aceptar`, abrir ficha y activar tarjeta/CTA | Una carga `defer` de `matomo.js`; comandos de privacidad (`disableCookies`, DNT), eventos sanitizados y navegación sin espera añadida |
-| Retirada | Estado `granted` y tracker cargado | Pulsar `Retirar consentimiento` y activar un CTA | Estado `denied`; no se encola ni envía ningún evento posterior |
-| Fallo del tracker | Adaptador o script responde error | Activar CTA WhatsApp | No hay excepción ni `preventDefault`; el `href` navega |
-| Almacenamiento bloqueado | `localStorage` lanza al leer/escribir | Abrir banner y probar rechazo/aceptación | Estado seguro `denied` en la siguiente lectura; la navegación sigue operativa |
-| Tráfico interno | Exclusión configurada sólo en la instancia Matomo | Visitar una ruta desde navegador del owner | La instancia excluye el tráfico; la evidencia no contiene rango ni IP |
-| Duplicación | Cargar ficha, volver atrás/adelante y pulsar una tarjeta una vez | Comparar cola por carga/activación | Una `view_item` por carga y una selección por activación; no se duplica por componente |
-| PII y URL | Inspección de cola, DOM y Network | Buscar teléfono, email, query, hash y URL de WhatsApp | 0 coincidencias; sólo pathname canónico y campos del contrato |
+| Configuracion apagada | `analytics.enabled: false` | Navegar y activar CTAs | 0 Google tag, requests o eventos |
+| Sin consentimiento | Config habilitada controlada, storage vacio | Navegar y activar CTA | Banner visible y 0 requests/eventos |
+| Rechazo | Pulsar `Rechazar` | Recargar y activar CTAs | `luna-analytics-consent=denied`; 0 requests |
+| Aceptacion | Measurement ID sintetico solo en test | Pulsar `Aceptar` | Un script Google tag y eventos sanitizados |
+| Retirada | Estado `granted` | Pulsar `Retirar consentimiento` | Estado `denied`; recarga que elimina Google tag y ningun evento posterior |
+| Fallo del tracker | Simular error de script/adaptador | Activar WhatsApp | El enlace navega sin excepcion ni espera |
+| Almacenamiento bloqueado | Storage lanza | Usar controles | Fallback denegado y navegacion intacta |
+| Trafico interno | Navegador owner con consentimiento rechazado; sin filtro por IP | Visitar produccion | Desarrollo/preview no envia; visitas administrativas consentidas pueden contabilizarse |
+| Localhost/tests | Runtime fuera de `https://lunatartas.es` | Intentar cargar/evento | No-op, sin script ni comando |
+| Duplicacion | Una carga y una activacion | Inspeccionar DebugView | Un evento de cada tipo esperado |
+| PII y URL | Inspeccionar DOM/dataLayer/Network | Buscar campos prohibidos | 0 coincidencias |
 
-## Sesión de debug reproducible
+## Evidencia reproducible local
 
-**Fecha:** 2026-08-17  
-**Entorno:** build local de producción, configuración pública vigente (`analytics.enabled: false`) y harness Vitest con endpoint ficticio `https://metrics.example.com`.  
-**Método:** se inspeccionaron los modos apagado, sin consentimiento y consentimiento concedido mediante runtime de documento/cola simulado; no se contactó ningún proveedor ni se usó una URL real de Matomo.
-
-Resultado del harness:
-
-- Apagado y sin consentimiento: `track()` devuelve `false`, `load()` devuelve `false`, cola vacía, scripts vacíos.
-- Consentimiento concedido: se añade exactamente un script `defer`/`async` con URL ficticia `https://metrics.example.com/matomo.js`; la cola contiene privacidad, endpoint ficticio, `siteId` ficticio y un `view_item` sanitizado.
-- Payload con `phone` o query en `source_page`: rechazado (`undefined`).
-- Fallo del adaptador: `trackSafely()` no propaga excepción.
-- El enlace nativo no es cancelado por la instrumentación; no se llama `preventDefault`.
-
-Captura de red redactada, correspondiente a ese harness y no a tráfico real:
+Vitest usa un documento, `dataLayer` y frontera de red simulados; no contacta Google. Verifica configuracion off, falta de consentimiento, origen no productivo, carga unica, `send_page_view: false`, payload permitido y rechazo de campos extra/PII.
 
 ```text
-REQUEST  [blocked by test harness] GET https://metrics.example.com/matomo.js
-          mode=defer async=true
-          endpoint=[REDACTED] site_id=[PUBLIC_TEST_ID]
-
-TRACK    [not sent] event=view_item
-          product_id=[PUBLIC_CATALOG_ID]
-          product_name=[PUBLIC_CATALOG_NAME]
-          category=[PUBLIC_CATEGORY_ID]
-          source_page=/productos/[SLUG]/
-          price=[OPTIONAL_MINOR-FREE_VALUE] currency=EUR
-
-ASSERT   no phone | no email | no WhatsApp message | no full URL
-         no query | no hash | no IP | no cookie | no user/device ID
+REQUEST [mocked] GET https://www.googletagmanager.com/gtag/js?id=[SYNTHETIC_TEST_ID]
+EVENT   [not sent] view_item item_id=[PUBLIC_ID] item_name=[PUBLIC_NAME]
+ASSERT  no phone | no email | no WhatsApp message | no query | no hash
 ```
 
-La recepción productiva no puede declararse hasta que exista la instancia aprobada y se complete una sesión autorizada. En esa sesión, Network debe mostrar sólo la carga diferida y las peticiones al origen aprobado; nunca se debe guardar el cuerpo de una petición ni una IP en el repositorio. La recepción controlada queda demostrada por la cola sanitizada del harness y los tests, no por un endpoint externo inventado.
+## Evidencia manual de Search Console
 
-## Procedimiento postrelease
+Comprobacion manual confirmada el 2026-08-20:
 
-1. Confirmar que `analytics.enabled` sigue en `false` durante preview, staging y cualquier entorno no productivo.
-2. Antes de habilitar producción, registrar fuera de Git la aprobación de la titular, identidad/política publicada, acuerdo de encargo, origen EEE, `siteId`, exclusión interna y retención de 13 meses.
-3. Habilitar sólo el endpoint HTTPS aprobado y ejecutar el caso de aceptación en una ventana de debug; aceptar consentimiento en un navegador de prueba sin datos personales.
-4. Verificar en Network la carga única diferida, el origen aprobado, cookies deshabilitadas, DNT y recepción de los cuatro nombres de evento.
-5. Recorrer home, listado, taxonomía, ficha, relacionado y ambos CTAs; comparar la matriz anterior y comprobar que las URLs conservan query/hash fuera del payload.
-6. Rechazar y retirar consentimiento; confirmar ausencia de eventos posteriores y navegación normal.
-7. Probar la exclusión de tráfico interno con el procedimiento de la instancia, sin anotar IPs/rangos en tickets, capturas o commits.
-8. Configurar alertas básicas en Matomo/monitor de la instancia: ausencia de recepción durante 24 horas tras una ventana de tráfico consentido, caída del endpoint y desviación brusca de eventos. Las alertas no deben incluir payloads ni datos personales.
-9. Guardar únicamente una fecha, ruta, nombres de evento, conteos agregados, versión del commit y resultado PASS/FAIL. Borrar capturas de Network tras la revisión.
-10. Ante una petición inesperada, PII, duplicación o fallo de navegación, volver a `enabled: false` mediante revert hacia delante y abrir incidencia con la titular.
+- Propiedad de dominio `lunatartas.es`: accesible y verificada.
+- Sitemap enviado: `https://lunatartas.es/sitemap.xml`.
+- Sitemap procesado correctamente; Search Console detecto 24 paginas en la
+  comprobacion.
+- Home `https://lunatartas.es/`: disponible para Google, indexable e indexada
+  segun la comprobacion realizada.
+- Listado `https://lunatartas.es/productos/`: prueba en tiempo real correcta,
+  disponible para Google, indexable e indexacion solicitada manualmente.
+- Producto `https://lunatartas.es/productos/tarta-de-panales-personalizada/`:
+  descubierto mediante sitemap; inicialmente figuraba como "Descubierta:
+  actualmente sin indexar" y sin ultimo rastreo. La prueba en tiempo real
+  posterior confirmo disponibilidad, indexabilidad, un Product snippet valido
+  y breadcrumbs validos; la indexacion fue solicitada manualmente.
 
-## Evidencia y límites
+Solicitar indexacion no significa indexacion inmediata. El estado de esta
+ficha no se convierte en un criterio de exito que exija indexacion inmediata.
 
-La evidencia pública de esta submilestone es el test contractual y esta captura redactada. No contiene endpoint, credenciales, `siteId` productivo, IP, rango interno, tráfico real ni conversación de WhatsApp. La recepción real, la revisión legal y la operación de alertas quedan condicionadas a M9.4 y al alta aprobada de la instancia.
+## Activacion productiva
+
+1. Propiedad Search Console verificada; sitemap procesado con 24 paginas.
+2. URL Inspection registrada para home, `/productos/` y una ficha publicada; no se promete indexacion inmediata.
+3. Propiedad y Web Data Stream GA4 creados para `https://lunatartas.es`; Measurement ID `G-DV6KHV0YMW` aprobado.
+4. Revisar en GA4 retencion, Google Signals, User-ID, datos proporcionados por usuarios, Ads y medicion mejorada; conservar solo la configuracion aprobada.
+5. Mantener sin filtro por IP el trafico interno por su naturaleza dinamica; el runtime excluye localhost, preview, tests y otros hosts.
+6. Politica/cookies, textos de consentimiento y activacion productiva aprobados.
+7. Configurar el Measurement ID real y `enabled: true` en un cambio revisado.
+8. Desplegar y comprobar sin aceptar: 0 requests a Google; rechazar y recargar: 0 requests.
+9. Aceptar en un navegador de prueba sin PII; verificar una carga de Google tag.
+10. Recorrer home, ficha y CTA; comprobar `page_view`, `view_item` y `contact_whatsapp` una vez cada uno en Realtime/DebugView y payload sin PII.
+11. Retirar consentimiento y confirmar que no se emiten eventos posteriores. Ante PII, duplicados o regresion, volver a `enabled: false` mediante revert hacia delante.
+
+Registrar solo fecha, commit, rutas, nombres/conteos agregados y PASS/FAIL. No versionar capturas con IDs de cliente, IPs, cuerpos de requests ni datos de visitantes.

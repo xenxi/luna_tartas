@@ -1,41 +1,21 @@
-export type AnalyticsEventName =
-  'view_item' | 'select_item' | 'whatsapp_click' | 'custom_whatsapp_click';
+export type AnalyticsEventName = 'page_view' | 'view_item' | 'contact_whatsapp';
 
 interface ProductEventPayload {
-  product_id: string;
-  product_name: string;
-  category: string;
-  source_page: string;
-  price?: number;
-  currency?: string;
+  item_id: string;
+  item_name: string;
+  item_category: string;
 }
 
 export type AnalyticsEvent =
+  | { name: 'page_view'; page_path: string }
   | ({ name: 'view_item' } & ProductEventPayload)
   | ({
-      name: 'select_item';
-      list_id: string;
-      position: number;
-    } & ProductEventPayload)
-  | ({
-      name: 'whatsapp_click';
-      cta_location: string;
-    } & ProductEventPayload)
-  | {
-      name: 'custom_whatsapp_click';
-      cta_location: string;
-      source_page: string;
-    };
-
-const productEventNames = new Set<AnalyticsEventName>([
-  'view_item',
-  'select_item',
-  'whatsapp_click',
-]);
+      name: 'contact_whatsapp';
+      source: string;
+    } & Partial<ProductEventPayload>);
 
 const safeIdPattern = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
 const safeTokenPattern = /^[a-z0-9][a-z0-9_-]{0,79}$/;
-const currencyPattern = /^[A-Z]{3}$/;
 
 function isRecord(value: unknown): value is Record<string, unknown> {
   return typeof value === 'object' && value !== null && !Array.isArray(value);
@@ -64,32 +44,15 @@ function hasOnlyKeys(value: Record<string, unknown>, keys: readonly string[]) {
   return Object.keys(value).every((key) => keys.includes(key));
 }
 
-function hasValidPrice(value: Record<string, unknown>): boolean {
-  const hasPrice = 'price' in value;
-  const hasCurrency = 'currency' in value;
-
-  if (hasPrice !== hasCurrency) return false;
-  if (!hasPrice) return true;
-
+function hasProductPayload(
+  value: Record<string, unknown>,
+): value is Record<string, unknown> & ProductEventPayload {
   return (
-    typeof value.price === 'number' &&
-    Number.isFinite(value.price) &&
-    value.price > 0 &&
-    Number.isSafeInteger(value.price * 100) &&
-    typeof value.currency === 'string' &&
-    currencyPattern.test(value.currency)
-  );
-}
-
-function hasProductPayload(value: Record<string, unknown>): boolean {
-  return (
-    typeof value.product_id === 'string' &&
-    safeIdPattern.test(value.product_id) &&
-    isSafeText(value.product_name, 160) &&
-    typeof value.category === 'string' &&
-    safeIdPattern.test(value.category) &&
-    isCanonicalPath(value.source_page) &&
-    hasValidPrice(value)
+    typeof value.item_id === 'string' &&
+    safeIdPattern.test(value.item_id) &&
+    isSafeText(value.item_name, 160) &&
+    typeof value.item_category === 'string' &&
+    safeIdPattern.test(value.item_category)
   );
 }
 
@@ -98,86 +61,52 @@ export function sanitizeAnalyticsEvent(
 ): AnalyticsEvent | undefined {
   if (!isRecord(value) || typeof value.name !== 'string') return undefined;
 
-  if (productEventNames.has(value.name as AnalyticsEventName)) {
-    const allowedKeys = [
-      'name',
-      'product_id',
-      'product_name',
-      'category',
-      'source_page',
-      'price',
-      'currency',
-    ];
-
-    if (value.name === 'select_item') {
-      allowedKeys.push('list_id', 'position');
-    }
-
-    if (value.name === 'whatsapp_click') {
-      allowedKeys.push('cta_location');
-    }
-
-    if (!hasOnlyKeys(value, allowedKeys) || !hasProductPayload(value)) {
-      return undefined;
-    }
-
-    const productPayload = {
-      product_id: value.product_id,
-      product_name: value.product_name,
-      category: value.category,
-      source_page: value.source_page,
-      ...(value.price === undefined
-        ? {}
-        : { price: value.price, currency: value.currency }),
-    } as ProductEventPayload;
-
-    if (value.name === 'view_item') {
-      return { name: 'view_item', ...productPayload };
-    }
-
-    if (
-      value.name === 'select_item' &&
-      typeof value.list_id === 'string' &&
-      safeTokenPattern.test(value.list_id) &&
-      typeof value.position === 'number' &&
-      Number.isSafeInteger(value.position) &&
-      value.position > 0
-    ) {
-      return {
-        name: 'select_item',
-        ...productPayload,
-        list_id: value.list_id,
-        position: value.position,
-      };
-    }
-
-    if (
-      value.name === 'whatsapp_click' &&
-      typeof value.cta_location === 'string' &&
-      safeTokenPattern.test(value.cta_location)
-    ) {
-      return {
-        name: 'whatsapp_click',
-        ...productPayload,
-        cta_location: value.cta_location,
-      };
-    }
-
-    return undefined;
+  if (
+    value.name === 'page_view' &&
+    hasOnlyKeys(value, ['name', 'page_path']) &&
+    isCanonicalPath(value.page_path)
+  ) {
+    return { name: 'page_view', page_path: value.page_path };
   }
 
   if (
-    value.name === 'custom_whatsapp_click' &&
-    hasOnlyKeys(value, ['name', 'cta_location', 'source_page']) &&
-    typeof value.cta_location === 'string' &&
-    safeTokenPattern.test(value.cta_location) &&
-    isCanonicalPath(value.source_page)
+    value.name === 'view_item' &&
+    hasOnlyKeys(value, ['name', 'item_id', 'item_name', 'item_category']) &&
+    hasProductPayload(value)
   ) {
     return {
-      name: 'custom_whatsapp_click',
-      cta_location: value.cta_location,
-      source_page: value.source_page,
+      name: 'view_item',
+      item_id: value.item_id,
+      item_name: value.item_name,
+      item_category: value.item_category,
     };
+  }
+
+  if (value.name === 'contact_whatsapp') {
+    const productKeys = ['item_id', 'item_name', 'item_category'];
+    const presentProductKeys = productKeys.filter((key) => key in value);
+    if (
+      !hasOnlyKeys(value, ['name', 'source', ...productKeys]) ||
+      typeof value.source !== 'string' ||
+      !safeTokenPattern.test(value.source) ||
+      (presentProductKeys.length !== 0 &&
+        (presentProductKeys.length !== productKeys.length ||
+          !hasProductPayload(value)))
+    ) {
+      return undefined;
+    }
+
+    return {
+      name: 'contact_whatsapp',
+      source: value.source,
+      ...(presentProductKeys.length === 0
+        ? {}
+        : {
+            item_id: value.item_id,
+            item_name: value.item_name,
+            item_category: value.item_category,
+          }),
+    } as AnalyticsEvent;
   }
 
   return undefined;

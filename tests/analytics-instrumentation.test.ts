@@ -35,20 +35,10 @@ const product: PublishedProduct = {
 
 describe('view and selection instrumentation', () => {
   it('projects only public product context with optional price and list position', () => {
-    expect(
-      createProductAnalyticsData(product, '/productos/', {
-        listId: 'products-all',
-        position: 2,
-      }),
-    ).toEqual({
+    expect(createProductAnalyticsData(product)).toEqual({
       productId: 'sample-product',
       productName: 'Producto de muestra',
       category: 'categoria-principal',
-      sourcePage: '/productos/',
-      price: 12.5,
-      currency: 'EUR',
-      listId: 'products-all',
-      position: 2,
     });
   });
 
@@ -75,15 +65,14 @@ describe('view and selection instrumentation', () => {
     );
     const footer = readFileSync('src/components/site/SiteFooter.astro', 'utf8');
 
-    expect(card).toContain('data-analytics-select-item');
+    expect(card).not.toContain('data-analytics-select-item');
     expect(detail).toContain('data-analytics-view-item');
-    expect(actionLink).toContain('data-analytics-whatsapp-click');
-    expect(actionLink).toContain('data-analytics-custom-whatsapp-click');
-    expect(conversion).toContain("event: 'whatsapp_click'");
-    expect(footer).toContain('data-analytics-custom-whatsapp-click');
+    expect(actionLink).toContain('data-analytics-contact-whatsapp');
+    expect(conversion).toContain("event: 'contact_whatsapp'");
+    expect(footer).toContain('data-analytics-contact-whatsapp');
     expect(instrumentation).toContain('siteConfig.analytics.enabled &&');
     expect(instrumentation).toContain('bindAnalyticsInstrumentation');
-    expect(`${card}${detail}`).not.toContain('matomo');
+    expect(`${card}${detail}`).not.toContain('gtag');
   });
 
   it('swallows adapter failures so the native CTA remains usable', () => {
@@ -95,7 +84,7 @@ describe('view and selection instrumentation', () => {
             throw new Error('tracker unavailable');
           },
         },
-        { name: 'custom_whatsapp_click' },
+        { name: 'contact_whatsapp' },
       ),
     ).not.toThrow();
   });

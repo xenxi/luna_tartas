@@ -21,10 +21,7 @@ interface Props {
 }
 
 const { product, taxonomies, breadcrumbs } = Astro.props;
-const analytics = createProductAnalyticsData(
-  product,
-  routes.product(product.slug),
-);
+const analytics = createProductAnalyticsData(product);
 
 function linkedTaxonomies(kind: TaxonomyKind, ids: readonly string[]) {
   return ids
@@ -51,9 +48,6 @@ const taxonomyGroups = [
     data-analytics-product-id={analytics.productId}
     data-analytics-product-name={analytics.productName}
     data-analytics-category={analytics.category}
-    data-analytics-source-page={analytics.sourcePage}
-    data-analytics-price={analytics.price}
-    data-analytics-currency={analytics.currency}
   >
     <header class="product-detail__header">
       <p class="product-detail__eyebrow">Una creación de Luna</p>
