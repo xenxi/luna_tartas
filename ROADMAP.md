@@ -1,6 +1,6 @@
 # ROADMAP — Luna Estudio
 
-Única fuente de verdad sobre prioridad, estado y siguiente tarea. Última actualización: 2026-08-20.
+Única fuente de verdad sobre prioridad, estado y siguiente tarea. Última actualización: 2026-08-21.
 
 ## Uso
 
@@ -9,10 +9,11 @@
 - Se ejecuta exclusivamente la tarea solicitada; no se anticipa la siguiente.
 - `DONE` exige todos los criterios y verificaciones en `PASS`, con evidencia registrada aquí.
 - Orden normal: de arriba abajo. Una tarea posterior sólo puede comenzar si todas sus dependencias están `DONE`.
-- **Siguiente tarea:** `M9.4 — Analytics y Search Console en producción`.
+- **Siguiente tarea:** `M9.5 — Monitorización de lanzamiento y estabilización`.
 - **Pausa de release:** la alineación visual desktop, la migración de redirects
-  y el corte productivo quedan aprobados; M9.4 permanece `BLOCKED` sólo por la
-  validación humana posterior al despliegue de analytics.
+  y el corte productivo quedan aprobados; M9.4 quedó cerrada tras la validación
+  humana posterior al despliegue de analytics. M9.5 queda desbloqueada, sin
+  ejecutarse en esta tarea.
 
 ## Gates de programa
 
@@ -1716,7 +1717,7 @@ tarea: M9.4.
 
 ## M9.4 — Analytics y Search Console en producción
 
-**Estado:** BLOCKED
+**Estado:** DONE (2026-08-21)
 **Objetivo:** confirmar observabilidad, medicion e indexacion real tras el corte utilizando Google Search Console y Google Analytics 4.
 **Alcance:** ownership, sitemap submission, URL inspection de muestra, propiedad/stream GA4, eventos reales sin PII y exclusion interna/consentimiento.
 **Fuera de alcance:** prometer indexación inmediata o optimización de campañas.  
@@ -1727,7 +1728,7 @@ tarea: M9.4.
 **Verificación:** Search Console + GA4 Realtime/DebugView + Network en modos de consentimiento + suite local sin servidores Google.
 **Modelo recomendado:** LUNA → SOL REVIEW.  
 **Razón del modelo:** pasos operativos concretos con revisión de interpretación.  
-**Evidencia:** BLOCKED / PENDING VERIFICATION (2026-08-20) — La configuración
+**Evidencia inicial (2026-08-20):** La configuración
 externa y las decisiones manuales quedan consolidadas en
 `docs/conversion/analytics-decision.md` y `docs/conversion/analytics-runbook.md`.
 
@@ -1771,11 +1772,7 @@ regla de prueba `Internal Traffic`; se acepta que visitas administrativas
 consentidas en producción puedan contabilizarse. La frontera arquitectónica
 excluye localhost, desarrollo, tests, previews y otros hosts. La configuración
 global está habilitada, pero Google tag sólo carga tras opt-in y los eventos
-permitidos son `page_view`, `view_item` y `contact_whatsapp`, sin PII. Falta
-deploy y validación humana post-despliegue en Network y GA4 Realtime/DebugView:
-0 requests antes del consentimiento, 0 tras rechazo, recepción tras aceptación,
-eventos únicos, payloads sin PII y revocación sin emisiones posteriores. M9.4
-no se marca `DONE`.
+permitidos son `page_view`, `view_item` y `contact_whatsapp`, sin PII.
 
 Verificacion local de la migracion:
 `npm run lint`, `npm run format`, `npm run typecheck` (0 errores, warnings o
@@ -1796,11 +1793,36 @@ instrumentación, se añadió `createGtagDispatcher()` en
 la señal que inicializa la página actual una vez. Tests modificados:
 `tests/analytics-adapter.test.ts` verifica explícitamente objetos `arguments`,
 no arrays manuales, y carga/consentimiento/origen únicos. Verificación local
-de esta corrección: tests analíticos, lint, format y typecheck PASS; commit de
-la corrección y deploy posterior pendientes. La validación humana productiva
-de Network, `g/collect`/equivalente, eventos únicos, ausencia de PII,
-Realtime/DebugView y revocación sigue siendo obligatoria. M9.4 permanece
-`BLOCKED / PENDING VERIFICATION`; no se inicia M9.5.
+de esta corrección: tests analíticos, lint, format y typecheck PASS; commit
+`c18c7c02b9b65e8cce2f8a3d14087e59163be6f4`.
+
+Validación productiva manual del 2026-08-21: en sesión limpia hubo 0 requests
+de Google antes de decidir; tras rechazo, 0 requests de Google pese a navegar
+por varias páginas; tras aceptación cargó una única vez
+`https://www.googletagmanager.com/gtag/js?id=G-DV6KHV0YMW` con HTTP 200 y
+`script#luna-ga4-tracker`, y `window.google_tag_data` quedó inicializado.
+Después de la corrección se observó `collect?v=2&tid=G-DV6KHV0YMW...` con HTTP
+204. La ficha emitió una vez `page_view` con `dp=/productos/tarta-de-panales-
+personalizada/` y una vez `view_item` con `item_id`, `item_name` e
+`item_category`; el CTA emitió una vez `contact_whatsapp` con
+`source=product-detail` y esos mismos campos editoriales. No se observaron
+teléfono, email, nombre o texto del usuario, mensaje de WhatsApp ni
+identificadores personales propios. La prueba aislada no mostró duplicación;
+los recuentos posteriores de Realtime correspondieron a las navegaciones de
+diagnóstico. Realtime confirmó 1 usuario y los tres eventos propios; `click`,
+`user_engagement` y `first_visit` se trataron como medición mejorada/estándar.
+Tras revocar y limpiar Network no hubo nuevos requests `collect` durante la
+navegación posterior.
+
+Matriz final: Search Console ownership, sitemap (24 páginas) y URL Inspection
+de muestra PASS; propiedad/stream GA4 y Measurement ID PASS; consentimiento
+opt-in, rechazo, carga única, hit real, `page_view`, `view_item`,
+`contact_whatsapp`, ausencia de PII propia, no duplicación observada, Realtime,
+revocación, exclusión de desarrollo/tests/previews y suite local sin servidores
+Google PASS. La indexación inmediata no es un criterio y no se promete. El
+tráfico interno consentido puede contabilizarse por IP administrativa dinámica;
+no se añade filtro de IP. M9.4 queda cerrada; M9.5 queda desbloqueada por
+dependencia, pero no se ejecuta en esta tarea.
 
 ## M9.5 — Monitorización de lanzamiento y estabilización
 

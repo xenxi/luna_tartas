@@ -2,7 +2,7 @@
 
 **Decision original:** 2026-08-17
 **Revision arquitectonica:** 2026-08-20
-**Consolidacion operativa M9.4:** 2026-08-20
+**Consolidacion operativa M9.4:** 2026-08-21
 **Ambito:** audiencia y conversion hacia WhatsApp en `lunatartas.es`.
 
 ## Contexto
@@ -127,4 +127,6 @@ Se prohiben nombre del visitante, email, telefono, direccion, mensaje o URL de W
 - Navegacion y WhatsApp funcionan sin JavaScript, consentimiento o proveedor.
 - Google tag solo se inserta tras opt-in y se configura con `send_page_view: false` para evitar duplicados.
 - La configuracion externa de Search Console y GA4 esta registrada en el runbook de M9.4.
-- M9.4 sigue bloqueada hasta completar la validacion humana productiva en Network y Realtime/DebugView; el deploy del commit aprobado ya esta confirmado.
+- M9.4 queda cerrada el 2026-08-21 tras validar Network, recepcion real en GA4
+  Realtime, consentimiento, revocacion, payload sin PII propia y no duplicacion
+  en la prueba controlada. La indexacion inmediata no se promete.

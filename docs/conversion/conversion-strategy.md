@@ -45,7 +45,7 @@ No se envían contenido del mensaje, teléfono, nombre del visitante ni otros da
 
 Los componentes declaran nombre/payload mediante una API pequeña o atributos de datos. Un adaptador cliente único traduce al proveedor elegido. Sin consentimiento/proveedor, los enlaces siguen funcionando y el código no arroja errores.
 
-La revision de M9.4 adopta GA4 directo, sin GTM, con `enabled: true` en la configuracion productiva aprobada y consentimiento analitico explicito antes de cargar Google tag. El contrato permanente esta en [`analytics-decision.md`](analytics-decision.md) y la evidencia manual en [`analytics-runbook.md`](analytics-runbook.md). La validacion real post-despliegue sigue pendiente en M9.4.
+La revision de M9.4 adopta GA4 directo, sin GTM, con `enabled: true` en la configuracion productiva aprobada y consentimiento analitico explicito antes de cargar Google tag. El contrato permanente esta en [`analytics-decision.md`](analytics-decision.md) y la evidencia manual cerrada el 2026-08-21 esta en [`analytics-runbook.md`](analytics-runbook.md).
 
 ## Medición y QA
 

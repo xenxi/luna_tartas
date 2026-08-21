@@ -1,16 +1,16 @@
 # Runbook de analytics (M7.5 / M9.4)
 
-**Revision:** 2026-08-20
+**Revision:** 2026-08-21
 **Owner:** titular de Luna Tartas
 **Proveedor previsto:** Google Analytics 4, Google tag directo
-**Estado:** configuracion externa confirmada y `analytics.enabled: true` con Measurement ID productivo; deploy productivo PASS, pendiente validacion humana post-despliegue
+**Estado:** M9.4 DONE; configuracion externa, deploy productivo y validacion humana confirmados
 
-Este runbook no sustituye la validacion humana de produccion. La carga de Google sigue bloqueada hasta el opt-in explicito del usuario.
+La carga de Google sigue bloqueada hasta el opt-in explicito del usuario.
 
 Deploy confirmado el 2026-08-20 desde `6bb76c4777be2ca02a823ff62b9a911aeed3c4d5`:
 run Pages [`32409940728`](https://github.com/xenxi/luna_tartas/actions/runs/32409940728)
-con build, artifact, deploy y smoke PASS. La validacion de Network y
-Realtime/DebugView permanece pendiente.
+con build, artifact, deploy y smoke PASS. La validacion manual posterior se
+registro el 2026-08-21 sobre la version corregida.
 
 ## Decisiones consolidadas
 
@@ -91,6 +91,37 @@ Comprobacion manual confirmada el 2026-08-20:
 
 Solicitar indexacion no significa indexacion inmediata. El estado de esta
 ficha no se convierte en un criterio de exito que exija indexacion inmediata.
+
+## Evidencia manual productiva GA4
+
+Validacion realizada el 2026-08-21 en una sesion limpia/incognito:
+
+| Criterio | Resultado |
+| --- | --- |
+| Sin decision de consentimiento: 0 Google | PASS |
+| Rechazo inicial: 0 Google | PASS |
+| Aceptacion: carga de `gtag.js` | PASS; HTTP 200, una instancia `script#luna-ga4-tracker` |
+| Hit real `collect` | PASS; `collect?v=2&tid=G-DV6KHV0YMW...`, HTTP 204, fetch |
+| `page_view` | PASS; `en=page_view`, `dp=/productos/tarta-de-panales-personalizada/` |
+| `view_item` | PASS; campos publicos `item_id`, `item_name`, `item_category` |
+| `contact_whatsapp` | PASS; `source=product-detail` y campos publicos del producto |
+| PII propia | PASS; no telefono, email, nombre de usuario, mensaje ni texto libre |
+| Duplicacion controlada | PASS; una pagina y un producto en la carga aislada |
+| GA4 Realtime | PASS; 1 usuario y los tres eventos propios observados |
+| Revocacion | PASS; 0 nuevos `collect` tras retirar consentimiento |
+| Entornos no productivos | PASS; frontera exacta `https://lunatartas.es` y tests sin red real |
+
+Los parametros tecnicos estandar de GA4, incluido `cid`, no son PII
+introducida por la aplicacion. Los eventos `click`, `user_engagement` y
+`first_visit` observados en Realtime son compatibles con Enhanced Measurement y
+la configuracion estandar de GA4, no duplicados de los tres eventos propios.
+
+La incidencia inicial quedo resuelta en el commit
+`c18c7c02b9b65e8cce2f8a3d14087e59163be6f4`: el runtime insertaba arrays con
+`dataLayer.push(command)` en vez de un objeto `arguments` compatible con
+`gtag()`. `createGtagDispatcher()` centraliza ahora esa semantica y la UI de
+consentimiento dispara la instrumentacion unica. La evidencia posterior
+confirma la recepcion real de hits.
 
 ## Activacion productiva
 

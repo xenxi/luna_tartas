@@ -8,7 +8,7 @@
 | Apex proxied por Cloudflare, `www` NXDOMAIN y configuración/acceso desconocidos | corte, canonicalización o HTTPS incorrectos | exportar zona/reglas/TTL y preparar rollback en M9.3; no cambiar DNS durante discovery | OPEN |
 | Catálogo, fotos, copy y exports no entregados | páginas finales no publicables | M0.1 registra cada ausencia con owner; contrato de entradas en M0.3 y gate final en M9.1 | OPEN |
 | Marca/licencias no confirmadas | retrabajo y riesgo legal | M3.1 no consolida assets sin aprobación | OPEN |
-| Alta GA4 y consentimiento sin aprobacion productiva | medicion o privacidad incorrecta | GA4 directo aprobado y configurado con opt-in; M9.4 conserva el bloqueo hasta verificacion real en Network/Realtime/DebugView | CONTROLLED — owner: titular de Luna Tartas |
+| Alta GA4 y consentimiento sin aprobacion productiva | medicion o privacidad incorrecta | GA4 directo aprobado y configurado con opt-in; M9.4 validó Network, hit real, Realtime, PII y revocación el 2026-08-21 | CONTROLLED — owner: titular de Luna Tartas |
 | Pages tiene redirects HTTP por path limitados | migración SEO incompleta | Cloudflare cubre 301/308; si faltan acceso/capacidad o se requieren 410 reales, M9.2 sustituye Pages o añade edge explícito | OPEN — owner: propietario del negocio |
 | Fotos originales pesadas en Git | repositorio lento a largo plazo | hard limits M0.2 (8 MiB/24 MP por raster; 100 MiB binarios) y archivo externo; checks en M2/M8 | CONTROLLED — owner: equipo técnico |
 | Exposición accidental de secretos en repositorio público, historial, logs o `dist` | compromiso de cuentas/servicios | `.gitignore`, permisos mínimos y gates de repo/historial/workflows/artefacto en M8.5; logs remotos se reinspeccionan en M8.6/M9.3 | CONTROLLED — owner: equipo técnico |
