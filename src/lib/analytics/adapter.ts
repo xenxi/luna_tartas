@@ -3,6 +3,18 @@ import { sanitizeAnalyticsEvent } from './events';
 
 export const GA4_TRACKER_SCRIPT_ID = 'luna-ga4-tracker';
 
+export interface AnalyticsWindow {
+  dataLayer?: unknown[];
+}
+
+export function createGtagDispatcher(
+  window: AnalyticsWindow,
+): (...command: unknown[]) => void {
+  return function gtag(..._command: unknown[]) {
+    (window.dataLayer ??= []).push(arguments);
+  };
+}
+
 export type AnalyticsDocument = Pick<
   Document,
   'getElementById' | 'createElement' | 'head'

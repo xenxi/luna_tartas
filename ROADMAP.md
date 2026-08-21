@@ -1731,6 +1731,19 @@ tarea: M9.4.
 externa y las decisiones manuales quedan consolidadas en
 `docs/conversion/analytics-decision.md` y `docs/conversion/analytics-runbook.md`.
 
+Ejecución del 2026-08-20: el commit productivo `6bb76c4777be2ca02a823ff62b9a911aeed3c4d5`
+ya estaba en `origin/main`; se relanzó el workflow de Pages para obtener evidencia
+específica de M9.4. Run público
+[`32409940728`](https://github.com/xenxi/luna_tartas/actions/runs/32409940728):
+build, checks de fuente, artifact, deploy y smoke PASS. El smoke productivo
+confirma `https://lunatartas.es/` HTTP 200 y `www` con 301 al apex HTTPS. La
+inspección HTML productiva confirma el panel de consentimiento, módulos locales
+de consentimiento/instrumentación y ausencia de Google tag/requests estáticos
+antes de la interacción. Localmente: `npm ci`, lint, format, typecheck (0
+errores/warnings/hints), `npm test` (40 archivos, 246 tests), build (25 páginas),
+`verify:seo`, `verify:crawl`, `verify:links`, `verify:security`,
+`verify:artifact` y `verify:performance`: PASS.
+
 Search Console: la propiedad de dominio `lunatartas.es` está accesible y
 verificada; `https://lunatartas.es/sitemap.xml` fue procesado correctamente y
 detectó 24 páginas. La home está disponible, es indexable y estaba indexada en
@@ -1772,6 +1785,22 @@ hints), `npm test` (40 archivos, 246 tests), `npm run build` (25 paginas),
 `git diff --check`: PASS. El HTML sólo carga los módulos locales de
 consentimiento/instrumentación; el recurso Google se añade dinámicamente sólo
 tras opt-in y los tests de frontera no contactan servidores externos.
+
+Corrección posterior a la validación productiva: causa encontrada en
+`src/lib/analytics/instrumentation.ts` y en el runtime duplicado de
+`src/lib/analytics/consent-ui.ts`: se insertaban arrays mediante
+`dataLayer.push(command)` en lugar de invocar una función compatible con
+`gtag()` que inserta el objeto `arguments`. Se centralizó el adapter en la
+instrumentación, se añadió `createGtagDispatcher()` en
+`src/lib/analytics/adapter.ts`, y la aceptación de consentimiento sólo dispara
+la señal que inicializa la página actual una vez. Tests modificados:
+`tests/analytics-adapter.test.ts` verifica explícitamente objetos `arguments`,
+no arrays manuales, y carga/consentimiento/origen únicos. Verificación local
+de esta corrección: tests analíticos, lint, format y typecheck PASS; commit de
+la corrección y deploy posterior pendientes. La validación humana productiva
+de Network, `g/collect`/equivalente, eventos únicos, ausencia de PII,
+Realtime/DebugView y revocación sigue siendo obligatoria. M9.4 permanece
+`BLOCKED / PENDING VERIFICATION`; no se inicia M9.5.
 
 ## M9.5 — Monitorización de lanzamiento y estabilización
 

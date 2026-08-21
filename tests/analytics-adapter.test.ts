@@ -9,6 +9,7 @@ import {
   getStoredAnalyticsConsent,
   setAnalyticsConsent,
 } from '../src/lib/analytics/consent';
+import { createGtagDispatcher } from '../src/lib/analytics/adapter';
 import { sanitizeAnalyticsEvent } from '../src/lib/analytics/events';
 
 interface FakeScript {
@@ -141,28 +142,42 @@ describe('analytics adapter', () => {
 
     expect(adapter.track(validProductEvent)).toBe(true);
     expect(scripts).toHaveLength(1);
-    expect(commands).toEqual([
-      ['js', expect.any(Date)],
-      [
-        'config',
-        'G-ABCDEFGHIJ',
-        {
-          allow_ad_personalization_signals: false,
-          allow_google_signals: false,
-          anonymize_ip: true,
-          send_page_view: false,
-        },
-      ],
-      [
-        'event',
-        'view_item',
-        {
-          item_id: 'tarta-panales',
-          item_name: 'Tarta de pañales',
-          item_category: 'tartas-de-panales',
-        },
-      ],
+    expect(commands).toHaveLength(3);
+    expect(Array.from(commands[0])).toEqual(['js', expect.any(Date)]);
+    expect(Array.from(commands[1])).toEqual([
+      'config',
+      'G-ABCDEFGHIJ',
+      {
+        allow_ad_personalization_signals: false,
+        allow_google_signals: false,
+        anonymize_ip: true,
+        send_page_view: false,
+      },
     ]);
+    expect(Array.from(commands[2])).toEqual([
+      'event',
+      'view_item',
+      {
+        item_id: 'tarta-panales',
+        item_name: 'Tarta de pañales',
+        item_category: 'tartas-de-panales',
+      },
+    ]);
+  });
+
+  it('pushes arguments objects through a gtag-compatible dispatcher', () => {
+    const dataLayer: unknown[] = [];
+    const dispatch = createGtagDispatcher({ dataLayer });
+
+    dispatch('event', 'page_view', { page_path: '/' });
+
+    expect(dataLayer).toHaveLength(1);
+    expect(Array.from(dataLayer[0] as ArrayLike<unknown>)).toEqual([
+      'event',
+      'page_view',
+      { page_path: '/' },
+    ]);
+    expect(Array.isArray(dataLayer[0])).toBe(false);
   });
 
   it('does not track on localhost or non-production origins', async () => {

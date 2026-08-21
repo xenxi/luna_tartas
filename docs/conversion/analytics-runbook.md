@@ -3,9 +3,14 @@
 **Revision:** 2026-08-20
 **Owner:** titular de Luna Tartas
 **Proveedor previsto:** Google Analytics 4, Google tag directo
-**Estado:** configuracion externa confirmada y `analytics.enabled: true` con Measurement ID productivo; pendiente deploy y validacion humana post-despliegue
+**Estado:** configuracion externa confirmada y `analytics.enabled: true` con Measurement ID productivo; deploy productivo PASS, pendiente validacion humana post-despliegue
 
 Este runbook no sustituye la validacion humana de produccion. La carga de Google sigue bloqueada hasta el opt-in explicito del usuario.
+
+Deploy confirmado el 2026-08-20 desde `6bb76c4777be2ca02a823ff62b9a911aeed3c4d5`:
+run Pages [`32409940728`](https://github.com/xenxi/luna_tartas/actions/runs/32409940728)
+con build, artifact, deploy y smoke PASS. La validacion de Network y
+Realtime/DebugView permanece pendiente.
 
 ## Decisiones consolidadas
 

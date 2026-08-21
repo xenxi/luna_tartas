@@ -1,14 +1,14 @@
 import type { AnalyticsConfig } from '../../config/site';
 import { getAnalyticsConsent } from './consent';
-import { createAnalyticsAdapter, type AnalyticsDocument } from './adapter';
-
-export interface AnalyticsWindow {
-  dataLayer?: unknown[][];
-}
+import {
+  createAnalyticsAdapter,
+  createGtagDispatcher,
+  type AnalyticsDocument,
+  type AnalyticsWindow,
+} from './adapter';
 
 function createBrowserRuntime(document: Document, window: Window) {
   const browserWindow = window as Window & AnalyticsWindow;
-  const queue = (browserWindow.dataLayer ??= []);
   let storage: Storage | undefined;
 
   try {
@@ -19,7 +19,7 @@ function createBrowserRuntime(document: Document, window: Window) {
 
   return {
     document: document as AnalyticsDocument,
-    dispatch: (...command: unknown[]) => queue.push(command),
+    dispatch: createGtagDispatcher(browserWindow),
     hasConsent: () => getAnalyticsConsent(storage) === 'granted',
     isProduction: () =>
       window.location.protocol === 'https:' &&
@@ -72,18 +72,29 @@ export function bindAnalyticsInstrumentation(
     config,
     createBrowserRuntime(document, window),
   );
+  let currentPageTracked = false;
 
-  trackSafely(adapter, {
-    name: 'page_view',
-    page_path: document.location.pathname,
-  });
+  const trackCurrentPage = () => {
+    if (currentPageTracked) return;
+    currentPageTracked = true;
 
-  document
-    .querySelectorAll<HTMLElement>('[data-analytics-view-item]')
-    .forEach((element) => {
-      const event = eventFromElement(element, 'view_item');
-      if (event !== undefined) trackSafely(adapter, event);
+    trackSafely(adapter, {
+      name: 'page_view',
+      page_path: document.location.pathname,
     });
+
+    document
+      .querySelectorAll<HTMLElement>('[data-analytics-view-item]')
+      .forEach((element) => {
+        const event = eventFromElement(element, 'view_item');
+        if (event !== undefined) trackSafely(adapter, event);
+      });
+  };
+
+  trackCurrentPage();
+  window.addEventListener('luna-analytics-consent-granted', trackCurrentPage, {
+    once: true,
+  });
 
   document.addEventListener('click', (event) => {
     const target = event.target;
