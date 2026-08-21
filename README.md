@@ -105,10 +105,23 @@ El flujo de datos es `YAML -> source adapter -> catalog/domain -> presentation -
 - No se hace deploy manual desde el worktree ni se versiona `dist/`.
 - La URL técnica y el procedimiento de rollback están documentados en [`docs/architecture/deployment.md`](docs/architecture/deployment.md).
 
+## Operación y handover
+
+- [`docs/operations/handover.md`](docs/operations/handover.md): flujo de cambio,
+  deploy, rollback, checks productivos y matriz de accesos/owners sin secretos.
+- [`docs/operations/editorial-guide.md`](docs/operations/editorial-guide.md):
+  edición de YAML, precios, relaciones, imágenes, aprobación y validación.
+- [`docs/operations/accepted-debt.md`](docs/operations/accepted-debt.md): deuda
+  V1 aceptada, prioridad, owner y condición de salida.
+- [`docs/operations/launch-log.md`](docs/operations/launch-log.md): baseline e
+  incidencias de la ventana de estabilización.
+
 ## Configuración actual
 
 - Salida: `static`.
 - Formato: directorios con barra final.
 - URL canónica: `https://lunatartas.es`.
 - Sin framework UI ni JavaScript cliente innecesario.
-- El contenido editorial real todavía no está cargado; su contrato está en [`docs/product/content-readiness.md`](docs/product/content-readiness.md).
+- El catálogo V1 aprobado está cargado; su readiness y evidencia están en
+  [`docs/product/content-readiness.md`](docs/product/content-readiness.md) y
+  [`docs/product/m9-1-content-release.md`](docs/product/m9-1-content-release.md).

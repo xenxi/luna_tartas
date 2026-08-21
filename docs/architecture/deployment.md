@@ -2,7 +2,8 @@
 
 ## Frontera pública
 
-El repositorio GitHub es nuevo, vacío y **público**. El pipeline contractual es:
+El repositorio GitHub es **público** y sirve la V1 productiva. El pipeline
+contractual es:
 
 ```text
 Public GitHub Repository -> GitHub Actions -> Astro Build -> GitHub Pages -> lunatartas.es
@@ -17,7 +18,8 @@ Cuando una integración requiera secretos, se usarán GitHub Actions Secrets con
 1. Pull request ejecuta instalación reproducible, lint, typecheck, tests y build.
 2. Merge a `main` produce un artefacto estático único.
 3. GitHub Actions despliega ese artefacto mediante el flujo oficial de GitHub Pages.
-4. Pages sirve `lunatartas.es` con HTTPS; DNS y redirects externos se validan antes del corte.
+4. Pages sirve `lunatartas.es` con HTTPS; DNS y redirects externos se validan
+   después de cada cambio que afecte esa superficie.
 
 No se hace deploy desde el worktree ni se versiona `dist/`.
 
@@ -29,7 +31,9 @@ GitHub Pages sigue siendo la plataforma V1: M0.1 no encontró rutas históricas 
 - Astro estable `6.x` exacto, dependencias exactas y `package-lock.json` versionados en M1.1.
 - `.gitignore` mantenido desde bootstrap para dependencias, outputs, caches, tooling local y archivos `.env`; sólo se permite un ejemplo sin valores sensibles cuando aporte valor.
 - `site` canónico `https://lunatartas.es`, `output: static`, `build.format: directory` y `trailingSlash: always`.
-- Mientras no haya custom domain, el build de Actions pasa a Astro el `base_path` calculado por `configure-pages`; así la URL técnica `https://xenxi.github.io/luna_tartas/` funciona sin cambiar `site` ni anticipar el corte DNS. Cuando Pages exponga base vacía para el dominio configurado, el mismo workflow construirá sin override.
+- `configure-pages` aporta el `base_path`: con el custom domain productivo es
+  vacío; si se retira temporalmente, la misma build conserva soporte para la
+  URL técnica `https://xenxi.github.io/luna_tartas/` sin cambiar el canonical.
 - Con custom GitHub Actions, el dominio se configura en Settings/API de Pages; un archivo `CNAME` no es la fuente de verdad y no es requerido por ese flujo.
 - Tokens sólo mediante permisos mínimos de GitHub Actions Secrets; el build público no necesita secretos para leer catálogo.
 - Concurrencia de deploy evita carreras y conserva el último artefacto correcto.
@@ -38,13 +42,25 @@ GitHub Pages sigue siendo la plataforma V1: M0.1 no encontró rutas históricas 
 
 V1 no necesita un backend de staging. Los pull requests sólo ejecutan CI y no publican una preview: `deploy.yml` despliega exclusivamente `refs/heads/main`, también cuando se lanza manualmente. Esto evita exponer builds no aprobados y mantiene un solo artefacto desplegable por run.
 
-Antes del cambio DNS, la preview operativa es la URL técnica `https://xenxi.github.io/luna_tartas/`. El job de deploy toma la URL real de `deploy-pages`, exige HTTP `200` y comprueba que la respuesta contiene el `<main>` de la aplicación, con reintentos acotados para la propagación de Pages. Este smoke no consulta `lunatartas.es`, por lo que no corta ni altera el servicio actual.
+La URL primaria es `https://lunatartas.es/`; la URL técnica de Pages queda como
+referencia de recuperación. El job de deploy toma la URL real de
+`deploy-pages`, exige HTTP `200` y comprueba que la respuesta contiene el
+`<main>` de la aplicación, con reintentos acotados para la propagación.
 
-Para habilitarlo por primera vez, el propietario `xenxi` debe seleccionar **GitHub Actions** como fuente en `Settings -> Pages`. El environment `github-pages` puede protegerse para permitir sólo `main`; el workflow ya aplica esa restricción y no necesita secrets ni un PAT. La evidencia del primer run debe conservar URL del run, SHA desplegado, artifact `github-pages`, URL emitida y resultado del smoke. Logs y artifact se revisan sin copiar posibles coincidencias sensibles a la salida.
+Pages está habilitado con **GitHub Actions** como fuente y el custom domain
+`lunatartas.es`. El environment `github-pages` y el workflow restringen el
+deploy a `main` y no necesitan secrets ni PAT. Cada evidencia de run conserva
+URL, SHA desplegado, artifact, URL emitida y smoke; logs y artifact se revisan
+sin copiar posibles coincidencias sensibles.
 
 ## DNS y redirects
 
-Actualmente el apex resuelve a Cloudflare y `www` es NXDOMAIN. Propiedad, proxy, reglas y acceso son `TBD` del propietario del negocio. Antes del release se documentan registros actuales, TTL, rollback y destino canónico.
+El apex y `www` resuelven mediante Cloudflare. HTTP redirige a HTTPS, el apex
+HTTPS sirve Pages y `www` responde `301` directo al apex HTTPS. El certificado
+Pages y `https_enforced` quedaron aprobados en M9.3. Cloudflare aplica los seis
+redirects `301` conocidos y el Worker responde `410` a las nueve rutas sin
+equivalente; el mapa y la verificación están en
+[`../seo/redirect-audit.md`](../seo/redirect-audit.md).
 
 La responsabilidad se separa así:
 
@@ -52,7 +68,10 @@ La responsabilidad se separa así:
 - Cloudflare Redirect Rules/Bulk Redirects ejecuta 301/308 por path, sólo después de convertir el inventario M0.1 en mapa aprobado en M9.2. Un 410 requiere respuesta real del edge/origin y no se atribuye a Redirect Rules.
 - Astro puede construir rutas y enlaces canónicos, pero sus redirects estáticos por meta refresh no sustituyen una respuesta HTTP 301 para SEO.
 
-**Criterio de salida:** si no hay acceso operativo a Cloudflare, sus reglas no cubren el mapa real o se necesitan 410 que la capa disponible no puede emitir, M9.2 debe sustituir Pages o añadir una capa edge explícita con respuestas HTTP verificables antes de cambiar DNS. No se publican páginas puente como solución silenciosa.
+La configuración y el export previo se conservan fuera de Git bajo control del
+propietario del negocio. Ante un cambio de routing se repite
+`npm run verify:redirects -- --origin=https://lunatartas.es`; no se publican
+páginas puente ni meta refresh como sustituto de respuestas HTTP.
 
 ## Rollback
 
@@ -66,7 +85,13 @@ Ensayo previo a producción:
 4. Fusionar y comprobar que el nuevo run publica el SHA de revert, no el worktree local.
 5. Verificar el smoke de la URL técnica y, si falla, pausar cambios y volver a evaluar el último SHA verde.
 
-En M1.5 se reconstruyó y sirvió localmente el commit conocido bajo `/luna_tartas/`, con smoke `200`, `<main>` y canonical apex. El primer run remoto quedó detenido de forma segura porque Pages aún no estaba habilitado; tras seleccionar la fuente `workflow`, la reejecución del mismo SHA completó build, artifact, deploy y smoke. Este ensayo confirma la recuperación inmediata sin introducir un segundo artifact ni tocar DNS; el revert hacia delante sigue siendo el procedimiento permanente cuando exista un cambio de aplicación que revertir. El corte DNS conserva export de zona, valores anteriores, TTL y ventana/owner de reversión. Las reglas Cloudflare se exportan antes de modificarse. Ningún release elimina la versión recuperable anterior sin confirmación.
+En M1.5 se reconstruyó y sirvió localmente un commit conocido bajo
+`/luna_tartas/`, con smoke `200`, `<main>` y canonical apex. M9.3 dejó el último
+SHA verde y su run listos para revert hacia delante; M9.6 repitió un cambio
+editorial y su restauración local, documentados en
+[`../operations/handover-dry-run.md`](../operations/handover-dry-run.md). El
+export DNS/edge anterior se conserva fuera de Git. Ningún release elimina la
+versión recuperable anterior sin confirmación.
 
 ## Gates
 
@@ -78,11 +103,14 @@ En M1.5 se reconstruyó y sirvió localmente el commit conocido bajo `/luna_tart
 - Dominio, HTTPS, redirects, Analytics y Search Console verificados o explícitamente aceptados como pendientes no bloqueantes por negocio.
 - Scan del repositorio, historial, logs y artefacto sin secretos ni credenciales.
 
-## Permisos y responsables pendientes
+## Permisos y responsables operativos
 
 | Necesidad | Owner | Fecha límite/gate | Estado |
 | --- | --- | --- | --- |
 | Administrar Actions, environment y Pages del remoto | Propietario GitHub `xenxi` | M1.5 | `READY`: repositorio público con `main`, Pages habilitado con source `workflow` y primer deploy/smoke en PASS; environment `github-pages` creado por el flujo oficial |
-| Verificar custom domain en GitHub | Propietario GitHub `xenxi` + propietario del negocio | antes de M9.3 | `TBD` |
-| Exportar/administrar DNS y redirects Cloudflare | Propietario del negocio | antes de M9.2/M9.3 | `TBD` |
-| Exportar configuración anterior para rollback | Propietario del negocio | antes de M9.3 | `TBD` |
+| Mantener custom domain y HTTPS en GitHub | Propietario GitHub `xenxi` + propietario del negocio | operación | `READY`: custom domain y HTTPS verificados en M9.3 |
+| Administrar DNS, redirects y Worker Cloudflare | Propietario del negocio | operación | `READY`: 301/410 y `www` verificados en M9.2/M9.3 |
+| Custodiar export privado y recuperación | Propietario del negocio | antes de cada cambio edge/DNS | `READY`: rollback definido; no se versionan accesos ni export sensible |
+
+La matriz completa de accesos mínimos y escalado está en
+[`../operations/handover.md`](../operations/handover.md).

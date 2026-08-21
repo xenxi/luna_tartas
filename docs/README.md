@@ -12,5 +12,8 @@ Cada concepto tiene una fuente autoritativa; `ROADMAP.md` conserva únicamente p
 - SEO/URLs: `seo/seo-strategy.md`.
 - WhatsApp/analytics: `conversion/conversion-strategy.md` y la decisión de privacidad `conversion/analytics-decision.md`.
 - Tests/calidad: `quality/testing-strategy.md`.
+- Operación V1: `operations/handover.md`, con edición en
+  `operations/editorial-guide.md`, deuda en `operations/accepted-debt.md` y
+  baseline en `operations/launch-log.md`.
 
 Los documentos adicionales previstos por una submilestone no se crean hasta ejecutarla.

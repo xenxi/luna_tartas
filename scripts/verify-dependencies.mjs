@@ -56,15 +56,27 @@ if (typeof npmCli !== 'string' || npmCli === '') {
   throw new Error('Run this gate through npm run verify:dependencies');
 }
 try {
-  execFileSync(process.execPath, [npmCli, 'audit', '--json'], {
-    encoding: 'utf8',
-    stdio: 'pipe',
-  });
-  audit = { vulnerabilities: {}, metadata: { vulnerabilities: { total: 0 } } };
+  audit = JSON.parse(
+    execFileSync(process.execPath, [npmCli, 'audit', '--json'], {
+      encoding: 'utf8',
+      stdio: 'pipe',
+    }),
+  );
 } catch (error) {
   if (typeof error.stdout !== 'string' || error.stdout.trim() === '')
     throw error;
   audit = JSON.parse(error.stdout);
+}
+
+if (
+  audit.auditReportVersion !== 2 ||
+  audit.error !== undefined ||
+  typeof audit.vulnerabilities !== 'object' ||
+  audit.vulnerabilities === null
+) {
+  throw new Error(
+    'npm audit did not return a vulnerability report; check registry connectivity and retry',
+  );
 }
 
 const seenAdvisories = new Set();

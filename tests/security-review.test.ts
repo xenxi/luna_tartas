@@ -19,6 +19,8 @@ describe('M8.5 security gates', () => {
 
   it('keeps dependency versions, licenses and advisories reviewed', () => {
     expect(dependencyGate).toContain("[npmCli, 'audit', '--json']");
+    expect(dependencyGate).toContain('audit.auditReportVersion !== 2');
+    expect(dependencyGate).toContain('audit.error !== undefined');
     expect(dependencyGate).toContain('allowedLicenses');
     expect(dependencyGate).toContain('acceptedAdvisories');
     expect(ci).toContain('npm run verify:dependencies');

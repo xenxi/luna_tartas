@@ -9,11 +9,12 @@
 - Se ejecuta exclusivamente la tarea solicitada; no se anticipa la siguiente.
 - `DONE` exige todos los criterios y verificaciones en `PASS`, con evidencia registrada aquí.
 - Orden normal: de arriba abajo. Una tarea posterior sólo puede comenzar si todas sus dependencias están `DONE`.
-- **Siguiente tarea:** `M9.5 — Monitorización de lanzamiento y estabilización`.
-- **Pausa de release:** la alineación visual desktop, la migración de redirects
-  y el corte productivo quedan aprobados; M9.4 quedó cerrada tras la validación
-  humana posterior al despliegue de analytics. M9.5 queda desbloqueada, sin
-  ejecutarse en esta tarea.
+- **Siguiente tarea V1:** ninguna; V1 cerrada en M9.6.
+- **Candidato futuro:** `M10.1 — Discovery del Catalog Manager`, sólo tras
+  prioridad explícita post-V1.
+- **Cierre V1:** dirección visual, contenido, migración, producción,
+  observabilidad y estabilización están aprobados; M9.6 completa el handover y
+  cierra G0–G9. M10 permanece futuro y no se inicia sin prioridad explícita.
 
 ## Gates de programa
 
@@ -102,7 +103,7 @@
 
 # M1 — Project Bootstrap + CI/CD
 
-**Estado:** PENDING  
+**Estado:** DONE
 **Gate:** G1.
 
 ## M1.1 — Scaffold Astro reproducible
@@ -191,7 +192,7 @@ rutas físicas bajo `dist`.
 
 # M2 — Catalog Domain + Validation
 
-**Estado:** PENDING  
+**Estado:** DONE
 **Gate:** G2.
 
 ## M2.1 — Schemas de taxonomías
@@ -370,7 +371,7 @@ rutas físicas bajo `dist`.
 
 # M4 — Home + Discovery
 
-**Estado:** PENDING  
+**Estado:** DONE
 **Gate:** G4.
 
 ## M4.1 — Shell público: header, navegación y footer
@@ -661,7 +662,7 @@ rutas físicas bajo `dist`.
 
 # M5 — Product Detail + WhatsApp Conversion
 
-**Estado:** PENDING  
+**Estado:** DONE
 **Gate:** G5.
 
 ## M5.1 — Extensión del builder WhatsApp para producto
@@ -699,7 +700,7 @@ rutas físicas bajo `dist`.
 
 ## M5.3 — Galería responsive de producto
 
-**Estado:** PENDING  
+**Estado:** DONE
 **Objetivo:** mostrar portada y detalle visual con estabilidad y accesibilidad.  
 **Alcance:** imagen principal, thumbnails/alternativas cuando existan, responsive images, alt/captions, ratios/recortes/object-position y progresión editorial sin JS o JS mínimo justificado.
 
@@ -785,7 +786,7 @@ rutas físicas bajo `dist`.
 
 # M6 — SEO + Structured Data + Agent Discoverability
 
-**Estado:** PENDING  
+**Estado:** DONE
 **Gate:** G6.
 
 ## M6.1 — Metadata, canonical y OpenGraph
@@ -899,7 +900,7 @@ rutas físicas bajo `dist`.
 
 # M7 — Analytics + Observability
 
-**Estado:** PENDING  
+**Estado:** DONE
 **Gate:** G7.
 
 Las referencias a Matomo en las evidencias históricas de M7 documentan la
@@ -990,7 +991,7 @@ M9.4 adopta GA4 directo. El contrato vigente esta en
 
 # M8 — Quality + Performance + Accessibility
 
-**Estado:** PENDING  
+**Estado:** DONE
 **Gate:** G8.
 
 ## M8.1 — Auditoría y corrección de accesibilidad
@@ -1095,7 +1096,7 @@ M9.4 adopta GA4 directo. El contrato vigente esta en
 
 # M8.9 — Visual alignment & Luna brand system
 
-**Estado:** PENDING
+**Estado:** DONE
 **Gate:** alineación visual desktop previa a reanudar M9.
 **Objetivo:** alinear la Home con la referencia desktop aprobada y convertir su
 lenguaje gráfico en un sistema Luna reutilizable, accesible y eficiente.
@@ -1601,7 +1602,7 @@ desktop; sus funciones ficticias no modifican los contratos reales.
 
 # M9 — Migration + Production Release
 
-**Estado:** PENDING (PAUSED BY M9.4 PRODUCTION ACCESS GATE)
+**Estado:** DONE
 **Gate:** G9.
 
 ## M9.1 — Catálogo, copy y assets finales
@@ -1821,12 +1822,12 @@ opt-in, rechazo, carga única, hit real, `page_view`, `view_item`,
 revocación, exclusión de desarrollo/tests/previews y suite local sin servidores
 Google PASS. La indexación inmediata no es un criterio y no se promete. El
 tráfico interno consentido puede contabilizarse por IP administrativa dinámica;
-no se añade filtro de IP. M9.4 queda cerrada; M9.5 queda desbloqueada por
-dependencia, pero no se ejecuta en esta tarea.
+no se añade filtro de IP. M9.4 y M9.5 quedan cerradas; M9.6 queda desbloqueada
+por dependencia.
 
 ## M9.5 — Monitorización de lanzamiento y estabilización
 
-**Estado:** PENDING  
+**Estado:** DONE
 **Objetivo:** detectar y corregir regresiones críticas del corte.  
 **Alcance:** ventana acordada para uptime, 4xx/redirects, CWV/labs, eventos, indexability y WhatsApp; fixes sólo de release.  
 **Fuera de alcance:** nuevas features o rediseños.  
@@ -1837,11 +1838,26 @@ dependencia, pero no se ejecuta en esta tarea.
 **Verificación:** HTTP/crawler/event smoke repetido y registro fechado.  
 **Modelo recomendado:** LUNA → SOL REVIEW.  
 **Razón del modelo:** seguimiento mecánico con escalado/review para anomalías complejas.  
-**Evidencia:** —
+**Evidencia:** PASS (2026-08-21) — `docs/operations/launch-log.md` registra la
+ventana de estabilización y sus owners. Smoke HTTP productivo: home,
+`/productos/`, ficha representativa, `sitemap.xml` y `robots.txt` responden
+`200`; `www` redirige con `301` directo al apex HTTPS, con tiempos observados
+de 58–709 ms. `npm run verify:redirects -- --origin=https://lunatartas.es`
+verifica 16 entradas sin chains/loops; `verify:crawl` valida 24 URLs
+indexables; `verify:links` valida 25 HTML sin rotos/huérfanos; y
+`verify:performance` valida 25 HTML, 99 imágenes responsivas y 107.798 bytes
+máximos de transferencia inicial a 375 px. Smoke de eventos/WhatsApp: 18 tests
+analíticos y de conversión PASS, con recepción real, Realtime, consentimiento
+y ausencia de PII ya verificados en M9.4. `npm run verify:seo`,
+`verify:artifact` y `verify:security` PASS. Suite final: `npm test` (40
+archivos, 247 tests), `npm run lint`, `npm run typecheck`, `npm run build` (25
+páginas) y `git diff --check` PASS. Incidentes críticos abiertos: 0; alerts,
+owners, cadencia y rollback decision quedan cerrados en el launch log. Siguiente
+tarea: M9.6 (modelo SOL).
 
 ## M9.6 — Handover y cierre V1
 
-**Estado:** PENDING  
+**Estado:** DONE
 **Objetivo:** dejar operación, edición y recuperación comprensibles para el siguiente responsable/agente.  
 **Alcance:** guía editorial YAML/imágenes, deploy/rollback, analytics/SEO checks, ownership/access matrix sin secretos, deuda aceptada y cierre de gates.  
 **Fuera de alcance:** construir Catalog Manager o planificar features no priorizadas.  
@@ -1852,7 +1868,29 @@ dependencia, pero no se ejecuta en esta tarea.
 **Verificación:** dry run documentado de cambio editorial y rollback; revisión final de enlaces/docs/estados.  
 **Modelo recomendado:** SOL.  
 **Razón del modelo:** cierre integral y transferencia de responsabilidad.  
-**Evidencia:** —
+**Evidencia:** PASS (2026-08-21) — `README.md` y
+`docs/operations/handover.md` dejan un punto de entrada para editar, validar,
+desplegar, comprobar producción y revertir hacia delante; la matriz asigna
+GitHub/Pages, Cloudflare/DNS/edge, Search Console, GA4, contenido y operación
+sin versionar secretos. `editorial-guide.md` documenta YAML, precios en unidades
+menores, relaciones, publicación/aprobación, media, derechos, límites y QA.
+`accepted-debt.md` registra 8 deudas no bloqueantes (3 P1, 5 P2), todas con
+owner y condición de salida; deployment, riesgos, readiness y auditoría de
+redirects quedaron reconciliados con M9.2–M9.5. Dry run reproducible en
+`handover-dry-run.md`: `order` temporal `30 -> 31 -> 30`, build y validadores
+PASS en ambos estados, 25 páginas/8 productos/0 links rotos y blob restaurado
+`dc6bfc3fa0a1a01db95805413929f097671bf04d` sin diff. El gate de dependencias
+ahora falla explícitamente ante una respuesta de red inválida en vez de
+confundirla con un audit vacío; consulta real: 539 paquetes, 5 advisories
+no-runtime aceptados y 0 no evaluados, PASS. Suite final: lint, format,
+typecheck (0 errores/warnings/hints), 40 archivos/247 tests, build (25 páginas),
+SEO/crawl/links/structured-data/catalog/artifact/determinism (481 archivos)/
+mutation/security/accessibility/assets/performance/responsive/redirects: PASS.
+Revisión documental: 39 links locales en 12 documentos, 0 rotos; revisión de
+estados: ningún `PENDING`, `IN_PROGRESS` o `BLOCKED` antes de M10; se corrigió
+la marca administrativa de M5.3 y de los agregados G1/G2/G4–G9 que ya tenían
+evidencia PASS. `git diff --check`: PASS. No queda siguiente tarea V1; M10.1 es
+sólo candidato FUTURE / NOT V1, modelo SOL, tras prioridad explícita.
 
 ---
 

@@ -1,6 +1,6 @@
 # M9.2 — Inventario y ejecución de redirects
 
-**Estado:** preparado y bloqueado en activación externa  
+**Estado:** activo y verificado en producción
 **Auditoría:** 2026-08-17, Europe/Madrid  
 **Dominio:** `lunatartas.es`
 
@@ -35,17 +35,16 @@ intención de inspiración y `/#custom-idea` lleva al CTA de contacto. Los demá
 destinos existen en el sitemap del candidato M9.1. Ningún destino vuelve a ser
 origen de un redirect, por lo que el mapa no contiene cadenas ni loops.
 
-## Implementación preparada
+## Implementación vigente
 
-- [`cloudflare-bulk-redirects.csv`](cloudflare-bulk-redirects.csv) tiene el
-  formato de importación de Bulk Redirects sin cabecera. Al omitir el esquema
-  de origen, cada entrada aplica a HTTP y HTTPS. La lista debe asociarse a una
-  Bulk Redirect Rule para quedar activa; importar la lista por sí solo no
-  ejecuta redirects.
+- [`cloudflare-bulk-redirects.csv`](cloudflare-bulk-redirects.csv) contiene las
+  seis equivalencias importadas en Bulk Redirects. Al omitir el esquema de
+  origen, cada entrada aplica a HTTP y HTTPS; la lista está asociada a su regla
+  productiva.
 - [`../../infra/cloudflare/legacy-gone-worker.mjs`](../../infra/cloudflare/legacy-gone-worker.mjs)
-  materializa las respuestas `410` y deja pasar el resto hacia el origen. Debe
-  publicarse en una ruta edge que cubra `lunatartas.es/*`, después de revisar
-  que no interfiera con reglas existentes.
+  materializa las respuestas `410` y deja pasar el resto hacia el origen. Está
+  publicado en la ruta edge de `lunatartas.es/*` y su contrato local cubre
+  también `/pedidos/{id}`.
 - `npm run verify:redirects` valida decisiones, query policy, duplicados,
   cadenas y loops. Tras activar el edge,
   `npm run verify:redirects -- --origin=https://lunatartas.es` comprueba los
@@ -70,23 +69,25 @@ Redirects y por eso se resuelven mediante código edge.
 6. Ante una regresión, desactivar la regla y la ruta Worker, restaurar el export
    previo y repetir el smoke del origen anterior.
 
-## Bloqueo verificable
+## Cierre productivo
 
-No se proporcionó acceso, export ni conexión de Cloudflare y no hay credenciales
-versionables. El edge productivo sigue devolviendo `200` para las quince rutas
-de aplicación muestreadas; por tanto no existen todavía `301`/`410` reales y
-M9.2 no puede marcarse `DONE`. Tampoco se aportaron exports de Search Console,
-logs o backlinks para demostrar cobertura privada. No se avanza a M9.3 hasta
-que el propietario active o autorice las reglas y el checker externo pase.
+El propietario aplicó los artefactos preparados y el checker externo pasó el
+2026-08-20: 16 entradas verificadas, con una ruta preservada, seis respuestas
+`301` reales y nueve decisiones `gone` (ocho rutas exactas remotas más el
+patrón `/pedidos/{id}` cubierto por el test del Worker), sin cadenas ni loops.
+Las respuestas 410 incluyen `X-Robots-Tag: noindex`; los redirects preservan la
+query aprobada. M9.2 quedó `DONE` y M9.3 confirmó después apex, `www`, HTTPS y
+Pages. Los posibles históricos no conocidos permanecen como deuda aceptada con
+owner SEO, no como motivo para crear redirects especulativos.
 
 ## Evidencia reproducible
 
 - `npm run verify:redirects`: mapa local, duplicados, query, chains y loops.
 - `npm test -- tests/redirect-map.test.ts`: contrato de mapa y respuestas 410.
-- `curl --max-time 20 --write-out ... https://lunatartas.es/<ruta>`: las 16
-  muestras exactas respondieron `200 text/html` el 2026-08-17 antes del cambio.
-- `Resolve-DnsName`: apex detrás de Cloudflare; `www` en `NXDOMAIN`.
-- URL técnica Pages `https://xenxi.github.io/luna_tartas/`: `200`.
+- `npm run verify:redirects -- --origin=https://lunatartas.es`: 16 entradas
+  productivas, PASS el 2026-08-20 y repetido en la estabilización M9.5.
+- `npm test -- tests/redirect-map.test.ts`: mapa y Worker 410, PASS.
+- M9.3: apex HTTPS 200 y `www` 301 directo al apex HTTPS.
 
 Referencias autoritativas: [formato CSV de Bulk Redirects](https://developers.cloudflare.com/rules/url-forwarding/bulk-redirects/reference/csv-file-format/),
 [parámetros y matching](https://developers.cloudflare.com/rules/url-forwarding/bulk-redirects/reference/parameters/)
