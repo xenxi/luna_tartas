@@ -137,13 +137,11 @@
   min-width: 0;
 }
 
-.hero__whatsapp {
-  inline-size: 1.25rem;
-  block-size: 1.25rem;
-  stroke: currentColor;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  stroke-width: 1.5;
+  .hero__whatsapp {
+    inline-size: 1.25rem;
+    block-size: 1.25rem;
+    fill: currentColor;
+    stroke: none;
 }
 
 .hero__transition {
@@ -312,8 +310,9 @@
   }
 
   .hero__claim-stroke {
-    height: 1.15rem;
-    margin-block-start: -0.15rem;
+    width: calc(100% + 3rem);
+    height: 1.75rem;
+    margin-block-start: -0.2rem;
   }
 
   .hero__body {
@@ -335,9 +334,10 @@
   }
 
   .hero__actions .action-link {
+    min-inline-size: 13rem;
     min-block-size: 3rem;
     padding-inline: clamp(var(--space-5), 1.5vw, var(--space-7));
-    border-radius: 0.8rem;
+    border-radius: var(--radius-pill);
     font-size: clamp(0.82rem, 0.76vw, 0.9rem);
   }
 
@@ -433,28 +433,34 @@
   }
 
   .hero__seal path {
-    fill: none;
+    fill: currentColor;
+    fill-opacity: 0.2;
     stroke: currentColor;
     stroke-linejoin: round;
     stroke-width: 1.25;
   }
 
   .hero__benefits {
+    --hero-content-start: max(
+      var(--gutter),
+      calc((100vw - 86rem) / 2 + var(--space-4))
+    );
+
     position: relative;
     z-index: calc(var(--z-content) + 1);
     display: grid;
     grid-area: benefits;
     grid-template-columns: repeat(4, minmax(0, 1fr));
     align-self: end;
-    width: min(100% - (2 * var(--gutter)), 86rem);
-    margin-inline: auto;
-    margin-block-end: clamp(4.5rem, 5.6vw, 5.25rem);
-    padding: var(--space-3) clamp(var(--space-2), 1.6vw, var(--space-6));
-    background: linear-gradient(
-      90deg,
-      color-mix(in srgb, var(--color-canvas) 28%, transparent),
-      color-mix(in srgb, var(--color-canvas) 14%, transparent)
+    width: min(
+      39rem,
+      calc(45vw - var(--hero-content-start) - var(--space-2))
     );
+    margin-inline-start: var(--hero-content-start);
+    margin-inline-end: 0;
+    margin-block-end: clamp(4.5rem, 5.6vw, 5.25rem);
+    padding: var(--space-2) 0;
+    background: transparent;
     list-style: none;
   }
 
@@ -463,9 +469,9 @@
     display: flex;
     min-width: 0;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     gap: clamp(var(--space-2), 0.8vw, var(--space-3));
-    padding-inline: clamp(var(--space-2), 1vw, var(--space-4));
+    padding-inline: clamp(var(--space-1), 0.45vw, var(--space-2));
     color: var(--color-text);
     font-size: clamp(0.71rem, 0.72vw, 0.82rem);
     font-weight: 500;
@@ -477,14 +483,7 @@
   }
 
   .hero__benefits li + li::before {
-    position: absolute;
-    inset-block-start: 50%;
-    inset-inline-start: 0;
-    block-size: 1.45rem;
-    border-inline-start: 1px solid
-      color-mix(in srgb, var(--color-action) 17%, transparent);
-    content: '';
-    transform: translateY(-50%);
+    content: none;
   }
 
   .hero__benefit-icon {
@@ -530,8 +529,13 @@
 
   .hero__transition-heart {
     inset-block-start: clamp(0.85rem, 1.25vw, 1.2rem);
-    inset-inline-start: 50.8%;
+    inset-inline-start: 50%;
     inline-size: 1.8rem;
+    transform: translate(-50%, -50%) rotate(-8deg);
+  }
+
+  .hero__transition-heart path {
+    fill: none;
   }
 }
 
@@ -539,6 +543,10 @@
   .hero__title,
   .hero__body {
     padding-inline-start: max(var(--gutter), calc((100vw - 86rem) / 2));
+  }
+
+  .hero__benefits {
+    --hero-content-start: max(var(--gutter), calc((100vw - 86rem) / 2));
   }
 
   .hero__image {
