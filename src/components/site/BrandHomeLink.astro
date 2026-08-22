@@ -1,6 +1,7 @@
 ---
 import { Image } from 'astro:assets';
 import brandLogo from '../../assets/brand/logo-luna-tartas.png';
+import desktopBrandLogo from '../../assets/brand/logo-luna-detalles-hechos-para-emocionar.png';
 import { getPublishableText, siteConfig } from '../../config/site';
 import { routes } from '../../lib/catalog/domain/routes';
 import { withBasePath } from '../../lib/site/urls';
@@ -19,14 +20,17 @@ const accessibleBrandName = brandName ?? 'Luna Tartas';
   href={withBasePath(routes.home(), import.meta.env.BASE_URL)}
   aria-label={accessibleBrandName}
 >
-  <Image
-    class="brand-home__logo"
-    src={brandLogo}
-    alt={accessibleBrandName}
-    width={230}
-    height={153}
-    densities={[1, 2]}
-    loading="eager"
-    decoding="async"
-  />
+  <picture class="brand-home__picture">
+    <source media="(min-width: 48rem)" srcset={desktopBrandLogo.src} />
+    <Image
+      class="brand-home__logo"
+      src={brandLogo}
+      alt={accessibleBrandName}
+      width={230}
+      height={153}
+      densities={[1, 2]}
+      loading="eager"
+      decoding="async"
+    />
+  </picture>
 </a>

@@ -19,6 +19,10 @@
   text-decoration: none;
 }
 
+.brand-home__picture {
+  display: block;
+}
+
 .brand-home__logo {
   inline-size: clamp(7.75rem, 36vw, 9rem);
   block-size: auto;
@@ -302,12 +306,30 @@
 }
 
 @media (min-width: 48rem) {
-  .site-header__inner {
-    min-block-size: 8.5rem;
+  .site-header__inner.visual-container {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    width: min(100% - (2 * clamp(1rem, 2vw, 3rem)), 96rem);
+    min-block-size: 7.75rem;
+    align-items: start;
+    padding-block-start: 1.25rem;
   }
 
   .brand-home--header .brand-home__logo {
-    inline-size: clamp(11rem, 14vw, 12.75rem);
+    inline-size: 13rem;
+  }
+
+  .brand-home--header {
+    margin-inline-start: calc(
+      max(
+          var(--gutter),
+          calc((100vw - 86rem) / 2 + var(--space-2))
+        ) -
+        max(
+          clamp(1rem, 2vw, 3rem),
+          calc((100vw - 96rem) / 2)
+        )
+    );
   }
 
   .site-menu {
@@ -316,27 +338,38 @@
 
   .site-navigation--desktop {
     display: block;
+    justify-self: end;
+    min-inline-size: 0;
+    margin-block-start: 1rem;
+    margin-inline-end: clamp(3.5rem, 7vw, 4.5rem);
   }
 
   .primary-navigation ul {
     flex-direction: row;
     align-items: center;
-    gap: clamp(var(--space-1), 0.55vw, var(--space-3));
+    gap: clamp(1.75rem, 3.7vw, 2.375rem);
   }
 
   .primary-navigation--header a {
     position: relative;
-    min-block-size: 4.25rem;
-    padding-inline: clamp(var(--space-2), 0.7vw, var(--space-3));
-    font-size: var(--font-size-sm);
+    min-block-size: 2.75rem;
+    padding-block: 0.5rem 0.7rem;
+    padding-inline: 0;
+    font-size: clamp(0.8rem, 0.73vw, 0.875rem);
     font-weight: 500;
+    line-height: 1.2;
+    white-space: nowrap;
   }
 
   .primary-navigation__pending,
   .primary-navigation__search {
     display: flex;
-    min-block-size: 4.25rem;
+    min-block-size: 2.75rem;
     align-items: center;
+  }
+
+  .primary-navigation__pending {
+    margin-inline-start: clamp(-0.75rem, -0.8vw, -0.25rem);
   }
 
   .primary-navigation__pending > span,
@@ -344,23 +377,25 @@
     display: flex;
     align-items: center;
     color: var(--color-text);
-    font-size: var(--font-size-sm);
+    font-size: clamp(0.8rem, 0.73vw, 0.875rem);
     font-weight: 500;
+    line-height: 1.2;
+    white-space: nowrap;
   }
 
   .primary-navigation__pending > span {
-    padding-inline: clamp(var(--space-2), 0.7vw, var(--space-3));
+    padding-block: 0.5rem 0.7rem;
   }
 
   .primary-navigation__search > span {
     justify-content: center;
-    inline-size: 2.75rem;
+    inline-size: 1.75rem;
     block-size: 2.75rem;
   }
 
   .primary-navigation__search svg {
-    inline-size: 1.35rem;
-    block-size: 1.35rem;
+    inline-size: 1.375rem;
+    block-size: 1.375rem;
     stroke: currentColor;
     stroke-linecap: round;
     stroke-width: 1.6;
@@ -397,54 +432,37 @@
   }
 }
 
+@media (min-width: 48rem) and (max-width: 59.99rem) {
+  .site-header__inner.visual-container {
+    display: flex;
+    width: min(100% - (2 * var(--gutter)), var(--container-visual));
+    min-block-size: 6.5rem;
+    align-items: center;
+    padding-block-start: 0;
+  }
+
+  .brand-home--header .brand-home__logo {
+    inline-size: 10rem;
+  }
+
+  .brand-home--header {
+    margin-inline-start: 0;
+  }
+
+  .site-menu {
+    display: block;
+  }
+
+  .site-navigation--desktop {
+    display: none;
+  }
+}
+
 @media (min-width: 60rem) {
   .site-header--home {
+    position: absolute;
+    inset-block-start: 0;
+    inset-inline: 0;
     background: transparent;
-  }
-
-  .site-header--home .site-header__inner {
-    width: min(100% - (2 * var(--gutter)), 86rem);
-    min-block-size: 6rem;
-  }
-
-  .site-header--home .brand-home--header .brand-home__logo {
-    inline-size: 9rem;
-  }
-
-  .site-header--home .primary-navigation ul {
-    gap: clamp(0.1rem, 0.35vw, var(--space-2));
-  }
-
-  .site-header--home .primary-navigation--header a,
-  .site-header--home .primary-navigation__pending,
-  .site-header--home .primary-navigation__search {
-    min-block-size: 3.25rem;
-  }
-
-  .site-header--home .primary-navigation--header a,
-  .site-header--home .primary-navigation__pending > span {
-    padding-inline: clamp(var(--space-2), 0.55vw, var(--space-3));
-  }
-
-  .site-header--home .primary-navigation--header a,
-  .site-header--home .primary-navigation__pending > span {
-    font-size: clamp(0.8rem, 0.72vw, 0.875rem);
-  }
-
-  .site-header--home .primary-navigation__search > span {
-    inline-size: 2.5rem;
-    block-size: 2.5rem;
-  }
-
-  .site-header--home .primary-navigation__search svg {
-    inline-size: 1.2rem;
-    block-size: 1.2rem;
-  }
-
-  .site-header--home
-    .primary-navigation--header
-    a[aria-current='page']::after {
-    block-size: 0.1rem;
-    inset-inline: var(--space-2);
   }
 }

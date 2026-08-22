@@ -86,6 +86,7 @@ describe('approved home hero', () => {
     expect(styles).toContain('grid-template-columns: repeat(2, max-content)');
     expect(styles).toContain('inset: 0');
     expect(styles).toContain('inline-size: 100%');
+    expect(styles).toContain('margin-block-start: 0');
   });
 
   it('publishes structured benefits, a delicate seal and a vector transition', () => {

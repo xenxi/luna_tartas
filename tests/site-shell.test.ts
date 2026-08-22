@@ -65,7 +65,14 @@ describe('public site shell', () => {
     expect(header).toContain('class="site-navigation--desktop"');
     expect(styles).toContain('.site-navigation--desktop');
     expect(styles).toContain('.site-menu {');
-    expect(styles).toContain('min-block-size: 6rem');
+    expect(styles).toContain('min-block-size: 7.75rem');
+    expect(styles).toContain('inline-size: 13rem');
+    expect(styles).toContain('padding-block-start: 1.25rem');
+    expect(styles).toContain('margin-inline-end: clamp(3.5rem, 7vw, 4.5rem)');
+    expect(styles).toContain('calc((100vw - 86rem) / 2 + var(--space-2))');
+    expect(styles).toMatch(
+      /@media \(min-width: 60rem\) \{\s+\.site-header--home \{\s+position: absolute;/,
+    );
     expect(styles).toContain('.primary-navigation--header a[aria-current=');
     expect(navigation).toContain('<span>Sobre Luna</span>');
     expect(navigation).toContain('primary-navigation__search');

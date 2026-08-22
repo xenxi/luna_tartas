@@ -221,7 +221,7 @@
   .hero {
     z-index: var(--z-raised);
     block-size: clamp(43rem, 50vw, 46rem);
-    margin-block-start: -6rem;
+    margin-block-start: 0;
     overflow: hidden;
     padding-block: 0;
     background: color-mix(
@@ -259,7 +259,7 @@
 
   .hero__title {
     align-self: start;
-    padding-block-start: clamp(7.25rem, 8.8vw, 8rem);
+    padding-block-start: clamp(9rem, 8.8vw, 9.5rem);
   }
 
   .hero__eyebrow {
