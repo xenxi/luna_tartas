@@ -32,7 +32,7 @@ performance existentes siguen siendo fuente de verdad.
 
 ## Estado auditado
 
-Se revisaron `ROADMAP.md`, M3, M4, tokens, foundations, estilos globales,
+Se revisaron `docs/archive/v1-roadmap.md`, M3, M4, tokens, foundations, estilos globales,
 layout, Header, Hero, primitives, patterns, cards, descubrimiento, destacados,
 proceso, trabajos, CTA, Footer, contenido, assets, responsive y motion. Se
 generó el build de producción y se inspeccionó la Home renderizada a 1440,

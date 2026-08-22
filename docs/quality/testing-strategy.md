@@ -33,7 +33,7 @@ Lighthouse o herramienta equivalente valida budgets de rendimiento/SEO/accessibi
 | Otras imágenes | cada variante solicitada <= 200 KiB y lazy fuera de viewport | auditoría de red/HTML |
 | Assets fuente | raster <= 8 MiB y <= 24 MP; SVG <= 250 KiB sin script/referencias externas; binarios del repo aviso 75 MiB/límite 100 MiB | checker de assets desde M2/M8 |
 
-M8.2 puede endurecer estos valores con muestras reales. Relajar un budget requiere evidencia reproducible, impacto, owner y aceptación registrada en `ROADMAP.md`.
+M8.2 puede endurecer estos valores con muestras reales. Relajar un budget requiere evidencia reproducible, impacto, owner y aceptación documentada en la tarea o planificación vigente.
 
 ## Matriz de riesgo
 
@@ -59,4 +59,4 @@ M1 concreta scripts reproducibles. M8 añade smoke/auditorías sin hacer el pipe
 
 ## Evidencia
 
-Cada submilestone registra comandos y resultado en `ROADMAP.md`. Tests unitarios no sustituyen inspección visual cuando cambia UI; capturas no sustituyen checks automatizados cuando cambia dominio.
+Cada tarea registra sus comandos y resultados. Tests unitarios no sustituyen inspección visual cuando cambia UI; capturas no sustituyen checks automatizados cuando cambia dominio.

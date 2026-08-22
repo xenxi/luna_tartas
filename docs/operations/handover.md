@@ -3,8 +3,8 @@
 ## Estado y fuentes de verdad
 
 Luna Tartas V1 está publicada en `https://lunatartas.es/` como sitio Astro
-estático. `ROADMAP.md` es la fuente de verdad de estado y prioridad; este
-documento es la entrada operativa. Los contratos detallados siguen en:
+estático. Este documento es la entrada operativa. El estado y la evidencia de
+V1 se conservan en `docs/archive/v1-roadmap.md`. Los contratos detallados siguen en:
 
 - edición de catálogo: [`editorial-guide.md`](editorial-guide.md);
 - build, deploy y rollback: [`../architecture/deployment.md`](../architecture/deployment.md);
@@ -126,5 +126,5 @@ redirect en loop, CTA roto, exposición de secreto o evento con PII es crítico:
 pausar deploys, asignar owner y ejecutar rollback. Un fallo editorial sin riesgo
 de conversión o seguridad se corrige por PR normal. La deuda no bloqueante no
 se convierte automáticamente en una feature; su prioridad está registrada en
-`accepted-debt.md` y cualquier trabajo post-V1 exige prioridad explícita en
-`ROADMAP.md`.
+`accepted-debt.md` y cualquier trabajo post-V1 exige una tarea y prioridad
+explícitas.

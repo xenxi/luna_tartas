@@ -1,19 +1,18 @@
-# Mapa de documentación
+# Documentation router
 
-Cada concepto tiene una fuente autoritativa; `ROADMAP.md` conserva únicamente prioridad, estado, alcance y evidencia de ejecución.
+Consult only the area materially relevant to the current task. Authoritative documentation is organized as follows:
 
-- Producto: `product/vision.md` y `product/scope.md`.
-- Readiness editorial V1: `product/content-readiness.md`.
-- Arquitectura: `architecture/architecture.md`.
-- Catálogo: `architecture/catalog-contract.md`.
-- Build/deploy: `architecture/deployment.md`.
-- Riesgos/TBD: `architecture/risks-and-open-decisions.md`.
-- Diseño: `design/design-principles.md`, `design/visual-direction.md` y la auditoría `design/home-art-direction-recovery.md`.
-- SEO/URLs: `seo/seo-strategy.md`.
-- WhatsApp/analytics: `conversion/conversion-strategy.md` y la decisión de privacidad `conversion/analytics-decision.md`.
-- Tests/calidad: `quality/testing-strategy.md`.
-- Operación V1: `operations/handover.md`, con edición en
-  `operations/editorial-guide.md`, deuda en `operations/accepted-debt.md` y
-  baseline en `operations/launch-log.md`.
+- Product: `product/`
+- Architecture and catalog contracts: `architecture/`
+- Design: `design/`
+- Conversion and analytics: `conversion/`
+- SEO and URLs: `seo/`
+- Quality and testing: `quality/`
+- Operations: `operations/`
+- Discovery evidence: `discovery/`
 
-Los documentos adicionales previstos por una submilestone no se crean hasta ejecutarla.
+## Historical documentation
+
+- `archive/v1-roadmap.md`: complete V1 planning and execution evidence.
+
+The V1 roadmap is not normal implementation context. Consult it only when a task needs to investigate historical decisions, dependencies, contract origins, regressions, or evidence.

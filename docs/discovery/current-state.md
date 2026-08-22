@@ -27,7 +27,7 @@ Consecuencia: el desarrollo puede partir de cero, pero `M9.2` debe conservar el 
 | S5 | Búsqueda pública exacta por dominio, `site:` y marca | 2026-08-15 | no aparecieron resultados atribuibles a `lunatartas.es` | No sustituye Search Console ni una herramienta de backlinks aportada por el propietario |
 | S6 | Internet Archive Availability API y CDX | 2026-08-15 | la consulta del apex no devolvió snapshot; la consulta wildcard CDX agotó tiempo | No prueba ausencia histórica del resto de URLs |
 | S7 | Inventario de archivos de los workspaces canónico y alternativo | 2026-08-15 | sólo documentación de planificación en el canónico; ningún logo, favicon, foto, catálogo, copy comercial o export; workspace alternativo sin archivos fuera de `.git` | No cubre dispositivos, nubes o cuentas no aportados |
-| S8 | Confirmaciones recogidas en `architecture.md` y `ROADMAP.md` | 2026-08-15 | el propietario confirmó que el repositorio GitHub es nuevo, vacío y público | No confirma propiedad/acceso de dominio, Cloudflare ni plataformas históricas |
+| S8 | Confirmaciones recogidas en `architecture.md` y `docs/archive/v1-roadmap.md` | 2026-08-15 | el propietario confirmó que el repositorio GitHub es nuevo, vacío y público | No confirma propiedad/acceso de dominio, Cloudflare ni plataformas históricas |
 
 Los estados `TBD` siguientes son pendientes trazables, no afirmaciones de inexistencia.
 

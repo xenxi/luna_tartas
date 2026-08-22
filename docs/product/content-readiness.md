@@ -96,7 +96,7 @@ Para un `Product`, la ficha debe añadir nombre, summary, descripción, al menos
 - Decisiones técnicas y límites: [`../architecture/architecture.md`](../architecture/architecture.md), [`../architecture/deployment.md`](../architecture/deployment.md).
 - Contrato de catálogo: [`../architecture/catalog-contract.md`](../architecture/catalog-contract.md).
 - Conversión y analytics: [`../conversion/conversion-strategy.md`](../conversion/conversion-strategy.md).
-- Carga y aprobación final: M9.1 en `ROADMAP.md`.
+- Carga y aprobación final V1: M9.1 en `docs/archive/v1-roadmap.md`.
 
 La revisión de esta checklist se repite al iniciar M3.1, M4.5, M7.1, M9.1 y M9.2/M9.4; cualquier fila que cambie debe conservar su evidencia anterior y registrar la nueva.
 
