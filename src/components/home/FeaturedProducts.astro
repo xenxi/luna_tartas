@@ -46,17 +46,6 @@ const mosaicItems = featured
         tone="blush"
         class="featured-products__wash"
       />
-      <Ornament
-        variant="sparkle"
-        tone="accent"
-        class="featured-products__sparkle featured-products__sparkle--top"
-      />
-      <Ornament
-        variant="mini-hearts"
-        tone="blush"
-        class="featured-products__hearts"
-      />
-
       <div class="featured-products__editorial">
         <div class="featured-products__luna" aria-hidden="true">
           <img
@@ -94,8 +83,14 @@ const mosaicItems = featured
           class="featured-products__sparkle featured-products__sparkle--left"
         />
         <p class="featured-products__eyebrow">{featured.eyebrow}</p>
-        <h2 id="featured-products-title">{featured.title}</h2>
-        <span class="featured-products__rule" aria-hidden="true" />
+        <div class="featured-products__heading">
+          <h2 id="featured-products-title">{featured.title}</h2>
+          <Ornament
+            variant="heart"
+            tone="accent"
+            class="featured-products__title-heart"
+          />
+        </div>
         <p class="featured-products__intro">{featured.intro}</p>
         <a
           class="featured-products__action"

@@ -67,7 +67,6 @@
 
 .featured-products__wash,
 .featured-products__sparkle,
-.featured-products__hearts,
 .featured-products__luna,
 .featured-products__moon-star {
   position: absolute;
@@ -81,19 +80,6 @@
   inline-size: clamp(17rem, 31vw, 25rem);
   opacity: 0.7;
   transform: rotate(-11deg);
-}
-
-.featured-products__sparkle--top {
-  inset-block-start: var(--space-4);
-  inset-inline-end: clamp(var(--space-5), 4vw, var(--space-12));
-  inline-size: var(--decoration-size-sm);
-}
-
-.featured-products__hearts {
-  inset-block-start: var(--space-12);
-  inset-inline-end: 12%;
-  inline-size: clamp(3.5rem, 7vw, 5.5rem);
-  transform: rotate(-9deg);
 }
 
 .featured-products__editorial,
@@ -171,6 +157,12 @@
   line-height: 1.25;
 }
 
+.featured-products__heading {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
 .featured-products h2 {
   max-inline-size: 8ch;
   margin: 0;
@@ -181,13 +173,10 @@
   line-height: 0.98;
 }
 
-.featured-products__rule {
-  display: block;
-  inline-size: 2.55rem;
-  block-size: 0.125rem;
-  margin-block: var(--space-1);
-  border-radius: var(--radius-pill);
-  background: var(--color-accent);
+.featured-products__title-heart {
+  inline-size: 1.75rem;
+  flex: none;
+  transform: translateY(0.1rem) rotate(-8deg);
 }
 
 .featured-products__intro {
@@ -365,11 +354,46 @@
 
 @media (min-width: 64rem) {
   .featured-products {
-    gap: clamp(var(--space-6), 3vw, var(--space-12));
+    grid-template-columns: 21.625rem minmax(0, 1fr);
+    inline-size: min(calc(100% - (2 * var(--gutter))), var(--container-visual));
+    gap: var(--space-6);
+    padding: var(--space-4);
+    border-radius: var(--radius-xl);
   }
 
   .featured-products__editorial {
-    padding-inline-start: clamp(7rem, 8.5vw, 9.5rem);
+    min-block-size: 20rem;
+    padding: 0 0 var(--space-5) 6.25rem;
+  }
+
+  .featured-products__luna {
+    inset-inline-start: -3rem;
+    inline-size: 9.25rem;
+  }
+
+  .featured-products h2 {
+    max-inline-size: 11.5ch;
+    font-size: 2.25rem;
+    line-height: 1;
+  }
+
+  .featured-products__intro {
+    max-inline-size: 24ch;
+    font-size: 0.875rem;
+    line-height: 1.45;
+  }
+
+  .featured-products__action {
+    color: var(--color-action);
+  }
+
+  .featured-products__gallery {
+    grid-template-columns: minmax(0, 1.12fr) minmax(0, 1fr) minmax(0, 0.97fr);
+    block-size: 20rem;
+  }
+
+  .featured-products__item {
+    border-radius: var(--radius-lg);
   }
 }
 

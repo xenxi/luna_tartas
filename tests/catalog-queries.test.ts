@@ -270,10 +270,10 @@ describe('catalog queries', () => {
     });
 
     expect(featured).toMatchObject({
-      eyebrow: 'HECHO A MANO, CON AMOR',
-      title: 'Ideas para regalar',
+      eyebrow: 'INSPIRACIÓN QUE EMOCIONA',
+      title: 'Ideas que emocionan',
       intro:
-        'Algunos de los regalos que hemos preparado con todo nuestro cariño.',
+        'Regalos únicos y personalizados para cada historia, cada persona y cada ocasión.',
       action: { href: '/productos/', label: 'Ver más regalos' },
     });
     expect(featured?.items).toHaveLength(5);

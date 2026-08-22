@@ -162,7 +162,7 @@ describe('catalog and contextual navigation patterns', () => {
     expect(featuredProductsProjection).toContain('getFeaturedProducts');
     expect(featuredProductsProjection).toContain('getPublishedProducts');
     expect(featuredProductsProjection).toContain('routes.product');
-    expect(featuredProductsProjection).toContain('HECHO A MANO, CON AMOR');
+    expect(featuredProductsProjection).toContain('INSPIRACIÓN QUE EMOCIONA');
     expect(featuredProductsProjection).toContain('Ver más regalos');
     expect(featuredProductsProjection).not.toContain('client:');
   });
