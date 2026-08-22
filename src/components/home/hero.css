@@ -73,6 +73,10 @@
   vector-effect: non-scaling-stroke;
 }
 
+.hero__claim-stroke path:last-child {
+  stroke-width: 1.7;
+}
+
 .hero__media {
   position: relative;
   z-index: var(--z-base);
