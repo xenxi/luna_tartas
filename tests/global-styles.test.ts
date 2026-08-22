@@ -55,6 +55,14 @@ describe('global presentation foundation', () => {
     expect(tokens).toContain('--color-decoration-blue: var(--luna-blue)');
     expect(tokens).toContain('--color-action: var(--luna-coral-dark)');
     expect(tokens).toContain('--font-script:');
+    expect(tokens).toContain("'DM Serif Display'");
+    expect(tokens).toContain("'DM Sans'");
+    expect(tokens).toContain("'Caveat'");
+    expect(tokens.match(/@font-face/g)).toHaveLength(3);
+    expect(tokens).toContain('dm-serif-display-latin-regular.woff2');
+    expect(tokens).toContain('caveat-latin-variable.woff2');
+    expect(tokens).toContain('dm-sans-latin-variable.woff2');
+    expect(layout).not.toContain('fonts.googleapis.com');
     expect(tokens).not.toContain("'Times New Roman'");
     expect(tokens).toContain('--container-content: 72rem');
     expect(tokens).toContain('--container-visual: 80rem');

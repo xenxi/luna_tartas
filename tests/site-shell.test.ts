@@ -65,8 +65,11 @@ describe('public site shell', () => {
     expect(header).toContain('class="site-navigation--desktop"');
     expect(styles).toContain('.site-navigation--desktop');
     expect(styles).toContain('.site-menu {');
-    expect(styles).toContain('min-block-size: 9.5rem');
+    expect(styles).toContain('min-block-size: 6rem');
     expect(styles).toContain('.primary-navigation--header a[aria-current=');
+    expect(navigation).toContain('<span>Sobre Luna</span>');
+    expect(navigation).toContain('primary-navigation__search');
+    expect(navigation).not.toContain('<button');
   });
 
   it('uses the official logo and a non-interactive responsive heart divider', () => {

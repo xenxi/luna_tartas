@@ -1,3 +1,28 @@
+@font-face {
+  font-family: 'DM Serif Display';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('../assets/fonts/dm-serif-display-latin-regular.woff2')
+    format('woff2');
+}
+
+@font-face {
+  font-family: 'Caveat';
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url('../assets/fonts/caveat-latin-variable.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'DM Sans';
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url('../assets/fonts/dm-sans-latin-variable.woff2') format('woff2');
+}
+
 :root {
   color-scheme: light;
 
@@ -43,12 +68,12 @@
   --color-error: #9b2c2c;
   --color-on-action: var(--luna-paper);
 
-  /* Three system voices avoid network requests and remain replaceable. */
+  /* Approved editorial, UI and handwritten voices with resilient fallbacks. */
   --font-display:
-    'Iowan Old Style', 'Palatino Linotype', 'Book Antiqua', Georgia, serif;
+    'DM Serif Display', 'Iowan Old Style', 'Palatino Linotype', Georgia, serif;
   --font-body:
-    Aptos, 'Segoe UI', ui-sans-serif, system-ui, -apple-system, sans-serif;
-  --font-script: 'Segoe Print', 'Bradley Hand', 'Brush Script MT', cursive;
+    'DM Sans', Aptos, 'Segoe UI', ui-sans-serif, system-ui, sans-serif;
+  --font-script: 'Caveat', 'Segoe Print', 'Bradley Hand', cursive;
   --font-size-xs: 0.875rem;
   --font-size-sm: 0.9375rem;
   --font-size-md: 1rem;

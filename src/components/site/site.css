@@ -140,6 +140,11 @@
   text-decoration: none;
 }
 
+.primary-navigation__pending,
+.primary-navigation__search {
+  display: none;
+}
+
 .primary-navigation a:hover,
 .primary-navigation a:focus-visible {
   color: var(--color-action-hover);
@@ -298,12 +303,11 @@
 
 @media (min-width: 48rem) {
   .site-header__inner {
-    min-block-size: 9.5rem;
+    min-block-size: 8.5rem;
   }
 
   .brand-home--header .brand-home__logo {
-    inline-size: clamp(15rem, 18vw, 18rem);
-    transform: translateY(1rem);
+    inline-size: clamp(11rem, 14vw, 12.75rem);
   }
 
   .site-menu {
@@ -317,15 +321,49 @@
   .primary-navigation ul {
     flex-direction: row;
     align-items: center;
-    gap: clamp(var(--space-2), 1.5vw, var(--space-5));
+    gap: clamp(var(--space-1), 0.55vw, var(--space-3));
   }
 
   .primary-navigation--header a {
     position: relative;
     min-block-size: 4.25rem;
-    padding-inline: clamp(var(--space-4), 1.5vw, var(--space-6));
-    font-size: var(--font-size-md);
-    font-weight: var(--font-weight-regular);
+    padding-inline: clamp(var(--space-2), 0.7vw, var(--space-3));
+    font-size: var(--font-size-sm);
+    font-weight: 500;
+  }
+
+  .primary-navigation__pending,
+  .primary-navigation__search {
+    display: flex;
+    min-block-size: 4.25rem;
+    align-items: center;
+  }
+
+  .primary-navigation__pending > span,
+  .primary-navigation__search > span {
+    display: flex;
+    align-items: center;
+    color: var(--color-text);
+    font-size: var(--font-size-sm);
+    font-weight: 500;
+  }
+
+  .primary-navigation__pending > span {
+    padding-inline: clamp(var(--space-2), 0.7vw, var(--space-3));
+  }
+
+  .primary-navigation__search > span {
+    justify-content: center;
+    inline-size: 2.75rem;
+    block-size: 2.75rem;
+  }
+
+  .primary-navigation__search svg {
+    inline-size: 1.35rem;
+    block-size: 1.35rem;
+    stroke: currentColor;
+    stroke-linecap: round;
+    stroke-width: 1.6;
   }
 
   .site-footer__inner {
@@ -361,6 +399,52 @@
 
 @media (min-width: 60rem) {
   .site-header--home {
-    background: color-mix(in srgb, var(--color-canvas) 96%, transparent);
+    background: transparent;
+  }
+
+  .site-header--home .site-header__inner {
+    width: min(100% - (2 * var(--gutter)), 86rem);
+    min-block-size: 6rem;
+  }
+
+  .site-header--home .brand-home--header .brand-home__logo {
+    inline-size: 9rem;
+  }
+
+  .site-header--home .primary-navigation ul {
+    gap: clamp(0.1rem, 0.35vw, var(--space-2));
+  }
+
+  .site-header--home .primary-navigation--header a,
+  .site-header--home .primary-navigation__pending,
+  .site-header--home .primary-navigation__search {
+    min-block-size: 3.25rem;
+  }
+
+  .site-header--home .primary-navigation--header a,
+  .site-header--home .primary-navigation__pending > span {
+    padding-inline: clamp(var(--space-2), 0.55vw, var(--space-3));
+  }
+
+  .site-header--home .primary-navigation--header a,
+  .site-header--home .primary-navigation__pending > span {
+    font-size: clamp(0.8rem, 0.72vw, 0.875rem);
+  }
+
+  .site-header--home .primary-navigation__search > span {
+    inline-size: 2.5rem;
+    block-size: 2.5rem;
+  }
+
+  .site-header--home .primary-navigation__search svg {
+    inline-size: 1.2rem;
+    block-size: 1.2rem;
+  }
+
+  .site-header--home
+    .primary-navigation--header
+    a[aria-current='page']::after {
+    block-size: 0.1rem;
+    inset-inline: var(--space-2);
   }
 }

@@ -2,7 +2,9 @@ import { routes } from '../../lib/catalog/domain/routes';
 import { whatsappConfig } from '../../config/contact';
 
 export const heroContent = Object.freeze({
-  heading: 'Hecho para alguien. No para cualquiera.',
+  eyebrow: 'HECHO A MANO, CON AMOR',
+  heading: Object.freeze(['Hecho para', 'alguien.']),
+  claim: 'No para cualquiera.',
   copy: Object.freeze([
     'Creamos regalos personalizados y pequeños detalles con mucho mimo,',
     'porque las personas especiales merecen algo pensado especialmente para ellas.',
@@ -15,6 +17,24 @@ export const heroContent = Object.freeze({
     label: 'Cuéntanos tu idea',
     href: whatsappConfig.href,
   }),
+  benefits: Object.freeze([
+    Object.freeze({
+      icon: 'heart',
+      label: 'Personalizados con cariño',
+    }),
+    Object.freeze({
+      icon: 'hands',
+      label: 'Hechos a mano',
+    }),
+    Object.freeze({
+      icon: 'quality',
+      label: 'Materiales de calidad',
+    }),
+    Object.freeze({
+      icon: 'delivery',
+      label: 'Envío y entrega con cuidado',
+    }),
+  ]),
   image: Object.freeze({
     alt: 'Tarta de pañales artesanal decorada en tonos pastel con motivos infantiles.',
     author: 'Luna',
