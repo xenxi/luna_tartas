@@ -28,6 +28,45 @@ Work strictly one task at a time:
 
 Never execute the next task even if obvious, unblocked, small, or directly dependent. Allow only extra work required for the current task. Do not anticipate milestones.
 
+### Phase 2 visual tasks
+
+Phase 2 is manually ordered by the user. For a visual task:
+
+- finishing implementation does not mean the visual work is finished;
+- after implementation and automated regression checks, stop at
+  `AWAITING_VISUAL_APPROVAL`;
+- automated checks detect technical regressions but cannot establish visual
+  fidelity or make the task `DONE`;
+- only explicit user approval permits `AWAITING_VISUAL_APPROVAL -> DONE`;
+- if review requires corrections, continue on the same task unless a real
+  scope boundary requires a separate task;
+- never start Mobile automatically after Desktop;
+- never start another view, infer the next task, or invent a roadmap.
+
+Close an implemented visual task with:
+
+```text
+Task: <view> — <Desktop|Mobile>
+
+Implementation:
+COMPLETE
+
+Regression checks:
+PASS | FAIL
+
+Visual status:
+AWAITING_VISUAL_APPROVAL
+
+Summary: <brief summary>
+
+Manual review:
+Compare implementation against the approved visual reference.
+
+STOP
+```
+
+Do not mark a visual task `DONE` while manual visual approval is pending.
+
 ## Task closeout
 
 ```text
