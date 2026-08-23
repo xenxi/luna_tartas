@@ -20,7 +20,7 @@ const accessibleBrandName = brandName ?? 'Luna Tartas';
   href={withBasePath(routes.home(), import.meta.env.BASE_URL)}
   aria-label={accessibleBrandName}
 >
-  <picture class="brand-home__picture">
+  <picture class="brand-home__picture" data-performance-audit="art-directed">
     <source media="(min-width: 48rem)" srcset={desktopBrandLogo.src} />
     <Image
       class="brand-home__logo"

@@ -71,9 +71,12 @@ async function gzipSize(file) {
 }
 
 function picturesIn(html) {
-  return [...html.matchAll(/<picture\b[^>]*>([\s\S]*?)<\/picture>/gi)].map(
-    ([, contents]) => contents,
-  );
+  return [...html.matchAll(/<picture\b([^>]*)>([\s\S]*?)<\/picture>/gi)]
+    .filter(
+      ([, attributes]) =>
+        !/data-performance-audit="art-directed"/i.test(attributes),
+    )
+    .map(([, , contents]) => contents);
 }
 
 async function auditPicture(contents, page) {
