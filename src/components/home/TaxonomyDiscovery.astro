@@ -1,8 +1,8 @@
 ---
-import ResponsiveMedia from '../catalog/ResponsiveMedia.astro';
-import { catalogImageMap } from '../catalog/catalog-images';
-import { buildMediaProjection } from '../catalog/media-projection';
-import type { MediaProjection } from '../catalog/types';
+import { Image } from 'astro:assets';
+import giftFinderTypeImage from '../../assets/home/gift-finder/01.png';
+import giftFinderOccasionImage from '../../assets/home/gift-finder/02.png';
+import giftFinderRecipientImage from '../../assets/home/gift-finder/03.png';
 import type { Catalog } from '../../lib/catalog/domain/model';
 import Ornament from '../ui/Ornament.astro';
 import { projectTaxonomyDiscovery } from './taxonomy-discovery';
@@ -15,19 +15,11 @@ interface Props {
 
 const { catalog } = Astro.props;
 const discovery = projectTaxonomyDiscovery(catalog);
-const cards = await Promise.all(
-  (discovery?.cards ?? []).map(async (card) => {
-    const image = catalogImageMap[card.mediaSource.src];
-    const media: MediaProjection | undefined = image
-      ? await buildMediaProjection(image, card.mediaSource.alt, {
-          sizes:
-            '(min-width: 64rem) 20rem, (min-width: 40rem) 42vw, calc(100vw - 2 * var(--gutter))',
-        })
-      : undefined;
-
-    return { ...card, media };
-  }),
-);
+const giftFinderImages = [
+  giftFinderTypeImage,
+  giftFinderOccasionImage,
+  giftFinderRecipientImage,
+] as const;
 ---
 
 {
@@ -49,14 +41,14 @@ const cards = await Promise.all(
         <p>{discovery.intro}</p>
       </header>
       <ul class="taxonomy-discovery" aria-label={discovery.title}>
-        {cards.map((card) => (
+        {discovery.cards.map((card, index) => (
           <li
             class={`taxonomy-discovery__item taxonomy-discovery__item--${card.kind}`}
           >
             <a
               class="taxonomy-discovery__card"
               href={withBasePath(card.href, import.meta.env.BASE_URL)}
-              aria-label={`${card.actionLabel}: ${card.productName}`}
+              aria-label={`${card.actionLabel}: ${card.title}`}
             >
               <div class="taxonomy-discovery__body">
                 <span class="taxonomy-discovery__number" aria-hidden="true">
@@ -72,7 +64,12 @@ const cards = await Promise.all(
                 </span>
               </div>
               <div class="taxonomy-discovery__media" aria-hidden="true">
-                <ResponsiveMedia media={card.media} />
+                <Image
+                  src={giftFinderImages[index]}
+                  alt=""
+                  loading="lazy"
+                  decoding="async"
+                />
               </div>
             </a>
           </li>

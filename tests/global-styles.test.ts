@@ -101,14 +101,14 @@ describe('global presentation foundation', () => {
 
   it('normalizes discovery card media geometry and its tonal transition', () => {
     expect(taxonomyDiscovery).toContain(
-      '--taxonomy-discovery-content-width: 50%',
+      '--taxonomy-discovery-content-width: 52%',
     );
     expect(taxonomyDiscovery).toContain(
-      '--taxonomy-discovery-media-width: 50%',
+      '--taxonomy-discovery-media-width: 56%',
     );
     expect(taxonomyDiscovery).toContain('.taxonomy-discovery__media::before');
     expect(taxonomyDiscovery).toContain('var(--taxonomy-discovery-tone)');
-    expect(taxonomyDiscovery).toContain('transparent 38%');
+    expect(taxonomyDiscovery).toContain('transparent 44%');
     expect(taxonomyDiscovery).toContain('object-fit: cover');
     expect(taxonomyDiscovery).not.toContain('object-fit: contain');
     expect(taxonomyDiscovery).toContain('aspect-ratio: auto');

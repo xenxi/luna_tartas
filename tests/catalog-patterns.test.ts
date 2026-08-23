@@ -137,15 +137,17 @@ describe('catalog and contextual navigation patterns', () => {
     ).not.toContain('client:');
   });
 
-  it('keeps home discovery driven by published products and route builders', () => {
+  it('keeps home discovery static-media and driven by taxonomy routes', () => {
     expect(taxonomyDiscovery).toContain('<section');
-    expect(taxonomyDiscovery).toContain('<ResponsiveMedia');
+    expect(taxonomyDiscovery).toContain("import { Image } from 'astro:assets'");
+    expect(taxonomyDiscovery).toContain('giftFinderTypeImage');
+    expect(taxonomyDiscovery).not.toContain('catalogImageMap');
+    expect(taxonomyDiscovery).not.toContain('buildMediaProjection');
     expect(taxonomyDiscovery).toContain('<Ornament');
     expect(taxonomyDiscovery).toContain('variant="heart"');
     expect(taxonomyDiscovery).toContain('{discovery.intro}');
     expect(taxonomyDiscovery).toContain('{card.description}');
     expect(taxonomyDiscoveryProjection).toContain('getPublishedTaxonomies');
-    expect(taxonomyDiscoveryProjection).toContain('getPublishedProducts');
     expect(taxonomyDiscoveryProjection).toContain('routes.taxonomyIndex');
     expect(taxonomyDiscoveryProjection).not.toMatch(/categories:\s*\[/);
     expect(taxonomyDiscoveryProjection).not.toMatch(/occasions:\s*\[/);

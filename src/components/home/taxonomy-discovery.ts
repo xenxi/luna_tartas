@@ -1,13 +1,6 @@
-import {
-  getPublishedProducts,
-  getPublishedTaxonomies,
-} from '../../lib/catalog/domain/queries';
+import { getPublishedTaxonomies } from '../../lib/catalog/domain/queries';
 import { routes } from '../../lib/catalog/domain/routes';
-import type {
-  Catalog,
-  PublishedProduct,
-  TaxonomyKind,
-} from '../../lib/catalog/domain/model';
+import type { Catalog, TaxonomyKind } from '../../lib/catalog/domain/model';
 
 export interface TaxonomyDiscoveryCard {
   readonly kind: TaxonomyKind;
@@ -16,11 +9,6 @@ export interface TaxonomyDiscoveryCard {
   readonly description: string;
   readonly actionLabel: string;
   readonly href: string;
-  readonly productName: string;
-  readonly mediaSource: {
-    readonly src: string;
-    readonly alt: string;
-  };
 }
 
 export interface TaxonomyDiscoveryProjection {
@@ -57,40 +45,6 @@ const cardDefinitions: readonly DiscoveryDefinition[] = [
   },
 ];
 
-function hasPublishedTaxonomy(
-  product: PublishedProduct,
-  kind: TaxonomyKind,
-  taxonomyIds: ReadonlySet<string>,
-): boolean {
-  const productTaxonomyIds =
-    kind === 'category'
-      ? product.categories
-      : kind === 'occasion'
-        ? (product.occasions ?? [])
-        : (product.recipients ?? []);
-
-  return productTaxonomyIds.some((taxonomyId) => taxonomyIds.has(taxonomyId));
-}
-
-function selectProductForDimension(
-  catalog: Catalog,
-  kind: TaxonomyKind,
-  excludedProductIds: ReadonlySet<string>,
-): PublishedProduct | undefined {
-  const publishedTaxonomyIds = new Set(
-    getPublishedTaxonomies(catalog, kind).map(({ id }) => id),
-  );
-  const candidates = getPublishedProducts(catalog).filter(
-    (product) =>
-      !excludedProductIds.has(product.id) &&
-      hasPublishedTaxonomy(product, kind, publishedTaxonomyIds),
-  );
-
-  return (
-    candidates.find((product) => product.featured === true) ?? candidates[0]
-  );
-}
-
 function describeDimension(catalog: Catalog, kind: TaxonomyKind): string {
   const names = getPublishedTaxonomies(catalog, kind)
     .map(({ name }) => name)
@@ -105,27 +59,16 @@ function describeDimension(catalog: Catalog, kind: TaxonomyKind): string {
 export function projectTaxonomyDiscovery(
   catalog: Catalog,
 ): TaxonomyDiscoveryProjection | undefined {
-  const selectedProductIds = new Set<string>();
   const cards = cardDefinitions.flatMap((definition) => {
-    const product = selectProductForDimension(
-      catalog,
-      definition.kind,
-      selectedProductIds,
-    );
+    if (getPublishedTaxonomies(catalog, definition.kind).length === 0) {
+      return [];
+    }
 
-    if (product === undefined) return [];
-
-    selectedProductIds.add(product.id);
     return [
       {
         ...definition,
         description: describeDimension(catalog, definition.kind),
         href: routes.taxonomyIndex(definition.kind),
-        productName: product.name,
-        mediaSource: {
-          src: product.media.cover.src,
-          alt: product.media.cover.alt,
-        },
       },
     ];
   });

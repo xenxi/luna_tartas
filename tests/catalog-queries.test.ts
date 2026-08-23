@@ -139,47 +139,19 @@ describe('catalog queries', () => {
     );
   });
 
-  it('projects three distinct discovery cards from real published products', () => {
-    const discovery = projectTaxonomyDiscovery({
-      ...catalog,
-      products: [
-        ...catalog.products,
-        product('recipient-choice', 2, {
-          categories: ['other'],
-          recipients: ['family'],
-        }),
-      ],
-    });
+  it('projects one static-image card per published taxonomy dimension', () => {
+    const discovery = projectTaxonomyDiscovery(catalog);
 
     expect(
-      discovery?.cards.map(({ number, href, productName, mediaSource }) => ({
+      discovery?.cards.map(({ number, href, title }) => ({
         number,
         href,
-        productName,
-        mediaSource,
+        title,
       })),
     ).toEqual([
-      {
-        number: '01',
-        href: '/categorias/',
-        productName: 'first',
-        mediaSource: { src: 'first.jpg', alt: 'first cake' },
-      },
-      {
-        number: '02',
-        href: '/ocasiones/',
-        productName: 'second',
-        mediaSource: { src: 'second.jpg', alt: 'second cake' },
-      },
-      {
-        number: '03',
-        href: '/regalos/',
-        productName: 'recipient-choice',
-        mediaSource: {
-          src: 'recipient-choice.jpg',
-          alt: 'recipient-choice cake',
-        },
-      },
+      { number: '01', href: '/categorias/', title: 'Por tipo' },
+      { number: '02', href: '/ocasiones/', title: 'Por ocasión' },
+      { number: '03', href: '/regalos/', title: 'Para quién' },
     ]);
     expect(discovery?.intro).toBe(
       'Explora por tipo, ocasión o destinatario y encuentra la opción ideal.',
@@ -191,49 +163,12 @@ describe('catalog queries', () => {
     ]);
   });
 
-  it('prioritizes featured products, excludes drafts and keeps editorial ties stable', () => {
+  it('does not project the section when a taxonomy dimension is unavailable', () => {
     const discovery = projectTaxonomyDiscovery({
       categories: [taxonomy('cakes', 'category', 0)],
       occasions: [taxonomy('birthday', 'occasion', 0)],
-      recipients: [taxonomy('family', 'recipient', 0)],
-      products: [
-        product('type-featured', 20, { featured: true }),
-        product('occasion-beta', 10, {
-          categories: ['unpublished-category'],
-          occasions: ['birthday'],
-          featured: true,
-        }),
-        product('occasion-alpha', 10, {
-          categories: ['unpublished-category'],
-          occasions: ['birthday'],
-          featured: true,
-        }),
-        product('recipient-fallback', 0, {
-          categories: ['unpublished-category'],
-          recipients: ['family'],
-        }),
-        { id: 'draft-featured', slug: 'draft-featured', status: 'draft' },
-      ],
-    });
-
-    expect(discovery?.cards.map(({ productName }) => productName)).toEqual([
-      'type-featured',
-      'occasion-alpha',
-      'recipient-fallback',
-    ]);
-  });
-
-  it('omits discovery instead of repeating a product as filler', () => {
-    const discovery = projectTaxonomyDiscovery({
-      categories: [taxonomy('cakes', 'category', 0)],
-      occasions: [taxonomy('birthday', 'occasion', 0)],
-      recipients: [taxonomy('family', 'recipient', 0)],
-      products: [
-        product('only-product', 0, {
-          occasions: ['birthday'],
-          recipients: ['family'],
-        }),
-      ],
+      recipients: [],
+      products: catalog.products,
     });
 
     expect(discovery).toBeUndefined();

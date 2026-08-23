@@ -2,20 +2,25 @@
   position: relative;
   isolation: isolate;
   overflow: clip;
-  background:
-    radial-gradient(
-      ellipse 34rem 19rem at 3% 39%,
-      color-mix(in srgb, var(--color-surface-calm) 72%, transparent),
-      transparent 72%
-    ),
-    radial-gradient(
-      ellipse 32rem 17rem at 98% 73%,
-      color-mix(in srgb, var(--color-surface-warm) 70%, transparent),
-      transparent 74%
-    );
+  background: var(--color-canvas);
 }
 
 @media (min-width: 64rem) {
+  .home-composition {
+    background:
+      radial-gradient(
+        ellipse 34rem 18rem at 102% 49rem,
+        color-mix(in srgb, var(--color-surface-calm) 68%, transparent),
+        transparent 72%
+      ),
+      radial-gradient(
+        ellipse 30rem 16rem at -2% 67rem,
+        color-mix(in srgb, var(--color-surface-warm) 50%, transparent),
+        transparent 74%
+      ),
+      var(--color-canvas);
+  }
+
   .hero {
     z-index: var(--z-base);
   }
@@ -27,7 +32,7 @@
   .taxonomy-discovery-section {
     position: relative;
     z-index: var(--z-content);
-    padding-block: var(--space-8) var(--space-16);
+    padding-block: var(--space-8) var(--space-4);
   }
 
   .trust-and-work {
@@ -41,7 +46,7 @@
   }
 
   .trust-process {
-    padding-block: clamp(3.75rem, 5.5vw, 5.25rem) clamp(3.25rem, 4.5vw, 4.75rem);
+    padding-block: var(--space-4) clamp(3.25rem, 4.5vw, 4.75rem);
   }
 
   .featured-products {
