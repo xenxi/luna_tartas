@@ -363,11 +363,13 @@
     position: absolute;
     z-index: var(--z-raised);
     inset: 0 auto 0 0;
-    inline-size: 61%;
+    inline-size: 92%;
     background: linear-gradient(
       90deg,
-      color-mix(in srgb, var(--color-canvas) 32%, transparent) 0%,
-      color-mix(in srgb, var(--color-canvas) 18%, transparent) 62%,
+      var(--color-canvas) 0%,
+      color-mix(in srgb, var(--color-canvas) 96%, transparent) 30%,
+      color-mix(in srgb, var(--color-canvas) 78%, transparent) 58%,
+      color-mix(in srgb, var(--color-canvas) 38%, transparent) 82%,
       transparent 100%
     );
     content: '';
@@ -390,10 +392,10 @@
     -webkit-mask-image: linear-gradient(
       90deg,
       transparent 0%,
-      #000 42%,
+      #000 94%,
       #000 100%
     );
-    mask-image: linear-gradient(90deg, transparent 0%, #000 42%, #000 100%);
+    mask-image: linear-gradient(90deg, transparent 0%, #000 94%, #000 100%);
     object-fit: cover;
     object-position: 58% 50%;
   }
