@@ -1,13 +1,11 @@
 ---
 import { Image, Picture } from 'astro:assets';
-import blushBackground from '../../assets/home/custom-idea/fondo.png';
-import centralImage from '../../assets/home/custom-idea/imagen-central.png';
-import blueCloud from '../../assets/home/custom-idea/nube-azul.png';
-import pinkCloud from '../../assets/home/custom-idea/nube-rosa.png';
-import lunaCloud from '../../assets/home/luna-nube.png';
+import blushBackground from '../../assets/home/custom-idea/fondo-target.png';
+import centralImage from '../../assets/home/custom-idea/imagen-central-target.png';
+import moonIllustration from '../../assets/home/custom-idea/luna-target.png';
+import titleHeart from '../../assets/home/custom-idea/corazon-target.png';
 import { customIdeaContent } from '../../content/home/custom-idea';
 import ActionLink from '../ui/ActionLink.astro';
-import Ornament from '../ui/Ornament.astro';
 import './custom-idea.css';
 ---
 
@@ -30,31 +28,21 @@ import './custom-idea.css';
       class="custom-idea__background"
       pictureAttributes={{ class: 'custom-idea__background-picture' }}
     />
-    <Image
-      src={blueCloud}
-      alt="Nube azul de acuarela decorativa."
-      aria-hidden="true"
-      width={384}
-      height={202}
-      format="webp"
-      loading="lazy"
-      decoding="async"
-      class="custom-idea__cloud custom-idea__cloud--blue"
-    />
-    <Image
-      src={pinkCloud}
-      alt="Nube rosa de acuarela decorativa."
-      aria-hidden="true"
-      width={384}
-      height={256}
-      format="webp"
-      loading="lazy"
-      decoding="async"
-      class="custom-idea__cloud custom-idea__cloud--pink"
-    />
-
     <div class="custom-idea__copy">
-      <h2 id="custom-idea-title">{customIdeaContent.title}</h2>
+      <h2 id="custom-idea-title">
+        {customIdeaContent.title}
+        <Image
+          src={titleHeart}
+          alt=""
+          aria-hidden="true"
+          width={96}
+          height={96}
+          format="webp"
+          loading="lazy"
+          decoding="async"
+          class="custom-idea__title-heart"
+        />
+      </h2>
       <p>{customIdeaContent.copy}</p>
       <div class="custom-idea__action">
         <ActionLink
@@ -98,17 +86,15 @@ import './custom-idea.css';
       pictureAttributes={{ class: 'custom-idea__art-picture' }}
     />
     <Image
-      src={lunaCloud}
+      src={moonIllustration}
       alt="Luna sobre una nube decorativa."
       aria-hidden="true"
-      width={150}
-      height={150}
+      width={1200}
+      height={1300}
       format="webp"
       loading="lazy"
       decoding="async"
       class="custom-idea__moon"
     />
-    <Ornament variant="heart" tone="accent" class="custom-idea__heart" />
-    <Ornament variant="sparkle" tone="peach" class="custom-idea__sparkle" />
   </div>
 </section>
