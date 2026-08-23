@@ -404,7 +404,7 @@
     position: absolute;
     z-index: calc(var(--z-content) + 1);
     inset-block-start: clamp(19.5rem, 23.5vw, 21.5rem);
-    inset-inline-start: 53.5%;
+    inset-inline-start: 82%;
     display: grid;
     inline-size: clamp(5.65rem, 6vw, 6.25rem);
     aspect-ratio: 1;
@@ -559,5 +559,9 @@
   .hero__image {
     object-fit: contain;
     object-position: 100% 50%;
+  }
+
+  .hero__seal {
+    inset-inline-start: 88.5%;
   }
 }
