@@ -1,9 +1,25 @@
 .hero {
+  --hero-background-light: #f7ede6;
+  --hero-background-base: #f6eadf;
+  --hero-background-rose: #f2ddd3;
+
   position: relative;
   isolation: isolate;
   overflow: hidden;
   padding-block: var(--space-6) var(--space-16);
-  background: transparent;
+  background:
+    radial-gradient(
+      ellipse at left top,
+      rgb(255 255 255 / 44%) 0%,
+      rgb(255 255 255 / 12%) 38%,
+      transparent 64%
+    ),
+    linear-gradient(
+      120deg,
+      var(--hero-background-light) 0%,
+      var(--hero-background-base) 42%,
+      var(--hero-background-rose) 100%
+    );
 }
 
 .hero__frame {
@@ -224,7 +240,6 @@
     margin-block-start: 0;
     overflow: hidden;
     padding-block: 0;
-    background: transparent;
   }
 
   .hero__frame {
@@ -359,23 +374,6 @@
     content: none;
   }
 
-  .hero__media::after {
-    position: absolute;
-    z-index: var(--z-raised);
-    inset: 0 auto 0 0;
-    inline-size: 92%;
-    background: linear-gradient(
-      90deg,
-      var(--color-canvas) 0%,
-      color-mix(in srgb, var(--color-canvas) 96%, transparent) 30%,
-      color-mix(in srgb, var(--color-canvas) 78%, transparent) 58%,
-      color-mix(in srgb, var(--color-canvas) 38%, transparent) 82%,
-      transparent 100%
-    );
-    content: '';
-    pointer-events: none;
-  }
-
   .hero__picture,
   .hero__image {
     block-size: 100%;
@@ -389,13 +387,6 @@
 
   .hero__image {
     aspect-ratio: auto;
-    -webkit-mask-image: linear-gradient(
-      90deg,
-      transparent 0%,
-      #000 94%,
-      #000 100%
-    );
-    mask-image: linear-gradient(90deg, transparent 0%, #000 94%, #000 100%);
     object-fit: cover;
     object-position: 58% 50%;
   }
