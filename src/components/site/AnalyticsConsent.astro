@@ -1,45 +1,286 @@
 ---
+import { Image } from 'astro:assets';
+import cookiesConsent from '../../assets/site/cookies-consent.png';
 import { siteConfig } from '../../config/site';
+import '../ui/ui.css';
 ---
 
 {
   siteConfig.analytics.enabled && (
-    <>
+    <div class="analytics-consent-region">
       <aside
         id="analytics-consent"
-        class="analytics-consent"
+        class="analytics-consent visual-container"
         aria-labelledby="analytics-consent-title"
+        aria-describedby="analytics-consent-description"
       >
-        <h2 id="analytics-consent-title">Medición opcional</h2>
-        <p>
-          ¿Nos ayudas a entender qué páginas y CTAs funcionan? La medición es
-          opcional y no afecta a tu navegación.
-        </p>
+        <div class="analytics-consent__content">
+          <Image
+            class="analytics-consent__cookie"
+            src={cookiesConsent}
+            alt=""
+            width={96}
+            height={64}
+            loading="eager"
+            decoding="async"
+          />
+          <div class="analytics-consent__copy">
+            <h2 id="analytics-consent-title">Medición opcional</h2>
+            <p id="analytics-consent-description">
+              ¿Nos ayudas a entender qué páginas y CTAs funcionan? La medición
+              es opcional y no afecta a tu navegación.
+            </p>
+          </div>
+        </div>
         <div class="analytics-consent__actions">
-          <button type="button" data-analytics-consent="accept">
-            Aceptar medición
-          </button>
-          <button type="button" data-analytics-consent="reject">
+          <button
+            class="button button--secondary"
+            type="button"
+            data-analytics-consent="reject"
+          >
             Rechazar
           </button>
-          <button type="button" data-analytics-consent="revoke" hidden>
+          <button
+            class="button button--primary"
+            type="button"
+            data-analytics-consent="accept"
+          >
+            Aceptar medición
+          </button>
+          <button
+            class="button button--secondary"
+            type="button"
+            data-analytics-consent="revoke"
+            hidden
+          >
             Retirar consentimiento
           </button>
         </div>
       </aside>
-      <button
-        id="analytics-consent-reopen"
-        class="analytics-consent__reopen"
-        type="button"
+      <aside
+        id="analytics-consent-status"
+        class="analytics-consent analytics-consent--status visual-container"
+        aria-live="polite"
         hidden
       >
-        Configurar medición
-      </button>
+        <div class="analytics-consent__content">
+          <Image
+            class="analytics-consent__cookie"
+            src={cookiesConsent}
+            alt=""
+            width={96}
+            height={64}
+            loading="eager"
+            decoding="async"
+          />
+          <div class="analytics-consent__copy">
+            <div data-analytics-consent-status="granted" hidden>
+              <h2>
+                Gracias por aceptar nuestras cookies{' '}
+                <span aria-hidden="true">🍪</span>
+              </h2>
+              <p>
+                Mejoramos tu experiencia analizando cómo usas la web.
+                <br />
+                Puedes cambiar tu preferencia cuando quieras.
+              </p>
+            </div>
+            <div data-analytics-consent-status="denied" hidden>
+              <h2>Has rechazado las cookies opcionales</h2>
+              <p>
+                La medición permanece desactivada y no afecta a tu navegación.
+                <br />
+                Puedes cambiar tu preferencia cuando quieras.
+              </p>
+            </div>
+          </div>
+        </div>
+        <button
+          id="analytics-consent-reopen"
+          class="analytics-consent__reopen button button--secondary"
+          type="button"
+          hidden
+        >
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            focusable="false"
+            aria-hidden="true"
+          >
+            <circle cx="12" cy="12" r="3" />
+            <path d="M19.4 15a1.7 1.7 0 0 0 .3 1.9l.1.1-2.8 2.8-.1-.1a1.7 1.7 0 0 0-1.9-.3 1.7 1.7 0 0 0-1 1.6v.2h-4V21a1.7 1.7 0 0 0-1-1.6 1.7 1.7 0 0 0-1.9.3l-.1.1L4.2 17l.1-.1a1.7 1.7 0 0 0 .3-1.9A1.7 1.7 0 0 0 3 14H2.8v-4H3a1.7 1.7 0 0 0 1.6-1 1.7 1.7 0 0 0-.3-1.9L4.2 7 7 4.2l.1.1a1.7 1.7 0 0 0 1.9.3A1.7 1.7 0 0 0 10 3v-.2h4V3a1.7 1.7 0 0 0 1 1.6 1.7 1.7 0 0 0 1.9-.3l.1-.1L19.8 7l-.1.1a1.7 1.7 0 0 0-.3 1.9 1.7 1.7 0 0 0 1.6 1h.2v4H21a1.7 1.7 0 0 0-1.6 1Z" />
+          </svg>
+          Configurar medición
+        </button>
+      </aside>
       <script>
         import {bindAnalyticsConsentUi} from '../../lib/analytics/consent-ui';
         import {siteConfig} from '../../config/site'; bindAnalyticsConsentUi(
         siteConfig.analytics, document, window, );
       </script>
-    </>
+    </div>
   )
 }
+
+<style>
+  .analytics-consent-region {
+    position: relative;
+    z-index: var(--z-content);
+    padding-block: 0 var(--space-4);
+  }
+
+  .analytics-consent.visual-container {
+    display: grid;
+    grid-template-columns: minmax(20rem, 1fr) auto;
+    width: min(100% - (2 * var(--space-4)), 92rem);
+    gap: var(--space-5) clamp(var(--space-8), 4vw, var(--space-16));
+    align-items: center;
+    padding: var(--space-4) clamp(var(--space-5), 3vw, var(--space-8));
+    border: var(--border-width-hairline) solid
+      color-mix(in srgb, var(--color-border) 78%, transparent);
+    border-radius: var(--radius-xl);
+    background: color-mix(
+      in srgb,
+      var(--color-surface) 86%,
+      var(--color-surface-warm)
+    );
+    box-shadow: 0 0.25rem 1rem rgb(57 39 35 / 3%);
+  }
+
+  .analytics-consent[hidden],
+  .analytics-consent-region .button[hidden] {
+    display: none;
+  }
+
+  .analytics-consent__content {
+    display: flex;
+    min-inline-size: 0;
+    align-items: center;
+    gap: clamp(var(--space-3), 2vw, var(--space-5));
+  }
+
+  .analytics-consent__cookie {
+    flex: 0 0 auto;
+    inline-size: clamp(4.25rem, 6vw, 6rem);
+    block-size: auto;
+  }
+
+  .analytics-consent__copy {
+    min-inline-size: 0;
+  }
+
+  .analytics-consent__copy h2 {
+    margin: 0;
+    font-family: var(--font-body);
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-bold);
+    line-height: 1.25;
+    letter-spacing: 0;
+  }
+
+  .analytics-consent__copy p {
+    max-inline-size: var(--measure-copy);
+    margin: var(--space-1) 0 0;
+    color: var(--color-text-muted);
+    font-size: var(--font-size-sm);
+    line-height: 1.45;
+    text-wrap: pretty;
+  }
+
+  .analytics-consent__actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-end;
+    gap: var(--space-3);
+  }
+
+  .analytics-consent--status {
+    padding-block: var(--space-3);
+  }
+
+  .analytics-consent .button,
+  .analytics-consent__reopen {
+    min-inline-size: 10.5rem;
+    border-radius: var(--radius-pill);
+    font-size: var(--font-size-sm);
+    white-space: nowrap;
+  }
+
+  .analytics-consent .button--secondary,
+  .analytics-consent__reopen {
+    background: var(--color-surface);
+  }
+
+  .analytics-consent__reopen {
+    min-inline-size: 12.75rem;
+    padding-inline: var(--space-5);
+  }
+
+  .analytics-consent__reopen svg {
+    inline-size: 1.25rem;
+    block-size: 1.25rem;
+    stroke: currentColor;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 1.7;
+  }
+
+  .analytics-consent .button--secondary:hover,
+  .analytics-consent .button--secondary:focus-visible,
+  .analytics-consent__reopen:hover,
+  .analytics-consent__reopen:focus-visible {
+    background: var(--color-action);
+    color: var(--color-on-action);
+  }
+
+  @media (max-width: 55.99rem) {
+    .analytics-consent.visual-container {
+      grid-template-columns: minmax(0, 1fr);
+      gap: var(--space-5);
+      padding: var(--space-5);
+    }
+
+    .analytics-consent__actions {
+      justify-content: flex-start;
+    }
+
+    .analytics-consent__reopen {
+      justify-self: start;
+    }
+  }
+
+  @media (max-width: 39.99rem) {
+    .analytics-consent-region {
+      padding-block-end: var(--space-3);
+    }
+
+    .analytics-consent.visual-container {
+      gap: var(--space-4);
+      padding: var(--space-5) var(--space-4);
+    }
+
+    .analytics-consent__actions {
+      flex-direction: column;
+      align-items: stretch;
+      inline-size: 100%;
+    }
+
+    .analytics-consent__content {
+      align-items: flex-start;
+    }
+
+    .analytics-consent .button,
+    .analytics-consent__reopen {
+      inline-size: 100%;
+      min-inline-size: 0;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .analytics-consent .button,
+    .analytics-consent__reopen {
+      transition: none;
+    }
+  }
+</style>

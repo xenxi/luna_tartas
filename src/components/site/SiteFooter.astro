@@ -8,6 +8,7 @@ import {
 } from '../../config/navigation';
 import { routes } from '../../lib/catalog/domain/routes';
 import { withBasePath, withoutBasePath } from '../../lib/site/urls';
+import AnalyticsConsent from './AnalyticsConsent.astro';
 
 interface Props {
   currentPath: string;
@@ -155,4 +156,5 @@ const footerInformation = [
       </div>
     </div>
   </div>
+  <AnalyticsConsent />
 </footer>

@@ -20,8 +20,10 @@ export function bindAnalyticsConsentUi(
   }
 
   const root = document.getElementById('analytics-consent');
+  const status = document.getElementById('analytics-consent-status');
   const reopen = document.getElementById('analytics-consent-reopen');
-  if (root === null || reopen === null || !config.enabled) return;
+  if (root === null || status === null || reopen === null || !config.enabled)
+    return;
 
   const accept = root.querySelector<HTMLButtonElement>(
     '[data-analytics-consent="accept"]',
@@ -32,13 +34,29 @@ export function bindAnalyticsConsentUi(
   const revoke = root.querySelector<HTMLButtonElement>(
     '[data-analytics-consent="revoke"]',
   );
-  if (accept === null || reject === null || revoke === null) return;
+  const grantedStatus = status.querySelector<HTMLElement>(
+    '[data-analytics-consent-status="granted"]',
+  );
+  const deniedStatus = status.querySelector<HTMLElement>(
+    '[data-analytics-consent-status="denied"]',
+  );
+  if (
+    accept === null ||
+    reject === null ||
+    revoke === null ||
+    grantedStatus === null ||
+    deniedStatus === null
+  )
+    return;
 
   const sync = () => {
     const consent = getStoredAnalyticsConsent(storage);
     root.hidden = consent !== undefined;
+    status.hidden = consent === undefined;
     reopen.hidden = consent === undefined;
     revoke.hidden = consent !== 'granted';
+    grantedStatus.hidden = consent !== 'granted';
+    deniedStatus.hidden = consent !== 'denied';
   };
 
   accept.addEventListener('click', () => {
@@ -56,7 +74,7 @@ export function bindAnalyticsConsentUi(
   });
   reopen.addEventListener('click', () => {
     root.hidden = false;
-    reopen.hidden = true;
+    status.hidden = true;
   });
 
   sync();
