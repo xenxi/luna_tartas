@@ -63,8 +63,9 @@
 .custom-idea__title-heart {
   display: block;
   flex: 0 0 auto;
-  inline-size: clamp(1.25rem, 1.8vw, 1.75rem);
-  block-size: clamp(1.25rem, 1.8vw, 1.75rem);
+  inline-size: clamp(2.15rem, 3vw, 2.85rem);
+  block-size: auto;
+  aspect-ratio: 1475 / 1067;
   max-inline-size: none;
   overflow: visible;
   object-fit: contain;
