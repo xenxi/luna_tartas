@@ -50,24 +50,19 @@ describe('home custom idea CTA', () => {
     expect(component).toContain("event: 'contact_whatsapp'");
     expect(component).toContain('variant="secondary"');
     expect(component).toContain('custom-idea__whatsapp-icon');
-    expect(component).toContain('src={lunaCloud}');
+    expect(component).toContain('src={moonIllustration}');
     expect(component).toContain('class="custom-idea__moon"');
-    expect(component).toContain('variant="heart"');
-    expect(component).toContain('variant="sparkle"');
+    expect(component).toContain('src={titleHeart}');
     expect(component).not.toContain('<form');
     expect(component).not.toContain('ContentSection');
     expect(component).toContain('src={blushBackground}');
     expect(component).toContain('src={centralImage}');
-    expect(component).toContain('src={pinkCloud}');
-    expect(component).toContain('src={blueCloud}');
     expect(component).toContain("formats={['avif', 'webp']}");
     expect(component).toContain('loading="lazy"');
-    expect(styles).toContain('--cta-height: clamp(12rem, 15vw, 15rem)');
+    expect(styles).toContain('--cta-height: clamp(15rem, 17vw, 18rem)');
     expect(styles).toContain('inline-size: min(92%, 93.75rem)');
     expect(styles).toContain('block-size: var(--art-height)');
-    expect(styles).toContain(
-      'inset-block-start: clamp(-1.75rem, -1.5vw, -1rem)',
-    );
+    expect(styles).toContain('inset-block-start: 0');
     expect(styles).not.toContain('border-radius: 45%');
     expect(page).toContain('<CustomIdeaCta />');
   });

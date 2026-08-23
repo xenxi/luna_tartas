@@ -79,12 +79,14 @@ describe('public site shell', () => {
     expect(navigation).not.toContain('<button');
   });
 
-  it('uses the official logo and a non-interactive responsive heart divider', () => {
+  it('uses the official logo and non-interactive heart ornaments', () => {
     expect(header).toContain('<BrandHomeLink location="header" />');
     expect(footer).toContain(
-      "import footerBrandLogo from '../../assets/brand/logo-luna-detalles-hechos-para-emocionar.png'",
+      "import footerFlowers from '../../assets/site/footer-magnolia.png'",
     );
-    expect(footer).toContain('alt="Luna, detalles hechos para emocionar"');
+    expect(footer).toContain('variant="heart"');
+    expect(footer).toContain('class="site-footer__flowers"');
+    expect(footer).toContain('alt="Rama de magnolias rosas pintada a mano."');
     expect(header).toContain('class="site-header__divider" aria-hidden="true"');
     expect(header).toContain('preserveAspectRatio="none"');
     expect(header).toContain('focusable="false"');
@@ -92,6 +94,7 @@ describe('public site shell', () => {
     expect(header).toContain('class="site-header__divider-fill"');
     expect(header).toContain('variant="heart"');
     expect(styles).toContain('.site-header__divider-line');
+    expect(styles).toContain('.site-footer__heart path');
     expect(styles).toContain('pointer-events: none');
     expect(styles).not.toMatch(/#[0-9a-f]{3,8}|rgb\(/i);
   });
@@ -112,18 +115,26 @@ describe('public site shell', () => {
     expect(footer).toContain('publicContactConfig.whatsapp.href');
     expect(footer).toContain('publicContactConfig.email.href');
     expect(footer).toContain('publicContactConfig.instagram.href');
-    expect(footer).toContain('<div class="site-footer__contact">');
-    expect(footer).toContain('<address>');
+    expect(footer).toContain('<address aria-label="Canales de contacto">');
     expect(footer).not.toContain('target="_blank"');
   });
 
-  it('keeps the footer compact with real navigation and icon-only contacts', () => {
-    expect(footer).toContain(
-      'const footerNavigation = primaryNavigation.filter',
-    );
+  it('composes the reference Footer with real navigation and icon-only contacts', () => {
+    expect(footer).toContain('const footerProducts: readonly FooterLink[]');
+    expect(footer).toContain('const footerOccasions: readonly FooterLink[]');
     expect(footer).toContain('aria-label="Navegación del pie"');
-    expect(footer).not.toContain('Explorar');
-    expect(footer).not.toContain('Contacto</p>');
+    expect(footer).toContain('<h2>Productos</h2>');
+    expect(footer).toContain('<h2>Categorías</h2>');
+    expect(footer).toContain('<h2>Información</h2>');
+    expect(footer).toContain('Tartas de pañales');
+    expect(footer).toContain('Papelería personalizada');
+    expect(footer).toContain('Láminas personalizadas');
+    expect(footer).toContain('Packs personalizados');
+    expect(footer).toContain('Nacimiento');
+    expect(footer).toContain('Baby shower');
+    expect(footer).toContain('Cumpleaños');
+    expect(footer).toContain('Primera Comunión');
+    expect(footer).toContain('Y más');
     expect(footer).toContain('aria-label="Escríbenos por WhatsApp"');
     expect(footer).toContain('aria-label="Escríbenos por email"');
     expect(footer).toContain('aria-label="Síguenos en Instagram"');
@@ -132,9 +143,11 @@ describe('public site shell', () => {
     expect(footer).toContain("'Cómo trabajamos'");
     expect(footer).toContain("'Preguntas frecuentes'");
     expect(footer).toContain("'Contacto'");
-    expect(styles).toContain('grid-template-columns: 13.25rem 1px auto');
-    expect(styles).toContain('grid-template-columns: repeat(3, 2.75rem)');
-    expect(styles).toContain('min-block-size: 8.125rem');
+    expect(footer).toContain('Hecho a mano,<br />');
+    expect(styles).toContain('font-family: var(--font-script)');
+    expect(styles).toContain(
+      'grid-template-columns: repeat(3, minmax(0, 1fr))',
+    );
   });
 
   it('publishes the approved logo as the favicon without deriving a brand mark', () => {

@@ -3,8 +3,8 @@ import { whatsappConfig } from '../../config/contact';
 
 export const heroContent = Object.freeze({
   eyebrow: 'HECHO A MANO, CON AMOR',
-  heading: Object.freeze(['Hecho para', 'alguien.']),
-  claim: 'No para cualquiera.',
+  heading: Object.freeze(['Pensado con', 'cariño.']),
+  claim: ' Hecho con amor.',
   copy: Object.freeze([
     'Creamos regalos personalizados y pequeños detalles con mucho mimo,',
     'porque las personas especiales merecen algo pensado especialmente para ellas.',

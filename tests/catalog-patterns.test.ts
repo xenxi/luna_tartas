@@ -143,8 +143,10 @@ describe('catalog and contextual navigation patterns', () => {
     expect(taxonomyDiscovery).toContain('giftFinderTypeImage');
     expect(taxonomyDiscovery).not.toContain('catalogImageMap');
     expect(taxonomyDiscovery).not.toContain('buildMediaProjection');
-    expect(taxonomyDiscovery).toContain('<Ornament');
-    expect(taxonomyDiscovery).toContain('variant="heart"');
+    expect(taxonomyDiscovery).toContain(
+      'class="taxonomy-discovery-section__heart"',
+    );
+    expect(taxonomyDiscovery).toContain('heartWatercolor');
     expect(taxonomyDiscovery).toContain('{discovery.intro}');
     expect(taxonomyDiscovery).toContain('{card.description}');
     expect(taxonomyDiscoveryProjection).toContain('getPublishedTaxonomies');

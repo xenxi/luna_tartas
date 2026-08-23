@@ -10,8 +10,8 @@ const image = readFileSync('src/assets/home/tarta-hero.png');
 describe('approved home hero', () => {
   it('centralizes the exact editorial hierarchy and approval metadata', () => {
     expect(heroContent.eyebrow).toBe('HECHO A MANO, CON AMOR');
-    expect(heroContent.heading).toEqual(['Hecho para', 'alguien.']);
-    expect(heroContent.claim).toBe('No para cualquiera.');
+    expect(heroContent.heading).toEqual(['Pensado con', 'cariño.']);
+    expect(heroContent.claim).toBe(' Hecho con amor.');
     expect(heroContent.copy.join(' ')).toBe(
       'Creamos regalos personalizados y pequeños detalles con mucho mimo, porque las personas especiales merecen algo pensado especialmente para ellas.',
     );
@@ -65,8 +65,8 @@ describe('approved home hero', () => {
     );
     expect(component).toContain('loading="eager"');
     expect(component).toContain('fetchpriority="high"');
-    expect(image.subarray(16, 24).readUInt32BE(0)).toBe(1672);
-    expect(image.subarray(16, 24).readUInt32BE(4)).toBe(941);
+    expect(image.subarray(16, 24).readUInt32BE(0)).toBe(1536);
+    expect(image.subarray(16, 24).readUInt32BE(4)).toBe(1024);
     expect(styles).toContain('object-fit: cover');
     expect(styles).toContain('object-position: 58% 50%');
     expect(styles).toContain('border-radius: 0');

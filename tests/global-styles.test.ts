@@ -110,7 +110,7 @@ describe('global presentation foundation', () => {
     expect(taxonomyDiscovery).toContain('var(--taxonomy-discovery-tone)');
     expect(taxonomyDiscovery).toContain('transparent 44%');
     expect(taxonomyDiscovery).toContain('object-fit: cover');
-    expect(taxonomyDiscovery).not.toContain('object-fit: contain');
+    expect(taxonomyDiscovery).toContain('object-fit: contain');
     expect(taxonomyDiscovery).toContain('aspect-ratio: auto');
   });
 });

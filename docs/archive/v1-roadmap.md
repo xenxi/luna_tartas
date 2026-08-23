@@ -1232,13 +1232,13 @@ M8.9.4 (modelo LUNA → SOL REVIEW).
 **Objetivo:** reproducir la composición unitaria de la referencia con el H1,
 frase manuscrita, fotografía y destinos reales aprobados.
 **Dependencias:** M8.9.3.
-**Criterios de aceptación:** “Hecho para alguien.” y “No para cualquiera.”
+**Criterios de aceptación:** “Pensado con cariño.” y “ Hecho con amor.”
 preservados; CTAs y WhatsApp reales; fotografía autorizada protagonista;
 ornamentación controlada; LCP/dimensiones/contraste estables.
 **Verificación:** suite/build, HTML, performance, a11y y QA 1280/1440/1920.
 **Modelo recomendado:** LUNA → SOL REVIEW.
 **Evidencia:** PASS (2026-08-17) — El Hero recompone la referencia como una
-escena unitaria: H1 editorial en dos líneas, “No para cualquiera.” en la voz
+escena unitaria: H1 editorial en dos líneas, “ Hecho con amor.” en la voz
 script aprobada y una sola línea desktop, fotografía autorizada a sangre en la
 mitad derecha, copy y ambos CTA reales en la mitad izquierda. El CTA principal
 mantiene `/productos/` y usa el icono de flecha existente; el secundario conserva
