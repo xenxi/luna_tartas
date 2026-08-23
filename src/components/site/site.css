@@ -561,4 +561,31 @@
     inset-inline: 0;
     background: transparent;
   }
+
+  .site-header--home::before {
+    position: absolute;
+    z-index: -1;
+    inset: 0 0 -2.5rem;
+    background: linear-gradient(
+      100deg,
+      color-mix(in srgb, var(--color-canvas) 94%, transparent) 0%,
+      color-mix(in srgb, var(--color-surface-soft) 82%, transparent) 43%,
+      color-mix(in srgb, var(--color-decoration-blush) 72%, transparent) 72%,
+      color-mix(in srgb, var(--color-decoration-blush) 38%, transparent) 100%
+    );
+    content: '';
+    pointer-events: none;
+    -webkit-mask-image: linear-gradient(
+      to bottom,
+      black 0%,
+      black 55%,
+      transparent 100%
+    );
+    mask-image: linear-gradient(
+      to bottom,
+      black 0%,
+      black 55%,
+      transparent 100%
+    );
+  }
 }
