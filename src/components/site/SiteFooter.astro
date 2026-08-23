@@ -25,7 +25,12 @@ const footerInformation = [
 ] as const;
 ---
 
-<footer class="site-footer">
+<footer
+  class:list={[
+    'site-footer',
+    { 'site-footer--home': routePath === routes.home() },
+  ]}
+>
   <div class="site-footer__inner visual-container">
     <div class="site-footer__identity">
       <a
@@ -85,7 +90,6 @@ const footerInformation = [
               <svg
                 viewBox="0 0 24 24"
                 fill="none"
-                style="transform: translateY(0.5rem)"
                 focusable="false"
                 aria-hidden="true"
               >
