@@ -3,8 +3,8 @@ import { Image } from 'astro:assets';
 import giftFinderTypeImage from '../../assets/home/gift-finder/01.png';
 import giftFinderOccasionImage from '../../assets/home/gift-finder/02.png';
 import giftFinderRecipientImage from '../../assets/home/gift-finder/03.png';
+import heartWatercolor from '../../assets/home/heart-watercolor.png';
 import type { Catalog } from '../../lib/catalog/domain/model';
-import Ornament from '../ui/Ornament.astro';
 import { projectTaxonomyDiscovery } from './taxonomy-discovery';
 import { withBasePath } from '../../lib/site/urls';
 import './taxonomy-discovery.css';
@@ -32,10 +32,14 @@ const giftFinderImages = [
       <header class="taxonomy-discovery-section__header">
         <h2 id="gift-discovery-title">
           <span>{discovery.title}</span>
-          <Ornament
-            variant="heart"
-            tone="accent"
+          <img
             class="taxonomy-discovery-section__heart"
+            src={heartWatercolor.src}
+            width={heartWatercolor.width}
+            height={heartWatercolor.height}
+            alt=""
+            loading="lazy"
+            decoding="async"
           />
         </h2>
         <p>{discovery.intro}</p>

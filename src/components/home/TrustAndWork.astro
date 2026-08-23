@@ -2,6 +2,7 @@
 import chatStep from '../../assets/home/trust-steps/01-chat.png';
 import handsStep from '../../assets/home/trust-steps/02-manos.png';
 import heartStep from '../../assets/home/trust-steps/03-corazon.png';
+import heartWatercolor from '../../assets/home/heart-watercolor.png';
 import { trustAndWorkContent } from '../../content/home/trust-and-work';
 import Ornament from '../ui/Ornament.astro';
 import './trust-and-work.css';
@@ -14,7 +15,15 @@ const trustStepImages = [chatStep, handsStep, heartStep] as const;
     <header class="trust-process__header">
       <h2 id="trust-title">
         {trustAndWorkContent.trust.title}
-        <Ornament variant="heart" class="trust-process__title-heart" />
+        <img
+          class="trust-process__title-heart"
+          src={heartWatercolor.src}
+          width={heartWatercolor.width}
+          height={heartWatercolor.height}
+          alt=""
+          loading="lazy"
+          decoding="async"
+        />
       </h2>
       <p>{trustAndWorkContent.trust.intro}</p>
     </header>

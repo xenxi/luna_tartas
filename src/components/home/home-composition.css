@@ -9,11 +9,6 @@
   .home-composition {
     background:
       radial-gradient(
-        ellipse 34rem 18rem at 102% 49rem,
-        color-mix(in srgb, var(--color-surface-calm) 68%, transparent),
-        transparent 72%
-      ),
-      radial-gradient(
         ellipse 30rem 16rem at -2% 67rem,
         color-mix(in srgb, var(--color-surface-warm) 50%, transparent),
         transparent 74%

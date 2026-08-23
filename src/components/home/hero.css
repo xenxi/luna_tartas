@@ -3,7 +3,7 @@
   isolation: isolate;
   overflow: hidden;
   padding-block: var(--space-6) var(--space-16);
-  background: color-mix(in srgb, var(--color-canvas) 94%, transparent);
+  background: transparent;
 }
 
 .hero__frame {
@@ -224,11 +224,7 @@
     margin-block-start: 0;
     overflow: hidden;
     padding-block: 0;
-    background: color-mix(
-      in srgb,
-      var(--color-canvas) 82%,
-      var(--color-surface-warm)
-    );
+    background: transparent;
   }
 
   .hero__frame {
@@ -430,11 +426,16 @@
     content: '';
   }
 
-  .hero__seal svg {
-    inline-size: 1.05rem;
-    block-size: 0.85rem;
-    overflow: visible;
-  }
+.hero__seal svg,
+.hero__seal-heart {
+  inline-size: 1.05rem;
+  block-size: 0.85rem;
+  overflow: visible;
+}
+
+.hero__seal-heart {
+  object-fit: contain;
+}
 
   .hero__seal path {
     fill: currentColor;
