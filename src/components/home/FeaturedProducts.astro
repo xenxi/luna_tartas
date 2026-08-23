@@ -1,5 +1,8 @@
 ---
-import lunaCloud from '../../assets/home/luna-nube.png';
+import { Image, Picture } from 'astro:assets';
+import featuredBackground from '../../assets/home/featured-products/fondo-banner.png';
+import lunaBanner from '../../assets/home/featured-products/luna-banner.png';
+import heartWatercolor from '../../assets/home/heart-watercolor.png';
 import type { Catalog } from '../../lib/catalog/domain/model';
 import { catalogImageMap } from '../catalog/catalog-images';
 import { buildMediaProjection } from '../catalog/media-projection';
@@ -41,18 +44,26 @@ const mosaicItems = featured
       id="featured-products"
       aria-labelledby="featured-products-title"
     >
-      <Ornament
-        variant="watercolor"
-        tone="blush"
-        class="featured-products__wash"
+      <Picture
+        src={featuredBackground}
+        alt="Fondo de acuarela rosa suave."
+        aria-hidden="true"
+        formats={['avif', 'webp']}
+        fallbackFormat="jpg"
+        widths={[768, 1280, 1600]}
+        sizes="(min-width: 64rem) 80rem, calc(100vw - 2rem)"
+        loading="lazy"
+        decoding="async"
+        class="featured-products__background"
+        pictureAttributes={{ class: 'featured-products__background-picture' }}
       />
       <div class="featured-products__editorial">
         <div class="featured-products__luna" aria-hidden="true">
-          <img
-            src={lunaCloud.src}
-            alt="Ilustración decorativa de Luna sobre una nube."
-            width={lunaCloud.width}
-            height={lunaCloud.height}
+          <Image
+            src={lunaBanner}
+            alt="Luna de acuarela descansando sobre nubes rosas."
+            width={320}
+            format="webp"
             loading="lazy"
             decoding="async"
           />
@@ -85,9 +96,14 @@ const mosaicItems = featured
         <p class="featured-products__eyebrow">{featured.eyebrow}</p>
         <div class="featured-products__heading">
           <h2 id="featured-products-title">{featured.title}</h2>
-          <Ornament
-            variant="heart"
-            tone="accent"
+          <Image
+            src={heartWatercolor}
+            alt="Corazón rosa de acuarela."
+            aria-hidden="true"
+            width={64}
+            format="webp"
+            loading="lazy"
+            decoding="async"
             class="featured-products__title-heart"
           />
         </div>

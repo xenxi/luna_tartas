@@ -45,7 +45,7 @@
   }
 
   .featured-products {
-    margin-block: var(--space-6) var(--space-6);
+    margin-block: var(--space-6) var(--space-4);
   }
 
   .custom-idea {
