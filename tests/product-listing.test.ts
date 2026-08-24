@@ -102,9 +102,14 @@ describe('product index listing', () => {
       'src/components/products/ProductListing.astro',
       'utf8',
     );
+    const hero = readFileSync(
+      'src/components/catalog/CatalogHero.astro',
+      'utf8',
+    );
 
     expect(projectProductListing(emptyCatalog).items).toEqual([]);
-    expect(page.match(/<h1\b/g)).toHaveLength(1);
+    expect(page).toContain('<CatalogHero');
+    expect(hero.match(/<h1\b/g)).toHaveLength(1);
     expect(component).toContain('itemsWithMedia.length > 0');
     expect(component).toContain('productsByListingHref.get(item.href)');
     expect(component).not.toContain('domainProducts[i]');

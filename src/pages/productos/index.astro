@@ -1,13 +1,27 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import ProductListing from '../../components/products/ProductListing.astro';
+import CatalogHero from '../../components/catalog/CatalogHero.astro';
+import CategoryBenefits from '../../components/taxonomies/CategoryBenefits.astro';
+import CustomIdeaCta from '../../components/home/CustomIdeaCta.astro';
 import { loadCatalog } from '../../lib/catalog/source';
 import { routes } from '../../lib/catalog/domain/routes';
+import { buildMediaProjection } from '../../components/catalog/media-projection';
+import { catalogPageContent } from '../../content/catalog-pages';
+import heroImage from '../../assets/home/tarta-hero.png';
 import './products.css';
 import Breadcrumb from '../../components/navigation/Breadcrumb.astro';
 import { productsBreadcrumb } from '../../lib/seo/navigation';
 
 const catalog = await loadCatalog();
+const heroMedia = await buildMediaProjection(
+  heroImage,
+  catalogPageContent.products.imageAlt,
+  {
+    widths: [640, 960, 1280, 1600],
+    sizes: '(min-width: 48rem) min(54vw, 52rem), calc(100vw - 2rem)',
+  },
+);
 ---
 
 <BaseLayout
@@ -17,10 +31,19 @@ const catalog = await loadCatalog();
 >
   <div class="products-page">
     <Breadcrumb items={productsBreadcrumb()} />
-    <header class="products-page__header">
-      <h1>Regalos personalizados</h1>
-      <p>Ideas hechas con mimo para celebrar a las personas especiales.</p>
-    </header>
+    <CatalogHero
+      eyebrow={catalogPageContent.products.eyebrow}
+      title={catalogPageContent.products.title}
+      claim={catalogPageContent.products.claim}
+      description={catalogPageContent.products.intro}
+      media={heroMedia}
+    />
     <ProductListing catalog={catalog} />
+    <CategoryBenefits />
+    <CustomIdeaCta
+      sourcePage={routes.products()}
+      title="¿No encuentras lo que buscas?"
+      copy="Cuéntanos tu idea y crearemos juntas el regalo perfecto."
+    />
   </div>
 </BaseLayout>

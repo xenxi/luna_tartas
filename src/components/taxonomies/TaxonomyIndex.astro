@@ -3,6 +3,13 @@ import type { Catalog, TaxonomyKind } from '../../lib/catalog/domain/model';
 import CardList from '../patterns/CardList.astro';
 import ContentSection from '../patterns/ContentSection.astro';
 import TaxonomyCard from '../catalog/TaxonomyCard.astro';
+import CatalogHero from '../catalog/CatalogHero.astro';
+import CategoryBenefits from './CategoryBenefits.astro';
+import CustomIdeaCta from '../home/CustomIdeaCta.astro';
+import { catalogImageMap } from '../catalog/catalog-images';
+import { buildMediaProjection } from '../catalog/media-projection';
+import { catalogPageContent } from '../../content/catalog-pages';
+import { routes } from '../../lib/catalog/domain/routes';
 import { projectTaxonomyIndex } from './taxonomy-listing';
 import Breadcrumb from '../navigation/Breadcrumb.astro';
 import { taxonomyIndexBreadcrumb } from '../../lib/seo/navigation';
@@ -21,14 +28,27 @@ interface Props {
 const { catalog, kind, title, intro, sectionTitle, sectionIntro, itemLabel } =
   Astro.props;
 const listing = projectTaxonomyIndex(catalog, kind, itemLabel);
+const heroSource = listing.items.find((item) => item.mediaSource)?.mediaSource;
+const heroImage = heroSource && catalogImageMap[heroSource.src];
+const heroMedia =
+  heroSource && heroImage
+    ? await buildMediaProjection(heroImage, heroSource.alt, {
+        widths: [480, 720, 960, 1200],
+        sizes: '(min-width: 48rem) min(54vw, 52rem), calc(100vw - 2rem)',
+      })
+    : undefined;
+const heroContent = catalogPageContent.taxonomy[kind];
 ---
 
 <div class="taxonomies-page">
   <Breadcrumb items={taxonomyIndexBreadcrumb(kind)} />
-  <header class="taxonomies-page__header">
-    <h1>{title}</h1>
-    <p>{intro}</p>
-  </header>
+  <CatalogHero
+    eyebrow={heroContent.eyebrow}
+    title={title}
+    claim={heroContent.claim}
+    description={intro}
+    media={heroMedia}
+  />
   {
     listing.items.length > 0 && (
       <ContentSection
@@ -46,4 +66,10 @@ const listing = projectTaxonomyIndex(catalog, kind, itemLabel);
       </ContentSection>
     )
   }
+  <CategoryBenefits />
+  <CustomIdeaCta
+    sourcePage={routes.taxonomyIndex(kind)}
+    title="¿No encuentras lo que buscas?"
+    copy="Cuéntanos tu idea y crearemos juntas el regalo perfecto."
+  />
 </div>

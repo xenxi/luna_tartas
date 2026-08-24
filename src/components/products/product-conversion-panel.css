@@ -2,11 +2,11 @@
   display: grid;
   gap: var(--space-5);
   min-inline-size: 0;
-  padding: var(--space-5);
-  border: 1px solid var(--color-border);
-  border-block-start: 3px solid var(--color-accent);
+  padding: clamp(var(--space-5), 2vw, var(--space-6));
+  border: 1px solid color-mix(in srgb, var(--color-border) 70%, transparent);
   border-radius: var(--radius-lg);
-  background: var(--color-surface-warm);
+  background: color-mix(in srgb, var(--color-surface) 82%, transparent);
+  box-shadow: var(--shadow-soft);
 }
 
 .product-conversion__summary,
@@ -23,38 +23,48 @@
 }
 
 .product-conversion__eyebrow {
-  color: var(--color-text-muted);
-  font-size: var(--font-size-sm);
-  font-weight: var(--font-weight-semibold);
-  letter-spacing: var(--letter-spacing-heading);
+  color: var(--color-accent);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: 0.14em;
   text-transform: uppercase;
 }
 
 .product-conversion h2 {
   margin: 0;
-  font-size: var(--font-size-xl);
+  font-size: clamp(1.35rem, 1.6vw, 1.7rem);
+  font-weight: var(--font-weight-regular);
 }
 
 .product-conversion__price {
   color: var(--color-action);
-  font-size: var(--font-size-lg);
-  font-weight: var(--font-weight-semibold);
+  font-family: var(--font-display);
+  font-size: clamp(1.45rem, 2vw, 2rem);
+  font-weight: var(--font-weight-regular);
 }
 
 .product-conversion__action .action-link {
   inline-size: 100%;
+  border-color: var(--color-action);
+  background: var(--color-action);
+  color: var(--color-on-action);
 }
 
 .product-conversion__action p {
   color: var(--color-text-muted);
-  font-size: var(--font-size-sm);
+  font-size: var(--font-size-xs);
+  line-height: 1.5;
 }
 
 @media (min-width: 48rem) {
   .product-conversion {
-    grid-template-columns: minmax(0, 1fr) minmax(16rem, 0.72fr);
+    grid-template-columns: minmax(0, 0.8fr) minmax(13rem, 1.2fr);
     align-items: center;
-    gap: var(--space-6);
-    padding: var(--space-6);
+  }
+}
+
+@media (min-width: 64rem) {
+  .product-conversion {
+    grid-template-columns: minmax(0, 1fr);
   }
 }

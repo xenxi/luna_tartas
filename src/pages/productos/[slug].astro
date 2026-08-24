@@ -3,6 +3,8 @@ import type { GetStaticPaths } from 'astro';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import ProductDetail from '../../components/products/ProductDetail.astro';
 import ProductRelated from '../../components/products/ProductRelated.astro';
+import CategoryBenefits from '../../components/taxonomies/CategoryBenefits.astro';
+import CustomIdeaCta from '../../components/home/CustomIdeaCta.astro';
 import JsonLd from '../../components/seo/JsonLd.astro';
 import { siteConfig } from '../../config/site';
 import { loadCatalog } from '../../lib/catalog/source';
@@ -82,4 +84,28 @@ const breadcrumbJsonLd = createBreadcrumbListJsonLd({
     breadcrumbs={breadcrumbs}
   />
   <ProductRelated catalog={catalog} product={product} />
+  <div class="product-detail-extras">
+    <CategoryBenefits />
+    <CustomIdeaCta
+      sourcePage={routes.product(product.slug)}
+      title="¿Quieres hacerlo aún más especial?"
+      copy="Cuéntanos tu idea y adaptaremos juntas cada detalle del regalo."
+    />
+  </div>
 </BaseLayout>
+
+<style is:global>
+  .product-detail-extras {
+    overflow: clip;
+    padding-block-end: var(--space-8);
+  }
+
+  .product-detail-extras > .category-benefits {
+    inline-size: min(calc(100% - (2 * var(--gutter))), 93.75rem);
+    margin-inline: auto;
+  }
+
+  .product-detail-extras > .custom-idea {
+    margin-block-start: var(--space-3);
+  }
+</style>

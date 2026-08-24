@@ -1,37 +1,23 @@
 .products-page {
   display: grid;
-  gap: var(--space-6);
-  padding-block: var(--space-8) var(--space-section-standard);
+  gap: 0;
+  overflow: clip;
+  padding-block: var(--space-2) var(--space-8);
 }
 
-.products-page__header {
-  position: relative;
-  inline-size: min(calc(100% - (2 * var(--gutter))), var(--container-content));
+.products-page > :is(.breadcrumb, .catalog-hero, .category-benefits) {
+  inline-size: min(calc(100% - (2 * var(--gutter))), 93.75rem);
   margin-inline: auto;
-  padding: clamp(var(--space-8), 6vw, var(--space-16));
-  overflow: hidden;
-  border-radius: var(--radius-xl);
-  background: var(--color-surface-warm);
 }
 
-.products-page__header h1 {
-  max-inline-size: 16ch;
+.products-page > .breadcrumb ol {
+  padding-block: 0 var(--space-3);
 }
 
-.products-page__header p {
-  max-inline-size: var(--measure-copy);
+.products-page > .category-benefits {
   margin-block-start: var(--space-4);
-  color: var(--color-text-muted);
-  font-size: var(--font-size-lg);
 }
 
-.products-page__header::after {
-  position: absolute;
-  inset-inline-end: clamp(-4rem, -2vw, -1rem);
-  inset-block-end: clamp(-5rem, -4vw, -2rem);
-  inline-size: clamp(10rem, 22vw, 18rem);
-  aspect-ratio: 1;
-  border: var(--border-width-hairline) solid var(--color-border-subtle);
-  border-radius: 50%;
-  content: '';
+.products-page > .custom-idea {
+  margin-block-start: var(--space-3);
 }

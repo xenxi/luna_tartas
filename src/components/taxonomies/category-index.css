@@ -8,8 +8,7 @@
 
 .category-index-page__breadcrumb,
 .category-index-hero,
-.category-index-listing,
-.category-benefits {
+.category-index-listing {
   inline-size: min(calc(100% - (2 * var(--gutter))), 93.75rem);
   margin-inline: auto;
 }
@@ -307,76 +306,6 @@
   stroke-width: 1.5;
 }
 
-.category-benefits {
-  margin-block-start: var(--space-4);
-  overflow: hidden;
-  border-radius: var(--radius-lg);
-  background: linear-gradient(
-    90deg,
-    color-mix(in srgb, var(--color-surface-warm) 80%, transparent),
-    color-mix(in srgb, var(--color-surface) 58%, transparent),
-    color-mix(in srgb, var(--color-surface-warm) 80%, transparent)
-  );
-}
-
-.category-benefits ul {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  margin: 0;
-  padding: clamp(1.25rem, 2vw, 1.75rem) clamp(1rem, 2.5vw, 2.5rem);
-  list-style: none;
-}
-
-.category-benefits li {
-  position: relative;
-  display: flex;
-  min-inline-size: 0;
-  align-items: center;
-  justify-content: center;
-  gap: var(--space-4);
-  margin: 0;
-  padding-inline: clamp(0.75rem, 1.5vw, 1.5rem);
-}
-
-.category-benefits li + li::before {
-  position: absolute;
-  inset-block: 12%;
-  inset-inline-start: 0;
-  inline-size: 1px;
-  background: color-mix(in srgb, var(--color-border) 58%, transparent);
-  content: '';
-}
-
-.category-benefits__icon {
-  flex: none;
-  inline-size: clamp(2.25rem, 3vw, 3rem);
-  color: var(--color-accent);
-}
-
-.category-benefits__icon svg {
-  fill: none;
-  stroke: currentColor;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  stroke-width: 1.35;
-}
-
-.category-benefits li > span:last-child {
-  display: grid;
-  min-inline-size: 0;
-  line-height: 1.25;
-}
-
-.category-benefits strong {
-  color: var(--color-text);
-  font-size: clamp(0.76rem, 0.85vw, 0.9rem);
-}
-
-.category-benefits small {
-  color: var(--color-text-muted);
-  font-size: clamp(0.72rem, 0.78vw, 0.84rem);
-}
-
 .category-index-page .custom-idea {
   margin-block-start: var(--space-3);
   padding-block-start: var(--space-5);
@@ -394,15 +323,6 @@
 
   .category-index-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .category-benefits ul {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    row-gap: var(--space-5);
-  }
-
-  .category-benefits li:nth-child(3)::before {
-    content: none;
   }
 }
 
@@ -461,21 +381,6 @@
 
   .category-card {
     min-block-size: 0;
-  }
-
-  .category-benefits ul {
-    grid-template-columns: minmax(0, 1fr);
-  }
-
-  .category-benefits li {
-    justify-content: flex-start;
-  }
-
-  .category-benefits li + li::before {
-    inset-block: calc(-1 * var(--space-3)) auto;
-    inset-inline: var(--space-4);
-    inline-size: auto;
-    block-size: 1px;
   }
 }
 

@@ -1,15 +1,22 @@
 .product-personalization {
   display: grid;
-  gap: var(--space-chapter);
-  max-inline-size: var(--measure-reading);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(1.25rem, 3vw, 2.5rem);
 }
 
 .product-personalization section {
   display: grid;
+  align-content: start;
   gap: var(--space-4);
   min-inline-size: 0;
-  padding-block-start: var(--space-5);
-  border-block-start: 1px solid var(--color-border);
+  padding: clamp(var(--space-6), 3vw, var(--space-10));
+  border: 1px solid color-mix(in srgb, var(--color-border) 48%, transparent);
+  border-radius: var(--radius-xl);
+  background: linear-gradient(
+    135deg,
+    var(--color-surface) 0%,
+    var(--color-surface-warm) 100%
+  );
 }
 
 .product-personalization h2,
@@ -22,24 +29,42 @@
 
 .product-personalization h2 {
   max-inline-size: 24ch;
+  font-size: clamp(1.8rem, 2.2vw, 2.5rem);
+  font-weight: var(--font-weight-regular);
 }
 
 .product-personalization__eyebrow {
-  color: var(--color-action);
-  font-size: var(--font-size-sm);
-  font-weight: var(--font-weight-semibold);
-  letter-spacing: var(--letter-spacing-heading);
+  color: var(--color-accent);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: 0.16em;
   text-transform: uppercase;
 }
 
 .product-personalization__options {
   display: grid;
-  gap: var(--space-2);
-  padding-inline-start: 1.25rem;
+  gap: var(--space-3);
+  padding: 0;
+  list-style: none;
 }
 
-.product-personalization__options li::marker {
-  color: var(--color-accent);
+.product-personalization__options li {
+  position: relative;
+  margin: 0;
+  padding-inline-start: 1.6rem;
+  color: var(--color-text-muted);
+}
+
+.product-personalization__options li::before {
+  position: absolute;
+  inset-block-start: 0.55em;
+  inset-inline-start: 0;
+  inline-size: 0.55rem;
+  block-size: 0.55rem;
+  border: 1px solid var(--color-accent);
+  border-radius: 50%;
+  background: var(--color-surface);
+  content: '';
 }
 
 .product-process ol {
@@ -52,32 +77,38 @@
 
 .product-process li {
   display: grid;
-  grid-template-columns: 2.5rem minmax(0, 1fr);
-  gap: var(--space-3);
+  grid-template-columns: 2.8rem minmax(0, 1fr);
+  gap: 0 var(--space-3);
+  margin: 0;
   counter-increment: product-step;
 }
 
 .product-process li::before {
   display: grid;
+  grid-row: 1 / span 2;
   place-items: center;
-  inline-size: 2.5rem;
-  block-size: 2.5rem;
+  inline-size: 2.6rem;
+  block-size: 2.6rem;
   border-radius: 50%;
   background: var(--color-surface-warm);
   color: var(--color-action);
-  content: counter(product-step);
+  content: counter(product-step, decimal-leading-zero);
   font-family: var(--font-display);
   font-size: var(--font-size-lg);
 }
 
-.product-process li > :is(h3, p) {
-  grid-column: 2;
-}
-
 .product-process h3 {
   font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-regular);
 }
 
 .product-process p {
   color: var(--color-text-muted);
+  font-size: var(--font-size-sm);
+}
+
+@media (max-width: 47.99rem) {
+  .product-personalization {
+    grid-template-columns: minmax(0, 1fr);
+  }
 }

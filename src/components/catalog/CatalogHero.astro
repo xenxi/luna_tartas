@@ -1,0 +1,49 @@
+---
+import type { MediaProjection } from './types';
+import ResponsiveMedia from './ResponsiveMedia.astro';
+import './catalog-hero.css';
+
+interface Props {
+  eyebrow: string;
+  title: string;
+  claim: string;
+  description: string;
+  media?: MediaProjection;
+  headingId?: string;
+}
+
+const { eyebrow, title, claim, description, media, headingId } = Astro.props;
+---
+
+<header
+  class:list={['catalog-hero', { 'catalog-hero--without-media': !media }]}
+>
+  <div class="catalog-hero__copy">
+    <p class="catalog-hero__eyebrow">
+      {eyebrow}
+      <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+        <path
+          d="M12 20S4.5 16 4.5 10.7c0-3.4 4.4-4.6 7.5-.9 3.1-3.7 7.5-2.5 7.5.9C19.5 16 12 20 12 20Z"
+        ></path>
+      </svg>
+    </p>
+    <h1 id={headingId}>{title}</h1>
+    <p class="catalog-hero__claim">{claim}</p>
+    <p class="catalog-hero__description">{description}</p>
+  </div>
+
+  {
+    media && (
+      <ResponsiveMedia media={media} loading="eager" fetchPriority="high" />
+    )
+  }
+
+  <svg
+    class="catalog-hero__sparkles"
+    viewBox="0 0 120 120"
+    aria-hidden="true"
+    focusable="false"
+  >
+    <path d="M22 8v28M8 22h28M88 70v38M69 89h38M56 50v16M48 58h16"></path>
+  </svg>
+</header>

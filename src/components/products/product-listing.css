@@ -3,7 +3,25 @@
 }
 
 .product-listing .content-section {
-  inline-size: min(100%, var(--container-content));
+  inline-size: min(100%, 93.75rem);
   margin-inline: auto;
-  padding-block: var(--space-10);
+  padding-block: clamp(2.75rem, 4vw, 4rem) var(--space-6);
+}
+
+.product-listing .content-section__header {
+  justify-content: center;
+  text-align: center;
+}
+
+.product-listing .content-section__heading {
+  justify-items: center;
+}
+
+.product-listing .content-section__heading h2 {
+  font-size: clamp(2rem, 2.2vw, 2.45rem);
+  font-weight: var(--font-weight-regular);
+}
+
+.product-listing .content-section__heading p {
+  font-size: var(--font-size-sm);
 }

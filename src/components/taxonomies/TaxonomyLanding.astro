@@ -8,12 +8,17 @@ import Breadcrumb from '../navigation/Breadcrumb.astro';
 import CardList from '../patterns/CardList.astro';
 import ContentSection from '../patterns/ContentSection.astro';
 import ProductCard from '../catalog/ProductCard.astro';
+import CatalogHero from '../catalog/CatalogHero.astro';
+import CategoryBenefits from './CategoryBenefits.astro';
+import CustomIdeaCta from '../home/CustomIdeaCta.astro';
 import { projectTaxonomyLanding } from './taxonomy-listing';
 import { catalogImageMap } from '../catalog/catalog-images';
 import { buildMediaProjection } from '../catalog/media-projection';
 import { getProductsForTaxonomy } from '../../lib/catalog/domain/queries';
 import { taxonomyBreadcrumb } from '../../lib/seo/navigation';
 import type { ProductCardProjection } from '../catalog/types';
+import { catalogPageContent } from '../../content/catalog-pages';
+import { routes } from '../../lib/catalog/domain/routes';
 import './taxonomies.css';
 
 interface Props {
@@ -27,6 +32,17 @@ interface Props {
 const { catalog, kind, taxonomy, productsTitle, productsIntro } = Astro.props;
 const landing = projectTaxonomyLanding(catalog, kind, taxonomy);
 const domainProducts = getProductsForTaxonomy(catalog, kind, taxonomy.id);
+const heroCover = domainProducts[0]?.media.cover;
+const heroImage = heroCover && catalogImageMap[heroCover.src];
+const heroMedia =
+  heroCover && heroImage
+    ? await buildMediaProjection(heroImage, heroCover.alt, {
+        widths: [480, 720, 960, 1200],
+        sizes: '(min-width: 48rem) min(54vw, 52rem), calc(100vw - 2rem)',
+      })
+    : undefined;
+const heroContent = catalogPageContent.taxonomy[kind];
+const taxonomyPath = routes.taxonomy(kind, taxonomy.slug);
 
 // Enriquecer cada product card con su media resuelta
 const productsWithMedia: ProductCardProjection[] = await Promise.all(
@@ -47,10 +63,13 @@ const productsWithMedia: ProductCardProjection[] = await Promise.all(
 
 <div class="taxonomy-landing">
   <Breadcrumb items={taxonomyBreadcrumb(kind, taxonomy.name)} />
-  <header class="taxonomy-landing__header">
-    <h1>{taxonomy.name}</h1>
-    <p>{taxonomy.description ?? taxonomy.summary}</p>
-  </header>
+  <CatalogHero
+    eyebrow={heroContent.eyebrow}
+    title={taxonomy.name}
+    claim={heroContent.claim}
+    description={taxonomy.description ?? taxonomy.summary}
+    media={heroMedia}
+  />
   {
     productsWithMedia.length > 0 && (
       <ContentSection
@@ -58,7 +77,7 @@ const productsWithMedia: ProductCardProjection[] = await Promise.all(
         title={productsTitle}
         intro={productsIntro}
       >
-        <CardList count={productsWithMedia.length}>
+        <CardList count={productsWithMedia.length} columns={4}>
           {productsWithMedia.map((product) => (
             <li>
               <ProductCard product={product} />
@@ -68,4 +87,10 @@ const productsWithMedia: ProductCardProjection[] = await Promise.all(
       </ContentSection>
     )
   }
+  <CategoryBenefits />
+  <CustomIdeaCta
+    sourcePage={taxonomyPath}
+    title="¿No encuentras lo que buscas?"
+    copy="Cuéntanos tu idea y crearemos juntas el regalo perfecto."
+  />
 </div>

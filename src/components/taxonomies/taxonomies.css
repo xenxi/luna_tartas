@@ -1,73 +1,58 @@
 .taxonomies-page,
 .taxonomy-landing {
-  inline-size: min(calc(100% - (2 * var(--gutter))), var(--container-content));
+  display: grid;
+  gap: 0;
+  overflow: clip;
+  padding-block: var(--space-2) var(--space-8);
+}
+
+.taxonomies-page
+  > :is(.breadcrumb, .catalog-hero, .content-section, .category-benefits),
+.taxonomy-landing
+  > :is(.breadcrumb, .catalog-hero, .content-section, .category-benefits) {
+  inline-size: min(calc(100% - (2 * var(--gutter))), 93.75rem);
   margin-inline: auto;
 }
 
-.taxonomies-page {
-  padding-block: var(--space-8) var(--space-section-standard);
+.taxonomies-page > .breadcrumb ol,
+.taxonomy-landing > .breadcrumb ol {
+  padding-block: 0 var(--space-3);
 }
 
-.taxonomies-page__header,
-.taxonomy-landing__header {
-  position: relative;
-  max-inline-size: none;
-  padding: clamp(var(--space-8), 6vw, var(--space-16));
-  overflow: hidden;
-  border-radius: var(--radius-xl);
-  background: var(--color-surface-calm);
-}
-
-.taxonomies-page__header h1,
-.taxonomy-landing__header h1 {
-  max-inline-size: 18ch;
-}
-
-.taxonomies-page__header p,
-.taxonomy-landing__header p {
-  margin-block-start: var(--space-3);
-  max-inline-size: var(--measure-copy);
-  color: var(--color-text-muted);
-  font-size: var(--font-size-lg);
-}
-
-.taxonomies-page__header::after,
-.taxonomy-landing__header::after {
-  position: absolute;
-  inset-inline-end: -3rem;
-  inset-block-start: -4rem;
-  inline-size: clamp(9rem, 18vw, 15rem);
-  aspect-ratio: 1;
-  border: var(--border-width-hairline) solid var(--color-border-subtle);
-  border-radius: 50%;
-  content: '';
-}
-
-.taxonomy-landing {
-  display: grid;
-  gap: var(--space-6);
-  padding-block: var(--space-6) var(--space-section-standard);
-}
-
+.taxonomies-page .content-section,
 .taxonomy-landing .content-section {
-  padding-block: var(--space-10) var(--space-4);
+  padding-block: clamp(2.75rem, 4vw, 4rem) var(--space-6);
 }
 
-.taxonomies-page .content-section {
-  padding-block: var(--space-12) 0;
+.taxonomies-page .content-section__header,
+.taxonomy-landing .content-section__header {
+  justify-content: center;
+  text-align: center;
 }
 
-@media (min-width: 64rem) {
-  .taxonomies-page__header,
-  .taxonomy-landing__header {
-    display: grid;
-    grid-template-columns: minmax(16rem, 0.8fr) minmax(20rem, 1.2fr);
-    align-items: end;
-    column-gap: var(--space-16);
-  }
+.taxonomies-page .content-section__heading,
+.taxonomy-landing .content-section__heading {
+  justify-items: center;
+}
 
-  .taxonomies-page__header p,
-  .taxonomy-landing__header p {
-    margin-block: 0 var(--space-2);
-  }
+.taxonomies-page .content-section__heading h2,
+.taxonomy-landing .content-section__heading h2 {
+  font-size: clamp(2rem, 2.2vw, 2.45rem);
+  font-weight: var(--font-weight-regular);
+}
+
+.taxonomies-page .content-section__heading p,
+.taxonomy-landing .content-section__heading p {
+  font-size: var(--font-size-sm);
+}
+
+.taxonomies-page > .category-benefits,
+.taxonomy-landing > .category-benefits {
+  margin-block-start: var(--space-4);
+  border: 1px solid var(--color-border-subtle);
+}
+
+.taxonomies-page > .custom-idea,
+.taxonomy-landing > .custom-idea {
+  margin-block-start: var(--space-3);
 }

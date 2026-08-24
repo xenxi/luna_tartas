@@ -1,8 +1,26 @@
 .product-related {
-  inline-size: 100%;
-  margin-block-start: var(--space-4);
+  inline-size: min(calc(100% - (2 * var(--gutter))), 93.75rem);
+  margin-inline: auto;
 }
 
 .product-related .content-section {
-  padding-block: var(--space-10);
+  padding-block: clamp(2.75rem, 4vw, 4rem);
+}
+
+.product-related .content-section__header {
+  justify-content: center;
+  text-align: center;
+}
+
+.product-related .content-section__heading {
+  justify-items: center;
+}
+
+.product-related .content-section__heading h2 {
+  font-size: clamp(2rem, 2.2vw, 2.45rem);
+  font-weight: var(--font-weight-regular);
+}
+
+.product-related .content-section__heading p {
+  font-size: var(--font-size-sm);
 }
