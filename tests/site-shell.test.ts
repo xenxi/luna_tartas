@@ -156,6 +156,12 @@ describe('public site shell', () => {
     expect(footer).toContain("'Contacto'");
     expect(footer).toContain('Hecho a mano,<br />');
     expect(styles).toContain('font-family: var(--font-script)');
+    expect(styles).toMatch(
+      /\.site-footer__message\s*\{[^}]*overflow: visible;/s,
+    );
+    expect(styles).toMatch(
+      /\.site-footer__flowers\s*\{[^}]*translate: 0 var\(--space-3\);/s,
+    );
     expect(styles).toContain(
       'grid-template-columns: repeat(4, minmax(0, 1fr))',
     );
