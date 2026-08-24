@@ -1,4 +1,7 @@
-import { getRelatedProducts } from '../../lib/catalog/domain/queries';
+import {
+  getPublishedProducts,
+  getRelatedProducts,
+} from '../../lib/catalog/domain/queries';
 import type { Catalog, PublishedProduct } from '../../lib/catalog/domain/model';
 import { routes } from '../../lib/catalog/domain/routes';
 import { formatPriceLabel } from '../catalog/price';
@@ -13,12 +16,22 @@ export interface ProductRelatedProjection {
 export function projectRelatedProducts(
   catalog: Catalog,
   product: PublishedProduct,
-  limit = 3,
+  limit = 4,
 ): ProductRelatedProjection {
+  const related = getRelatedProducts(catalog, product.id, limit);
+  const selectedIds = new Set(related.map(({ id }) => id));
+  const suggestions = [
+    ...related,
+    ...getPublishedProducts(catalog).filter(
+      (candidate) =>
+        candidate.id !== product.id && !selectedIds.has(candidate.id),
+    ),
+  ].slice(0, limit);
+
   return {
     title: 'También puede interesarte',
-    intro: 'Otras creaciones que comparten parte de esta intención.',
-    items: getRelatedProducts(catalog, product.id, limit).map((related) => ({
+    intro: 'Otras creaciones hechas para convertir momentos en recuerdos.',
+    items: suggestions.map((related) => ({
       href: routes.product(related.slug),
       name: related.name,
       summary: related.summary,

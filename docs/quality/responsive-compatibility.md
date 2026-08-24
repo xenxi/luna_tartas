@@ -5,8 +5,9 @@ Fecha: 2026-08-17
 ## Contrato ejecutable
 
 `npm run verify:responsive` inspecciona todo el HTML de `dist`. Comprueba el
-viewport que permite zoom, `main`, ausencia de JavaScript cliente, enlaces no
-vacios, dimensiones y `alt` de las imagenes. Tambien comprueba en el CSS
+viewport que permite zoom, `main`, JavaScript cliente limitado a analítica y a
+la galería ampliable de producto, enlaces no vacíos, dimensiones y `alt` de las
+imágenes. También comprueba en el CSS
 compilado `prefers-reduced-motion`, `min-width: 0`, limites de medios y targets
 interactivos de 44 px.
 

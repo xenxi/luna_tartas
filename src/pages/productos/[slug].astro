@@ -83,9 +83,12 @@ const breadcrumbJsonLd = createBreadcrumbListJsonLd({
     taxonomies={taxonomies}
     breadcrumbs={breadcrumbs}
   />
+  <div class="product-detail-benefits">
+    <p>Todo pensado para sorprender</p>
+    <CategoryBenefits />
+  </div>
   <ProductRelated catalog={catalog} product={product} />
   <div class="product-detail-extras">
-    <CategoryBenefits />
     <CustomIdeaCta sourcePage={routes.product(product.slug)} />
   </div>
 </BaseLayout>
@@ -96,9 +99,43 @@ const breadcrumbJsonLd = createBreadcrumbListJsonLd({
     padding-block-end: 0;
   }
 
-  .product-detail-extras > .category-benefits {
+  .product-detail-benefits {
     inline-size: min(calc(100% - (2 * var(--gutter))), 93.75rem);
     margin-inline: auto;
+  }
+
+  .product-detail-benefits > p {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-3);
+    margin: 0;
+    max-inline-size: none;
+    color: var(--color-text-muted);
+    font-family: var(--font-display);
+    font-size: var(--font-size-sm);
+    text-align: center;
+    white-space: nowrap;
+  }
+
+  .product-detail-benefits > p::before,
+  .product-detail-benefits > p::after {
+    inline-size: min(14rem, 22vw);
+    block-size: 1px;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      color-mix(in srgb, var(--color-border) 82%, transparent)
+    );
+    content: '';
+  }
+
+  .product-detail-benefits > p::after {
+    transform: scaleX(-1);
+  }
+
+  .product-detail-benefits > .category-benefits {
+    inline-size: 100%;
   }
 
   .product-detail-extras > .custom-idea {

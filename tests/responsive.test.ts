@@ -26,7 +26,7 @@ describe('responsive contract', () => {
     );
   });
 
-  it('allows only the consent and instrumentation modules when analytics is enabled', () => {
+  it('allows only analytics and the scoped product gallery module', () => {
     const artifact = readFileSync(
       resolve(root, 'scripts/verify-artifact.mjs'),
       'utf8',
@@ -37,6 +37,8 @@ describe('responsive contract', () => {
     );
     expect(artifact).toContain('Analytics(?:Consent|Instrumentation)');
     expect(responsive).toContain('Analytics(?:Consent|Instrumentation)');
+    expect(responsive).toContain('isAllowedProductGalleryModule');
+    expect(responsive).toContain('[data-product-gallery]');
     expect(artifact).toContain('unexpected client asset');
     expect(responsive).toContain('JavaScript cliente no permitido');
   });

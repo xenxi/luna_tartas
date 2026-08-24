@@ -23,11 +23,17 @@ const href = buildProductWhatsAppUrl({
 const analytics = createProductAnalyticsData(product);
 ---
 
-<aside class="product-conversion" aria-labelledby="product-conversion-title">
+<aside class="product-conversion" aria-label="Precio y pedido">
   <div class="product-conversion__summary">
-    <p class="product-conversion__eyebrow">Tu creación</p>
-    <h2 id="product-conversion-title">{product.name}</h2>
     <p class="product-conversion__price">{formatPriceLabel(product.price)}</p>
+    <p class="product-conversion__badge">
+      <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+        <path
+          d="M12 20S4.5 16 4.5 10.7c0-3.4 4.4-4.6 7.5-.9 3.1-3.7 7.5-2.5 7.5.9C19.5 16 12 20 12 20Z"
+        ></path>
+      </svg>
+      Hecho a mano, con amor
+    </p>
   </div>
 
   <div class="product-conversion__action">
@@ -42,10 +48,12 @@ const analytics = createProductAnalyticsData(product);
         ...analytics,
       }}
     >
+      <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+        <path d="M6 8h12v11H6zM9 8V6a3 3 0 0 1 6 0v2"></path>
+        <path d="M9.5 13.5c1.2 1.5 3.8 1.5 5 0"></path>
+      </svg>
       Pedir por WhatsApp
     </ActionLink>
-    <p>
-      Te responderemos con disponibilidad, precio y opciones de personalización.
-    </p>
+    <p>Te confirmamos disponibilidad y acabamos de definirlo contigo.</p>
   </div>
 </aside>

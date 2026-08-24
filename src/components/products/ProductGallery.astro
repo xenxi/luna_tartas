@@ -13,29 +13,99 @@ const { product } = Astro.props;
 const galleryItems = [product.media.cover, ...(product.media.gallery ?? [])];
 
 const media = await Promise.all(
-  galleryItems.map(async (item, index) => {
+  galleryItems.map(async (item) => {
     const image = catalogImageMap[item.src];
 
     if (image === undefined) {
       throw new Error(`Product gallery image is missing: ${item.src}`);
     }
 
-    return buildMediaProjection(image, item.alt, {
-      widths: index === 0 ? [480, 720, 960, 1200] : [320, 480, 640, 800],
-      sizes:
-        index === 0
-          ? '(min-width: 90rem) 42rem, (min-width: 48rem) 52vw, calc(100vw - 2 * var(--gutter))'
-          : '(min-width: 90rem) 20rem, (min-width: 48rem) 25vw, calc(50vw - 2 * var(--gutter))',
-    });
+    return {
+      projection: await buildMediaProjection(image, item.alt, {
+        widths: [480, 720, 960, 1200],
+        sizes:
+          '(min-width: 90rem) 42rem, (min-width: 64rem) 50vw, calc(100vw - 2 * var(--gutter))',
+      }),
+      fullSrc: image.src,
+      width: image.width,
+      height: image.height,
+    };
   }),
 );
 
 const [cover, ...alternatives] = media;
 ---
 
-<section class="product-gallery" aria-label={`Imágenes de ${product.name}`}>
-  <div class="product-gallery__cover">
-    <ResponsiveMedia media={cover} loading="eager" fetchPriority="high" />
+<section
+  class="product-gallery"
+  aria-label={`Imágenes de ${product.name}`}
+  data-product-gallery
+>
+  <div class="product-gallery__stage">
+    <div class="product-gallery__slides">
+      {
+        media.map((item, index) => (
+          <div
+            class="product-gallery__slide"
+            data-gallery-slide
+            data-gallery-index={index}
+            hidden={index !== 0}
+          >
+            <a
+              class="product-gallery__zoom-trigger"
+              href={item.fullSrc}
+              aria-label={`Ampliar imagen ${index + 1} de ${media.length}: ${item.projection.alt}`}
+              data-gallery-open
+              data-full-src={item.fullSrc}
+              data-full-width={item.width}
+              data-full-height={item.height}
+            >
+              <ResponsiveMedia
+                media={item.projection}
+                loading={index === 0 ? 'eager' : 'lazy'}
+                fetchPriority={index === 0 ? 'high' : 'auto'}
+              />
+              <span class="product-gallery__zoom-label" aria-hidden="true">
+                <svg viewBox="0 0 24 24" focusable="false">
+                  <circle cx="10.5" cy="10.5" r="5.5" />
+                  <path d="m15 15 4 4M10.5 8v5M8 10.5h5" />
+                </svg>
+                Ampliar
+              </span>
+            </a>
+          </div>
+        ))
+      }
+    </div>
+
+    {
+      alternatives.length > 0 && (
+        <>
+          <button
+            class="product-gallery__arrow product-gallery__arrow--previous"
+            type="button"
+            aria-label="Ver imagen anterior"
+            data-gallery-previous
+            hidden
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <path d="m14.5 5-7 7 7 7" />
+            </svg>
+          </button>
+          <button
+            class="product-gallery__arrow product-gallery__arrow--next"
+            type="button"
+            aria-label="Ver imagen siguiente"
+            data-gallery-next
+            hidden
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <path d="m9.5 5 7 7-7 7" />
+            </svg>
+          </button>
+        </>
+      )
+    }
   </div>
 
   {
@@ -43,11 +113,197 @@ const [cover, ...alternatives] = media;
       <div
         class="product-gallery__alternatives"
         aria-label="Más vistas del producto"
+        style={`--gallery-count: ${media.length}`}
       >
-        {alternatives.map((alternative) => (
-          <ResponsiveMedia media={alternative} />
+        {media.map((item, index) => (
+          <a
+            class="product-gallery__thumbnail"
+            href={item.fullSrc}
+            aria-label={`Mostrar imagen ${index + 1} de ${media.length}`}
+            aria-current={index === 0 ? 'true' : undefined}
+            data-gallery-thumbnail
+            data-gallery-index={index}
+          >
+            <ResponsiveMedia media={item.projection} />
+          </a>
         ))}
       </div>
     )
   }
+
+  <p class="product-gallery__status" aria-live="polite" data-gallery-status>
+    Imagen 1 de {media.length}
+  </p>
+
+  <dialog
+    class="product-gallery__lightbox"
+    aria-label={`Vista ampliada de ${product.name}`}
+    data-gallery-lightbox
+  >
+    <div class="product-gallery__lightbox-inner">
+      <button
+        class="product-gallery__lightbox-close"
+        type="button"
+        aria-label="Cerrar imagen ampliada"
+        data-gallery-close
+      >
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <path d="m6 6 12 12M18 6 6 18"></path>
+        </svg>
+      </button>
+      {
+        alternatives.length > 0 && (
+          <button
+            class="product-gallery__lightbox-arrow product-gallery__lightbox-arrow--previous"
+            type="button"
+            aria-label="Ver imagen anterior ampliada"
+            data-lightbox-previous
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <path d="m14.5 5-7 7 7 7" />
+            </svg>
+          </button>
+        )
+      }
+      <figure>
+        <img
+          src={cover.fullSrc}
+          alt={cover.projection.alt}
+          width={cover.width}
+          height={cover.height}
+          decoding="async"
+          data-lightbox-image
+        />
+        <figcaption data-lightbox-caption>{cover.projection.alt}</figcaption>
+      </figure>
+      {
+        alternatives.length > 0 && (
+          <button
+            class="product-gallery__lightbox-arrow product-gallery__lightbox-arrow--next"
+            type="button"
+            aria-label="Ver imagen siguiente ampliada"
+            data-lightbox-next
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <path d="m9.5 5 7 7-7 7" />
+            </svg>
+          </button>
+        )
+      }
+    </div>
+  </dialog>
 </section>
+
+<script>
+  const galleries = document.querySelectorAll<HTMLElement>(
+    '[data-product-gallery]',
+  );
+
+  galleries.forEach((gallery) => {
+    const slides = Array.from(
+      gallery.querySelectorAll<HTMLElement>('[data-gallery-slide]'),
+    );
+    const thumbnails = Array.from(
+      gallery.querySelectorAll<HTMLAnchorElement>('[data-gallery-thumbnail]'),
+    );
+    const previous = gallery.querySelector<HTMLButtonElement>(
+      '[data-gallery-previous]',
+    );
+    const next = gallery.querySelector<HTMLButtonElement>(
+      '[data-gallery-next]',
+    );
+    const status = gallery.querySelector<HTMLElement>('[data-gallery-status]');
+    const lightbox = gallery.querySelector<HTMLDialogElement>(
+      '[data-gallery-lightbox]',
+    );
+    const lightboxImage = gallery.querySelector<HTMLImageElement>(
+      '[data-lightbox-image]',
+    );
+    const lightboxCaption = gallery.querySelector<HTMLElement>(
+      '[data-lightbox-caption]',
+    );
+
+    if (slides.length === 0 || lightbox === null || lightboxImage === null) {
+      return;
+    }
+
+    gallery.classList.add('product-gallery--enhanced');
+    previous?.removeAttribute('hidden');
+    next?.removeAttribute('hidden');
+
+    let activeIndex = 0;
+
+    const selectImage = (requestedIndex: number) => {
+      activeIndex = (requestedIndex + slides.length) % slides.length;
+
+      slides.forEach((slide, index) => {
+        slide.hidden = index !== activeIndex;
+      });
+      thumbnails.forEach((thumbnail, index) => {
+        if (index === activeIndex) {
+          thumbnail.setAttribute('aria-current', 'true');
+        } else {
+          thumbnail.removeAttribute('aria-current');
+        }
+      });
+
+      const activeTrigger = slides[
+        activeIndex
+      ]?.querySelector<HTMLAnchorElement>('[data-gallery-open]');
+      const activeImage =
+        slides[activeIndex]?.querySelector<HTMLImageElement>('img');
+      const source = activeTrigger?.dataset.fullSrc;
+
+      if (activeImage && source) {
+        lightboxImage.src = source;
+        lightboxImage.alt = activeImage.alt;
+        lightboxImage.width = Number(activeTrigger.dataset.fullWidth ?? 0);
+        lightboxImage.height = Number(activeTrigger.dataset.fullHeight ?? 0);
+        if (lightboxCaption) lightboxCaption.textContent = activeImage.alt;
+      }
+      if (status)
+        status.textContent = `Imagen ${activeIndex + 1} de ${slides.length}`;
+    };
+
+    const showPrevious = () => selectImage(activeIndex - 1);
+    const showNext = () => selectImage(activeIndex + 1);
+
+    thumbnails.forEach((thumbnail, index) => {
+      thumbnail.addEventListener('click', (event) => {
+        event.preventDefault();
+        selectImage(index);
+      });
+    });
+
+    previous?.addEventListener('click', showPrevious);
+    next?.addEventListener('click', showNext);
+    gallery
+      .querySelector('[data-lightbox-previous]')
+      ?.addEventListener('click', showPrevious);
+    gallery
+      .querySelector('[data-lightbox-next]')
+      ?.addEventListener('click', showNext);
+
+    gallery
+      .querySelectorAll<HTMLAnchorElement>('[data-gallery-open]')
+      .forEach((trigger, index) => {
+        trigger.addEventListener('click', (event) => {
+          event.preventDefault();
+          selectImage(index);
+          lightbox.showModal();
+        });
+      });
+
+    gallery
+      .querySelector('[data-gallery-close]')
+      ?.addEventListener('click', () => lightbox.close());
+
+    lightbox.addEventListener('click', (event) => {
+      if (event.target === lightbox) lightbox.close();
+    });
+    lightbox.addEventListener('keydown', (event) => {
+      if (event.key === 'ArrowLeft') showPrevious();
+      if (event.key === 'ArrowRight') showNext();
+    });
+  });
+</script>

@@ -117,13 +117,18 @@ describe('product detail route', () => {
     );
     expect(relatedComponent).toContain('itemsWithMedia.length > 0');
     expect(relatedProjection).toContain('getRelatedProducts');
-    expect(relatedProjection).toContain('limit = 3');
+    expect(relatedProjection).toContain('limit = 4');
+    expect(relatedProjection).toContain('getPublishedProducts');
     expect(gallery).toContain(
       '[product.media.cover, ...(product.media.gallery ?? [])]',
     );
-    expect(gallery).toContain('loading="eager"');
-    expect(gallery).toContain('fetchPriority="high"');
+    expect(gallery).toContain("loading={index === 0 ? 'eager' : 'lazy'}");
+    expect(gallery).toContain("fetchPriority={index === 0 ? 'high' : 'auto'}");
     expect(gallery).toContain('alternatives.length > 0');
+    expect(gallery).toContain('<dialog');
+    expect(gallery).toContain('lightbox.showModal()');
+    expect(gallery).toContain("event.key === 'ArrowLeft'");
+    expect(gallery).toContain('aria-live="polite"');
     expect(responsiveMedia).toContain('width={media.width}');
     expect(responsiveMedia).toContain('height={media.height}');
     expect(responsiveMedia).toContain('fetchpriority={fetchPriority}');

@@ -50,7 +50,7 @@ const itemsWithMedia: ProductCardProjection[] = await Promise.all(
         title={related.title}
         intro={related.intro}
       >
-        <CardList count={itemsWithMedia.length} columns={3}>
+        <CardList count={itemsWithMedia.length} columns={4}>
           {itemsWithMedia.map((relatedProduct) => (
             <li>
               <ProductCard product={relatedProduct} />

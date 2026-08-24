@@ -30,6 +30,16 @@ function isAllowedAnalyticsModule(attributes) {
   );
 }
 
+function isAllowedProductGalleryModule(relative, attributes, source) {
+  return (
+    relative.startsWith(`productos${path.sep}`) &&
+    /\btype="module"/i.test(attributes) &&
+    !/\bsrc=/i.test(attributes) &&
+    source.includes('[data-product-gallery]') &&
+    source.includes('.showModal()')
+  );
+}
+
 try {
   await walk(root);
 } catch {
@@ -50,10 +60,13 @@ if (htmlFiles.length === 0) {
       `${relative}: falta viewport responsive`,
     );
     requireMatch(html, /<main\b[^>]*>/i, `${relative}: falta main`);
-    for (const script of html.matchAll(/<script\b([^>]*)>/gi)) {
+    for (const script of html.matchAll(
+      /<script\b([^>]*)>([\s\S]*?)<\/script>/gi,
+    )) {
       if (
         !/type="application\/ld\+json"/i.test(script[1]) &&
-        !isAllowedAnalyticsModule(script[1])
+        !isAllowedAnalyticsModule(script[1]) &&
+        !isAllowedProductGalleryModule(relative, script[1], script[2])
       )
         failures.push(
           `${relative}: el artefacto carga JavaScript cliente no permitido`,
@@ -121,6 +134,6 @@ if (failures.length > 0) {
   process.exitCode = 1;
 } else {
   console.log(
-    `Responsive audit PASS (${htmlFiles.length} HTML, no-JS, viewport, media, targets y reduced-motion)`,
+    `Responsive audit PASS (${htmlFiles.length} HTML, JS acotado, viewport, media, targets y reduced-motion)`,
   );
 }
