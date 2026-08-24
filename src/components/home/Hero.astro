@@ -1,5 +1,5 @@
 ---
-import { Picture } from 'astro:assets';
+import { Image, Picture } from 'astro:assets';
 import heroImage from '../../assets/home/tarta-hero.png';
 import heartWatercolor from '../../assets/home/heart-watercolor.png';
 import { heroContent } from '../../content/home/hero';
@@ -65,11 +65,12 @@ import './hero.css';
     </div>
 
     <div class="hero__seal" aria-hidden="true">
-      <img
+      <Image
         class="hero__seal-heart"
-        src={heartWatercolor.src}
+        src={heartWatercolor}
         width={heartWatercolor.width}
         height={heartWatercolor.height}
+        format="webp"
         alt="Corazón decorativo en acuarela."
         loading="lazy"
         decoding="async"

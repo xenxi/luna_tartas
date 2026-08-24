@@ -69,7 +69,19 @@ for (const file of htmlFiles) {
     fail(`${route} contains a non-public placeholder`);
   }
   for (const match of html.matchAll(/\b(?:href|src)="([^"]*)"/g)) {
-    if (match[1].trim() === '') fail(`${route} contains an empty ${match[0]}`);
+    const reference = match[1].trim();
+    if (reference === '') fail(`${route} contains an empty ${match[0]}`);
+
+    if (reference.startsWith('/') && !reference.startsWith('//')) {
+      const assetPath = artifactRoute(reference.split('#')[0].split('?')[0]);
+      if (assetPath.startsWith('/_astro/')) {
+        try {
+          await access(join(dist, assetPath.slice(1)));
+        } catch {
+          fail(`${route} references missing asset ${reference}`);
+        }
+      }
+    }
   }
 }
 
