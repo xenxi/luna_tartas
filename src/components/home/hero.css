@@ -511,10 +511,10 @@
 
   .hero__transition-cutout {
     position: absolute;
-    inset: 0;
+    inset: 0 0 -1px;
     display: block;
     inline-size: 100%;
-    block-size: 100%;
+    block-size: calc(100% + 1px);
   }
 
   .hero__transition-cutout path {
