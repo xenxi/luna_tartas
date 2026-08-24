@@ -338,8 +338,8 @@
   .category-index-hero::after {
     background: linear-gradient(
       180deg,
-      color-mix(in srgb, var(--color-canvas) 97%, transparent) 0%,
-      color-mix(in srgb, var(--color-canvas) 88%, transparent) 48%,
+      var(--color-header-mobile) 0%,
+      color-mix(in srgb, var(--color-header-mobile) 88%, transparent) 42%,
       transparent 76%
     );
   }

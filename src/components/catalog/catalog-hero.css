@@ -150,9 +150,9 @@
   .catalog-hero > .responsive-media::after {
     background: linear-gradient(
       180deg,
-      var(--color-surface) 0%,
-      rgb(255 252 248 / 54%) 20%,
-      transparent 58%
+      var(--color-header-mobile) 0%,
+      color-mix(in srgb, var(--color-header-mobile) 72%, transparent) 18%,
+      transparent 52%
     );
   }
 

@@ -206,6 +206,26 @@
   .hero {
     min-block-size: 36.5rem;
     padding-block: 0 var(--space-12);
+    background:
+      radial-gradient(
+        ellipse at left top,
+        rgb(255 255 255 / 38%) 0%,
+        rgb(255 255 255 / 10%) 42%,
+        transparent 68%
+      ),
+      linear-gradient(
+        to bottom,
+        var(--color-header-mobile) 0%,
+        color-mix(
+            in srgb,
+            var(--color-header-mobile) 62%,
+            var(--hero-background-light)
+          )
+          3rem,
+        var(--hero-background-light) 6.5rem,
+        var(--hero-background-base) 58%,
+        var(--hero-background-rose) 100%
+      );
   }
 
   .hero__frame {
@@ -288,6 +308,21 @@
 
   .hero__media::before {
     content: none;
+  }
+
+  .hero__media::after {
+    position: absolute;
+    z-index: var(--z-raised);
+    inset: 0;
+    background: linear-gradient(
+      to bottom,
+      var(--color-header-mobile) 0%,
+      color-mix(in srgb, var(--color-header-mobile) 86%, transparent) 1.5rem,
+      color-mix(in srgb, var(--hero-background-light) 58%, transparent) 4.5rem,
+      transparent 8.5rem
+    );
+    content: '';
+    pointer-events: none;
   }
 
   .hero__picture,

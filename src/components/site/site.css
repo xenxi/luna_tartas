@@ -530,8 +530,9 @@
   .site-header {
     background: linear-gradient(
       to top,
-      color-mix(in srgb, var(--color-decoration-blush) 42%, var(--color-canvas)),
-      var(--color-surface)
+      var(--color-header-mobile) 0%,
+      color-mix(in srgb, var(--color-header-mobile) 62%, white) 58%,
+      white 100%
     );
   }
 
