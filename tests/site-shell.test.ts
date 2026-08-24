@@ -47,8 +47,14 @@ describe('public site shell', () => {
   it('composes one header, main and footer around the page slot', () => {
     expect(layout).toContain('<SiteHeader currentPath={Astro.url.pathname} />');
     expect(layout).toContain('<main id="main-content" tabindex="-1">');
-    expect(layout).toContain('<SiteFooter currentPath={Astro.url.pathname} />');
+    expect(layout).toContain('<SiteFooter currentPath={Astro.url.pathname}>');
     expect(layout).toContain('<AnalyticsConsent />');
+    expect(layout.indexOf('<AnalyticsConsent />')).toBeGreaterThan(
+      layout.indexOf('<SiteFooter currentPath={Astro.url.pathname}>'),
+    );
+    expect(layout.indexOf('<AnalyticsConsent />')).toBeLessThan(
+      layout.indexOf('</SiteFooter>'),
+    );
     expect(footer).toContain('<slot />');
     expect(footer.indexOf('<slot />')).toBeLessThan(
       footer.indexOf('class="site-footer__closing visual-container"'),
@@ -148,27 +154,47 @@ describe('public site shell', () => {
     expect(footer).not.toContain('target="_blank"');
   });
 
-  it('composes the reference Footer with real navigation and icon-only contacts', () => {
-    expect(footer).toContain('const footerProducts: readonly FooterLink[]');
+  it('composes desktop and mobile Footers from real navigation with icon-only contacts', () => {
+    expect(footer).toContain('import { getPublishedTaxonomies }');
+    expect(footer).toContain('import { loadCatalog }');
+    expect(footer).toContain(
+      "getPublishedTaxonomies(\n  catalog,\n  'category'",
+    );
+    expect(footer).toContain(
+      "getPublishedTaxonomies(\n  catalog,\n  'occasion'",
+    );
+    expect(footer).toContain(
+      "getPublishedTaxonomies(\n  catalog,\n  'recipient'",
+    );
+    expect(footer).toContain('const footerProducts = categoryLinks');
     expect(footer).toContain('const footerOccasions: readonly FooterLink[]');
     expect(footer).toContain('aria-label="Navegación del pie"');
+    expect(footer).toContain('aria-label="Navegación del pie en móvil"');
     expect(footer).toContain('<h2>Productos</h2>');
     expect(footer).toContain('<h2>Categorías</h2>');
     expect(footer).toContain('<h2>Información</h2>');
     expect(footer).toContain('<h2>Síguenos</h2>');
-    expect(footer).toContain('Tartas de pañales');
-    expect(footer).toContain('Papelería personalizada');
-    expect(footer).toContain('Láminas personalizadas');
-    expect(footer).toContain('Packs personalizados');
-    expect(footer).toContain('Nacimiento');
-    expect(footer).toContain('Baby shower');
-    expect(footer).toContain('Cumpleaños');
-    expect(footer).toContain('Primera Comunión');
     expect(footer).toContain('Y más');
-    expect(footer).toContain('aria-label="Escríbenos por WhatsApp"');
-    expect(footer).toContain('aria-label="Escríbenos por email"');
-    expect(footer).toContain('aria-label="Síguenos en Instagram"');
-    expect(footer.match(/<svg\b/g)).toHaveLength(3);
+    expect(footer.match(/aria-label="Escríbenos por WhatsApp"/g)).toHaveLength(
+      2,
+    );
+    expect(footer.match(/aria-label="Escríbenos por email"/g)).toHaveLength(2);
+    expect(footer.match(/aria-label="Síguenos en Instagram"/g)).toHaveLength(2);
+    expect(footer).toContain('const mobileFooterSections');
+    expect(footer).toContain("label: 'Productos'");
+    expect(footer).toContain("label: 'Categorías'");
+    expect(footer).toContain("label: 'Ocasiones'");
+    expect(footer).toContain("label: 'Para regalar'");
+    expect(footer).toContain("label: 'Sobre Luna'");
+    expect(footer).toContain("label: 'Ayuda'");
+    expect(footer).toContain("label: 'Todos los productos'");
+    expect(footer).toContain("label: 'Todas las categorías'");
+    expect(footer).toContain("label: 'Todas las ocasiones'");
+    expect(footer).toContain("label: 'Ver todas las opciones'");
+    expect(footer).toContain('<details class="site-footer__accordion">');
+    expect(footer).toContain('<summary>');
+    expect(footer).not.toContain('<script');
+    expect(footer).not.toContain('client:');
     expect(footer).toContain("'Sobre Luna'");
     expect(footer).toContain("'Cómo trabajamos'");
     expect(footer).toContain("'Preguntas frecuentes'");
@@ -184,6 +210,13 @@ describe('public site shell', () => {
     expect(styles).toContain(
       'grid-template-columns: repeat(4, minmax(0, 1fr))',
     );
+    expect(styles).toContain('.site-footer__columns--desktop');
+    expect(styles).toContain('.site-footer__mobile-navigation');
+    expect(styles).toContain('.site-footer__accordion[open]');
+    expect(styles).toContain('--mobile-navigation-clearance: 4.75rem');
+    expect(styles).not.toContain('.site-footer--home .site-footer__inner');
+    expect(styles).toContain('.site-footer > .analytics-consent-region');
+    expect(styles).toContain('order: 3');
   });
 
   it('publishes the approved logo as the favicon without deriving a brand mark', () => {

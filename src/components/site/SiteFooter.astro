@@ -3,9 +3,12 @@ import { Image } from 'astro:assets';
 import footerFlowers from '../../assets/site/footer-magnolia.png';
 import { publicContactConfig } from '../../config/contact';
 import { isCurrentNavigationPath } from '../../config/navigation';
+import { getPublishedTaxonomies } from '../../lib/catalog/domain/queries';
 import { routes } from '../../lib/catalog/domain/routes';
+import { loadCatalog } from '../../lib/catalog/source';
 import { withBasePath, withoutBasePath } from '../../lib/site/urls';
 import Ornament from '../ui/Ornament.astro';
+import BrandHomeLink from './BrandHomeLink.astro';
 
 interface Props {
   currentPath: string;
@@ -16,46 +19,50 @@ interface FooterLink {
   readonly href: string;
 }
 
+type FooterSectionIcon =
+  'products' | 'categories' | 'occasions' | 'recipients' | 'about' | 'help';
+
+interface MobileFooterSection {
+  readonly id: string;
+  readonly label: string;
+  readonly icon: FooterSectionIcon;
+  readonly links: readonly FooterLink[];
+  readonly markCurrent?: boolean;
+}
+
 const { currentPath } = Astro.props;
 const buildYear = new Date().getUTCFullYear();
 const routePath = withoutBasePath(currentPath, import.meta.env.BASE_URL);
+const catalog = await loadCatalog();
 
-const footerProducts: readonly FooterLink[] = [
-  {
-    label: 'Tartas de pañales',
-    href: routes.taxonomy('category', 'tartas-de-panales'),
-  },
-  {
-    label: 'Papelería personalizada',
-    href: routes.taxonomy('category', 'papeleria-personalizada'),
-  },
-  {
-    label: 'Láminas personalizadas',
-    href: routes.taxonomy('category', 'laminas-personalizadas'),
-  },
-  {
-    label: 'Packs personalizados',
-    href: routes.taxonomy('category', 'packs-personalizados'),
-  },
-];
+const categoryLinks: readonly FooterLink[] = getPublishedTaxonomies(
+  catalog,
+  'category',
+).map((taxonomy) => ({
+  label: taxonomy.name,
+  href: routes.taxonomy('category', taxonomy.slug),
+}));
+
+const occasionLinks: readonly FooterLink[] = getPublishedTaxonomies(
+  catalog,
+  'occasion',
+).map((taxonomy) => ({
+  label: taxonomy.name,
+  href: routes.taxonomy('occasion', taxonomy.slug),
+}));
+
+const recipientLinks: readonly FooterLink[] = getPublishedTaxonomies(
+  catalog,
+  'recipient',
+).map((taxonomy) => ({
+  label: taxonomy.name,
+  href: routes.taxonomy('recipient', taxonomy.slug),
+}));
+
+const footerProducts = categoryLinks;
 
 const footerOccasions: readonly FooterLink[] = [
-  {
-    label: 'Nacimiento',
-    href: routes.taxonomy('occasion', 'nacimiento'),
-  },
-  {
-    label: 'Baby shower',
-    href: routes.taxonomy('occasion', 'baby-shower'),
-  },
-  {
-    label: 'Cumpleaños',
-    href: routes.taxonomy('occasion', 'cumpleanos'),
-  },
-  {
-    label: 'Primera Comunión',
-    href: routes.taxonomy('occasion', 'comunion'),
-  },
+  ...occasionLinks,
   { label: 'Y más', href: routes.taxonomyIndex('occasion') },
 ];
 
@@ -70,6 +77,79 @@ const footerInformation = [
 const footerHref = (href: string): string =>
   withBasePath(href, import.meta.env.BASE_URL);
 const underConstructionHref = footerHref(routes.underConstruction());
+
+const aboutLinks: readonly FooterLink[] = [
+  { label: 'Sobre Luna', href: routes.underConstruction() },
+  { label: 'Cómo trabajamos', href: routes.underConstruction() },
+  { label: 'Contacto', href: routes.underConstruction() },
+];
+
+const helpLinks: readonly FooterLink[] = [
+  { label: 'Envíos y entregas', href: routes.underConstruction() },
+  { label: 'Preguntas frecuentes', href: routes.underConstruction() },
+];
+
+const mobileFooterSections: readonly MobileFooterSection[] = [
+  {
+    id: 'products',
+    label: 'Productos',
+    icon: 'products',
+    links: [
+      ...categoryLinks,
+      { label: 'Todos los productos', href: routes.products() },
+    ],
+  },
+  {
+    id: 'categories',
+    label: 'Categorías',
+    icon: 'categories',
+    links: [
+      ...categoryLinks,
+      {
+        label: 'Todas las categorías',
+        href: routes.taxonomyIndex('category'),
+      },
+    ],
+  },
+  {
+    id: 'occasions',
+    label: 'Ocasiones',
+    icon: 'occasions',
+    links: [
+      ...occasionLinks,
+      {
+        label: 'Todas las ocasiones',
+        href: routes.taxonomyIndex('occasion'),
+      },
+    ],
+  },
+  {
+    id: 'recipients',
+    label: 'Para regalar',
+    icon: 'recipients',
+    links: [
+      ...recipientLinks,
+      {
+        label: 'Ver todas las opciones',
+        href: routes.taxonomyIndex('recipient'),
+      },
+    ],
+  },
+  {
+    id: 'about',
+    label: 'Sobre Luna',
+    icon: 'about',
+    links: aboutLinks,
+    markCurrent: false,
+  },
+  {
+    id: 'help',
+    label: 'Ayuda',
+    icon: 'help',
+    links: helpLinks,
+    markCurrent: false,
+  },
+];
 ---
 
 <footer
@@ -77,7 +157,10 @@ const underConstructionHref = footerHref(routes.underConstruction());
 >
   <div class="site-footer__inner visual-container">
     <div class="site-footer__main">
-      <nav class="site-footer__columns" aria-label="Navegación del pie">
+      <nav
+        class="site-footer__columns site-footer__columns--desktop"
+        aria-label="Navegación del pie"
+      >
         <section class="site-footer__group">
           <h2>Productos</h2>
           <ul>
@@ -204,6 +287,173 @@ const underConstructionHref = footerHref(routes.underConstruction());
           </address>
         </section>
       </nav>
+
+      <div class="site-footer__mobile">
+        <div class="site-footer__mobile-brand">
+          <BrandHomeLink location="footer" />
+          <address aria-label="Canales de contacto">
+            <ul class="site-footer__mobile-social">
+              <li>
+                <a
+                  href={publicContactConfig.instagram.href}
+                  aria-label="Síguenos en Instagram"
+                >
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    focusable="false"
+                    aria-hidden="true"
+                  >
+                    <rect x="3.5" y="3.5" width="17" height="17" rx="4.5"
+                    ></rect>
+                    <circle cx="12" cy="12" r="4"></circle>
+                    <circle
+                      cx="17.3"
+                      cy="6.8"
+                      r="0.8"
+                      fill="currentColor"
+                      stroke="none"></circle>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a
+                  href={publicContactConfig.whatsapp.href}
+                  aria-label="Escríbenos por WhatsApp"
+                  data-analytics-contact-whatsapp
+                  data-analytics-cta-location="site-footer"
+                >
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    focusable="false"
+                    aria-hidden="true"
+                  >
+                    <path
+                      d="M20.4 11.7a8.4 8.4 0 0 1-12.5 7.4L3 20.5l1.4-4.7a8.4 8.4 0 1 1 16-4.1Z"
+                    ></path>
+                    <path
+                      d="M8.3 7.7c.2-.4.4-.5.7-.5h.4c.2 0 .4.1.5.4l.8 1.9c.1.2.1.4 0 .5l-.5.7c.6 1.2 1.6 2.1 2.8 2.8l.7-.5c.2-.1.4-.1.5 0l1.9.8c.3.1.4.3.4.5v.4c0 .3-.1.5-.5.7-.5.2-1.1.2-1.8 0-1-.3-2.2-1-3.2-2s-1.7-2.2-2-3.2c-.2-.7-.2-1.3 0-1.8Z"
+                    ></path>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a
+                  href={publicContactConfig.email.href}
+                  aria-label="Escríbenos por email"
+                >
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    focusable="false"
+                    aria-hidden="true"
+                  >
+                    <rect x="3" y="5" width="18" height="14" rx="2"></rect>
+                    <path d="m4 7 8 6 8-6"></path>
+                  </svg>
+                </a>
+              </li>
+            </ul>
+          </address>
+        </div>
+
+        <nav
+          class="site-footer__mobile-navigation"
+          aria-label="Navegación del pie en móvil"
+        >
+          {
+            mobileFooterSections.map((section) => (
+              <details class="site-footer__accordion">
+                <summary>
+                  <span
+                    class={`site-footer__accordion-icon site-footer__accordion-icon--${section.icon}`}
+                    aria-hidden="true"
+                  >
+                    {section.icon === 'products' && (
+                      <svg viewBox="0 0 24 24" focusable="false">
+                        <path d="M4 9h16v12H4Z" />
+                        <path d="M12 9v12M3 6h18v3H3ZM12 6c-3.8 0-5.2-1.3-5.2-2.6C6.8 2.5 7.5 2 8.4 2 10.5 2 12 6 12 6Zm0 0c3.8 0 5.2-1.3 5.2-2.6 0-.9-.7-1.4-1.6-1.4C13.5 2 12 6 12 6Z" />
+                      </svg>
+                    )}
+                    {section.icon === 'categories' && (
+                      <svg viewBox="0 0 24 24" focusable="false">
+                        <rect x="3" y="3" width="7" height="7" rx="1.5" />
+                        <rect x="14" y="3" width="7" height="7" rx="1.5" />
+                        <rect x="3" y="14" width="7" height="7" rx="1.5" />
+                        <rect x="14" y="14" width="7" height="7" rx="1.5" />
+                      </svg>
+                    )}
+                    {section.icon === 'occasions' && (
+                      <svg viewBox="0 0 24 24" focusable="false">
+                        <rect x="3" y="5" width="18" height="16" rx="2" />
+                        <path d="M7 3v4M17 3v4M3 10h18" />
+                        <path d="m8 15 2.5 2.5L16 12" />
+                      </svg>
+                    )}
+                    {section.icon === 'recipients' && (
+                      <svg viewBox="0 0 24 24" focusable="false">
+                        <path d="M12 21S3.5 16.2 3.5 9.6A4.6 4.6 0 0 1 12 7.1a4.6 4.6 0 0 1 8.5 2.5C20.5 16.2 12 21 12 21Z" />
+                      </svg>
+                    )}
+                    {section.icon === 'about' && (
+                      <svg viewBox="0 0 24 24" focusable="false">
+                        <path d="M19.8 15.1A8.5 8.5 0 0 1 8.9 4.2 8.5 8.5 0 1 0 19.8 15.1Z" />
+                      </svg>
+                    )}
+                    {section.icon === 'help' && (
+                      <svg viewBox="0 0 24 24" focusable="false">
+                        <path d="M20.5 11.2a8.5 8.5 0 1 1-3.3-6.7 8.4 8.4 0 0 1 3.3 6.7Z" />
+                        <path d="M5.2 18.2 3 21l4.3-.9M9.5 9a2.6 2.6 0 1 1 4.2 2c-1.2.9-1.7 1.4-1.7 2.5M12 16.5v.01" />
+                      </svg>
+                    )}
+                  </span>
+                  <span class="site-footer__accordion-label">
+                    {section.label}
+                  </span>
+                  <svg
+                    class="site-footer__accordion-chevron"
+                    viewBox="0 0 24 24"
+                    focusable="false"
+                    aria-hidden="true"
+                  >
+                    <path d="m8 10 4 4 4-4" />
+                  </svg>
+                </summary>
+                <div
+                  class="site-footer__accordion-panel"
+                  id={`mobile-footer-${section.id}`}
+                >
+                  <ul>
+                    {section.links.map((item) => (
+                      <li>
+                        <a
+                          href={footerHref(item.href)}
+                          aria-current={
+                            section.markCurrent !== false &&
+                            isCurrentNavigationPath(routePath, item.href)
+                              ? 'page'
+                              : undefined
+                          }
+                        >
+                          <span>{item.label}</span>
+                          <svg
+                            viewBox="0 0 24 24"
+                            focusable="false"
+                            aria-hidden="true"
+                          >
+                            <path d="m9 6 6 6-6 6" />
+                          </svg>
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </details>
+            ))
+          }
+        </nav>
+      </div>
 
       <div class="site-footer__message">
         <p>
