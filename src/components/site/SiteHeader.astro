@@ -2,6 +2,8 @@
 import Ornament from '../ui/Ornament.astro';
 import BrandHomeLink from './BrandHomeLink.astro';
 import PrimaryNavigation from './PrimaryNavigation.astro';
+import { routes } from '../../lib/catalog/domain/routes';
+import { withBasePath } from '../../lib/site/urls';
 
 interface Props {
   currentPath: string;
@@ -15,6 +17,18 @@ const { currentPath } = Astro.props;
 >
   <div class="site-header__inner visual-container">
     <BrandHomeLink location="header" />
+    <a
+      class="site-header__mobile-products"
+      href={withBasePath(routes.products(), import.meta.env.BASE_URL)}
+      aria-label="Ver productos"
+    >
+      <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+        <path d="M5 8.5h14l1 12H4l1-12Z"></path>
+        <path d="M8.5 9V7a3.5 3.5 0 0 1 7 0v2"></path>
+        <path d="M9.5 13.5c.7 1 1.5 1.5 2.5 1.5s1.8-.5 2.5-1.5"></path>
+      </svg>
+      <span aria-hidden="true">♡</span>
+    </a>
     <details class="site-menu">
       <summary>Menú</summary>
       <PrimaryNavigation currentPath={currentPath} />

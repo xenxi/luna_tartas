@@ -72,7 +72,9 @@ const footerHref = (href: string): string =>
 const underConstructionHref = footerHref(routes.underConstruction());
 ---
 
-<footer class="site-footer">
+<footer
+  class:list={['site-footer', { 'site-footer--home': routePath === '/' }]}
+>
   <div class="site-footer__inner visual-container">
     <div class="site-footer__main">
       <nav class="site-footer__columns" aria-label="Navegación del pie">

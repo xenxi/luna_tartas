@@ -201,35 +201,71 @@
 
 @media (max-width: 39.99rem) {
   .custom-idea {
-    --art-left: 4%;
-    --moon-width: 6.75rem;
-    padding-block-start: var(--space-5);
+    --cta-height: 12.5rem;
+    --art-left: 34%;
+    --art-height: 100%;
+    --moon-width: 4.35rem;
+    margin-block-start: var(--space-4);
+    padding-block: var(--space-3) var(--space-8);
+  }
+
+  .custom-idea__panel {
+    inline-size: calc(100% - (2 * var(--gutter)));
+    border-radius: var(--radius-lg);
   }
 
   .custom-idea__copy {
-    inline-size: calc(100% - 3rem);
-    margin-inline-start: var(--space-5);
+    justify-content: center;
+    inline-size: 55%;
+    block-size: 100%;
+    margin-block-start: 0;
+    margin-inline-start: var(--space-4);
+    padding-block: var(--space-3);
   }
 
   .custom-idea__copy h2 {
-    font-size: clamp(1.75rem, 8vw, 2.25rem);
-    gap: 0.35rem;
+    gap: 0.2rem;
+    font-size: clamp(1.25rem, 6vw, 1.55rem);
+    line-height: 0.98;
   }
 
   .custom-idea__copy > p {
-    max-inline-size: 18rem;
+    max-inline-size: 22ch;
+    margin-block-start: var(--space-2);
+    font-size: 0.68rem;
+    line-height: 1.4;
+  }
+
+  .custom-idea__action {
+    margin-block-start: var(--space-3);
   }
 
   .custom-idea__action .action-link {
-    min-block-size: 2.75rem;
+    min-block-size: 2.35rem;
+    padding: 0.45rem 0.65rem;
+    font-size: 0.65rem;
   }
 
   .custom-idea__art-picture {
-    inset-block-end: -0.25rem;
-    block-size: min(66vw, 22rem);
+    inset-block-end: 0;
+    block-size: 100%;
+    -webkit-mask-image: linear-gradient(
+      90deg,
+      transparent 0%,
+      black 22%,
+      black 84%,
+      transparent 100%
+    );
+    mask-image: linear-gradient(
+      90deg,
+      transparent 0%,
+      black 22%,
+      black 84%,
+      transparent 100%
+    );
   }
 
   .custom-idea__moon {
-    inset-inline-end: 0.65rem;
+    inset-inline-end: 0.3rem;
   }
 }

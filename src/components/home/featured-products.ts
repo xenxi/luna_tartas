@@ -5,6 +5,7 @@ import {
 } from '../../lib/catalog/domain/queries';
 import type { Catalog, PublishedProduct } from '../../lib/catalog/domain/model';
 import { routes } from '../../lib/catalog/domain/routes';
+import { formatPriceLabel } from '../catalog/price';
 
 const MOSAIC_SIZE = 5;
 const VERTICAL_CATEGORY_ID = 'tartas-de-panales';
@@ -13,6 +14,7 @@ export interface FeaturedMosaicItem {
   readonly id: string;
   readonly href: string;
   readonly name: string;
+  readonly priceLabel: string;
   readonly mediaSource: {
     readonly src: string;
     readonly alt: string;
@@ -166,6 +168,7 @@ export function projectFeaturedProducts(
       id: product.id,
       href: routes.product(product.slug),
       name: product.name,
+      priceLabel: formatPriceLabel(product.price),
       mediaSource: {
         src: product.media.cover.src,
         alt: product.media.cover.alt,

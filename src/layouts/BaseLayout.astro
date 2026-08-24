@@ -10,6 +10,7 @@ import {
 } from '../lib/seo/metadata';
 import SiteFooter from '../components/site/SiteFooter.astro';
 import SiteHeader from '../components/site/SiteHeader.astro';
+import MobileNavigation from '../components/site/MobileNavigation.astro';
 import DecorativeBackdrop from '../components/site/DecorativeBackdrop.astro';
 import AnalyticsConsent from '../components/site/AnalyticsConsent.astro';
 import AnalyticsInstrumentation from '../components/site/AnalyticsInstrumentation.astro';
@@ -88,6 +89,7 @@ const metadata = createPageMetadata({
     <SiteFooter currentPath={Astro.url.pathname}>
       <AnalyticsConsent />
     </SiteFooter>
+    <MobileNavigation currentPath={Astro.url.pathname} />
     <AnalyticsInstrumentation />
   </body>
 </html>

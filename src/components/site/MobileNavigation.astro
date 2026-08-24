@@ -1,0 +1,72 @@
+---
+import {
+  isCurrentNavigationPath,
+  primaryNavigation,
+} from '../../config/navigation';
+import { withBasePath, withoutBasePath } from '../../lib/site/urls';
+
+interface Props {
+  currentPath: string;
+}
+
+const { currentPath } = Astro.props;
+const routePath = withoutBasePath(currentPath, import.meta.env.BASE_URL);
+---
+
+<nav class="mobile-navigation" aria-label="Navegación móvil">
+  <ul>
+    {
+      primaryNavigation.map((item, index) => {
+        const isCurrent = isCurrentNavigationPath(routePath, item.href);
+
+        return (
+          <li>
+            <a
+              href={withBasePath(item.href, import.meta.env.BASE_URL)}
+              aria-current={isCurrent ? 'page' : undefined}
+            >
+              <span class="mobile-navigation__icon" aria-hidden="true">
+                {index === 0 && (
+                  <svg viewBox="0 0 24 24" focusable="false">
+                    <path d="m3 11 9-8 9 8" />
+                    <path d="M5.5 9.5V21h13V9.5M9.5 21v-6h5v6" />
+                  </svg>
+                )}
+                {index === 1 && (
+                  <svg viewBox="0 0 24 24" focusable="false">
+                    <path d="M5 8.5h14l1 12H4l1-12Z" />
+                    <path d="M8.5 9V7a3.5 3.5 0 0 1 7 0v2" />
+                    <path d="M9.5 13.5c.7 1 1.5 1.5 2.5 1.5s1.8-.5 2.5-1.5" />
+                  </svg>
+                )}
+                {index === 2 && (
+                  <svg viewBox="0 0 24 24" focusable="false">
+                    <rect x="3" y="3" width="7" height="7" rx="1.5" />
+                    <rect x="14" y="3" width="7" height="7" rx="1.5" />
+                    <rect x="3" y="14" width="7" height="7" rx="1.5" />
+                    <rect x="14" y="14" width="7" height="7" rx="1.5" />
+                  </svg>
+                )}
+                {index === 3 && (
+                  <svg viewBox="0 0 24 24" focusable="false">
+                    <rect x="3" y="5" width="18" height="16" rx="2" />
+                    <path d="M7 3v4M17 3v4M3 10h18" />
+                    <path d="m8 15 2.5 2.5L16 12" />
+                  </svg>
+                )}
+                {index === 4 && (
+                  <svg viewBox="0 0 24 24" focusable="false">
+                    <circle cx="12" cy="8" r="3.5" />
+                    <path d="M5 21v-2.5A5.5 5.5 0 0 1 10.5 13h3a5.5 5.5 0 0 1 5.5 5.5V21" />
+                    <path d="M18.5 7.5c1-1.6 3.5-.9 3.5.9 0 1.5-3.5 3.2-3.5 3.2S15 9.9 15 8.4c0-1.8 2.5-2.5 3.5-.9Z" />
+                  </svg>
+                )}
+              </span>
+              <span>{item.label}</span>
+            </a>
+          </li>
+        );
+      })
+    }
+  </ul>
+</nav>

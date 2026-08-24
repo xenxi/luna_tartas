@@ -12,6 +12,10 @@ const navigation = readFileSync(
   'src/components/site/PrimaryNavigation.astro',
   'utf8',
 );
+const mobileNavigation = readFileSync(
+  'src/components/site/MobileNavigation.astro',
+  'utf8',
+);
 const brand = readFileSync('src/components/site/BrandHomeLink.astro', 'utf8');
 const styles = readFileSync('src/components/site/site.css', 'utf8');
 
@@ -87,6 +91,21 @@ describe('public site shell', () => {
     expect(navigation).toContain('<span>Sobre Luna</span>');
     expect(navigation).toContain('primary-navigation__search');
     expect(navigation).not.toContain('<button');
+  });
+
+  it('keeps the five primary destinations available in a fixed mobile bar', () => {
+    expect(layout).toContain(
+      '<MobileNavigation currentPath={Astro.url.pathname} />',
+    );
+    expect(mobileNavigation).toContain('primaryNavigation.map');
+    expect(mobileNavigation).toContain('aria-label="Navegación móvil"');
+    expect(mobileNavigation).toContain("'page'");
+    expect(mobileNavigation).not.toContain('<script');
+    expect(styles).toContain('.mobile-navigation');
+    expect(styles).toContain('position: fixed');
+    expect(styles).toContain(
+      'grid-template-columns: repeat(5, minmax(0, 1fr))',
+    );
   });
 
   it('uses the official logo and non-interactive heart ornaments', () => {
