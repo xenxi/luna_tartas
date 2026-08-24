@@ -61,7 +61,9 @@ Marca, URL canónica, locale, moneda permitida, WhatsApp y analytics no se repit
 - Toda relación apunta a una entidad existente y publicable según la política definida.
 - Producto publicado: nombre, resumen, al menos una categoría, portada válida y texto alternativo significativo.
 - `fixed/from` requieren importe positivo válido y moneda admitida; `on_request` no publica un Offer ficticio.
-- No hay dos portadas ni referencias de medios fuera del directorio permitido.
+- Cada producto tiene una portada principal y puede declarar una variante
+  opcional `cover.category`; ninguna referencia de medios sale del directorio
+  permitido.
 - Una entidad draft no aparece en HTML público, sitemap, JSON-LD ni `/catalog.json`.
 - Una entidad sólo puede pasar a `published` cuando sus campos obligatorios, medios, derechos, copy y aprobación editorial constan en la evidencia de readiness; `TBD` y fixtures permanecen fuera de toda proyección pública.
 - URLs, texto SEO y campos estructurados respetan longitud/forma cuando el schema lo pueda validar; la semántica se audita además.
@@ -88,7 +90,7 @@ Un fallo propio del mapping lanza `CatalogSourceError` con `collection`, `entryI
 
 Tras el mapping, el dominio vuelve a comprobar IDs y slugs, unicidad por colección/espacio URL, bloques mínimos de publicación, alt significativo y variantes de precio. Las referencias de cualquier producto deben existir; una referencia desde un producto publicado exige además que la taxonomía destino esté publicada. Las referencias repetidas dentro del mismo campo se rechazan. La única moneda admitida en V1 es `EUR`, centralizada en `src/config/catalog.ts`; ampliar esa lista requiere un requisito de negocio confirmado.
 
-El adaptador resuelve toda portada y galería declarada —también en drafts— contra `src/assets/catalog`, comprueba que el destino real permanezca dentro de esa raíz, sea un archivo legible y coincida con un formato permitido con dimensiones positivas. Raster aplica 8 MiB y 24 MP; SVG aplica 250 KiB y rechaza scripts, event handlers, declaraciones o referencias externas/ejecutables. PNG, JPEG, WebP y AVIF se identifican por sus cabeceras de dimensiones, no sólo por la extensión.
+El adaptador resuelve toda portada, variante `cover.category` y galería declarada —también en drafts— contra `src/assets/catalog`, comprueba que el destino real permanezca dentro de esa raíz, sea un archivo legible y coincida con un formato permitido con dimensiones positivas. Raster aplica 8 MiB y 24 MP; SVG aplica 250 KiB y rechaza scripts, event handlers, declaraciones o referencias externas/ejecutables. PNG, JPEG, WebP y AVIF se identifican por sus cabeceras de dimensiones, no sólo por la extensión.
 
 `CatalogValidationError` conserva todos los issues detectados con código, entidad, campo, valor problemático y corrección esperada. `loadCatalog()` combina en una sola pasada los issues de dominio y filesystem. La generación estática invoca esa carga antes de renderizar la entrada pública, por lo que un error deja el build con salida no cero y CI no puede avanzar al despliegue.
 

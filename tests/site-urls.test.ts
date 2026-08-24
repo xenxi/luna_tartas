@@ -20,5 +20,7 @@ describe('deployment URL helpers', () => {
     expect(withoutBasePath('/categorias/', '/luna_tartas/')).toBe(
       '/categorias/',
     );
+    expect(withoutBasePath('/categorias/', '/')).toBe('/categorias/');
+    expect(withoutBasePath('/', '/')).toBe('/');
   });
 });

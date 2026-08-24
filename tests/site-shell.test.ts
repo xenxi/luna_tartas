@@ -74,6 +74,10 @@ describe('public site shell', () => {
       /@media \(min-width: 60rem\) \{\s+\.site-header--home \{\s+position: absolute;/,
     );
     expect(styles).toContain('.primary-navigation--header a[aria-current=');
+    expect(styles).toContain(
+      ".primary-navigation--header a[aria-current='page']::before",
+    );
+    expect(styles).toContain('inset-inline: -1rem');
     expect(navigation).toContain('<span>Sobre Luna</span>');
     expect(navigation).toContain('primary-navigation__search');
     expect(navigation).not.toContain('<button');

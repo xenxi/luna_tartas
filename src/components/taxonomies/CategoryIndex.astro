@@ -1,0 +1,116 @@
+---
+import { Image, Picture } from 'astro:assets';
+import heroImage from '../../assets/home/tarta-hero.png';
+import moonImage from '../../assets/home/luna-nube.png';
+import heartWatercolor from '../../assets/home/heart-watercolor.png';
+import type { Catalog } from '../../lib/catalog/domain/model';
+import { categoryIndexContent } from '../../content/category-index';
+import { projectTaxonomyIndex } from './taxonomy-listing';
+import { taxonomyIndexBreadcrumb } from '../../lib/seo/navigation';
+import Breadcrumb from '../navigation/Breadcrumb.astro';
+import CustomIdeaCta from '../home/CustomIdeaCta.astro';
+import CategoryCard from './CategoryCard.astro';
+import CategoryBenefits from './CategoryBenefits.astro';
+import './category-index.css';
+
+interface Props {
+  catalog: Catalog;
+}
+
+const { catalog } = Astro.props;
+const listing = projectTaxonomyIndex(catalog, 'category', 'productos');
+---
+
+<div class="category-index-page">
+  <div class="category-index-page__breadcrumb">
+    <Breadcrumb items={taxonomyIndexBreadcrumb('category')} />
+  </div>
+
+  <section class="category-index-hero" aria-labelledby="category-index-title">
+    <Picture
+      src={heroImage}
+      alt={categoryIndexContent.hero.imageAlt}
+      formats={['avif', 'webp']}
+      fallbackFormat="jpg"
+      widths={[768, 1024, 1440, 1672]}
+      sizes="(min-width: 64rem) min(92vw, 93.75rem), calc(100vw - 2rem)"
+      loading="eager"
+      decoding="async"
+      fetchpriority="high"
+      class="category-index-hero__image"
+      pictureAttributes={{ class: 'category-index-hero__picture' }}
+    />
+    <div class="category-index-hero__copy">
+      <p class="category-index-hero__eyebrow">
+        {categoryIndexContent.hero.eyebrow}
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <path
+            d="M12 20S4.5 16 4.5 10.7c0-3.4 4.4-4.6 7.5-.9 3.1-3.7 7.5-2.5 7.5.9C19.5 16 12 20 12 20Z"
+          ></path>
+        </svg>
+      </p>
+      <h1 id="category-index-title">{categoryIndexContent.hero.title}</h1>
+      <p class="category-index-hero__claim">
+        {categoryIndexContent.hero.claim}
+        <svg viewBox="0 0 44 32" aria-hidden="true" focusable="false">
+          <path
+            d="M8 15c0-9 12-11 16-3 4-8 16-6 16 3 0 8-16 16-16 16S8 23 8 15Z"
+          ></path>
+        </svg>
+      </p>
+      <p class="category-index-hero__description">
+        {categoryIndexContent.hero.copy}
+      </p>
+    </div>
+    <Image
+      src={moonImage}
+      alt="Luna sobre una nube decorativa."
+      aria-hidden="true"
+      loading="lazy"
+      decoding="async"
+      class="category-index-hero__moon"
+    />
+  </section>
+
+  {
+    listing.items.length > 0 && (
+      <section
+        class="category-index-listing"
+        aria-labelledby="category-index-listing-title"
+      >
+        <header>
+          <h2 id="category-index-listing-title">
+            {categoryIndexContent.listing.title}
+            <img
+              src={heartWatercolor.src}
+              width={heartWatercolor.width}
+              height={heartWatercolor.height}
+              alt="Corazón decorativo en acuarela."
+              aria-hidden="true"
+              loading="lazy"
+              decoding="async"
+            />
+          </h2>
+          <p>{categoryIndexContent.listing.intro}</p>
+        </header>
+        <ul class="category-index-grid">
+          {listing.items.map((taxonomy) => (
+            <li>
+              <CategoryCard
+                taxonomy={taxonomy}
+                actionLabel={categoryIndexContent.listing.actionLabel}
+              />
+            </li>
+          ))}
+        </ul>
+      </section>
+    )
+  }
+
+  <CategoryBenefits />
+  <CustomIdeaCta
+    sourcePage="/categorias/"
+    title="¿No encuentras lo que buscas?"
+    copy="Cuéntanos tu idea y crearemos juntas el regalo perfecto."
+  />
+</div>

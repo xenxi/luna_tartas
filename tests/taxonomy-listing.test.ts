@@ -33,6 +33,7 @@ const product = (
   occasions: readonly string[],
   order: number,
   recipients: readonly string[] = [],
+  categoryCover = false,
 ): PublishedProduct => ({
   id,
   slug: id,
@@ -53,6 +54,17 @@ const product = (
         licenseOrPermission: 'permission',
         evidence: 'evidence',
       },
+      category: categoryCover
+        ? {
+            src: `${id}-category.jpg`,
+            alt: `${id} category image`,
+            rights: {
+              owner: 'owner',
+              licenseOrPermission: 'permission',
+              evidence: 'evidence',
+            },
+          }
+        : undefined,
     },
   },
   customization: { kind: 'none' },
@@ -111,6 +123,39 @@ describe('shared taxonomy index and landings', () => {
     ).toEqual([
       { href: '/productos/first/', name: 'first' },
       { href: '/productos/second/', name: 'second' },
+    ]);
+  });
+
+  it('uses the first category-specific cover and falls back to the first product cover', () => {
+    const categoryCatalog: Catalog = {
+      ...catalog,
+      categories: [
+        taxonomy('cakes', 'category', 1),
+        taxonomy('cards', 'category', 2),
+      ],
+      products: [
+        product('first', ['cakes'], [], 1),
+        product('second', ['cakes'], [], 2, [], true),
+        product('card', ['cards'], [], 1),
+      ],
+    };
+
+    expect(
+      projectTaxonomyIndex(categoryCatalog, 'category', 'productos').items.map(
+        ({ name, mediaSource }) => ({ name, mediaSource }),
+      ),
+    ).toEqual([
+      {
+        name: 'cakes',
+        mediaSource: {
+          src: 'second-category.jpg',
+          alt: 'second category image',
+        },
+      },
+      {
+        name: 'cards',
+        mediaSource: { src: 'card.jpg', alt: 'card image' },
+      },
     ]);
   });
 

@@ -288,11 +288,21 @@ function validatePublishedProduct(
       'one valid cover image',
     );
   }
-  const mediaItems = product.media
-    ? [product.media.cover, ...(product.media.gallery ?? [])]
-    : [];
-  mediaItems.forEach((item, index) => {
-    const field = index === 0 ? 'media.cover' : `media.gallery[${index - 1}]`;
+  const mediaItems: ReadonlyArray<readonly [DraftMediaItem, string]> =
+    product.media
+      ? [
+          [product.media.cover, 'media.cover'],
+          ...(product.media.cover.category === undefined
+            ? []
+            : ([
+                [product.media.cover.category, 'media.cover.category'],
+              ] as const)),
+          ...(product.media.gallery ?? []).map(
+            (item, index) => [item, `media.gallery[${index}]`] as const,
+          ),
+        ]
+      : [];
+  mediaItems.forEach(([item, field]) => {
     if (!meaningfulAlt(item)) {
       issue(
         issues,

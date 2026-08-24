@@ -55,15 +55,22 @@ export function projectTaxonomyIndex(
   return {
     items: getTaxonomiesWithProducts(catalog, kind).map((taxonomy) => {
       const products = getProductsForTaxonomy(catalog, kind, taxonomy.id);
+      const firstCategoryCover = products
+        .map((product) => product.media.cover.category)
+        .find((cover) => cover !== undefined);
+      const firstCover =
+        kind === 'category'
+          ? (firstCategoryCover ?? products[0]?.media.cover)
+          : products[0]?.media.cover;
       return {
         href: routes.taxonomy(kind, taxonomy.slug),
         name: taxonomy.name,
         summary: taxonomy.summary,
         itemCountLabel: `${products.length} ${itemLabel}`,
-        mediaSource: products[0]?.media?.cover
+        mediaSource: firstCover
           ? {
-              src: products[0].media.cover.src,
-              alt: products[0].media.cover.alt,
+              src: firstCover.src,
+              alt: firstCover.alt,
             }
           : undefined,
       };

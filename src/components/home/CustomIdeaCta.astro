@@ -7,6 +7,18 @@ import titleHeart from '../../assets/home/custom-idea/corazon-target.png';
 import { customIdeaContent } from '../../content/home/custom-idea';
 import ActionLink from '../ui/ActionLink.astro';
 import './custom-idea.css';
+
+interface Props {
+  sourcePage?: string;
+  title?: string;
+  copy?: string;
+}
+
+const {
+  sourcePage = '/',
+  title = customIdeaContent.title,
+  copy = customIdeaContent.copy,
+} = Astro.props;
 ---
 
 <section
@@ -30,10 +42,10 @@ import './custom-idea.css';
     />
     <div class="custom-idea__copy">
       <h2 id="custom-idea-title">
-        {customIdeaContent.title}
+        {title}
         <Image
           src={titleHeart}
-          alt=""
+          alt="Corazón decorativo en acuarela."
           aria-hidden="true"
           width={1475}
           height={1067}
@@ -43,7 +55,7 @@ import './custom-idea.css';
           class="custom-idea__title-heart"
         />
       </h2>
-      <p>{customIdeaContent.copy}</p>
+      <p>{copy}</p>
       <div class="custom-idea__action">
         <ActionLink
           href={customIdeaContent.action.href}
@@ -51,7 +63,7 @@ import './custom-idea.css';
           analytics={{
             event: 'contact_whatsapp',
             ctaLocation: 'home-custom-idea',
-            sourcePage: '/',
+            sourcePage,
           }}
         >
           {customIdeaContent.action.label}

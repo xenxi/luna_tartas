@@ -2,12 +2,14 @@ import type {
   Catalog,
   Customization,
   DraftMedia,
+  DraftMediaCover,
   DraftMediaItem,
   EditorialApproval,
   MediaRights,
   Price,
   Product,
   PublishedMedia,
+  PublishedMediaCover,
   PublishedMediaItem,
   SeoMetadata,
   Taxonomy,
@@ -145,16 +147,38 @@ function copyPublishedMediaItem(item: PublishedMediaItem): PublishedMediaItem {
   };
 }
 
+function copyDraftMediaCover(cover: DraftMediaCover): DraftMediaCover {
+  return {
+    ...copyDraftMediaItem(cover),
+    category:
+      cover.category === undefined
+        ? undefined
+        : copyDraftMediaItem(cover.category),
+  };
+}
+
+function copyPublishedMediaCover(
+  cover: PublishedMediaCover,
+): PublishedMediaCover {
+  return {
+    ...copyPublishedMediaItem(cover),
+    category:
+      cover.category === undefined
+        ? undefined
+        : copyPublishedMediaItem(cover.category),
+  };
+}
+
 function copyDraftMedia(media: DraftMedia): DraftMedia {
   return {
-    cover: copyDraftMediaItem(media.cover),
+    cover: copyDraftMediaCover(media.cover),
     gallery: media.gallery?.map(copyDraftMediaItem),
   };
 }
 
 function copyPublishedMedia(media: PublishedMedia): PublishedMedia {
   return {
-    cover: copyPublishedMediaItem(media.cover),
+    cover: copyPublishedMediaCover(media.cover),
     gallery: media.gallery?.map(copyPublishedMediaItem),
   };
 }

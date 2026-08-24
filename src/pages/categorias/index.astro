@@ -1,6 +1,6 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import TaxonomyIndex from '../../components/taxonomies/TaxonomyIndex.astro';
+import CategoryIndex from '../../components/taxonomies/CategoryIndex.astro';
 import { loadCatalog } from '../../lib/catalog/source';
 import { routes } from '../../lib/catalog/domain/routes';
 
@@ -12,13 +12,5 @@ const catalog = await loadCatalog();
   canonicalPath={routes.taxonomyIndex('category')}
   fallbackDescription="Encuentra regalos personalizados según el tipo de detalle que quieres preparar."
 >
-  <TaxonomyIndex
-    catalog={catalog}
-    kind="category"
-    title="Categorías de regalos"
-    intro="Encuentra una idea especial según el tipo de detalle que quieres preparar."
-    sectionTitle="Elige por tipo de regalo"
-    sectionIntro="Descubre ideas agrupadas para encontrar más rápido el detalle que buscas."
-    itemLabel="productos"
-  />
+  <CategoryIndex catalog={catalog} />
 </BaseLayout>

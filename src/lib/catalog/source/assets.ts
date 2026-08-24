@@ -311,6 +311,16 @@ export async function collectAssetIssues(
     inspections.push(
       inspectAsset(assetRoot, product.id, 'media.cover', product.media.cover),
     );
+    if (product.media.cover.category !== undefined) {
+      inspections.push(
+        inspectAsset(
+          assetRoot,
+          product.id,
+          'media.cover.category',
+          product.media.cover.category,
+        ),
+      );
+    }
     product.media.gallery?.forEach((item, index) => {
       inspections.push(
         inspectAsset(assetRoot, product.id, `media.gallery[${index}]`, item),

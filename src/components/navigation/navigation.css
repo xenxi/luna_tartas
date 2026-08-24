@@ -1,7 +1,17 @@
 .breadcrumb {
-  color: var(--color-text-muted);
+  color: var(--color-accent);
   font-size: var(--font-size-sm);
   overflow-wrap: anywhere;
+}
+
+.breadcrumb a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.breadcrumb a:hover,
+.breadcrumb a:focus-visible {
+  color: var(--color-action-hover);
 }
 
 .breadcrumb ol {
@@ -24,14 +34,14 @@
 }
 
 .breadcrumb li + li::before {
-  inline-size: 1.5rem;
-  block-size: 1px;
-  background: var(--color-border);
-  content: '';
+  color: currentColor;
+  content: '>';
+  font-weight: var(--font-weight-regular);
+  line-height: 1;
 }
 
 .breadcrumb [aria-current='page'] {
   min-inline-size: 0;
-  color: var(--color-text);
+  color: inherit;
   font-weight: var(--font-weight-semibold);
 }

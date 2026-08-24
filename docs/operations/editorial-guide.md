@@ -100,11 +100,21 @@ media:
       owner: Owner de la imagen
       licenseOrPermission: Permiso de publicación concedido.
       evidence: Referencia no sensible a la aprobación y su fecha.
+    category: # Variante opcional para la tarjeta de /categorias/
+      src: laminas/ejemplo-categoria.jpeg
+      alt: Descripción concreta del recorte o composición para categorías.
+      rights:
+        owner: Owner de la imagen
+        licenseOrPermission: Permiso de publicación concedido.
+        evidence: Referencia no sensible a la aprobación y su fecha.
 ```
 
 `caption` es opcional. El `alt` no repite “imagen de” y no incluye keywords que
 no describan el contenido. La portada es la imagen principal; la galería no
-debe repetir el mismo archivo sin motivo editorial.
+debe repetir el mismo archivo sin motivo editorial. `cover.category` es
+opcional: el índice de categorías usa la primera variante disponible entre los
+productos de cada categoría y, si no encuentra ninguna, recurre a la primera
+`cover` principal.
 
 El build genera variantes responsive optimizadas. No se incorporan a Git esas
 variantes ni se reemplaza manualmente su HTML.

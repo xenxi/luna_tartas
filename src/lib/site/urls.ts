@@ -7,6 +7,7 @@ export function withBasePath(path: string, basePath: string): string {
 
 export function withoutBasePath(path: string, basePath: string): string {
   const base = basePath === '/' ? '' : basePath.replace(/\/+$/, '');
-  if (!base || path === base) return '/';
+  if (!base) return path;
+  if (path === base) return '/';
   return path.startsWith(`${base}/`) ? path.slice(base.length) : path;
 }

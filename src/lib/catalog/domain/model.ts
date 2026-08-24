@@ -46,13 +46,21 @@ export interface PublishedMediaItem extends DraftMediaItem {
   readonly rights: MediaRights;
 }
 
+export interface DraftMediaCover extends DraftMediaItem {
+  readonly category?: DraftMediaItem;
+}
+
+export interface PublishedMediaCover extends PublishedMediaItem {
+  readonly category?: PublishedMediaItem;
+}
+
 export interface DraftMedia {
-  readonly cover: DraftMediaItem;
+  readonly cover: DraftMediaCover;
   readonly gallery?: readonly DraftMediaItem[];
 }
 
 export interface PublishedMedia {
-  readonly cover: PublishedMediaItem;
+  readonly cover: PublishedMediaCover;
   readonly gallery?: readonly PublishedMediaItem[];
 }
 

@@ -86,17 +86,25 @@ const publishedMediaItemSchema = draftMediaItemSchema.extend({
   rights: rightsSchema,
 });
 
+const draftMediaCoverSchema = draftMediaItemSchema.extend({
+  category: draftMediaItemSchema.optional(),
+});
+
+const publishedMediaCoverSchema = publishedMediaItemSchema.extend({
+  category: publishedMediaItemSchema.optional(),
+});
+
 const mediaSchema = (item: typeof draftMediaItemSchema) =>
   z
     .object({
-      cover: item,
+      cover: draftMediaCoverSchema,
       gallery: z.array(item).max(ASSET_LIMITS.galleryItems).optional(),
     })
     .strict();
 
 const publishedMediaSchema = z
   .object({
-    cover: publishedMediaItemSchema,
+    cover: publishedMediaCoverSchema,
     gallery: z
       .array(publishedMediaItemSchema)
       .max(ASSET_LIMITS.galleryItems)

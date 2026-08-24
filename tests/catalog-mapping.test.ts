@@ -56,6 +56,11 @@ function publishedProductDocument(): ProductSourceDocument {
   const media = published.media as Record<string, unknown>;
   const cover = media.cover as Record<string, unknown>;
   const gallery = media.gallery as Record<string, unknown>[];
+  cover.category = {
+    ...structuredClone(cover),
+    src: 'products/fixture-category.svg',
+    alt: 'Category-specific fixture image',
+  };
   gallery[0] = { ...gallery[0], rights: structuredClone(cover.rights) };
   const data = productSchema.parse({ ...published, status: 'published' });
 
@@ -141,6 +146,12 @@ describe('catalog source mapping', () => {
     }
     expect(mapped.media.cover.rights).toEqual(source.data.media.cover.rights);
     expect(mapped.media.cover.rights).not.toBe(source.data.media.cover.rights);
+    expect(mapped.media.cover.category).toEqual(
+      source.data.media.cover.category,
+    );
+    expect(mapped.media.cover.category).not.toBe(
+      source.data.media.cover.category,
+    );
     expect(mapped.categories).not.toBe(source.data.categories);
     expect(mapped.customization).not.toBe(source.data.customization);
     expect(mapped.approval).not.toBe(source.data.approval);

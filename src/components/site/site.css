@@ -159,14 +159,31 @@
   text-decoration: none;
 }
 
+.primary-navigation--header a {
+  position: relative;
+}
+
 .primary-navigation--header a[aria-current='page']::after {
   position: absolute;
-  inset-inline: 0;
-  inset-block-end: 0;
-  block-size: 0.15rem;
+  inset-inline: -1rem;
+  inset-block-end: 0.15rem;
+  block-size: 0.125rem;
   border-radius: var(--radius-pill);
   background: currentColor;
   content: '';
+}
+
+.primary-navigation--header a[aria-current='page']::before {
+  position: absolute;
+  z-index: var(--z-raised);
+  inset-inline-start: 50%;
+  inset-block-end: 0;
+  inline-size: 0.45rem;
+  block-size: 0.45rem;
+  border-radius: 50%;
+  background: currentColor;
+  content: '';
+  transform: translateX(-50%);
 }
 
 .site-footer {
