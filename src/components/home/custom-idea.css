@@ -161,7 +161,7 @@
   inset-inline-end: clamp(0.75rem, 1.5%, 1.5rem);
   inline-size: var(--moon-width);
   block-size: auto;
-  transform: translateY(-50%);
+  transform: translateY(-50%) scaleX(-1);
 }
 
 @media (max-width: 63.99rem) {
@@ -195,7 +195,7 @@
   .custom-idea__moon {
     inset-block-start: 50%;
     inset-block-end: auto;
-    transform: translateY(-50%);
+    transform: translateY(-50%) scaleX(-1);
   }
 }
 

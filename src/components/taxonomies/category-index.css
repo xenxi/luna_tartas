@@ -2,7 +2,7 @@
   position: relative;
   isolation: isolate;
   overflow: clip;
-  padding-block-end: var(--space-8);
+  padding-block-end: 0;
   background: var(--color-canvas);
 }
 

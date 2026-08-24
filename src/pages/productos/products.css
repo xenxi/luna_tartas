@@ -2,7 +2,7 @@
   display: grid;
   gap: 0;
   overflow: clip;
-  padding-block: var(--space-2) var(--space-8);
+  padding-block: var(--space-2) 0;
 }
 
 .products-page > :is(.breadcrumb, .catalog-hero, .category-benefits) {

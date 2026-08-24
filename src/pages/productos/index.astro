@@ -40,10 +40,6 @@ const heroMedia = await buildMediaProjection(
     />
     <ProductListing catalog={catalog} />
     <CategoryBenefits />
-    <CustomIdeaCta
-      sourcePage={routes.products()}
-      title="¿No encuentras lo que buscas?"
-      copy="Cuéntanos tu idea y crearemos juntas el regalo perfecto."
-    />
+    <CustomIdeaCta sourcePage={routes.products()} />
   </div>
 </BaseLayout>

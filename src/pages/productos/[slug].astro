@@ -86,18 +86,14 @@ const breadcrumbJsonLd = createBreadcrumbListJsonLd({
   <ProductRelated catalog={catalog} product={product} />
   <div class="product-detail-extras">
     <CategoryBenefits />
-    <CustomIdeaCta
-      sourcePage={routes.product(product.slug)}
-      title="¿Quieres hacerlo aún más especial?"
-      copy="Cuéntanos tu idea y adaptaremos juntas cada detalle del regalo."
-    />
+    <CustomIdeaCta sourcePage={routes.product(product.slug)} />
   </div>
 </BaseLayout>
 
 <style is:global>
   .product-detail-extras {
     overflow: clip;
-    padding-block-end: var(--space-8);
+    padding-block-end: 0;
   }
 
   .product-detail-extras > .category-benefits {

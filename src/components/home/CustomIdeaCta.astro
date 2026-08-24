@@ -10,15 +10,9 @@ import './custom-idea.css';
 
 interface Props {
   sourcePage?: string;
-  title?: string;
-  copy?: string;
 }
 
-const {
-  sourcePage = '/',
-  title = customIdeaContent.title,
-  copy = customIdeaContent.copy,
-} = Astro.props;
+const { sourcePage = '/' } = Astro.props;
 ---
 
 <section
@@ -42,7 +36,7 @@ const {
     />
     <div class="custom-idea__copy">
       <h2 id="custom-idea-title">
-        {title}
+        {customIdeaContent.title}
         <Image
           src={titleHeart}
           alt="Corazón decorativo en acuarela."
@@ -55,7 +49,7 @@ const {
           class="custom-idea__title-heart"
         />
       </h2>
-      <p>{copy}</p>
+      <p>{customIdeaContent.copy}</p>
       <div class="custom-idea__action">
         <ActionLink
           href={customIdeaContent.action.href}
