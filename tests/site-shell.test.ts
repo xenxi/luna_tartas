@@ -47,8 +47,8 @@ describe('public site shell', () => {
   it('composes one header, main and footer around the page slot', () => {
     expect(layout).toContain('<SiteHeader currentPath={Astro.url.pathname} />');
     expect(layout).toContain('<main id="main-content" tabindex="-1">');
-    expect(layout).toContain('<SiteFooter currentPath={Astro.url.pathname}>');
-    expect(layout).toMatch(/<SiteFooter[^>]*>\s*<AnalyticsConsent \/>/);
+    expect(layout).toContain('<SiteFooter currentPath={Astro.url.pathname} />');
+    expect(layout).toContain('<AnalyticsConsent />');
     expect(footer).toContain('<slot />');
     expect(footer.indexOf('<slot />')).toBeLessThan(
       footer.indexOf('class="site-footer__closing visual-container"'),

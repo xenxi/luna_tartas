@@ -2,7 +2,7 @@ import { routes } from '../../lib/catalog/domain/routes';
 import { whatsappConfig } from '../../config/contact';
 
 export const heroContent = Object.freeze({
-  eyebrow: 'HECHO A MANO, CON AMOR',
+  eyebrow: 'PARA CELEBRAR LO QUE IMPORTA',
   heading: Object.freeze(['Pensado con', 'cariño.']),
   claim: ' Hecho con amor.',
   copy: Object.freeze([

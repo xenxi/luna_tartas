@@ -197,7 +197,7 @@
 .hero__transition-heart {
   position: absolute;
   inset-block-start: 0.35rem;
-  inset-inline-start: 51.5%;
+  inset-inline-start: 50%;
   inline-size: 1.6rem;
   transform: translateX(-50%) rotate(-8deg);
 }
@@ -217,7 +217,7 @@
     gap: var(--space-5);
     width: 100%;
     min-block-size: 33.5rem;
-    padding: var(--space-6) var(--gutter) var(--space-5);
+    padding: var(--space-6) clamp(1.5rem, 7vw, 2.25rem) var(--space-5);
   }
 
   .hero__title,
@@ -337,6 +337,22 @@
 
   .hero__transition {
     block-size: 2.75rem;
+  }
+
+  .hero__transition-cutout {
+    position: absolute;
+    inset: 0 0 -1px;
+    display: block;
+    inline-size: 100%;
+    block-size: calc(100% + 1px);
+  }
+
+  .hero__transition-cutout path {
+    fill: var(--color-canvas);
+  }
+
+  .hero__transition-line {
+    block-size: 68%;
   }
 
   .hero__transition-heart {
@@ -670,7 +686,7 @@
 
   .hero__transition-heart {
     inset-block-start: clamp(0.85rem, 1.25vw, 1.2rem);
-    inset-inline-start: 50.7%;
+    inset-inline-start: 50%;
     inline-size: 1.8rem;
     transform: translate(-50%, -50%) rotate(-8deg);
   }

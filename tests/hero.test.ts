@@ -9,7 +9,7 @@ const image = readFileSync('src/assets/home/tarta-hero.png');
 
 describe('approved home hero', () => {
   it('centralizes the exact editorial hierarchy and approval metadata', () => {
-    expect(heroContent.eyebrow).toBe('HECHO A MANO, CON AMOR');
+    expect(heroContent.eyebrow).toBe('PARA CELEBRAR LO QUE IMPORTA');
     expect(heroContent.heading).toEqual(['Pensado con', 'cariño.']);
     expect(heroContent.claim).toBe(' Hecho con amor.');
     expect(heroContent.copy.join(' ')).toBe(

@@ -22,6 +22,7 @@ interface DiscoveryDefinition {
   readonly number: string;
   readonly title: string;
   readonly actionLabel: string;
+  readonly description?: string;
 }
 
 const cardDefinitions: readonly DiscoveryDefinition[] = [
@@ -30,12 +31,16 @@ const cardDefinitions: readonly DiscoveryDefinition[] = [
     number: '01',
     title: 'Por tipo',
     actionLabel: 'Ver tipos',
+    description:
+      'Tartas de pañales, significado del nombre, láminas personalizadas y más detalles para decorar bonito.',
   },
   {
     kind: 'occasion',
     number: '02',
     title: 'Por ocasión',
     actionLabel: 'Ver ocasiones',
+    description:
+      'Cumpleaños, bautizo, comunión, invitaciones, recordatorios y detalles para tu evento.',
   },
   {
     kind: 'recipient',
@@ -67,7 +72,8 @@ export function projectTaxonomyDiscovery(
     return [
       {
         ...definition,
-        description: describeDimension(catalog, definition.kind),
+        description:
+          definition.description ?? describeDimension(catalog, definition.kind),
         href: routes.taxonomyIndex(definition.kind),
       },
     ];

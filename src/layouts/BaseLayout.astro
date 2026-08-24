@@ -86,9 +86,8 @@ const metadata = createPageMetadata({
     <main id="main-content" tabindex="-1">
       <slot />
     </main>
-    <SiteFooter currentPath={Astro.url.pathname}>
-      <AnalyticsConsent />
-    </SiteFooter>
+    <SiteFooter currentPath={Astro.url.pathname} />
+    <AnalyticsConsent />
     <MobileNavigation currentPath={Astro.url.pathname} />
     <AnalyticsInstrumentation />
   </body>

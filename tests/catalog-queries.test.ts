@@ -157,8 +157,8 @@ describe('catalog queries', () => {
       'Explora por tipo, ocasión o destinatario y encuentra la opción ideal.',
     );
     expect(discovery?.cards.map(({ description }) => description)).toEqual([
-      'cakes y más.',
-      'birthday y más.',
+      'Tartas de pañales, significado del nombre, láminas personalizadas y más detalles para decorar bonito.',
+      'Cumpleaños, bautizo, comunión, invitaciones, recordatorios y detalles para tu evento.',
       'family y más.',
     ]);
   });
