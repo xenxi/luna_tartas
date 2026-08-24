@@ -43,8 +43,12 @@ describe('public site shell', () => {
   it('composes one header, main and footer around the page slot', () => {
     expect(layout).toContain('<SiteHeader currentPath={Astro.url.pathname} />');
     expect(layout).toContain('<main id="main-content" tabindex="-1">');
-    expect(layout).toContain('<SiteFooter currentPath={Astro.url.pathname} />');
-    expect(layout).toMatch(/<SiteFooter[^>]*\/>\s*<AnalyticsConsent \/>/);
+    expect(layout).toContain('<SiteFooter currentPath={Astro.url.pathname}>');
+    expect(layout).toMatch(/<SiteFooter[^>]*>\s*<AnalyticsConsent \/>/);
+    expect(footer).toContain('<slot />');
+    expect(footer.indexOf('<slot />')).toBeLessThan(
+      footer.indexOf('class="site-footer__closing visual-container"'),
+    );
     expect(footer).not.toContain('<AnalyticsConsent />');
     expect(header).toContain('<header');
     expect(header).toContain('class="site-header__inner visual-container"');
@@ -132,6 +136,7 @@ describe('public site shell', () => {
     expect(footer).toContain('<h2>Productos</h2>');
     expect(footer).toContain('<h2>Categorías</h2>');
     expect(footer).toContain('<h2>Información</h2>');
+    expect(footer).toContain('<h2>Síguenos</h2>');
     expect(footer).toContain('Tartas de pañales');
     expect(footer).toContain('Papelería personalizada');
     expect(footer).toContain('Láminas personalizadas');
@@ -152,7 +157,7 @@ describe('public site shell', () => {
     expect(footer).toContain('Hecho a mano,<br />');
     expect(styles).toContain('font-family: var(--font-script)');
     expect(styles).toContain(
-      'grid-template-columns: repeat(3, minmax(0, 1fr))',
+      'grid-template-columns: repeat(4, minmax(0, 1fr))',
     );
   });
 

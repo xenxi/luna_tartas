@@ -124,7 +124,10 @@ const footerHref = (href: string): string =>
           <ul>
             {footerInformation.map((item) => <li>{item}</li>)}
           </ul>
+        </section>
 
+        <section class="site-footer__group site-footer__group--follow">
+          <h2>Síguenos</h2>
           <address aria-label="Canales de contacto">
             <ul class="site-footer__social">
               <li>
@@ -211,13 +214,13 @@ const footerHref = (href: string): string =>
         />
       </div>
     </div>
-
-    <div class="site-footer__closing">
-      <p class="site-footer__signature">
-        Hecho con mimo para Luna · Creado por <a href="https://antoniomdm.dev/"
-          >Antonio MDM</a
-        > · <span class="site-footer__copyright">© {buildYear}</span>
-      </p>
-    </div>
+  </div>
+  <slot />
+  <div class="site-footer__closing visual-container">
+    <p class="site-footer__signature">
+      Hecho con mimo para Luna · Creado por <a href="https://antoniomdm.dev/"
+        >Antonio MDM</a
+      > · <span class="site-footer__copyright">© {buildYear}</span>
+    </p>
   </div>
 </footer>

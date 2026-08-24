@@ -27,9 +27,10 @@
   color-scheme: light;
 
   /* Luna source palette. Components consume the semantic roles below. */
-  --luna-cream: #fff9f3;
+  --luna-cream: #fdfaf7;
   --luna-cream-2: #fff5ec;
   --luna-paper: #fffcf8;
+  --luna-footer: #fdf5f3;
   --luna-coral: #ea6175;
   --luna-coral-dark: #c4475f;
   --luna-coral-deep: #ad384f;
@@ -46,6 +47,7 @@
 
   /* Semantic colors. Replace roles, not component-specific values. */
   --color-canvas: var(--luna-cream);
+  --color-footer: var(--luna-footer);
   --color-surface: var(--luna-paper);
   --color-surface-soft: var(--luna-cream-2);
   --color-surface-warm: var(--luna-blush-soft);

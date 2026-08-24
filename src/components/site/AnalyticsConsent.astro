@@ -130,6 +130,7 @@ import '../ui/ui.css';
     position: relative;
     z-index: var(--z-content);
     padding-block: 0 var(--space-4);
+    background: var(--site-footer-surface, var(--color-surface));
   }
 
   .analytics-consent.visual-container {
@@ -142,11 +143,7 @@ import '../ui/ui.css';
     border: var(--border-width-hairline) solid
       color-mix(in srgb, var(--color-border) 78%, transparent);
     border-radius: var(--radius-xl);
-    background: color-mix(
-      in srgb,
-      var(--color-surface) 86%,
-      var(--color-surface-warm)
-    );
+    background: var(--site-footer-surface, var(--color-surface));
     box-shadow: 0 0.25rem 1rem rgb(57 39 35 / 3%);
   }
 

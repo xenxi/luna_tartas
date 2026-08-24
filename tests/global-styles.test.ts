@@ -45,11 +45,13 @@ describe('global presentation foundation', () => {
   });
 
   it('maps the Luna direction to source palette and semantic roles', () => {
-    expect(tokens).toContain('--luna-cream: #fff9f3');
+    expect(tokens).toContain('--luna-cream: #fdfaf7');
+    expect(tokens).toContain('--luna-footer: #fdf5f3');
     expect(tokens).toContain('--luna-coral: #ea6175');
     expect(tokens).toContain('--luna-blue: #bcd5e9');
     expect(tokens).toContain('--luna-brown: #392723');
     expect(tokens).toContain('--color-canvas: var(--luna-cream)');
+    expect(tokens).toContain('--color-footer: var(--luna-footer)');
     expect(tokens).toContain('--color-surface-warm: var(--luna-blush-soft)');
     expect(tokens).toContain('--color-surface-calm: var(--luna-blue-soft)');
     expect(tokens).toContain('--color-decoration-blue: var(--luna-blue)');
