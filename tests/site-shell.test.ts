@@ -44,6 +44,8 @@ describe('public site shell', () => {
     expect(layout).toContain('<SiteHeader currentPath={Astro.url.pathname} />');
     expect(layout).toContain('<main id="main-content" tabindex="-1">');
     expect(layout).toContain('<SiteFooter currentPath={Astro.url.pathname} />');
+    expect(layout).toMatch(/<SiteFooter[^>]*\/>\s*<AnalyticsConsent \/>/);
+    expect(footer).not.toContain('<AnalyticsConsent />');
     expect(header).toContain('<header');
     expect(header).toContain('class="site-header__inner visual-container"');
     expect(footer).toContain('<footer');

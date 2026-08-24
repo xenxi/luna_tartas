@@ -22,6 +22,8 @@ export function bindAnalyticsConsentUi(
   const root = document.getElementById('analytics-consent');
   const status = document.getElementById('analytics-consent-status');
   const reopen = document.getElementById('analytics-consent-reopen');
+  const region =
+    root?.closest<HTMLElement>('.analytics-consent-region') ?? null;
   if (root === null || status === null || reopen === null || !config.enabled)
     return;
 
@@ -51,6 +53,10 @@ export function bindAnalyticsConsentUi(
 
   const sync = () => {
     const consent = getStoredAnalyticsConsent(storage);
+    if (region !== null) {
+      region.dataset.analyticsConsentState =
+        consent === undefined ? 'pending' : 'decided';
+    }
     root.hidden = consent !== undefined;
     status.hidden = consent === undefined;
     reopen.hidden = consent === undefined;
@@ -73,6 +79,7 @@ export function bindAnalyticsConsentUi(
     window.location.reload();
   });
   reopen.addEventListener('click', () => {
+    if (region !== null) region.dataset.analyticsConsentState = 'editing';
     root.hidden = false;
     status.hidden = true;
   });

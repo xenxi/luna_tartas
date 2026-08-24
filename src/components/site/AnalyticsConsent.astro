@@ -7,7 +7,10 @@ import '../ui/ui.css';
 
 {
   siteConfig.analytics.enabled && (
-    <div class="analytics-consent-region">
+    <div
+      class="analytics-consent-region"
+      data-analytics-consent-state="pending"
+    >
       <aside
         id="analytics-consent"
         class="analytics-consent visual-container"
@@ -147,6 +150,16 @@ import '../ui/ui.css';
     box-shadow: 0 0.25rem 1rem rgb(57 39 35 / 3%);
   }
 
+  .analytics-consent-region[data-analytics-consent-state='pending']
+    #analytics-consent {
+    position: fixed;
+    z-index: var(--z-overlay);
+    inset-inline: 0;
+    inset-block-end: max(var(--space-4), env(safe-area-inset-bottom));
+    max-block-size: calc(100dvh - (2 * var(--space-4)));
+    overflow-y: auto;
+  }
+
   .analytics-consent[hidden],
   .analytics-consent-region .button[hidden] {
     display: none;
@@ -258,6 +271,12 @@ import '../ui/ui.css';
     .analytics-consent.visual-container {
       gap: var(--space-4);
       padding: var(--space-5) var(--space-4);
+    }
+
+    .analytics-consent-region[data-analytics-consent-state='pending']
+      #analytics-consent {
+      inset-block-end: max(var(--space-3), env(safe-area-inset-bottom));
+      max-block-size: calc(100dvh - (2 * var(--space-3)));
     }
 
     .analytics-consent__actions {
