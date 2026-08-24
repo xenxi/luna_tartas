@@ -130,7 +130,7 @@ import '../ui/ui.css';
     position: relative;
     z-index: var(--z-content);
     padding-block: 0 var(--space-4);
-    background: var(--site-footer-surface, var(--color-surface));
+    background: inherit;
   }
 
   .analytics-consent.visual-container {
@@ -143,16 +143,12 @@ import '../ui/ui.css';
     border: var(--border-width-hairline) solid
       color-mix(in srgb, var(--color-border) 78%, transparent);
     border-radius: var(--radius-xl);
-    background: var(--site-footer-surface, var(--color-surface));
+    background: inherit;
     box-shadow: 0 0.25rem 1rem rgb(57 39 35 / 3%);
   }
 
   .analytics-consent-region[data-analytics-consent-state='pending']
     #analytics-consent {
-    position: fixed;
-    z-index: var(--z-modal);
-    inset-inline: 0;
-    inset-block-end: max(var(--space-4), env(safe-area-inset-bottom));
     max-block-size: calc(100dvh - (2 * var(--space-4)));
     overflow-y: auto;
   }
@@ -272,9 +268,6 @@ import '../ui/ui.css';
 
     .analytics-consent-region[data-analytics-consent-state='pending']
       #analytics-consent {
-      inset-block-end: calc(
-        4.75rem + var(--space-3) + env(safe-area-inset-bottom)
-      );
       max-block-size: calc(100dvh - (2 * var(--space-3)));
     }
 

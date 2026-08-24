@@ -438,13 +438,11 @@
   }
 
   .site-footer__closing {
-    order: 2;
+    order: 3;
   }
 
   .site-footer > .analytics-consent-region {
-    --site-footer-surface: var(--color-surface);
-
-    order: 3;
+    order: 2;
   }
 
   .site-header__inner.visual-container {

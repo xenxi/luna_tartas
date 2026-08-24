@@ -8,6 +8,10 @@ import {
 const layout = readFileSync('src/layouts/BaseLayout.astro', 'utf8');
 const header = readFileSync('src/components/site/SiteHeader.astro', 'utf8');
 const footer = readFileSync('src/components/site/SiteFooter.astro', 'utf8');
+const analyticsConsent = readFileSync(
+  'src/components/site/AnalyticsConsent.astro',
+  'utf8',
+);
 const navigation = readFileSync(
   'src/components/site/PrimaryNavigation.astro',
   'utf8',
@@ -216,7 +220,14 @@ describe('public site shell', () => {
     expect(styles).toContain('--mobile-navigation-clearance: 4.75rem');
     expect(styles).not.toContain('.site-footer--home .site-footer__inner');
     expect(styles).toContain('.site-footer > .analytics-consent-region');
-    expect(styles).toContain('order: 3');
+    expect(styles).toMatch(
+      /\.site-footer__closing\s*\{\s*order: 3;[\s\S]*\.site-footer > \.analytics-consent-region\s*\{[\s\S]*order: 2;/,
+    );
+    expect(styles).not.toContain(
+      '--site-footer-surface: var(--color-surface);',
+    );
+    expect(analyticsConsent.match(/background: inherit;/g)).toHaveLength(2);
+    expect(analyticsConsent).not.toContain('position: fixed');
   });
 
   it('publishes the approved logo as the favicon without deriving a brand mark', () => {
