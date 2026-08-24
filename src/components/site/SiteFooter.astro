@@ -69,6 +69,7 @@ const footerInformation = [
 
 const footerHref = (href: string): string =>
   withBasePath(href, import.meta.env.BASE_URL);
+const underConstructionHref = footerHref(routes.underConstruction());
 ---
 
 <footer class="site-footer">
@@ -122,7 +123,13 @@ const footerHref = (href: string): string =>
         <section class="site-footer__group site-footer__group--information">
           <h2>Información</h2>
           <ul>
-            {footerInformation.map((item) => <li>{item}</li>)}
+            {
+              footerInformation.map((item) => (
+                <li>
+                  <a href={underConstructionHref}>{item}</a>
+                </li>
+              ))
+            }
           </ul>
         </section>
 

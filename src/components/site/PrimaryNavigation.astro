@@ -3,6 +3,7 @@ import {
   isCurrentNavigationPath,
   primaryNavigation,
 } from '../../config/navigation';
+import { routes } from '../../lib/catalog/domain/routes';
 import { withBasePath, withoutBasePath } from '../../lib/site/urls';
 
 interface Props {
@@ -41,7 +42,14 @@ const label =
       location === 'header' && (
         <>
           <li class="primary-navigation__pending">
-            <span>Sobre Luna</span>
+            <a
+              href={withBasePath(
+                routes.underConstruction(),
+                import.meta.env.BASE_URL,
+              )}
+            >
+              <span>Sobre Luna</span>
+            </a>
           </li>
           <li class="primary-navigation__search" aria-hidden="true">
             <span>

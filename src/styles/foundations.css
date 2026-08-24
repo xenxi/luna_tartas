@@ -11,8 +11,33 @@ html {
   color: var(--color-text);
   font-family: var(--font-body);
   font-size: 100%;
+  scrollbar-color: var(--color-scrollbar-thumb) var(--color-scrollbar-track);
+  scrollbar-width: thin;
   text-rendering: optimizeLegibility;
   -webkit-text-size-adjust: 100%;
+}
+
+/* Keep the browser chrome aligned with Luna's soft, handcrafted palette. */
+html::-webkit-scrollbar {
+  width: 0.75rem;
+}
+
+html::-webkit-scrollbar-track {
+  background: var(--color-scrollbar-track);
+}
+
+html::-webkit-scrollbar-thumb {
+  border: 0.1875rem solid var(--color-scrollbar-track);
+  border-radius: var(--radius-pill);
+  background: var(--color-scrollbar-thumb);
+}
+
+html::-webkit-scrollbar-thumb:hover {
+  background: var(--color-scrollbar-thumb-hover);
+}
+
+html::-webkit-scrollbar-button {
+  display: none;
 }
 
 body {

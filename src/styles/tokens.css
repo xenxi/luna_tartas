@@ -65,6 +65,9 @@
   --color-accent: var(--luna-coral);
   --color-border: var(--luna-border);
   --color-border-subtle: rgb(57 39 35 / 14%);
+  --color-scrollbar-track: var(--luna-blush-soft);
+  --color-scrollbar-thumb: var(--luna-coral);
+  --color-scrollbar-thumb-hover: var(--luna-coral-dark);
   --color-focus: #155e75;
   --color-success: #2f6b4f;
   --color-error: #9b2c2c;

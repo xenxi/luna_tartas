@@ -1,0 +1,48 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Ornament from '../components/ui/Ornament.astro';
+import ActionLink from '../components/ui/ActionLink.astro';
+import { routes } from '../lib/catalog/domain/routes';
+import './en-construccion.css';
+---
+
+<BaseLayout
+  title="Estamos preparando algo bonito"
+  canonicalPath={routes.underConstruction()}
+  fallbackDescription="Esta página de Luna todavía está en construcción. Muy pronto tendrá nuevas historias y detalles hechos a mano."
+  robots="noindex,nofollow"
+>
+  <section
+    class="under-construction"
+    aria-labelledby="under-construction-title"
+  >
+    <div class="under-construction__card">
+      <Ornament
+        variant="mini-hearts"
+        tone="accent"
+        class="under-construction__hearts"
+      />
+      <p class="eyebrow">Un poquito de paciencia</p>
+      <h1 id="under-construction-title">Estamos preparando algo bonito</h1>
+      <p class="under-construction__claim">
+        Esta parte de Luna todavía está tomando forma.
+      </p>
+      <p class="under-construction__copy">
+        Estamos trabajando con mimo para que encuentres aquí todo lo que
+        necesitas. Mientras tanto, puedes descubrir nuestros regalos
+        personalizados o volver a la página principal.
+      </p>
+      <div class="under-construction__actions">
+        <ActionLink href={routes.products()}>Ver productos</ActionLink>
+        <ActionLink href={routes.home()} variant="secondary"
+          >Volver al inicio</ActionLink
+        >
+      </div>
+      <Ornament
+        variant="dotted-curve"
+        tone="peach"
+        class="under-construction__curve"
+      />
+    </div>
+  </section>
+</BaseLayout>

@@ -19,6 +19,7 @@ function withTrailingSlash(path: string): string {
 
 export const routes = {
   home: (): string => '/',
+  underConstruction: (): string => '/en-construccion/',
   products: (): string => '/productos/',
   product: (slug: string): string =>
     withTrailingSlash(`/productos/${segment(slug, 'Product slug')}`),
