@@ -699,7 +699,7 @@
     );
   }
 
-  .site-footer--home {
+  main:has(.custom-idea) + .site-footer {
     margin-block-start: calc(-1 * var(--space-8));
   }
 
