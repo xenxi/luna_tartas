@@ -236,7 +236,7 @@
 
   .trust-list {
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: clamp(0.55rem, 3vw, 0.85rem);
+    gap: clamp(0.75rem, 4.5vw, 1.2rem);
   }
 
   .trust-card {
@@ -251,6 +251,8 @@
 
   .trust-card__body {
     row-gap: 0.25rem;
+    justify-items: center;
+    text-align: center;
   }
 
   .trust-card__number {

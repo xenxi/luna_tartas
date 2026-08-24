@@ -21,6 +21,7 @@ const accessibleBrandName = brandName ?? 'Luna Tartas';
   aria-label={accessibleBrandName}
 >
   <picture class="brand-home__picture" data-performance-audit="art-directed">
+    <source media="(max-width: 47.99rem)" srcset={desktopBrandLogo.src} />
     <source media="(min-width: 48rem)" srcset={desktopBrandLogo.src} />
     <Image
       class="brand-home__logo"

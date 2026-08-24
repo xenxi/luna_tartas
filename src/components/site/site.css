@@ -74,7 +74,7 @@
   z-index: var(--z-raised);
 }
 
-.site-header__mobile-products,
+.site-header__mobile-actions,
 .mobile-navigation {
   display: none;
 }
@@ -528,12 +528,20 @@
   }
 
   .site-header {
-    background: color-mix(in srgb, var(--color-canvas) 94%, transparent);
+    background: linear-gradient(
+      to top,
+      color-mix(in srgb, var(--color-decoration-blush) 42%, var(--color-canvas)),
+      var(--color-surface)
+    );
   }
 
   .site-header__inner {
     min-block-size: 5.25rem;
     padding-inline: var(--space-1);
+  }
+
+  .brand-home--header {
+    margin-inline-start: var(--space-2);
   }
 
   .brand-home--header .brand-home__logo {
@@ -544,8 +552,14 @@
     display: none;
   }
 
-  .site-header__mobile-products {
-    position: relative;
+  .site-header__mobile-actions {
+    display: flex;
+    align-items: center;
+    gap: var(--space-1);
+    margin-inline-end: var(--space-2);
+  }
+
+  .site-header__mobile-action {
     display: grid;
     inline-size: 2.75rem;
     min-block-size: 2.75rem;
@@ -555,9 +569,9 @@
     text-decoration: none;
   }
 
-  .site-header__mobile-products svg {
-    inline-size: 1.65rem;
-    block-size: 1.65rem;
+  .site-header__mobile-action svg {
+    inline-size: 1.45rem;
+    block-size: 1.45rem;
     fill: none;
     stroke: currentColor;
     stroke-linecap: round;
@@ -565,19 +579,10 @@
     stroke-width: 1.45;
   }
 
-  .site-header__mobile-products > span {
-    position: absolute;
-    inset-block-start: 0.1rem;
-    inset-inline-end: 0.05rem;
-    display: grid;
-    inline-size: 1.1rem;
-    block-size: 1.1rem;
-    place-items: center;
-    border-radius: 50%;
-    background: var(--color-accent);
-    color: var(--color-on-action);
-    font-size: 0.72rem;
-    line-height: 1;
+  .site-header__mobile-action:hover,
+  .site-header__mobile-action:focus-visible {
+    background: color-mix(in srgb, var(--color-surface) 70%, transparent);
+    color: var(--color-action-hover);
   }
 
   .mobile-navigation {
