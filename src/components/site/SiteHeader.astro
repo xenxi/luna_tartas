@@ -4,6 +4,7 @@ import BrandHomeLink from './BrandHomeLink.astro';
 import PrimaryNavigation from './PrimaryNavigation.astro';
 import { routes } from '../../lib/catalog/domain/routes';
 import { withBasePath } from '../../lib/site/urls';
+import SearchTrigger from '../search/SearchTrigger.astro';
 
 interface Props {
   currentPath: string;
@@ -32,19 +33,7 @@ const { currentPath } = Astro.props;
           ></path>
         </svg>
       </a>
-      <a
-        class="site-header__mobile-action"
-        href={withBasePath(
-          routes.underConstruction(),
-          import.meta.env.BASE_URL,
-        )}
-        aria-label="Buscar"
-      >
-        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-          <circle cx="10.8" cy="10.8" r="6.4"></circle>
-          <path d="m15.5 15.5 4.1 4.1"></path>
-        </svg>
-      </a>
+      <SearchTrigger location="mobile" />
     </div>
     <details class="site-menu">
       <summary>Menú</summary>

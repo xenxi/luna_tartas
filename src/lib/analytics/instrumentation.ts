@@ -108,6 +108,12 @@ export function bindAnalyticsInstrumentation(
     const payload = eventFromElement(link, 'contact_whatsapp');
     if (payload !== undefined) trackSafely(adapter, payload);
   });
+
+  document.addEventListener('luna-analytics', (event) => {
+    if (!(event instanceof CustomEvent)) return;
+    if (typeof event.detail !== 'object' || event.detail === null) return;
+    trackSafely(adapter, event.detail as Record<string, unknown>);
+  });
 }
 
 export function trackSafely(

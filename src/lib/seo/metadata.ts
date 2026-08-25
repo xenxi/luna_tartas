@@ -5,7 +5,8 @@ const DEFAULT_DESCRIPTION =
   'Detalles personalizados hechos a mano para celebrar a alguien especial.';
 
 export type MetadataPageType = 'website' | 'product';
-export type MetadataRobots = 'index,follow' | 'noindex,nofollow';
+export type MetadataRobots =
+  'index,follow' | 'noindex,follow' | 'noindex,nofollow';
 
 export interface SocialImage {
   readonly url: string;
@@ -66,8 +67,14 @@ export function createPageMetadata(input: MetadataInput): PageMetadata {
   );
   const robots = input.robots ?? 'index,follow';
 
-  if (robots !== 'index,follow' && robots !== 'noindex,nofollow') {
-    throw new Error('Metadata robots must be index,follow or noindex,nofollow');
+  if (
+    robots !== 'index,follow' &&
+    robots !== 'noindex,follow' &&
+    robots !== 'noindex,nofollow'
+  ) {
+    throw new Error(
+      'Metadata robots must be index,follow, noindex,follow or noindex,nofollow',
+    );
   }
 
   return Object.freeze({

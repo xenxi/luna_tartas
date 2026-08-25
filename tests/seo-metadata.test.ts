@@ -44,6 +44,18 @@ describe('page metadata', () => {
     expect(metadata.robots).toBe('noindex,nofollow');
   });
 
+  it('allows search discovery links while keeping query pages out of the index', () => {
+    const metadata = createPageMetadata({
+      title: 'Buscar',
+      canonicalPath: routes.search(),
+      image,
+      robots: 'noindex,follow',
+    });
+
+    expect(metadata.canonicalUrl).toBe('https://lunatartas.es/buscar/');
+    expect(metadata.robots).toBe('noindex,follow');
+  });
+
   it.each([
     ['empty title', { title: ' ' }],
     ['empty fallback', { fallbackDescription: ' ' }],

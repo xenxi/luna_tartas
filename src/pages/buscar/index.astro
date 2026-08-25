@@ -1,0 +1,14 @@
+---
+import SearchPage from '../../components/search/SearchPage.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { routes } from '../../lib/catalog/domain/routes';
+---
+
+<BaseLayout
+  title="Buscar en el catálogo"
+  canonicalPath={routes.search()}
+  description="Busca productos, ocasiones e ideas de regalo personalizadas en el catálogo de LUNA."
+  robots="noindex,follow"
+>
+  <SearchPage />
+</BaseLayout>

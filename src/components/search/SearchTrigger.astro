@@ -1,0 +1,23 @@
+---
+interface Props {
+  location: 'desktop' | 'mobile';
+}
+
+const { location } = Astro.props;
+---
+
+<button
+  class:list={['search-trigger', `search-trigger--${location}`]}
+  type="button"
+  data-search-trigger
+  data-search-source={`${location}-header`}
+  aria-haspopup="dialog"
+  aria-controls="global-search"
+  aria-label="Buscar en el catálogo"
+>
+  <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+    <circle cx="10.8" cy="10.8" r="6.4"></circle>
+    <path d="m15.5 15.5 4.1 4.1"></path>
+  </svg>
+  {location === 'desktop' && <kbd aria-hidden="true">⌘ K</kbd>}
+</button>

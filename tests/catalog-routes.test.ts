@@ -5,6 +5,7 @@ describe('catalog routes', () => {
   it('matches the public SEO route contract', () => {
     expect(routes.home()).toBe('/');
     expect(routes.products()).toBe('/productos/');
+    expect(routes.search()).toBe('/buscar/');
     expect(routes.product('chocolate-cake')).toBe('/productos/chocolate-cake/');
     expect(routes.taxonomyIndex('category')).toBe('/categorias/');
     expect(routes.taxonomy('occasion', 'birthday')).toBe(

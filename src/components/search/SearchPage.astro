@@ -1,0 +1,40 @@
+---
+import { publicContactConfig } from '../../config/contact';
+import { siteConfig } from '../../config/site';
+import { routes } from '../../lib/catalog/domain/routes';
+import { withBasePath } from '../../lib/site/urls';
+import SearchPanel from './SearchPanel.astro';
+import './search.css';
+
+const basePath = import.meta.env.BASE_URL;
+---
+
+<section
+  class="search-page section"
+  aria-labelledby="search-page-heading"
+  data-search-root
+  data-search-mode="page"
+  data-catalog-url={withBasePath(routes.catalogJson(), basePath)}
+  data-search-url={withBasePath(routes.search(), basePath)}
+  data-products-url={withBasePath(routes.products(), basePath)}
+  data-contact-url={publicContactConfig.whatsapp.href}
+  data-base-path={basePath}
+  data-canonical-origin={siteConfig.siteUrl}
+>
+  <div class="search-page__intro container">
+    <p class="eyebrow">El detalle empieza con una idea</p>
+    <h1 id="search-page-heading">Busca entre todo nuestro catálogo</h1>
+    <p>
+      Productos, celebraciones y regalos personalizados, reunidos en un mismo
+      lugar.
+    </p>
+  </div>
+  <div class="search-page__surface container">
+    <SearchPanel idPrefix="catalog-search" mode="page" />
+  </div>
+</section>
+
+<script>
+  import { initializeSearchPage } from './search-client';
+  initializeSearchPage(document, window);
+</script>

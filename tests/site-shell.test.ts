@@ -22,6 +22,14 @@ const mobileNavigation = readFileSync(
 );
 const brand = readFileSync('src/components/site/BrandHomeLink.astro', 'utf8');
 const styles = readFileSync('src/components/site/site.css', 'utf8');
+const searchTrigger = readFileSync(
+  'src/components/search/SearchTrigger.astro',
+  'utf8',
+);
+const searchOverlay = readFileSync(
+  'src/components/search/SearchOverlay.astro',
+  'utf8',
+);
 
 describe('public site shell', () => {
   it('centralizes stable, trailing-slash primary destinations', () => {
@@ -100,7 +108,10 @@ describe('public site shell', () => {
     expect(styles).toContain('inset-inline: -1rem');
     expect(navigation).toContain('<span>Sobre Luna</span>');
     expect(navigation).toContain('primary-navigation__search');
-    expect(navigation).not.toContain('<button');
+    expect(navigation).toContain('<SearchTrigger location="desktop" />');
+    expect(searchTrigger).toContain('data-search-trigger');
+    expect(searchTrigger).toContain('aria-haspopup="dialog"');
+    expect(searchOverlay).toContain('data-catalog-url');
   });
 
   it('keeps the five primary destinations available in a fixed mobile bar', () => {

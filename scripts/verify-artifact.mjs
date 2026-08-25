@@ -51,6 +51,17 @@ function isAllowedProductGalleryModule(route, tagName, src) {
   );
 }
 
+function isAllowedSearchModule(route, tagName, src) {
+  return (
+    tagName === 'script' &&
+    (/^\/_astro\/SearchOverlay\.astro_astro_type_script_[^/]+\.js$/i.test(
+      src,
+    ) ||
+      (route === '/buscar/' &&
+        /^\/_astro\/SearchPage\.astro_astro_type_script_[^/]+\.js$/i.test(src)))
+  );
+}
+
 await walk(dist);
 if (htmlFiles.length === 0) fail('no HTML pages found');
 
@@ -72,7 +83,8 @@ for (const file of htmlFiles) {
     const tagName = match[1].toLowerCase();
     if (
       !isAllowedAnalyticsModule(tagName, match[2]) &&
-      !isAllowedProductGalleryModule(route, tagName, match[2])
+      !isAllowedProductGalleryModule(route, tagName, match[2]) &&
+      !isAllowedSearchModule(route, tagName, match[2])
     ) {
       fail(`${route} loads an unexpected client asset`);
     }

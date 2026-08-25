@@ -244,5 +244,24 @@ describe('analytics adapter', () => {
         message: 'Quiero una tarta',
       }),
     ).toBeUndefined();
+    expect(
+      sanitizeAnalyticsEvent({
+        name: 'search_query',
+        query_length: 7,
+        result_count: 4,
+      }),
+    ).toEqual({
+      name: 'search_query',
+      query_length: 7,
+      result_count: 4,
+    });
+    expect(
+      sanitizeAnalyticsEvent({
+        name: 'search_query',
+        query: 'cliente@example.com',
+        query_length: 19,
+        result_count: 0,
+      }),
+    ).toBeUndefined();
   });
 });

@@ -1,0 +1,105 @@
+---
+interface Props {
+  idPrefix: string;
+  mode: 'overlay' | 'page';
+}
+
+const { idPrefix, mode } = Astro.props;
+const inputId = `${idPrefix}-input`;
+const listboxId = `${idPrefix}-results`;
+const titleId = `${idPrefix}-title`;
+const statusId = `${idPrefix}-status`;
+---
+
+<div class:list={['search-panel', `search-panel--${mode}`]}>
+  <header class="search-panel__header">
+    <div>
+      <p class="search-panel__eyebrow">Explora LUNA</p>
+      {
+        mode === 'overlay' ? (
+          <h2 id={titleId}>¿Qué tienes en mente?</h2>
+        ) : (
+          <p class="search-panel__title" id={titleId}>
+            ¿Qué tienes en mente?
+          </p>
+        )
+      }
+    </div>
+    {
+      mode === 'overlay' && (
+        <button
+          class="search-panel__close"
+          type="button"
+          data-search-close
+          aria-label="Cerrar búsqueda"
+        >
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path d="M6 6l12 12M18 6 6 18" />
+          </svg>
+        </button>
+      )
+    }
+  </header>
+
+  <form class="search-form" role="search" data-search-form>
+    <label class="visually-hidden" for={inputId}
+      >Buscar productos, ocasiones y regalos</label
+    >
+    <span class="search-form__icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24" focusable="false">
+        <circle cx="10.8" cy="10.8" r="6.4"></circle>
+        <path d="m15.5 15.5 4.1 4.1"></path>
+      </svg>
+    </span>
+    <input
+      id={inputId}
+      name="q"
+      type="search"
+      placeholder="Prueba con ‘lámina’, ‘bebé’ o ‘comunión’"
+      autocomplete="off"
+      autocapitalize="none"
+      enterkeyhint="search"
+      maxlength="120"
+      role="combobox"
+      aria-autocomplete="list"
+      aria-controls={listboxId}
+      aria-describedby={statusId}
+      aria-expanded="false"
+      data-search-input
+    />
+    <button class="search-form__submit" type="submit">Buscar</button>
+  </form>
+
+  <p
+    class="search-status visually-hidden"
+    id={statusId}
+    role="status"
+    aria-live="polite"
+    data-search-status
+  >
+  </p>
+  <div class="search-panel__scroll" data-search-scroll>
+    <div
+      class="search-output"
+      id={listboxId}
+      role="listbox"
+      aria-label="Resultados de búsqueda"
+      data-search-output
+    >
+      <div class="search-loading" aria-hidden="true">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+  </div>
+  <footer class="search-panel__footer" data-search-footer hidden>
+    <a class="search-view-all" href="/buscar/" data-search-view-all>
+      Ver todos los resultados
+      <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+        <path d="M5 12h13M13 7l5 5-5 5"></path>
+      </svg>
+    </a>
+    <p class="search-panel__hint" aria-hidden="true">
+      <kbd>↑</kbd><kbd>↓</kbd> para explorar · <kbd>↵</kbd> para abrir
+    </p>
+  </footer>
+</div>

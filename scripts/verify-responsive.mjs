@@ -45,6 +45,19 @@ function isAllowedProductGalleryModule(relative, attributes, source) {
   );
 }
 
+function isAllowedSearchModule(relative, attributes) {
+  const src = attributes.match(/\bsrc="([^"]+)"/i)?.[1];
+  return (
+    /\btype="module"/i.test(attributes) &&
+    src !== undefined &&
+    (/^\/_astro\/SearchOverlay\.astro_astro_type_script_[^/]+\.js$/i.test(
+      src,
+    ) ||
+      (relative === path.join('buscar', 'index.html') &&
+        /^\/_astro\/SearchPage\.astro_astro_type_script_[^/]+\.js$/i.test(src)))
+  );
+}
+
 try {
   await walk(root);
 } catch {
@@ -71,7 +84,8 @@ if (htmlFiles.length === 0) {
       if (
         !/type="application\/ld\+json"/i.test(script[1]) &&
         !isAllowedAnalyticsModule(script[1]) &&
-        !isAllowedProductGalleryModule(relative, script[1], script[2])
+        !isAllowedProductGalleryModule(relative, script[1], script[2]) &&
+        !isAllowedSearchModule(relative, script[1])
       )
         failures.push(
           `${relative}: el artefacto carga JavaScript cliente no permitido`,

@@ -5,6 +5,7 @@ import {
 } from '../../config/navigation';
 import { routes } from '../../lib/catalog/domain/routes';
 import { withBasePath, withoutBasePath } from '../../lib/site/urls';
+import SearchTrigger from '../search/SearchTrigger.astro';
 
 interface Props {
   currentPath: string;
@@ -51,13 +52,8 @@ const label =
               <span>Sobre Luna</span>
             </a>
           </li>
-          <li class="primary-navigation__search" aria-hidden="true">
-            <span>
-              <svg viewBox="0 0 24 24" fill="none" focusable="false">
-                <circle cx="10.8" cy="10.8" r="6.4" />
-                <path d="m15.5 15.5 4.1 4.1" />
-              </svg>
-            </span>
+          <li class="primary-navigation__search">
+            <SearchTrigger location="desktop" />
           </li>
         </>
       )

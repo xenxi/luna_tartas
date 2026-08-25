@@ -1,0 +1,31 @@
+---
+import { publicContactConfig } from '../../config/contact';
+import { siteConfig } from '../../config/site';
+import { routes } from '../../lib/catalog/domain/routes';
+import { withBasePath } from '../../lib/site/urls';
+import SearchPanel from './SearchPanel.astro';
+import './search.css';
+
+const basePath = import.meta.env.BASE_URL;
+---
+
+<dialog
+  id="global-search"
+  class="search-overlay"
+  aria-labelledby="global-search-title"
+  data-search-root
+  data-search-mode="overlay"
+  data-catalog-url={withBasePath(routes.catalogJson(), basePath)}
+  data-search-url={withBasePath(routes.search(), basePath)}
+  data-products-url={withBasePath(routes.products(), basePath)}
+  data-contact-url={publicContactConfig.whatsapp.href}
+  data-base-path={basePath}
+  data-canonical-origin={siteConfig.siteUrl}
+>
+  <SearchPanel idPrefix="global-search" mode="overlay" />
+</dialog>
+
+<script>
+  import { initializeGlobalSearch } from './search-client';
+  initializeGlobalSearch(document, window);
+</script>
