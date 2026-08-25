@@ -74,30 +74,6 @@
   aspect-ratio: 4 / 3;
 }
 
-.catalog-card__heart {
-  position: absolute;
-  z-index: 3;
-  inset-block-start: var(--space-4);
-  inset-inline-end: var(--space-4);
-  display: grid;
-  inline-size: 2.15rem;
-  block-size: 2.15rem;
-  place-items: center;
-  border: 1px solid color-mix(in srgb, var(--color-border) 56%, transparent);
-  border-radius: 50%;
-  background: color-mix(in srgb, var(--color-surface) 86%, transparent);
-  color: var(--color-accent);
-}
-
-.catalog-card__heart svg {
-  inline-size: 1.15rem;
-  fill: none;
-  stroke: currentColor;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  stroke-width: 1.35;
-}
-
 .catalog-card__eyebrow,
 .catalog-card__meta {
   color: var(--color-action);

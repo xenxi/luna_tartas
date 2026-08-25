@@ -1,0 +1,32 @@
+---
+import './favorites.css';
+
+interface Props {
+  productId: string;
+  productName: string;
+  variant?: 'card' | 'detail';
+}
+
+const { productId, productName, variant = 'card' } = Astro.props;
+---
+
+<button
+  class:list={['favorite-button', `favorite-button--${variant}`]}
+  type="button"
+  aria-label={`Añadir ${productName} a favoritos`}
+  aria-pressed="false"
+  data-favorite-toggle
+  data-product-id={productId}
+  data-product-name={productName}
+>
+  <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+    <path
+      d="M12 20S4.5 16 4.5 10.7c0-3.4 4.4-4.6 7.5-.9 3.1-3.7 7.5-2.5 7.5.9C19.5 16 12 20 12 20Z"
+    ></path>
+  </svg>
+  {
+    variant === 'detail' && (
+      <span data-favorite-label>Guardar en favoritos</span>
+    )
+  }
+</button>

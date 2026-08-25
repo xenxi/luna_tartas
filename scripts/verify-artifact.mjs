@@ -62,6 +62,15 @@ function isAllowedSearchModule(route, tagName, src) {
   );
 }
 
+function isAllowedFavoritesModule(tagName, src) {
+  return (
+    tagName === 'script' &&
+    /^\/_astro\/FavoritesClient\.astro_astro_type_script_[^/]+\.js$/i.test(
+      src,
+    )
+  );
+}
+
 await walk(dist);
 if (htmlFiles.length === 0) fail('no HTML pages found');
 
@@ -84,7 +93,8 @@ for (const file of htmlFiles) {
     if (
       !isAllowedAnalyticsModule(tagName, match[2]) &&
       !isAllowedProductGalleryModule(route, tagName, match[2]) &&
-      !isAllowedSearchModule(route, tagName, match[2])
+      !isAllowedSearchModule(route, tagName, match[2]) &&
+      !isAllowedFavoritesModule(tagName, match[2])
     ) {
       fail(`${route} loads an unexpected client asset`);
     }

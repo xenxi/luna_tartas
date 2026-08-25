@@ -31,6 +31,7 @@ function productProjection(
   _listId: string,
 ): ProductCardProjection {
   return {
+    id: product.slug,
     href: routes.product(product.slug),
     name: product.name,
     summary: product.summary,

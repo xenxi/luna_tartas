@@ -6,6 +6,7 @@ import {
 import { routes } from '../../lib/catalog/domain/routes';
 import { withBasePath, withoutBasePath } from '../../lib/site/urls';
 import SearchTrigger from '../search/SearchTrigger.astro';
+import FavoriteLink from '../favorites/FavoriteLink.astro';
 
 interface Props {
   currentPath: string;
@@ -56,6 +57,9 @@ const label =
           </li>
           <li class="primary-navigation__search">
             <SearchTrigger location="desktop" />
+          </li>
+          <li class="primary-navigation__favorites">
+            <FavoriteLink currentPath={currentPath} variant="desktop" />
           </li>
         </>
       )

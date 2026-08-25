@@ -1,0 +1,8 @@
+<script>
+  import { initializeFavorites } from '../../lib/favorites/client';
+
+  const startFavorites = () => initializeFavorites(document, window);
+
+  startFavorites();
+  document.addEventListener('astro:page-load', startFavorites);
+</script>

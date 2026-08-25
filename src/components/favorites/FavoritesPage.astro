@@ -1,0 +1,90 @@
+---
+import type { Catalog } from '../../lib/catalog/domain/model';
+import { routes } from '../../lib/catalog/domain/routes';
+import { getPublishedProducts } from '../../lib/catalog/domain/queries';
+import { withBasePath } from '../../lib/site/urls';
+import { projectProductListing } from '../products/product-listing';
+import { catalogImageMap } from '../catalog/catalog-images';
+import { buildMediaProjection } from '../catalog/media-projection';
+import ProductCard from '../catalog/ProductCard.astro';
+import type { ProductCardProjection } from '../catalog/types';
+import CardList from '../patterns/CardList.astro';
+import Ornament from '../ui/Ornament.astro';
+import ActionLink from '../ui/ActionLink.astro';
+import './favorites.css';
+
+interface Props {
+  catalog: Catalog;
+}
+
+const { catalog } = Astro.props;
+const products = getPublishedProducts(catalog);
+const productsBySlug = new Map(
+  products.map((product) => [product.slug, product]),
+);
+const cards: ProductCardProjection[] = await Promise.all(
+  projectProductListing(catalog).items.map(async (item) => {
+    const product = productsBySlug.get(item.id);
+    const cover = product?.media.cover;
+    const image = cover === undefined ? undefined : catalogImageMap[cover.src];
+
+    return {
+      ...item,
+      media:
+        cover === undefined || image === undefined
+          ? undefined
+          : await buildMediaProjection(image, cover.alt),
+    };
+  }),
+);
+---
+
+<section
+  class="favorites-page section"
+  aria-labelledby="favorites-heading"
+  data-favorites-page
+>
+  <header class="favorites-page__intro container">
+    <p class="eyebrow">Detalles que enamoran</p>
+    <h1 id="favorites-heading">Tus favoritos</h1>
+    <p>Guarda aquí esos detalles que te han enamorado.</p>
+    <p class="favorites-page__total" data-favorites-total hidden></p>
+  </header>
+
+  <div class="favorites-page__dynamic visual-container">
+    <div class="favorites-page__grid" data-favorites-grid hidden>
+      <CardList
+        count={cards.length}
+        columns={4}
+        emptyMessage="No hay productos publicados para guardar."
+      >
+        {
+          cards.map((product) => (
+            <li data-favorite-item data-product-id={product.id} hidden>
+              <ProductCard product={product} />
+            </li>
+          ))
+        }
+      </CardList>
+    </div>
+
+    <div class="favorites-page__empty" data-favorites-empty>
+      <Ornament variant="heart" tone="accent" />
+      <h2>Todavía no has guardado ningún favorito</h2>
+      <p>Cuando algo te enamore, toca el corazón y lo encontrarás aquí.</p>
+      <ActionLink href={routes.products()} variant="secondary">
+        Descubrir productos
+      </ActionLink>
+    </div>
+  </div>
+
+  <noscript>
+    <p class="favorites-page__noscript container">
+      Activa JavaScript para consultar los favoritos guardados en este
+      navegador. También puedes seguir explorando el <a
+        href={withBasePath(routes.products(), import.meta.env.BASE_URL)}
+        >catálogo completo</a
+      >.
+    </p>
+  </noscript>
+</section>

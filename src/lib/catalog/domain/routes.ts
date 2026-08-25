@@ -25,6 +25,7 @@ export const routes = {
   underConstruction: (): string => '/en-construccion/',
   products: (): string => '/productos/',
   search: (): string => '/buscar/',
+  favorites: (): string => '/favoritos/',
   product: (slug: string): string =>
     withTrailingSlash(`/productos/${segment(slug, 'Product slug')}`),
   taxonomyIndex: (kind: TaxonomyKind): string =>

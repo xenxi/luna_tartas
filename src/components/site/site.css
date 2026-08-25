@@ -150,7 +150,8 @@
 }
 
 .primary-navigation__pending,
-.primary-navigation__search {
+.primary-navigation__search,
+.primary-navigation__favorites {
   display: none;
 }
 
@@ -495,7 +496,8 @@
   }
 
   .primary-navigation__pending,
-  .primary-navigation__search {
+  .primary-navigation__search,
+  .primary-navigation__favorites {
     display: flex;
     min-block-size: 2.75rem;
     align-items: center;

@@ -26,7 +26,7 @@ describe('responsive contract', () => {
     );
   });
 
-  it('allows only analytics, catalog search and the scoped product gallery module', () => {
+  it('allows only analytics, favorites, catalog search and the scoped product gallery module', () => {
     const artifact = readFileSync(
       resolve(root, 'scripts/verify-artifact.mjs'),
       'utf8',
@@ -41,6 +41,8 @@ describe('responsive contract', () => {
     expect(artifact).toContain('isAllowedProductGalleryModule');
     expect(responsive).toContain('isAllowedSearchModule');
     expect(artifact).toContain('isAllowedSearchModule');
+    expect(responsive).toContain('isAllowedFavoritesModule');
+    expect(artifact).toContain('isAllowedFavoritesModule');
     expect(responsive).toContain('[data-product-gallery]');
     expect(responsive).toContain('ProductGallery\\.astro_astro_type_script_');
     expect(artifact).toContain('ProductGallery\\.astro_astro_type_script_');

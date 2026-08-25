@@ -7,6 +7,7 @@ import { buildProductWhatsAppUrl } from '../../lib/whatsapp/product';
 import { createProductAnalyticsData } from '../../lib/analytics/product';
 import { formatPriceLabel } from '../catalog/price';
 import ActionLink from '../ui/ActionLink.astro';
+import FavoriteButton from '../favorites/FavoriteButton.astro';
 import './product-conversion-panel.css';
 
 interface Props {
@@ -37,23 +38,30 @@ const analytics = createProductAnalyticsData(product);
   </div>
 
   <div class="product-conversion__action">
-    <ActionLink
-      href={href}
-      ariaLabel={`Pedir ${product.name} por WhatsApp`}
-      target="_blank"
-      rel="noopener noreferrer"
-      analytics={{
-        event: 'contact_whatsapp',
-        ctaLocation: 'product-detail',
-        ...analytics,
-      }}
-    >
-      <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-        <path d="M6 8h12v11H6zM9 8V6a3 3 0 0 1 6 0v2"></path>
-        <path d="M9.5 13.5c1.2 1.5 3.8 1.5 5 0"></path>
-      </svg>
-      Pedir por WhatsApp
-    </ActionLink>
+    <div class="product-conversion__actions">
+      <ActionLink
+        href={href}
+        ariaLabel={`Pedir ${product.name} por WhatsApp`}
+        target="_blank"
+        rel="noopener noreferrer"
+        analytics={{
+          event: 'contact_whatsapp',
+          ctaLocation: 'product-detail',
+          ...analytics,
+        }}
+      >
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <path d="M6 8h12v11H6zM9 8V6a3 3 0 0 1 6 0v2"></path>
+          <path d="M9.5 13.5c1.2 1.5 3.8 1.5 5 0"></path>
+        </svg>
+        Pedir por WhatsApp
+      </ActionLink>
+      <FavoriteButton
+        productId={product.slug}
+        productName={product.name}
+        variant="detail"
+      />
+    </div>
     <p>Te confirmamos disponibilidad y acabamos de definirlo contigo.</p>
   </div>
 </aside>

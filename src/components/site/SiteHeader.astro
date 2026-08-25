@@ -2,9 +2,8 @@
 import Ornament from '../ui/Ornament.astro';
 import BrandHomeLink from './BrandHomeLink.astro';
 import PrimaryNavigation from './PrimaryNavigation.astro';
-import { routes } from '../../lib/catalog/domain/routes';
-import { withBasePath } from '../../lib/site/urls';
 import SearchTrigger from '../search/SearchTrigger.astro';
+import FavoriteLink from '../favorites/FavoriteLink.astro';
 
 interface Props {
   currentPath: string;
@@ -19,20 +18,7 @@ const { currentPath } = Astro.props;
   <div class="site-header__inner visual-container">
     <BrandHomeLink location="header" />
     <div class="site-header__mobile-actions">
-      <a
-        class="site-header__mobile-action"
-        href={withBasePath(
-          routes.underConstruction(),
-          import.meta.env.BASE_URL,
-        )}
-        aria-label="Favoritos"
-      >
-        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-          <path
-            d="M20.8 8.8c0 5.2-8.8 10.1-8.8 10.1S3.2 14 3.2 8.8A4.3 4.3 0 0 1 11 5.9a4.3 4.3 0 0 1 7.8 2.9Z"
-          ></path>
-        </svg>
-      </a>
+      <FavoriteLink currentPath={currentPath} variant="mobile" />
       <SearchTrigger location="mobile" />
     </div>
     <details class="site-menu">

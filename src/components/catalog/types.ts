@@ -16,6 +16,7 @@ export interface MediaProjection {
 }
 
 export interface ProductCardProjection {
+  readonly id: string;
   readonly href: string;
   readonly name: string;
   readonly summary: string;

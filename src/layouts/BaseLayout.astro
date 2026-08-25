@@ -15,6 +15,7 @@ import DecorativeBackdrop from '../components/site/DecorativeBackdrop.astro';
 import AnalyticsConsent from '../components/site/AnalyticsConsent.astro';
 import AnalyticsInstrumentation from '../components/site/AnalyticsInstrumentation.astro';
 import SearchOverlay from '../components/search/SearchOverlay.astro';
+import FavoritesClient from '../components/favorites/FavoritesClient.astro';
 import '../components/site/site.css';
 import '../styles/global.css';
 
@@ -96,5 +97,6 @@ const metadata = createPageMetadata({
     </SiteFooter>
     <MobileNavigation currentPath={Astro.url.pathname} />
     <AnalyticsInstrumentation />
+    <FavoritesClient />
   </body>
 </html>

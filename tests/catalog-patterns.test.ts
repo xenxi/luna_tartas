@@ -78,6 +78,7 @@ describe('catalog and contextual navigation patterns', () => {
       sources: [{ srcSet: '/media/sample.avif', type: 'image/avif' }],
     };
     const product: ProductCardProjection = {
+      id: 'muestra',
       href: '/productos/muestra/',
       name: 'Muestra',
       summary: 'Resumen',

@@ -26,6 +26,7 @@ export function projectProductListing(
     title: 'Todas nuestras ideas',
     intro: 'Explora regalos personalizados para encontrar el detalle adecuado.',
     items: getPublishedProducts(catalog).map((product) => ({
+      id: product.slug,
       href: routes.product(product.slug),
       name: product.name,
       summary: product.summary,

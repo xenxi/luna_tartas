@@ -58,6 +58,17 @@ function isAllowedSearchModule(relative, attributes) {
   );
 }
 
+function isAllowedFavoritesModule(attributes) {
+  const src = attributes.match(/\bsrc="([^"]+)"/i)?.[1];
+  return (
+    /\btype="module"/i.test(attributes) &&
+    src !== undefined &&
+    /^\/_astro\/FavoritesClient\.astro_astro_type_script_[^/]+\.js$/i.test(
+      src,
+    )
+  );
+}
+
 try {
   await walk(root);
 } catch {
@@ -85,7 +96,8 @@ if (htmlFiles.length === 0) {
         !/type="application\/ld\+json"/i.test(script[1]) &&
         !isAllowedAnalyticsModule(script[1]) &&
         !isAllowedProductGalleryModule(relative, script[1], script[2]) &&
-        !isAllowedSearchModule(relative, script[1])
+        !isAllowedSearchModule(relative, script[1]) &&
+        !isAllowedFavoritesModule(script[1])
       )
         failures.push(
           `${relative}: el artefacto carga JavaScript cliente no permitido`,

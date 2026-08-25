@@ -32,6 +32,7 @@ export function projectRelatedProducts(
     title: 'También puede interesarte',
     intro: 'Otras creaciones hechas para convertir momentos en recuerdos.',
     items: suggestions.map((related) => ({
+      id: related.slug,
       href: routes.product(related.slug),
       name: related.name,
       summary: related.summary,

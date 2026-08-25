@@ -59,7 +59,13 @@
   min-inline-size: 0;
 }
 
-.product-conversion__action .action-link {
+.product-conversion__actions {
+  display: grid;
+  gap: var(--space-2);
+  min-inline-size: 0;
+}
+
+.product-conversion__actions .action-link {
   min-block-size: 3.25rem;
   border-radius: var(--radius-pill);
   border-color: var(--color-action);

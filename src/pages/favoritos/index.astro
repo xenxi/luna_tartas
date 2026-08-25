@@ -1,0 +1,17 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import FavoritesPage from '../../components/favorites/FavoritesPage.astro';
+import { routes } from '../../lib/catalog/domain/routes';
+import { loadCatalog } from '../../lib/catalog/source';
+
+const catalog = await loadCatalog();
+---
+
+<BaseLayout
+  title="Tus favoritos"
+  canonicalPath={routes.favorites()}
+  description="Consulta los detalles de LUNA que has guardado como favoritos en este navegador."
+  robots="noindex,follow"
+>
+  <FavoritesPage catalog={catalog} />
+</BaseLayout>
