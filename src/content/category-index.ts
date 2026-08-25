@@ -4,7 +4,8 @@ export const categoryIndexContent = Object.freeze({
     title: 'Encuentra el regalo perfecto',
     claim: 'Hecho a mano, con amor',
     copy: 'Regalos únicos y personalizados para cada historia, cada persona y cada ocasión.',
-    imageAlt: 'Tarta de pañales artesanal decorada con flores en tonos suaves.',
+    imageAlt:
+      'Tarta de pañales personalizada en tonos rosas con lazo, regalo y bloques de madera.',
   }),
   listing: Object.freeze({
     title: 'Nuestras categorías',

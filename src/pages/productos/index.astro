@@ -8,7 +8,7 @@ import { loadCatalog } from '../../lib/catalog/source';
 import { routes } from '../../lib/catalog/domain/routes';
 import { buildMediaProjection } from '../../components/catalog/media-projection';
 import { catalogPageContent } from '../../content/catalog-pages';
-import heroImage from '../../assets/home/tarta-hero.png';
+import heroImage from '../../assets/products/products-hero.png';
 import './products.css';
 import Breadcrumb from '../../components/navigation/Breadcrumb.astro';
 import { productsBreadcrumb } from '../../lib/seo/navigation';
@@ -18,8 +18,8 @@ const heroMedia = await buildMediaProjection(
   heroImage,
   catalogPageContent.products.imageAlt,
   {
-    widths: [640, 960, 1280, 1600],
-    sizes: '(min-width: 48rem) min(54vw, 52rem), calc(100vw - 2rem)',
+    widths: [480, 768, 1024, 1440, 1920],
+    sizes: 'min(100vw, 93.75rem)',
   },
 );
 ---
@@ -37,6 +37,7 @@ const heroMedia = await buildMediaProjection(
       claim={catalogPageContent.products.claim}
       description={catalogPageContent.products.intro}
       media={heroMedia}
+      variant="full-bleed"
     />
     <ProductListing catalog={catalog} />
     <CategoryBenefits />

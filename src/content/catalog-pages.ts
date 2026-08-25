@@ -8,7 +8,7 @@ export const catalogPageContent = Object.freeze({
     intro:
       'Ideas hechas con mimo para celebrar a las personas especiales y convertir cada regalo en un recuerdo único.',
     imageAlt:
-      'Regalo personalizado entre flores rosas y pequeños detalles artesanales.',
+      'Colección de regalos personalizados, tartas de pañales y papelería decorada en tonos rosas.',
   }),
   taxonomy: Object.freeze({
     category: Object.freeze({

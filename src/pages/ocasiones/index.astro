@@ -1,10 +1,20 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import TaxonomyIndex from '../../components/taxonomies/TaxonomyIndex.astro';
+import { buildMediaProjection } from '../../components/catalog/media-projection';
 import { loadCatalog } from '../../lib/catalog/source';
 import { routes } from '../../lib/catalog/domain/routes';
+import occasionsHeroImage from '../../assets/occasions/occasions-hero.png';
 
 const catalog = await loadCatalog();
+const occasionsHeroMedia = await buildMediaProjection(
+  occasionsHeroImage,
+  'Decoración de Primera Comunión personalizada con globo aerostático, etiquetas y flores.',
+  {
+    widths: [480, 768, 1024, 1440, 1920],
+    sizes: 'min(100vw, 93.75rem)',
+  },
+);
 ---
 
 <BaseLayout
@@ -20,5 +30,7 @@ const catalog = await loadCatalog();
     sectionTitle="Elige una ocasión"
     sectionIntro="Explora ideas agrupadas por celebración y momento."
     itemLabel="productos"
+    heroMedia={occasionsHeroMedia}
+    heroVariant="full-bleed"
   />
 </BaseLayout>

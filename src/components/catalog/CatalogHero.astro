@@ -10,13 +10,28 @@ interface Props {
   description: string;
   media?: MediaProjection;
   headingId?: string;
+  variant?: 'split' | 'full-bleed';
 }
 
-const { eyebrow, title, claim, description, media, headingId } = Astro.props;
+const {
+  eyebrow,
+  title,
+  claim,
+  description,
+  media,
+  headingId,
+  variant = 'split',
+} = Astro.props;
 ---
 
 <header
-  class:list={['catalog-hero', { 'catalog-hero--without-media': !media }]}
+  class:list={[
+    'catalog-hero',
+    {
+      'catalog-hero--without-media': !media,
+      'catalog-hero--full-bleed': variant === 'full-bleed',
+    },
+  ]}
 >
   <div class="catalog-hero__copy">
     <p class="catalog-hero__eyebrow">

@@ -108,6 +108,34 @@
   object-fit: cover;
 }
 
+.catalog-hero--full-bleed {
+  min-block-size: clamp(28rem, 39vw, 36rem);
+  background: var(--color-surface-calm);
+}
+
+.catalog-hero--full-bleed .catalog-hero__copy {
+  inline-size: min(54%, 38rem);
+}
+
+.catalog-hero--full-bleed > .responsive-media {
+  inset: 0;
+  inline-size: 100%;
+}
+
+.catalog-hero--full-bleed > .responsive-media::after {
+  background: linear-gradient(
+    90deg,
+    color-mix(in srgb, var(--color-surface) 94%, transparent) 0%,
+    color-mix(in srgb, var(--color-surface) 84%, transparent) 25%,
+    color-mix(in srgb, var(--color-surface) 28%, transparent) 47%,
+    transparent 72%
+  );
+}
+
+.catalog-hero--full-bleed > .responsive-media img {
+  object-position: center;
+}
+
 .catalog-hero__sparkles {
   position: absolute;
   z-index: var(--z-raised);
@@ -154,6 +182,33 @@
       color-mix(in srgb, var(--color-header-mobile) 72%, transparent) 18%,
       transparent 52%
     );
+  }
+
+  .catalog-hero--full-bleed {
+    min-block-size: 38rem;
+  }
+
+  .catalog-hero--full-bleed .catalog-hero__copy {
+    inline-size: 100%;
+  }
+
+  .catalog-hero--full-bleed > .responsive-media {
+    inset-block: auto 0;
+    inline-size: 100%;
+    block-size: 48%;
+  }
+
+  .catalog-hero--full-bleed > .responsive-media::after {
+    background: linear-gradient(
+      180deg,
+      var(--color-header-mobile) 0%,
+      color-mix(in srgb, var(--color-header-mobile) 72%, transparent) 22%,
+      transparent 62%
+    );
+  }
+
+  .catalog-hero--full-bleed > .responsive-media img {
+    object-position: 68% center;
   }
 
   .catalog-hero__sparkles {

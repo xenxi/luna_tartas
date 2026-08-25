@@ -1,10 +1,20 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import TaxonomyIndex from '../../components/taxonomies/TaxonomyIndex.astro';
+import { buildMediaProjection } from '../../components/catalog/media-projection';
 import { loadCatalog } from '../../lib/catalog/source';
 import { routes } from '../../lib/catalog/domain/routes';
+import giftsHeroImage from '../../assets/gifts/gifts-hero.png';
 
 const catalog = await loadCatalog();
+const giftsHeroMedia = await buildMediaProjection(
+  giftsHeroImage,
+  'Regalo personalizado presentado en una bolsa decorada con flores y lazos rosas.',
+  {
+    widths: [480, 768, 1024, 1440, 1920],
+    sizes: 'min(100vw, 93.75rem)',
+  },
+);
 ---
 
 <BaseLayout
@@ -20,5 +30,7 @@ const catalog = await loadCatalog();
     sectionTitle="Piensa en quién lo recibe"
     sectionIntro="Explora ideas de regalo según la persona con la que quieres compartir el momento."
     itemLabel="ideas"
+    heroMedia={giftsHeroMedia}
+    heroVariant="full-bleed"
   />
 </BaseLayout>

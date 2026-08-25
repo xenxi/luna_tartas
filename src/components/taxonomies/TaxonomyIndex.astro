@@ -1,5 +1,6 @@
 ---
 import type { Catalog, TaxonomyKind } from '../../lib/catalog/domain/model';
+import type { MediaProjection } from '../catalog/types';
 import CardList from '../patterns/CardList.astro';
 import ContentSection from '../patterns/ContentSection.astro';
 import TaxonomyCard from '../catalog/TaxonomyCard.astro';
@@ -23,20 +24,32 @@ interface Props {
   sectionTitle: string;
   sectionIntro: string;
   itemLabel: string;
+  heroMedia?: MediaProjection;
+  heroVariant?: 'split' | 'full-bleed';
 }
 
-const { catalog, kind, title, intro, sectionTitle, sectionIntro, itemLabel } =
-  Astro.props;
+const {
+  catalog,
+  kind,
+  title,
+  intro,
+  sectionTitle,
+  sectionIntro,
+  itemLabel,
+  heroMedia: customHeroMedia,
+  heroVariant = 'split',
+} = Astro.props;
 const listing = projectTaxonomyIndex(catalog, kind, itemLabel);
 const heroSource = listing.items.find((item) => item.mediaSource)?.mediaSource;
 const heroImage = heroSource && catalogImageMap[heroSource.src];
-const heroMedia =
+const catalogHeroMedia =
   heroSource && heroImage
     ? await buildMediaProjection(heroImage, heroSource.alt, {
         widths: [480, 720, 960, 1200],
         sizes: '(min-width: 48rem) min(54vw, 52rem), calc(100vw - 2rem)',
       })
     : undefined;
+const heroMedia = customHeroMedia ?? catalogHeroMedia;
 const heroContent = catalogPageContent.taxonomy[kind];
 ---
 
@@ -48,6 +61,7 @@ const heroContent = catalogPageContent.taxonomy[kind];
     claim={heroContent.claim}
     description={intro}
     media={heroMedia}
+    variant={heroVariant}
   />
   {
     listing.items.length > 0 && (
