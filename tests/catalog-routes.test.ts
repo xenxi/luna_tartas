@@ -4,6 +4,7 @@ import { routes, taxonomyBase } from '../src/lib/catalog/domain/routes';
 describe('catalog routes', () => {
   it('matches the public SEO route contract', () => {
     expect(routes.home()).toBe('/');
+    expect(routes.about()).toBe('/sobre-luna/');
     expect(routes.products()).toBe('/productos/');
     expect(routes.search()).toBe('/buscar/');
     expect(routes.product('chocolate-cake')).toBe('/productos/chocolate-cake/');

@@ -44,10 +44,12 @@ const label =
         <>
           <li class="primary-navigation__pending">
             <a
-              href={withBasePath(
-                routes.underConstruction(),
-                import.meta.env.BASE_URL,
-              )}
+              href={withBasePath(routes.about(), import.meta.env.BASE_URL)}
+              aria-current={
+                isCurrentNavigationPath(routePath, routes.about())
+                  ? 'page'
+                  : undefined
+              }
             >
               <span>Sobre Luna</span>
             </a>

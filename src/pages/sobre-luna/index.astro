@@ -1,0 +1,21 @@
+---
+import aboutHeroImage from '../../assets/about/about-hero-background.png';
+import AboutPage from '../../components/about/AboutPage.astro';
+import CustomIdeaCta from '../../components/home/CustomIdeaCta.astro';
+import { siteConfig } from '../../config/site';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { routes } from '../../lib/catalog/domain/routes';
+---
+
+<BaseLayout
+  title="Sobre Luna | Detalles hechos a mano"
+  canonicalPath={routes.about()}
+  description="Conoce la historia de Luna: tartas, láminas, invitaciones y detalles personalizados creados a mano con tiempo, cuidado y cariño."
+  image={{
+    url: new URL(aboutHeroImage.src, siteConfig.siteUrl).href,
+    alt: 'Fondo rosado con un regalo artesanal, flores y una luna sonriente.',
+  }}
+>
+  <AboutPage />
+  <CustomIdeaCta sourcePage={routes.about()} />
+</BaseLayout>

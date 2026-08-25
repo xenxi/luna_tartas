@@ -66,21 +66,20 @@ const footerOccasions: readonly FooterLink[] = [
   { label: 'Y más', href: routes.taxonomyIndex('occasion') },
 ];
 
-const footerInformation = [
-  'Sobre Luna',
-  'Cómo trabajamos',
-  'Envíos y entregas',
-  'Preguntas frecuentes',
-  'Contacto',
-] as const;
+const footerInformation: readonly FooterLink[] = [
+  { label: 'Sobre Luna', href: routes.about() },
+  { label: 'Cómo trabajamos', href: `${routes.about()}#como-trabajamos` },
+  { label: 'Envíos y entregas', href: routes.underConstruction() },
+  { label: 'Preguntas frecuentes', href: routes.underConstruction() },
+  { label: 'Contacto', href: routes.underConstruction() },
+];
 
 const footerHref = (href: string): string =>
   withBasePath(href, import.meta.env.BASE_URL);
-const underConstructionHref = footerHref(routes.underConstruction());
 
 const aboutLinks: readonly FooterLink[] = [
-  { label: 'Sobre Luna', href: routes.underConstruction() },
-  { label: 'Cómo trabajamos', href: routes.underConstruction() },
+  { label: 'Sobre Luna', href: routes.about() },
+  { label: 'Cómo trabajamos', href: `${routes.about()}#como-trabajamos` },
   { label: 'Contacto', href: routes.underConstruction() },
 ];
 
@@ -211,7 +210,16 @@ const mobileFooterSections: readonly MobileFooterSection[] = [
             {
               footerInformation.map((item) => (
                 <li>
-                  <a href={underConstructionHref}>{item}</a>
+                  <a
+                    href={footerHref(item.href)}
+                    aria-current={
+                      isCurrentNavigationPath(routePath, item.href)
+                        ? 'page'
+                        : undefined
+                    }
+                  >
+                    {item.label}
+                  </a>
                 </li>
               ))
             }

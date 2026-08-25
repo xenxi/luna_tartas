@@ -14,7 +14,7 @@ const taxonomyKinds: readonly TaxonomyKind[] = [
 ];
 
 export function getIndexablePaths(catalog: Catalog): readonly string[] {
-  const paths = [routes.home(), routes.products()];
+  const paths = [routes.home(), routes.about(), routes.products()];
 
   for (const kind of taxonomyKinds) {
     paths.push(routes.taxonomyIndex(kind));

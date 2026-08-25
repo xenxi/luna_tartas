@@ -1,0 +1,283 @@
+---
+import { Image, Picture } from 'astro:assets';
+import aboutHeroImage from '../../assets/about/about-hero-background.png';
+import stepChat from '../../assets/home/trust-steps/01-chat.png';
+import stepHands from '../../assets/home/trust-steps/02-manos.png';
+import stepHeart from '../../assets/home/trust-steps/03-corazon.png';
+import cakePink from '../../assets/home/work-showcase/tarta-rosa-completa.png';
+import cakeBlue from '../../assets/home/work-showcase/tarta-azul-completa.png';
+import stationeryPack from '../../assets/catalog/papeleria/pack-lamina-marcapaginas-libreta-a6.webp';
+import luciaPrint from '../../assets/catalog/laminas/lamina-natalicia-lucia.jpeg';
+import emmaBookmark from '../../assets/catalog/laminas/invitacion-marcapaginas-emma.jpeg';
+import { aboutContent } from '../../content/about';
+import Breadcrumb from '../navigation/Breadcrumb.astro';
+import Ornament from '../ui/Ornament.astro';
+import './about-page.css';
+
+const valueIcons = {
+  hands:
+    '<path d="M12 20s-7-3.7-7-9.1c0-2.7 3.1-4.2 5-2.3L12 11l2-2.4c1.9-1.9 5-.4 5 2.3C19 16.3 12 20 12 20Z"/><path d="M4.2 12.8 2.7 11a1.5 1.5 0 0 1 2.1-2.1l2.3 2.2M19.8 12.8l1.5-1.8a1.5 1.5 0 0 0-2.1-2.1l-2.3 2.2"/>',
+  heart:
+    '<path d="M12 20S3.5 15.2 3.5 9.4A4.1 4.1 0 0 1 11 7a4.1 4.1 0 0 1 7.5 2.4C18.5 15.2 12 20 12 20Z"/><path d="M8.2 5.7c1-2.3 3.1-2.6 3.8-.5.7-2.1 2.8-1.8 3.8.5"/>',
+  gift: '<path d="M4 10h16v10H4zM3 7h18v3H3zM12 7v13"/><path d="M12 7C8.8 7 7 5.8 7 4.3 7 3.5 7.7 3 8.5 3 10.5 3 12 7 12 7Zm0 0c3.2 0 5-1.2 5-2.7 0-.8-.7-1.3-1.5-1.3C13.5 3 12 7 12 7Z"/>',
+  flower:
+    '<path d="M6 21c6.5-5.4 8.1-10.7 9-18M9.5 15.5c-2.9.3-4.7-1-5.5-3.4 2.8-.7 4.8.4 5.5 3.4Zm3.8-5.2c2.9.1 4.6-1.3 5.2-3.8-2.9-.5-4.8.8-5.2 3.8Zm-1.6 4.3c3 .2 4.7 1.7 5.2 4.2-2.9.4-4.7-.9-5.2-4.2Z"/>',
+} as const;
+
+const stepImages = [stepChat, stepHands, stepHeart] as const;
+const storyMedia = [cakePink, stationeryPack, luciaPrint] as const;
+const galleryMedia = [
+  cakePink,
+  emmaBookmark,
+  luciaPrint,
+  stationeryPack,
+  cakeBlue,
+] as const;
+---
+
+<div class="about-page">
+  <section class="about-hero" aria-labelledby="about-title">
+    <div class="about-hero__background" aria-hidden="true">
+      <Picture
+        src={aboutHeroImage}
+        alt=""
+        formats={['avif', 'webp']}
+        fallbackFormat="png"
+        widths={[480, 768, 1080, 1440, 1920]}
+        sizes="100vw"
+        loading="eager"
+        fetchpriority="high"
+        decoding="async"
+        class="about-hero__image"
+        pictureAttributes={{ class: 'about-hero__background-picture' }}
+      />
+    </div>
+    <div class="about-hero__breadcrumb visual-container">
+      <Breadcrumb
+        items={[
+          { label: 'Inicio', href: '/' },
+          { label: 'Sobre Luna', current: true },
+        ]}
+      />
+    </div>
+    <div class="about-hero__inner visual-container">
+      <div class="about-hero__copy">
+        <p class="eyebrow">{aboutContent.hero.eyebrow}</p>
+        <h1 id="about-title">{aboutContent.hero.title}</h1>
+        <p class="about-hero__script">{aboutContent.hero.script}</p>
+        <div class="about-hero__intro">
+          {aboutContent.hero.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
+        </div>
+      </div>
+    </div>
+    <div class="about-hero__transition" aria-hidden="true">
+      <svg
+        class="about-hero__transition-cutout"
+        viewBox="0 0 1440 100"
+        preserveAspectRatio="none"
+        focusable="false"
+      >
+        <path
+          d="M0 36c150-34 290 20 446 13 117-5 192-29 285-25 106 5 177 30 297 26 153-5 260-32 412-9v59H0Z"
+        ></path>
+      </svg>
+      <svg
+        class="about-hero__transition-line"
+        viewBox="0 0 1440 68"
+        preserveAspectRatio="none"
+        focusable="false"
+      >
+        <path d="M0 36c150-34 290 20 446 13 117-5 192-29 244-25"></path>
+        <path d="M750 26c91 8 163 28 281 24 153-5 260-32 412-9"></path>
+      </svg>
+      <Ornament
+        variant="heart"
+        tone="accent"
+        class="about-hero__transition-heart"
+      />
+    </div>
+  </section>
+
+  <section class="about-values" aria-labelledby="values-title">
+    <header class="about-section-heading">
+      <h2 id="values-title">
+        {aboutContent.values.title}<Ornament variant="heart" tone="accent" />
+      </h2>
+      <p>{aboutContent.values.intro}</p>
+    </header>
+    <ul class="about-values__grid visual-container">
+      {
+        aboutContent.values.items.map((item) => (
+          <li class="about-value-card">
+            <span class="about-value-card__icon" aria-hidden="true">
+              <svg
+                viewBox="0 0 24 24"
+                set:html={valueIcons[item.icon as keyof typeof valueIcons]}
+              />
+            </span>
+            <h3>{item.title}</h3>
+            <p>{item.copy}</p>
+            <Ornament variant="heart" tone="accent" />
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+
+  <section class="about-stories" aria-label="Nuestra historia">
+    <div class="about-stories__inner visual-container">
+      {
+        aboutContent.stories.map((story, index) => (
+          <article
+            class:list={[
+              'about-story',
+              { 'about-story--reverse': index % 2 === 1 },
+            ]}
+            id={story.id}
+          >
+            <figure class="about-story__media">
+              <Image
+                src={storyMedia[index]}
+                alt={
+                  index === 0
+                    ? 'Tarta de pañales rosa preparada como regalo.'
+                    : index === 1
+                      ? 'Papelería personalizada preparada a mano.'
+                      : 'Lámina natalicia personalizada en tonos suaves.'
+                }
+                widths={[360, 540, 720, 900]}
+                sizes="(min-width: 64rem) 38vw, 92vw"
+                format="webp"
+                loading="lazy"
+                decoding="async"
+              />
+              <Ornament
+                variant="sparkle"
+                tone={index === 1 ? 'blue' : 'peach'}
+              />
+            </figure>
+            <div class="about-story__copy">
+              <p class="about-story__number" aria-hidden="true">
+                0{index + 1}
+              </p>
+              <h2>
+                {story.title}
+                <Ornament variant="heart" tone="accent" />
+              </h2>
+              {story.paragraphs.map((paragraph, paragraphIndex) => (
+                <p
+                  class:list={{
+                    'about-story__emphasis':
+                      paragraphIndex === 1 && index === 2,
+                  }}
+                >
+                  {paragraph}
+                </p>
+              ))}
+              {'quote' in story && story.quote && (
+                <blockquote>{story.quote}</blockquote>
+              )}
+              {'closing' in story && story.closing && (
+                <p class="about-story__closing">{story.closing}</p>
+              )}
+            </div>
+          </article>
+        ))
+      }
+    </div>
+  </section>
+
+  <section
+    class="about-process"
+    id="como-trabajamos"
+    aria-labelledby="process-title"
+  >
+    <header class="about-section-heading">
+      <h2 id="process-title">
+        {aboutContent.process.title}<Ornament variant="heart" tone="accent" />
+      </h2>
+      <p>{aboutContent.process.intro}</p>
+    </header>
+    <div class="about-process__flow visual-container">
+      <div class="about-process__thread" aria-hidden="true">
+        <svg
+          class="about-process__thread-svg"
+          viewBox="0 0 1200 180"
+          preserveAspectRatio="none"
+          focusable="false"
+        >
+          <path d="M255 90c70 0 80 34 130 34s60-34 130-34"></path>
+          <path d="M685 90c70 0 80-34 130-34s60 34 130 34"></path>
+        </svg>
+      </div>
+      <ol class="about-process__list">
+        {
+          aboutContent.process.steps.map((step, index) => (
+            <li class="about-process__step">
+              <span class="about-process__number" aria-hidden="true">
+                {step.number}
+              </span>
+              <span class="about-process__art">
+                <Image
+                  src={stepImages[index]}
+                  alt={`Ilustración del paso ${step.number}: ${step.title}.`}
+                  width={420}
+                  height={420}
+                  format="webp"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </span>
+              <h3>{step.title}</h3>
+              <p>{step.copy}</p>
+            </li>
+          ))
+        }
+      </ol>
+    </div>
+  </section>
+
+  <section
+    class="about-gallery visual-container"
+    aria-label="Una selección de trabajos de Luna"
+  >
+    {
+      galleryMedia.map((media, index) => (
+        <figure
+          class:list={[
+            'about-gallery__item',
+            `about-gallery__item--${index + 1}`,
+          ]}
+        >
+          <Image
+            src={media}
+            alt={
+              [
+                'Tarta de pañales rosa personalizada.',
+                'Invitación y marcapáginas personalizados.',
+                'Lámina natalicia personalizada.',
+                'Conjunto de papelería personalizada.',
+                'Tarta de pañales azul personalizada.',
+              ][index]
+            }
+            widths={[280, 420, 560]}
+            sizes="(min-width: 64rem) 18vw, 44vw"
+            format="webp"
+            loading="lazy"
+            decoding="async"
+          />
+        </figure>
+      ))
+    }
+  </section>
+
+  <div
+    class="about-signature"
+    aria-label={`${aboutContent.signature.title}. ${aboutContent.signature.copy}`}
+  >
+    <Ornament variant="sparkle" tone="peach" />
+    <p>{aboutContent.signature.title}</p>
+    <p>{aboutContent.signature.copy}</p>
+    <Ornament variant="heart" tone="accent" />
+  </div>
+</div>
