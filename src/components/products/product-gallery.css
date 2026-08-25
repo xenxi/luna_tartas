@@ -510,11 +510,20 @@
   .product-gallery__zoom-label {
     inset-block-end: var(--space-3);
     inset-inline-end: var(--space-3);
+    display: inline-flex;
     inline-size: 2.75rem;
     block-size: 2.75rem;
+    align-items: center;
     justify-content: center;
+    gap: 0;
     padding: 0;
     font-size: 0;
+    line-height: 0;
+  }
+
+  .product-gallery__zoom-label svg {
+    inline-size: 1.25rem;
+    block-size: 1.25rem;
   }
 
   .product-gallery__lightbox-header {
@@ -551,8 +560,10 @@
   }
 
   .product-gallery__lightbox-reset {
+    display: grid;
     inline-size: 2.75rem;
     padding: 0;
+    place-items: center;
   }
 
   .product-gallery__lightbox-viewer {
