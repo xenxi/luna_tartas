@@ -6,6 +6,7 @@ import { publicContactConfig } from '../../config/contact';
 import { contactContent } from '../../content/contact';
 import { routes } from '../../lib/catalog/domain/routes';
 import { withBasePath } from '../../lib/site/urls';
+import MobileHeroWave from '../catalog/MobileHeroWave.astro';
 import Breadcrumb from '../navigation/Breadcrumb.astro';
 import ActionLink from '../ui/ActionLink.astro';
 import Icon from '../ui/Icon.astro';
@@ -35,6 +36,7 @@ import './contact-page.css';
         class="contact-hero__heart-trail"
       />
     </div>
+    <MobileHeroWave />
   </section>
 
   <section class="contact-whatsapp" aria-labelledby="contact-whatsapp-title">
@@ -53,6 +55,16 @@ import './contact-page.css';
         <p class="eyebrow">{contactContent.whatsapp.eyebrow}</p>
         <h2 id="contact-whatsapp-title">{contactContent.whatsapp.title}</h2>
         <p>{contactContent.whatsapp.copy}</p>
+        <ul
+          class="contact-whatsapp__benefits"
+          aria-label="Ventajas del contacto por WhatsApp"
+        >
+          {
+            contactContent.whatsapp.benefits.map((benefit) => (
+              <li>{benefit}</li>
+            ))
+          }
+        </ul>
         <ActionLink
           href={contactContent.whatsapp.action.href}
           variant="primary"
@@ -72,10 +84,10 @@ import './contact-page.css';
         </p>
       </div>
       <div class="contact-whatsapp__art">
+        <span class="contact-whatsapp__halo" aria-hidden="true"></span>
         <span
           class="contact-whatsapp__bubble contact-whatsapp__bubble--one"
-          aria-hidden="true"
-          >Hola, tengo una idea…</span
+          aria-hidden="true">Hola, tengo una idea…</span
         >
         <Image
           src={chatIllustration}
@@ -89,8 +101,7 @@ import './contact-page.css';
         />
         <span
           class="contact-whatsapp__bubble contact-whatsapp__bubble--two"
-          aria-hidden="true"
-          >¡Cuéntanos!</span
+          aria-hidden="true">¡Cuéntanos!</span
         >
       </div>
     </div>
@@ -239,21 +250,24 @@ import './contact-page.css';
           <ContactIcon name="whatsapp" />
         </ActionLink>
       </div>
-      <Image
-        src={moonIllustration}
-        alt="Luna sonriente descansando sobre una nube rosa."
-        width={1278}
-        height={1231}
-        format="webp"
-        loading="lazy"
-        decoding="async"
-        class="contact-closing__moon"
-      />
-      <Ornament
-        variant="sparkle"
-        tone="peach"
-        class="contact-closing__sparkle"
-      />
+      <div class="contact-closing__art">
+        <span class="contact-closing__halo" aria-hidden="true"></span>
+        <Image
+          src={moonIllustration}
+          alt="Luna sonriente descansando sobre una nube rosa."
+          width={1278}
+          height={1231}
+          format="webp"
+          loading="lazy"
+          decoding="async"
+          class="contact-closing__moon"
+        />
+        <Ornament
+          variant="sparkle"
+          tone="peach"
+          class="contact-closing__sparkle"
+        />
+      </div>
     </div>
   </section>
 </div>

@@ -31,6 +31,11 @@ export const contactContent = Object.freeze({
     title: 'Escríbenos por WhatsApp',
     copy: 'Pregúntanos por un producto, cuéntanos qué tienes en mente o consúltanos cualquier detalle de tu pedido. Estamos aquí para ayudarte a encontrar la mejor opción.',
     note: 'Puedes escribirnos sin tenerlo todo decidido.',
+    benefits: Object.freeze([
+      'Atención personal',
+      'Sin compromiso',
+      'Te ayudamos a dar forma a tu idea',
+    ]),
     action: Object.freeze({
       label: 'Hablar por WhatsApp',
       href: publicContactConfig.whatsapp.href,

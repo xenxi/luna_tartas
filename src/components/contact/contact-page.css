@@ -24,24 +24,34 @@
   stroke: none;
 }
 
+/* Hero */
 .contact-hero {
   position: relative;
+  isolation: isolate;
+  overflow: hidden;
   background:
     radial-gradient(
-      circle at 18% 30%,
-      color-mix(in srgb, var(--color-decoration-blue) 30%, transparent),
-      transparent 13rem
+      circle at 12% 25%,
+      color-mix(in srgb, var(--color-decoration-blue) 28%, transparent),
+      transparent 18rem
     ),
     radial-gradient(
-      circle at 82% 64%,
-      color-mix(in srgb, var(--color-decoration-blush) 42%, transparent),
-      transparent 15rem
+      circle at 87% 72%,
+      color-mix(in srgb, var(--color-decoration-blush) 45%, transparent),
+      transparent 20rem
     ),
-    linear-gradient(
-      112deg,
-      var(--color-surface) 0%,
-      var(--color-surface-soft) 100%
-    );
+    linear-gradient(125deg, var(--color-surface), var(--color-surface-soft));
+}
+
+.contact-hero::after {
+  position: absolute;
+  z-index: -1;
+  inset: auto 9% -7rem auto;
+  inline-size: 17rem;
+  block-size: 17rem;
+  border: 1px solid color-mix(in srgb, var(--color-action) 12%, transparent);
+  border-radius: 50%;
+  content: '';
 }
 
 .contact-hero__breadcrumb {
@@ -53,38 +63,40 @@
   display: grid;
   justify-items: center;
   gap: var(--space-3);
-  padding-block: clamp(var(--space-10), 5vw, var(--space-16))
-    clamp(var(--space-12), 6vw, var(--space-20));
+  padding-block: clamp(3.5rem, 7vw, 6.5rem) clamp(4rem, 8vw, 7rem);
   text-align: center;
 }
 
 .contact-hero__inner h1 {
-  max-inline-size: 11ch;
-  font-size: clamp(3rem, 5.5vw, 5rem);
-  line-height: 0.98;
+  max-inline-size: 10ch;
+  font-size: clamp(3.5rem, 7vw, 6rem);
+  letter-spacing: -0.045em;
+  line-height: 0.92;
 }
 
 .contact-hero__inner > p:last-of-type {
-  max-inline-size: 49ch;
+  max-inline-size: 51ch;
   color: var(--color-text-muted);
-  font-size: clamp(1rem, 0.8vw + 0.75rem, 1.2rem);
-  line-height: 1.65;
+  font-size: clamp(1rem, 0.75vw + 0.78rem, 1.2rem);
+  line-height: 1.7;
   text-wrap: pretty;
 }
 
 .contact-hero__sparkle {
   position: absolute;
   inset-block-start: 28%;
-  inset-inline-start: 11%;
-  inline-size: 2rem;
+  inset-inline-start: 9%;
+  inline-size: 2.15rem;
 }
 
 .contact-hero__heart-trail {
   position: absolute;
-  inset: auto 4% 19% auto;
+  inset: auto 1% 14% auto;
   inline-size: clamp(7rem, 14vw, 11rem);
+  opacity: 0.7;
 }
 
+/* Primary contact panel */
 .contact-whatsapp {
   padding-block: clamp(var(--space-10), 5vw, var(--space-16));
   background: var(--color-surface);
@@ -94,27 +106,37 @@
   position: relative;
   isolation: isolate;
   display: grid;
-  min-block-size: clamp(24rem, 34vw, 30rem);
+  min-block-size: clamp(29rem, 42vw, 36rem);
   grid-template-areas: 'copy art';
-  grid-template-columns: minmax(0, 1.04fr) minmax(19rem, 0.96fr);
+  grid-template-columns: minmax(0, 1.08fr) minmax(20rem, 0.92fr);
   align-items: center;
-  gap: clamp(var(--space-8), 5vw, var(--space-16));
+  gap: clamp(var(--space-8), 5vw, var(--space-20));
   overflow: hidden;
   padding: clamp(var(--space-8), 5vw, var(--space-16));
-  border: 1px solid var(--color-border-subtle);
-  border-radius: clamp(var(--radius-xl), 3vw, 2rem);
+  border: 1px solid color-mix(in srgb, var(--color-action) 18%, transparent);
+  border-radius: clamp(1.5rem, 3vw, 2.5rem);
   background:
     radial-gradient(
-      circle at 81% 32%,
-      color-mix(in srgb, var(--color-surface) 78%, transparent),
-      transparent 15rem
+      circle at 84% 24%,
+      color-mix(in srgb, var(--color-surface) 80%, transparent),
+      transparent 16rem
     ),
     linear-gradient(
-      120deg,
+      125deg,
       var(--color-surface-warm),
       var(--color-surface-calm)
     );
-  box-shadow: var(--shadow-editorial);
+  box-shadow: 0 1.5rem 4rem rgb(57 39 35 / 9%);
+}
+
+.contact-whatsapp__panel::before {
+  position: absolute;
+  z-index: 0;
+  inset: var(--space-5);
+  border: 1px solid color-mix(in srgb, var(--color-surface) 70%, transparent);
+  border-radius: calc(clamp(1.5rem, 3vw, 2.5rem) - 0.55rem);
+  content: '';
+  pointer-events: none;
 }
 
 .contact-whatsapp__copy {
@@ -123,27 +145,64 @@
   display: grid;
   grid-area: copy;
   justify-items: start;
-  max-inline-size: 35rem;
+  min-inline-size: 0;
+  max-inline-size: 36rem;
 }
 
 .contact-whatsapp__copy h2 {
-  max-inline-size: 13ch;
+  max-inline-size: 12ch;
   margin-block-start: var(--space-2);
-  font-size: clamp(2.1rem, 3.5vw, 3.5rem);
-  line-height: 1;
+  font-size: clamp(2.5rem, 4vw, 4rem);
+  letter-spacing: -0.035em;
+  line-height: 0.98;
 }
 
 .contact-whatsapp__copy > p:not(.eyebrow, .contact-whatsapp__note) {
-  max-inline-size: 47ch;
+  max-inline-size: 51ch;
   margin-block-start: var(--space-5);
   color: var(--color-text-muted);
-  line-height: 1.65;
+  line-height: 1.7;
   text-wrap: pretty;
 }
 
+.contact-whatsapp__benefits {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin: var(--space-5) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.contact-whatsapp__benefits li {
+  display: inline-flex;
+  min-block-size: 2rem;
+  align-items: center;
+  gap: var(--space-2);
+  margin: 0;
+  padding: var(--space-1) var(--space-3);
+  border: 1px solid color-mix(in srgb, var(--color-action) 18%, transparent);
+  border-radius: var(--radius-pill);
+  background: color-mix(in srgb, var(--color-surface) 62%, transparent);
+  color: var(--color-text-muted);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
+  line-height: 1.25;
+}
+
+.contact-whatsapp__benefits li::before {
+  inline-size: 0.42rem;
+  block-size: 0.42rem;
+  border-radius: 50%;
+  background: var(--color-action);
+  content: '';
+}
+
 .contact-whatsapp__copy .action-link {
-  min-inline-size: 15rem;
+  min-inline-size: 16rem;
   margin-block-start: var(--space-6);
+  border-radius: var(--radius-pill);
+  box-shadow: 0 0.7rem 1.4rem rgb(173 56 79 / 16%);
 }
 
 .contact-whatsapp__copy .contact-icon,
@@ -170,21 +229,31 @@
   position: relative;
   z-index: 2;
   grid-area: art;
-  inline-size: min(100%, 25rem);
+  inline-size: min(100%, 28rem);
   aspect-ratio: 1;
   justify-self: center;
 }
 
+.contact-whatsapp__halo {
+  position: absolute;
+  inset: 5%;
+  border: 1px solid color-mix(in srgb, var(--color-action) 14%, transparent);
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--color-surface) 42%, transparent);
+  box-shadow: inset 0 0 0 1rem
+    color-mix(in srgb, var(--color-surface) 16%, transparent);
+}
+
 .contact-whatsapp__image {
   position: absolute;
-  inset: 5% 3% auto auto;
-  inline-size: 88%;
-  filter: drop-shadow(0 1.25rem 1.5rem rgb(57 39 35 / 8%));
+  inset: 6% 4% auto auto;
+  inline-size: 90%;
+  filter: drop-shadow(0 1.25rem 1.5rem rgb(57 39 35 / 9%));
 }
 
 .contact-whatsapp__bubble {
   position: absolute;
-  z-index: 2;
+  z-index: 3;
   display: grid;
   min-block-size: 2.75rem;
   place-items: center;
@@ -192,8 +261,8 @@
   border: 1px solid var(--color-border-subtle);
   border-radius: var(--radius-xl) var(--radius-xl) var(--radius-sm)
     var(--radius-xl);
-  background: color-mix(in srgb, var(--color-surface) 88%, transparent);
-  box-shadow: var(--shadow-soft);
+  background: color-mix(in srgb, var(--color-surface) 91%, transparent);
+  box-shadow: 0 0.75rem 2rem rgb(57 39 35 / 10%);
   color: var(--color-text-muted);
   font-size: var(--font-size-sm);
   font-weight: var(--font-weight-semibold);
@@ -201,11 +270,11 @@
 }
 
 .contact-whatsapp__bubble--one {
-  inset: 3% auto auto -5%;
+  inset: 3% auto auto -3%;
 }
 
 .contact-whatsapp__bubble--two {
-  inset: auto -2% 8% auto;
+  inset: auto -1% 8% auto;
   border-radius: var(--radius-xl) var(--radius-xl) var(--radius-xl)
     var(--radius-sm);
   color: var(--color-action);
@@ -215,17 +284,18 @@
   position: absolute;
   z-index: 0;
   inset: auto -5rem -5rem auto;
-  inline-size: 29rem;
-  opacity: 0.46;
+  inline-size: 31rem;
+  opacity: 0.38;
 }
 
 .contact-whatsapp__hearts {
   position: absolute;
   z-index: 1;
-  inset: 10% 3% auto auto;
+  inset: 8% 3% auto auto;
   inline-size: 5rem;
 }
 
+/* Shared section headings */
 .contact-heading {
   display: grid;
   justify-items: center;
@@ -234,24 +304,27 @@
 }
 
 .contact-heading h2 {
-  max-inline-size: 22ch;
-  font-size: clamp(2rem, 3.2vw, 3.25rem);
-  line-height: 1.03;
+  max-inline-size: 20ch;
+  font-size: clamp(2.25rem, 3.4vw, 3.5rem);
+  letter-spacing: -0.03em;
+  line-height: 1;
 }
 
 .contact-heading > p:last-child:not(.eyebrow) {
   max-inline-size: var(--measure-copy);
   color: var(--color-text-muted);
+  line-height: 1.65;
   text-wrap: pretty;
 }
 
+/* Topics */
 .contact-topics {
-  padding-block: clamp(var(--space-12), 6vw, var(--space-24));
+  padding-block: clamp(var(--space-12), 6vw, var(--space-20));
   background:
     radial-gradient(
-      circle at 4% 66%,
-      color-mix(in srgb, var(--color-decoration-blush) 26%, transparent),
-      transparent 14rem
+      circle at 3% 60%,
+      color-mix(in srgb, var(--color-decoration-blush) 27%, transparent),
+      transparent 17rem
     ),
     var(--color-canvas);
 }
@@ -272,15 +345,16 @@
 
 .contact-topic {
   display: grid;
-  min-block-size: 17rem;
+  min-block-size: 18rem;
+  block-size: 100%;
   grid-template-rows: auto 1fr auto;
   justify-items: start;
   gap: var(--space-5);
-  padding: clamp(var(--space-5), 2.3vw, var(--space-8));
+  padding: clamp(var(--space-5), 2.2vw, var(--space-8));
   border: 1px solid var(--color-border-subtle);
   border-radius: var(--radius-xl);
   background: var(--color-surface);
-  box-shadow: var(--shadow-soft);
+  box-shadow: 0 0.7rem 2.2rem rgb(57 39 35 / 5%);
   color: var(--color-text);
   text-decoration: none;
   transition:
@@ -307,27 +381,21 @@
   );
 }
 
-.contact-topic:hover,
-.contact-topic:focus-visible {
-  border-color: var(--color-border);
-  box-shadow: var(--shadow-editorial);
-  color: var(--color-text);
-  transform: translateY(-0.25rem);
-}
-
 .contact-topic__icon {
   display: grid;
-  inline-size: 4.5rem;
-  block-size: 4.5rem;
+  inline-size: 4.25rem;
+  block-size: 4.25rem;
   place-items: center;
+  border: 1px solid color-mix(in srgb, var(--color-action) 12%, transparent);
   border-radius: 50%;
-  background: color-mix(in srgb, var(--color-surface) 76%, transparent);
+  background: color-mix(in srgb, var(--color-surface) 78%, transparent);
   color: var(--color-action);
+  box-shadow: var(--shadow-soft);
 }
 
 .contact-topic__icon .contact-icon {
-  inline-size: 2rem;
-  block-size: 2rem;
+  inline-size: 1.9rem;
+  block-size: 1.9rem;
 }
 
 .contact-topic--2 .contact-topic__icon,
@@ -336,24 +404,32 @@
 }
 
 .contact-topic__body h3 {
-  font-size: clamp(1.25rem, 1.7vw, 1.55rem);
-  line-height: 1.1;
+  font-size: clamp(1.3rem, 1.7vw, 1.65rem);
+  line-height: 1.08;
 }
 
 .contact-topic__body p {
   margin-block-start: var(--space-3);
   color: var(--color-text-muted);
   font-size: var(--font-size-sm);
-  line-height: 1.55;
+  line-height: 1.6;
   text-wrap: pretty;
 }
 
 .contact-topic__arrow {
+  display: grid;
+  inline-size: 2.4rem;
+  block-size: 2.4rem;
+  place-items: center;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--color-surface) 65%, transparent);
   color: var(--color-action);
+  transition: transform var(--duration-normal) var(--ease-standard);
 }
 
+/* Secondary channels */
 .contact-channels {
-  padding-block: clamp(var(--space-12), 6vw, var(--space-20));
+  padding-block: clamp(var(--space-12), 5.5vw, var(--space-20));
   background: var(--color-surface);
 }
 
@@ -371,12 +447,14 @@
 .contact-channel {
   display: grid;
   min-inline-size: 0;
+  min-block-size: 18rem;
   grid-template-columns: auto minmax(0, 1fr);
   grid-template-rows: 1fr auto;
   gap: var(--space-5) var(--space-6);
   padding: clamp(var(--space-6), 3vw, var(--space-10));
   border: 1px solid var(--color-border-subtle);
   border-radius: var(--radius-xl);
+  box-shadow: 0 0.75rem 2.5rem rgb(57 39 35 / 5%);
 }
 
 .contact-channel--instagram {
@@ -401,7 +479,7 @@
   block-size: 4.25rem;
   place-items: center;
   border-radius: 50%;
-  background: color-mix(in srgb, var(--color-surface) 82%, transparent);
+  background: color-mix(in srgb, var(--color-surface) 84%, transparent);
   color: var(--color-action);
   box-shadow: var(--shadow-soft);
 }
@@ -430,7 +508,7 @@
 .contact-channel__copy h3 {
   overflow-wrap: anywhere;
   margin-block-start: var(--space-1);
-  font-size: clamp(1.4rem, 2vw, 1.9rem);
+  font-size: clamp(1.45rem, 2vw, 2rem);
 }
 
 .contact-channel__copy > p:last-child {
@@ -438,14 +516,16 @@
   margin-block-start: var(--space-3);
   color: var(--color-text-muted);
   font-size: var(--font-size-sm);
-  line-height: 1.55;
+  line-height: 1.6;
 }
 
 .contact-channel > .action-link {
   grid-column: 2;
   inline-size: fit-content;
+  border-radius: var(--radius-pill);
 }
 
+/* Location */
 .contact-location {
   padding-block: clamp(var(--space-10), 5vw, var(--space-16));
   background: var(--color-canvas);
@@ -466,6 +546,7 @@
     var(--color-surface-soft),
     var(--color-surface-calm)
   );
+  box-shadow: var(--shadow-soft);
 }
 
 .contact-location__icon {
@@ -489,11 +570,12 @@
 .contact-location__copy {
   position: relative;
   z-index: 2;
+  min-inline-size: 0;
 }
 
 .contact-location__copy h2 {
   margin-block-start: var(--space-1);
-  font-size: clamp(1.7rem, 2.7vw, 2.5rem);
+  font-size: clamp(1.75rem, 2.7vw, 2.6rem);
 }
 
 .contact-location__place {
@@ -507,12 +589,14 @@
   margin-block-start: var(--space-2);
   color: var(--color-text-muted);
   font-size: var(--font-size-sm);
+  line-height: 1.6;
   text-wrap: pretty;
 }
 
 .contact-location__panel > .action-link {
   position: relative;
   z-index: 2;
+  border-radius: var(--radius-pill);
   white-space: nowrap;
 }
 
@@ -521,18 +605,19 @@
   z-index: 0;
   inset: auto 10% -1.1rem auto;
   inline-size: 16rem;
-  opacity: 0.55;
+  opacity: 0.5;
 }
 
+/* FAQ */
 .contact-faq {
-  padding-block: clamp(var(--space-12), 6vw, var(--space-20));
+  padding-block: clamp(var(--space-12), 5.5vw, var(--space-20));
   background: var(--color-surface);
 }
 
 .contact-faq__inner {
   display: grid;
-  grid-template-columns: minmax(15rem, 0.8fr) minmax(0, 1.2fr);
-  gap: clamp(var(--space-8), 6vw, var(--space-20));
+  grid-template-columns: minmax(15rem, 0.75fr) minmax(0, 1.25fr);
+  gap: clamp(var(--space-8), 7vw, var(--space-24));
   align-items: start;
 }
 
@@ -551,7 +636,7 @@
 
 .contact-faq__item summary {
   display: flex;
-  min-block-size: 4.5rem;
+  min-block-size: 4.75rem;
   align-items: center;
   justify-content: space-between;
   gap: var(--space-4);
@@ -567,24 +652,29 @@
 
 .contact-faq__item summary > span:first-child {
   font-family: var(--font-display);
-  font-size: clamp(1.1rem, 1.5vw, 1.35rem);
+  font-size: clamp(1.15rem, 1.5vw, 1.4rem);
+  line-height: 1.25;
 }
 
 .contact-faq__toggle {
   display: grid;
   flex: 0 0 auto;
-  inline-size: 2rem;
-  block-size: 2rem;
+  inline-size: 2.25rem;
+  block-size: 2.25rem;
   place-items: center;
   border-radius: 50%;
   background: var(--color-surface-warm);
   color: var(--color-action);
-  font-size: 1.4rem;
+  font-size: 1.45rem;
   line-height: 1;
-  transition: transform var(--duration-normal) var(--ease-standard);
+  transition:
+    background-color var(--duration-fast) var(--ease-standard),
+    transform var(--duration-normal) var(--ease-standard);
 }
 
 .contact-faq__item[open] .contact-faq__toggle {
+  background: var(--color-action);
+  color: var(--color-on-action);
   transform: rotate(45deg);
 }
 
@@ -594,7 +684,7 @@
   padding: 0 var(--space-12) var(--space-5) 0;
   color: var(--color-text-muted);
   font-size: var(--font-size-sm);
-  line-height: 1.6;
+  line-height: 1.65;
 }
 
 .contact-faq__answer a {
@@ -602,30 +692,37 @@
   font-weight: var(--font-weight-semibold);
 }
 
+/* Closing CTA */
 .contact-closing {
   padding-block: clamp(var(--space-10), 5vw, var(--space-16))
-    clamp(var(--space-16), 7vw, var(--space-24));
+    clamp(var(--space-12), 6vw, var(--space-20));
   background: var(--color-surface);
 }
 
 .contact-closing__panel {
   position: relative;
   isolation: isolate;
-  min-block-size: clamp(19rem, 27vw, 23rem);
+  display: grid;
+  min-block-size: clamp(24rem, 34vw, 29rem);
+  grid-template-columns: minmax(0, 1.08fr) minmax(18rem, 0.92fr);
+  align-items: center;
+  gap: clamp(var(--space-6), 4vw, var(--space-12));
   overflow: hidden;
   padding: clamp(var(--space-8), 4vw, var(--space-16));
-  border-radius: clamp(var(--radius-xl), 3vw, 2rem);
+  border: 1px solid color-mix(in srgb, var(--color-action) 15%, transparent);
+  border-radius: clamp(1.5rem, 3vw, 2.5rem);
   background:
     radial-gradient(
-      circle at 75% 15%,
-      color-mix(in srgb, var(--color-surface) 74%, transparent),
-      transparent 14rem
+      circle at 81% 21%,
+      color-mix(in srgb, var(--color-surface) 72%, transparent),
+      transparent 15rem
     ),
     linear-gradient(
-      115deg,
+      118deg,
       var(--color-surface-warm),
       var(--color-surface-calm)
     );
+  box-shadow: var(--shadow-editorial);
 }
 
 .contact-closing__copy {
@@ -633,55 +730,100 @@
   z-index: 3;
   display: grid;
   justify-items: start;
-  max-inline-size: 55%;
+  min-inline-size: 0;
+  max-inline-size: 39rem;
 }
 
 .contact-closing__copy h2 {
-  max-inline-size: 13ch;
+  max-inline-size: 12ch;
   margin-block-start: var(--space-2);
-  font-size: clamp(2rem, 3.5vw, 3.4rem);
+  font-size: clamp(2.4rem, 4vw, 4rem);
+  letter-spacing: -0.035em;
+  line-height: 0.98;
 }
 
 .contact-closing__copy > p:not(.eyebrow) {
-  max-inline-size: 40ch;
+  max-inline-size: 43ch;
   margin-block-start: var(--space-4);
   color: var(--color-text-muted);
+  line-height: 1.65;
   text-wrap: pretty;
 }
 
 .contact-closing__copy .action-link {
+  min-inline-size: 15rem;
   margin-block-start: var(--space-6);
-  background: color-mix(in srgb, var(--color-surface) 58%, transparent);
+  border-radius: var(--radius-pill);
+  background: color-mix(in srgb, var(--color-surface) 72%, transparent);
+}
+
+.contact-closing__art {
+  position: relative;
+  z-index: 2;
+  inline-size: min(100%, 25rem);
+  aspect-ratio: 1;
+  justify-self: center;
+}
+
+.contact-closing__halo {
+  position: absolute;
+  inset: 7%;
+  border: 1px solid color-mix(in srgb, var(--color-action) 13%, transparent);
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--color-surface-calm) 54%, transparent);
+  box-shadow: inset 0 0 0 1rem
+    color-mix(in srgb, var(--color-surface) 14%, transparent);
 }
 
 .contact-closing__moon {
   position: absolute;
   z-index: 2;
-  inset: -9% 6% auto auto;
-  inline-size: min(38%, 25rem);
+  inset: -3% 2% auto auto;
+  inline-size: 96%;
   filter: drop-shadow(0 1.25rem 1.5rem rgb(57 39 35 / 9%));
 }
 
 .contact-closing__sparkle {
   position: absolute;
   z-index: 3;
-  inset: 17% 4% auto auto;
+  inset: 11% 0 auto auto;
   inline-size: 2rem;
 }
 
+@media (hover: hover) {
+  .contact-topic:hover,
+  .contact-topic:focus-visible {
+    border-color: color-mix(in srgb, var(--color-action) 35%, transparent);
+    box-shadow: 0 1.25rem 3rem rgb(57 39 35 / 10%);
+    color: var(--color-text);
+    transform: translateY(-0.3rem);
+  }
+
+  .contact-topic:hover .contact-topic__arrow,
+  .contact-topic:focus-visible .contact-topic__arrow {
+    transform: translateX(0.2rem);
+  }
+}
+
 @media (max-width: 63.99rem) {
+  .contact-whatsapp__panel {
+    grid-template-columns: minmax(0, 1fr) minmax(17rem, 0.8fr);
+    gap: var(--space-8);
+  }
+
   .contact-topics__grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .contact-topic {
-    min-block-size: 14rem;
+    min-block-size: 13rem;
     grid-template-columns: auto minmax(0, 1fr) auto;
     grid-template-rows: 1fr;
     align-items: center;
   }
 
   .contact-channel {
+    min-block-size: 0;
     grid-template-columns: 1fr;
   }
 
@@ -697,31 +839,39 @@
     grid-column: 2;
     justify-self: start;
   }
+
+  .contact-closing__panel {
+    grid-template-columns: minmax(0, 1fr) minmax(16rem, 0.75fr);
+  }
 }
 
 @media (max-width: 47.99rem) {
+  .contact-hero {
+    clip-path: url('#mobile-hero-wave-clip');
+  }
+
   .contact-hero__breadcrumb {
     padding-block-start: var(--space-2);
   }
 
   .contact-hero__inner {
     gap: var(--space-2);
-    padding-block: var(--space-8) var(--space-10);
+    padding-block: var(--space-10) var(--space-12);
   }
 
   .contact-hero__inner h1 {
-    font-size: clamp(2.65rem, 12vw, 3.75rem);
+    font-size: clamp(3.1rem, 15vw, 4.25rem);
   }
 
   .contact-hero__inner > p:last-of-type {
-    max-inline-size: 35ch;
+    max-inline-size: 34ch;
     font-size: var(--font-size-sm);
-    line-height: 1.55;
+    line-height: 1.6;
   }
 
   .contact-hero__sparkle {
     inset-block-start: 30%;
-    inset-inline-start: 5%;
+    inset-inline-start: 2%;
     inline-size: 1.35rem;
   }
 
@@ -739,9 +889,14 @@
       'copy'
       'art';
     grid-template-columns: minmax(0, 1fr);
-    gap: var(--space-5);
-    padding: var(--space-6) var(--space-5) var(--space-4);
+    gap: var(--space-8);
+    padding: var(--space-8) var(--space-5) var(--space-5);
     border-radius: var(--radius-xl);
+  }
+
+  .contact-whatsapp__panel::before {
+    inset: var(--space-3);
+    border-radius: calc(var(--radius-xl) - 0.35rem);
   }
 
   .contact-whatsapp__copy {
@@ -751,13 +906,25 @@
   }
 
   .contact-whatsapp__copy h2 {
-    font-size: clamp(1.85rem, 8.5vw, 2.5rem);
+    max-inline-size: 11ch;
+    font-size: clamp(2.15rem, 10vw, 3rem);
   }
 
   .contact-whatsapp__copy > p:not(.eyebrow, .contact-whatsapp__note) {
     margin-block-start: var(--space-4);
-    font-size: 0.9rem;
-    line-height: 1.55;
+    font-size: var(--font-size-sm);
+    line-height: 1.6;
+  }
+
+  .contact-whatsapp__benefits {
+    justify-content: center;
+    margin-block-start: var(--space-4);
+  }
+
+  .contact-whatsapp__benefits li {
+    min-block-size: 1.9rem;
+    padding-inline: var(--space-2);
+    font-size: 0.78rem;
   }
 
   .contact-whatsapp__copy .action-link {
@@ -769,31 +936,34 @@
   .contact-whatsapp__note {
     justify-content: center;
     margin-block-start: var(--space-3);
-    font-size: 0.75rem;
+    font-size: 0.78rem;
   }
 
   .contact-whatsapp__art {
-    inline-size: min(100%, 16rem);
-    aspect-ratio: 1.8;
+    inline-size: min(100%, 17rem);
   }
 
   .contact-whatsapp__image {
-    inset: -23% 23% auto auto;
-    inline-size: 56%;
+    inset: 5% 5% auto auto;
+    inline-size: 90%;
   }
 
   .contact-whatsapp__bubble {
-    min-block-size: 2.25rem;
+    min-block-size: 2.5rem;
     padding: var(--space-1) var(--space-3);
-    font-size: 0.72rem;
+    font-size: 0.78rem;
   }
 
   .contact-whatsapp__bubble--one {
-    inset: 17% auto auto 0;
+    inset: 2% auto auto -2%;
   }
 
   .contact-whatsapp__bubble--two {
-    inset: auto 0 16% auto;
+    inset: auto -1% 6% auto;
+  }
+
+  .contact-whatsapp__wash {
+    inline-size: 21rem;
   }
 
   .contact-whatsapp__hearts {
@@ -802,15 +972,10 @@
 
   .contact-heading {
     gap: var(--space-1);
-    padding-inline: var(--gutter);
-  }
-
-  .contact-heading .eyebrow {
-    font-size: 0.7rem;
   }
 
   .contact-heading h2 {
-    font-size: clamp(1.7rem, 8vw, 2.35rem);
+    font-size: clamp(2rem, 10vw, 2.75rem);
   }
 
   .contact-heading > p:last-child:not(.eyebrow) {
@@ -824,7 +989,7 @@
   .contact-topics__grid {
     grid-template-columns: minmax(0, 1fr);
     gap: var(--space-3);
-    margin-block-start: var(--space-6);
+    margin-block-start: var(--space-8);
   }
 
   .contact-topic {
@@ -836,29 +1001,29 @@
     border-radius: var(--radius-lg);
   }
 
-  .contact-topic:hover,
-  .contact-topic:focus-visible {
-    transform: none;
-  }
-
   .contact-topic__icon {
-    inline-size: 3.75rem;
-    block-size: 3.75rem;
+    inline-size: 3.6rem;
+    block-size: 3.6rem;
   }
 
   .contact-topic__icon .contact-icon {
-    inline-size: 1.65rem;
-    block-size: 1.65rem;
+    inline-size: 1.6rem;
+    block-size: 1.6rem;
   }
 
   .contact-topic__body h3 {
-    font-size: 1.2rem;
+    font-size: 1.22rem;
   }
 
   .contact-topic__body p {
     margin-block-start: var(--space-1);
-    font-size: 0.78rem;
-    line-height: 1.45;
+    font-size: 0.82rem;
+    line-height: 1.5;
+  }
+
+  .contact-topic__arrow {
+    inline-size: 2.25rem;
+    block-size: 2.25rem;
   }
 
   .contact-channels {
@@ -866,7 +1031,7 @@
   }
 
   .contact-channels__inner {
-    gap: var(--space-6);
+    gap: var(--space-8);
   }
 
   .contact-channels__grid {
@@ -898,7 +1063,7 @@
 
   .contact-channel__copy > p:last-child {
     margin-block-start: var(--space-2);
-    font-size: 0.78rem;
+    font-size: 0.82rem;
   }
 
   .contact-channel > .action-link {
@@ -928,22 +1093,18 @@
   }
 
   .contact-location__copy h2 {
-    font-size: 1.55rem;
+    font-size: 1.65rem;
   }
 
   .contact-location__place,
   .contact-location__copy > p:last-child {
-    font-size: 0.78rem;
-  }
-
-  .contact-location__copy > p:last-child {
-    grid-column: 1 / -1;
+    font-size: 0.82rem;
   }
 
   .contact-location__panel > .action-link {
     grid-column: 1 / -1;
     inline-size: 100%;
-    justify-content: flex-start;
+    justify-content: center;
     white-space: normal;
   }
 
@@ -957,7 +1118,7 @@
 
   .contact-faq__inner {
     grid-template-columns: minmax(0, 1fr);
-    gap: var(--space-6);
+    gap: var(--space-8);
   }
 
   .contact-faq .contact-heading {
@@ -966,17 +1127,17 @@
   }
 
   .contact-faq__item summary {
-    min-block-size: 4rem;
+    min-block-size: 4.5rem;
     padding-block: var(--space-3);
   }
 
   .contact-faq__item summary > span:first-child {
-    font-size: 1.05rem;
+    font-size: 1.1rem;
   }
 
   .contact-faq__answer {
-    padding: 0 var(--space-8) var(--space-4) 0;
-    font-size: 0.82rem;
+    padding: 0 var(--space-8) var(--space-5) 0;
+    font-size: 0.86rem;
   }
 
   .contact-closing {
@@ -984,90 +1145,105 @@
   }
 
   .contact-closing__panel {
-    min-block-size: 20rem;
-    padding: var(--space-6) var(--space-5);
+    min-block-size: 0;
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--space-6);
+    padding: var(--space-8) var(--space-5) var(--space-4);
     border-radius: var(--radius-xl);
   }
 
   .contact-closing__copy {
-    max-inline-size: 100%;
+    justify-items: center;
+    max-inline-size: none;
+    text-align: center;
   }
 
   .contact-closing__copy h2 {
-    max-inline-size: 72%;
-    font-size: clamp(1.8rem, 8vw, 2.3rem);
+    max-inline-size: 11ch;
+    font-size: clamp(2.15rem, 10vw, 3rem);
   }
 
   .contact-closing__copy > p:not(.eyebrow) {
-    max-inline-size: 65%;
-    font-size: 0.86rem;
-    line-height: 1.5;
+    max-inline-size: 36ch;
+    font-size: var(--font-size-sm);
+    line-height: 1.6;
   }
 
   .contact-closing__copy .action-link {
     inline-size: 100%;
-    margin-block-start: var(--space-8);
+    min-inline-size: 0;
+    margin-block-start: var(--space-5);
+  }
+
+  .contact-closing__art {
+    inline-size: min(100%, 16rem);
   }
 
   .contact-closing__moon {
-    inset: -1% -4% auto auto;
-    inline-size: 43%;
-    opacity: 0.9;
+    inset: -2% 2% auto auto;
+    inline-size: 96%;
   }
 
   .contact-closing__sparkle {
-    display: none;
+    inset: 9% 0 auto auto;
+    inline-size: 1.5rem;
   }
 }
 
 @media (max-width: 23.99rem) {
-  .contact-whatsapp__panel {
+  .contact-whatsapp__panel,
+  .contact-closing__panel {
     padding-inline: var(--space-4);
   }
 
-  .contact-whatsapp__bubble--one {
-    inset-inline-start: -0.25rem;
-  }
-
-  .contact-whatsapp__bubble--two {
-    inset-inline-end: -0.25rem;
+  .contact-whatsapp__benefits li:last-child {
+    inline-size: 100%;
+    justify-content: center;
   }
 
   .contact-topic {
     gap: var(--space-3);
   }
 
-  .contact-topic__icon {
+  .contact-topic__icon,
+  .contact-channel__icon,
+  .contact-location__icon {
     inline-size: 3.25rem;
     block-size: 3.25rem;
   }
 
   .contact-topic__body p {
-    font-size: 0.75rem;
+    font-size: 0.78rem;
   }
 
   .contact-channel {
     grid-template-columns: minmax(0, 1fr);
   }
 
-  .contact-channel__icon {
-    inline-size: 3.25rem;
-    block-size: 3.25rem;
+  .contact-location__panel {
+    grid-template-columns: minmax(0, 1fr);
   }
 
-  .contact-closing__copy > p:not(.eyebrow) {
-    max-inline-size: 68%;
+  .contact-location__icon {
+    justify-self: center;
+  }
+
+  .contact-location__copy {
+    text-align: center;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .contact-topic,
+  .contact-topic__arrow,
   .contact-faq__toggle {
     transition: none;
   }
 
   .contact-topic:hover,
   .contact-topic:focus-visible,
+  .contact-topic:hover .contact-topic__arrow,
+  .contact-topic:focus-visible .contact-topic__arrow,
   .contact-faq__item[open] .contact-faq__toggle {
     transform: none;
   }
