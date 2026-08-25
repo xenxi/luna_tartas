@@ -63,7 +63,9 @@ describe('approved trust process', () => {
     expect(styles).toContain('.trust-card__number--1');
     expect(styles).toContain('.trust-card__number--2');
     expect(styles).toContain('.trust-card__number--3');
-    expect(styles).not.toContain('overflow-x: auto');
+    expect(styles).toContain('overflow-x: auto');
+    expect(styles).toContain('flex: 0 0 min(60vw, 15rem)');
+    expect(component).toContain('trust-story__thread-path--mobile');
     expect(styles).not.toContain('.work-gallery__item:hover');
     expect(styles).not.toContain('transition: transform');
     expect(page).toContain('<TrustAndWork />');
