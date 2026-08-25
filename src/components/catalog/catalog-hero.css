@@ -65,6 +65,10 @@
   text-wrap: balance;
 }
 
+.catalog-hero__claim svg {
+  display: none;
+}
+
 .catalog-hero__description {
   max-inline-size: 38ch;
   margin-block-start: var(--space-6);
@@ -185,30 +189,82 @@
   }
 
   .catalog-hero--full-bleed {
-    min-block-size: 38rem;
+    min-block-size: clamp(38rem, 162vw, 42rem);
+    border: 0;
+    border-radius: 0;
+    background: var(--color-surface-warm);
+    clip-path: url('#mobile-hero-wave-clip');
   }
 
   .catalog-hero--full-bleed .catalog-hero__copy {
     inline-size: 100%;
-  }
-
-  .catalog-hero--full-bleed > .responsive-media {
-    inset-block: auto 0;
-    inline-size: 100%;
-    block-size: 48%;
-  }
-
-  .catalog-hero--full-bleed > .responsive-media::after {
+    padding: clamp(1.75rem, 8vw, 2.5rem) clamp(1.5rem, 7vw, 2rem)
+      clamp(5.5rem, 25vw, 7rem);
     background: linear-gradient(
       180deg,
-      var(--color-header-mobile) 0%,
-      color-mix(in srgb, var(--color-header-mobile) 72%, transparent) 22%,
-      transparent 62%
+      color-mix(in srgb, var(--color-header-mobile) 96%, transparent) 0%,
+      color-mix(in srgb, var(--color-header-mobile) 88%, transparent) 65%,
+      color-mix(in srgb, var(--color-header-mobile) 68%, transparent) 86%,
+      transparent 100%
     );
   }
 
+  .catalog-hero--full-bleed .catalog-hero__eyebrow {
+    max-inline-size: 100%;
+    font-size: clamp(0.64rem, 2.8vw, 0.75rem);
+    letter-spacing: 0.17em;
+  }
+
+  .catalog-hero--full-bleed h1 {
+    max-inline-size: 12ch;
+    margin-block-start: clamp(1.45rem, 6vw, 2rem);
+    font-size: clamp(2.55rem, 11.5vw, 3.25rem);
+    line-height: 1.02;
+    text-wrap: balance;
+  }
+
+  .catalog-hero--full-bleed .catalog-hero__claim {
+    display: flex;
+    align-items: flex-end;
+    gap: var(--space-2);
+    max-inline-size: 13ch;
+    margin-block-start: var(--space-3);
+    font-size: clamp(2rem, 9vw, 2.55rem);
+    line-height: 0.98;
+  }
+
+  .catalog-hero--full-bleed .catalog-hero__claim svg {
+    display: block;
+    flex: none;
+    inline-size: clamp(2rem, 9vw, 2.5rem);
+    fill: none;
+    stroke: currentColor;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 1.35;
+    transform: rotate(-8deg);
+  }
+
+  .catalog-hero--full-bleed .catalog-hero__description {
+    max-inline-size: 30ch;
+    margin-block-start: clamp(1.25rem, 5vw, 1.75rem);
+    color: color-mix(in srgb, var(--color-text) 76%, transparent);
+    font-size: clamp(0.82rem, 3.5vw, 0.95rem);
+    line-height: 1.65;
+  }
+
+  .catalog-hero--full-bleed > .responsive-media {
+    inset: 0;
+    inline-size: 100%;
+    block-size: 100%;
+  }
+
+  .catalog-hero--full-bleed > .responsive-media::after {
+    background: none;
+  }
+
   .catalog-hero--full-bleed > .responsive-media img {
-    object-position: 68% center;
+    object-position: var(--catalog-hero-mobile-position);
   }
 
   .catalog-hero__sparkles {

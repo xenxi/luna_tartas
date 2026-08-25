@@ -12,7 +12,7 @@ const occasionsHeroMedia = await buildMediaProjection(
   'Decoración de Primera Comunión personalizada con globo aerostático, etiquetas y flores.',
   {
     widths: [480, 768, 1024, 1440, 1920],
-    sizes: 'min(100vw, 93.75rem)',
+    sizes: '(max-width: 47.99rem) 460vw, min(100vw, 93.75rem)',
   },
 );
 ---
@@ -32,5 +32,6 @@ const occasionsHeroMedia = await buildMediaProjection(
     itemLabel="productos"
     heroMedia={occasionsHeroMedia}
     heroVariant="full-bleed"
+    heroMobileObjectPosition="74% center"
   />
 </BaseLayout>

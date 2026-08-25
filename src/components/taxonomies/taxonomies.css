@@ -56,3 +56,10 @@
 .taxonomy-landing > .custom-idea {
   margin-block-start: var(--space-3);
 }
+
+@media (max-width: 47.99rem) {
+  .taxonomies-page > .catalog-hero {
+    inline-size: 100%;
+    margin-inline: 0;
+  }
+}

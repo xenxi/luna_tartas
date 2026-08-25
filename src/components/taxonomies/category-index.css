@@ -326,55 +326,85 @@
   }
 }
 
-@media (max-width: 39.99rem) {
+@media (max-width: 47.99rem) {
   .category-index-page__breadcrumb {
     padding-block-end: var(--space-2);
   }
 
   .category-index-hero {
-    min-block-size: 34rem;
+    inline-size: 100%;
+    min-block-size: clamp(38rem, 162vw, 42rem);
+    margin-inline: 0;
+    border: 0;
+    border-radius: 0;
+    clip-path: url('#mobile-hero-wave-clip');
   }
 
   .category-index-hero::after {
-    background: linear-gradient(
-      180deg,
-      var(--color-header-mobile) 0%,
-      color-mix(in srgb, var(--color-header-mobile) 88%, transparent) 42%,
-      transparent 76%
-    );
+    background: none;
   }
 
   .category-index-hero__image {
-    object-position: 72% bottom;
+    object-position: 72% center;
   }
 
   .category-index-hero__copy {
     justify-content: flex-start;
-    inline-size: auto;
+    inline-size: 100%;
     min-block-size: 0;
-    margin-inline: var(--space-5);
-    padding-block-start: var(--space-8);
+    margin-inline: 0;
+    padding: clamp(1.75rem, 8vw, 2.5rem) clamp(1.5rem, 7vw, 2rem)
+      clamp(5.5rem, 25vw, 7rem);
+    background: linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--color-header-mobile) 96%, transparent) 0%,
+      color-mix(in srgb, var(--color-header-mobile) 88%, transparent) 65%,
+      color-mix(in srgb, var(--color-header-mobile) 68%, transparent) 86%,
+      transparent 100%
+    );
+  }
+
+  .category-index-hero__eyebrow {
+    max-inline-size: 100%;
+    font-size: clamp(0.64rem, 2.8vw, 0.75rem);
+    letter-spacing: 0.17em;
   }
 
   .category-index-hero h1 {
-    font-size: clamp(2.55rem, 12vw, 3.35rem);
+    max-inline-size: 12ch;
+    margin-block-start: clamp(1.45rem, 6vw, 2rem);
+    font-size: clamp(2.55rem, 11.5vw, 3.25rem);
+    line-height: 1.02;
+    text-wrap: balance;
   }
 
   .category-index-hero__claim {
-    align-items: flex-start;
-    font-size: clamp(1.85rem, 8.8vw, 2.4rem);
+    align-items: flex-end;
+    max-inline-size: 13ch;
+    margin-block-start: var(--space-3);
+    font-size: clamp(2rem, 9vw, 2.55rem);
+    line-height: 0.98;
     white-space: normal;
   }
 
+  .category-index-hero__claim svg {
+    inline-size: clamp(2rem, 9vw, 2.5rem);
+  }
+
   .category-index-hero__description {
-    max-inline-size: 27ch;
-    margin-block-start: var(--space-4);
+    max-inline-size: 30ch;
+    margin-block-start: clamp(1.25rem, 5vw, 1.75rem);
+    color: color-mix(in srgb, var(--color-text) 76%, transparent);
+    font-size: clamp(0.82rem, 3.5vw, 0.95rem);
+    line-height: 1.65;
   }
 
   .category-index-hero__moon {
     display: none;
   }
+}
 
+@media (max-width: 39.99rem) {
   .category-index-grid {
     grid-template-columns: minmax(0, 1fr);
   }

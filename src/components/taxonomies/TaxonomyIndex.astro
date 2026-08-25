@@ -26,6 +26,7 @@ interface Props {
   itemLabel: string;
   heroMedia?: MediaProjection;
   heroVariant?: 'split' | 'full-bleed';
+  heroMobileObjectPosition?: string;
 }
 
 const {
@@ -38,6 +39,7 @@ const {
   itemLabel,
   heroMedia: customHeroMedia,
   heroVariant = 'split',
+  heroMobileObjectPosition,
 } = Astro.props;
 const listing = projectTaxonomyIndex(catalog, kind, itemLabel);
 const heroSource = listing.items.find((item) => item.mediaSource)?.mediaSource;
@@ -62,6 +64,7 @@ const heroContent = catalogPageContent.taxonomy[kind];
     description={intro}
     media={heroMedia}
     variant={heroVariant}
+    mobileObjectPosition={heroMobileObjectPosition}
   />
   {
     listing.items.length > 0 && (

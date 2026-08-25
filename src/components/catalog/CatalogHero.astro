@@ -1,6 +1,7 @@
 ---
 import type { MediaProjection } from './types';
 import ResponsiveMedia from './ResponsiveMedia.astro';
+import MobileHeroWave from './MobileHeroWave.astro';
 import './catalog-hero.css';
 
 interface Props {
@@ -11,6 +12,7 @@ interface Props {
   media?: MediaProjection;
   headingId?: string;
   variant?: 'split' | 'full-bleed';
+  mobileObjectPosition?: string;
 }
 
 const {
@@ -21,6 +23,7 @@ const {
   media,
   headingId,
   variant = 'split',
+  mobileObjectPosition = '74% center',
 } = Astro.props;
 ---
 
@@ -32,6 +35,7 @@ const {
       'catalog-hero--full-bleed': variant === 'full-bleed',
     },
   ]}
+  style={`--catalog-hero-mobile-position: ${mobileObjectPosition}`}
 >
   <div class="catalog-hero__copy">
     <p class="catalog-hero__eyebrow">
@@ -43,7 +47,13 @@ const {
       </svg>
     </p>
     <h1 id={headingId}>{title}</h1>
-    <p class="catalog-hero__claim">{claim}</p>
+    <p class="catalog-hero__claim">
+      {claim}
+      <svg viewBox="0 0 44 32" aria-hidden="true" focusable="false">
+        <path d="M8 15c0-9 12-11 16-3 4-8 16-6 16 3 0 8-16 16-16 16S8 23 8 15Z"
+        ></path>
+      </svg>
+    </p>
     <p class="catalog-hero__description">{description}</p>
   </div>
 
@@ -61,4 +71,5 @@ const {
   >
     <path d="M22 8v28M8 22h28M88 70v38M69 89h38M56 50v16M48 58h16"></path>
   </svg>
+  {variant === 'full-bleed' && <MobileHeroWave />}
 </header>

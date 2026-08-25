@@ -11,6 +11,7 @@ import Breadcrumb from '../navigation/Breadcrumb.astro';
 import CustomIdeaCta from '../home/CustomIdeaCta.astro';
 import CategoryCard from './CategoryCard.astro';
 import CategoryBenefits from './CategoryBenefits.astro';
+import MobileHeroWave from '../catalog/MobileHeroWave.astro';
 import './category-index.css';
 
 interface Props {
@@ -33,7 +34,7 @@ const listing = projectTaxonomyIndex(catalog, 'category', 'productos');
       formats={['avif', 'webp']}
       fallbackFormat="jpg"
       widths={[768, 1024, 1440, 1672]}
-      sizes="(min-width: 64rem) min(92vw, 93.75rem), calc(100vw - 2rem)"
+      sizes="(max-width: 47.99rem) 360vw, (min-width: 64rem) min(92vw, 93.75rem), calc(100vw - 2rem)"
       loading="eager"
       decoding="async"
       fetchpriority="high"
@@ -70,6 +71,7 @@ const listing = projectTaxonomyIndex(catalog, 'category', 'productos');
       decoding="async"
       class="category-index-hero__moon"
     />
+    <MobileHeroWave />
   </section>
 
   {
