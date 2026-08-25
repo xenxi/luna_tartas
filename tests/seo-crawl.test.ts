@@ -73,6 +73,7 @@ describe('crawl projection', () => {
       '/sobre-luna/',
       '/contacto/',
       '/envios-y-entregas/',
+      '/preguntas-frecuentes/',
       '/productos/',
       '/categorias/',
       '/ocasiones/',

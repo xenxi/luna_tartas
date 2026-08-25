@@ -4,6 +4,7 @@ import { productBreadcrumb } from '../src/lib/seo/navigation';
 import { createBreadcrumbListJsonLd } from '../src/lib/seo/structured-data/breadcrumb';
 import { serializeJsonLd } from '../src/lib/seo/structured-data/json-ld';
 import { createProductJsonLd } from '../src/lib/seo/structured-data/product';
+import { createFaqPageJsonLd } from '../src/lib/seo/structured-data/faq';
 import { routes } from '../src/lib/catalog/domain/routes';
 
 const imageUrls = [
@@ -179,6 +180,43 @@ describe('breadcrumb structured data', () => {
         currentPath: routes.home(),
       }),
     ).toThrow('one final current item');
+  });
+});
+
+describe('FAQ structured data', () => {
+  it('projects the same visible questions and answers into FAQPage', () => {
+    const sections = [
+      {
+        id: 'pedidos' as const,
+        shortTitle: 'Pedidos',
+        title: 'Pedidos y personalización',
+        intro: 'Introducción visible.',
+        items: [
+          {
+            question: '¿Cómo hago un pedido?',
+            answer: 'Escríbenos y te ayudaremos.',
+          },
+        ],
+      },
+    ];
+
+    expect(createFaqPageJsonLd(sections)).toEqual({
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      mainEntity: [
+        {
+          '@type': 'Question',
+          name: '¿Cómo hago un pedido?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'Escríbenos y te ayudaremos.',
+          },
+        },
+      ],
+    });
+    expect(() => createFaqPageJsonLd([])).toThrow(
+      'at least one visible question',
+    );
   });
 });
 

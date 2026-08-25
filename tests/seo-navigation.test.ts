@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import {
+  faqBreadcrumb,
   productBreadcrumb,
   productsBreadcrumb,
   taxonomyBreadcrumb,
@@ -28,6 +29,10 @@ describe('semantic breadcrumb projections', () => {
     expect(taxonomyIndexBreadcrumb('recipient')).toEqual([
       { label: 'Inicio', href: '/' },
       { label: 'Regalos', current: true },
+    ]);
+    expect(faqBreadcrumb()).toEqual([
+      { label: 'Inicio', href: '/' },
+      { label: 'Preguntas frecuentes', current: true },
     ]);
   });
 });

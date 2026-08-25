@@ -1,0 +1,27 @@
+---
+import FaqPage from '../../components/faq/FaqPage.astro';
+import JsonLd from '../../components/seo/JsonLd.astro';
+import { faqContent } from '../../content/faq';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { routes } from '../../lib/catalog/domain/routes';
+import { faqBreadcrumb } from '../../lib/seo/navigation';
+import { createBreadcrumbListJsonLd } from '../../lib/seo/structured-data/breadcrumb';
+import { createFaqPageJsonLd } from '../../lib/seo/structured-data/faq';
+
+const faqJsonLd = createFaqPageJsonLd(faqContent.sections);
+const breadcrumbJsonLd = createBreadcrumbListJsonLd({
+  items: faqBreadcrumb(),
+  currentPath: routes.faq(),
+});
+---
+
+<BaseLayout
+  title={faqContent.metadata.title}
+  titleSuffix=""
+  canonicalPath={routes.faq()}
+  description={faqContent.metadata.description}
+>
+  <JsonLd data={faqJsonLd} />
+  <JsonLd data={breadcrumbJsonLd} />
+  <FaqPage />
+</BaseLayout>

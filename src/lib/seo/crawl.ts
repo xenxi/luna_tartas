@@ -19,6 +19,7 @@ export function getIndexablePaths(catalog: Catalog): readonly string[] {
     routes.about(),
     routes.contact(),
     routes.shipping(),
+    routes.faq(),
     routes.products(),
   ];
 

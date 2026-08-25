@@ -28,6 +28,13 @@ export function productsBreadcrumb(): readonly BreadcrumbItem[] {
   ];
 }
 
+export function faqBreadcrumb(): readonly BreadcrumbItem[] {
+  return [
+    { label: 'Inicio', href: routes.home() },
+    { label: 'Preguntas frecuentes', current: true },
+  ];
+}
+
 export function taxonomyIndexBreadcrumb(
   kind: TaxonomyKind,
 ): readonly BreadcrumbItem[] {

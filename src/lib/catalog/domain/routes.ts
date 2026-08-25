@@ -22,6 +22,7 @@ export const routes = {
   about: (): string => '/sobre-luna/',
   contact: (): string => '/contacto/',
   shipping: (): string => '/envios-y-entregas/',
+  faq: (): string => '/preguntas-frecuentes/',
   underConstruction: (): string => '/en-construccion/',
   products: (): string => '/productos/',
   search: (): string => '/buscar/',

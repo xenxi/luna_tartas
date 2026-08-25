@@ -1,0 +1,198 @@
+---
+import { faqContent } from '../../content/faq';
+import { routes } from '../../lib/catalog/domain/routes';
+import { faqBreadcrumb } from '../../lib/seo/navigation';
+import { withBasePath } from '../../lib/site/urls';
+import Breadcrumb from '../navigation/Breadcrumb.astro';
+import ActionLink from '../ui/ActionLink.astro';
+import Ornament from '../ui/Ornament.astro';
+import ContactIcon from '../contact/ContactIcon.astro';
+import './faq-page.css';
+---
+
+<div class="faq-page">
+  <section class="faq-hero" aria-labelledby="faq-title">
+    <div class="faq-hero__breadcrumb visual-container">
+      <Breadcrumb items={faqBreadcrumb()} />
+    </div>
+    <div class="faq-hero__inner visual-container">
+      <div class="faq-hero__copy">
+        <p class="eyebrow">{faqContent.hero.eyebrow}</p>
+        <h1 id="faq-title">{faqContent.hero.title}</h1>
+        <p>{faqContent.hero.intro}</p>
+        <a
+          class="faq-hero__contact"
+          href={withBasePath(
+            faqContent.hero.actionHref,
+            import.meta.env.BASE_URL,
+          )}
+        >
+          {faqContent.hero.actionLabel}
+          <span aria-hidden="true">→</span>
+        </a>
+      </div>
+      <div class="faq-hero__art" aria-hidden="true">
+        <Ornament variant="watercolor" tone="blue" class="faq-hero__wash" />
+        <Ornament variant="sparkle" tone="peach" class="faq-hero__sparkle" />
+        <span class="faq-hero__halo"></span>
+        <span class="faq-hero__question">?</span>
+        <span class="faq-hero__answer faq-hero__answer--one">
+          <span></span><span></span><span></span>
+        </span>
+        <span class="faq-hero__answer faq-hero__answer--two">
+          <span></span><span></span>
+        </span>
+        <Ornament variant="mini-hearts" tone="blush" class="faq-hero__hearts" />
+      </div>
+    </div>
+  </section>
+
+  <div class="faq-body visual-container">
+    <nav class="faq-index" aria-label="Categorías de preguntas">
+      <div class="faq-index__heading">
+        <p class="eyebrow">Encuentra tu respuesta</p>
+        <p>Busca tu duda por tema</p>
+      </div>
+      <ul>
+        {
+          faqContent.sections.map((section, sectionIndex) => (
+            <li>
+              <a href={`#${section.id}`}>
+                <span aria-hidden="true">
+                  {String(sectionIndex + 1).padStart(2, '0')}
+                </span>
+                <span>{section.shortTitle}</span>
+                <span aria-hidden="true">→</span>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+      <Ornament
+        variant="heart-trail"
+        tone="blush"
+        class="faq-index__ornament"
+      />
+    </nav>
+
+    <div class="faq-sections">
+      {
+        faqContent.sections.map((section, sectionIndex) => (
+          <section
+            class:list={[
+              'faq-section',
+              `faq-section--${section.id}`,
+              { 'faq-section--offset': sectionIndex % 2 === 1 },
+            ]}
+            id={section.id}
+            aria-labelledby={`${section.id}-title`}
+          >
+            <header class="faq-section__heading">
+              <span class="faq-section__number" aria-hidden="true">
+                {String(sectionIndex + 1).padStart(2, '0')}
+              </span>
+              <div>
+                <h2 id={`${section.id}-title`}>{section.title}</h2>
+                <p>{section.intro}</p>
+              </div>
+              <Ornament
+                variant={
+                  sectionIndex % 2 === 0 ? 'heart-trail' : 'dotted-curve'
+                }
+                tone={sectionIndex % 2 === 0 ? 'blush' : 'blue'}
+                class="faq-section__ornament"
+              />
+            </header>
+
+            <div class="faq-list">
+              {section.items.map((item) => (
+                <details class="faq-item">
+                  <summary>
+                    <span>{item.question}</span>
+                    <span class="faq-item__toggle" aria-hidden="true">
+                      <span />
+                      <span />
+                    </span>
+                  </summary>
+                  <div class="faq-item__answer">
+                    <p>{item.answer}</p>
+                    {item.links && (
+                      <div class="faq-item__links">
+                        {item.links.map((link) =>
+                          link.kind === 'whatsapp' ? (
+                            <ActionLink
+                              href={link.href}
+                              variant="quiet"
+                              analytics={{
+                                event: 'contact_whatsapp',
+                                ctaLocation: 'faq-answer',
+                                sourcePage: routes.faq(),
+                              }}
+                            >
+                              {link.label}
+                            </ActionLink>
+                          ) : (
+                            <a
+                              href={withBasePath(
+                                link.href,
+                                import.meta.env.BASE_URL,
+                              )}
+                            >
+                              {link.label}
+                            </a>
+                          ),
+                        )}
+                      </div>
+                    )}
+                  </div>
+                </details>
+              ))}
+            </div>
+          </section>
+        ))
+      }
+    </div>
+  </div>
+
+  <section class="faq-closing" aria-labelledby="faq-closing-title">
+    <div class="faq-closing__panel container">
+      <Ornament variant="watercolor" tone="blush" class="faq-closing__wash" />
+      <Ornament
+        variant="mini-hearts"
+        tone="peach"
+        class="faq-closing__hearts"
+      />
+      <div class="faq-closing__copy">
+        <p class="eyebrow">{faqContent.closing.eyebrow}</p>
+        <h2 id="faq-closing-title">{faqContent.closing.title}</h2>
+        <p>{faqContent.closing.copy}</p>
+        <div class="faq-closing__actions">
+          <ActionLink
+            href={faqContent.closing.primaryAction.href}
+            variant="primary"
+            ariaLabel="Hablar con LUNA por WhatsApp"
+            analytics={{
+              event: 'contact_whatsapp',
+              ctaLocation: 'faq-final-cta',
+              sourcePage: routes.faq(),
+            }}
+          >
+            {faqContent.closing.primaryAction.label}
+            <ContactIcon name="whatsapp" />
+          </ActionLink>
+          <ActionLink
+            href={faqContent.closing.secondaryAction.href}
+            variant="quiet"
+          >
+            {faqContent.closing.secondaryAction.label}
+          </ActionLink>
+        </div>
+      </div>
+      <div class="faq-closing__moon" aria-hidden="true">
+        <span class="faq-closing__crescent"></span>
+        <span class="faq-closing__star faq-closing__star--one">✦</span>
+        <span class="faq-closing__star faq-closing__star--two">✧</span>
+      </div>
+    </div>
+  </section>
+</div>

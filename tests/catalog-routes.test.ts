@@ -7,6 +7,7 @@ describe('catalog routes', () => {
     expect(routes.about()).toBe('/sobre-luna/');
     expect(routes.contact()).toBe('/contacto/');
     expect(routes.shipping()).toBe('/envios-y-entregas/');
+    expect(routes.faq()).toBe('/preguntas-frecuentes/');
     expect(routes.products()).toBe('/productos/');
     expect(routes.search()).toBe('/buscar/');
     expect(routes.product('chocolate-cake')).toBe('/productos/chocolate-cake/');
