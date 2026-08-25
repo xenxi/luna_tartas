@@ -1,0 +1,280 @@
+---
+import { Image } from 'astro:assets';
+import deliveryBalloon from '../../assets/shipping/shipping-delivery-balloon.png';
+import handoffBag from '../../assets/shipping/shipping-handoff-bag.png';
+import heroGift from '../../assets/shipping/shipping-hero-gift.png';
+import ctaMoon from '../../assets/home/luna-nube.png';
+import noticeFlowers from '../../assets/site/footer-magnolia.png';
+import { shippingContent } from '../../content/shipping';
+import { routes } from '../../lib/catalog/domain/routes';
+import Breadcrumb from '../navigation/Breadcrumb.astro';
+import ActionLink from '../ui/ActionLink.astro';
+import Ornament from '../ui/Ornament.astro';
+import './shipping-page.css';
+
+const optionIcons = {
+  handoff:
+    '<path d="M5 15.5h3.2l2.1 2.1c.6.6 1.5.7 2.2.2l5.1-3.8a1.5 1.5 0 0 0-1.7-2.5l-2.7 1.8"/><path d="M3 12h4l4.1-2.1c.8-.4 1.7-.2 2.2.5l.7.9-3.4 2.2"/><path d="M5 18H2V11h3M18.7 8.8c-3-2-4.2-3.2-4.2-4.7 0-2 2.6-2.8 3.6-.9 1-1.9 3.6-1.1 3.6.9 0 1.5-1.2 2.7-3 4.7Z"/>',
+  delivery:
+    '<path d="M3 7h11v10H3zM14 10h3.8l3.2 3.3V17h-7z"/><circle cx="7" cy="18" r="2"/><circle cx="18" cy="18" r="2"/><path d="M6 11h5M2 4h7"/>',
+} as const;
+
+const processIcons = {
+  chat: '<path d="M4 5h16v11H9l-5 4V5Z"/><path d="M8 9h8M8 12h5"/>',
+  hands:
+    '<path d="M12 20s-7-3.7-7-9.1c0-2.7 3.1-4.2 5-2.3L12 11l2-2.4c1.9-1.9 5-.4 5 2.3C19 16.3 12 20 12 20Z"/><path d="M4.2 12.8 2.7 11a1.5 1.5 0 0 1 2.1-2.1M19.8 12.8l1.5-1.8a1.5 1.5 0 0 0-2.1-2.1"/>',
+  pin: '<path d="M19 10c0 5-7 11-7 11S5 15 5 10a7 7 0 1 1 14 0Z"/><circle cx="12" cy="10" r="2.3"/>',
+  parcel:
+    '<path d="m4 8 8-4 8 4v9l-8 4-8-4V8Z"/><path d="m4 8 8 4 8-4M12 12v9M8 6l8 4"/>',
+} as const;
+---
+
+<div class="shipping-page">
+  <section class="shipping-hero" aria-labelledby="shipping-title">
+    <div class="shipping-hero__breadcrumb visual-container">
+      <Breadcrumb
+        items={[
+          { label: 'Inicio', href: routes.home() },
+          { label: 'Envíos y entregas', current: true },
+        ]}
+      />
+    </div>
+    <div class="shipping-hero__inner visual-container">
+      <div class="shipping-hero__copy">
+        <p class="eyebrow">{shippingContent.hero.eyebrow}</p>
+        <h1 id="shipping-title">{shippingContent.hero.title}</h1>
+        <p>{shippingContent.hero.intro}</p>
+      </div>
+      <div class="shipping-hero__art" aria-hidden="true">
+        <span class="shipping-hero__cloud shipping-hero__cloud--one"></span>
+        <span class="shipping-hero__cloud shipping-hero__cloud--two"></span>
+        <Image
+          class="shipping-hero__image"
+          src={heroGift}
+          alt="Caja de regalo rosa decorada con flores."
+          width={664}
+          height={592}
+          loading="eager"
+          decoding="async"
+        />
+        <svg
+          class="shipping-hero__route"
+          viewBox="0 0 300 120"
+          focusable="false"
+        >
+          <path d="M8 92c58-46 82 26 142-14 38-25 57-1 64-42"></path>
+        </svg>
+        <span class="shipping-hero__pin">
+          <svg viewBox="0 0 24 24" focusable="false">
+            <path d="M19 10c0 5-7 11-7 11S5 15 5 10a7 7 0 1 1 14 0Z"></path>
+            <circle cx="12" cy="10" r="2.3"></circle>
+          </svg>
+        </span>
+        <Ornament
+          variant="sparkle"
+          tone="peach"
+          class="shipping-hero__sparkle"
+        />
+      </div>
+    </div>
+  </section>
+
+  <section class="shipping-options" aria-labelledby="shipping-options-title">
+    <header class="shipping-heading">
+      <p class="eyebrow">Dos opciones, la misma cercanía</p>
+      <h2 id="shipping-options-title">{shippingContent.options.title}</h2>
+      <p>{shippingContent.options.intro}</p>
+    </header>
+    <div class="shipping-options__grid visual-container">
+      {
+        shippingContent.options.items.map((item, index) => (
+          <article
+            class:list={[
+              'shipping-option',
+              index === 0
+                ? 'shipping-option--handoff'
+                : 'shipping-option--delivery',
+            ]}
+          >
+            <div class="shipping-option__content">
+              <div class="shipping-option__topline">
+                <span class="shipping-option__number" aria-hidden="true">
+                  {item.number}
+                </span>
+                <span class="shipping-option__eyebrow">{item.eyebrow}</span>
+              </div>
+              <h3>{item.title}</h3>
+              {'location' in item && item.location && (
+                <p class="shipping-option__location">
+                  <svg viewBox="0 0 24 24" focusable="false" aria-hidden="true">
+                    <path d="M19 10c0 5-7 11-7 11S5 15 5 10a7 7 0 1 1 14 0Z" />
+                    <circle cx="12" cy="10" r="2.3" />
+                  </svg>
+                  {item.location}
+                </p>
+              )}
+              <p class="shipping-option__copy">{item.copy}</p>
+              {'highlight' in item && item.highlight && (
+                <div class="shipping-option__notice">
+                  <svg viewBox="0 0 24 24" focusable="false" aria-hidden="true">
+                    <path d="M3 7h11v10H3zM14 10h3.8l3.2 3.3V17h-7z" />
+                    <circle cx="7" cy="18" r="2" />
+                    <circle cx="18" cy="18" r="2" />
+                  </svg>
+                  <p>
+                    <strong>{item.highlight}</strong>
+                    <span>{item.detail}</span>
+                  </p>
+                </div>
+              )}
+            </div>
+            <span class="shipping-option__icon" aria-hidden="true">
+              <svg
+                viewBox="0 0 24 24"
+                set:html={
+                  index === 0 ? optionIcons.handoff : optionIcons.delivery
+                }
+              />
+            </span>
+            <div class="shipping-option__art" aria-hidden="true">
+              <Image
+                class="shipping-option__image"
+                src={index === 0 ? handoffBag : deliveryBalloon}
+                alt={
+                  index === 0
+                    ? 'Bolsa de Luna preparada para una entrega en mano.'
+                    : 'Globo aerostático azul que representa el envío por mensajería.'
+                }
+                width={index === 0 ? 656 : 512}
+                height={index === 0 ? 600 : 768}
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+          </article>
+        ))
+      }
+    </div>
+  </section>
+
+  <section class="shipping-process" aria-labelledby="shipping-process-title">
+    <div class="shipping-process__inner visual-container">
+      <header class="shipping-heading">
+        <p class="eyebrow">{shippingContent.process.title}</p>
+        <h2 id="shipping-process-title">{shippingContent.process.intro}</h2>
+      </header>
+      <div class="shipping-process__flow">
+        <svg
+          class="shipping-process__thread"
+          viewBox="0 0 1200 80"
+          preserveAspectRatio="none"
+          focusable="false"
+          aria-hidden="true"
+        >
+          <path d="M80 44c110-35 185 28 295 0s190 28 300 0 205 25 445-2"></path>
+        </svg>
+        <ol
+          class="shipping-process__list"
+          aria-label="Pasos para preparar y recibir tu pedido"
+          tabindex="0"
+        >
+          {
+            shippingContent.process.steps.map((step) => (
+              <li class="shipping-step">
+                <span class="shipping-step__art" aria-hidden="true">
+                  <svg
+                    viewBox="0 0 24 24"
+                    set:html={
+                      processIcons[step.icon as keyof typeof processIcons]
+                    }
+                  />
+                </span>
+                <span class="shipping-step__number" aria-hidden="true">
+                  {step.number}
+                </span>
+                <h3>{step.title}</h3>
+                <p>{step.copy}</p>
+              </li>
+            ))
+          }
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <section class="shipping-notice" aria-labelledby="shipping-notice-title">
+    <div class="shipping-notice__panel container">
+      <div class="shipping-notice__mark" aria-hidden="true">
+        <span>€</span>
+        <Ornament variant="sparkle" tone="blue" />
+      </div>
+      <div class="shipping-notice__copy">
+        <h2 id="shipping-notice-title">{shippingContent.notice.title}</h2>
+        <p class="shipping-notice__answer">{shippingContent.notice.answer}</p>
+        <p>
+          {shippingContent.notice.copy}
+          <strong>{shippingContent.notice.detail}</strong>
+        </p>
+      </div>
+      <Image
+        class="shipping-notice__flowers"
+        src={noticeFlowers}
+        alt="Rama de magnolias rosas."
+        width={126}
+        height={198}
+        loading="lazy"
+        decoding="async"
+      />
+    </div>
+  </section>
+
+  <section class="shipping-cta" aria-labelledby="shipping-cta-title">
+    <div class="shipping-cta__panel visual-container">
+      <Ornament variant="cloud" tone="blue" class="shipping-cta__cloud" />
+      <Ornament
+        variant="mini-hearts"
+        tone="blush"
+        class="shipping-cta__hearts"
+      />
+      <Image
+        class="shipping-cta__moon"
+        src={ctaMoon}
+        alt="Luna sonriente descansando sobre una nube rosa."
+        width={383}
+        height={369}
+        loading="lazy"
+        decoding="async"
+      />
+      <div class="shipping-cta__copy">
+        <p class="eyebrow">Estamos aquí para ayudarte</p>
+        <h2 id="shipping-cta-title">{shippingContent.cta.title}</h2>
+        <p>{shippingContent.cta.copy}</p>
+        <ActionLink
+          href={shippingContent.cta.action.href}
+          variant="primary"
+          analytics={{
+            event: 'contact_whatsapp',
+            ctaLocation: 'shipping-final-cta',
+            sourcePage: routes.shipping(),
+          }}
+        >
+          {shippingContent.cta.action.label}
+          <svg
+            class="shipping-cta__whatsapp"
+            viewBox="0 0 24 24"
+            focusable="false"
+            aria-hidden="true"
+          >
+            <path
+              d="M20.4 11.7a8.4 8.4 0 0 1-12.5 7.4L3 20.5l1.4-4.7a8.4 8.4 0 1 1 16-4.1Z"
+            ></path>
+            <path
+              d="M8.3 7.7c.2-.4.4-.5.7-.5h.4c.2 0 .4.1.5.4l.8 1.9c.1.2.1.4 0 .5l-.5.7c.6 1.2 1.6 2.1 2.8 2.8l.7-.5c.2-.1.4-.1.5 0l1.9.8c.3.1.4.3.4.5v.4c0 .3-.1.5-.5.7-.5.2-1.1.2-1.8 0-1-.3-2.2-1-3.2-2s-1.7-2.2-2-3.2c-.2-.7-.2-1.3 0-1.8Z"
+            ></path>
+          </svg>
+        </ActionLink>
+        <p class="shipping-cta__note">{shippingContent.cta.note}</p>
+      </div>
+    </div>
+  </section>
+</div>

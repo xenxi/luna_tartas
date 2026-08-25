@@ -21,6 +21,7 @@ export interface MetadataInput {
   readonly image: SocialImage;
   readonly pageType?: MetadataPageType;
   readonly robots?: MetadataRobots;
+  readonly titleSuffix?: string;
 }
 
 export interface PageMetadata {
@@ -78,7 +79,7 @@ export function createPageMetadata(input: MetadataInput): PageMetadata {
   }
 
   return Object.freeze({
-    title: `${title}${TITLE_SUFFIX}`,
+    title: `${title}${input.titleSuffix ?? TITLE_SUFFIX}`,
     description,
     canonicalUrl: getCanonicalUrl(input.canonicalPath),
     robots,

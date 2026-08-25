@@ -86,4 +86,15 @@ describe('page metadata', () => {
     expect(metadata.canonicalUrl).toBe(`${siteConfig.siteUrl}/`);
     expect(metadata.ogLocale).toBe('es_ES');
   });
+
+  it('supports an explicit editorial title without the default suffix', () => {
+    const metadata = createPageMetadata({
+      title: 'Envíos y entregas | LUNA',
+      titleSuffix: '',
+      canonicalPath: routes.shipping(),
+      image,
+    });
+
+    expect(metadata.title).toBe('Envíos y entregas | LUNA');
+  });
 });

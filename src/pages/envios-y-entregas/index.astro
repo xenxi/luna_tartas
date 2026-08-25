@@ -1,0 +1,15 @@
+---
+import ShippingPage from '../../components/shipping/ShippingPage.astro';
+import { shippingContent } from '../../content/shipping';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { routes } from '../../lib/catalog/domain/routes';
+---
+
+<BaseLayout
+  title={shippingContent.metadata.title}
+  titleSuffix=""
+  canonicalPath={routes.shipping()}
+  description={shippingContent.metadata.description}
+>
+  <ShippingPage />
+</BaseLayout>

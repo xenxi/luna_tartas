@@ -26,6 +26,7 @@ interface Props {
   image?: SocialImage;
   pageType?: MetadataPageType;
   robots?: MetadataRobots;
+  titleSuffix?: string;
 }
 
 const {
@@ -36,6 +37,7 @@ const {
   image,
   pageType,
   robots,
+  titleSuffix,
 } = Astro.props;
 
 if (typeof title !== 'string' || title.trim() === '') {
@@ -53,6 +55,7 @@ const metadata = createPageMetadata({
   },
   pageType,
   robots,
+  titleSuffix,
 });
 ---
 
