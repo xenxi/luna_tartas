@@ -8,7 +8,7 @@ https://lunatartas.es/sitemap.xml,seo-endpoint,M9.2-live-check,2026-08-17T19:07:
 https://lunatartas.es/servicios,legacy-marketing,M9.2-flutter-route,2026-08-17T19:11:00+02:00,HTTP_200_SPA_ROUTE,CONFIRMED,301_TO_/productos/,Equipo tecnico,Activar Bulk Redirect y verificar Location
 https://lunatartas.es/portfolio,legacy-marketing,M9.2-flutter-route,2026-08-17T19:11:00+02:00,HTTP_200_SPA_ROUTE,CONFIRMED,301_TO_/#work-showcase,Equipo tecnico,Activar Bulk Redirect y verificar Location
 https://lunatartas.es/precios,legacy-marketing,M9.2-flutter-route,2026-08-17T19:11:00+02:00,HTTP_200_SPA_ROUTE,CONFIRMED,301_TO_/productos/,Equipo tecnico,Activar Bulk Redirect y verificar Location
-https://lunatartas.es/contacto,legacy-marketing,M9.2-flutter-route,2026-08-17T19:11:00+02:00,HTTP_200_SPA_ROUTE,CONFIRMED,301_TO_/#custom-idea,Equipo tecnico,Activar Bulk Redirect y verificar Location
+https://lunatartas.es/contacto,legacy-marketing,M9.2-flutter-route,2026-08-17T19:11:00+02:00,HTTP_200_SPA_ROUTE,CONFIRMED,301_TO_/contacto/,Equipo tecnico,Activar Bulk Redirect y verificar Location
 https://lunatartas.es/editor/etiquetas,legacy-tool,M9.2-flutter-route,2026-08-17T19:11:00+02:00,HTTP_200_SPA_ROUTE,CONFIRMED,301_TO_PRODUCT,Equipo tecnico,Activar Bulk Redirect y verificar Location
 https://lunatartas.es/editor/tarta-panales,legacy-tool,M9.2-flutter-route,2026-08-17T19:11:00+02:00,HTTP_200_SPA_ROUTE,CONFIRMED,301_TO_PRODUCT,Equipo tecnico,Activar Bulk Redirect y verificar Location
 https://lunatartas.es/servicios/curriculum,legacy-tool,M9.2-flutter-route,2026-08-17T19:11:00+02:00,HTTP_200_SPA_ROUTE,CONFIRMED,410,Equipo tecnico,Activar respuesta edge 410

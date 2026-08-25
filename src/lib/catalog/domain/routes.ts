@@ -20,6 +20,7 @@ function withTrailingSlash(path: string): string {
 export const routes = {
   home: (): string => '/',
   about: (): string => '/sobre-luna/',
+  contact: (): string => '/contacto/',
   shipping: (): string => '/envios-y-entregas/',
   underConstruction: (): string => '/en-construccion/',
   products: (): string => '/productos/',

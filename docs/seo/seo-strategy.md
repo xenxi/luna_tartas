@@ -8,6 +8,7 @@ Representar de forma estática y inequívoca productos e intenciones de regalo p
 
 ```text
 /
+/contacto/
 /productos/
 /productos/{product-slug}/
 /categorias/

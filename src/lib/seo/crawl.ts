@@ -17,6 +17,7 @@ export function getIndexablePaths(catalog: Catalog): readonly string[] {
   const paths = [
     routes.home(),
     routes.about(),
+    routes.contact(),
     routes.shipping(),
     routes.products(),
   ];

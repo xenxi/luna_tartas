@@ -1,0 +1,21 @@
+---
+import chatIllustration from '../../assets/home/trust-steps/01-chat.png';
+import ContactPage from '../../components/contact/ContactPage.astro';
+import { contactContent } from '../../content/contact';
+import { siteConfig } from '../../config/site';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { routes } from '../../lib/catalog/domain/routes';
+---
+
+<BaseLayout
+  title={contactContent.metadata.title}
+  titleSuffix=""
+  canonicalPath={routes.contact()}
+  description={contactContent.metadata.description}
+  image={{
+    url: new URL(chatIllustration.src, siteConfig.siteUrl).href,
+    alt: 'Ilustración de dos bocadillos de conversación en acuarela.',
+  }}
+>
+  <ContactPage />
+</BaseLayout>

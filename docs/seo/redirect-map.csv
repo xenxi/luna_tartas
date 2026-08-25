@@ -3,7 +3,7 @@ source_path,match_type,decision,target,status_code,query_policy,discovery_source
 /servicios,exact,redirect,/productos/,301,preserve,M9.2-flutter-route,READY_TO_APPLY,El catalogo sustituye la antigua pagina de servicios
 /portfolio,exact,redirect,/#work-showcase,301,preserve,M9.2-flutter-route,READY_TO_APPLY,La muestra de trabajos sustituye la antigua inspiracion
 /precios,exact,redirect,/productos/,301,preserve,M9.2-flutter-route,READY_TO_APPLY,Los precios aprobados viven en el catalogo
-/contacto,exact,redirect,/#custom-idea,301,preserve,M9.2-flutter-route,READY_TO_APPLY,El CTA y el footer contienen los canales de contacto aprobados
+/contacto,exact,redirect,/contacto/,301,preserve,M9.2-flutter-route,READY_TO_APPLY,La nueva pagina de contacto conserva la intencion y normaliza la barra final canonica
 /editor/etiquetas,exact,redirect,/productos/etiquetas-personalizadas-regalos/,301,preserve,M9.2-flutter-route,READY_TO_APPLY,Existe un producto publicado semanticamente equivalente
 /editor/tarta-panales,exact,redirect,/productos/tarta-de-panales-personalizada/,301,preserve,M9.2-flutter-route,READY_TO_APPLY,Existe un producto publicado semanticamente equivalente
 /servicios/curriculum,exact,gone,,410,discard,M9.2-flutter-route,BLOCKED_NO_EDGE,La herramienta de curriculum no pertenece al alcance V1

@@ -1,0 +1,259 @@
+---
+import { Image } from 'astro:assets';
+import chatIllustration from '../../assets/home/trust-steps/01-chat.png';
+import moonIllustration from '../../assets/home/luna-nube.png';
+import { publicContactConfig } from '../../config/contact';
+import { contactContent } from '../../content/contact';
+import { routes } from '../../lib/catalog/domain/routes';
+import { withBasePath } from '../../lib/site/urls';
+import Breadcrumb from '../navigation/Breadcrumb.astro';
+import ActionLink from '../ui/ActionLink.astro';
+import Icon from '../ui/Icon.astro';
+import Ornament from '../ui/Ornament.astro';
+import ContactIcon from './ContactIcon.astro';
+import './contact-page.css';
+---
+
+<div class="contact-page">
+  <section class="contact-hero" aria-labelledby="contact-title">
+    <div class="contact-hero__breadcrumb visual-container">
+      <Breadcrumb
+        items={[
+          { label: 'Inicio', href: routes.home() },
+          { label: 'Contacto', current: true },
+        ]}
+      />
+    </div>
+    <div class="contact-hero__inner container">
+      <Ornament variant="sparkle" tone="peach" class="contact-hero__sparkle" />
+      <p class="eyebrow">{contactContent.hero.eyebrow}</p>
+      <h1 id="contact-title">{contactContent.hero.title}</h1>
+      <p>{contactContent.hero.intro}</p>
+      <Ornament
+        variant="heart-trail"
+        tone="blush"
+        class="contact-hero__heart-trail"
+      />
+    </div>
+  </section>
+
+  <section class="contact-whatsapp" aria-labelledby="contact-whatsapp-title">
+    <div class="contact-whatsapp__panel visual-container">
+      <Ornament
+        variant="watercolor"
+        tone="blue"
+        class="contact-whatsapp__wash"
+      />
+      <Ornament
+        variant="mini-hearts"
+        tone="blush"
+        class="contact-whatsapp__hearts"
+      />
+      <div class="contact-whatsapp__copy">
+        <p class="eyebrow">{contactContent.whatsapp.eyebrow}</p>
+        <h2 id="contact-whatsapp-title">{contactContent.whatsapp.title}</h2>
+        <p>{contactContent.whatsapp.copy}</p>
+        <ActionLink
+          href={contactContent.whatsapp.action.href}
+          variant="primary"
+          ariaLabel="Hablar con LUNA por WhatsApp"
+          analytics={{
+            event: 'contact_whatsapp',
+            ctaLocation: 'contact-primary-cta',
+            sourcePage: routes.contact(),
+          }}
+        >
+          {contactContent.whatsapp.action.label}
+          <ContactIcon name="whatsapp" />
+        </ActionLink>
+        <p class="contact-whatsapp__note">
+          {contactContent.whatsapp.note}
+          <span>{publicContactConfig.whatsapp.label}</span>
+        </p>
+      </div>
+      <div class="contact-whatsapp__art">
+        <span
+          class="contact-whatsapp__bubble contact-whatsapp__bubble--one"
+          aria-hidden="true"
+          >Hola, tengo una idea…</span
+        >
+        <Image
+          src={chatIllustration}
+          alt="Dos bocadillos de conversación ilustrados en acuarela."
+          width={1310}
+          height={1200}
+          format="webp"
+          loading="eager"
+          decoding="async"
+          class="contact-whatsapp__image"
+        />
+        <span
+          class="contact-whatsapp__bubble contact-whatsapp__bubble--two"
+          aria-hidden="true"
+          >¡Cuéntanos!</span
+        >
+      </div>
+    </div>
+  </section>
+
+  <section class="contact-topics" aria-labelledby="contact-topics-title">
+    <header class="contact-heading container">
+      <p class="eyebrow">{contactContent.topics.eyebrow}</p>
+      <h2 id="contact-topics-title">{contactContent.topics.title}</h2>
+      <p>{contactContent.topics.intro}</p>
+    </header>
+    <ul class="contact-topics__grid visual-container">
+      {
+        contactContent.topics.items.map((item, index) => (
+          <li>
+            <a
+              class:list={['contact-topic', `contact-topic--${index + 1}`]}
+              href={withBasePath(item.href, import.meta.env.BASE_URL)}
+            >
+              <span class="contact-topic__icon">
+                <ContactIcon name={item.icon} />
+              </span>
+              <span class="contact-topic__body">
+                <h3>{item.title}</h3>
+                <p>{item.copy}</p>
+              </span>
+              <span class="contact-topic__arrow" aria-hidden="true">
+                <Icon name="arrow-right" />
+              </span>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+
+  <section class="contact-channels" aria-labelledby="contact-channels-title">
+    <div class="contact-channels__inner visual-container">
+      <header class="contact-heading">
+        <p class="eyebrow">{contactContent.channels.eyebrow}</p>
+        <h2 id="contact-channels-title">{contactContent.channels.title}</h2>
+      </header>
+      <div class="contact-channels__grid">
+        {
+          contactContent.channels.items.map((channel, index) => (
+            <article
+              class:list={[
+                'contact-channel',
+                index === 0
+                  ? 'contact-channel--instagram'
+                  : 'contact-channel--email',
+              ]}
+            >
+              <span class="contact-channel__icon" aria-hidden="true">
+                <ContactIcon name={channel.icon} />
+              </span>
+              <div class="contact-channel__copy">
+                <p class="contact-channel__name">{channel.name}</p>
+                <h3>{channel.label}</h3>
+                <p>{channel.copy}</p>
+              </div>
+              <ActionLink href={channel.href} variant="secondary">
+                {channel.actionLabel}
+                <Icon name="arrow-right" />
+              </ActionLink>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="contact-location" aria-labelledby="contact-location-title">
+    <div class="contact-location__panel container">
+      <span class="contact-location__icon" aria-hidden="true">
+        <ContactIcon name="location" />
+      </span>
+      <div class="contact-location__copy">
+        <p class="eyebrow">{contactContent.location.eyebrow}</p>
+        <h2 id="contact-location-title">{contactContent.location.title}</h2>
+        <p class="contact-location__place">
+          {contactContent.location.location}
+        </p>
+        <p>{contactContent.location.copy}</p>
+      </div>
+      <ActionLink href={contactContent.location.href} variant="quiet">
+        {contactContent.location.actionLabel}
+        <Icon name="arrow-right" />
+      </ActionLink>
+      <Ornament
+        variant="dotted-curve"
+        tone="blue"
+        class="contact-location__route"
+      />
+    </div>
+  </section>
+
+  <section class="contact-faq" aria-labelledby="contact-faq-title">
+    <div class="contact-faq__inner container">
+      <header class="contact-heading">
+        <p class="eyebrow">{contactContent.faq.eyebrow}</p>
+        <h2 id="contact-faq-title">{contactContent.faq.title}</h2>
+      </header>
+      <div class="contact-faq__list">
+        {
+          contactContent.faq.items.map((item) => (
+            <details class="contact-faq__item">
+              <summary>
+                <span>{item.question}</span>
+                <span class="contact-faq__toggle" aria-hidden="true">
+                  +
+                </span>
+              </summary>
+              <div class="contact-faq__answer">
+                <p>{item.answer}</p>
+                {'href' in item && item.href && (
+                  <a href={withBasePath(item.href, import.meta.env.BASE_URL)}>
+                    {item.actionLabel}
+                  </a>
+                )}
+              </div>
+            </details>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="contact-closing" aria-labelledby="contact-closing-title">
+    <div class="contact-closing__panel visual-container">
+      <div class="contact-closing__copy">
+        <p class="eyebrow">{contactContent.closing.eyebrow}</p>
+        <h2 id="contact-closing-title">{contactContent.closing.title}</h2>
+        <p>{contactContent.closing.copy}</p>
+        <ActionLink
+          href={contactContent.closing.action.href}
+          variant="secondary"
+          ariaLabel="Escribir a LUNA por WhatsApp"
+          analytics={{
+            event: 'contact_whatsapp',
+            ctaLocation: 'contact-final-cta',
+            sourcePage: routes.contact(),
+          }}
+        >
+          {contactContent.closing.action.label}
+          <ContactIcon name="whatsapp" />
+        </ActionLink>
+      </div>
+      <Image
+        src={moonIllustration}
+        alt="Luna sonriente descansando sobre una nube rosa."
+        width={1278}
+        height={1231}
+        format="webp"
+        loading="lazy"
+        decoding="async"
+        class="contact-closing__moon"
+      />
+      <Ornament
+        variant="sparkle"
+        tone="peach"
+        class="contact-closing__sparkle"
+      />
+    </div>
+  </section>
+</div>

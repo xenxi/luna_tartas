@@ -71,6 +71,7 @@ describe('crawl projection', () => {
     expect(getIndexablePaths(catalog)).toEqual([
       '/',
       '/sobre-luna/',
+      '/contacto/',
       '/envios-y-entregas/',
       '/productos/',
       '/categorias/',
