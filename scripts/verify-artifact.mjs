@@ -43,6 +43,14 @@ function isAllowedAnalyticsModule(tagName, src) {
   );
 }
 
+function isAllowedProductGalleryModule(route, tagName, src) {
+  return (
+    tagName === 'script' &&
+    route.startsWith('/productos/') &&
+    /^\/_astro\/ProductGallery\.astro_astro_type_script_[^/]+\.js$/i.test(src)
+  );
+}
+
 await walk(dist);
 if (htmlFiles.length === 0) fail('no HTML pages found');
 
@@ -61,7 +69,11 @@ for (const file of htmlFiles) {
   for (const match of html.matchAll(
     /<(script|style)\b[^>]*\bsrc=["']([^"']+)["'][^>]*>/gi,
   )) {
-    if (!isAllowedAnalyticsModule(match[1].toLowerCase(), match[2])) {
+    const tagName = match[1].toLowerCase();
+    if (
+      !isAllowedAnalyticsModule(tagName, match[2]) &&
+      !isAllowedProductGalleryModule(route, tagName, match[2])
+    ) {
       fail(`${route} loads an unexpected client asset`);
     }
   }

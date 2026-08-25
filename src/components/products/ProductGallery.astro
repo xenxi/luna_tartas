@@ -141,53 +141,171 @@ const [cover, ...alternatives] = media;
     data-gallery-lightbox
   >
     <div class="product-gallery__lightbox-inner">
-      <button
-        class="product-gallery__lightbox-close"
-        type="button"
-        aria-label="Cerrar imagen ampliada"
-        data-gallery-close
+      <header class="product-gallery__lightbox-header">
+        <div class="product-gallery__lightbox-heading">
+          <span class="product-gallery__lightbox-kicker">Galería</span>
+          <span class="product-gallery__lightbox-title">{product.name}</span>
+        </div>
+        <div
+          class="product-gallery__lightbox-tools"
+          role="toolbar"
+          aria-label="Controles de ampliación"
+        >
+          <button
+            class="product-gallery__lightbox-control"
+            type="button"
+            aria-label="Reducir imagen"
+            data-lightbox-zoom-out
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <path d="M6 12h12"></path>
+            </svg>
+          </button>
+          <output
+            class="product-gallery__lightbox-zoom"
+            aria-live="polite"
+            data-lightbox-zoom-value>100%</output
+          >
+          <button
+            class="product-gallery__lightbox-control"
+            type="button"
+            aria-label="Ampliar imagen"
+            data-lightbox-zoom-in
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <path d="M12 6v12M6 12h12"></path>
+            </svg>
+          </button>
+          <button
+            class="product-gallery__lightbox-control product-gallery__lightbox-reset"
+            type="button"
+            aria-label="Ajustar imagen a la pantalla"
+            data-lightbox-reset
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <path d="M9 4H4v5M15 4h5v5M20 15v5h-5M4 15v5h5"></path>
+            </svg>
+            <span>Ajustar</span>
+          </button>
+          <span class="product-gallery__lightbox-divider" aria-hidden="true"
+          ></span>
+          <button
+            class="product-gallery__lightbox-control product-gallery__lightbox-close"
+            type="button"
+            aria-label="Cerrar imagen ampliada"
+            data-gallery-close
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <path d="m6 6 12 12M18 6 6 18"></path>
+            </svg>
+          </button>
+        </div>
+      </header>
+
+      <div
+        class:list={[
+          'product-gallery__lightbox-viewer',
+          {
+            'product-gallery__lightbox-viewer--single':
+              alternatives.length === 0,
+          },
+        ]}
       >
-        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-          <path d="m6 6 12 12M18 6 6 18"></path>
-        </svg>
-      </button>
+        {
+          alternatives.length > 0 && (
+            <button
+              class="product-gallery__lightbox-arrow product-gallery__lightbox-arrow--previous"
+              type="button"
+              aria-label="Ver imagen anterior ampliada"
+              data-lightbox-previous
+            >
+              <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <path d="m14.5 5-7 7 7 7" />
+              </svg>
+            </button>
+          )
+        }
+        <figure class="product-gallery__lightbox-figure">
+          <div
+            class="product-gallery__lightbox-viewport"
+            role="group"
+            aria-label="Imagen ampliada. Usa la rueda o pellizca para hacer zoom y arrastra para moverte."
+            tabindex="0"
+            data-lightbox-viewport
+          >
+            <img
+              src={cover.fullSrc}
+              alt={cover.projection.alt}
+              width={cover.width}
+              height={cover.height}
+              decoding="async"
+              draggable="false"
+              data-lightbox-image
+            />
+          </div>
+          <figcaption class="product-gallery__lightbox-caption">
+            <span data-lightbox-caption>{cover.projection.alt}</span>
+            <span aria-hidden="true"> · </span>
+            <span data-lightbox-counter>1 de {media.length}</span>
+          </figcaption>
+        </figure>
+        {
+          alternatives.length > 0 && (
+            <button
+              class="product-gallery__lightbox-arrow product-gallery__lightbox-arrow--next"
+              type="button"
+              aria-label="Ver imagen siguiente ampliada"
+              data-lightbox-next
+            >
+              <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <path d="m9.5 5 7 7-7 7" />
+              </svg>
+            </button>
+          )
+        }
+      </div>
+
       {
         alternatives.length > 0 && (
-          <button
-            class="product-gallery__lightbox-arrow product-gallery__lightbox-arrow--previous"
-            type="button"
-            aria-label="Ver imagen anterior ampliada"
-            data-lightbox-previous
+          <nav
+            class="product-gallery__lightbox-gallery"
+            aria-label="Ir directamente a una imagen"
           >
-            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-              <path d="m14.5 5-7 7 7 7" />
-            </svg>
-          </button>
-        )
-      }
-      <figure>
-        <img
-          src={cover.fullSrc}
-          alt={cover.projection.alt}
-          width={cover.width}
-          height={cover.height}
-          decoding="async"
-          data-lightbox-image
-        />
-        <figcaption data-lightbox-caption>{cover.projection.alt}</figcaption>
-      </figure>
-      {
-        alternatives.length > 0 && (
-          <button
-            class="product-gallery__lightbox-arrow product-gallery__lightbox-arrow--next"
-            type="button"
-            aria-label="Ver imagen siguiente ampliada"
-            data-lightbox-next
-          >
-            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-              <path d="m9.5 5 7 7-7 7" />
-            </svg>
-          </button>
+            <div class="product-gallery__lightbox-thumbnails">
+              {media.map((item, index) => (
+                <button
+                  class="product-gallery__lightbox-thumbnail"
+                  type="button"
+                  aria-label={`Ver imagen ${index + 1} de ${media.length}: ${item.projection.alt}`}
+                  aria-current={index === 0 ? 'true' : undefined}
+                  data-lightbox-thumbnail
+                  data-gallery-index={index}
+                >
+                  <picture>
+                    {item.projection.sources?.map((source) => (
+                      <source
+                        srcset={source.srcSet}
+                        type={source.type}
+                        media={source.media}
+                        sizes="4.5rem"
+                      />
+                    ))}
+                    <img
+                      src={item.projection.src}
+                      srcset={item.projection.srcSet}
+                      sizes="4.5rem"
+                      alt={item.projection.alt}
+                      width={item.projection.width}
+                      height={item.projection.height}
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  </picture>
+                  <span>{index + 1}</span>
+                </button>
+              ))}
+            </div>
+          </nav>
         )
       }
     </div>
@@ -222,8 +340,31 @@ const [cover, ...alternatives] = media;
     const lightboxCaption = gallery.querySelector<HTMLElement>(
       '[data-lightbox-caption]',
     );
+    const lightboxCounter = gallery.querySelector<HTMLElement>(
+      '[data-lightbox-counter]',
+    );
+    const lightboxViewport = gallery.querySelector<HTMLElement>(
+      '[data-lightbox-viewport]',
+    );
+    const lightboxZoomValue = gallery.querySelector<HTMLOutputElement>(
+      '[data-lightbox-zoom-value]',
+    );
+    const lightboxZoomOut = gallery.querySelector<HTMLButtonElement>(
+      '[data-lightbox-zoom-out]',
+    );
+    const lightboxZoomIn = gallery.querySelector<HTMLButtonElement>(
+      '[data-lightbox-zoom-in]',
+    );
+    const lightboxThumbnails = Array.from(
+      gallery.querySelectorAll<HTMLButtonElement>('[data-lightbox-thumbnail]'),
+    );
 
-    if (slides.length === 0 || lightbox === null || lightboxImage === null) {
+    if (
+      slides.length === 0 ||
+      lightbox === null ||
+      lightboxImage === null ||
+      lightboxViewport === null
+    ) {
       return;
     }
 
@@ -232,6 +373,122 @@ const [cover, ...alternatives] = media;
     next?.removeAttribute('hidden');
 
     let activeIndex = 0;
+    const minimumScale = 1;
+    const maximumScale = 5;
+    let scale = minimumScale;
+    let panX = 0;
+    let panY = 0;
+    const pointers = new Map<number, { x: number; y: number }>();
+    let gestureStart:
+      | {
+          distance: number;
+          focalX: number;
+          focalY: number;
+          panX: number;
+          panY: number;
+          scale: number;
+        }
+      | undefined;
+    let dragStart:
+      | {
+          x: number;
+          y: number;
+          panX: number;
+          panY: number;
+          pointerType: string;
+        }
+      | undefined;
+
+    const clamp = (value: number, minimum: number, maximum: number) =>
+      Math.min(Math.max(value, minimum), maximum);
+
+    const clampPan = () => {
+      const maxX = Math.max(
+        0,
+        (lightboxImage.clientWidth * scale - lightboxViewport.clientWidth) / 2,
+      );
+      const maxY = Math.max(
+        0,
+        (lightboxImage.clientHeight * scale - lightboxViewport.clientHeight) /
+          2,
+      );
+      panX = clamp(panX, -maxX, maxX);
+      panY = clamp(panY, -maxY, maxY);
+    };
+
+    const renderTransform = () => {
+      clampPan();
+      lightboxImage.style.transform = `translate(-50%, -50%) translate3d(${panX}px, ${panY}px, 0) scale(${scale})`;
+      lightboxViewport.classList.toggle(
+        'product-gallery__lightbox-viewport--zoomed',
+        scale > minimumScale,
+      );
+      if (lightboxZoomValue) {
+        lightboxZoomValue.value = `${Math.round(scale * 100)}%`;
+        lightboxZoomValue.textContent = lightboxZoomValue.value;
+      }
+      if (lightboxZoomOut) {
+        lightboxZoomOut.disabled = scale <= minimumScale;
+      }
+      if (lightboxZoomIn) {
+        lightboxZoomIn.disabled = scale >= maximumScale;
+      }
+    };
+
+    const fitImageToViewport = () => {
+      const viewportWidth = lightboxViewport.clientWidth;
+      const viewportHeight = lightboxViewport.clientHeight;
+      const intrinsicWidth = Number(lightboxImage.getAttribute('width'));
+      const intrinsicHeight = Number(lightboxImage.getAttribute('height'));
+
+      if (
+        viewportWidth <= 0 ||
+        viewportHeight <= 0 ||
+        intrinsicWidth <= 0 ||
+        intrinsicHeight <= 0
+      ) {
+        return;
+      }
+
+      const fitRatio = Math.min(
+        viewportWidth / intrinsicWidth,
+        viewportHeight / intrinsicHeight,
+      );
+
+      lightboxImage.style.inlineSize = `${intrinsicWidth * fitRatio}px`;
+      lightboxImage.style.blockSize = `${intrinsicHeight * fitRatio}px`;
+    };
+
+    const resetTransform = () => {
+      scale = minimumScale;
+      panX = 0;
+      panY = 0;
+      fitImageToViewport();
+      renderTransform();
+    };
+
+    const zoomTo = (
+      requestedScale: number,
+      clientX = lightboxViewport.getBoundingClientRect().left +
+        lightboxViewport.clientWidth / 2,
+      clientY = lightboxViewport.getBoundingClientRect().top +
+        lightboxViewport.clientHeight / 2,
+    ) => {
+      const nextScale = clamp(requestedScale, minimumScale, maximumScale);
+      const bounds = lightboxViewport.getBoundingClientRect();
+      const pointX = clientX - (bounds.left + bounds.width / 2);
+      const pointY = clientY - (bounds.top + bounds.height / 2);
+      const ratio = nextScale / scale;
+
+      panX = pointX - (pointX - panX) * ratio;
+      panY = pointY - (pointY - panY) * ratio;
+      scale = nextScale;
+      if (scale === minimumScale) {
+        panX = 0;
+        panY = 0;
+      }
+      renderTransform();
+    };
 
     const selectImage = (requestedIndex: number) => {
       activeIndex = (requestedIndex + slides.length) % slides.length;
@@ -261,8 +518,26 @@ const [cover, ...alternatives] = media;
         lightboxImage.height = Number(activeTrigger.dataset.fullHeight ?? 0);
         if (lightboxCaption) lightboxCaption.textContent = activeImage.alt;
       }
+      if (lightboxCounter) {
+        lightboxCounter.textContent = `${activeIndex + 1} de ${slides.length}`;
+      }
+      lightboxThumbnails.forEach((thumbnail, index) => {
+        if (index === activeIndex) {
+          thumbnail.setAttribute('aria-current', 'true');
+          if (lightbox.open) {
+            thumbnail.scrollIntoView({
+              behavior: 'smooth',
+              block: 'nearest',
+              inline: 'center',
+            });
+          }
+        } else {
+          thumbnail.removeAttribute('aria-current');
+        }
+      });
       if (status)
         status.textContent = `Imagen ${activeIndex + 1} de ${slides.length}`;
+      resetTransform();
     };
 
     const showPrevious = () => selectImage(activeIndex - 1);
@@ -283,6 +558,14 @@ const [cover, ...alternatives] = media;
     gallery
       .querySelector('[data-lightbox-next]')
       ?.addEventListener('click', showNext);
+    lightboxThumbnails.forEach((thumbnail, index) => {
+      thumbnail.addEventListener('click', () => selectImage(index));
+    });
+    lightboxZoomOut?.addEventListener('click', () => zoomTo(scale / 1.35));
+    lightboxZoomIn?.addEventListener('click', () => zoomTo(scale * 1.35));
+    gallery
+      .querySelector('[data-lightbox-reset]')
+      ?.addEventListener('click', resetTransform);
 
     gallery
       .querySelectorAll<HTMLAnchorElement>('[data-gallery-open]')
@@ -291,6 +574,10 @@ const [cover, ...alternatives] = media;
           event.preventDefault();
           selectImage(index);
           lightbox.showModal();
+          requestAnimationFrame(() => {
+            resetTransform();
+            lightboxViewport.focus();
+          });
         });
       });
 
@@ -302,8 +589,145 @@ const [cover, ...alternatives] = media;
       if (event.target === lightbox) lightbox.close();
     });
     lightbox.addEventListener('keydown', (event) => {
-      if (event.key === 'ArrowLeft') showPrevious();
-      if (event.key === 'ArrowRight') showNext();
+      if (event.key === 'ArrowLeft') {
+        event.preventDefault();
+        showPrevious();
+      }
+      if (event.key === 'ArrowRight') {
+        event.preventDefault();
+        showNext();
+      }
+      if (event.key === '+' || event.key === '=') {
+        event.preventDefault();
+        zoomTo(scale * 1.35);
+      }
+      if (event.key === '-') {
+        event.preventDefault();
+        zoomTo(scale / 1.35);
+      }
+      if (event.key === '0') {
+        event.preventDefault();
+        resetTransform();
+      }
     });
+
+    lightboxViewport.addEventListener(
+      'wheel',
+      (event) => {
+        event.preventDefault();
+        const factor = Math.exp(-event.deltaY * 0.002);
+        zoomTo(scale * factor, event.clientX, event.clientY);
+      },
+      { passive: false },
+    );
+
+    lightboxViewport.addEventListener('dblclick', (event) => {
+      zoomTo(
+        scale > minimumScale ? minimumScale : 2.25,
+        event.clientX,
+        event.clientY,
+      );
+    });
+
+    const updateGestureStart = () => {
+      const [first, second] = Array.from(pointers.values());
+      if (!first || !second) return;
+      gestureStart = {
+        distance: Math.hypot(second.x - first.x, second.y - first.y),
+        focalX: (first.x + second.x) / 2,
+        focalY: (first.y + second.y) / 2,
+        panX,
+        panY,
+        scale,
+      };
+    };
+
+    lightboxViewport.addEventListener('pointerdown', (event) => {
+      pointers.set(event.pointerId, { x: event.clientX, y: event.clientY });
+      lightboxViewport.setPointerCapture(event.pointerId);
+      if (pointers.size === 1) {
+        dragStart = {
+          x: event.clientX,
+          y: event.clientY,
+          panX,
+          panY,
+          pointerType: event.pointerType,
+        };
+      } else if (pointers.size === 2) {
+        updateGestureStart();
+        dragStart = undefined;
+      }
+    });
+
+    lightboxViewport.addEventListener('pointermove', (event) => {
+      if (!pointers.has(event.pointerId)) return;
+      pointers.set(event.pointerId, { x: event.clientX, y: event.clientY });
+
+      if (pointers.size >= 2 && gestureStart) {
+        const [first, second] = Array.from(pointers.values());
+        if (!first || !second) return;
+        const distance = Math.hypot(second.x - first.x, second.y - first.y);
+        const focalX = (first.x + second.x) / 2;
+        const focalY = (first.y + second.y) / 2;
+        const ratio = distance / Math.max(gestureStart.distance, 1);
+        const nextScale = clamp(
+          gestureStart.scale * ratio,
+          minimumScale,
+          maximumScale,
+        );
+        const effectiveRatio = nextScale / gestureStart.scale;
+        const bounds = lightboxViewport.getBoundingClientRect();
+        const startX = gestureStart.focalX - (bounds.left + bounds.width / 2);
+        const startY = gestureStart.focalY - (bounds.top + bounds.height / 2);
+        const currentX = focalX - (bounds.left + bounds.width / 2);
+        const currentY = focalY - (bounds.top + bounds.height / 2);
+
+        scale = nextScale;
+        panX = currentX - effectiveRatio * (startX - gestureStart.panX);
+        panY = currentY - effectiveRatio * (startY - gestureStart.panY);
+        renderTransform();
+        return;
+      }
+
+      if (dragStart && scale > minimumScale) {
+        panX = dragStart.panX + event.clientX - dragStart.x;
+        panY = dragStart.panY + event.clientY - dragStart.y;
+        renderTransform();
+      }
+    });
+
+    const finishPointer = (event: PointerEvent) => {
+      const swipeStart = dragStart;
+      pointers.delete(event.pointerId);
+      if (
+        swipeStart?.pointerType === 'touch' &&
+        scale === minimumScale &&
+        Math.abs(event.clientX - swipeStart.x) > 60 &&
+        Math.abs(event.clientY - swipeStart.y) <
+          Math.abs(event.clientX - swipeStart.x) * 0.75
+      ) {
+        if (event.clientX < swipeStart.x) showNext();
+        else showPrevious();
+      }
+      gestureStart = undefined;
+      dragStart = undefined;
+      if (pointers.size === 1) {
+        const [remaining] = Array.from(pointers.values());
+        if (remaining) {
+          dragStart = {
+            x: remaining.x,
+            y: remaining.y,
+            panX,
+            panY,
+            pointerType: event.pointerType,
+          };
+        }
+      }
+    };
+
+    lightboxViewport.addEventListener('pointerup', finishPointer);
+    lightboxViewport.addEventListener('pointercancel', finishPointer);
+    lightboxImage.addEventListener('load', resetTransform);
+    window.addEventListener('resize', resetTransform);
   });
 </script>

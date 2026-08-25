@@ -31,12 +31,17 @@ function isAllowedAnalyticsModule(attributes) {
 }
 
 function isAllowedProductGalleryModule(relative, attributes, source) {
+  const src = attributes.match(/\bsrc="([^"]+)"/i)?.[1];
   return (
     relative.startsWith(`productos${path.sep}`) &&
     /\btype="module"/i.test(attributes) &&
-    !/\bsrc=/i.test(attributes) &&
-    source.includes('[data-product-gallery]') &&
-    source.includes('.showModal()')
+    ((src !== undefined &&
+      /^\/_astro\/ProductGallery\.astro_astro_type_script_[^/]+\.js$/i.test(
+        src,
+      )) ||
+      (src === undefined &&
+        source.includes('[data-product-gallery]') &&
+        source.includes('.showModal()')))
   );
 }
 

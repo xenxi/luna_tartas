@@ -81,6 +81,10 @@ describe('product detail route', () => {
       'src/components/products/ProductGallery.astro',
       'utf8',
     );
+    const galleryStyles = readFileSync(
+      'src/components/products/product-gallery.css',
+      'utf8',
+    );
     const responsiveMedia = readFileSync(
       'src/components/catalog/ResponsiveMedia.astro',
       'utf8',
@@ -128,7 +132,25 @@ describe('product detail route', () => {
     expect(gallery).toContain('<dialog');
     expect(gallery).toContain('lightbox.showModal()');
     expect(gallery).toContain("event.key === 'ArrowLeft'");
+    expect(gallery).toContain('[data-lightbox-zoom-in]');
+    expect(gallery).toContain("'pointermove'");
+    expect(gallery).toContain("'wheel'");
+    expect(gallery).toContain('data-lightbox-thumbnail');
+    expect(gallery).toContain('product-gallery__lightbox-viewer--single');
+    expect(gallery).toContain('maximumScale = 5');
+    expect(gallery).toContain('fitImageToViewport');
+    expect(gallery).toContain('viewportWidth / intrinsicWidth');
+    expect(gallery).toContain('translate(-50%, -50%)');
+    expect(gallery).toContain(
+      "lightboxImage.addEventListener('load', resetTransform)",
+    );
     expect(gallery).toContain('aria-live="polite"');
+    expect(galleryStyles).toContain('block-size: 100dvh');
+    expect(galleryStyles).toContain(
+      '.product-gallery__lightbox-viewer--single',
+    );
+    expect(galleryStyles).toContain('touch-action: none');
+    expect(galleryStyles).toContain('@media (max-width: 39.99rem)');
     expect(responsiveMedia).toContain('width={media.width}');
     expect(responsiveMedia).toContain('height={media.height}');
     expect(responsiveMedia).toContain('fetchpriority={fetchPriority}');

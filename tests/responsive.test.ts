@@ -38,7 +38,10 @@ describe('responsive contract', () => {
     expect(artifact).toContain('Analytics(?:Consent|Instrumentation)');
     expect(responsive).toContain('Analytics(?:Consent|Instrumentation)');
     expect(responsive).toContain('isAllowedProductGalleryModule');
+    expect(artifact).toContain('isAllowedProductGalleryModule');
     expect(responsive).toContain('[data-product-gallery]');
+    expect(responsive).toContain('ProductGallery\\.astro_astro_type_script_');
+    expect(artifact).toContain('ProductGallery\\.astro_astro_type_script_');
     expect(artifact).toContain('unexpected client asset');
     expect(responsive).toContain('JavaScript cliente no permitido');
   });
