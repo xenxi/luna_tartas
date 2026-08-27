@@ -65,6 +65,7 @@ const product = (price: PublishedProduct['price']): PublishedProduct => {
       approvedBy: 'owner',
       approvedAt: '2026-01-01',
     },
+    inventory: { mode: 'stock', quantity: 3 },
   };
 };
 
@@ -80,6 +81,7 @@ describe('public catalog projection', () => {
       products: [
         product({ kind: 'fixed', amountMinor: 20, currency: 'EUR' }),
         { id: 'draft', slug: 'draft', status: 'draft' },
+        { id: 'archived', slug: 'archived', status: 'archived' },
       ],
     };
     const [first, second] = await Promise.all([
@@ -92,12 +94,13 @@ describe('public catalog projection', () => {
     expect(first).toMatchObject({ schemaVersion: '1.0' });
     expect(first).not.toHaveProperty('generatedAt');
     expect(first.products.map((item) => item.id)).not.toContain('draft');
+    expect(first.products.map((item) => item.id)).not.toContain('archived');
     expect(first.products).not.toHaveLength(0);
     expect(first.taxonomies.category.map((item) => item.id)).toEqual([
       'category',
     ]);
     expect(serialized).not.toMatch(
-      /approval|rights|evidence|licenseOrPermission|gallery|status/i,
+      /approval|rights|evidence|licenseOrPermission|gallery|status|inventory/i,
     );
 
     for (const item of first.products) {

@@ -1,4 +1,5 @@
 export type PublicationStatus = 'draft' | 'published';
+export type ProductStatus = PublicationStatus | 'archived';
 
 export interface SeoMetadata {
   readonly title?: string;
@@ -28,6 +29,15 @@ export type Price =
   | ({ readonly kind: 'fixed' } & PricedAmount)
   | ({ readonly kind: 'from' } & PricedAmount)
   | { readonly kind: 'on_request' };
+
+export type Inventory =
+  | { readonly mode: 'made-to-order' }
+  | { readonly mode: 'stock'; readonly quantity: number }
+  | { readonly mode: 'unavailable' };
+
+export const DEFAULT_INVENTORY: Inventory = Object.freeze({
+  mode: 'made-to-order',
+});
 
 export interface MediaRights {
   readonly owner: string;
@@ -82,6 +92,11 @@ export interface EditorialApproval {
 interface ProductIdentity {
   readonly id: string;
   readonly slug: string;
+  /**
+   * Source documents may omit inventory for backwards compatibility. Catalog
+   * adapters normalize that absence to DEFAULT_INVENTORY.
+   */
+  readonly inventory?: Inventory;
 }
 
 export interface DraftProduct extends ProductIdentity {
@@ -118,7 +133,24 @@ export interface PublishedProduct extends ProductIdentity {
   readonly approval: EditorialApproval;
 }
 
-export type Product = DraftProduct | PublishedProduct;
+export interface ArchivedProduct extends ProductIdentity {
+  readonly status: 'archived';
+  readonly name?: string;
+  readonly summary?: string;
+  readonly description?: string;
+  readonly categories?: readonly string[];
+  readonly occasions?: readonly string[];
+  readonly recipients?: readonly string[];
+  readonly price?: Price;
+  readonly media?: DraftMedia;
+  readonly customization?: Customization;
+  readonly featured?: boolean;
+  readonly order?: number;
+  readonly seo?: SeoMetadata;
+  readonly approval?: EditorialApproval;
+}
+
+export type Product = DraftProduct | PublishedProduct | ArchivedProduct;
 
 export interface Catalog {
   readonly categories: readonly Taxonomy[];

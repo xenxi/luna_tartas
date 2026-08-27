@@ -4,7 +4,10 @@ import {
   productSchema,
   type ProductData,
 } from '../src/content/schemas/product';
-import { readYamlFixture } from './helpers/yaml-fixtures';
+import {
+  readSharedContractFixture,
+  readYamlFixture,
+} from './helpers/yaml-fixtures';
 
 function readProduct(relativePath: string): unknown {
   return readYamlFixture(`products/${relativePath}`);
@@ -63,6 +66,47 @@ describe('product YAML schema', () => {
     }
     expect(parsed.price.kind).toBe('fixed');
     expect(parsed.media.cover.rights.owner).toContain('sintético');
+  });
+
+  it.each([
+    ['valid/draft-made-to-order.yml', 'draft', 'made-to-order', undefined],
+    ['valid/draft-stock-zero.yml', 'draft', 'stock', 0],
+    ['valid/draft-unavailable.yml', 'draft', 'unavailable', undefined],
+    ['valid/archived-stock.yml', 'archived', 'stock', 4],
+  ])(
+    'accepts shared contract fixture %s',
+    (relativePath, status, mode, quantity) => {
+      const parsed = productSchema.parse(
+        readSharedContractFixture(`products/${relativePath}`),
+      );
+
+      expect(parsed.status).toBe(status);
+      expect(parsed.inventory?.mode).toBe(mode);
+      expect(
+        parsed.inventory?.mode === 'stock'
+          ? parsed.inventory.quantity
+          : undefined,
+      ).toBe(quantity);
+    },
+  );
+
+  it.each([
+    'invalid/archived-fixture-context.yml',
+    'invalid/made-to-order-with-quantity.yml',
+    'invalid/stock-negative.yml',
+    'invalid/stock-without-quantity.yml',
+  ])('rejects shared contract fixture %s', (relativePath) => {
+    expect(
+      productSchema.safeParse(
+        readSharedContractFixture(`products/${relativePath}`),
+      ).success,
+    ).toBe(false);
+  });
+
+  it('keeps inventory optional for existing documents', () => {
+    const parsed = productSchema.parse(readProduct('valid/draft-minimal.yml'));
+
+    expect(parsed.inventory).toBeUndefined();
   });
 
   it.each([

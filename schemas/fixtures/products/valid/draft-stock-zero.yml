@@ -1,0 +1,7 @@
+id: shared-stock-zero
+slug: shared-stock-zero
+status: draft
+context: FIXTURE
+inventory:
+  mode: stock
+  quantity: 0

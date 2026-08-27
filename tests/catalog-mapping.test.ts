@@ -132,8 +132,31 @@ describe('catalog source mapping', () => {
       order: undefined,
       seo: undefined,
       approval: undefined,
+      inventory: { mode: 'made-to-order' },
     });
     expect(mapped).not.toHaveProperty('context');
+  });
+
+  it('maps archived as its own domain branch and preserves stock', () => {
+    const data = productSchema.parse(
+      readYamlFixture('products/valid/draft-minimal.yml'),
+    );
+    const archived = productSchema.parse({
+      id: data.id,
+      slug: data.slug,
+      status: 'archived',
+      inventory: { mode: 'stock', quantity: 7 },
+    });
+    const mapped = mapProduct({
+      collection: 'products',
+      id: archived.id,
+      data: archived,
+    });
+
+    expect(mapped).toMatchObject({
+      status: 'archived',
+      inventory: { mode: 'stock', quantity: 7 },
+    });
   });
 
   it('maps every required published block and copies nested arrays', () => {

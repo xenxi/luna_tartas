@@ -1,0 +1,6 @@
+id: shared-made-to-order
+slug: shared-made-to-order
+status: draft
+context: FIXTURE
+inventory:
+  mode: made-to-order

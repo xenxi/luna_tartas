@@ -1,0 +1,6 @@
+id: invalid-stock-negative
+slug: invalid-stock-negative
+status: draft
+inventory:
+  mode: stock
+  quantity: -1

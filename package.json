@@ -5,8 +5,10 @@
   "type": "module",
   "scripts": {
     "dev": "astro dev",
-    "lint": "eslint src tests astro.config.mjs",
-    "format": "prettier --check \"src/**/*.{astro,ts,js,yml,yaml}\" \"tests/**/*.{ts,js,yml,yaml}\" \"*.{json,mjs}\"",
+    "lint": "eslint src tests scripts astro.config.mjs",
+    "format": "prettier --check \"src/**/*.{astro,ts,js,yml,yaml}\" \"tests/**/*.{ts,js,yml,yaml}\" \"scripts/generate-catalog-schema.ts\" \"schemas/**/*.{json,yml,yaml}\" \"*.{json,mjs}\"",
+    "schema:generate": "tsx scripts/generate-catalog-schema.ts",
+    "verify:schema": "tsx scripts/generate-catalog-schema.ts --check",
     "build": "astro build",
     "preview": "astro preview",
     "typecheck": "astro check",
@@ -43,6 +45,7 @@
     "eslint-plugin-astro": "3.1.0",
     "prettier": "3.9.6",
     "prettier-plugin-astro": "0.14.1",
+    "tsx": "4.20.6",
     "typescript": "5.9.3",
     "vitest": "3.2.7",
     "yaml": "2.9.0"

@@ -1,0 +1,5 @@
+id: invalid-stock-missing
+slug: invalid-stock-missing
+status: draft
+inventory:
+  mode: stock

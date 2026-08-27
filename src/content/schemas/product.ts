@@ -58,6 +58,24 @@ export const priceSchema = z.discriminatedUnion('kind', [
   z.object({ kind: z.literal('on_request') }).strict(),
 ]);
 
+export const inventorySchema = z.discriminatedUnion('mode', [
+  z.object({ mode: z.literal('made-to-order') }).strict(),
+  z
+    .object({
+      mode: z.literal('stock'),
+      quantity: z
+        .number()
+        .int('Inventory quantity must be an integer')
+        .min(0, 'Inventory quantity must be zero or greater')
+        .max(
+          Number.MAX_SAFE_INTEGER,
+          'Inventory quantity exceeds the safe integer range',
+        ),
+    })
+    .strict(),
+  z.object({ mode: z.literal('unavailable') }).strict(),
+]);
+
 const rightsSchema = z
   .object({
     owner: approvedText('Rights owner', 120),
@@ -161,6 +179,7 @@ const optionalEditorialFields = {
     .optional(),
   seo: seoSchema.optional(),
   approval: approvalSchema.optional(),
+  inventory: inventorySchema.optional(),
 };
 
 const draftProductSchema = z
@@ -193,14 +212,26 @@ const publishedProductSchema = z
       .optional(),
     seo: seoSchema.optional(),
     approval: approvalSchema,
+    inventory: inventorySchema.optional(),
+  })
+  .strict();
+
+const archivedProductSchema = z
+  .object({
+    id: identifierSchema,
+    slug: identifierSchema,
+    status: z.literal('archived'),
+    ...optionalEditorialFields,
   })
   .strict();
 
 export const productSchema = z.discriminatedUnion('status', [
   draftProductSchema,
   publishedProductSchema,
+  archivedProductSchema,
 ]);
 
 export type PriceData = z.output<typeof priceSchema>;
+export type InventoryData = z.output<typeof inventorySchema>;
 export type ProductInput = z.input<typeof productSchema>;
 export type ProductData = z.output<typeof productSchema>;

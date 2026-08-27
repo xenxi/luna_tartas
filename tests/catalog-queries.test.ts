@@ -85,6 +85,7 @@ const catalog: Catalog = {
       recipients: ['family'],
     }),
     { id: 'draft', slug: 'draft', status: 'draft' },
+    { id: 'archived', slug: 'archived', status: 'archived' },
   ],
 };
 
@@ -95,6 +96,7 @@ describe('catalog queries', () => {
       'second',
     ]);
     expect(getFeaturedProducts(catalog).map(({ id }) => id)).toEqual(['first']);
+    expect(findPublishedProductBySlug(catalog, 'archived')).toBeUndefined();
   });
 
   it('looks up only published entities and groups products by taxonomy', () => {

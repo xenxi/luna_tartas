@@ -5,6 +5,7 @@ import type {
   DraftMediaCover,
   DraftMediaItem,
   EditorialApproval,
+  Inventory,
   MediaRights,
   Price,
   Product,
@@ -202,6 +203,16 @@ function copyApproval(approval: EditorialApproval): EditorialApproval {
   };
 }
 
+function copyInventory(inventory: ProductData['inventory']): Inventory {
+  if (inventory === undefined || inventory.mode === 'made-to-order') {
+    return { mode: 'made-to-order' };
+  }
+  if (inventory.mode === 'unavailable') {
+    return { mode: 'unavailable' };
+  }
+  return { mode: 'stock', quantity: inventory.quantity };
+}
+
 export function mapProduct(document: ProductSourceDocument): Product {
   try {
     assertMatchingId(document);
@@ -227,6 +238,40 @@ export function mapProduct(document: ProductSourceDocument): Product {
         order: data.order,
         seo: copySeo(data.seo),
         approval: copyApproval(data.approval),
+        inventory: copyInventory(data.inventory),
+      };
+    }
+
+    if (data.status === 'archived') {
+      return {
+        id: data.id,
+        slug: data.slug,
+        status: 'archived',
+        name: data.name,
+        summary: data.summary,
+        description: data.description,
+        categories:
+          data.categories === undefined ? undefined : [...data.categories],
+        occasions:
+          data.occasions === undefined ? undefined : [...data.occasions],
+        recipients:
+          data.recipients === undefined ? undefined : [...data.recipients],
+        price:
+          data.price === undefined
+            ? undefined
+            : copyPrice(document, data.price),
+        media:
+          data.media === undefined ? undefined : copyDraftMedia(data.media),
+        customization:
+          data.customization === undefined
+            ? undefined
+            : copyCustomization(data.customization),
+        featured: data.featured,
+        order: data.order,
+        seo: copySeo(data.seo),
+        approval:
+          data.approval === undefined ? undefined : copyApproval(data.approval),
+        inventory: copyInventory(data.inventory),
       };
     }
 
@@ -254,6 +299,7 @@ export function mapProduct(document: ProductSourceDocument): Product {
       seo: copySeo(data.seo),
       approval:
         data.approval === undefined ? undefined : copyApproval(data.approval),
+      inventory: copyInventory(data.inventory),
     };
   } catch (error) {
     if (error instanceof CatalogSourceError) {

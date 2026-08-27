@@ -43,6 +43,9 @@ jobs:
       - name: Lint
         run: npm run lint
 
+      - name: Verify generated catalog contract
+        run: npm run verify:schema
+
       - name: Typecheck
         run: npm run typecheck
 

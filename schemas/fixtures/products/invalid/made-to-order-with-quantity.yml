@@ -1,0 +1,6 @@
+id: invalid-made-to-order-quantity
+slug: invalid-made-to-order-quantity
+status: draft
+inventory:
+  mode: made-to-order
+  quantity: 1

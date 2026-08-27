@@ -1,0 +1,7 @@
+id: shared-archived-stock
+slug: shared-archived-stock
+status: archived
+name: Archived product fixture
+inventory:
+  mode: stock
+  quantity: 4

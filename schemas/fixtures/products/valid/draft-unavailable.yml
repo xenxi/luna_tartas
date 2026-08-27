@@ -1,0 +1,6 @@
+id: shared-unavailable
+slug: shared-unavailable
+status: draft
+context: FIXTURE
+inventory:
+  mode: unavailable
