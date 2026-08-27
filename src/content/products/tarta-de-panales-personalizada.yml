@@ -23,6 +23,7 @@ media:
       owner: Luna / MGR Creaciones
       licenseOrPermission: Fotografía y producto propios; publicación autorizada en lunatartas.es.
       evidence: Confirmación directa del propietario en conversación de proyecto, 2026-08-16.
+    caption: test
   gallery:
     - src: tartas/tarta-azul-completa.png
       alt: Tarta de pañales artesanal en tonos azules con decoración infantil personalizada.
@@ -49,10 +50,12 @@ customization:
     - Temática personalizada con 40 pañales de marca blanca — 25 €
     - Con 40 pañales Dodot — desde 35 €
   description: La temática, los detalles y el acabado se adaptan al encargo. El tipo de pañal elegido determina la modalidad y el precio.
-featured: true
+featured: false
 order: 10
 approval:
   source: Handoff editorial del propietario del proyecto
   sourceDate: '2026-08-16'
   approvedBy: Propietario del proyecto
   approvedAt: '2026-08-16'
+inventory:
+  mode: made-to-order
