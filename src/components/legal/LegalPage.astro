@@ -1,0 +1,191 @@
+---
+import type { LegalPageContent } from '../../content/legal';
+import { legalBreadcrumb } from '../../lib/seo/navigation';
+import { withBasePath } from '../../lib/site/urls';
+import Breadcrumb from '../navigation/Breadcrumb.astro';
+import Ornament from '../ui/Ornament.astro';
+import './legal-page.css';
+
+interface Props {
+  content: LegalPageContent;
+}
+
+const { content } = Astro.props;
+---
+
+<article class:list={['legal-page', `legal-page--${content.kind}`]}>
+  <header class="legal-hero" aria-labelledby="legal-title">
+    <div class="legal-hero__breadcrumb visual-container">
+      <Breadcrumb items={legalBreadcrumb(content.hero.title)} />
+    </div>
+    <div class="legal-hero__inner visual-container">
+      <div class="legal-hero__copy">
+        <p class="eyebrow">{content.hero.eyebrow}</p>
+        <h1 id="legal-title">{content.hero.title}</h1>
+        <p class="legal-hero__intro">{content.hero.intro}</p>
+        <p class="legal-hero__updated">{content.hero.updated}</p>
+      </div>
+      <div class="legal-hero__art" aria-hidden="true">
+        <Ornament
+          variant="watercolor"
+          tone={content.kind === 'privacy' ? 'blue' : 'blush'}
+          class="legal-hero__wash"
+        />
+        <span class="legal-hero__sheet legal-hero__sheet--back"></span>
+        <span class="legal-hero__sheet legal-hero__sheet--front">
+          <span class="legal-hero__document-mark">
+            {
+              content.kind === 'privacy' ? (
+                <svg viewBox="0 0 64 64" focusable="false">
+                  <path d="M32 8 51 15v14c0 13-7.7 22.1-19 27-11.3-4.9-19-14-19-27V15l19-7Z" />
+                  <path d="m23 31 6 6 13-14" />
+                </svg>
+              ) : (
+                <svg viewBox="0 0 64 64" focusable="false">
+                  <path d="M18 7h22l10 10v40H18Z" />
+                  <path d="M40 7v11h10M25 29h18M25 38h18M25 47h12" />
+                </svg>
+              )
+            }
+          </span>
+          <span class="legal-hero__line legal-hero__line--one"></span>
+          <span class="legal-hero__line legal-hero__line--two"></span>
+          <span class="legal-hero__line legal-hero__line--three"></span>
+        </span>
+        <Ornament variant="sparkle" tone="peach" class="legal-hero__sparkle" />
+        <Ornament
+          variant="mini-hearts"
+          tone="blush"
+          class="legal-hero__hearts"
+        />
+      </div>
+    </div>
+  </header>
+
+  <div class="legal-layout visual-container">
+    <aside class="legal-sidebar">
+      <nav class="legal-index" aria-label="Índice de la página">
+        <p>En esta página</p>
+        <ol>
+          {
+            content.sections.map((section, index) => (
+              <li>
+                <a href={`#${section.id}`}>
+                  <span aria-hidden="true">
+                    {String(index + 1).padStart(2, '0')}
+                  </span>
+                  <span>{section.title}</span>
+                </a>
+              </li>
+            ))
+          }
+        </ol>
+      </nav>
+    </aside>
+
+    <div class="legal-content">
+      <section class="legal-overview" aria-labelledby="legal-overview-title">
+        <div class="legal-overview__heading">
+          <span class="legal-overview__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" focusable="false">
+              <circle cx="12" cy="12" r="9"></circle>
+              <path d="M12 11v6M12 7v.01"></path>
+            </svg>
+          </span>
+          <div>
+            <p class="eyebrow">Resumen sencillo</p>
+            <h2 id="legal-overview-title">{content.overview.title}</h2>
+          </div>
+        </div>
+        <p>{content.overview.copy}</p>
+        <ul>
+          {content.overview.items.map((item) => <li>{item}</li>)}
+        </ul>
+        <Ornament variant="heart" tone="blush" class="legal-overview__heart" />
+      </section>
+
+      <div class="legal-sections">
+        {
+          content.sections.map((section, index) => (
+            <section
+              class="legal-section"
+              id={section.id}
+              aria-labelledby={`${section.id}-title`}
+            >
+              <header class="legal-section__heading">
+                <span aria-hidden="true">
+                  {String(index + 1).padStart(2, '0')}
+                </span>
+                <h2 id={`${section.id}-title`}>{section.title}</h2>
+              </header>
+              <div class="legal-section__body">
+                {section.paragraphs.map((paragraph) => (
+                  <p>{paragraph}</p>
+                ))}
+                {section.items && (
+                  <ul>
+                    {section.items.map((item) => (
+                      <li>{item}</li>
+                    ))}
+                  </ul>
+                )}
+                {section.note && (
+                  <p class="legal-section__note">
+                    <span aria-hidden="true">✦</span>
+                    {section.note}
+                  </p>
+                )}
+                {section.links && (
+                  <div class="legal-section__links">
+                    {section.links.map((link) => (
+                      <a
+                        href={
+                          link.href.startsWith('/')
+                            ? withBasePath(link.href, import.meta.env.BASE_URL)
+                            : link.href
+                        }
+                      >
+                        {link.label}
+                        <span aria-hidden="true">→</span>
+                      </a>
+                    ))}
+                  </div>
+                )}
+              </div>
+            </section>
+          ))
+        }
+      </div>
+
+      <section class="legal-closing" aria-labelledby="legal-closing-title">
+        <Ornament
+          variant="watercolor"
+          tone={content.kind === 'privacy' ? 'blush' : 'blue'}
+          class="legal-closing__wash"
+        />
+        <div class="legal-closing__copy">
+          <p class="eyebrow">Estamos al otro lado</p>
+          <h2 id="legal-closing-title">{content.closing.title}</h2>
+          <p>{content.closing.copy}</p>
+          <a
+            class="legal-closing__action"
+            href={content.closing.action.href.startsWith('/')
+              ? withBasePath(
+                  content.closing.action.href,
+                  import.meta.env.BASE_URL,
+                )
+              : content.closing.action.href}
+          >
+            {content.closing.action.label}
+            <span aria-hidden="true">→</span>
+          </a>
+        </div>
+        <Ornament
+          variant="heart-trail"
+          tone="blush"
+          class="legal-closing__heart"
+        />
+      </section>
+    </div>
+  </div>
+</article>

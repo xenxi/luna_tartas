@@ -144,6 +144,9 @@ const approvedHosts = new Set([
   'wa.me',
   'www.instagram.com',
   'antoniomdm.dev',
+  'www.aepd.es',
+  'www.boe.es',
+  'business.safety.google',
 ]);
 const prohibitedPublicFields =
   /(?:licenseOrPermission|rightsEvidence|approvedBy|approvedAt|sourceDate|src\/assets|tests\/fixtures)/i;

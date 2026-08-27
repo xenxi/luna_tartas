@@ -8,6 +8,8 @@ describe('catalog routes', () => {
     expect(routes.contact()).toBe('/contacto/');
     expect(routes.shipping()).toBe('/envios-y-entregas/');
     expect(routes.faq()).toBe('/preguntas-frecuentes/');
+    expect(routes.privacy()).toBe('/politica-de-privacidad/');
+    expect(routes.terms()).toBe('/condiciones-del-servicio/');
     expect(routes.products()).toBe('/productos/');
     expect(routes.search()).toBe('/buscar/');
     expect(routes.product('chocolate-cake')).toBe('/productos/chocolate-cake/');

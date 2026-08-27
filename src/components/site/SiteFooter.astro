@@ -484,6 +484,26 @@ const mobileFooterSections: readonly MobileFooterSection[] = [
   </div>
   <slot />
   <div class="site-footer__closing visual-container">
+    <nav class="site-footer__legal" aria-label="Información legal">
+      <ul>
+        <li>
+          <a
+            href={footerHref(routes.privacy())}
+            aria-current={isCurrentNavigationPath(routePath, routes.privacy())
+              ? 'page'
+              : undefined}>Política de privacidad</a
+          >
+        </li>
+        <li>
+          <a
+            href={footerHref(routes.terms())}
+            aria-current={isCurrentNavigationPath(routePath, routes.terms())
+              ? 'page'
+              : undefined}>Condiciones del servicio</a
+          >
+        </li>
+      </ul>
+    </nav>
     <p class="site-footer__signature">
       Hecho con mimo para Luna · Creado por <a href="https://antoniomdm.dev/"
         >Antonio MDM</a

@@ -2,6 +2,8 @@
 import { Image } from 'astro:assets';
 import cookiesConsent from '../../assets/site/cookies-consent.png';
 import { siteConfig } from '../../config/site';
+import { routes } from '../../lib/catalog/domain/routes';
+import { withBasePath } from '../../lib/site/urls';
 import '../ui/ui.css';
 ---
 
@@ -31,7 +33,12 @@ import '../ui/ui.css';
             <h2 id="analytics-consent-title">Medición opcional</h2>
             <p id="analytics-consent-description">
               ¿Nos ayudas a entender qué páginas y CTAs funcionan? La medición
-              es opcional y no afecta a tu navegación.
+              es opcional y no afecta a tu navegación.{' '}
+              <a
+                href={withBasePath(routes.privacy(), import.meta.env.BASE_URL)}
+              >
+                Más información
+              </a>
             </p>
           </div>
         </div>
@@ -191,6 +198,11 @@ import '../ui/ui.css';
     font-size: var(--font-size-sm);
     line-height: 1.45;
     text-wrap: pretty;
+  }
+
+  .analytics-consent__copy a {
+    color: var(--color-action);
+    font-weight: var(--font-weight-semibold);
   }
 
   .analytics-consent__actions {

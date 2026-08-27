@@ -258,6 +258,10 @@ describe('public site shell', () => {
     expect(footer).toContain('© {buildYear}');
     expect(footer).toContain('class="site-footer__copyright"');
     expect(footer).toContain('class="site-footer__signature"');
+    expect(footer).toContain('aria-label="Información legal"');
+    expect(footer).toContain('routes.privacy()');
+    expect(footer).toContain('routes.terms()');
+    expect(analyticsConsent).toContain('routes.privacy()');
     expect(footer).not.toContain('target="_blank"');
     expect(footer).not.toContain('<script');
     expect(footer).not.toContain('client:');

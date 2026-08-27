@@ -74,6 +74,8 @@ describe('crawl projection', () => {
       '/contacto/',
       '/envios-y-entregas/',
       '/preguntas-frecuentes/',
+      '/politica-de-privacidad/',
+      '/condiciones-del-servicio/',
       '/productos/',
       '/categorias/',
       '/ocasiones/',

@@ -14,6 +14,9 @@ describe('M8.5 security gates', () => {
     expect(securityGate).toContain("extname(file) === '.map'");
     expect(securityGate).toContain('prohibitedPublicFields');
     expect(securityGate).toContain('approvedHosts');
+    expect(securityGate).toContain("'www.aepd.es'");
+    expect(securityGate).toContain("'www.boe.es'");
+    expect(securityGate).toContain("'business.safety.google'");
     expect(securityGate).toContain('JSON.parse(match[1])');
   });
 

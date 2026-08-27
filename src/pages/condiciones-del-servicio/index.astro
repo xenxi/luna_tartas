@@ -1,0 +1,15 @@
+---
+import LegalPage from '../../components/legal/LegalPage.astro';
+import { legalPages } from '../../content/legal';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { routes } from '../../lib/catalog/domain/routes';
+---
+
+<BaseLayout
+  title={legalPages.terms.metadata.title}
+  titleSuffix=""
+  canonicalPath={routes.terms()}
+  description={legalPages.terms.metadata.description}
+>
+  <LegalPage content={legalPages.terms} />
+</BaseLayout>

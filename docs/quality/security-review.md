@@ -35,7 +35,7 @@ Por tanto hay **cero vulnerabilidades critical/high explotables sin mitigación*
 
 GitHub Pages no permite configurar headers HTTP arbitrarios por repositorio. No se simulan `X-Frame-Options`, CSP o HSTS mediante archivos que Pages ignoraría. HTTPS/HSTS y cualquier política edge se verificarán sobre la respuesta real en M9.3; si se requiere una CSP HTTP estricta, deberá configurarse en la capa Cloudflare o cambiarse el hosting. El documento sí declara `Referrer-Policy` equivalente mediante `meta name="referrer"` con `strict-origin-when-cross-origin`, que los navegadores aplican a la navegación saliente.
 
-Orígenes aprobados en el artefacto: canonical y assets de `lunatartas.es`, `wa.me`, perfil público de Instagram y firma `antoniomdm.dev`; además del email comercial explícito. No hay HTTP, iframes, formularios, scripts externos ni source maps. El único `target="_blank"` es el CTA aprobado de WhatsApp y conserva `rel="noopener noreferrer"`.
+Orígenes aprobados en el artefacto: canonical y assets de `lunatartas.es`, `wa.me`, perfil público de Instagram y firma `antoniomdm.dev`; además del email comercial explícito. Las páginas legales enlazan únicamente referencias oficiales en `www.aepd.es`, `www.boe.es` y `business.safety.google`. No hay HTTP, iframes, formularios, scripts externos ni source maps. El único `target="_blank"` es el CTA aprobado de WhatsApp y conserva `rel="noopener noreferrer"`.
 
 ## Superficie pública aprobada
 

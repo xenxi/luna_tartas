@@ -35,6 +35,13 @@ export function faqBreadcrumb(): readonly BreadcrumbItem[] {
   ];
 }
 
+export function legalBreadcrumb(title: string): readonly BreadcrumbItem[] {
+  return [
+    { label: 'Inicio', href: routes.home() },
+    { label: title, current: true },
+  ];
+}
+
 export function taxonomyIndexBreadcrumb(
   kind: TaxonomyKind,
 ): readonly BreadcrumbItem[] {
