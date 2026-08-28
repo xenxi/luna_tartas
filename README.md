@@ -85,6 +85,11 @@ npm run preview
 
 La preview permite comprobar el resultado final después de `npm run build`. La carpeta `dist/` es un artefacto local y no se versiona.
 
+Astro genera un único artefacto responsive para escritorio y móvil. La guía
+reproducible, incluidos el origen de la configuración, las variables auxiliares
+y el build con base path de GitHub Pages, está en
+[`docs/operations/local-build.md`](docs/operations/local-build.md).
+
 ## Estructura principal
 
 - `src/content/`: contenido editorial y catálogo publicado.
@@ -107,6 +112,8 @@ El flujo de datos es `YAML -> source adapter -> catalog/domain -> presentation -
 
 ## Operación y handover
 
+- [`docs/operations/local-build.md`](docs/operations/local-build.md): build
+  local reproducible para escritorio y móvil, configuración y variables.
 - [`docs/operations/handover.md`](docs/operations/handover.md): flujo de cambio,
   deploy, rollback, checks productivos y matriz de accesos/owners sin secretos.
 - [`docs/operations/editorial-guide.md`](docs/operations/editorial-guide.md):

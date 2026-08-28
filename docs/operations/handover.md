@@ -6,6 +6,7 @@ Luna Tartas V1 está publicada en `https://lunatartas.es/` como sitio Astro
 estático. Este documento es la entrada operativa. El estado y la evidencia de
 V1 se conservan en `docs/archive/v1-roadmap.md`. Los contratos detallados siguen en:
 
+- build local para escritorio y móvil: [`local-build.md`](local-build.md);
 - edición de catálogo: [`editorial-guide.md`](editorial-guide.md);
 - build, deploy y rollback: [`../architecture/deployment.md`](../architecture/deployment.md);
 - analytics y privacidad: [`../conversion/analytics-runbook.md`](../conversion/analytics-runbook.md);
