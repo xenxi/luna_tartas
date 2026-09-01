@@ -1,0 +1,31 @@
+id: libreta-carrusel
+slug: libreta-carrusel
+status: draft
+name: Libreta carrusel
+summary: prueba
+categories:
+  - papeleria-personalizada
+occasions:
+  - nacimiento
+  - baby-shower
+  - cumpleanos
+  - comunion
+recipients:
+  - alguien-especial
+media:
+  cover:
+    src: libreta-carrusel/cover-278e9002073e.jpg
+    alt: test
+    caption: test
+    rights:
+      owner: Luna
+      licenseOrPermission: Luna
+      evidence: asdfdf
+customization:
+  kind: available
+  options:
+    - prueba
+  description: test
+featured: false
+inventory:
+  mode: made-to-order
