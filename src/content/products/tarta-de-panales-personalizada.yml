@@ -29,19 +29,25 @@ media:
       rights:
         owner: Luna / MGR Creaciones
         licenseOrPermission: Fotografía y producto propios; publicación autorizada en lunatartas.es.
-        evidence: Confirmación directa del propietario en conversación de proyecto, 2026-08-16.
+        evidence: "Confirmación directa del propietario en conversación de proyecto, 2026-08-16."
     - src: tartas/tarta-rosa-detalle.png
       alt: Detalle de una tarta de pañales artesanal decorada en tonos rosas.
       rights:
         owner: Luna / MGR Creaciones
         licenseOrPermission: Fotografía y producto propios; publicación autorizada en lunatartas.es.
-        evidence: Confirmación directa del propietario en conversación de proyecto, 2026-08-16.
+        evidence: "Confirmación directa del propietario en conversación de proyecto, 2026-08-16."
     - src: tartas/tarta-stitch-completa.png
       alt: Ejemplo de tarta de pañales artesanal con una temática infantil personalizada.
       rights:
         owner: Luna / MGR Creaciones
         licenseOrPermission: Fotografía y producto propios; publicación autorizada en lunatartas.es.
-        evidence: Confirmación directa del propietario en conversación de proyecto, 2026-08-16.
+        evidence: "Confirmación directa del propietario en conversación de proyecto, 2026-08-16."
+    - src: tarta-de-panales-personalizada/gallery-0ab50cc729b0.jpg
+      alt: Tarta de pañales Mickey mouse
+      rights:
+        owner: Luna tartas
+        licenseOrPermission: luna tartas
+        evidence: luna tartas
 customization:
   kind: available
   options:
