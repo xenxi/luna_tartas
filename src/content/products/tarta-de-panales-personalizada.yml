@@ -17,12 +17,12 @@ price:
   currency: EUR
 media:
   cover:
-    src: tartas/tarta-rosa-completa.png
-    alt: Tarta de pañales artesanal decorada en tonos pastel con motivos infantiles.
+    src: tarta-de-panales-personalizada/cover-343c74deb89a.jpg
+    alt: Tarta de pañales personalizada
     rights:
-      owner: Luna / MGR Creaciones
-      licenseOrPermission: Fotografía y producto propios; publicación autorizada en lunatartas.es.
-      evidence: Confirmación directa del propietario en conversación de proyecto, 2026-08-16.
+      owner: Luna
+      licenseOrPermission: Fotografía propia. Uso autorizado por Luna.
+      evidence: Catálogo propio de Luna; autorización de la titular.
   gallery:
     - src: tartas/tarta-azul-completa.png
       alt: Tarta de pañales artesanal en tonos azules con decoración infantil personalizada.
@@ -48,6 +48,18 @@ media:
         owner: Luna tartas
         licenseOrPermission: luna tartas
         evidence: luna tartas
+    - src: tarta-de-panales-personalizada/gallery-343c74deb89a.jpg
+      alt: Tarta de pañales Dulce
+      rights:
+        owner: Luna
+        licenseOrPermission: Fotografía propia. Uso autorizado por Luna.
+        evidence: Catálogo propio de Luna; autorización de la titular.
+    - src: tarta-de-panales-personalizada/gallery-d4bb7f374f0e.jpg
+      alt: Tarta de pañales Dumbo
+      rights:
+        owner: Luna
+        licenseOrPermission: Fotografía propia. Uso autorizado por Luna.
+        evidence: Catálogo propio de Luna; autorización de la titular.
 customization:
   kind: available
   options:
