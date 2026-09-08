@@ -1,279 +1,203 @@
 .taxonomy-discovery-section {
-  inline-size: min(
-    calc(100% - (2 * var(--gutter))),
-    calc(var(--container-visual) - var(--space-8))
-  );
+  width: min(calc(100% - 2 * var(--gutter)), var(--container-visual));
   margin-inline: auto;
-  padding-block: var(--space-10) var(--space-12);
+  padding-block: 2.5rem 1.5rem;
 }
-
 .taxonomy-discovery-section__header {
-  margin-block-end: var(--space-6);
-  color: var(--color-text);
   text-align: center;
+  margin-bottom: 2rem;
 }
-
 .taxonomy-discovery-section__header h2 {
-  display: inline-flex;
+  display: flex;
+  justify-content: center;
   align-items: center;
-  gap: var(--space-3);
-  margin: 0;
-  font-size: clamp(2rem, 1.75rem + 0.6vw, 2.5rem);
-  font-weight: var(--font-weight-regular);
-  line-height: 1.05;
-  letter-spacing: var(--letter-spacing-heading);
+  gap: 0.6rem;
+  font-size: clamp(1.6rem, 3vw, 2.65rem);
+  font-weight: 400;
 }
-
 .taxonomy-discovery-section__heart {
-  inline-size: clamp(1.5rem, 1.2rem + 0.8vw, 1.875rem);
-  block-size: auto;
+  width: 1.8rem;
+  height: auto;
   flex: none;
-  object-fit: contain;
-  transform: translateY(0.08em);
 }
-
 .taxonomy-discovery-section__header p {
-  max-inline-size: 50rem;
-  margin: var(--space-3) auto 0;
+  margin: 0.7rem auto 0;
+  font-size: 0.95rem;
   color: var(--color-text-muted);
-  font-size: var(--font-size-md);
-  line-height: var(--line-height-body);
 }
-
+.taxonomy-discovery-section__eyebrow {
+  color: var(--color-action);
+  font-size: 0.65rem;
+  letter-spacing: 0.19em;
+  font-weight: 700;
+  margin-bottom: 0.65rem;
+}
 .taxonomy-discovery {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  inline-size: 100%;
-  gap: var(--card-gap);
-  margin: 0 auto;
-  padding: 0;
+  gap: 1.25rem;
   list-style: none;
+  margin: 0;
+  padding: 0;
 }
-
 .taxonomy-discovery__item {
   margin: 0;
+  min-width: 0;
 }
-
 .taxonomy-discovery__card {
-  --taxonomy-discovery-content-width: 52%;
-  --taxonomy-discovery-media-width: 56%;
-  --taxonomy-discovery-tone: var(--color-surface-warm);
-
-  position: relative;
+  --discovery-tone: #fce9ed;
   display: block;
-  aspect-ratio: 22 / 15;
+  position: relative;
+  isolation: isolate;
+  min-height: 18.5rem;
+  height: 100%;
   overflow: hidden;
   border-radius: var(--radius-card);
+  background: var(--discovery-tone);
   color: var(--color-text);
-  isolation: isolate;
-  background: var(--taxonomy-discovery-tone);
   text-decoration: none;
+  box-shadow: var(--shadow-soft);
 }
-
 .taxonomy-discovery__item--occasion .taxonomy-discovery__card {
-  --taxonomy-discovery-tone: var(--color-surface-calm);
+  --discovery-tone: #eaf5fc;
 }
-
 .taxonomy-discovery__item--recipient .taxonomy-discovery__card {
-  --taxonomy-discovery-tone: color-mix(
-    in srgb,
-    var(--color-surface-soft) 82%,
-    var(--color-decoration-peach)
-  );
+  --discovery-tone: #fff0e8;
 }
-
 .taxonomy-discovery__body {
   position: relative;
   z-index: 2;
+  width: 57%;
+  min-height: inherit;
   display: flex;
   flex-direction: column;
-  block-size: 100%;
-  inline-size: var(--taxonomy-discovery-content-width);
-  padding: clamp(var(--space-5), 1.65vw, var(--space-6));
+  padding: 1.5rem 0 1.5rem 1.5rem;
 }
-
 .taxonomy-discovery__number {
-  display: block;
-  margin-block-end: var(--space-2);
+  font: 400 2.7rem/1 var(--font-display);
   color: var(--color-accent);
-  font-family: var(--font-display);
-  font-size: clamp(2.5rem, 2.2rem + 0.65vw, 3rem);
-  font-weight: var(--font-weight-regular);
-  line-height: 1;
 }
-
 .taxonomy-discovery__item--occasion .taxonomy-discovery__number {
-  color: var(--color-decoration-blue);
+  color: #91bdd8;
 }
-
 .taxonomy-discovery__item--recipient .taxonomy-discovery__number {
-  color: var(--color-decoration-peach);
+  color: #e59c80;
 }
-
 .taxonomy-discovery__body h3 {
-  margin: 0;
-  font-size: clamp(1.5rem, 1.25rem + 0.65vw, 1.875rem);
-  font-weight: var(--font-weight-regular);
-  line-height: 1.1;
+  font-size: clamp(1.5rem, 2.25vw, 2rem);
+  font-weight: 400;
+  margin-top: 0.25rem;
   white-space: nowrap;
 }
-
 .taxonomy-discovery__description {
-  margin: var(--space-3) 0 0;
   color: var(--color-text-muted);
-  font-size: var(--font-size-xs);
-  line-height: 1.5;
+  margin-top: 0.75rem;
+  font-size: 0.86rem;
+  line-height: 1.45;
+  max-width: 23ch;
 }
-
 .taxonomy-discovery__action {
-  display: inline-block;
-  margin-block-start: auto;
-  color: var(--color-text);
-  font-size: var(--font-size-sm);
-  font-weight: var(--font-weight-semibold);
-  text-decoration: none;
+  margin-top: auto;
+  padding-top: 1rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--color-action);
 }
-
 .taxonomy-discovery__media {
   position: absolute;
   z-index: 0;
-  inset-block: 0;
-  inset-inline: auto 0;
-  inline-size: var(--taxonomy-discovery-media-width);
-  isolation: isolate;
+  inset: 0;
 }
-
 .taxonomy-discovery__media::before {
   position: absolute;
   z-index: 1;
   inset: 0;
   background: linear-gradient(
     90deg,
-    var(--taxonomy-discovery-tone) 0%,
-    color-mix(in srgb, var(--taxonomy-discovery-tone) 78%, transparent) 12%,
-    color-mix(in srgb, var(--taxonomy-discovery-tone) 32%, transparent) 28%,
-    transparent 44%
+    var(--discovery-tone),
+    color-mix(in srgb, var(--discovery-tone) 92%, transparent) 30%,
+    transparent 66%
   );
   content: '';
-  pointer-events: none;
 }
-
-.taxonomy-discovery__media picture,
 .taxonomy-discovery__media img {
-  block-size: 100%;
-  border-radius: 0;
-}
-
-.taxonomy-discovery__media img {
+  width: 100%;
+  height: 100%;
   object-fit: cover;
   object-position: right center;
 }
-
-.taxonomy-discovery__card:hover .taxonomy-discovery__action,
-.taxonomy-discovery__card:focus-visible .taxonomy-discovery__action {
-  color: var(--color-action-hover);
+.taxonomy-discovery__card:hover .taxonomy-discovery__action {
   text-decoration: underline;
-  text-underline-offset: 0.2em;
+  text-underline-offset: 0.25em;
 }
-
-@media (max-width: 63.99rem) {
+@media (min-width: 48rem) and (max-width: 63.99rem) {
   .taxonomy-discovery-section {
-    padding-block: var(--space-8) var(--space-10);
+    max-width: 40rem;
   }
-
-  .taxonomy-discovery__card {
-    aspect-ratio: auto;
-    min-block-size: 17rem;
-  }
-
   .taxonomy-discovery {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1rem;
   }
-
-  .taxonomy-discovery__item--recipient {
-    grid-column: 1 / -1;
+  .taxonomy-discovery__card {
+    min-height: 16rem;
+  }
+  .taxonomy-discovery__body {
+    width: 50%;
+    padding: 1.5rem 0 1.5rem 1.5rem;
+  }
+  .taxonomy-discovery__media {
+    left: auto;
+    width: 75%;
+  }
+  .taxonomy-discovery__media img {
+    object-position: 69% center;
+  }
+  .taxonomy-discovery__description {
+    font-size: 0.82rem;
   }
 }
-
-@media (max-width: 39.99rem) {
+@media (max-width: 47.99rem) {
   .taxonomy-discovery-section {
-    inline-size: 100%;
-    padding-block: var(--space-6) var(--space-8);
+    padding-block: 2.75rem 1rem;
   }
-
   .taxonomy-discovery-section__header {
-    margin-block-end: var(--space-4);
-    padding-inline: var(--gutter);
+    margin-bottom: 1.5rem;
   }
-
   .taxonomy-discovery-section__header h2 {
-    gap: var(--space-2);
-    font-size: clamp(1.55rem, 7vw, 1.9rem);
+    font-size: clamp(1.5rem, 6vw, 2rem);
+    gap: 0.35rem;
   }
-
   .taxonomy-discovery-section__header p {
-    margin-block-start: var(--space-2);
-    font-size: 0.78rem;
+    font-size: 0.86rem;
     line-height: 1.45;
   }
-
-  .taxonomy-discovery {
-    display: flex;
-    grid-template-columns: none;
-    gap: var(--space-3);
-    overflow-x: auto;
-    padding: 0 var(--gutter) var(--space-3);
-    scroll-padding-inline: var(--gutter);
-    scroll-snap-type: x proximity;
-    scrollbar-width: none;
-  }
-
-  .taxonomy-discovery::-webkit-scrollbar {
+  .taxonomy-discovery-section__eyebrow {
     display: none;
   }
-
-  .taxonomy-discovery__item {
-    flex: 0 0 min(74vw, 17rem);
-    scroll-snap-align: start;
+  .taxonomy-discovery {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1rem;
   }
-
-  .taxonomy-discovery__item--recipient {
-    grid-column: auto;
-  }
-
   .taxonomy-discovery__card {
-    aspect-ratio: auto;
-    min-block-size: 13.75rem;
-    border: 1px solid color-mix(in srgb, var(--color-border) 58%, transparent);
-    border-radius: var(--radius-lg);
-    box-shadow: 0 0.35rem 0.9rem color-mix(in srgb, var(--color-text) 8%, transparent);
+    min-height: 14.75rem;
   }
-
   .taxonomy-discovery__body {
-    inline-size: 59%;
-    padding: var(--space-4);
+    width: 56%;
+    padding: 1.25rem 0 1.25rem 1.15rem;
   }
-
-  .taxonomy-discovery__number {
-    margin-block-end: var(--space-1);
-    font-size: 2rem;
-  }
-
   .taxonomy-discovery__body h3 {
-    font-size: 1.22rem;
+    font-size: 1.65rem;
   }
-
+  .taxonomy-discovery__number {
+    font-size: 2.35rem;
+  }
   .taxonomy-discovery__description {
-    margin-block-start: var(--space-2);
-    font-size: 0.68rem;
-    line-height: 1.45;
+    font-size: 0.83rem;
   }
-
   .taxonomy-discovery__action {
-    font-size: 0.7rem;
+    font-size: 0.84rem;
   }
-
-  .taxonomy-discovery__media {
-    inline-size: 59%;
+  .taxonomy-discovery__media img {
+    object-position: right 53%;
   }
 }

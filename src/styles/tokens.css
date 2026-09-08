@@ -27,13 +27,13 @@
   color-scheme: light;
 
   /* Luna source palette. Components consume the semantic roles below. */
-  --luna-cream: #fdfaf7;
+  --luna-cream: #fffaf9;
   --luna-cream-2: #fff5ec;
-  --luna-paper: #fffcf8;
-  --luna-header-mobile: #fdf7f3;
+  --luna-paper: #fffdfc;
+  --luna-header-mobile: #fff6f6;
   --luna-footer: #fdf5f3;
   --luna-coral: #ea6175;
-  --luna-coral-dark: #c4475f;
+  --luna-coral-dark: #b83d57;
   --luna-coral-deep: #ad384f;
   --luna-coral-soft: #f48b9b;
   --luna-blush: #f8d9dc;
@@ -42,8 +42,8 @@
   --luna-blue-soft: #e5f0f7;
   --luna-peach: #f4c4a8;
   --luna-sage: #dde3d8;
-  --luna-brown: #392723;
-  --luna-brown-soft: #5c4842;
+  --luna-brown: #29232c;
+  --luna-brown-soft: #59515b;
   --luna-border: rgb(196 71 95 / 30%);
 
   /* Semantic colors. Replace roles, not component-specific values. */
@@ -127,7 +127,7 @@
   --radius-lg: 1rem;
   --radius-xl: 1.5rem;
   --radius-pill: 999px;
-  --radius-action: 0.625rem;
+  --radius-action: 999px;
   --radius-card: 1rem;
 
   --border-width-hairline: 1px;

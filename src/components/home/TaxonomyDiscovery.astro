@@ -4,6 +4,9 @@ import giftFinderTypeImage from '../../assets/home/gift-finder/01.png';
 import giftFinderOccasionImage from '../../assets/home/gift-finder/02.png';
 import giftFinderRecipientImage from '../../assets/home/gift-finder/03.png';
 import heartWatercolor from '../../assets/home/heart-watercolor.png';
+import blueCloud from '../../assets/home/custom-idea/nube-azul.png';
+import pinkCloud from '../../assets/home/custom-idea/nube-rosa.png';
+import moon from '../../assets/home/luna-nube.png';
 import type { Catalog } from '../../lib/catalog/domain/model';
 import { projectTaxonomyDiscovery } from './taxonomy-discovery';
 import { withBasePath } from '../../lib/site/urls';
@@ -30,6 +33,45 @@ const giftFinderImages = [
       aria-labelledby="gift-discovery-title"
     >
       <header class="taxonomy-discovery-section__header">
+        <div
+          class="discovery-decoration discovery-decoration--left"
+          aria-hidden="true"
+        >
+          <Image
+            src={blueCloud}
+            width={160}
+            format="webp"
+            alt="Nube azul decorativa."
+            loading="lazy"
+          />
+          <>
+            <span>♡</span>
+            <i>✦</i>
+          </>
+        </div>
+        <div
+          class="discovery-decoration discovery-decoration--right"
+          aria-hidden="true"
+        >
+          <Image
+            src={pinkCloud}
+            width={190}
+            format="webp"
+            alt="Nube rosa decorativa."
+            loading="lazy"
+          />
+          <Image
+            src={moon}
+            width={130}
+            format="webp"
+            alt="Luna decorativa."
+            loading="lazy"
+          />
+          <i>✦</i>
+        </div>
+        <div class="taxonomy-discovery-section__eyebrow">
+          ¿QUÉ ESTÁS BUSCANDO? ♡
+        </div>
         <h2 id="gift-discovery-title">
           <span>{discovery.title}</span>
           <Image
@@ -39,6 +81,7 @@ const giftFinderImages = [
             height={1067}
             format="webp"
             alt="Corazón decorativo en acuarela."
+            aria-hidden="true"
             loading="lazy"
             decoding="async"
           />
@@ -74,6 +117,9 @@ const giftFinderImages = [
                   alt={`Ilustración decorativa para ${card.title}.`}
                   loading="lazy"
                   decoding="async"
+                  widths={[360, 540, 720]}
+                  sizes="(min-width: 90rem) 412px, (min-width: 48rem) 31vw, calc(100vw - 2rem)"
+                  format="webp"
                 />
               </div>
             </a>

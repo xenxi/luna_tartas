@@ -2,12 +2,13 @@ import { routes } from '../../lib/catalog/domain/routes';
 import { whatsappConfig } from '../../config/contact';
 
 export const heroContent = Object.freeze({
-  eyebrow: 'PARA CELEBRAR LO QUE IMPORTA',
-  heading: Object.freeze(['Pensado con', 'cariño.']),
-  claim: ' Hecho con amor.',
+  eyebrow: 'REGALOS QUE CUENTAN HISTORIAS',
+  heading: Object.freeze(['Pequeños detalles', 'para momentos']),
+  claim: 'grandes ♡',
+  signature: 'La magia está en los detalles',
   copy: Object.freeze([
-    'Creamos regalos personalizados y pequeños detalles con mucho mimo,',
-    'porque las personas especiales merecen algo pensado especialmente para ellas.',
+    'Regalos personalizados, hechos a mano y con mucho cariño',
+    'para celebrar todo lo que importa.',
   ]),
   primaryAction: Object.freeze({
     label: 'Descubrir regalos',
@@ -17,22 +18,30 @@ export const heroContent = Object.freeze({
     label: 'Cuéntanos tu idea',
     href: whatsappConfig.href,
   }),
+  shortcuts: Object.freeze([
+    { label: 'Para bebés', href: routes.taxonomy('recipient', 'bebe') },
+    { label: 'Para ocasiones', href: routes.taxonomyIndex('occasion') },
+    {
+      label: 'Para quien más quieras',
+      href: routes.taxonomyIndex('recipient'),
+    },
+  ]),
   benefits: Object.freeze([
     Object.freeze({
       icon: 'heart',
-      label: 'Personalizados con cariño',
-    }),
-    Object.freeze({
-      icon: 'hands',
       label: 'Hechos a mano',
     }),
     Object.freeze({
-      icon: 'quality',
+      icon: 'hands',
       label: 'Materiales de calidad',
     }),
     Object.freeze({
       icon: 'delivery',
       label: 'Envío y entrega con cuidado',
+    }),
+    Object.freeze({
+      icon: 'quality',
+      label: 'Regalos únicos y personalizados',
     }),
   ]),
   image: Object.freeze({

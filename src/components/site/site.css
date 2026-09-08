@@ -1,3 +1,10 @@
+.primary-navigation__preview,
+.site-footer__follow-note,
+.site-footer__reference-moon,
+.site-footer__back-top {
+  display: none;
+}
+
 .site-header {
   position: relative;
   z-index: var(--z-header);

@@ -1,3 +1,8 @@
+.custom-idea__reference-note,
+.custom-idea__reference-flowers {
+  display: none;
+}
+
 .custom-idea {
   --cta-height: clamp(15rem, 17vw, 18rem);
   --cta-radius: clamp(var(--radius-lg), 1.8vw, var(--radius-xl));
@@ -267,5 +272,75 @@
 
   .custom-idea__moon {
     inset-inline-end: 0.3rem;
+  }
+}
+
+/* Bounded composition shared by the home and the internal closing panels. */
+.custom-idea__panel {
+  inline-size: min(calc(100% - 2 * var(--gutter)), var(--container-visual));
+}
+.custom-idea__copy h2 {
+  text-wrap: balance;
+}
+@media (min-width: 48rem) {
+  .custom-idea {
+    --cta-height: 19rem;
+    padding-bottom: 2.5rem;
+  }
+  .custom-idea__copy {
+    inline-size: 42%;
+    margin-left: 3rem;
+  }
+  .custom-idea__copy h2 {
+    font-size: clamp(2rem, 2.6vw, 2.75rem);
+  }
+  .custom-idea__art-picture {
+    inset-block: 0;
+    block-size: 100%;
+  }
+}
+@media (max-width: 47.99rem) {
+  .custom-idea {
+    --cta-height: 17rem;
+    --art-left: 29%;
+    padding: 0.5rem 0 2.5rem;
+    margin-top: 1rem;
+  }
+  .custom-idea__copy {
+    inline-size: 60%;
+    margin-inline-start: 1.25rem;
+    margin-top: 0;
+    block-size: 100%;
+    padding-block: 1rem;
+  }
+  .custom-idea__copy h2 {
+    display: block;
+    font-size: clamp(1.75rem, 6.5vw, 2.25rem);
+    line-height: 1.05;
+  }
+  .custom-idea__title-heart {
+    display: none;
+  }
+  .custom-idea__copy > p {
+    font-size: 0.83rem;
+    line-height: 1.45;
+    margin-top: 0.75rem;
+    max-width: 23ch;
+  }
+  .custom-idea__action {
+    margin-top: 1rem;
+  }
+  .custom-idea__action .action-link {
+    min-height: 2.75rem;
+    padding: 0.6rem 0.8rem;
+    font-size: 0.78rem;
+  }
+  .custom-idea__art-picture {
+    inset-block: 0;
+    block-size: 100%;
+    mask-image: linear-gradient(90deg, transparent, black 40%);
+  }
+  .custom-idea__moon {
+    display: none;
   }
 }

@@ -3,7 +3,7 @@
 }
 
 .product-listing .content-section {
-  inline-size: min(100%, 93.75rem);
+  inline-size: min(100%, var(--container-visual));
   margin-inline: auto;
   padding-block: clamp(2.75rem, 4vw, 4rem) var(--space-6);
 }

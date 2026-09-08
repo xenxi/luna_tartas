@@ -58,8 +58,43 @@ const label =
           <li class="primary-navigation__search">
             <SearchTrigger location="desktop" />
           </li>
+          <li class="primary-navigation__preview primary-navigation__account">
+            <a
+              href={withBasePath(
+                routes.underConstruction(),
+                import.meta.env.BASE_URL,
+              )}
+              aria-label="Mi cuenta, próximamente"
+              title="Mi cuenta · Próximamente"
+            >
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <>
+                  <circle cx="12" cy="7" r="3.2" />
+                  <path d="M5 21v-3a7 7 0 0 1 14 0v3" />
+                </>
+              </svg>
+            </a>
+          </li>
           <li class="primary-navigation__favorites">
             <FavoriteLink currentPath={currentPath} variant="desktop" />
+          </li>
+          <li class="primary-navigation__preview primary-navigation__cart">
+            <a
+              href={withBasePath(
+                routes.underConstruction(),
+                import.meta.env.BASE_URL,
+              )}
+              aria-label="Carrito, próximamente"
+              title="Carrito · Próximamente"
+            >
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <>
+                  <path d="M2 3h3l3 13h11l3-9H6M9 4v7m-3-4h6" />
+                  <circle cx="9" cy="21" r="1.2" />
+                  <circle cx="18" cy="21" r="1.2" />
+                </>
+              </svg>
+            </a>
           </li>
         </>
       )

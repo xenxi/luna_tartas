@@ -526,3 +526,109 @@
     transform: none;
   }
 }
+
+/* The same inspiration panel keeps its identity at every viewport. */
+@media (min-width: 48rem) {
+  .featured-products {
+    inline-size: min(calc(100% - 2 * var(--gutter)), var(--container-visual));
+    grid-template-columns: minmax(14rem, 3fr) minmax(0, 7fr);
+    padding: 1rem;
+    gap: 1.25rem;
+    border-radius: var(--radius-xl);
+  }
+  .featured-products__editorial {
+    padding-left: 3.5rem;
+    min-block-size: 19rem;
+  }
+  .featured-products__gallery {
+    block-size: 20rem;
+    grid-template-columns: 1.15fr 1fr 1fr;
+  }
+  .featured-products__luna {
+    left: -2.5rem;
+    bottom: -1.5rem;
+    width: 9.5rem;
+  }
+}
+@media (max-width: 47.99rem) {
+  .featured-products {
+    inline-size: calc(100% - 2 * var(--gutter));
+    margin: 1rem auto 2rem;
+    gap: 1.25rem;
+    padding: 1.5rem 0.75rem 0.75rem;
+    border-radius: var(--radius-xl);
+    background: var(--color-surface-warm);
+  }
+  .featured-products__background-picture {
+    display: block;
+  }
+  .featured-products__editorial {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.6rem;
+    min-block-size: 15rem;
+    padding: 0 0.6rem 0 4.5rem;
+  }
+  .featured-products__eyebrow,
+  .featured-products__intro,
+  .featured-products__luna {
+    display: block;
+  }
+  .featured-products__eyebrow {
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+  }
+  .featured-products h2 {
+    font-size: 2.2rem;
+    max-inline-size: 9ch;
+  }
+  .featured-products__intro {
+    font-size: 0.85rem;
+    line-height: 1.4;
+  }
+  .featured-products__luna {
+    width: 7.5rem;
+    left: -2rem;
+    bottom: -0.4rem;
+  }
+  .featured-products__action {
+    min-height: 2.75rem;
+    padding: 0.6rem 1rem;
+    font-size: 0.8rem;
+    color: var(--color-action);
+    background: rgb(255 253 252 / 65%);
+  }
+  .featured-products__gallery {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: 38%;
+    grid-template-columns: none;
+    gap: 0.65rem;
+    overflow-x: auto;
+    padding: 0 0 0.5rem;
+    scroll-snap-type: x proximity;
+    scrollbar-width: thin;
+  }
+  .featured-products__item,
+  .featured-products__item--primary {
+    grid-column: auto;
+    grid-row: auto;
+    aspect-ratio: 4 / 5;
+    min-width: 0;
+    min-block-size: 0;
+    border-radius: 0.75rem;
+    scroll-snap-align: start;
+  }
+  .featured-products__product-link {
+    display: block;
+  }
+  .featured-products__product-copy {
+    display: none;
+  }
+  .featured-products__product-link .responsive-media,
+  .featured-products__product-link picture,
+  .featured-products__product-link img {
+    height: 100%;
+    block-size: 100%;
+  }
+}

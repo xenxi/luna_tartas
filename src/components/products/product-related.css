@@ -1,5 +1,5 @@
 .product-related {
-  inline-size: min(calc(100% - (2 * var(--gutter))), 93.75rem);
+  inline-size: min(calc(100% - (2 * var(--gutter))), var(--container-visual));
   margin-inline: auto;
 }
 

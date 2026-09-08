@@ -1,6 +1,7 @@
 ---
 import { Image, Picture } from 'astro:assets';
-import heroImage from '../../assets/home/tarta-hero.png';
+import heroImage from '../../assets/home/hero-bunny-reference.png';
+import { withBasePath } from '../../lib/site/urls';
 import heartWatercolor from '../../assets/home/heart-watercolor.png';
 import { heroContent } from '../../content/home/hero';
 import ActionLink from '../ui/ActionLink.astro';
@@ -55,7 +56,7 @@ import './hero.css';
         formats={['avif', 'webp']}
         fallbackFormat="jpg"
         widths={[320, 480, 640, 768, 960, 1200, 1672]}
-        sizes="(min-width: 60rem) 58vw, (min-width: 40rem) 92vw, calc(100vw - 2rem)"
+        sizes="(min-width: 90rem) 1440px, (min-width: 48rem) 100vw, 900px"
         loading="eager"
         decoding="async"
         fetchpriority="high"
@@ -75,7 +76,7 @@ import './hero.css';
         loading="lazy"
         decoding="async"
       />
-      <span>Hecho<br />con amor</span>
+      <span>Hecho<br />a mano<br />con amor</span>
       <svg viewBox="0 0 24 20" focusable="false">
         <path
           d="M12 17S4.8 13.2 4.8 8c0-3.2 4.2-4.4 7.2-.9 3-3.5 7.2-2.3 7.2.9 0 5.2-7.2 9-7.2 9Z"
@@ -152,28 +153,56 @@ import './hero.css';
         ))
       }
     </ul>
+    <nav class="hero__shortcuts" aria-label="Encuentra tu regalo">
+      {
+        heroContent.shortcuts.map((item) => (
+          <a href={withBasePath(item.href, import.meta.env.BASE_URL)}>
+            <span aria-hidden="true">♡</span>
+            {item.label}
+          </a>
+        ))
+      }
+    </nav>
+    <span
+      class="hero__floating-heart hero__floating-heart--left"
+      aria-hidden="true">♥</span
+    >
+    <span
+      class="hero__floating-heart hero__floating-heart--middle"
+      aria-hidden="true">♡</span
+    >
   </div>
 
   <div class="hero__transition" aria-hidden="true">
     <svg
       class="hero__transition-cutout"
-      viewBox="0 0 1440 100"
+      viewBox="0 0 914 70"
       preserveAspectRatio="none"
       focusable="false"
     >
       <path
-        d="M0 36c150-34 290 20 446 13 117-5 192-29 285-25 106 5 177 30 297 26 153-5 260-32 412-9v59H0Z"
+        d="M0 12C68 39 139 43 211 25S321 28 370 35C440 4 497 4 549 23S616 0 672 13S748 19 803 18S872 26 914 14V70H0Z"
+      ></path>
+      <path
+        class="hero__transition-edge"
+        d="M0 12C68 39 139 43 211 25S321 28 370 35C440 4 497 4 549 23S616 0 672 13S748 19 803 18S872 26 914 14"
       ></path>
     </svg>
-    <svg
-      class="hero__transition-line"
-      viewBox="0 0 1440 68"
-      preserveAspectRatio="none"
-      focusable="false"
-    >
-      <path d="M0 36c150-34 290 20 446 13 117-5 192-29 244-25"></path>
-      <path d="M750 26c91 8 163 28 281 24 153-5 260-32 412-9"></path>
-    </svg>
     <Ornament variant="heart" tone="accent" class="hero__transition-heart" />
+    <svg class="hero__signature" viewBox="0 0 260 48" focusable="false">
+      <defs>
+        <path id="hero-signature-curve" d="M4 27Q106 5 218 28"></path>
+      </defs>
+      <text
+        ><textPath href="#hero-signature-curve"
+          >{heroContent.signature}</textPath
+        ></text
+      >
+      <path class="hero__signature-stroke" d="M102 34Q144 27 196 36"></path>
+      <path
+        class="hero__signature-stroke"
+        d="M235 38c-5-4-12-9-10-14 2-5 7-3 9 1 1-6 7-7 9-2 3 6-4 11-8 15Z"
+      ></path>
+    </svg>
   </div>
 </section>

@@ -1,6 +1,7 @@
 ---
 import { Image } from 'astro:assets';
 import footerFlowers from '../../assets/site/footer-magnolia.png';
+import footerMoon from '../../assets/home/luna-nube.png';
 import { publicContactConfig } from '../../config/contact';
 import { isCurrentNavigationPath } from '../../config/navigation';
 import { getPublishedTaxonomies } from '../../lib/catalog/domain/queries';
@@ -155,6 +156,9 @@ const mobileFooterSections: readonly MobileFooterSection[] = [
   class:list={['site-footer', { 'site-footer--home': routePath === '/' }]}
 >
   <div class="site-footer__inner visual-container">
+    <div class="site-footer__desktop-brand">
+      <BrandHomeLink location="footer" />
+    </div>
     <div class="site-footer__main">
       <nav
         class="site-footer__columns site-footer__columns--desktop"
@@ -293,6 +297,9 @@ const mobileFooterSections: readonly MobileFooterSection[] = [
               </li>
             </ul>
           </address>
+          <p class="site-footer__follow-note">
+            Formemos parte<br />de tu historia ♡
+          </p>
         </section>
       </nav>
 
@@ -464,6 +471,15 @@ const mobileFooterSections: readonly MobileFooterSection[] = [
       </div>
 
       <div class="site-footer__message">
+        <Image
+          src={footerMoon}
+          alt="Luna sobre nubes rosas."
+          aria-hidden="true"
+          width={150}
+          format="webp"
+          loading="lazy"
+          class="site-footer__reference-moon"
+        />
         <p>
           Hecho a mano,<br />
           con amor, para<br />
@@ -484,6 +500,11 @@ const mobileFooterSections: readonly MobileFooterSection[] = [
   </div>
   <slot />
   <div class="site-footer__closing visual-container">
+    <a
+      class="site-footer__back-top"
+      href="#main-content"
+      aria-label="Volver arriba">↑</a
+    >
     <nav class="site-footer__legal" aria-label="Información legal">
       <ul>
         <li>

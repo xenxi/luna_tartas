@@ -45,11 +45,11 @@ describe('global presentation foundation', () => {
   });
 
   it('maps the Luna direction to source palette and semantic roles', () => {
-    expect(tokens).toContain('--luna-cream: #fdfaf7');
+    expect(tokens).toContain('--luna-cream: #fffaf9');
     expect(tokens).toContain('--luna-footer: #fdf5f3');
     expect(tokens).toContain('--luna-coral: #ea6175');
     expect(tokens).toContain('--luna-blue: #bcd5e9');
-    expect(tokens).toContain('--luna-brown: #392723');
+    expect(tokens).toContain('--luna-brown: #29232c');
     expect(tokens).toContain('--color-canvas: var(--luna-cream)');
     expect(tokens).toContain('--color-footer: var(--luna-footer)');
     expect(tokens).toContain('--color-surface-warm: var(--luna-blush-soft)');
@@ -75,7 +75,7 @@ describe('global presentation foundation', () => {
     expect(tokens).toContain('--font-size-display: clamp(');
     expect(tokens).toContain('5.25rem');
     expect(tokens).toContain('--button-min-block-size: 3rem');
-    expect(tokens).toContain('--radius-action: 0.625rem');
+    expect(tokens).toContain('--radius-action: 999px');
     expect(tokens).toContain('--card-featured-min-block-size: clamp(');
     expect(tokens).toContain('--decoration-watercolor-size: clamp(');
     expect(tokens).toContain('--breakpoint-desktop: 64rem');
@@ -101,18 +101,10 @@ describe('global presentation foundation', () => {
     expect(componentStyles).toContain('var(--color-border-subtle)');
   });
 
-  it('normalizes discovery card media geometry and its tonal transition', () => {
-    expect(taxonomyDiscovery).toContain(
-      '--taxonomy-discovery-content-width: 52%',
-    );
-    expect(taxonomyDiscovery).toContain(
-      '--taxonomy-discovery-media-width: 56%',
-    );
+  it('uses responsive discovery images and keeps every card available without scripts', () => {
     expect(taxonomyDiscovery).toContain('.taxonomy-discovery__media::before');
-    expect(taxonomyDiscovery).toContain('var(--taxonomy-discovery-tone)');
-    expect(taxonomyDiscovery).toContain('transparent 44%');
     expect(taxonomyDiscovery).toContain('object-fit: cover');
-    expect(taxonomyDiscovery).toContain('object-fit: contain');
-    expect(taxonomyDiscovery).toContain('aspect-ratio: auto');
+    expect(taxonomyDiscovery).toContain('@media (max-width: 47.99rem)');
+    expect(taxonomyDiscovery).not.toContain('overflow-x: auto');
   });
 });

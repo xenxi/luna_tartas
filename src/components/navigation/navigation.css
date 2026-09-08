@@ -1,5 +1,5 @@
 .breadcrumb {
-  color: var(--color-accent);
+  color: var(--color-action);
   font-size: var(--font-size-sm);
   overflow-wrap: anywhere;
 }

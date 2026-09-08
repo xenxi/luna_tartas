@@ -89,7 +89,15 @@ export interface EditorialApproval {
   readonly approvedAt: string;
 }
 
+export interface ProductLinks {
+  readonly tiktok?: string;
+  readonly instagram?: string;
+  readonly wallapop?: string;
+  readonly vinted?: string;
+}
+
 interface ProductIdentity {
+  readonly links?: ProductLinks;
   readonly id: string;
   readonly slug: string;
   /**

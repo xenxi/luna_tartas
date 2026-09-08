@@ -1,5 +1,5 @@
 .category-benefits {
-  inline-size: min(calc(100% - (2 * var(--gutter))), 93.75rem);
+  inline-size: min(calc(100% - (2 * var(--gutter))), var(--container-visual));
   margin-block-start: var(--space-4);
   margin-inline: auto;
   overflow: hidden;

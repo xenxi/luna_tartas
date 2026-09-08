@@ -2,7 +2,7 @@ id: libreta-carrusel
 slug: libreta-carrusel
 status: published
 name: Libreta recordatorio carrusel
-summary: "Libreta tamaño A6 para recordatorio de tu evento, bautizo, comunión.."
+summary: 'Libreta tamaño A6 para recordatorio de tu evento, bautizo, comunión..'
 categories:
   - papeleria-personalizada
 occasions:
@@ -29,13 +29,13 @@ customization:
 featured: false
 inventory:
   mode: made-to-order
-description: "Para pedidos de mas de 50 libretas , la unidad sale a 1.80€"
+description: 'Para pedidos de mas de 50 libretas , la unidad sale a 1.80€'
 price:
   kind: fixed
   amountMinor: 250
   currency: EUR
 approval:
   source: Revisión del producto en Luna Studio
-  sourceDate: 2026-09-07
+  sourceDate: '2026-09-07'
   approvedBy: Luna
-  approvedAt: 2026-09-07
+  approvedAt: '2026-09-07'

@@ -7,7 +7,7 @@
 
 .product-detail > .breadcrumb,
 .product-detail__article {
-  inline-size: min(calc(100% - (2 * var(--gutter))), 87.5rem);
+  inline-size: min(calc(100% - (2 * var(--gutter))), var(--container-visual));
   margin-inline: auto;
 }
 

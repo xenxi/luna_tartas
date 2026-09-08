@@ -37,6 +37,30 @@ controla la precedencia editorial.
 
 ## Producto publicado
 
+### Enlaces a plataformas
+
+Cada producto puede incluir un bloque `links`. Ejemplo de estructura
+(sustituye los marcadores por las URLs reales del producto):
+
+```yaml
+links:
+  tiktok: 'https://www.tiktok.com/@TU_CUENTA/video/ID_DEL_VIDEO'
+  instagram: 'https://www.instagram.com/p/ID_PUBLICACION/'
+  wallapop: 'https://es.wallapop.com/item/ID_ANUNCIO'
+  vinted: 'https://www.vinted.es/items/ID_ANUNCIO'
+```
+
+Incluye únicamente los enlaces que tengas. Omite las claves sin URL: no
+escribas `''` ni `null`. Si no hay enlaces, elimina el bloque completo. La
+ficha muestra solo las plataformas configuradas, con apertura en otra
+pestaña. Estos enlaces no sustituyen la acción principal de WhatsApp.
+
+El contrato JSON Schema 2.1.0 permite también estos campos en borradores y
+productos archivados, aunque esos productos no se publican. No se han
+añadido enlaces de ejemplo a los productos reales.
+
+### Campos obligatorios
+
 Usar como referencia un producto actual validado, por ejemplo
 `src/content/products/lamina-natalicia-a5.yml`. Campos obligatorios:
 

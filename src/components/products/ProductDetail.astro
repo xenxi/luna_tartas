@@ -11,6 +11,7 @@ import Breadcrumb from '../navigation/Breadcrumb.astro';
 import ProductConversionPanel from './ProductConversionPanel.astro';
 import ProductGallery from './ProductGallery.astro';
 import ProductPersonalization from './ProductPersonalization.astro';
+import ProductLinks from './ProductLinks.astro';
 import './product-detail.css';
 import { withBasePath } from '../../lib/site/urls';
 
@@ -67,6 +68,7 @@ const taxonomyGroups = [
         </header>
 
         <ProductConversionPanel product={product} />
+        <ProductLinks links={product.links} />
         <ProductPersonalization product={product} />
       </div>
     </div>

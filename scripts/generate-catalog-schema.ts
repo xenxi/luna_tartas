@@ -4,7 +4,7 @@ import { z } from 'astro/zod';
 import { format } from 'prettier';
 import { inventorySchema, productSchema } from '../src/content/schemas/product';
 
-export const CATALOG_CONTRACT_VERSION = '2.0.0';
+export const CATALOG_CONTRACT_VERSION = '2.1.0';
 
 const outputs = [
   {

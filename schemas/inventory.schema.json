@@ -29,5 +29,5 @@
   ],
   "$id": "https://lunatartas.es/schemas/inventory.schema.json",
   "title": "Luna Tartas inventory source contract",
-  "x-contractVersion": "2.0.0"
+  "x-contractVersion": "2.1.0"
 }

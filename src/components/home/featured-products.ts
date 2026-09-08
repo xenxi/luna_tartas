@@ -125,7 +125,11 @@ export function selectFeaturedProductMosaic(
 ): readonly PublishedProduct[] {
   const rng = options.rng ?? stableRng(catalog);
   const featured = getFeaturedProducts(catalog);
-  const selected = selectCategoryRepresentatives(catalog, featured, rng);
+  const pool = [
+    ...featured,
+    ...getPublishedProducts(catalog).filter((product) => !product.featured),
+  ];
+  const selected = selectCategoryRepresentatives(catalog, pool, rng);
   const selectedIds = new Set(selected.map(({ id }) => id));
   const remaining = shuffle(
     [

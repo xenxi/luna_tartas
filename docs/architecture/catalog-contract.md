@@ -63,6 +63,22 @@ Marca, URL canónica, locale, moneda permitida, WhatsApp y analytics no se repit
 
 ## Invariantes de publicación
 
+### Enlaces opcionales del producto (contrato 2.1.0)
+
+Los productos `draft`, `published` y `archived` admiten `links` con las claves
+opcionales `tiktok`, `instagram`, `wallapop` y `vinted`. Cada valor es una URL
+HTTPS del dominio de su plataforma (máximo 2048 caracteres). No se admiten
+cadenas vacías, protocolos ejecutables ni dominios ajenos. Para retirar un
+enlace se elimina la clave; se puede omitir el objeto completo.
+
+El adaptador copia estos datos al dominio y la ficha del producto publicado
+los presenta como enlaces con nombre, después de las opciones de pedido.
+Solo aparecen las plataformas definidas, en orden TikTok, Instagram,
+Wallapop y Vinted. Sin enlaces no se genera el bloque. La proyección pública
+de `/catalog.json` conserva su contrato y no incorpora estos campos.
+
+### Reglas
+
 - IDs únicos globalmente dentro de cada tipo y slugs únicos dentro de su espacio de URL.
 - Slugs en minúsculas, ASCII, con guiones; no se regeneran por cambiar el nombre.
 - Toda relación apunta a una entidad existente y publicable según la política definida.

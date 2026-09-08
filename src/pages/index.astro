@@ -6,12 +6,14 @@ import TaxonomyDiscovery from '../components/home/TaxonomyDiscovery.astro';
 import FeaturedProducts from '../components/home/FeaturedProducts.astro';
 import TrustAndWork from '../components/home/TrustAndWork.astro';
 import CustomIdeaCta from '../components/home/CustomIdeaCta.astro';
+import HomeHighlights from '../components/home/HomeHighlights.astro';
 import JsonLd from '../components/seo/JsonLd.astro';
 import { siteConfig } from '../config/site';
 import { loadCatalog } from '../lib/catalog/source';
 import { routes } from '../lib/catalog/domain/routes';
 import { createApprovedSiteIdentityJsonLd } from '../lib/seo/structured-data/organization';
 import '../components/home/home-composition.css';
+import '../components/home/home-reference.css';
 
 const catalog = await loadCatalog();
 const siteIdentity = createApprovedSiteIdentityJsonLd(
@@ -32,5 +34,6 @@ const siteIdentity = createApprovedSiteIdentityJsonLd(
     <TrustAndWork />
     <FeaturedProducts catalog={catalog} />
     <CustomIdeaCta />
+    <HomeHighlights catalog={catalog} />
   </div>
 </BaseLayout>

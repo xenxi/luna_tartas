@@ -1,0 +1,204 @@
+---
+import type { Catalog } from '../../lib/catalog/domain/model';
+import {
+  getFeaturedProducts,
+  getPublishedProducts,
+} from '../../lib/catalog/domain/queries';
+import { projectProductListing } from '../products/product-listing';
+import { catalogImageMap } from '../catalog/catalog-images';
+import { buildMediaProjection } from '../catalog/media-projection';
+import ProductCard from '../catalog/ProductCard.astro';
+import { routes } from '../../lib/catalog/domain/routes';
+import { withBasePath } from '../../lib/site/urls';
+import { reassuranceContent } from '../../content/home/reassurance';
+interface Props {
+  catalog: Catalog;
+}
+const { catalog } = Astro.props;
+const selected = [
+  ...getFeaturedProducts(catalog),
+  ...getPublishedProducts(catalog).filter((p) => !p.featured),
+].slice(0, 4);
+const listing = projectProductListing({ ...catalog, products: selected });
+const cards = await Promise.all(
+  listing.items.map(async (item) => {
+    const product = selected.find((p) => routes.product(p.slug) === item.href);
+    const cover = product?.media.cover;
+    const image = cover ? catalogImageMap[cover.src] : undefined;
+    return {
+      ...item,
+      media:
+        image && cover
+          ? await buildMediaProjection(image, cover.alt, {
+              widths: [240, 360, 480],
+              sizes: '(min-width: 48rem) 300px, 60vw',
+            })
+          : undefined,
+    };
+  }),
+);
+---
+
+<div class="home-highlights">
+  {
+    cards.length > 0 && (
+      <section aria-labelledby="home-selection-title" class="home-selection">
+        <header>
+          <>
+            <div>
+              <>
+                <h2 id="home-selection-title">Productos destacados</h2>
+                <p>Lo más especial, elegido para ti.</p>
+              </>
+            </div>
+            <a href={withBasePath(routes.products(), import.meta.env.BASE_URL)}>
+              Ver todos <span aria-hidden="true">→</span>
+            </a>
+          </>
+        </header>
+        <ul class="home-selection__list">
+          {cards.map((product) => (
+            <li>
+              <ProductCard product={product} />
+            </li>
+          ))}
+        </ul>
+      </section>
+    )
+  }
+  <section class="home-reassurance" aria-labelledby="home-reassurance-title">
+    <h2 id="home-reassurance-title">
+      {reassuranceContent.title}
+      <span aria-hidden="true">♡</span>
+    </h2>
+    <ul>
+      {
+        reassuranceContent.items.map((item) => (
+          <li>
+            <>
+              <span class="home-reassurance__icon" aria-hidden="true">
+                {item.icon}
+              </span>
+              <div>
+                <>
+                  <h3>{item.title}</h3>
+                  <p>{item.copy}</p>
+                </>
+              </div>
+            </>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+</div>
+<style>
+  .home-highlights {
+    display: none;
+  }
+  @media (max-width: 47.99rem) {
+    .home-highlights {
+      display: grid;
+      gap: 2.5rem;
+      padding-bottom: 4rem;
+    }
+    .home-selection header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+      padding-inline: var(--gutter);
+      margin-bottom: 1.25rem;
+    }
+    h2 {
+      font-size: clamp(1.45rem, 5.5vw, 1.9rem);
+      font-weight: 400;
+    }
+    header p {
+      font-size: 0.85rem;
+      color: var(--color-text-muted);
+      margin-top: 0.35rem;
+    }
+    header > a {
+      flex: none;
+      padding: 0.65rem 0.8rem;
+      min-height: 2.75rem;
+      border-radius: 1rem;
+      background: var(--color-surface-warm);
+      font-size: 0.8rem;
+      text-decoration: none;
+    }
+    .home-selection__list {
+      display: grid;
+      grid-auto-flow: column;
+      grid-auto-columns: 58%;
+      gap: 1rem;
+      margin: 0;
+      padding: 0.2rem var(--gutter) 1rem;
+      overflow-x: auto;
+      scroll-snap-type: x proximity;
+      scroll-padding-inline: var(--gutter);
+      list-style: none;
+    }
+    .home-selection__list > li {
+      margin: 0;
+      scroll-snap-align: start;
+    }
+    .home-selection__list :global(.catalog-card__summary),
+    .home-selection__list :global(.catalog-card__action),
+    .home-selection__list :global(.catalog-card__eyebrow) {
+      display: none;
+    }
+    .home-reassurance {
+      padding-inline: var(--gutter);
+    }
+    .home-reassurance h2 span {
+      color: var(--color-accent);
+    }
+    .home-reassurance ul {
+      display: grid;
+      gap: 0.85rem;
+      margin: 1.5rem 0 0;
+      padding: 0;
+      list-style: none;
+    }
+    .home-reassurance li {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin: 0;
+      padding: 0.5rem 0.85rem 0.5rem 0.5rem;
+      border-radius: var(--radius-pill);
+      background: linear-gradient(90deg, white, var(--color-surface-warm));
+    }
+    .home-reassurance__icon {
+      display: grid;
+      place-items: center;
+      flex: none;
+      width: 3.5rem;
+      height: 3.5rem;
+      border-radius: 50%;
+      background: var(--color-surface-calm);
+      font-size: 2rem;
+      color: var(--color-action);
+    }
+    .home-reassurance li:nth-child(2) .home-reassurance__icon {
+      background: #e7f1e7;
+      color: #55774b;
+    }
+    .home-reassurance li:nth-child(3) .home-reassurance__icon {
+      background: #ffe2e9;
+    }
+    .home-reassurance h3 {
+      font-family: var(--font-body);
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+    .home-reassurance p {
+      margin-top: 0.35rem;
+      font-size: 0.83rem;
+      color: var(--color-text-muted);
+      line-height: 1.4;
+    }
+  }
+</style>

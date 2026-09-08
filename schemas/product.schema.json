@@ -18,6 +18,32 @@
         },
         "status": { "type": "string", "const": "draft" },
         "context": { "type": "string", "const": "FIXTURE" },
+        "links": {
+          "type": "object",
+          "properties": {
+            "tiktok": {
+              "type": "string",
+              "maxLength": 2048,
+              "pattern": "^https:\\/\\/(?:(?:www\\.|vm\\.|vt\\.)?tiktok\\.com)\\/[^\\s<>\\\\]*$"
+            },
+            "instagram": {
+              "type": "string",
+              "maxLength": 2048,
+              "pattern": "^https:\\/\\/(?:(?:www\\.)?instagram\\.com)\\/[^\\s<>\\\\]*$"
+            },
+            "wallapop": {
+              "type": "string",
+              "maxLength": 2048,
+              "pattern": "^https:\\/\\/(?:(?:www\\.|es\\.|en\\.|it\\.|pt\\.)?wallapop\\.com)\\/[^\\s<>\\\\]*$"
+            },
+            "vinted": {
+              "type": "string",
+              "maxLength": 2048,
+              "pattern": "^https:\\/\\/(?:(?:www\\.)?vinted\\.(?:es|com|fr|it|pt|de|co\\.uk))\\/[^\\s<>\\\\]*$"
+            }
+          },
+          "additionalProperties": false
+        },
         "name": { "type": "string", "minLength": 1, "maxLength": 120 },
         "summary": { "type": "string", "minLength": 1, "maxLength": 240 },
         "description": { "type": "string", "minLength": 1, "maxLength": 5000 },
@@ -329,6 +355,32 @@
     {
       "type": "object",
       "properties": {
+        "links": {
+          "type": "object",
+          "properties": {
+            "tiktok": {
+              "type": "string",
+              "maxLength": 2048,
+              "pattern": "^https:\\/\\/(?:(?:www\\.|vm\\.|vt\\.)?tiktok\\.com)\\/[^\\s<>\\\\]*$"
+            },
+            "instagram": {
+              "type": "string",
+              "maxLength": 2048,
+              "pattern": "^https:\\/\\/(?:(?:www\\.)?instagram\\.com)\\/[^\\s<>\\\\]*$"
+            },
+            "wallapop": {
+              "type": "string",
+              "maxLength": 2048,
+              "pattern": "^https:\\/\\/(?:(?:www\\.|es\\.|en\\.|it\\.|pt\\.)?wallapop\\.com)\\/[^\\s<>\\\\]*$"
+            },
+            "vinted": {
+              "type": "string",
+              "maxLength": 2048,
+              "pattern": "^https:\\/\\/(?:(?:www\\.)?vinted\\.(?:es|com|fr|it|pt|de|co\\.uk))\\/[^\\s<>\\\\]*$"
+            }
+          },
+          "additionalProperties": false
+        },
         "id": {
           "type": "string",
           "minLength": 1,
@@ -678,6 +730,32 @@
           "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
         },
         "status": { "type": "string", "const": "archived" },
+        "links": {
+          "type": "object",
+          "properties": {
+            "tiktok": {
+              "type": "string",
+              "maxLength": 2048,
+              "pattern": "^https:\\/\\/(?:(?:www\\.|vm\\.|vt\\.)?tiktok\\.com)\\/[^\\s<>\\\\]*$"
+            },
+            "instagram": {
+              "type": "string",
+              "maxLength": 2048,
+              "pattern": "^https:\\/\\/(?:(?:www\\.)?instagram\\.com)\\/[^\\s<>\\\\]*$"
+            },
+            "wallapop": {
+              "type": "string",
+              "maxLength": 2048,
+              "pattern": "^https:\\/\\/(?:(?:www\\.|es\\.|en\\.|it\\.|pt\\.)?wallapop\\.com)\\/[^\\s<>\\\\]*$"
+            },
+            "vinted": {
+              "type": "string",
+              "maxLength": 2048,
+              "pattern": "^https:\\/\\/(?:(?:www\\.)?vinted\\.(?:es|com|fr|it|pt|de|co\\.uk))\\/[^\\s<>\\\\]*$"
+            }
+          },
+          "additionalProperties": false
+        },
         "name": { "type": "string", "minLength": 1, "maxLength": 120 },
         "summary": { "type": "string", "minLength": 1, "maxLength": 240 },
         "description": { "type": "string", "minLength": 1, "maxLength": 5000 },
@@ -989,5 +1067,5 @@
   ],
   "$id": "https://lunatartas.es/schemas/product.schema.json",
   "title": "Luna Tartas product source contract",
-  "x-contractVersion": "2.0.0"
+  "x-contractVersion": "2.1.0"
 }

@@ -4,6 +4,7 @@ import blushBackground from '../../assets/home/custom-idea/fondo-target.png';
 import centralImage from '../../assets/home/custom-idea/imagen-central-target.png';
 import moonIllustration from '../../assets/home/custom-idea/luna-target.png';
 import titleHeart from '../../assets/home/custom-idea/corazon-target.png';
+import flowers from '../../assets/site/footer-magnolia.png';
 import { customIdeaContent } from '../../content/home/custom-idea';
 import ActionLink from '../ui/ActionLink.astro';
 import './custom-idea.css';
@@ -101,6 +102,18 @@ const { sourcePage = '/' } = Astro.props;
       loading="lazy"
       decoding="async"
       class="custom-idea__moon"
+    />
+    <div class="custom-idea__reference-note" aria-hidden="true">
+      Las mejores<br />historias también<br />se regalan <span>♡</span>
+    </div>
+    <Image
+      src={flowers}
+      width={180}
+      format="webp"
+      alt="Flores rosas decorativas."
+      aria-hidden="true"
+      loading="lazy"
+      class="custom-idea__reference-flowers"
     />
   </div>
 </section>

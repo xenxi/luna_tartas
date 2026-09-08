@@ -5,145 +5,99 @@ import heartStep from '../../assets/home/trust-steps/03-corazon.png';
 import { Image } from 'astro:assets';
 import heartWatercolor from '../../assets/home/heart-watercolor.png';
 import { trustAndWorkContent } from '../../content/home/trust-and-work';
-import Ornament from '../ui/Ornament.astro';
 import './trust-and-work.css';
-
-const trustStepImages = [chatStep, handsStep, heartStep] as const;
+import Ornament from '../ui/Ornament.astro';
+const trustStepImages = [chatStep, undefined, handsStep, heartStep];
 ---
 
-<div class="trust-and-work">
-  <section class="trust-process" id="trust" aria-labelledby="trust-title">
+<section class="trust-and-work" aria-labelledby="trust-title">
+  <div class="trust-process" id="trust">
     <header class="trust-process__header">
       <h2 id="trust-title">
-        {trustAndWorkContent.trust.title}
-        <Image
-          class="trust-process__title-heart"
+        {trustAndWorkContent.trust.title}<Image
           src={heartWatercolor}
-          width={1475}
-          height={1067}
+          width={40}
           format="webp"
           alt="Corazón decorativo en acuarela."
+          aria-hidden="true"
+          class="trust-process__title-heart"
           loading="lazy"
-          decoding="async"
         />
+        <Ornament variant="heart" class="trust-process__title-outline" />
       </h2>
       <p>{trustAndWorkContent.trust.intro}</p>
     </header>
     <div class="trust-story">
+      <Ornament variant="heart" class="trust-story__heart" />
+      <Ornament
+        variant="sparkle"
+        tone="peach"
+        class="trust-story__sparkle trust-story__sparkle--first"
+      />
+      <Ornament
+        variant="sparkle"
+        tone="peach"
+        class="trust-story__sparkle trust-story__sparkle--middle"
+      />
+      <Ornament
+        variant="sparkle"
+        tone="peach"
+        class="trust-story__sparkle trust-story__sparkle--last"
+      />
+      <svg
+        class="trust-story__thread"
+        viewBox="0 0 1200 100"
+        preserveAspectRatio="none"
+        aria-hidden="true"
+        ><path
+          d="M0 50Q75 10 150 50T300 50T450 50T600 50T750 50T900 50T1050 50T1200 50"
+        ></path></svg
+      >
       <ol class="trust-list">
         {
           trustAndWorkContent.trust.steps.map((step, index) => (
             <li class="trust-card">
-              {index === 0 && (
+              {index < trustAndWorkContent.trust.steps.length - 1 && (
                 <svg
-                  class="trust-story__thread"
-                  viewBox="0 0 1200 180"
+                  class="trust-card__connector"
+                  viewBox="0 0 240 64"
                   preserveAspectRatio="none"
-                  focusable="false"
                   aria-hidden="true"
+                  focusable="false"
                 >
-                  <defs>
-                    <linearGradient
-                      id="trust-thread-gradient"
-                      x1="0"
-                      x2="1"
-                      y1="0"
-                      y2="0"
-                    >
-                      <stop
-                        offset="0"
-                        stop-color="var(--color-decoration-accent)"
-                      />
-                      <stop
-                        offset="0.28"
-                        stop-color="var(--color-decoration-blush)"
-                      />
-                      <stop
-                        offset="0.52"
-                        stop-color="var(--color-decoration-blue)"
-                      />
-                      <stop
-                        offset="0.72"
-                        stop-color="var(--color-surface-calm)"
-                      />
-                      <stop
-                        offset="1"
-                        stop-color="var(--color-decoration-peach)"
-                      />
-                    </linearGradient>
-                  </defs>
-                  <path
-                    class="trust-story__thread-path--desktop"
-                    d="M276 93c61-34 139-34 205-4 20 9 35 12 52 9"
-                  />
-                  <path
-                    class="trust-story__thread-path--desktop"
-                    d="M668 91c50-28 105-35 157-12 35 16 65 14 105-6"
-                  />
-                  <path
-                    class="trust-story__thread-path--mobile"
-                    d="M260 93c64-34 146-34 214-4 20 9 38 12 62 9"
-                  />
-                  <path
-                    class="trust-story__thread-path--mobile"
-                    d="M660 91c52-28 112-35 167-12 37 16 68 14 111-6"
-                  />
+                  <path d="M0 32C45 74 69 52 119 28S200 14 240 32" />
                 </svg>
               )}
               <span class="trust-card__art" aria-hidden="true">
-                <img
-                  src={trustStepImages[index].src}
-                  width={trustStepImages[index].width}
-                  height={trustStepImages[index].height}
-                  alt="Ilustración decorativa del paso"
-                  loading="lazy"
-                  decoding="async"
-                />
+                {trustStepImages[index] ? (
+                  <Image
+                    src={trustStepImages[index]!}
+                    width={128}
+                    format="webp"
+                    alt="Ilustración decorativa del paso."
+                    loading="lazy"
+                  />
+                ) : (
+                  <svg class="trust-card__idea" viewBox="0 0 64 64">
+                    <circle cx="32" cy="32" r="30" />
+                    <path d="M24 37c-9-10-2-22 8-22s17 12 8 22c-3 3-3 5-3 8H27c0-3 0-5-3-8Z" />
+                    <path d="M27 49h10m-8 4h6M32 5v5M11 16l5 4M53 16l-5 4M9 34h6m34 0h6M29 26l3 5 3-5m-3 5v14" />
+                  </svg>
+                )}
               </span>
               <div class="trust-card__body">
-                <span
-                  class="trust-card__number"
-                  class:list={[`trust-card__number--${index + 1}`]}
-                  aria-hidden="true"
-                >
+                <span class="trust-card__number" aria-hidden="true">
                   {String(index + 1).padStart(2, '0')}
                 </span>
-                <h3>{step.title}</h3>
-                <p>{step.copy}</p>
+                <>
+                  <h3>{step.title}</h3>
+                  <p>{step.copy}</p>
+                </>
               </div>
             </li>
           ))
         }
       </ol>
-      <Ornament variant="heart" tone="blush" class="trust-story__left-heart" />
-      <Ornament
-        variant="sparkle"
-        tone="blue"
-        class="trust-story__left-sparkle"
-      />
-      <Ornament
-        variant="heart"
-        tone="blush"
-        class="trust-story__left-lower-heart"
-      />
-      <Ornament variant="heart" tone="blush" class="trust-story__line-heart" />
-      <Ornament variant="sparkle" tone="peach" class="trust-story__sparkle" />
-      <Ornament
-        variant="sparkle"
-        tone="peach"
-        class="trust-story__right-sparkle"
-      />
-      <Ornament variant="heart" tone="blush" class="trust-story__heart" />
-      <Ornament
-        variant="heart"
-        tone="accent"
-        class="trust-story__right-heart"
-      />
-      <Ornament
-        variant="heart"
-        tone="blue"
-        class="trust-story__right-blue-heart"
-      />
     </div>
-  </section>
-</div>
+  </div>
+</section>

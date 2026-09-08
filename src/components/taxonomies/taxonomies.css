@@ -10,7 +10,7 @@
   > :is(.breadcrumb, .catalog-hero, .content-section, .category-benefits),
 .taxonomy-landing
   > :is(.breadcrumb, .catalog-hero, .content-section, .category-benefits) {
-  inline-size: min(calc(100% - (2 * var(--gutter))), 93.75rem);
+  inline-size: min(calc(100% - (2 * var(--gutter))), var(--container-visual));
   margin-inline: auto;
 }
 

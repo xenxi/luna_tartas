@@ -1,19 +1,23 @@
 export const trustAndWorkContent = Object.freeze({
   trust: Object.freeze({
-    title: 'Cada detalle cuenta',
-    intro: 'Así preparamos tu encargo, siempre con cariño.',
+    title: 'Así trabajamos en Luna',
+    intro: 'De una idea bonita a un regalo inolvidable.',
     steps: Object.freeze([
       Object.freeze({
         title: 'Nos cuentas tu idea',
-        copy: 'Hablamos de la ocasión, los gustos y todos los detalles importantes.',
+        copy: 'Hablamos de la ocasión, tus gustos y todos los detalles importantes.',
       }),
       Object.freeze({
-        title: 'Lo hacemos realidad',
-        copy: 'Preparamos cada pieza a mano, con materiales de calidad y mucho mimo.',
+        title: 'La hacemos realidad',
+        copy: 'Preparamos cada pieza a mano, con materiales de calidad.',
       }),
       Object.freeze({
-        title: 'Listo para emocionar',
-        copy: 'Lo envolvemos con cuidado para que sea perfecto al entregarlo.',
+        title: 'La preparamos con mimo',
+        copy: 'Cuidamos cada detalle del embalaje.',
+      }),
+      Object.freeze({
+        title: 'Lista para emocionar',
+        copy: 'Tu regalo, listo para llegar a su destino.',
       }),
     ]),
   }),

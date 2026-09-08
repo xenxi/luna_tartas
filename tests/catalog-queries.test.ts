@@ -156,12 +156,12 @@ describe('catalog queries', () => {
       { number: '03', href: '/regalos/', title: 'Para quién' },
     ]);
     expect(discovery?.intro).toBe(
-      'Explora por tipo, ocasión o destinatario y encuentra la opción ideal.',
+      'Explora por tipo, ocasión o destinatario y déjate inspirar.',
     );
     expect(discovery?.cards.map(({ description }) => description)).toEqual([
-      'Tartas de pañales, significado del nombre, láminas personalizadas y más detalles para decorar bonito.',
-      'Cumpleaños, bautizo, comunión, invitaciones, recordatorios y detalles para tu evento.',
-      'family y más.',
+      'Tartas de pañales, láminas personalizadas, papelería, packs y mucho más.',
+      'Cumpleaños, bautizo, comunión, nacimiento y fechas especiales.',
+      'Para bebés, niños y niñas, para alguien especial o simplemente porque sí.',
     ]);
   });
 

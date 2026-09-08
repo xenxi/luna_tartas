@@ -20,7 +20,7 @@ describe('generated catalog contract', () => {
   it('publishes a versioned product schema with archived and inventory', () => {
     const product = schema('product') as Record<string, unknown>;
 
-    expect(product['x-contractVersion']).toBe('2.0.0');
+    expect(product['x-contractVersion']).toBe('2.1.0');
     expect(valuesForKey(product, 'const')).toEqual(
       expect.arrayContaining([
         'draft',
@@ -36,7 +36,7 @@ describe('generated catalog contract', () => {
   it('publishes the same version on the standalone inventory schema', () => {
     const inventory = schema('inventory') as Record<string, unknown>;
 
-    expect(inventory['x-contractVersion']).toBe('2.0.0');
+    expect(inventory['x-contractVersion']).toBe('2.1.0');
     expect(valuesForKey(inventory, 'const')).toEqual(
       expect.arrayContaining(['made-to-order', 'stock', 'unavailable']),
     );

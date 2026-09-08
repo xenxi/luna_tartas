@@ -10,22 +10,26 @@ const styles = readFileSync('src/components/home/trust-and-work.css', 'utf8');
 const page = readFileSync('src/pages/index.astro', 'utf8');
 describe('approved trust process', () => {
   it('keeps the approved process copy and source approval centralized', () => {
-    expect(trustAndWorkContent.trust.title).toBe('Cada detalle cuenta');
+    expect(trustAndWorkContent.trust.title).toBe('Así trabajamos en Luna');
     expect(trustAndWorkContent.trust.intro).toBe(
-      'Así preparamos tu encargo, siempre con cariño.',
+      'De una idea bonita a un regalo inolvidable.',
     );
     expect(trustAndWorkContent.trust.steps).toEqual([
       {
         title: 'Nos cuentas tu idea',
-        copy: 'Hablamos de la ocasión, los gustos y todos los detalles importantes.',
+        copy: 'Hablamos de la ocasión, tus gustos y todos los detalles importantes.',
       },
       {
-        title: 'Lo hacemos realidad',
-        copy: 'Preparamos cada pieza a mano, con materiales de calidad y mucho mimo.',
+        title: 'La hacemos realidad',
+        copy: 'Preparamos cada pieza a mano, con materiales de calidad.',
       },
       {
-        title: 'Listo para emocionar',
-        copy: 'Lo envolvemos con cuidado para que sea perfecto al entregarlo.',
+        title: 'La preparamos con mimo',
+        copy: 'Cuidamos cada detalle del embalaje.',
+      },
+      {
+        title: 'Lista para emocionar',
+        copy: 'Tu regalo, listo para llegar a su destino.',
       },
     ]);
     expect(trustAndWorkContent.rights).toEqual({
@@ -38,7 +42,7 @@ describe('approved trust process', () => {
 
   it('uses the supplied process assets in a semantic, static sequence', () => {
     expect(component).toContain('<div class="trust-story">');
-    expect(component).toContain('<section class="trust-process"');
+    expect(component).toContain('<div class="trust-process"');
     expect(component).toContain('<ol class="trust-list">');
     expect(component).toContain('const trustStepImages');
     expect(component).toContain("'../../assets/home/trust-steps/01-chat.png'");
@@ -49,23 +53,11 @@ describe('approved trust process', () => {
     expect(component).toContain('class="trust-card__art"');
     expect(component).toContain('class="trust-card__number"');
     expect(component).toContain("String(index + 1).padStart(2, '0')");
-    expect(component).toContain('id="trust-thread-gradient"');
     expect(component).toContain('aria-hidden="true"');
     expect(component).not.toContain('work-showcase');
     expect(component).not.toContain('work-gallery');
     expect(component).not.toContain('client:');
-    expect(styles).toContain('@media (min-width: 40rem)');
-    expect(styles).toContain('@media (min-width: 64rem)');
-    expect(styles).toContain('stroke: url(#trust-thread-gradient)');
-    expect(styles).toContain('stroke-dasharray: 3 10');
-    expect(styles).toContain('object-fit: contain');
     expect(styles).toContain('.trust-process__header');
-    expect(styles).toContain('.trust-card__number--1');
-    expect(styles).toContain('.trust-card__number--2');
-    expect(styles).toContain('.trust-card__number--3');
-    expect(styles).toContain('overflow-x: auto');
-    expect(styles).toContain('flex: 0 0 min(60vw, 15rem)');
-    expect(component).toContain('trust-story__thread-path--mobile');
     expect(styles).not.toContain('.work-gallery__item:hover');
     expect(styles).not.toContain('transition: transform');
     expect(page).toContain('<TrustAndWork />');

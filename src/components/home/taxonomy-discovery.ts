@@ -1,3 +1,4 @@
+import { discoveryContent } from '../../content/home/discovery';
 import { getPublishedTaxonomies } from '../../lib/catalog/domain/queries';
 import { routes } from '../../lib/catalog/domain/routes';
 import type { Catalog, TaxonomyKind } from '../../lib/catalog/domain/model';
@@ -17,49 +18,7 @@ export interface TaxonomyDiscoveryProjection {
   readonly cards: readonly TaxonomyDiscoveryCard[];
 }
 
-interface DiscoveryDefinition {
-  readonly kind: TaxonomyKind;
-  readonly number: string;
-  readonly title: string;
-  readonly actionLabel: string;
-  readonly description?: string;
-}
-
-const cardDefinitions: readonly DiscoveryDefinition[] = [
-  {
-    kind: 'category',
-    number: '01',
-    title: 'Por tipo',
-    actionLabel: 'Ver tipos',
-    description:
-      'Tartas de pañales, significado del nombre, láminas personalizadas y más detalles para decorar bonito.',
-  },
-  {
-    kind: 'occasion',
-    number: '02',
-    title: 'Por ocasión',
-    actionLabel: 'Ver ocasiones',
-    description:
-      'Cumpleaños, bautizo, comunión, invitaciones, recordatorios y detalles para tu evento.',
-  },
-  {
-    kind: 'recipient',
-    number: '03',
-    title: 'Para quién',
-    actionLabel: 'Ver destinatarios',
-  },
-];
-
-function describeDimension(catalog: Catalog, kind: TaxonomyKind): string {
-  const names = getPublishedTaxonomies(catalog, kind)
-    .map(({ name }) => name)
-    .slice(0, 3);
-
-  return `${new Intl.ListFormat('es', {
-    style: 'long',
-    type: 'conjunction',
-  }).format(names)} y más.`;
-}
+const cardDefinitions = discoveryContent.cards;
 
 export function projectTaxonomyDiscovery(
   catalog: Catalog,
@@ -72,8 +31,6 @@ export function projectTaxonomyDiscovery(
     return [
       {
         ...definition,
-        description:
-          definition.description ?? describeDimension(catalog, definition.kind),
         href: routes.taxonomyIndex(definition.kind),
       },
     ];
@@ -81,9 +38,8 @@ export function projectTaxonomyDiscovery(
 
   return cards.length === cardDefinitions.length
     ? {
-        title: 'Encuentra el regalo perfecto',
-        intro:
-          'Explora por tipo, ocasión o destinatario y encuentra la opción ideal.',
+        title: discoveryContent.title,
+        intro: discoveryContent.intro,
         cards,
       }
     : undefined;

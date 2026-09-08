@@ -161,7 +161,32 @@ const relationshipFields = {
   recipients: z.array(identifierSchema).optional(),
 };
 
+// Keep the same validation in Zod and in the generated editor contract.
+const platformUrl = (hosts: string) =>
+  z
+    .string()
+    .trim()
+    .max(2048)
+    .regex(
+      new RegExp(`^https://(?:${hosts})/[^\\s<>\\\\]*$`),
+      'Use an HTTPS link to the corresponding platform, without spaces',
+    );
+
+export const productLinksSchema = z
+  .object({
+    tiktok: platformUrl('(?:www\\.|vm\\.|vt\\.)?tiktok\\.com').optional(),
+    instagram: platformUrl('(?:www\\.)?instagram\\.com').optional(),
+    wallapop: platformUrl(
+      '(?:www\\.|es\\.|en\\.|it\\.|pt\\.)?wallapop\\.com',
+    ).optional(),
+    vinted: platformUrl(
+      '(?:www\\.)?vinted\\.(?:es|com|fr|it|pt|de|co\\.uk)',
+    ).optional(),
+  })
+  .strict();
+
 const optionalEditorialFields = {
+  links: productLinksSchema.optional(),
   name: requiredText('Name', 120).optional(),
   summary: requiredText('Summary', 240).optional(),
   description: requiredText('Description', 5_000).optional(),
@@ -194,6 +219,7 @@ const draftProductSchema = z
 
 const publishedProductSchema = z
   .object({
+    links: productLinksSchema.optional(),
     id: identifierSchema,
     slug: identifierSchema,
     status: z.literal('published'),
