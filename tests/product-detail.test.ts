@@ -98,7 +98,7 @@ describe('product detail route', () => {
     expect(component).toContain('<ProductGallery product={product} />');
     expect(component).toContain('data-analytics-view-item');
     expect(component).toContain('createProductAnalyticsData');
-    expect(component).toContain('<ProductConversionPanel product={product} />');
+    expect(component).toContain('<ProductConversionPanel product={product}>');
     expect(component).toContain('<ProductPersonalization product={product} />');
     const relatedPage = readFileSync(
       'src/pages/productos/[slug].astro',

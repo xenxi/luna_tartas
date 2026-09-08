@@ -23,6 +23,20 @@
   src: url('../assets/fonts/dm-sans-latin-variable.woff2') format('woff2');
 }
 
+/* Product desktop follows the current home art direction. */
+@media (min-width: 64rem) {
+  body.product-reference {
+    --color-canvas: #fffaf9;
+    --color-text: #151c2e;
+    --color-text-muted: #485263;
+    --color-action: #d51f5c;
+    --color-action-hover: #b9184d;
+    --color-accent: #ed3b78;
+    --color-decoration-accent: #fa4482;
+    --color-border: #f5d4df;
+  }
+}
+
 :root {
   color-scheme: light;
 

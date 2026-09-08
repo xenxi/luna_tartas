@@ -13,7 +13,11 @@ const { currentPath } = Astro.props;
 ---
 
 <header
-  class:list={['site-header', { 'site-header--home': currentPath === '/' }]}
+  class:list={[
+    'site-header',
+    'site-header--home',
+    { 'site-header--overlay': currentPath === '/' },
+  ]}
 >
   <div class="site-header__inner visual-container">
     <BrandHomeLink location="header" />

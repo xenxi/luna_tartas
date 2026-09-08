@@ -22,6 +22,10 @@ const mobileNavigation = readFileSync(
 );
 const brand = readFileSync('src/components/site/BrandHomeLink.astro', 'utf8');
 const styles = readFileSync('src/components/site/site.css', 'utf8');
+const homeShellStyles = readFileSync(
+  'src/components/site/home-shell.css',
+  'utf8',
+);
 const searchTrigger = readFileSync(
   'src/components/search/SearchTrigger.astro',
   'utf8',
@@ -140,7 +144,18 @@ describe('public site shell', () => {
     expect(header).toContain('class="site-header__divider" aria-hidden="true"');
     expect(header).toContain('preserveAspectRatio="none"');
     expect(header).toContain('focusable="false"');
-    expect(header).toContain("'site-header--home': currentPath === '/'");
+    expect(header).toContain("'site-header--home'");
+    expect(header).toContain("'site-header--overlay': currentPath === '/'");
+    expect(footer).toContain('class="site-footer site-footer--home"');
+    expect(layout).toContain("import '../components/site/home-shell.css';");
+    expect(homeShellStyles).toContain(
+      '.site-header--home .site-header__inner.visual-container',
+    );
+    expect(homeShellStyles).toContain('.site-footer--home .site-footer__inner');
+    expect(homeShellStyles).toContain('li:first-child');
+    expect(homeShellStyles).toContain('li.primary-navigation__pending');
+    expect(homeShellStyles).not.toContain('calc(50% + 7 * var(--home-unit))');
+    expect(homeShellStyles).not.toContain('calc(50% - 7 * var(--home-unit))');
     expect(header).toContain('class="site-header__divider-fill"');
     expect(header).toContain('variant="heart"');
     expect(styles).toContain('.site-header__divider-line');

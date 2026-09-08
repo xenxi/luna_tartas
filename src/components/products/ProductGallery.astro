@@ -4,6 +4,7 @@ import { catalogImageMap } from '../catalog/catalog-images';
 import { buildMediaProjection } from '../catalog/media-projection';
 import ResponsiveMedia from '../catalog/ResponsiveMedia.astro';
 import './product-gallery.css';
+import FavoriteButton from '../favorites/FavoriteButton.astro';
 
 interface Props {
   product: PublishedProduct;
@@ -42,6 +43,9 @@ const [cover, ...alternatives] = media;
   data-product-gallery
 >
   <div class="product-gallery__stage">
+    <div class="product-gallery__favorite">
+      <FavoriteButton productId={product.slug} productName={product.name} />
+    </div>
     <div class="product-gallery__slides">
       {
         media.map((item, index) => (

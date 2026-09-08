@@ -19,6 +19,7 @@ import FavoritesClient from '../components/favorites/FavoritesClient.astro';
 import '../components/site/site.css';
 import '../styles/global.css';
 import '../styles/editorial.css';
+import '../components/site/home-shell.css';
 
 interface Props {
   title: string;
@@ -85,7 +86,12 @@ const metadata = createPageMetadata({
     <meta name="twitter:image" content={metadata.image.url} />
     <meta name="twitter:image:alt" content={metadata.image.alt} />
   </head>
-  <body class:list={{ 'home-reference': canonicalPath === '/' }}>
+  <body
+    class:list={{
+      'home-reference': canonicalPath === '/',
+      'product-reference': pageType === 'product',
+    }}
+  >
     <DecorativeBackdrop />
     <a class="skip-link" href="#main-content">Saltar al contenido principal</a>
     <SiteHeader currentPath={Astro.url.pathname} />

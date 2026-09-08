@@ -13,7 +13,16 @@ import ProductGallery from './ProductGallery.astro';
 import ProductPersonalization from './ProductPersonalization.astro';
 import ProductLinks from './ProductLinks.astro';
 import './product-detail.css';
+import './product-reference.css';
 import { withBasePath } from '../../lib/site/urls';
+import { Image } from 'astro:assets';
+import moon from '../../assets/home/luna-nube.png';
+import cloud from '../../assets/home/custom-idea/nube-azul.png';
+import pinkCloud from '../../assets/home/custom-idea/nube-rosa.png';
+import heart from '../../assets/home/heart-watercolor.png';
+import { productDetailContent } from '../../content/product-detail';
+import CategoryBenefits from '../taxonomies/CategoryBenefits.astro';
+import Ornament from '../ui/Ornament.astro';
 
 interface Props {
   product: PublishedProduct;
@@ -51,9 +60,55 @@ const taxonomyGroups = [
     data-analytics-category={analytics.category}
   >
     <div class="product-detail__hero">
-      <ProductGallery product={product} />
+      <div class="product-detail__visual">
+        <ProductGallery product={product} />
+        <p class="product-detail__gallery-hint">
+          {productDetailContent.galleryHint}
+        </p>
+        <div class="product-detail__visual-benefits"><CategoryBenefits /></div>
+        <div class="product-detail__signature" aria-hidden="true">
+          <Image
+            src={moon}
+            alt="Luna decorativa sobre una nube rosa."
+            aria-hidden="true"
+            width={220}
+            format="webp"
+            loading="lazy"
+            class="product-detail__moon"
+          />
+          <p>{productDetailContent.signature}</p>
+          <Image
+            src={pinkCloud}
+            alt="Nube rosa decorativa."
+            aria-hidden="true"
+            width={180}
+            format="webp"
+            loading="lazy"
+            class="product-detail__pink-cloud"
+          />
+          <Image
+            src={heart}
+            alt="Corazón decorativo en acuarela."
+            aria-hidden="true"
+            width={50}
+            format="webp"
+            loading="lazy"
+            class="product-detail__signature-heart"
+          />
+          <Ornament variant="sparkle" tone="peach" />
+          <Ornament variant="heart" />
+        </div>
+      </div>
 
       <div class="product-detail__intro">
+        <Image
+          src={cloud}
+          alt="Nube azul decorativa."
+          aria-hidden="true"
+          width={200}
+          format="webp"
+          class="product-detail__cloud"
+        />
         <header class="product-detail__header">
           <p class="product-detail__eyebrow">
             HECHO A MANO, CON AMOR
@@ -63,17 +118,47 @@ const taxonomyGroups = [
               ></path>
             </svg>
           </p>
-          <h1>{product.name}</h1>
+          <div class="product-detail__title">
+            <h1>{product.name}</h1><Ornament variant="heart" />
+          </div>
           <p class="product-detail__summary">{product.summary}</p>
         </header>
 
-        <ProductConversionPanel product={product} />
+        <ProductConversionPanel product={product}>
+          <div class="product-detail__intro-benefits"><CategoryBenefits /></div>
+          <ProductPersonalization product={product} />
+        </ProductConversionPanel>
         <ProductLinks links={product.links} />
-        <ProductPersonalization product={product} />
       </div>
     </div>
 
     <div class="product-detail__body">
+      <nav
+        class="product-detail__information-nav"
+        aria-label="Información del producto"
+      >
+        <a href="#product-description-title"
+          ><Ornament variant="heart" />{
+            productDetailContent.descriptionLabel
+          }</a
+        >
+        {
+          product.customization.kind === 'available' && (
+            <a href="#product-customization-title">
+              {productDetailContent.personalizationLabel}
+            </a>
+          )
+        }
+        <a href={withBasePath('/envios-y-entregas/', import.meta.env.BASE_URL)}
+          >{productDetailContent.deliveryLabel}</a
+        >
+        <a
+          href={withBasePath(
+            '/preguntas-frecuentes/',
+            import.meta.env.BASE_URL,
+          )}>{productDetailContent.questionsLabel}</a
+        >
+      </nav>
       <section
         class="product-detail__story"
         aria-labelledby="product-description-title"
