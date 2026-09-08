@@ -85,6 +85,10 @@ describe('product detail route', () => {
       'src/components/products/product-gallery.css',
       'utf8',
     );
+    const referenceStyles = readFileSync(
+      'src/components/products/product-reference.css',
+      'utf8',
+    );
     const responsiveMedia = readFileSync(
       'src/components/catalog/ResponsiveMedia.astro',
       'utf8',
@@ -150,6 +154,12 @@ describe('product detail route', () => {
       '.product-gallery__lightbox-viewer--single',
     );
     expect(galleryStyles).toContain('touch-action: none');
+    expect(galleryStyles).toContain(
+      '.product-gallery__slide .responsive-media img',
+    );
+    expect(galleryStyles).toContain('object-position: center');
+    expect(referenceStyles).toContain('object-fit: cover');
+    expect(referenceStyles).toContain('object-position: center');
     expect(galleryStyles).toContain('@media (max-width: 39.99rem)');
     expect(responsiveMedia).toContain('width={media.width}');
     expect(responsiveMedia).toContain('height={media.height}');

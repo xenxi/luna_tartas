@@ -131,7 +131,8 @@
   }
   .product-gallery__slide .responsive-media img {
     aspect-ratio: auto;
-    object-fit: contain;
+    object-fit: cover;
+    object-position: center;
     background: var(--color-surface);
   }
   .product-gallery__alternatives {
@@ -151,6 +152,8 @@
   }
   .product-gallery__thumbnail .responsive-media img {
     aspect-ratio: 1;
+    object-fit: cover;
+    object-position: center;
   }
   .product-gallery__thumbnail[aria-current='true'] {
     border-color: var(--color-accent);

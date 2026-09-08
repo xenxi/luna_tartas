@@ -46,6 +46,7 @@
 .product-gallery__slide .responsive-media img {
   aspect-ratio: 1 / 1;
   object-fit: cover;
+  object-position: center;
   transition: transform var(--duration-slow) var(--ease-standard);
 }
 
@@ -149,6 +150,7 @@
 .product-gallery__thumbnail .responsive-media img {
   aspect-ratio: 1.2 / 1;
   object-fit: cover;
+  object-position: center;
 }
 
 .product-gallery__status {
@@ -468,6 +470,7 @@
 
 .product-gallery__lightbox-thumbnail img {
   object-fit: cover;
+  object-position: center;
 }
 
 .product-gallery__lightbox-thumbnail > span {
