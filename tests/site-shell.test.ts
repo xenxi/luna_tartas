@@ -26,6 +26,7 @@ const homeShellStyles = readFileSync(
   'src/components/site/home-shell.css',
   'utf8',
 );
+const editorialStyles = readFileSync('src/styles/editorial.css', 'utf8');
 const searchTrigger = readFileSync(
   'src/components/search/SearchTrigger.astro',
   'utf8',
@@ -130,6 +131,11 @@ describe('public site shell', () => {
     expect(styles).toContain('position: fixed');
     expect(styles).toContain(
       'grid-template-columns: repeat(5, minmax(0, 1fr))',
+    );
+    expect(editorialStyles).not.toContain('body .mobile-navigation');
+    expect(editorialStyles).not.toContain("content: '☰'");
+    expect(editorialStyles).toMatch(
+      /@media \(max-width: 47\.99rem\) \{[\s\S]*?body \.site-menu \{\s*display: none;/,
     );
   });
 
