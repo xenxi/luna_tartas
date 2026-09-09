@@ -1,11 +1,13 @@
 export const categoryIndexContent = Object.freeze({
   hero: Object.freeze({
-    eyebrow: 'EXPLORA POR CATEGORÍAS',
+    eyebrow: 'EXPLORA NUESTRAS CATEGORÍAS',
     title: 'Encuentra el regalo perfecto',
     claim: 'Hecho a mano, con amor',
     copy: 'Regalos únicos y personalizados para cada historia, cada persona y cada ocasión.',
     imageAlt:
-      'Tarta de pañales personalizada en tonos rosas con lazo, regalo y bloques de madera.',
+      'Tarta de pañales personalizada con mariposa rosa, regalos y bloques de madera ABC.',
+    actionLabel: 'Ver todos los productos',
+    note: 'Regalos que cuentan historias',
   }),
   listing: Object.freeze({
     title: 'Nuestras categorías',
@@ -14,14 +16,9 @@ export const categoryIndexContent = Object.freeze({
   }),
   benefits: Object.freeze([
     Object.freeze({
-      icon: 'hands',
+      icon: 'heart',
       title: 'Hecho a mano',
       copy: 'con amor',
-    }),
-    Object.freeze({
-      icon: 'pencil',
-      title: 'Personalizado',
-      copy: 'para ti',
     }),
     Object.freeze({
       icon: 'quality',
@@ -32,6 +29,11 @@ export const categoryIndexContent = Object.freeze({
       icon: 'delivery',
       title: 'Envío cuidadoso',
       copy: 'y seguro',
+    }),
+    Object.freeze({
+      icon: 'gift',
+      title: 'Regalos únicos',
+      copy: 'y personalizados',
     }),
   ]),
 });

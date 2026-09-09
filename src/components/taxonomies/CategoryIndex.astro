@@ -1,6 +1,8 @@
 ---
 import { Image, Picture } from 'astro:assets';
 import heroImage from '../../assets/categories/categories-hero.png';
+import cloudImage from '../../assets/home/custom-idea/nube-azul.png';
+import pinkCloudImage from '../../assets/home/custom-idea/nube-rosa.png';
 import moonImage from '../../assets/home/luna-nube.png';
 import heartWatercolor from '../../assets/home/heart-watercolor.png';
 import type { Catalog } from '../../lib/catalog/domain/model';
@@ -12,7 +14,10 @@ import CustomIdeaCta from '../home/CustomIdeaCta.astro';
 import CategoryCard from './CategoryCard.astro';
 import CategoryBenefits from './CategoryBenefits.astro';
 import MobileHeroWave from '../catalog/MobileHeroWave.astro';
+import ActionLink from '../ui/ActionLink.astro';
+import { routes } from '../../lib/catalog/domain/routes';
 import './category-index.css';
+import './category-index-desktop.css';
 
 interface Props {
   catalog: Catalog;
@@ -33,8 +38,8 @@ const listing = projectTaxonomyIndex(catalog, 'category', 'productos');
       alt={categoryIndexContent.hero.imageAlt}
       formats={['avif', 'webp']}
       fallbackFormat="jpg"
-      widths={[768, 1024, 1440, 1672]}
-      sizes="(max-width: 47.99rem) 360vw, (min-width: 64rem) min(92vw, 93.75rem), calc(100vw - 2rem)"
+      widths={[768, 1024, 1440, 1774]}
+      sizes="(min-width: 48rem) min(100vw, 90rem), 360vw"
       loading="eager"
       decoding="async"
       fetchpriority="high"
@@ -62,7 +67,37 @@ const listing = projectTaxonomyIndex(catalog, 'category', 'productos');
       <p class="category-index-hero__description">
         {categoryIndexContent.hero.copy}
       </p>
+      <div class="category-index-hero__action">
+        <ActionLink href={routes.products()} variant="secondary">
+          {categoryIndexContent.hero.actionLabel}
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path d="M5 12h14m-5-5 5 5-5 5"></path>
+          </svg>
+        </ActionLink>
+      </div>
     </div>
+    <p class="category-index-hero__note" aria-hidden="true">
+      {categoryIndexContent.hero.note}<span>♡</span>
+    </p>
+    <Image
+      src={cloudImage}
+      width={180}
+      format="webp"
+      alt="Nube azul decorativa."
+      aria-hidden="true"
+      class="category-index-hero__cloud"
+    />
+    <svg
+      class="category-index-hero__wave"
+      viewBox="0 0 1000 48"
+      preserveAspectRatio="none"
+      aria-hidden="true"
+      focusable="false"
+    >
+      <path
+        d="M0 28Q42 4 85 39Q127 7 171 35Q196 24 224 41Q283-5 341 38Q363 46 384 30Q419 4 455 30Q475 10 503 32Q550 6 591 34Q621 19 652 40Q685 49 714 30Q761 7 810 39Q839 45 861 29Q889 10 914 32Q959-7 1000 7V48H0Z"
+      ></path>
+    </svg>
     <Image
       src={moonImage}
       alt="Luna sobre una nube decorativa."
@@ -81,6 +116,33 @@ const listing = projectTaxonomyIndex(catalog, 'category', 'productos');
         aria-labelledby="category-index-listing-title"
       >
         <header>
+          <Image
+            src={pinkCloudImage}
+            width={180}
+            format="webp"
+            alt="Nube rosa decorativa."
+            aria-hidden="true"
+            loading="lazy"
+            class="category-index-listing__pink-cloud"
+          />
+          <Image
+            src={cloudImage}
+            width={180}
+            format="webp"
+            alt="Nube azul decorativa."
+            aria-hidden="true"
+            loading="lazy"
+            class="category-index-listing__cloud"
+          />
+          <Image
+            src={moonImage}
+            width={220}
+            format="webp"
+            alt="Luna sobre una nube decorativa."
+            aria-hidden="true"
+            loading="lazy"
+            class="category-index-listing__moon"
+          />
           <h2 id="category-index-listing-title">
             {categoryIndexContent.listing.title}
             <Image

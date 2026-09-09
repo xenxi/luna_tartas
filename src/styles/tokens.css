@@ -57,6 +57,23 @@
   }
 }
 
+/* Category reference colors are scoped to the content, outside the shared shell. */
+@media (min-width: 48rem) {
+  .category-index-page {
+    --color-text: #191c25;
+    --color-text-muted: #454b59;
+    --color-action: #ce0752;
+    --color-action-hover: #ac0645;
+    --color-accent: #fa367b;
+    --color-border: #f2adbf;
+    --color-canvas: #fffdfc;
+    --color-surface: #fffdfc;
+    --color-surface-warm: #fdf0f3;
+    --color-surface-calm: #edf3fa;
+    --color-surface-soft: #fff1e7;
+  }
+}
+
 :root {
   color-scheme: light;
 

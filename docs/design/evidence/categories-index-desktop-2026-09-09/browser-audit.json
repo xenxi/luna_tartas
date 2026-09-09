@@ -1,0 +1,102 @@
+{
+  "widths": [
+    {
+      "width": 2242,
+      "scrollWidth": 2242,
+      "cards": 4,
+      "missingImages": [],
+      "heroImage": "http://127.0.0.1:4321/_image/?href=%2F%40fs%2FC%3A%2Flab%2Frepos%2Fluna_tartas%2Fsrc%2Fassets%2Fcategories%2Fcategories-hero.png%3ForigWidth%3D1774%26origHeight%3D887%26origFormat%3Dpng&w=1440&h=720&f=avif",
+      "heroTop": 0,
+      "headerPosition": "absolute",
+      "headerHeight": 144.9375,
+      "breadcrumbTop": 155.46875
+    },
+    {
+      "width": 1440,
+      "scrollWidth": 1440,
+      "cards": 4,
+      "missingImages": [],
+      "heroImage": "http://127.0.0.1:4321/_image/?href=%2F%40fs%2FC%3A%2Flab%2Frepos%2Fluna_tartas%2Fsrc%2Fassets%2Fcategories%2Fcategories-hero.png%3ForigWidth%3D1774%26origHeight%3D887%26origFormat%3Dpng&w=1440&h=720&f=avif",
+      "heroTop": 0,
+      "headerPosition": "absolute",
+      "headerHeight": 144.9375,
+      "breadcrumbTop": 155.46875
+    },
+    {
+      "width": 991,
+      "scrollWidth": 991,
+      "cards": 4,
+      "missingImages": [],
+      "heroImage": "http://127.0.0.1:4321/_image/?href=%2F%40fs%2FC%3A%2Flab%2Frepos%2Fluna_tartas%2Fsrc%2Fassets%2Fcategories%2Fcategories-hero.png%3ForigWidth%3D1774%26origHeight%3D887%26origFormat%3Dpng&w=1440&h=720&f=avif",
+      "heroTop": 0,
+      "headerPosition": "absolute",
+      "headerHeight": 99.734375,
+      "breadcrumbTop": 106.984375
+    },
+    {
+      "width": 807,
+      "scrollWidth": 807,
+      "cards": 4,
+      "missingImages": [],
+      "heroImage": "http://127.0.0.1:4321/_image/?href=%2F%40fs%2FC%3A%2Flab%2Frepos%2Fluna_tartas%2Fsrc%2Fassets%2Fcategories%2Fcategories-hero.png%3ForigWidth%3D1774%26origHeight%3D887%26origFormat%3Dpng&w=1440&h=720&f=avif",
+      "heroTop": 0,
+      "headerPosition": "absolute",
+      "headerHeight": 81.21875,
+      "breadcrumbTop": 87.125
+    },
+    {
+      "width": 768,
+      "scrollWidth": 768,
+      "cards": 4,
+      "missingImages": [],
+      "heroImage": "http://127.0.0.1:4321/_image/?href=%2F%40fs%2FC%3A%2Flab%2Frepos%2Fluna_tartas%2Fsrc%2Fassets%2Fcategories%2Fcategories-hero.png%3ForigWidth%3D1774%26origHeight%3D887%26origFormat%3Dpng&w=1440&h=720&f=avif",
+      "heroTop": 0,
+      "headerPosition": "absolute",
+      "headerHeight": 77.28125,
+      "breadcrumbTop": 82.921875
+    },
+    {
+      "width": 390,
+      "scrollWidth": 390,
+      "cards": 4,
+      "missingImages": [],
+      "heroImage": "http://127.0.0.1:4321/_image/?href=%2F%40fs%2FC%3A%2Flab%2Frepos%2Fluna_tartas%2Fsrc%2Fassets%2Fcategories%2Fcategories-hero.png%3ForigWidth%3D1774%26origHeight%3D887%26origFormat%3Dpng&w=1440&h=720&f=avif",
+      "heroTop": 148,
+      "headerPosition": "relative",
+      "headerHeight": 108,
+      "breadcrumbTop": 108
+    },
+    {
+      "width": 320,
+      "scrollWidth": 320,
+      "cards": 4,
+      "missingImages": [],
+      "heroImage": "http://127.0.0.1:4321/_image/?href=%2F%40fs%2FC%3A%2Flab%2Frepos%2Fluna_tartas%2Fsrc%2Fassets%2Fcategories%2Fcategories-hero.png%3ForigWidth%3D1774%26origHeight%3D887%26origFormat%3Dpng&w=1440&h=720&f=avif",
+      "heroTop": 148,
+      "headerPosition": "relative",
+      "headerHeight": 108,
+      "breadcrumbTop": 108
+    }
+  ],
+  "errors": [],
+  "accessibility": [],
+  "linksWithoutJs": [
+    {
+      "text": "Tartas de pañales",
+      "href": "/categorias/tartas-de-panales/"
+    },
+    {
+      "text": "Papelería personalizada",
+      "href": "/categorias/papeleria-personalizada/"
+    },
+    {
+      "text": "Láminas personalizadas",
+      "href": "/categorias/laminas-personalizadas/"
+    },
+    {
+      "text": "Packs personalizados",
+      "href": "/categorias/packs-personalizados/"
+    }
+  ],
+  "productsCtaWithoutJs": true
+}

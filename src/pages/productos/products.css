@@ -68,7 +68,10 @@
 
   .products-page > .catalog-hero {
     inline-size: 100%;
-    min-block-size: clamp(25rem, 34vw, 33rem);
+    min-block-size: calc(
+      var(--site-header-desktop-height) + clamp(25rem, 34vw, 33rem)
+    );
+    padding-block-start: var(--site-header-desktop-height);
     border: 0;
     border-radius: 0;
     background: var(--color-surface-warm);
@@ -148,7 +151,7 @@
     position: absolute;
     z-index: 1;
     display: block;
-    top: 2%;
+    top: calc(var(--site-header-desktop-height) + 2%);
     right: 3%;
     width: 7ch;
     color: var(--color-action);
@@ -170,7 +173,7 @@
     position: absolute;
     z-index: 1;
     display: block;
-    top: 7%;
+    top: calc(var(--site-header-desktop-height) + 7%);
     left: 45%;
     color: var(--color-action);
     font-size: 3.25rem;

@@ -1,5 +1,9 @@
 /* The approved home shell is the single header and footer presentation. */
 @media (min-width: 48rem) {
+  :root {
+    --site-header-desktop-height: calc(90 * min(0.109409vw, 1.5755px));
+  }
+
   .site-header--home,
   .site-footer--home {
     --home-unit: min(0.109409vw, 1.5755px);
@@ -23,6 +27,7 @@
   .site-header--home.site-header--overlay {
     position: absolute;
     inset: 0 0 auto;
+    background: transparent;
   }
 
   .site-header--home::before {
@@ -35,7 +40,7 @@
     align-items: flex-start;
     width: calc(824 * var(--home-unit));
     min-height: 0;
-    min-block-size: calc(90 * var(--home-unit));
+    min-block-size: var(--site-header-desktop-height);
     padding: 0;
   }
 
