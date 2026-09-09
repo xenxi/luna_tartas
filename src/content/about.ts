@@ -1,17 +1,19 @@
 export const aboutContent = Object.freeze({
   hero: Object.freeze({
-    eyebrow: 'Sobre Luna',
+    eyebrow: 'Nuestra esencia',
     title: 'Hacemos lo que nos gusta',
     script: 'detrás de cada detalle hay una historia',
     paragraphs: Object.freeze([
       'LUNA nace de algo muy sencillo: nos encanta crear cosas bonitas.',
       'Cada tarta, cada lámina, cada invitación y cada pequeño detalle se prepara de forma artesanal, dedicándole tiempo, cuidado y mucho cariño.',
-      'Aquí no hay grandes cadenas de producción ni productos impersonales. Hay ideas, papeles, colores, materiales, pruebas, manos trabajando… y muchas ganas de que el resultado sea especial.',
+      'Aquí no hay grandes cadenas de producción ni productos impersonales. Hay ideas, papeles, colores, materiales preciosos, manos trabajando y muchas ganas de que el resultado sea especial.',
     ]),
   }),
   values: Object.freeze({
+    eyebrow: 'Lo que nos mueve',
     title: 'Nuestros valores',
-    intro: 'Lo que ponemos en cada detalle.',
+    intro:
+      'Creemos en la magia de los pequeños detalles. Estos son los principios que guían todo lo que hacemos.',
     items: Object.freeze([
       Object.freeze({
         icon: 'hands',
@@ -31,61 +33,70 @@ export const aboutContent = Object.freeze({
       Object.freeze({
         icon: 'flower',
         title: 'Cercano y sincero',
-        copy: 'Te acompañamos en cada paso para que todo se sienta fácil y especial.',
+        copy: 'Te acompañamos en cada paso para que todo sea como tú quieres.',
       }),
     ]),
   }),
   stories: Object.freeze([
     Object.freeze({
       id: 'hecho-a-mano',
+      eyebrow: 'Más que un regalo',
+      note: 'Hecho a mano con amor ♡',
       title: 'Hecho a mano, de verdad',
       paragraphs: Object.freeze([
-        'Gran parte de lo que hacemos empieza desde cero.',
-        'Cortamos, montamos, combinamos, personalizamos y cuidamos cada detalle a mano. Por eso dos encargos pueden parecerse, pero cada uno acaba teniendo algo propio.',
-        'Nos gusta poder adaptar colores, nombres, mensajes y pequeños detalles para que cada regalo tenga sentido para la persona que lo va a recibir.',
+        'Cada pieza que sale de nuestro taller es única, como la persona que la recibe.',
+        'Cortamos, montamos, combinamos, personalizamos y cuidamos cada detalle a mano. Por eso dos encargos nunca son iguales, aunque cada uno de ellos lleve el mismo cariño.',
       ]),
       quote:
         'Porque lo especial no tiene por qué ser perfecto. Tiene que sentirse especial.',
     }),
     Object.freeze({
       id: 'nos-hace-felices',
-      title: 'Nos hace felices crear. Más aún que os guste.',
+      eyebrow: 'Detalles que cuentan',
+      note: 'Detalles únicos para personas únicas ♡',
+      title: 'Ideas que dejan huella',
       paragraphs: Object.freeze([
-        'LUNA empezó porque disfrutamos haciendo este tipo de cosas.',
-        'Y sigue creciendo por algo todavía mejor: ver que aquello que hemos preparado con tanta ilusión acaba formando parte de un nacimiento, un cumpleaños, una celebración, una sorpresa o simplemente un gesto bonito hacia alguien.',
-        'Cuando alguien nos escribe para enseñarnos dónde ha colocado una lámina, para contarnos que un regalo ha gustado o para confiarnos una nueva idea, sentimos que todo el tiempo dedicado ha merecido la pena.',
+        'Una libreta personalizada, una invitación, una lámina o una tarta de pañales… cualquier detalle puede convertirse en un recuerdo inolvidable.',
+        'Nos encanta imaginar, diseñar y crear piezas que acompañen los momentos más importantes de tu vida.',
       ]),
+      quote: 'Pequeños detalles que guardan grandes historias',
     }),
     Object.freeze({
       id: 'cada-historia',
-      title: 'Cada detalle tiene una historia',
+      eyebrow: 'Personalizamos momentos',
+      note: '',
+      title: 'Para cada ocasión, una historia',
       paragraphs: Object.freeze([
-        'No queremos hacer regalos para cualquiera.',
-        'Queremos hacer ese regalo que pensaste para alguien en concreto.',
-        'Por eso nos encantan las ideas diferentes, los encargos personalizados y esos pequeños detalles que transforman algo sencillo en algo muy vuestro.',
+        'Nos inspiran las cosas importantes: un nacimiento, un cumpleaños, una Primera Comunión, un “gracias” o simplemente un “te quiero”.',
+        'Por eso, en cada categoría encontrarás ideas pensadas para emocionar y hacer que cada ocasión sea aún más especial.',
       ]),
       closing:
         'Si tienes una idea, aunque todavía no sepas exactamente cómo hacerla realidad, cuéntanosla. Nos encantará crearla contigo.',
     }),
   ]),
   process: Object.freeze({
-    title: 'Así trabajamos',
+    title: 'Así trabajamos en Luna',
     intro: 'Un proceso sencillo, hecho con mimo.',
     steps: Object.freeze([
       Object.freeze({
         number: '01',
         title: 'Nos cuentas tu idea',
-        copy: 'Hablamos contigo para conocer lo que imaginas y ayudarte a darle forma.',
+        copy: 'Hablamos de la ocasión, tus gustos y todos los detalles importantes.',
       }),
       Object.freeze({
         number: '02',
-        title: 'Lo creamos a mano',
-        copy: 'Preparamos cada detalle con materiales de calidad y mucho cariño.',
+        title: 'La hacemos realidad',
+        copy: 'Preparamos cada pieza a mano, con materiales de calidad.',
       }),
       Object.freeze({
         number: '03',
-        title: 'Lo entregamos con amor',
-        copy: 'Cuidamos cada envío para que llegue perfecto y listo para emocionar.',
+        title: 'La preparamos con mimo',
+        copy: 'Cuidamos cada detalle del embalaje.',
+      }),
+      Object.freeze({
+        number: '04',
+        title: 'Lista para emocionar',
+        copy: 'Tu regalo, listo para llegar a su destino.',
       }),
     ]),
   }),
@@ -93,4 +104,6 @@ export const aboutContent = Object.freeze({
     title: 'LUNA',
     copy: 'Pensado con cariño. Creado a mano.',
   }),
+  galleryTitle: 'Un poco de nuestra magia',
+  heroNote: 'Pequeños detalles para grandes momentos ♡',
 });

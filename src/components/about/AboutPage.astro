@@ -1,18 +1,23 @@
 ---
 import { Image, Picture } from 'astro:assets';
-import aboutHeroImage from '../../assets/about/about-hero-background.png';
+import aboutHeroImage from '../../assets/about/about-hero-reference.png';
 import stepChat from '../../assets/home/trust-steps/01-chat.png';
 import stepHands from '../../assets/home/trust-steps/02-manos.png';
 import stepHeart from '../../assets/home/trust-steps/03-corazon.png';
 import cakePink from '../../assets/home/work-showcase/tarta-rosa-completa.png';
 import cakeBlue from '../../assets/home/work-showcase/tarta-azul-completa.png';
-import stationeryPack from '../../assets/catalog/papeleria/pack-lamina-marcapaginas-libreta-a6.webp';
-import luciaPrint from '../../assets/catalog/laminas/lamina-natalicia-lucia.jpeg';
+import stationeryPack from '../../assets/catalog/papeleria/invitacion-marcapaginas-sofia.webp';
+import communion from '../../assets/catalog/papeleria/etiquetas-comunion-claudia.jpeg';
+import moon from '../../assets/home/custom-idea/luna-target.png';
+import cloud from '../../assets/home/custom-idea/nube-azul.png';
+import flowers from '../../assets/site/footer-magnolia.png';
+import gift from '../../assets/home/custom-idea/imagen-central-target.png';
 import emmaBookmark from '../../assets/catalog/laminas/invitacion-marcapaginas-emma.jpeg';
 import { aboutContent } from '../../content/about';
 import Breadcrumb from '../navigation/Breadcrumb.astro';
 import Ornament from '../ui/Ornament.astro';
 import './about-page.css';
+import './about-reference.css';
 
 const valueIcons = {
   hands:
@@ -24,13 +29,14 @@ const valueIcons = {
     '<path d="M6 21c6.5-5.4 8.1-10.7 9-18M9.5 15.5c-2.9.3-4.7-1-5.5-3.4 2.8-.7 4.8.4 5.5 3.4Zm3.8-5.2c2.9.1 4.6-1.3 5.2-3.8-2.9-.5-4.8.8-5.2 3.8Zm-1.6 4.3c3 .2 4.7 1.7 5.2 4.2-2.9.4-4.7-.9-5.2-4.2Z"/>',
 } as const;
 
-const stepImages = [stepChat, stepHands, stepHeart] as const;
-const storyMedia = [cakePink, stationeryPack, luciaPrint] as const;
+const stepImages = [stepChat, null, stepHands, stepHeart] as const;
+const storyMedia = [cakePink, stationeryPack, communion] as const;
 const galleryMedia = [
   cakePink,
   emmaBookmark,
-  luciaPrint,
+  communion,
   stationeryPack,
+  gift,
   cakeBlue,
 ] as const;
 ---
@@ -40,7 +46,7 @@ const galleryMedia = [
     <div class="about-hero__background" aria-hidden="true">
       <Picture
         src={aboutHeroImage}
-        alt="Fondo rosado con un regalo artesanal, flores y una luna sonriente."
+        alt="Regalo con lazo rosa entre flores y una manta de punto."
         formats={['avif', 'webp']}
         fallbackFormat="jpg"
         widths={[480, 768, 1080, 1440, 1920]}
@@ -70,36 +76,59 @@ const galleryMedia = [
         </div>
       </div>
     </div>
+    <div class="about-hero__note about-decoration" aria-hidden="true">
+      <span>{aboutContent.heroNote}</span>
+      <Image
+        src={moon}
+        alt="Luna decorativa sobre una nube rosa."
+        width={180}
+        format="webp"
+      />
+    </div>
+    <Ornament
+      variant="heart"
+      tone="accent"
+      class="about-hero__heart about-decoration"
+    />
     <div class="about-hero__transition" aria-hidden="true">
       <svg
         class="about-hero__transition-cutout"
-        viewBox="0 0 1440 100"
+        viewBox="0 0 914 70"
         preserveAspectRatio="none"
         focusable="false"
       >
         <path
-          d="M0 36c150-34 290 20 446 13 117-5 192-29 285-25 106 5 177 30 297 26 153-5 260-32 412-9v59H0Z"
+          d="M0 12C68 39 139 43 211 25S321 28 370 35C440 4 497 4 549 23S616 0 672 13S748 19 803 18S872 26 914 14V70H0Z"
+        ></path>
+        <path
+          class="about-hero__transition-edge"
+          d="M0 12C68 39 139 43 211 25S321 28 370 35C440 4 497 4 549 23S616 0 672 13S748 19 803 18S872 26 914 14"
         ></path>
       </svg>
-      <svg
-        class="about-hero__transition-line"
-        viewBox="0 0 1440 68"
-        preserveAspectRatio="none"
-        focusable="false"
-      >
-        <path d="M0 36c150-34 290 20 446 13 117-5 192-29 244-25"></path>
-        <path d="M750 26c91 8 163 28 281 24 153-5 260-32 412-9"></path>
-      </svg>
-      <Ornament
-        variant="heart"
-        tone="accent"
-        class="about-hero__transition-heart"
-      />
     </div>
   </section>
 
   <section class="about-values" aria-labelledby="values-title">
+    <Image
+      src={cloud}
+      alt="Nube azul de acuarela decorativa."
+      aria-hidden="true"
+      width={180}
+      format="webp"
+      loading="lazy"
+      class="about-values__cloud about-decoration"
+    />
+    <Image
+      src={moon}
+      alt="Luna decorativa sobre una nube rosa."
+      aria-hidden="true"
+      width={180}
+      format="webp"
+      loading="lazy"
+      class="about-values__moon about-decoration"
+    />
     <header class="about-section-heading">
+      <p class="about-eyebrow">{aboutContent.values.eyebrow} ♡</p>
       <h2 id="values-title">
         {aboutContent.values.title}<Ornament variant="heart" tone="accent" />
       </h2>
@@ -143,7 +172,7 @@ const galleryMedia = [
                     ? 'Tarta de pañales rosa preparada como regalo.'
                     : index === 1
                       ? 'Papelería personalizada preparada a mano.'
-                      : 'Lámina natalicia personalizada en tonos suaves.'
+                      : 'Etiquetas personalizadas para la Primera Comunión de Claudia.'
                 }
                 widths={[360, 540, 720, 900]}
                 sizes="(min-width: 64rem) 38vw, 92vw"
@@ -155,11 +184,33 @@ const galleryMedia = [
                 variant="sparkle"
                 tone={index === 1 ? 'blue' : 'peach'}
               />
+              <Ornament
+                variant="heart"
+                tone="accent"
+                class="about-story__heart about-decoration"
+              />
+              {story.note && (
+                <figcaption class="about-story__note about-decoration">
+                  {story.note}
+                </figcaption>
+              )}
+              {index === 2 && (
+                <Image
+                  src={moon}
+                  alt="Luna decorativa sobre una nube rosa."
+                  aria-hidden="true"
+                  width={150}
+                  format="webp"
+                  loading="lazy"
+                  class="about-story__moon about-decoration"
+                />
+              )}
             </figure>
             <div class="about-story__copy">
               <p class="about-story__number" aria-hidden="true">
                 0{index + 1}
               </p>
+              <p class="about-eyebrow">{story.eyebrow} ♡</p>
               <h2>
                 {story.title}
                 <Ornament variant="heart" tone="accent" />
@@ -175,7 +226,7 @@ const galleryMedia = [
                 </p>
               ))}
               {'quote' in story && story.quote && (
-                <blockquote>{story.quote}</blockquote>
+                <blockquote>{story.quote} ♡</blockquote>
               )}
               {'closing' in story && story.closing && (
                 <p class="about-story__closing">{story.closing}</p>
@@ -185,6 +236,15 @@ const galleryMedia = [
         ))
       }
     </div>
+    <Image
+      src={flowers}
+      alt="Rama decorativa de magnolias rosas."
+      aria-hidden="true"
+      width={160}
+      format="webp"
+      loading="lazy"
+      class="about-stories__flowers about-decoration"
+    />
   </section>
 
   <section
@@ -218,15 +278,39 @@ const galleryMedia = [
                 {step.number}
               </span>
               <span class="about-process__art">
-                <Image
-                  src={stepImages[index]}
-                  alt={`Ilustración del paso ${step.number}: ${step.title}.`}
-                  width={420}
-                  height={420}
-                  format="webp"
-                  loading="lazy"
-                  decoding="async"
-                />
+                {stepImages[index] ? (
+                  <Image
+                    src={stepImages[index]!}
+                    alt={`Ilustración del paso ${step.number}: ${step.title}.`}
+                    aria-hidden="true"
+                    width={420}
+                    height={420}
+                    format="webp"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                ) : (
+                  <svg
+                    class="about-process__bulb"
+                    viewBox="0 0 100 100"
+                    fill="none"
+                    aria-hidden="true"
+                  >
+                    <circle cx="50" cy="50" r="46" fill="#e5f3fc" />
+                    <path
+                      d="M39 66c0-13-13-15-13-30a24 24 0 0 1 48 0c0 15-13 17-13 30Z"
+                      fill="#ffe4a0"
+                      stroke="#6c6471"
+                      stroke-width="2"
+                    />
+                    <path
+                      d="M40 70h20m-18 5h16m-14 5h12M46 65 41 41l9 6 9-6-5 24M50 3v-7M18 18l-7-5m70 5 7-5M15 43H6m79 0h9"
+                      stroke="#7d7782"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                    />
+                  </svg>
+                )}
               </span>
               <h3>{step.title}</h3>
               <p>{step.copy}</p>
@@ -241,6 +325,10 @@ const galleryMedia = [
     class="about-gallery visual-container"
     aria-label="Una selección de trabajos de Luna"
   >
+    <h2 class="about-gallery__title">
+      {aboutContent.galleryTitle}
+      <Ornament variant="heart" tone="accent" />
+    </h2>
     {
       galleryMedia.map((media, index) => (
         <figure
@@ -255,8 +343,9 @@ const galleryMedia = [
               [
                 'Tarta de pañales rosa personalizada.',
                 'Invitación y marcapáginas personalizados.',
-                'Lámina natalicia personalizada.',
+                'Etiquetas de Primera Comunión personalizadas.',
                 'Conjunto de papelería personalizada.',
+                'Regalo artesanal envuelto con un lazo rosa.',
                 'Tarta de pañales azul personalizada.',
               ][index]
             }
