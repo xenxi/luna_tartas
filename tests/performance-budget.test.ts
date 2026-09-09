@@ -42,6 +42,8 @@ describe('performance budget contract', () => {
     );
     const artifact = await readFile('scripts/verify-artifact.mjs', 'utf8');
     expect(artifact).toContain("target.includes('/_astro/')");
+    expect(artifact).toContain('references missing asset');
+    expect(artifact).toContain('stylesheetFiles');
   });
 
   it('maps root public URLs to the artifact root', () => {

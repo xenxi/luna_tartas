@@ -1,16 +1,31 @@
 ---
 import { Image, Picture } from 'astro:assets';
+import background from '../../assets/home/custom-idea/fondo-target.png';
 import art from '../../assets/home/custom-idea/imagen-central-target.png';
 import moon from '../../assets/home/custom-idea/luna-target.png';
 import flowers from '../../assets/site/footer-magnolia.png';
 import { productsIndexContent } from '../../content/products-index';
 import { customIdeaContent } from '../../content/home/custom-idea';
 import ActionLink from '../ui/ActionLink.astro';
+import CatalogWave from '../catalog/CatalogWave.astro';
 import { routes } from '../../lib/catalog/domain/routes';
 const content = productsIndexContent.customIdea;
 ---
 
 <section class="products-idea" aria-labelledby="products-idea-title">
+  <Picture
+    src={background}
+    alt="Fondo de acuarela rosa."
+    aria-hidden="true"
+    formats={['avif', 'webp']}
+    fallbackFormat="jpg"
+    widths={[480, 768, 1200]}
+    sizes="(min-width: 48rem) 75vw, 100vw"
+    class="products-idea__background"
+    pictureAttributes={{ class: 'products-idea__background-picture' }}
+    loading="lazy"
+    decoding="async"
+  />
   <div class="products-idea__copy">
     <p class="products-idea__eyebrow">{content.eyebrow}</p>
     <h2 id="products-idea-title">
@@ -67,14 +82,5 @@ const content = productsIndexContent.customIdea;
     class="products-idea__moon"
     loading="lazy"
   />
-  <svg
-    class="products-wave"
-    viewBox="0 0 900 36"
-    preserveAspectRatio="none"
-    aria-hidden="true"
-    focusable="false"
-    ><path
-      d="M0 20Q30 0 60 20Q100 -8 145 24Q190 4 230 25Q280 -12 325 23Q360 6 400 23Q450 -10 490 25Q535 0 580 24Q620 2 660 24Q710 -8 750 24Q795 0 830 22Q870 0 900 18V36H0Z"
-    ></path></svg
-  >
+  <CatalogWave />
 </section>

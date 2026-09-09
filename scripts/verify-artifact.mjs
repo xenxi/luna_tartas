@@ -1,11 +1,12 @@
 import { access, readdir, readFile } from 'node:fs/promises';
-import { extname, join, relative, resolve } from 'node:path';
+import { dirname, extname, join, relative, resolve, sep } from 'node:path';
 
 const dist = resolve(process.env.DIST_DIR ?? 'dist');
 const siteOrigin = 'https://lunatartas.es';
 const deploymentBase =
   (process.env.PAGES_BASE_PATH ?? '/').replace(/\/+$/, '') || '/';
 const htmlFiles = [];
+const stylesheetFiles = new Set();
 
 async function walk(directory) {
   for (const entry of await readdir(directory, { withFileTypes: true })) {
@@ -116,12 +117,43 @@ for (const file of htmlFiles) {
     if (reference.startsWith('/') && !reference.startsWith('//')) {
       const assetPath = artifactRoute(reference.split('#')[0].split('?')[0]);
       if (assetPath.startsWith('/_astro/')) {
+        const file = join(dist, assetPath.slice(1));
         try {
-          await access(join(dist, assetPath.slice(1)));
+          await access(file);
         } catch {
           fail(`${route} references missing asset ${reference}`);
         }
+        if (assetPath.endsWith('.css')) stylesheetFiles.add(file);
       }
+    }
+  }
+}
+
+for (const file of stylesheetFiles) {
+  const css = await readFile(file, 'utf8');
+  for (const match of css.matchAll(
+    /url\(\s*(?:"([^"]+)"|'([^']+)'|([^'"\s)]+))\s*\)/gi,
+  )) {
+    const reference = (match[1] ?? match[2] ?? match[3]).trim();
+    if (
+      reference.startsWith('#') ||
+      reference.startsWith('//') ||
+      /^[a-z][a-z\d+.-]*:/i.test(reference)
+    ) {
+      continue;
+    }
+
+    const pathname = decodeURIComponent(reference.split(/[?#]/, 1)[0]);
+    const target = reference.startsWith('/')
+      ? resolve(dist, artifactRoute(pathname).slice(1))
+      : resolve(dirname(file), pathname);
+    if (target !== dist && !target.startsWith(`${dist}${sep}`)) {
+      fail(`${relative(dist, file)} references asset outside dist ${reference}`);
+    }
+    try {
+      await access(target);
+    } catch {
+      fail(`${relative(dist, file)} references missing asset ${reference}`);
     }
   }
 }
