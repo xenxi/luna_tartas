@@ -59,7 +59,9 @@
 
 /* Category reference colors are scoped to the content, outside the shared shell. */
 @media (min-width: 48rem) {
-  .category-index-page {
+  .category-index-page,
+  .occasions-index,
+  .gifts-index {
     --color-text: #191c25;
     --color-text-muted: #454b59;
     --color-action: #ce0752;

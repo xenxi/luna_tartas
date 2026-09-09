@@ -9,9 +9,10 @@ import './catalog.css';
 interface Props {
   taxonomy: TaxonomyCardProjection;
   headingLevel?: 2 | 3;
+  actionLabel?: string;
 }
 
-const { taxonomy, headingLevel = 3 } = Astro.props;
+const { taxonomy, headingLevel = 3, actionLabel = 'Ver ideas' } = Astro.props;
 const Heading = `h${headingLevel}` as 'h2' | 'h3';
 const media =
   taxonomy.media ??
@@ -44,7 +45,7 @@ if (!taxonomy.href.startsWith('/') || taxonomy.href.startsWith('//')) {
       )
     }
     <span class="catalog-card__action" aria-hidden="true">
-      Ver ideas
+      {actionLabel}
       <svg viewBox="0 0 24 24" focusable="false">
         <path d="M5 12h13M13 7l5 5-5 5"></path>
       </svg>

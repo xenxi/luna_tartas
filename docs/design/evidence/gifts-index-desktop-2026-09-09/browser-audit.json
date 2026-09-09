@@ -1,0 +1,201 @@
+{
+  "widths": [
+    {
+      "width": 2242,
+      "scrollWidth": 2242,
+      "missingImages": [],
+      "heroImage": "http://127.0.0.1:4323/_astro/gifts-hero-v2.DXgpK4ub_1h8QlK.avif",
+      "heroHeight": 720.390625,
+      "cardColumns": "417.766px 417.781px 417.766px",
+      "cards": [
+        {
+          "text": "Para bebés",
+          "href": "/regalos/bebe/"
+        },
+        {
+          "text": "Para niños",
+          "href": "/regalos/ninos/"
+        },
+        {
+          "text": "Para alguien especial",
+          "href": "/regalos/alguien-especial/"
+        }
+      ]
+    },
+    {
+      "width": 1440,
+      "scrollWidth": 1440,
+      "missingImages": [],
+      "heroImage": "http://127.0.0.1:4323/_astro/gifts-hero-v2.DXgpK4ub_1h8QlK.avif",
+      "heroHeight": 720.390625,
+      "cardColumns": "417.766px 417.781px 417.766px",
+      "cards": [
+        {
+          "text": "Para bebés",
+          "href": "/regalos/bebe/"
+        },
+        {
+          "text": "Para niños",
+          "href": "/regalos/ninos/"
+        },
+        {
+          "text": "Para alguien especial",
+          "href": "/regalos/alguien-especial/"
+        }
+      ]
+    },
+    {
+      "width": 941,
+      "scrollWidth": 941,
+      "missingImages": [],
+      "heroImage": "http://127.0.0.1:4323/_astro/gifts-hero-v2.DXgpK4ub_1h8QlK.avif",
+      "heroHeight": 480.875,
+      "cardColumns": "272.984px 273px 272.984px",
+      "cards": [
+        {
+          "text": "Para bebés",
+          "href": "/regalos/bebe/"
+        },
+        {
+          "text": "Para niños",
+          "href": "/regalos/ninos/"
+        },
+        {
+          "text": "Para alguien especial",
+          "href": "/regalos/alguien-especial/"
+        }
+      ]
+    },
+    {
+      "width": 807,
+      "scrollWidth": 807,
+      "missingImages": [],
+      "heroImage": "http://127.0.0.1:4323/_astro/gifts-hero-v2.DXgpK4ub_1h8QlK.avif",
+      "heroHeight": 420.53125,
+      "cardColumns": "234.125px 234.125px 234.125px",
+      "cards": [
+        {
+          "text": "Para bebés",
+          "href": "/regalos/bebe/"
+        },
+        {
+          "text": "Para niños",
+          "href": "/regalos/ninos/"
+        },
+        {
+          "text": "Para alguien especial",
+          "href": "/regalos/alguien-especial/"
+        }
+      ]
+    },
+    {
+      "width": 768,
+      "scrollWidth": 768,
+      "missingImages": [],
+      "heroImage": "http://127.0.0.1:4323/_astro/gifts-hero-v2.DXgpK4ub_1h8QlK.avif",
+      "heroHeight": 403.015625,
+      "cardColumns": "222.812px 222.812px 222.812px",
+      "cards": [
+        {
+          "text": "Para bebés",
+          "href": "/regalos/bebe/"
+        },
+        {
+          "text": "Para niños",
+          "href": "/regalos/ninos/"
+        },
+        {
+          "text": "Para alguien especial",
+          "href": "/regalos/alguien-especial/"
+        }
+      ]
+    },
+    {
+      "width": 390,
+      "scrollWidth": 390,
+      "missingImages": [],
+      "heroImage": "http://127.0.0.1:4323/_astro/gifts-hero.m9P-N6DL_Z1tM3w4.avif",
+      "heroHeight": 631.796875,
+      "cardColumns": "358px",
+      "cards": [
+        {
+          "text": "Para bebés",
+          "href": "/regalos/bebe/"
+        },
+        {
+          "text": "Para niños",
+          "href": "/regalos/ninos/"
+        },
+        {
+          "text": "Para alguien especial",
+          "href": "/regalos/alguien-especial/"
+        }
+      ]
+    },
+    {
+      "width": 320,
+      "scrollWidth": 320,
+      "missingImages": [],
+      "heroImage": "http://127.0.0.1:4323/_astro/gifts-hero.m9P-N6DL_Z1tM3w4.avif",
+      "heroHeight": 608,
+      "cardColumns": "288px",
+      "cards": [
+        {
+          "text": "Para bebés",
+          "href": "/regalos/bebe/"
+        },
+        {
+          "text": "Para niños",
+          "href": "/regalos/ninos/"
+        },
+        {
+          "text": "Para alguien especial",
+          "href": "/regalos/alguien-especial/"
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "shell": {
+    "/": {
+      "headerUnchanged": true,
+      "footerUnchanged": true
+    },
+    "/ocasiones/": {
+      "headerUnchanged": true,
+      "footerUnchanged": true
+    },
+    "/regalos/": {
+      "headerUnchanged": true,
+      "footerUnchanged": true
+    }
+  },
+  "screenshots": {
+    "/": {
+      "dimensionsMatch": true,
+      "differentPixels": 0
+    },
+    "/ocasiones/": {
+      "dimensionsMatch": true,
+      "differentPixels": 0
+    },
+    "mobile": {
+      "dimensionsMatch": true,
+      "differentPixels": 0
+    }
+  },
+  "axe1440": [],
+  "keyboardFocus": {
+    "focused": true,
+    "focusRing": "rgb(255, 250, 249) 0px 0px 0px 3px, rgb(21, 94, 117) 0px 0px 0px 6px"
+  },
+  "axe768": [],
+  "axe320": [],
+  "linksWithoutJs": [
+    "/regalos/bebe/",
+    "/regalos/ninos/",
+    "/regalos/alguien-especial/"
+  ],
+  "ctaWithoutJs": "https://wa.me/34697637180?text=%C2%A1Hola%21+%F0%9F%8C%99+He+visto+vuestra+web+y+tengo+una+idea+para+un+regalo.+%C2%BFMe+ayud%C3%A1is+a+darle+forma%3F",
+  "recipientNavigationWithoutJs": true
+}

@@ -27,6 +27,8 @@ interface Props {
   heroMedia?: MediaProjection;
   heroVariant?: 'split' | 'full-bleed';
   heroMobileObjectPosition?: string;
+  class?: string;
+  cardActionLabel?: string;
 }
 
 const {
@@ -40,6 +42,8 @@ const {
   heroMedia: customHeroMedia,
   heroVariant = 'split',
   heroMobileObjectPosition,
+  class: className,
+  cardActionLabel,
 } = Astro.props;
 const listing = projectTaxonomyIndex(catalog, kind, itemLabel);
 const heroSource = listing.items.find((item) => item.mediaSource)?.mediaSource;
@@ -55,7 +59,7 @@ const heroMedia = customHeroMedia ?? catalogHeroMedia;
 const heroContent = catalogPageContent.taxonomy[kind];
 ---
 
-<div class="taxonomies-page">
+<div class:list={['taxonomies-page', className]}>
   <Breadcrumb items={taxonomyIndexBreadcrumb(kind)} />
   <CatalogHero
     eyebrow={heroContent.eyebrow}
@@ -65,7 +69,9 @@ const heroContent = catalogPageContent.taxonomy[kind];
     media={heroMedia}
     variant={heroVariant}
     mobileObjectPosition={heroMobileObjectPosition}
-  />
+  >
+    <slot name="hero-decoration" slot="decoration" />
+  </CatalogHero>
   {
     listing.items.length > 0 && (
       <ContentSection
@@ -73,10 +79,11 @@ const heroContent = catalogPageContent.taxonomy[kind];
         title={sectionTitle}
         intro={sectionIntro}
       >
+        <slot name="listing-decoration" slot="actions" />
         <CardList count={listing.items.length}>
           {listing.items.map((taxonomy) => (
             <li>
-              <TaxonomyCard taxonomy={taxonomy} />
+              <TaxonomyCard taxonomy={taxonomy} actionLabel={cardActionLabel} />
             </li>
           ))}
         </CardList>

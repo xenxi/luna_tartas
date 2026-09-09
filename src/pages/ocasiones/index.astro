@@ -5,33 +5,113 @@ import { buildMediaProjection } from '../../components/catalog/media-projection'
 import { loadCatalog } from '../../lib/catalog/source';
 import { routes } from '../../lib/catalog/domain/routes';
 import occasionsHeroImage from '../../assets/occasions/occasions-hero.png';
+import desktopHeroImage from '../../assets/occasions/occasions-hero-v2.png';
+import { Image } from 'astro:assets';
+import cloudImage from '../../assets/home/custom-idea/nube-azul.png';
+import pinkCloudImage from '../../assets/home/custom-idea/nube-rosa.png';
+import moonImage from '../../assets/home/luna-nube.png';
+import { occasionIndexContent as content } from '../../content/occasion-index';
+import '../../components/taxonomies/taxonomy-index-desktop.css';
 
 const catalog = await loadCatalog();
 const occasionsHeroMedia = await buildMediaProjection(
   occasionsHeroImage,
-  'Decoración de Primera Comunión personalizada con globo aerostático, etiquetas y flores.',
+  content.imageAlt,
   {
     widths: [480, 768, 1024, 1440, 1920],
-    sizes: '(max-width: 47.99rem) 460vw, min(100vw, 93.75rem)',
+    sizes: '(max-width: 47.99rem) 460vw, min(100vw, 90rem)',
   },
 );
+const desktopHeroMedia = await buildMediaProjection(
+  desktopHeroImage,
+  content.imageAlt,
+  { widths: [768, 1024, 1440, 1920, 2111] },
+);
+const heroMedia = {
+  ...occasionsHeroMedia,
+  sources: [
+    ...(desktopHeroMedia.sources ?? []).map((source) => ({
+      ...source,
+      media: '(min-width: 48rem)',
+    })),
+    {
+      srcSet: desktopHeroMedia.srcSet ?? desktopHeroMedia.src,
+      type: 'image/jpeg',
+      media: '(min-width: 48rem)',
+    },
+    ...(occasionsHeroMedia.sources ?? []),
+  ],
+};
 ---
 
 <BaseLayout
-  title="Ocasiones para regalar"
+  title={content.title}
   canonicalPath={routes.taxonomyIndex('occasion')}
   fallbackDescription="Ideas personalizadas para celebrar cada momento especial."
 >
   <TaxonomyIndex
     catalog={catalog}
+    class="occasions-index taxonomy-index-reference"
     kind="occasion"
-    title="Ocasiones para regalar"
-    intro="Encuentra un detalle pensado para celebrar cada momento especial."
-    sectionTitle="Elige una ocasión"
-    sectionIntro="Explora ideas agrupadas por celebración y momento."
+    title={content.title}
+    intro={content.intro}
+    sectionTitle={content.listing.title}
+    sectionIntro={content.listing.intro}
+    cardActionLabel={content.listing.actionLabel}
     itemLabel="productos"
-    heroMedia={occasionsHeroMedia}
+    heroMedia={heroMedia}
     heroVariant="full-bleed"
     heroMobileObjectPosition="74% center"
-  />
+  >
+    <div
+      slot="hero-decoration"
+      class="taxonomy-index-decoration"
+      aria-hidden="true"
+    >
+      <p class="taxonomy-index-hero-note">{content.note}<span>♡</span></p>
+      <svg
+        class="taxonomy-index-hero-wave"
+        viewBox="0 0 1000 48"
+        preserveAspectRatio="none"
+        focusable="false"
+      >
+        <path
+          d="M0 28Q42 4 85 39Q127 7 171 35Q196 24 224 41Q283-5 341 38Q363 46 384 30Q419 4 455 30Q475 10 503 32Q550 6 591 34Q621 19 652 40Q685 49 714 30Q761 7 810 39Q839 45 861 29Q889 10 914 32Q959-7 1000 7V48H0Z"
+        ></path>
+      </svg>
+    </div>
+    <div
+      slot="listing-decoration"
+      class="taxonomy-index-decoration"
+      aria-hidden="true"
+    >
+      <Image
+        src={cloudImage}
+        alt="Nube azul decorativa."
+        aria-hidden="true"
+        width={180}
+        format="webp"
+        loading="lazy"
+        class="taxonomy-index-list-cloud"
+      />
+      <Image
+        src={pinkCloudImage}
+        alt="Nube rosa decorativa."
+        aria-hidden="true"
+        width={180}
+        format="webp"
+        loading="lazy"
+        class="taxonomy-index-list-pink-cloud"
+      />
+      <Image
+        src={moonImage}
+        alt="Luna sobre una nube decorativa."
+        aria-hidden="true"
+        width={160}
+        format="webp"
+        loading="lazy"
+        class="taxonomy-index-list-moon"
+      />
+    </div>
+  </TaxonomyIndex>
 </BaseLayout>

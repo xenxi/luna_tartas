@@ -1,0 +1,166 @@
+/* Recipient composition; the card and closing styles are shared with occasions. */
+@media (min-width: 48rem) {
+  .taxonomies-page.gifts-index.taxonomy-index-reference {
+    --taxonomy-index-unit: min(0.10627vw, 1.53028px);
+    --container-visual: calc(854 * var(--taxonomy-index-unit));
+    --gutter: calc(44 * var(--taxonomy-index-unit));
+  }
+
+  .taxonomies-page.gifts-index.taxonomy-index-reference > .catalog-hero {
+    min-block-size: calc(464 * var(--taxonomy-index-unit));
+  }
+
+  .taxonomies-page.gifts-index.taxonomy-index-reference .catalog-hero__copy {
+    margin-left: calc(87 * var(--taxonomy-index-unit));
+    padding-top: calc(170 * var(--taxonomy-index-unit));
+    padding-bottom: calc(105 * var(--taxonomy-index-unit));
+  }
+
+  .taxonomies-page.gifts-index.taxonomy-index-reference .catalog-hero h1 {
+    max-inline-size: 11ch;
+    margin-top: calc(12 * var(--taxonomy-index-unit));
+    font-size: calc(42 * var(--taxonomy-index-unit));
+    line-height: 0.98;
+  }
+
+  .taxonomies-page.gifts-index.taxonomy-index-reference .catalog-hero__claim {
+    font-size: calc(28 * var(--taxonomy-index-unit));
+  }
+
+  .taxonomies-page.gifts-index.taxonomy-index-reference
+    .catalog-hero__description {
+    max-inline-size: 39ch;
+    font-size: max(0.8rem, calc(11.5 * var(--taxonomy-index-unit)));
+  }
+
+  .taxonomies-page.gifts-index.taxonomy-index-reference
+    .catalog-hero
+    > .responsive-media::after {
+    background: none;
+  }
+
+  .taxonomies-page.gifts-index.taxonomy-index-reference
+    .catalog-hero
+    > .responsive-media
+    img {
+    object-position: center;
+  }
+
+  .gifts-index .taxonomy-index-hero-note {
+    top: calc(137 * var(--taxonomy-index-unit));
+    right: calc(25 * var(--taxonomy-index-unit));
+    inline-size: calc(94 * var(--taxonomy-index-unit));
+    font-size: calc(24 * var(--taxonomy-index-unit));
+    text-align: center;
+  }
+
+  .gifts-index .taxonomy-index-hero-note span {
+    display: block;
+    font-family: var(--font-body);
+    font-size: 1.3em;
+  }
+
+  .gifts-hero-cloud,
+  .gifts-hero-moon,
+  .gifts-hero-heart,
+  .gifts-hero-sparkle {
+    position: absolute;
+    z-index: 3;
+    block-size: auto;
+  }
+
+  .gifts-hero-cloud {
+    top: calc(159 * var(--taxonomy-index-unit));
+    left: calc(327 * var(--taxonomy-index-unit));
+    inline-size: calc(122 * var(--taxonomy-index-unit));
+  }
+
+  .gifts-hero-moon {
+    bottom: calc(13 * var(--taxonomy-index-unit));
+    left: calc(31 * var(--taxonomy-index-unit));
+    inline-size: calc(95 * var(--taxonomy-index-unit));
+  }
+
+  .gifts-hero-heart {
+    top: calc(253 * var(--taxonomy-index-unit));
+    left: calc(400 * var(--taxonomy-index-unit));
+    color: var(--color-action);
+    font-size: calc(40 * var(--taxonomy-index-unit));
+    line-height: 1;
+    transform: rotate(-12deg);
+  }
+
+  .gifts-hero-sparkle {
+    top: calc(149 * var(--taxonomy-index-unit));
+    left: calc(476 * var(--taxonomy-index-unit));
+    color: var(--luna-peach);
+    font-size: calc(32 * var(--taxonomy-index-unit));
+  }
+
+  .taxonomies-page.gifts-index.taxonomy-index-reference .content-section {
+    gap: calc(26 * var(--taxonomy-index-unit));
+    padding-top: calc(15 * var(--taxonomy-index-unit));
+  }
+
+  .taxonomies-page.gifts-index.taxonomy-index-reference
+    .content-section__header {
+    min-block-size: calc(48 * var(--taxonomy-index-unit));
+  }
+
+  .taxonomies-page.gifts-index.taxonomy-index-reference
+    .content-section__heading {
+    max-inline-size: calc(640 * var(--taxonomy-index-unit));
+  }
+
+  .taxonomies-page.gifts-index.taxonomy-index-reference
+    .content-section__heading
+    h2 {
+    font-size: calc(25 * var(--taxonomy-index-unit));
+  }
+
+  .taxonomies-page.gifts-index.taxonomy-index-reference
+    .content-section__heading
+    p {
+    font-size: max(0.8rem, calc(11.5 * var(--taxonomy-index-unit)));
+  }
+
+  .gifts-index .taxonomy-index-list-cloud {
+    left: calc(37 * var(--taxonomy-index-unit));
+    inline-size: calc(85 * var(--taxonomy-index-unit));
+  }
+
+  .taxonomies-page.gifts-index.taxonomy-index-reference .card-list {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: calc(17 * var(--taxonomy-index-unit));
+  }
+
+  .taxonomies-page.gifts-index.taxonomy-index-reference > .category-benefits {
+    margin-top: calc(18 * var(--taxonomy-index-unit));
+    border: 1px solid var(--color-border-subtle);
+  }
+
+  .taxonomies-page.gifts-index.taxonomy-index-reference > .custom-idea {
+    --cta-height: calc(176 * var(--taxonomy-index-unit));
+  }
+}
+
+@media (min-width: 48rem) and (max-width: 63.99rem) {
+  .gifts-hero-cloud {
+    left: calc(375 * var(--taxonomy-index-unit));
+  }
+
+  .gifts-index .taxonomy-index-list-pink-cloud {
+    top: calc(-25 * var(--taxonomy-index-unit));
+    inline-size: calc(100 * var(--taxonomy-index-unit));
+  }
+
+  .gifts-index .taxonomy-index-list-moon {
+    top: calc(-26 * var(--taxonomy-index-unit));
+    inline-size: calc(48 * var(--taxonomy-index-unit));
+  }
+
+  .gifts-index .taxonomy-index-list-cloud {
+    top: calc(-4 * var(--taxonomy-index-unit));
+    inline-size: calc(70 * var(--taxonomy-index-unit));
+  }
+}

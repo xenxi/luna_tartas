@@ -1,0 +1,214 @@
+{
+  "widths": [
+    {
+      "width": 2242,
+      "scrollWidth": 2242,
+      "missingImages": [],
+      "heroImage": "http://127.0.0.1:4322/_image/?href=%2F%40fs%2FC%3A%2Flab%2Frepos%2Fluna_tartas%2Fsrc%2Fassets%2Foccasions%2Foccasions-hero-v2.png%3ForigWidth%3D2111%26origHeight%3D745%26origFormat%3Dpng&w=1440&h=508&f=avif",
+      "heroTop": 3.15625,
+      "cardColumns": "306.516px 306.516px 306.516px 306.531px",
+      "cards": [
+        {
+          "text": "Nacimiento",
+          "href": "/ocasiones/nacimiento/"
+        },
+        {
+          "text": "Baby shower",
+          "href": "/ocasiones/baby-shower/"
+        },
+        {
+          "text": "Cumpleaños",
+          "href": "/ocasiones/cumpleanos/"
+        },
+        {
+          "text": "Primera Comunión",
+          "href": "/ocasiones/comunion/"
+        }
+      ]
+    },
+    {
+      "width": 1440,
+      "scrollWidth": 1440,
+      "missingImages": [],
+      "heroImage": "http://127.0.0.1:4322/_image/?href=%2F%40fs%2FC%3A%2Flab%2Frepos%2Fluna_tartas%2Fsrc%2Fassets%2Foccasions%2Foccasions-hero-v2.png%3ForigWidth%3D2111%26origHeight%3D745%26origFormat%3Dpng&w=1440&h=508&f=avif",
+      "heroTop": 3.15625,
+      "cardColumns": "306.516px 306.516px 306.516px 306.531px",
+      "cards": [
+        {
+          "text": "Nacimiento",
+          "href": "/ocasiones/nacimiento/"
+        },
+        {
+          "text": "Baby shower",
+          "href": "/ocasiones/baby-shower/"
+        },
+        {
+          "text": "Cumpleaños",
+          "href": "/ocasiones/cumpleanos/"
+        },
+        {
+          "text": "Primera Comunión",
+          "href": "/ocasiones/comunion/"
+        }
+      ]
+    },
+    {
+      "width": 929,
+      "scrollWidth": 929,
+      "missingImages": [],
+      "heroImage": "http://127.0.0.1:4322/_image/?href=%2F%40fs%2FC%3A%2Flab%2Frepos%2Fluna_tartas%2Fsrc%2Fassets%2Foccasions%2Foccasions-hero-v2.png%3ForigWidth%3D2111%26origHeight%3D745%26origFormat%3Dpng&w=1440&h=508&f=avif",
+      "heroTop": 2.03125,
+      "cardColumns": "197.75px 197.75px 197.75px 197.75px",
+      "cards": [
+        {
+          "text": "Nacimiento",
+          "href": "/ocasiones/nacimiento/"
+        },
+        {
+          "text": "Baby shower",
+          "href": "/ocasiones/baby-shower/"
+        },
+        {
+          "text": "Cumpleaños",
+          "href": "/ocasiones/cumpleanos/"
+        },
+        {
+          "text": "Primera Comunión",
+          "href": "/ocasiones/comunion/"
+        }
+      ]
+    },
+    {
+      "width": 807,
+      "scrollWidth": 807,
+      "missingImages": [],
+      "heroImage": "http://127.0.0.1:4322/_image/?href=%2F%40fs%2FC%3A%2Flab%2Frepos%2Fluna_tartas%2Fsrc%2Fassets%2Foccasions%2Foccasions-hero-v2.png%3ForigWidth%3D2111%26origHeight%3D745%26origFormat%3Dpng&w=1440&h=508&f=avif",
+      "heroTop": 1.765625,
+      "cardColumns": "171.781px 171.797px 171.781px 171.797px",
+      "cards": [
+        {
+          "text": "Nacimiento",
+          "href": "/ocasiones/nacimiento/"
+        },
+        {
+          "text": "Baby shower",
+          "href": "/ocasiones/baby-shower/"
+        },
+        {
+          "text": "Cumpleaños",
+          "href": "/ocasiones/cumpleanos/"
+        },
+        {
+          "text": "Primera Comunión",
+          "href": "/ocasiones/comunion/"
+        }
+      ]
+    },
+    {
+      "width": 768,
+      "scrollWidth": 768,
+      "missingImages": [],
+      "heroImage": "http://127.0.0.1:4322/_image/?href=%2F%40fs%2FC%3A%2Flab%2Frepos%2Fluna_tartas%2Fsrc%2Fassets%2Foccasions%2Foccasions-hero-v2.png%3ForigWidth%3D2111%26origHeight%3D745%26origFormat%3Dpng&w=1440&h=508&f=avif",
+      "heroTop": 1.671875,
+      "cardColumns": "163.484px 163.484px 163.484px 163.484px",
+      "cards": [
+        {
+          "text": "Nacimiento",
+          "href": "/ocasiones/nacimiento/"
+        },
+        {
+          "text": "Baby shower",
+          "href": "/ocasiones/baby-shower/"
+        },
+        {
+          "text": "Cumpleaños",
+          "href": "/ocasiones/cumpleanos/"
+        },
+        {
+          "text": "Primera Comunión",
+          "href": "/ocasiones/comunion/"
+        }
+      ]
+    },
+    {
+      "width": 390,
+      "scrollWidth": 390,
+      "missingImages": [],
+      "heroImage": "http://127.0.0.1:4322/_image/?href=%2F%40fs%2FC%3A%2Flab%2Frepos%2Fluna_tartas%2Fsrc%2Fassets%2Foccasions%2Foccasions-hero.png%3ForigWidth%3D2111%26origHeight%3D745%26origFormat%3Dpng&w=1920&h=678&f=avif",
+      "heroTop": 152,
+      "cardColumns": "358px",
+      "cards": [
+        {
+          "text": "Nacimiento",
+          "href": "/ocasiones/nacimiento/"
+        },
+        {
+          "text": "Baby shower",
+          "href": "/ocasiones/baby-shower/"
+        },
+        {
+          "text": "Cumpleaños",
+          "href": "/ocasiones/cumpleanos/"
+        },
+        {
+          "text": "Primera Comunión",
+          "href": "/ocasiones/comunion/"
+        }
+      ]
+    },
+    {
+      "width": 320,
+      "scrollWidth": 320,
+      "missingImages": [],
+      "heroImage": "http://127.0.0.1:4322/_image/?href=%2F%40fs%2FC%3A%2Flab%2Frepos%2Fluna_tartas%2Fsrc%2Fassets%2Foccasions%2Foccasions-hero.png%3ForigWidth%3D2111%26origHeight%3D745%26origFormat%3Dpng&w=1920&h=678&f=avif",
+      "heroTop": 152,
+      "cardColumns": "288px",
+      "cards": [
+        {
+          "text": "Nacimiento",
+          "href": "/ocasiones/nacimiento/"
+        },
+        {
+          "text": "Baby shower",
+          "href": "/ocasiones/baby-shower/"
+        },
+        {
+          "text": "Cumpleaños",
+          "href": "/ocasiones/cumpleanos/"
+        },
+        {
+          "text": "Primera Comunión",
+          "href": "/ocasiones/comunion/"
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "shell": {
+    "occasions": {
+      "headerUnchanged": true,
+      "footerUnchanged": true
+    },
+    "home": {
+      "headerUnchanged": true,
+      "footerUnchanged": true
+    }
+  },
+  "axe1440": [],
+  "keyboardFocus": {
+    "focused": true,
+    "outline": "none",
+    "focusRing": "rgb(255, 250, 249) 0px 0px 0px 3px, rgb(21, 94, 117) 0px 0px 0px 6px"
+  },
+  "axe768": [],
+  "axe320": [],
+  "homeScreenshotIdentical": false,
+  "linksWithoutJs": [
+    "/ocasiones/nacimiento/",
+    "/ocasiones/baby-shower/",
+    "/ocasiones/cumpleanos/",
+    "/ocasiones/comunion/"
+  ],
+  "ctaWithoutJs": "https://wa.me/34697637180?text=%C2%A1Hola%21+%F0%9F%8C%99+He+visto+vuestra+web+y+tengo+una+idea+para+un+regalo.+%C2%BFMe+ayud%C3%A1is+a+darle+forma%3F",
+  "communionNavigationWithoutJs": true
+}
