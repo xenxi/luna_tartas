@@ -1,0 +1,68 @@
+---
+import { Image } from 'astro:assets';
+import blueCloud from '../../assets/home/custom-idea/nube-azul.png';
+import pinkCloud from '../../assets/home/custom-idea/nube-rosa.png';
+import moon from '../../assets/home/luna-nube.png';
+---
+
+<div class="catalog-clouds" aria-hidden="true">
+  <Image
+    src={blueCloud}
+    alt="Nube azul decorativa en acuarela."
+    width={180}
+    format="webp"
+    loading="lazy"
+    class="catalog-clouds__blue"
+  />
+  <div class="catalog-clouds__right">
+    <Image
+      src={pinkCloud}
+      alt="Nube rosa decorativa en acuarela."
+      width={200}
+      format="webp"
+      loading="lazy"
+    />
+    <Image
+      src={moon}
+      alt="Luna sobre una nube rosa decorativa."
+      width={150}
+      format="webp"
+      loading="lazy"
+    />
+  </div>
+</div>
+
+<style>
+  .catalog-clouds {
+    display: none;
+  }
+  @media (min-width: 48rem) {
+    .catalog-clouds {
+      display: block;
+      position: absolute;
+      top: 0.5rem;
+      width: 100%;
+      pointer-events: none;
+    }
+    .catalog-clouds__blue {
+      width: 10%;
+      margin-left: 4%;
+      margin-top: 1.5rem;
+    }
+    .catalog-clouds__right {
+      position: absolute;
+      right: 5%;
+      top: 0;
+      display: flex;
+      align-items: center;
+      width: 17%;
+    }
+    .catalog-clouds__right img:first-child {
+      width: 70%;
+    }
+    .catalog-clouds__right img:last-child {
+      width: 49%;
+      margin-left: -15%;
+    }
+  }
+</style>

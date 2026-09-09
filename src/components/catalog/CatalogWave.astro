@@ -1,0 +1,29 @@
+<svg
+  class="catalog-wave"
+  viewBox="0 0 900 36"
+  preserveAspectRatio="none"
+  aria-hidden="true"
+  focusable="false"
+  ><path
+    d="M0 20Q30 0 60 20Q100 -8 145 24Q190 4 230 25Q280 -12 325 23Q360 6 400 23Q450 -10 490 25Q535 0 580 24Q620 2 660 24Q710 -8 750 24Q795 0 830 22Q870 0 900 18V36H0Z"
+  ></path></svg
+>
+
+<style>
+  .catalog-wave {
+    display: none;
+  }
+  @media (min-width: 48rem) {
+    .catalog-wave {
+      position: absolute;
+      z-index: 4;
+      bottom: -1px;
+      left: 0;
+      display: block;
+      width: 100%;
+      height: clamp(1.75rem, calc(4 * var(--page-unit)), 3.5rem);
+      fill: var(--color-canvas);
+      pointer-events: none;
+    }
+  }
+</style>

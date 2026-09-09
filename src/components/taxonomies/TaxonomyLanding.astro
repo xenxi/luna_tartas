@@ -9,6 +9,8 @@ import CardList from '../patterns/CardList.astro';
 import ContentSection from '../patterns/ContentSection.astro';
 import ProductCard from '../catalog/ProductCard.astro';
 import CatalogHero from '../catalog/CatalogHero.astro';
+import CatalogWave from '../catalog/CatalogWave.astro';
+import CatalogClouds from '../catalog/CatalogClouds.astro';
 import CategoryBenefits from './CategoryBenefits.astro';
 import CustomIdeaCta from '../home/CustomIdeaCta.astro';
 import { projectTaxonomyLanding } from './taxonomy-listing';
@@ -20,6 +22,7 @@ import type { ProductCardProjection } from '../catalog/types';
 import { catalogPageContent } from '../../content/catalog-pages';
 import { routes } from '../../lib/catalog/domain/routes';
 import './taxonomies.css';
+import './category-landing-desktop.css';
 
 interface Props {
   catalog: Catalog;
@@ -61,7 +64,9 @@ const productsWithMedia: ProductCardProjection[] = await Promise.all(
 );
 ---
 
-<div class="taxonomy-landing">
+<div
+  class:list={['taxonomy-landing', { 'category-landing': kind === 'category' }]}
+>
   <Breadcrumb items={taxonomyBreadcrumb(kind, taxonomy.name)} />
   <CatalogHero
     eyebrow={heroContent.eyebrow}
@@ -69,22 +74,32 @@ const productsWithMedia: ProductCardProjection[] = await Promise.all(
     claim={heroContent.claim}
     description={taxonomy.description ?? taxonomy.summary}
     media={heroMedia}
-  />
+  >
+    {kind === 'category' && <CatalogWave slot="decoration" />}
+  </CatalogHero>
   {
     productsWithMedia.length > 0 && (
-      <ContentSection
-        id={`${kind}-products`}
-        title={productsTitle}
-        intro={productsIntro}
+      <div
+        class:list={[
+          'taxonomy-landing__listing',
+          { 'category-landing__listing': kind === 'category' },
+        ]}
       >
-        <CardList count={productsWithMedia.length} columns={4}>
-          {productsWithMedia.map((product) => (
-            <li>
-              <ProductCard product={product} />
-            </li>
-          ))}
-        </CardList>
-      </ContentSection>
+        {kind === 'category' && <CatalogClouds />}
+        <ContentSection
+          id={`${kind}-products`}
+          title={productsTitle}
+          intro={productsIntro}
+        >
+          <CardList count={productsWithMedia.length} columns={4}>
+            {productsWithMedia.map((product) => (
+              <li>
+                <ProductCard product={product} />
+              </li>
+            ))}
+          </CardList>
+        </ContentSection>
+      </div>
     )
   }
   <CategoryBenefits />

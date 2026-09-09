@@ -1,0 +1,68 @@
+/* Shared product-card presentation; compact views retain their existing styles. */
+@media (min-width: 48rem) {
+  :is(.products-page, .category-landing) .card-list--4 {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: clamp(0.75rem, calc(1.5 * var(--page-unit)), 1.4rem);
+  }
+
+  :is(.products-page, .category-landing) .catalog-card {
+    border-radius: 1rem;
+    border-color: color-mix(in srgb, var(--color-border) 65%, transparent);
+    box-shadow: var(--shadow-products-card);
+  }
+
+  :is(.products-page, .category-landing) .catalog-card__media {
+    padding: 2px 2px 0;
+  }
+
+  :is(.products-page, .category-landing)
+    .catalog-card__media
+    .responsive-media {
+    border-radius: 0.8rem 0.8rem 0.35rem 0.35rem;
+  }
+
+  :is(.products-page, .category-landing)
+    .catalog-card__media
+    .responsive-media
+    img {
+    aspect-ratio: 1.13;
+  }
+
+  :is(.products-page, .category-landing) .catalog-card__body {
+    gap: 0.4rem;
+    padding: 0.7rem 0.85rem 0.6rem;
+  }
+
+  :is(.products-page, .category-landing) .catalog-card__title {
+    font-family: var(--font-display);
+    font-size: clamp(0.9rem, calc(1.3 * var(--page-unit)), 1.2rem);
+    font-weight: 400;
+    line-height: 1.15;
+  }
+
+  :is(.products-page, .category-landing) .catalog-card__summary {
+    font-size: clamp(0.75rem, calc(1.1 * var(--page-unit)), 0.97rem);
+    line-height: 1.4;
+  }
+
+  :is(.products-page, .category-landing) .catalog-card__meta {
+    margin-top: auto;
+    padding-top: 0.2rem;
+    font-size: clamp(0.85rem, calc(1.25 * var(--page-unit)), 1.1rem);
+  }
+
+  :is(.products-page, .category-landing) .catalog-card__action {
+    margin-top: 0.15rem;
+    min-height: 2.75rem;
+    padding: 0.5rem 1.1rem;
+    background: var(--color-surface-warm);
+    font-size: clamp(0.75rem, calc(1 * var(--page-unit)), 0.9rem);
+  }
+
+  :is(.products-page, .category-landing) .favorite-button--card {
+    top: 0.6rem;
+    right: 0.6rem;
+    background: var(--color-surface);
+    color: var(--color-action);
+  }
+}

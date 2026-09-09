@@ -100,8 +100,8 @@
     mask-image: linear-gradient(180deg, transparent, black 5%);
   }
   .home-reference .hero__image {
-    object-fit: fill;
-    object-position: center;
+    object-fit: cover;
+    object-position: center 42%;
   }
   .home-reference .hero__benefits {
     width: calc(369 * var(--home-unit));

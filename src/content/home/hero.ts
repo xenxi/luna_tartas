@@ -45,7 +45,7 @@ export const heroContent = Object.freeze({
     }),
   ]),
   image: Object.freeze({
-    alt: 'Tarta de pañales artesanal decorada en tonos pastel con motivos infantiles.',
+    alt: 'Tarta de pañales artesanal con cintas de yute, flores en tonos pastel y un hada de alas transparentes.',
     author: 'Luna',
     rights: 'Publication rights confirmed by the original author and owner.',
   }),

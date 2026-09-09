@@ -2,6 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import ProductListing from '../../components/products/ProductListing.astro';
 import CatalogHero from '../../components/catalog/CatalogHero.astro';
+import CatalogWave from '../../components/catalog/CatalogWave.astro';
 import CategoryBenefits from '../../components/taxonomies/CategoryBenefits.astro';
 import CustomIdeaCta from '../../components/home/CustomIdeaCta.astro';
 import { loadCatalog } from '../../lib/catalog/source';
@@ -71,17 +72,7 @@ const responsiveHeroMedia = {
       <span slot="decoration" class="products-hero-heart" aria-hidden="true"
         >♡</span
       >
-      <svg
-        slot="decoration"
-        class="products-wave"
-        viewBox="0 0 900 36"
-        preserveAspectRatio="none"
-        aria-hidden="true"
-        focusable="false"
-        ><path
-          d="M0 20Q30 0 60 20Q100 -8 145 24Q190 4 230 25Q280 -12 325 23Q360 6 400 23Q450 -10 490 25Q535 0 580 24Q620 2 660 24Q710 -8 750 24Q795 0 830 22Q870 0 900 18V36H0Z"
-        ></path></svg
-      >
+      <CatalogWave slot="decoration" />
     </CatalogHero>
     <ProductListing catalog={catalog} />
     <div class="products-desktop-benefits"><ProductsBenefits /></div>

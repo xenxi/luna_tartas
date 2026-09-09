@@ -3,7 +3,7 @@ import { describe, expect, it } from 'vitest';
 import { heroContent } from '../src/content/home/hero';
 const component = readFileSync('src/components/home/Hero.astro', 'utf8');
 const page = readFileSync('src/pages/index.astro', 'utf8');
-const image = readFileSync('src/assets/home/hero-bunny-reference.png');
+const image = readFileSync('src/assets/home/hero-fairy-reference.png');
 describe('home hero visual reference', () => {
   it('keeps editorial content and existing conversion routes centralized', () => {
     expect(heroContent.heading).toEqual(['Pequeños detalles', 'para momentos']);

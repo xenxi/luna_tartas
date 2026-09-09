@@ -145,7 +145,9 @@ describe('public site shell', () => {
     expect(header).toContain('preserveAspectRatio="none"');
     expect(header).toContain('focusable="false"');
     expect(header).toContain("'site-header--home'");
-    expect(header).toContain("'site-header--overlay': currentPath === '/'");
+    expect(header.replace(/\s+/g, ' ')).toContain(
+      "'site-header--overlay': currentPath === '/'",
+    );
     expect(footer).toContain('class="site-footer site-footer--home"');
     expect(layout).toContain("import '../components/site/home-shell.css';");
     expect(homeShellStyles).toContain(

@@ -12,10 +12,7 @@ import { catalogImageMap } from '../catalog/catalog-images';
 import { buildMediaProjection } from '../catalog/media-projection';
 import { getPublishedProducts } from '../../lib/catalog/domain/queries';
 import './product-listing.css';
-import { Image } from 'astro:assets';
-import blueCloud from '../../assets/home/custom-idea/nube-azul.png';
-import pinkCloud from '../../assets/home/custom-idea/nube-rosa.png';
-import moon from '../../assets/home/luna-nube.png';
+import CatalogClouds from '../catalog/CatalogClouds.astro';
 import ProductsIdeaCta from './ProductsIdeaCta.astro';
 import { productsIndexContent } from '../../content/products-index';
 import { routes } from '../../lib/catalog/domain/routes';
@@ -51,32 +48,7 @@ const itemsWithMedia: ProductListingItemProjection[] = await Promise.all(
 {
   itemsWithMedia.length > 0 && (
     <div class="product-listing" data-product-listing>
-      <div class="product-listing__clouds" aria-hidden="true">
-        <Image
-          src={blueCloud}
-          alt="Nube azul decorativa en acuarela."
-          width={180}
-          format="webp"
-          loading="lazy"
-          class="product-listing__cloud-blue"
-        />
-        <div class="product-listing__cloud-right">
-          <Image
-            src={pinkCloud}
-            alt="Nube rosa decorativa en acuarela."
-            width={200}
-            format="webp"
-            loading="lazy"
-          />
-          <Image
-            src={moon}
-            alt="Luna sobre una nube rosa decorativa."
-            width={150}
-            format="webp"
-            loading="lazy"
-          />
-        </div>
-      </div>
+      <CatalogClouds />
       <ContentSection
         id="product-list"
         title={listing.title}
