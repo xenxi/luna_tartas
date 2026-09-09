@@ -72,9 +72,18 @@ html:not([data-favorites-ready]) .favorite-button {
   position: relative;
 }
 
-.favorites-link svg {
+.favorites-link__icon {
+  position: relative;
+  display: inline-grid;
+  flex: 0 0 auto;
   inline-size: 1.4rem;
   block-size: 1.4rem;
+  place-items: center;
+}
+
+.favorites-link__icon svg {
+  inline-size: 100%;
+  block-size: 100%;
   fill: none;
   stroke: currentColor;
   stroke-linecap: round;
@@ -84,8 +93,8 @@ html:not([data-favorites-ready]) .favorite-button {
 
 .favorites-link__count {
   position: absolute;
-  inset-block-start: 0;
-  inset-inline-end: -0.35rem;
+  inset-block-start: -0.55rem;
+  inset-inline-end: -0.55rem;
   min-inline-size: 1.2rem;
   block-size: 1.2rem;
   padding-inline: 0.2rem;

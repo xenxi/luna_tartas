@@ -184,6 +184,11 @@
     padding: 0;
   }
 
+  .site-header--home .favorites-link__icon {
+    width: calc(18 * var(--home-unit));
+    height: calc(18 * var(--home-unit));
+  }
+
   .site-header--home
     :is(.search-trigger, .favorites-link, .primary-navigation__preview)
     svg {
