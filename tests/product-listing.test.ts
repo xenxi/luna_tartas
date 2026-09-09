@@ -52,6 +52,45 @@ const emptyCatalog: Catalog = {
 };
 
 describe('product index listing', () => {
+  it('only offers published occasions with published products and exposes sortable amounts', () => {
+    const occasions = ['visible', 'empty', 'draft-only', 'hidden'].map(
+      (id, order) => ({
+        kind: 'occasion' as const,
+        id,
+        slug: id,
+        name: id,
+        summary: id,
+        status: id === 'hidden' ? ('draft' as const) : ('published' as const),
+        order,
+      }),
+    );
+    const listing = projectProductListing({
+      ...emptyCatalog,
+      occasions,
+      products: [
+        product('priced', 1, {
+          occasions: ['visible', 'hidden'],
+          price: { kind: 'from', amountMinor: 250, currency: 'EUR' },
+        }),
+        product('on-request', 2),
+        {
+          id: 'draft',
+          slug: 'draft',
+          status: 'draft',
+          occasions: ['draft-only'],
+        },
+      ],
+    });
+    expect(listing.filters).toEqual([
+      { id: 'visible', label: 'visible', href: '/ocasiones/visible/' },
+    ]);
+    expect(listing.items.map((item) => item.priceAmountMinor)).toEqual([
+      250,
+      null,
+    ]);
+    expect(listing.items[0].occasionIds).toEqual(['visible', 'hidden']);
+  });
+
   it('projects all published products in domain order and builds product routes', () => {
     const listing = projectProductListing({
       ...emptyCatalog,

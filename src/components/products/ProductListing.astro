@@ -6,12 +6,20 @@ import ProductCard from '../catalog/ProductCard.astro';
 import {
   indexPublishedProductsByListingHref,
   projectProductListing,
+  type ProductListingItemProjection,
 } from './product-listing';
 import { catalogImageMap } from '../catalog/catalog-images';
 import { buildMediaProjection } from '../catalog/media-projection';
 import { getPublishedProducts } from '../../lib/catalog/domain/queries';
-import type { ProductCardProjection } from '../catalog/types';
 import './product-listing.css';
+import { Image } from 'astro:assets';
+import blueCloud from '../../assets/home/custom-idea/nube-azul.png';
+import pinkCloud from '../../assets/home/custom-idea/nube-rosa.png';
+import moon from '../../assets/home/luna-nube.png';
+import ProductsIdeaCta from './ProductsIdeaCta.astro';
+import { productsIndexContent } from '../../content/products-index';
+import { routes } from '../../lib/catalog/domain/routes';
+import { withBasePath } from '../../lib/site/urls';
 
 interface Props {
   catalog: Catalog;
@@ -24,7 +32,7 @@ const productsByListingHref =
   indexPublishedProductsByListingHref(domainProducts);
 
 // Enriquecer cada item con su media resuelta
-const itemsWithMedia: ProductCardProjection[] = await Promise.all(
+const itemsWithMedia: ProductListingItemProjection[] = await Promise.all(
   listing.items.map(async (item) => {
     const domainProduct = productsByListingHref.get(item.href);
     const coverSrc = domainProduct?.media?.cover?.src;
@@ -42,20 +50,134 @@ const itemsWithMedia: ProductCardProjection[] = await Promise.all(
 
 {
   itemsWithMedia.length > 0 && (
-    <div class="product-listing">
+    <div class="product-listing" data-product-listing>
+      <div class="product-listing__clouds" aria-hidden="true">
+        <Image
+          src={blueCloud}
+          alt="Nube azul decorativa en acuarela."
+          width={180}
+          format="webp"
+          loading="lazy"
+          class="product-listing__cloud-blue"
+        />
+        <div class="product-listing__cloud-right">
+          <Image
+            src={pinkCloud}
+            alt="Nube rosa decorativa en acuarela."
+            width={200}
+            format="webp"
+            loading="lazy"
+          />
+          <Image
+            src={moon}
+            alt="Luna sobre una nube rosa decorativa."
+            width={150}
+            format="webp"
+            loading="lazy"
+          />
+        </div>
+      </div>
       <ContentSection
         id="product-list"
         title={listing.title}
         intro={listing.intro}
       >
-        <CardList count={itemsWithMedia.length} columns={4}>
+        <div class="product-listing__tools">
+          <form
+            class="product-listing__search"
+            role="search"
+            action={withBasePath(routes.search(), import.meta.env.BASE_URL)}
+            data-listing-search
+          >
+            <label class="visually-hidden" for="listing-search">
+              {productsIndexContent.searchLabel}
+            </label>
+            <button type="submit" aria-label={productsIndexContent.searchLabel}>
+              <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <>
+                  <circle cx="10" cy="10" r="6.5" />
+                  <path d="m15 15 5 5" />
+                </>
+              </svg>
+            </button>
+            <input
+              id="listing-search"
+              name="q"
+              type="search"
+              placeholder={productsIndexContent.searchPlaceholder}
+              maxlength="120"
+            />
+          </form>
+          <nav
+            class="product-listing__filters"
+            aria-label="Filtrar productos por ocasión"
+          >
+            <a
+              href={withBasePath(routes.products(), import.meta.env.BASE_URL)}
+              data-listing-filter=""
+              aria-current="true"
+            >
+              {productsIndexContent.allLabel}
+            </a>
+            {listing.filters.map((filter) => (
+              <a
+                href={withBasePath(filter.href, import.meta.env.BASE_URL)}
+                data-listing-filter={filter.id}
+              >
+                {filter.label}
+              </a>
+            ))}
+          </nav>
+          <div class="product-listing__sort" data-listing-sort-control hidden>
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <path d="M4 6h16M4 12h16M4 18h16M8 3v6M16 9v6M10 15v6" />
+            </svg>
+            <label class="visually-hidden" for="listing-sort">
+              {productsIndexContent.sortLabel}
+            </label>
+            <select id="listing-sort" data-listing-sort>
+              {productsIndexContent.sortOptions.map((option) => (
+                <option value={option.value}>{option.label}</option>
+              ))}
+            </select>
+          </div>
+        </div>
+        <p
+          class="visually-hidden"
+          role="status"
+          aria-live="polite"
+          data-listing-status
+        />
+        <p class="product-listing__empty" data-listing-empty hidden>
+          {productsIndexContent.empty}
+        </p>
+        <CardList count={itemsWithMedia.length + 1} columns={4}>
           {itemsWithMedia.map((product) => (
-            <li>
+            <li
+              data-listing-item
+              data-name={product.name}
+              data-search={`${product.name} ${product.summary}`}
+              data-occasions={product.occasionIds.join(' ')}
+              data-price={product.priceAmountMinor ?? ''}
+            >
               <ProductCard product={product} />
             </li>
           ))}
+          <li
+            class="product-listing__idea"
+            style={`--idea-columns: ${4 - (itemsWithMedia.length % 4)}`}
+          >
+            <ProductsIdeaCta />
+          </li>
         </CardList>
       </ContentSection>
     </div>
   )
 }
+
+<script>
+  import { initProductListing } from './product-listing-client';
+  document
+    .querySelectorAll<HTMLElement>('[data-product-listing]')
+    .forEach(initProductListing);
+</script>

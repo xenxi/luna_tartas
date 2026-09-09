@@ -55,6 +55,7 @@ const {
       </svg>
     </p>
     <p class="catalog-hero__description">{description}</p>
+    <slot name="benefits" />
   </div>
 
   {
@@ -72,4 +73,5 @@ const {
     <path d="M22 8v28M8 22h28M88 70v38M69 89h38M56 50v16M48 58h16"></path>
   </svg>
   {variant === 'full-bleed' && <MobileHeroWave />}
+  <slot name="decoration" />
 </header>

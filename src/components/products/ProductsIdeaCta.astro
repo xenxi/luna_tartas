@@ -1,0 +1,79 @@
+---
+import { Image, Picture } from 'astro:assets';
+import art from '../../assets/home/custom-idea/imagen-central-target.png';
+import moon from '../../assets/home/custom-idea/luna-target.png';
+import flowers from '../../assets/site/footer-magnolia.png';
+import { productsIndexContent } from '../../content/products-index';
+import { customIdeaContent } from '../../content/home/custom-idea';
+import ActionLink from '../ui/ActionLink.astro';
+import { routes } from '../../lib/catalog/domain/routes';
+const content = productsIndexContent.customIdea;
+---
+
+<section class="products-idea" aria-labelledby="products-idea-title">
+  <div class="products-idea__copy">
+    <p class="products-idea__eyebrow">{content.eyebrow}</p>
+    <h2 id="products-idea-title">
+      {content.title}
+      <span aria-hidden="true">♡</span>
+    </h2>
+    <p>{content.copy}</p>
+    <ActionLink
+      href={customIdeaContent.action.href}
+      variant="secondary"
+      analytics={{
+        event: 'contact_whatsapp',
+        ctaLocation: 'products-custom-idea',
+        sourcePage: routes.products(),
+      }}
+    >
+      <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"
+        ><path
+          d="M20 11.5a8.5 8.5 0 0 1-12.8 7.3L3 20l1.2-4.2A8.5 8.5 0 1 1 20 11.5Z"
+        ></path><path d="m8 7 2 3-1 1c1 2 2 3 4 3l1-1 3 2c-2 4-10-1-10-5Z"
+        ></path></svg
+      >
+      {customIdeaContent.action.label}
+    </ActionLink>
+  </div>
+  <Picture
+    src={art}
+    alt={customIdeaContent.media.image.alt}
+    formats={['avif', 'webp']}
+    widths={[480, 768, 1200]}
+    sizes="(min-width: 48rem) 45vw, 90vw"
+    class="products-idea__art"
+    loading="lazy"
+  />
+  <p class="products-idea__note" aria-hidden="true">
+    Las mejores<br />historias también<br />se regalan <span>♡</span>
+  </p>
+  <Image
+    src={flowers}
+    alt="Flores rosas decorativas."
+    aria-hidden="true"
+    width={160}
+    format="webp"
+    class="products-idea__flowers"
+    loading="lazy"
+  />
+  <Image
+    src={moon}
+    alt="Luna sobre una nube decorativa."
+    aria-hidden="true"
+    width={160}
+    format="webp"
+    class="products-idea__moon"
+    loading="lazy"
+  />
+  <svg
+    class="products-wave"
+    viewBox="0 0 900 36"
+    preserveAspectRatio="none"
+    aria-hidden="true"
+    focusable="false"
+    ><path
+      d="M0 20Q30 0 60 20Q100 -8 145 24Q190 4 230 25Q280 -12 325 23Q360 6 400 23Q450 -10 490 25Q535 0 580 24Q620 2 660 24Q710 -8 750 24Q795 0 830 22Q870 0 900 18V36H0Z"
+    ></path></svg
+  >
+</section>

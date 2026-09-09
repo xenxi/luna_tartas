@@ -1,0 +1,45 @@
+---
+import { productsIndexContent } from '../../content/products-index';
+
+interface Props {
+  variant?: 'hero' | 'strip';
+}
+const { variant = 'strip' } = Astro.props;
+const benefits =
+  variant === 'hero'
+    ? productsIndexContent.heroBenefits
+    : productsIndexContent.benefits;
+const paths: Record<string, string> = {
+  heart: 'M20 34S4 25 4 14c0-8 10-10 16-2 6-8 16-6 16 2 0 11-16 20-16 20Z',
+  quality:
+    'M20 4a10 10 0 1 0 0 20 10 10 0 0 0 0-20ZM13 22l-3 14 8-4 2-7 2 7 8 4-3-14M20 9v10M15 14h10',
+  delivery:
+    'M3 9h23v21H3ZM26 17h6l5 7v6H26M8 33a3 3 0 1 0 6 0 3 3 0 0 0-6 0M27 33a3 3 0 1 0 6 0 3 3 0 0 0-6 0M7 14h9M7 19h6',
+  settings:
+    'm17 3-1 6-5 2-5-3-4 7 5 4v5l-4 4 4 6 6-2 4 2 1 5h8l1-5 4-2 5 2 4-7-4-4v-5l4-3-4-7-6 2-4-2-1-5ZM20 14a7 7 0 1 0 0 14 7 7 0 0 0 0-14Z',
+  pencil: 'm6 34 3-10L29 4l7 7-20 20-10 3ZM9 24l7 7M25 8l7 7',
+  gift: 'M4 14h32v8H4ZM7 22v15h26V22M17 14v23M23 14v23M20 14C4 14 7 1 14 4c4 2 6 10 6 10Zm0 0C36 14 33 1 26 4c-4 2-6 10-6 10Z',
+};
+---
+
+<ul
+  class:list={['products-benefits', `products-benefits--${variant}`]}
+  aria-label="Detalles que cuidamos"
+>
+  {
+    benefits.map((benefit) => (
+      <li>
+        <span class="products-benefits__icon" aria-hidden="true">
+          <svg viewBox="0 0 40 40" focusable="false">
+            <path d={paths[benefit.icon]} />
+          </svg>
+        </span>
+        <span>
+          {benefit.title}
+          <br />
+          {benefit.copy}
+        </span>
+      </li>
+    ))
+  }
+</ul>

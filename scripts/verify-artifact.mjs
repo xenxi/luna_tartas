@@ -65,9 +65,15 @@ function isAllowedSearchModule(route, tagName, src) {
 function isAllowedFavoritesModule(tagName, src) {
   return (
     tagName === 'script' &&
-    /^\/_astro\/FavoritesClient\.astro_astro_type_script_[^/]+\.js$/i.test(
-      src,
-    )
+    /^\/_astro\/FavoritesClient\.astro_astro_type_script_[^/]+\.js$/i.test(src)
+  );
+}
+
+function isAllowedProductListingModule(route, tagName, src) {
+  return (
+    tagName === 'script' &&
+    route === '/productos/' &&
+    /^\/_astro\/ProductListing\.astro_astro_type_script_[^/]+\.js$/i.test(src)
   );
 }
 
@@ -94,7 +100,8 @@ for (const file of htmlFiles) {
       !isAllowedAnalyticsModule(tagName, match[2]) &&
       !isAllowedProductGalleryModule(route, tagName, match[2]) &&
       !isAllowedSearchModule(route, tagName, match[2]) &&
-      !isAllowedFavoritesModule(tagName, match[2])
+      !isAllowedFavoritesModule(tagName, match[2]) &&
+      !isAllowedProductListingModule(route, tagName, match[2])
     ) {
       fail(`${route} loads an unexpected client asset`);
     }

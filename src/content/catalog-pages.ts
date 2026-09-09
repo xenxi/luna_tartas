@@ -2,11 +2,11 @@ import type { TaxonomyKind } from '../lib/catalog/domain/model';
 
 export const catalogPageContent = Object.freeze({
   products: Object.freeze({
-    eyebrow: 'CREACIONES HECHAS PARA EMOCIONAR',
+    eyebrow: 'DETALLES QUE CUENTAN HISTORIAS',
     title: 'Regalos personalizados',
-    claim: 'Detalles que cuentan historias',
+    claim: 'Diseños que emocionan',
     intro:
-      'Ideas hechas con mimo para celebrar a las personas especiales y convertir cada regalo en un recuerdo único.',
+      'Productos únicos, creados a mano y personalizados para hacer de cada ocasión un momento especial. Cuéntanos tu idea y lo hacemos realidad.',
     imageAlt:
       'Colección de regalos personalizados, tartas de pañales y papelería decorada en tonos rosas.',
   }),

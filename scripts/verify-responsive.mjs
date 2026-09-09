@@ -63,9 +63,23 @@ function isAllowedFavoritesModule(attributes) {
   return (
     /\btype="module"/i.test(attributes) &&
     src !== undefined &&
-    /^\/_astro\/FavoritesClient\.astro_astro_type_script_[^/]+\.js$/i.test(
-      src,
-    )
+    /^\/_astro\/FavoritesClient\.astro_astro_type_script_[^/]+\.js$/i.test(src)
+  );
+}
+
+function isAllowedProductListingModule(relative, attributes, source) {
+  const src = attributes.match(/\bsrc="([^"]+)"/i)?.[1];
+  return (
+    relative === path.join('productos', 'index.html') &&
+    /\btype="module"/i.test(attributes) &&
+    ((src !== undefined &&
+      /^\/_astro\/ProductListing\.astro_astro_type_script_[^/]+\.js$/i.test(
+        src,
+      )) ||
+      (src === undefined &&
+        source.includes('[data-product-listing]') &&
+        source.includes('[data-listing-search]') &&
+        source.includes('[data-listing-sort]')))
   );
 }
 
@@ -97,7 +111,8 @@ if (htmlFiles.length === 0) {
         !isAllowedAnalyticsModule(script[1]) &&
         !isAllowedProductGalleryModule(relative, script[1], script[2]) &&
         !isAllowedSearchModule(relative, script[1]) &&
-        !isAllowedFavoritesModule(script[1])
+        !isAllowedFavoritesModule(script[1]) &&
+        !isAllowedProductListingModule(relative, script[1], script[2])
       )
         failures.push(
           `${relative}: el artefacto carga JavaScript cliente no permitido`,

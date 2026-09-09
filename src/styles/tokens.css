@@ -37,6 +37,26 @@
   }
 }
 
+/* Products index reference palette stays inside the page content. */
+@media (min-width: 48rem) {
+  .products-page {
+    --color-text: #17212b;
+    --color-text-muted: #465060;
+    --color-action: #ce0752;
+    --color-action-hover: #ac0645;
+    --color-accent: #f72f7b;
+    --color-border: #f3d8e0;
+    --color-canvas: #fffdfd;
+    --color-surface: #fffdfd;
+    --color-surface-warm: #fdebf0;
+    --shadow-products-control: 0 2px 8px rgb(125 71 85 / 4%);
+    --shadow-products-card: 0 1px 4px rgb(125 71 85 / 3%);
+    --color-products-hero-backdrop: #fdebf1;
+    --shadow-products-focus:
+      0 0 0 0.125rem var(--color-surface), 0 0 0 0.25rem var(--color-action);
+  }
+}
+
 :root {
   color-scheme: light;
 

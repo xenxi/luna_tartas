@@ -9,6 +9,9 @@ import { routes } from '../../lib/catalog/domain/routes';
 import { buildMediaProjection } from '../../components/catalog/media-projection';
 import { catalogPageContent } from '../../content/catalog-pages';
 import heroImage from '../../assets/products/products-hero.png';
+import desktopHeroImage from '../../assets/products/products-hero-blush.png';
+import ProductsBenefits from '../../components/products/ProductsBenefits.astro';
+import { productsIndexContent } from '../../content/products-index';
 import './products.css';
 import Breadcrumb from '../../components/navigation/Breadcrumb.astro';
 import { productsBreadcrumb } from '../../lib/seo/navigation';
@@ -19,9 +22,29 @@ const heroMedia = await buildMediaProjection(
   catalogPageContent.products.imageAlt,
   {
     widths: [480, 768, 1024, 1440, 1920],
-    sizes: '(max-width: 47.99rem) 400vw, min(100vw, 93.75rem)',
+    sizes: '(max-width: 47.99rem) 400vw, 100vw',
   },
 );
+const desktopHeroMedia = await buildMediaProjection(
+  desktopHeroImage,
+  catalogPageContent.products.imageAlt,
+  { widths: [960, 1440, 1882] },
+);
+const responsiveHeroMedia = {
+  ...heroMedia,
+  sources: [
+    ...(desktopHeroMedia.sources ?? []).map((source) => ({
+      ...source,
+      media: '(min-width: 48rem)',
+    })),
+    {
+      type: 'image/jpeg',
+      srcSet: desktopHeroMedia.srcSet!,
+      media: '(min-width: 48rem)',
+    },
+    ...(heroMedia.sources ?? []),
+  ],
+};
 ---
 
 <BaseLayout
@@ -36,12 +59,34 @@ const heroMedia = await buildMediaProjection(
       title={catalogPageContent.products.title}
       claim={catalogPageContent.products.claim}
       description={catalogPageContent.products.intro}
-      media={heroMedia}
+      media={responsiveHeroMedia}
       variant="full-bleed"
       mobileObjectPosition="75% center"
-    />
+    >
+      <ProductsBenefits slot="benefits" variant="hero" />
+      <div slot="decoration" class="products-hero-note" aria-hidden="true">
+        {productsIndexContent.heroNote}<span>♡</span>
+      </div>
+      <span slot="decoration" class="products-hero-heart" aria-hidden="true"
+        >♡</span
+      >
+      <svg
+        slot="decoration"
+        class="products-wave"
+        viewBox="0 0 900 36"
+        preserveAspectRatio="none"
+        aria-hidden="true"
+        focusable="false"
+        ><path
+          d="M0 20Q30 0 60 20Q100 -8 145 24Q190 4 230 25Q280 -12 325 23Q360 6 400 23Q450 -10 490 25Q535 0 580 24Q620 2 660 24Q710 -8 750 24Q795 0 830 22Q870 0 900 18V36H0Z"
+        ></path></svg
+      >
+    </CatalogHero>
     <ProductListing catalog={catalog} />
-    <CategoryBenefits />
-    <CustomIdeaCta sourcePage={routes.products()} />
+    <div class="products-desktop-benefits"><ProductsBenefits /></div>
+    <div class="products-compact-closing">
+      <CategoryBenefits />
+      <CustomIdeaCta sourcePage={routes.products()} />
+    </div>
   </div>
 </BaseLayout>
