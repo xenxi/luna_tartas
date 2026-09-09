@@ -191,6 +191,9 @@
   --shadow-focus:
     0 0 0 0.1875rem var(--color-canvas), 0 0 0 0.375rem var(--color-focus);
 
+  --container-page: 90rem;
+  /* One percent of the viewport, capped at the home composition width. */
+  --page-unit: min(1vw, calc(var(--container-page) / 100));
   --container-content: 72rem;
   --container-visual: 80rem;
   --gutter: clamp(1rem, 4vw, 3rem);

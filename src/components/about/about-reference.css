@@ -39,7 +39,8 @@ body:has(.about-page) > .site-header {
 }
 
 .about-decoration,
-.about-eyebrow {
+.about-eyebrow,
+.about-process__connector {
   display: none;
 }
 
@@ -475,8 +476,9 @@ body:has(.about-page) > .site-header {
   }
 
   .about-process__list {
+    --about-step-gap: calc(18 * var(--about-unit));
     grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: calc(18 * var(--about-unit));
+    gap: var(--about-step-gap);
     padding-inline: calc(32 * var(--about-unit));
   }
 
@@ -511,15 +513,28 @@ body:has(.about-page) > .site-header {
   }
 
   .about-process__thread {
-    inset: calc(23 * var(--about-unit)) 17% auto;
-    width: 66%;
-    height: calc(24 * var(--about-unit));
-    border-top: 1px dashed #f9bed0;
-    border-radius: 50%;
+    display: none;
   }
 
-  .about-process__thread-svg {
-    display: none;
+  /* Match the home curves, joining icon centres without end tails. */
+  .about-process__connector {
+    display: block;
+    position: absolute;
+    z-index: -1;
+    left: 50%;
+    top: calc(3.5 * var(--about-unit));
+    width: calc(100% + var(--about-step-gap));
+    max-width: none;
+    height: calc(50 * var(--about-unit));
+    fill: none;
+    stroke: #ff8bb0;
+    stroke-width: 1.5;
+    stroke-dasharray: 4 6;
+    pointer-events: none;
+  }
+
+  .about-process__connector path {
+    vector-effect: non-scaling-stroke;
   }
 
   .about-gallery {

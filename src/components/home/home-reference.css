@@ -29,11 +29,13 @@
     --color-footer: #fff8f7;
   }
   .home-reference .home-composition {
+    max-inline-size: var(--container-page);
+    margin-inline: auto;
     background: var(--color-canvas);
   }
   .home-reference .hero {
     overflow: hidden;
-    width: min(100%, 90rem);
+    width: min(100%, var(--container-page));
     margin-inline: auto;
     background: linear-gradient(90deg, #fff5f3, #ead5d3);
     padding-bottom: calc(22 * var(--home-unit));

@@ -274,6 +274,17 @@ const galleryMedia = [
         {
           aboutContent.process.steps.map((step, index) => (
             <li class="about-process__step">
+              {index < aboutContent.process.steps.length - 1 && (
+                <svg
+                  class="about-process__connector"
+                  viewBox="0 0 240 64"
+                  preserveAspectRatio="none"
+                  aria-hidden="true"
+                  focusable="false"
+                >
+                  <path d="M0 32C45 74 69 52 119 28S200 14 240 32" />
+                </svg>
+              )}
               <span class="about-process__number" aria-hidden="true">
                 {step.number}
               </span>

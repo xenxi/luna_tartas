@@ -30,6 +30,7 @@ interface Props {
   pageType?: MetadataPageType;
   robots?: MetadataRobots;
   titleSuffix?: string;
+  boundedContent?: boolean;
 }
 
 const {
@@ -41,6 +42,7 @@ const {
   pageType,
   robots,
   titleSuffix,
+  boundedContent = false,
 } = Astro.props;
 
 if (typeof title !== 'string' || title.trim() === '') {
@@ -90,6 +92,7 @@ const metadata = createPageMetadata({
     class:list={{
       'home-reference': canonicalPath === '/',
       'product-reference': pageType === 'product',
+      'bounded-content': boundedContent,
     }}
   >
     <DecorativeBackdrop />

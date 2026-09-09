@@ -69,7 +69,8 @@
   .products-page > .catalog-hero {
     inline-size: 100%;
     min-block-size: calc(
-      var(--site-header-desktop-height) + clamp(25rem, 34vw, 33rem)
+      var(--site-header-desktop-height) +
+        clamp(25rem, calc(34 * var(--page-unit)), 33rem)
     );
     padding-block-start: var(--site-header-desktop-height);
     border: 0;
@@ -80,21 +81,22 @@
   .products-page .catalog-hero__copy {
     inline-size: min(51%, 44rem);
     margin-inline-start: max(
-      7.7vw,
-      calc((100vw - var(--container-visual)) / 2)
+      calc(7.7 * var(--page-unit)),
+      calc((calc(100 * var(--page-unit)) - var(--container-visual)) / 2)
     );
-    padding: clamp(1.5rem, 2.5vw, 2.5rem) 0 clamp(2.75rem, 4vw, 4rem);
+    padding: clamp(1.5rem, calc(2.5 * var(--page-unit)), 2.5rem) 0
+      clamp(2.75rem, calc(4 * var(--page-unit)), 4rem);
   }
 
   .products-page .catalog-hero__eyebrow {
-    font-size: clamp(0.65rem, 1vw, 0.88rem);
+    font-size: clamp(0.65rem, calc(1 * var(--page-unit)), 0.88rem);
     letter-spacing: 0.12em;
   }
 
   .products-page .catalog-hero h1 {
-    max-inline-size: 12ch;
+    max-inline-size: 13ch;
     margin-block-start: 1rem;
-    font-size: clamp(2.65rem, 4.6vw, 4.5rem);
+    font-size: clamp(2.65rem, calc(4.6 * var(--page-unit)), 4.5rem);
     line-height: 0.99;
     letter-spacing: -0.045em;
   }
@@ -105,7 +107,7 @@
     gap: 0.25rem;
     margin-block-start: 0.75rem;
     color: var(--color-action);
-    font-size: clamp(1.8rem, 3.4vw, 3.1rem);
+    font-size: clamp(1.8rem, calc(3.4 * var(--page-unit)), 3.1rem);
   }
 
   .products-page .catalog-hero__claim svg {
@@ -119,7 +121,7 @@
   .products-page .catalog-hero__description {
     max-inline-size: 39ch;
     margin-block-start: 1rem;
-    font-size: clamp(0.85rem, 1.3vw, 1.13rem);
+    font-size: clamp(0.85rem, calc(1.3 * var(--page-unit)), 1.13rem);
     line-height: 1.45;
   }
 
@@ -139,7 +141,7 @@
   .products-page .catalog-hero > .responsive-media img {
     position: absolute;
     inset-block: 0;
-    inset-inline-end: max(0px, calc((100vw - var(--container-visual)) / 4));
+    inset-inline-end: 0;
     inline-size: auto;
     max-inline-size: none;
     object-fit: contain;
@@ -156,7 +158,7 @@
     width: 7ch;
     color: var(--color-action);
     font-family: var(--font-script);
-    font-size: clamp(1.5rem, 2.5vw, 2.4rem);
+    font-size: clamp(1.5rem, calc(2.5 * var(--page-unit)), 2.4rem);
     line-height: 0.95;
     transform: rotate(-10deg);
   }
@@ -187,7 +189,7 @@
     left: 0;
     display: block;
     width: 100%;
-    height: clamp(1.75rem, 4vw, 3.5rem);
+    height: clamp(1.75rem, calc(4 * var(--page-unit)), 3.5rem);
     fill: var(--color-canvas);
     pointer-events: none;
   }
@@ -206,7 +208,7 @@
     gap: 0.55rem;
     margin: 0;
     color: var(--color-text);
-    font-size: clamp(0.6rem, 0.95vw, 0.85rem);
+    font-size: clamp(0.6rem, calc(0.95 * var(--page-unit)), 0.85rem);
     line-height: 1.35;
   }
 
@@ -215,7 +217,7 @@
     flex: none;
     place-items: center;
     color: var(--color-accent);
-    width: clamp(2.4rem, 4.2vw, 3.6rem);
+    width: clamp(2.4rem, calc(4.2 * var(--page-unit)), 3.6rem);
     aspect-ratio: 1;
   }
 
@@ -230,8 +232,8 @@
 
   .products-benefits--hero {
     width: 100%;
-    margin-top: clamp(1.25rem, 2.4vw, 2.2rem);
-    margin-left: -3.5vw;
+    margin-top: clamp(1.25rem, calc(2.4 * var(--page-unit)), 2.2rem);
+    margin-left: calc(-3.5 * var(--page-unit));
     gap: 0.5rem;
   }
 
@@ -261,7 +263,7 @@
   }
 
   .products-page .product-listing h2 {
-    font-size: clamp(1.65rem, 2.7vw, 2.7rem);
+    font-size: clamp(1.65rem, calc(2.7 * var(--page-unit)), 2.7rem);
     line-height: 1.15;
   }
 
@@ -272,7 +274,7 @@
   }
 
   .products-page .product-listing .content-section__heading p {
-    font-size: clamp(0.85rem, 1.3vw, 1.13rem);
+    font-size: clamp(0.85rem, calc(1.3 * var(--page-unit)), 1.13rem);
   }
 
   .product-listing__clouds {
@@ -377,7 +379,7 @@
     border-radius: var(--radius-pill);
     color: var(--color-text);
     background: var(--color-surface);
-    font-size: clamp(0.7rem, 0.95vw, 0.85rem);
+    font-size: clamp(0.7rem, calc(0.95 * var(--page-unit)), 0.85rem);
     text-decoration: none;
     white-space: nowrap;
   }
@@ -436,7 +438,7 @@
 
   .products-page .card-list--4 {
     grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: clamp(0.75rem, 1.5vw, 1.4rem);
+    gap: clamp(0.75rem, calc(1.5 * var(--page-unit)), 1.4rem);
   }
 
   .products-page .catalog-card {
@@ -464,20 +466,20 @@
 
   .products-page .catalog-card__title {
     font-family: var(--font-display);
-    font-size: clamp(0.9rem, 1.3vw, 1.2rem);
+    font-size: clamp(0.9rem, calc(1.3 * var(--page-unit)), 1.2rem);
     font-weight: 400;
     line-height: 1.15;
   }
 
   .products-page .catalog-card__summary {
-    font-size: clamp(0.75rem, 1.1vw, 0.97rem);
+    font-size: clamp(0.75rem, calc(1.1 * var(--page-unit)), 0.97rem);
     line-height: 1.4;
   }
 
   .products-page .catalog-card__meta {
     margin-top: auto;
     padding-top: 0.2rem;
-    font-size: clamp(0.85rem, 1.25vw, 1.1rem);
+    font-size: clamp(0.85rem, calc(1.25 * var(--page-unit)), 1.1rem);
   }
 
   .products-page .catalog-card__action {
@@ -485,7 +487,7 @@
     min-height: 2.75rem;
     padding: 0.5rem 1.1rem;
     background: var(--color-surface-warm);
-    font-size: clamp(0.75rem, 1vw, 0.9rem);
+    font-size: clamp(0.75rem, calc(1 * var(--page-unit)), 0.9rem);
   }
 
   .products-page .favorite-button--card {
@@ -516,18 +518,18 @@
     position: relative;
     z-index: 2;
     width: 45%;
-    padding: clamp(1.5rem, 3vw, 2.6rem);
+    padding: clamp(1.5rem, calc(3 * var(--page-unit)), 2.6rem);
   }
 
   .products-idea__eyebrow {
     margin-bottom: 0.7rem;
     color: var(--color-action);
-    font-size: clamp(0.65rem, 1vw, 0.88rem);
+    font-size: clamp(0.65rem, calc(1 * var(--page-unit)), 0.88rem);
     letter-spacing: 0.08em;
   }
 
   .products-page .products-idea h2 {
-    font-size: clamp(1.8rem, 3.15vw, 3rem);
+    font-size: clamp(1.8rem, calc(3.15 * var(--page-unit)), 3rem);
     line-height: 1;
     font-weight: 400;
     letter-spacing: -0.035em;
@@ -539,7 +541,7 @@
   }
   .products-idea__copy > p:not([class]) {
     margin-top: 0.75rem;
-    font-size: clamp(0.8rem, 1.25vw, 1.05rem);
+    font-size: clamp(0.8rem, calc(1.25 * var(--page-unit)), 1.05rem);
     line-height: 1.4;
     color: var(--color-text-muted);
   }
@@ -548,7 +550,7 @@
     padding: 0.6rem 1rem;
     min-height: 2.75rem;
     background: var(--color-surface);
-    font-size: clamp(0.7rem, 1vw, 0.9rem);
+    font-size: clamp(0.7rem, calc(1 * var(--page-unit)), 0.9rem);
     border-color: var(--color-accent);
   }
   .products-idea .action-link svg {
@@ -575,7 +577,7 @@
     right: 2%;
     color: var(--color-text);
     font-family: var(--font-script);
-    font-size: clamp(1.15rem, 1.8vw, 1.65rem);
+    font-size: clamp(1.15rem, calc(1.8 * var(--page-unit)), 1.65rem);
     line-height: 1;
     text-align: center;
     transform: rotate(-10deg);
@@ -655,14 +657,14 @@
     }
     .products-page .catalog-hero h1 {
       margin-top: 0.75rem;
-      font-size: 4.6vw;
+      font-size: calc(4.6 * var(--page-unit));
     }
     .products-page .catalog-hero__claim {
       margin-top: 0.5rem;
     }
     .products-page .catalog-hero__description {
       margin-top: 0.75rem;
-      font-size: 1.3vw;
+      font-size: calc(1.3 * var(--page-unit));
     }
     .products-benefits--hero {
       margin-top: 1rem;

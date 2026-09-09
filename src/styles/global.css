@@ -60,6 +60,13 @@
   min-width: 0;
 }
 
+/* Keep page artwork and content inside the same desktop frame as the home. */
+.bounded-content > main {
+  inline-size: 100%;
+  max-inline-size: var(--container-page);
+  margin-inline: auto;
+}
+
 :where(main:focus-visible) {
   outline: 0.1875rem solid var(--color-focus);
   outline-offset: 0.25rem;
