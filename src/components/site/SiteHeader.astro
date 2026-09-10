@@ -17,10 +17,15 @@ const isProductsIndex =
 const isCategoryIndex =
   currentPath ===
   withBasePath(routes.taxonomyIndex('category'), import.meta.env.BASE_URL);
-const isCategoryLanding =
-  currentPath.startsWith(
-    withBasePath(routes.taxonomyIndex('category'), import.meta.env.BASE_URL),
-  ) && !isCategoryIndex;
+const isTaxonomyLanding = (['category', 'occasion', 'recipient'] as const).some(
+  (kind) => {
+    const indexPath = withBasePath(
+      routes.taxonomyIndex(kind),
+      import.meta.env.BASE_URL,
+    );
+    return currentPath.startsWith(indexPath) && currentPath !== indexPath;
+  },
+);
 ---
 
 <header
@@ -31,7 +36,7 @@ const isCategoryLanding =
       'site-header--overlay':
         currentPath === '/' ||
         isCategoryIndex ||
-        isCategoryLanding ||
+        isTaxonomyLanding ||
         isProductsIndex,
       'site-header--category-overlay': isCategoryIndex,
     },

@@ -18,6 +18,7 @@ export interface Taxonomy {
   readonly status: PublicationStatus;
   readonly order: number;
   readonly seo?: SeoMetadata;
+  readonly heroPosition?: string;
 }
 
 export interface PricedAmount {

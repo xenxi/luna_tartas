@@ -7,6 +7,7 @@ interface Props {
   loading?: 'eager' | 'lazy';
   fetchPriority?: 'high' | 'low' | 'auto';
   missingLabel?: string;
+  withBackdrop?: boolean;
 }
 
 const {
@@ -14,6 +15,7 @@ const {
   loading = 'lazy',
   fetchPriority,
   missingLabel = 'Imagen no disponible',
+  withBackdrop = false,
 } = Astro.props;
 
 if (media !== undefined) {
@@ -38,6 +40,29 @@ if (media !== undefined) {
       style={`--media-aspect: ${media.width} / ${media.height}`}
       data-media-state="available"
     >
+      {withBackdrop && (
+        <picture class="responsive-media__backdrop" aria-hidden="true">
+          {media.sources?.map((source) => (
+            <source
+              srcset={source.srcSet}
+              type={source.type}
+              media={source.media}
+              sizes={media.sizes}
+            />
+          ))}
+          <img
+            src={media.src}
+            alt={media.alt}
+            width={media.width}
+            height={media.height}
+            srcset={media.srcSet}
+            sizes={media.sizes}
+            loading="lazy"
+            fetchpriority="low"
+            decoding="async"
+          />
+        </picture>
+      )}
       <picture>
         {media.sources?.map((source) => (
           <source

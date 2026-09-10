@@ -11,7 +11,8 @@ interface Props {
   description: string;
   media?: MediaProjection;
   headingId?: string;
-  variant?: 'split' | 'full-bleed';
+  variant?: 'split' | 'full-bleed' | 'integrated';
+  objectPosition?: string;
   mobileObjectPosition?: string;
 }
 
@@ -23,8 +24,16 @@ const {
   media,
   headingId,
   variant = 'split',
+  objectPosition = 'center center',
   mobileObjectPosition = '74% center',
 } = Astro.props;
+
+const mediaAspect =
+  media === undefined ? undefined : media.width / media.height;
+const hasExtremeMedia =
+  variant === 'integrated' &&
+  mediaAspect !== undefined &&
+  (mediaAspect < 0.55 || mediaAspect > 2.4);
 ---
 
 <header
@@ -33,9 +42,11 @@ const {
     {
       'catalog-hero--without-media': !media,
       'catalog-hero--full-bleed': variant === 'full-bleed',
+      'catalog-hero--integrated': variant === 'integrated',
+      'catalog-hero--extreme-media': hasExtremeMedia,
     },
   ]}
-  style={`--catalog-hero-mobile-position: ${mobileObjectPosition}`}
+  style={`--catalog-hero-position: ${objectPosition}; --catalog-hero-mobile-position: ${mobileObjectPosition}`}
 >
   <div class="catalog-hero__copy">
     <p class="catalog-hero__eyebrow">
@@ -60,7 +71,12 @@ const {
 
   {
     media && (
-      <ResponsiveMedia media={media} loading="eager" fetchPriority="high" />
+      <ResponsiveMedia
+        media={media}
+        loading="eager"
+        fetchPriority="high"
+        withBackdrop={hasExtremeMedia}
+      />
     )
   }
 

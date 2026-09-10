@@ -58,4 +58,33 @@ describe('taxonomy YAML schema', () => {
 
     expect(parsed.name).toBe('Nombre sintético');
   });
+
+  it.each(['center', 'right bottom', 'center right', '65% 45%'])(
+    'accepts the optional hero position %s',
+    (heroPosition) => {
+      const fixture = readYamlFixture('taxonomies/valid/category.yml');
+      const parsed = taxonomySchema.parse({
+        ...(fixture as Record<string, unknown>),
+        heroPosition,
+      });
+
+      expect(parsed.heroPosition).toBe(heroPosition);
+    },
+  );
+
+  it.each([
+    'calc(100% - 1rem)',
+    'center; color: red',
+    '101% 50%',
+    'left right',
+  ])('rejects the unsafe hero position %s', (heroPosition) => {
+    const fixture = readYamlFixture('taxonomies/valid/category.yml');
+
+    expect(() =>
+      taxonomySchema.parse({
+        ...(fixture as Record<string, unknown>),
+        heroPosition,
+      }),
+    ).toThrow();
+  });
 });

@@ -89,6 +89,7 @@ export function mapTaxonomy(document: TaxonomySourceDocument): Taxonomy {
       status: data.status,
       order: data.order,
       seo: copySeo(data.seo),
+      heroPosition: data.heroPosition,
     };
   } catch (error) {
     if (error instanceof CatalogSourceError) {

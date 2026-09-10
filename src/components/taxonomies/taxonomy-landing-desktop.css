@@ -1,18 +1,18 @@
-/* Category detail pages adopt the Products reference on desktop only. */
-/* The neutral wrapper also preserves the existing compact/other taxonomy layout. */
+/* Category, occasion and recipient detail pages share the Products desktop style. */
+/* The listing wrapper preserves the existing compact layout. */
 .taxonomy-landing > .taxonomy-landing__listing {
   inline-size: min(calc(100% - (2 * var(--gutter))), var(--container-visual));
   margin-inline: auto;
 }
 
 @media (min-width: 48rem) {
-  .category-landing {
+  .taxonomy-landing {
     position: relative;
     padding: 0;
     background: var(--color-canvas);
   }
 
-  .category-landing > .breadcrumb {
+  .taxonomy-landing > .breadcrumb {
     position: absolute;
     z-index: 3;
     inset-block-start: calc(var(--site-header-desktop-height) + 0.5rem);
@@ -20,7 +20,7 @@
     font-size: 0.75rem;
   }
 
-  .category-landing > .catalog-hero {
+  .taxonomy-landing > .catalog-hero {
     inline-size: 100%;
     min-block-size: calc(
       var(--site-header-desktop-height) +
@@ -32,7 +32,7 @@
     background: var(--color-surface-warm);
   }
 
-  .category-landing .catalog-hero__copy {
+  .taxonomy-landing .catalog-hero__copy {
     inline-size: 48%;
     margin-inline-start: max(
       calc(7.7 * var(--page-unit)),
@@ -41,12 +41,12 @@
     padding: 3.5rem 0 4rem;
   }
 
-  .category-landing .catalog-hero__eyebrow {
+  .taxonomy-landing .catalog-hero__eyebrow {
     font-size: clamp(0.65rem, calc(1 * var(--page-unit)), 0.88rem);
     letter-spacing: 0.12em;
   }
 
-  .category-landing .catalog-hero h1 {
+  .taxonomy-landing .catalog-hero h1 {
     max-inline-size: 13ch;
     margin-block-start: 1rem;
     font-size: clamp(2.65rem, calc(4.6 * var(--page-unit)), 4.5rem);
@@ -54,7 +54,7 @@
     letter-spacing: -0.045em;
   }
 
-  .category-landing .catalog-hero__claim {
+  .taxonomy-landing .catalog-hero__claim {
     display: flex;
     align-items: center;
     gap: 0.25rem;
@@ -64,7 +64,7 @@
     font-size: clamp(1.8rem, calc(3.4 * var(--page-unit)), 3.1rem);
   }
 
-  .category-landing .catalog-hero__claim svg {
+  .taxonomy-landing .catalog-hero__claim svg {
     display: block;
     flex: none;
     width: 2.4rem;
@@ -73,83 +73,69 @@
     stroke-width: 1.5;
   }
 
-  .category-landing .catalog-hero__description {
+  .taxonomy-landing .catalog-hero__description {
     max-inline-size: 39ch;
     margin-block-start: 1rem;
     font-size: clamp(0.85rem, calc(1.3 * var(--page-unit)), 1.13rem);
     line-height: 1.45;
   }
 
-  .category-landing .catalog-hero__sparkles {
+  .taxonomy-landing .catalog-hero__sparkles {
     display: none;
   }
 
-  .category-landing .catalog-hero > .responsive-media {
+  .taxonomy-landing .catalog-hero > .responsive-media {
     inset-block: 0;
     inset-inline-end: 0;
-    inline-size: 49%;
+    inline-size: 54%;
     block-size: 100%;
-    background: transparent;
+    background: var(--color-surface-warm);
   }
 
-  .category-landing .catalog-hero > .responsive-media::after {
-    background: none;
-  }
-
-  .category-landing .catalog-hero > .responsive-media img {
-    position: absolute;
-    inset: 0 0 0 auto;
-    inline-size: auto;
-    max-inline-size: 100%;
-    object-fit: contain;
-    object-position: right bottom;
-    mask-image: linear-gradient(90deg, transparent, black 16%);
-  }
-
-  .category-landing__listing {
+  .taxonomy-landing__listing {
     position: relative;
   }
 
-  .category-landing .content-section {
+  .taxonomy-landing .content-section {
     gap: 1.4rem;
     padding: 1.2rem 0 var(--space-6);
   }
 
-  .category-landing .content-section__header {
+  .taxonomy-landing .content-section__header {
     min-height: 5.5rem;
     padding-inline: 18%;
   }
 
-  .category-landing .content-section__heading {
+  .taxonomy-landing .content-section__heading {
     gap: 0.4rem;
   }
 
-  .category-landing .content-section__heading h2 {
+  .taxonomy-landing .content-section__heading h2 {
     font-size: clamp(1.65rem, calc(2.7 * var(--page-unit)), 2.7rem);
     line-height: 1.15;
   }
 
-  .category-landing .content-section__heading h2::after {
+  .taxonomy-landing .content-section__heading h2::after {
     content: ' ♡';
     color: var(--color-action);
     font-family: var(--font-body);
   }
 
-  .category-landing .content-section__heading p {
+  .taxonomy-landing .content-section__heading p {
     font-size: clamp(0.85rem, calc(1.3 * var(--page-unit)), 1.13rem);
   }
 
   @media (max-width: 63.99rem) {
-    .category-landing .catalog-hero__copy {
+    .taxonomy-landing .catalog-hero__copy {
       padding-block: 3rem 3.5rem;
     }
-    .category-landing .catalog-hero h1 {
+    .taxonomy-landing .catalog-hero h1 {
       font-size: calc(4.6 * var(--page-unit));
     }
-    .category-landing .catalog-hero__claim {
+    .taxonomy-landing .catalog-hero__claim {
       font-size: clamp(1.8rem, calc(3.4 * var(--page-unit)), 3.1rem);
     }
-    .category-landing .catalog-hero__description {
+    .taxonomy-landing .catalog-hero__description {
       font-size: 0.85rem;
     }
   }

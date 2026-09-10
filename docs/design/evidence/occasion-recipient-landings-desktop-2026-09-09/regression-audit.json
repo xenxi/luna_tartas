@@ -1,0 +1,30 @@
+[
+  {
+    "path": "categorias/papeleria-personalizada",
+    "cards": 6,
+    "header": "absolute",
+    "landing": true,
+    "overflow": false
+  },
+  {
+    "path": "productos",
+    "cards": 9,
+    "header": "absolute",
+    "landing": false,
+    "overflow": false
+  },
+  {
+    "path": "ocasiones",
+    "cards": 0,
+    "header": "relative",
+    "landing": false,
+    "overflow": false
+  },
+  {
+    "path": "regalos",
+    "cards": 0,
+    "header": "relative",
+    "landing": false,
+    "overflow": false
+  }
+]

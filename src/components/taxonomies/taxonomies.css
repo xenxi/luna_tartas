@@ -58,7 +58,7 @@
 }
 
 @media (max-width: 47.99rem) {
-  .taxonomies-page > .catalog-hero {
+  :is(.taxonomies-page, .taxonomy-landing) > .catalog-hero {
     inline-size: 100%;
     margin-inline: 0;
   }

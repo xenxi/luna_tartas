@@ -53,6 +53,7 @@ M2.1 concreta un único shape source para las tres colecciones:
 | `status` | `draft \| published` |
 | `order` | entero obligatorio mayor o igual que cero |
 | `seo` | objeto opcional y no vacío; `title` 1–60 y/o `description` 1–160 |
+| `heroPosition` | posición focal opcional del hero: keywords CSS seguras o dos porcentajes entre 0% y 100%; por defecto `center center` |
 | `context` | sólo admite `FIXTURE`; cuando existe obliga a `status: draft` |
 
 Los objetos son estrictos: un campo desconocido falla para hacer visibles los errores editoriales. Las colecciones reales pueden permanecer vacías hasta recibir contenido aprobado; los documentos sintéticos viven exclusivamente bajo `tests/fixtures`.

@@ -94,6 +94,16 @@ describe('catalog source mapping', () => {
     },
   );
 
+  it('maps an optional taxonomy hero position into the domain', () => {
+    const source = taxonomyDocument('categories');
+    const positioned = {
+      ...source,
+      data: { ...source.data, heroPosition: '65% 45%' },
+    };
+
+    expect(mapTaxonomy(positioned).heroPosition).toBe('65% 45%');
+  });
+
   it.each([
     ['draft-fixed.yml', 'fixed', 12345],
     ['draft-from.yml', 'from', 5000],

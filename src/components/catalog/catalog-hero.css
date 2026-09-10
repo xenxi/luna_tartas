@@ -112,6 +112,87 @@
   object-fit: cover;
 }
 
+.catalog-hero--integrated::after {
+  position: absolute;
+  z-index: var(--z-raised);
+  inset: auto 0 0;
+  block-size: clamp(1.25rem, 2.5vw, 2.25rem);
+  background: linear-gradient(
+    180deg,
+    transparent,
+    color-mix(in srgb, var(--color-surface-warm) 48%, transparent) 68%,
+    var(--color-surface-warm)
+  );
+  content: '';
+  pointer-events: none;
+}
+
+.catalog-hero--integrated > .responsive-media {
+  isolation: isolate;
+  background: var(--color-surface-warm);
+}
+
+.catalog-hero--integrated
+  > .responsive-media
+  > picture:not(.responsive-media__backdrop) {
+  position: relative;
+  z-index: var(--z-raised);
+  display: block;
+  inline-size: 100%;
+}
+
+.catalog-hero--integrated > .responsive-media .responsive-media__backdrop {
+  position: absolute;
+  z-index: var(--z-base);
+  inset: -12%;
+  display: block;
+  opacity: 0.14;
+  filter: blur(clamp(1.25rem, 1.8vw, 1.75rem)) saturate(0.88) contrast(0.94);
+  pointer-events: none;
+  transform: scale(1.1);
+}
+
+.catalog-hero--integrated > .responsive-media .responsive-media__backdrop img {
+  inline-size: 100%;
+  object-fit: cover;
+  object-position: var(--catalog-hero-position);
+}
+
+.catalog-hero--integrated
+  > .responsive-media
+  > picture:not(.responsive-media__backdrop)
+  img {
+  inline-size: 100%;
+  object-fit: cover;
+  object-position: var(--catalog-hero-position);
+}
+
+.catalog-hero--integrated.catalog-hero--extreme-media
+  > .responsive-media
+  > picture:not(.responsive-media__backdrop)
+  img {
+  object-fit: contain;
+}
+
+.catalog-hero--integrated > .responsive-media::after {
+  z-index: var(--z-content);
+  background:
+    linear-gradient(
+      180deg,
+      transparent 88%,
+      color-mix(in srgb, var(--color-surface-warm) 42%, transparent) 96%,
+      var(--color-surface-warm) 100%
+    ),
+    linear-gradient(
+      90deg,
+      var(--color-surface-warm) 0%,
+      color-mix(in srgb, var(--color-surface-warm) 94%, transparent) 10%,
+      color-mix(in srgb, var(--color-surface-warm) 62%, transparent) 28%,
+      color-mix(in srgb, var(--color-surface-warm) 18%, transparent) 44%,
+      transparent 54%
+    );
+}
+
 .catalog-hero--full-bleed {
   min-block-size: clamp(28rem, 39vw, 36rem);
   background: var(--color-surface-calm);
@@ -186,6 +267,48 @@
       color-mix(in srgb, var(--color-header-mobile) 72%, transparent) 18%,
       transparent 52%
     );
+  }
+
+  .catalog-hero--integrated {
+    grid-template-rows: auto clamp(15rem, 72vw, 19rem);
+    min-block-size: 0;
+    border: 0;
+    border-radius: 0;
+    background: var(--color-surface-warm);
+  }
+
+  .catalog-hero--integrated::after {
+    block-size: clamp(1rem, 5vw, 1.5rem);
+  }
+
+  .catalog-hero--integrated .catalog-hero__copy {
+    padding-block-end: var(--space-5);
+  }
+
+  .catalog-hero--integrated > .responsive-media {
+    position: relative;
+    inset: auto;
+    grid-row: 2;
+    inline-size: 100%;
+    block-size: 100%;
+  }
+
+  .catalog-hero--integrated > .responsive-media::after {
+    background:
+      linear-gradient(
+        180deg,
+        var(--color-surface-warm) 0%,
+        color-mix(in srgb, var(--color-surface-warm) 24%, transparent) 10%,
+        transparent 24%,
+        transparent 92%,
+        color-mix(in srgb, var(--color-surface-warm) 34%, transparent) 100%
+      ),
+      linear-gradient(
+        90deg,
+        color-mix(in srgb, var(--color-surface-warm) 36%, transparent),
+        transparent 18%,
+        transparent 100%
+      );
   }
 
   .catalog-hero--full-bleed {

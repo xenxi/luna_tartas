@@ -22,7 +22,7 @@ import type { ProductCardProjection } from '../catalog/types';
 import { catalogPageContent } from '../../content/catalog-pages';
 import { routes } from '../../lib/catalog/domain/routes';
 import './taxonomies.css';
-import './category-landing-desktop.css';
+import './taxonomy-landing-desktop.css';
 
 interface Props {
   catalog: Catalog;
@@ -64,9 +64,7 @@ const productsWithMedia: ProductCardProjection[] = await Promise.all(
 );
 ---
 
-<div
-  class:list={['taxonomy-landing', { 'category-landing': kind === 'category' }]}
->
+<div class="taxonomy-landing">
   <Breadcrumb items={taxonomyBreadcrumb(kind, taxonomy.name)} />
   <CatalogHero
     eyebrow={heroContent.eyebrow}
@@ -74,18 +72,15 @@ const productsWithMedia: ProductCardProjection[] = await Promise.all(
     claim={heroContent.claim}
     description={taxonomy.description ?? taxonomy.summary}
     media={heroMedia}
+    variant="integrated"
+    objectPosition={taxonomy.heroPosition}
   >
-    {kind === 'category' && <CatalogWave slot="decoration" />}
+    <CatalogWave slot="decoration" />
   </CatalogHero>
   {
     productsWithMedia.length > 0 && (
-      <div
-        class:list={[
-          'taxonomy-landing__listing',
-          { 'category-landing__listing': kind === 'category' },
-        ]}
-      >
-        {kind === 'category' && <CatalogClouds />}
+      <div class="taxonomy-landing__listing">
+        <CatalogClouds />
         <ContentSection
           id={`${kind}-products`}
           title={productsTitle}
