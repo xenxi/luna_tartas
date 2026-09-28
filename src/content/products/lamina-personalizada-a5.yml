@@ -1,9 +1,9 @@
 id: lamina-personalizada-a5
 slug: lamina-personalizada-a5
 status: published
-name: Lámina personalizada con nombre A5
-summary: Lámina personalizada con nombre, pensada para decorar o enmarcar.
-description: Diseño creado en lámina tamaño A5, impreso en cartulina blanca.
+name: Lámina nombre
+summary: "Lámina personalizada con el nombre y dibujo, elige entre los diseños publicados o indica una temática y la realizamos!"
+description: "Diseño digital efecto acuarela, impreso en cartulina blanca de gramaje 180. \nTamaño a elegir 10x15, 13x18, 15*20.\nSolo lámina, sin marco."
 categories:
   - laminas-personalizadas
 recipients:
@@ -14,73 +14,73 @@ price:
   currency: EUR
 media:
   cover:
-    src: laminas/lamina-personalizada-lea.jpeg
-    alt: Lámina A5 personalizada con el nombre Lea, pensada para decorar o enmarcar.
+    src: lamina-personalizada-a5/cover-fc6766198fab.jpg
+    alt: Lámina decorativa personalizada
     rights:
-      owner: Luna / MGR Creaciones
-      licenseOrPermission: Fotografía y producto propios; publicación autorizada en lunatartas.es.
-      evidence: Confirmación directa del propietario en conversación de proyecto, 2026-08-17.
+      owner: Luna
+      licenseOrPermission: Fotografía propia. Uso autorizado por Luna.
+      evidence: Catálogo propio de Luna; autorización de la titular.
   gallery:
     - src: laminas/lamina-personalizada-lea-marco.jpeg
-      alt: Lámina A5 personalizada con el nombre Lea, presentada en un marco.
+      alt: Lámina Oveja
       rights:
         owner: Luna / MGR Creaciones
         licenseOrPermission: Diseño y producto propios; publicación autorizada en lunatartas.es.
-        evidence: Confirmación directa del propietario en conversación de proyecto, 2026-08-17.
+        evidence: "Confirmación directa del propietario en conversación de proyecto, 2026-08-17."
     - src: laminas/lamina-personalizada-rafa.jpeg
-      alt: Lámina A5 personalizada con el nombre Rafa, pensada para decorar o enmarcar.
+      alt: Lámina Globo azul
       rights:
         owner: Luna / MGR Creaciones
         licenseOrPermission: Diseño y producto propios; publicación autorizada en lunatartas.es.
-        evidence: Confirmación directa del propietario en conversación de proyecto, 2026-08-17.
+        evidence: "Confirmación directa del propietario en conversación de proyecto, 2026-08-17."
     - src: laminas/lamina-personalizada-paula.jpeg
-      alt: Lámina A5 personalizada con el nombre Paula, pensada para decorar o enmarcar.
+      alt: Lámina Globo rosa
       rights:
         owner: Luna / MGR Creaciones
         licenseOrPermission: Diseño y producto propios; publicación autorizada en lunatartas.es.
-        evidence: Confirmación directa del propietario en conversación de proyecto, 2026-08-17.
+        evidence: "Confirmación directa del propietario en conversación de proyecto, 2026-08-17."
     - src: laminas/lamina-personalizada-gabriel.jpeg
-      alt: Lámina A5 personalizada con el nombre Gabriel, pensada para decorar o enmarcar.
+      alt: Lámina oveja
       rights:
         owner: Luna / MGR Creaciones
         licenseOrPermission: Diseño y producto propios; publicación autorizada en lunatartas.es.
-        evidence: Confirmación directa del propietario en conversación de proyecto, 2026-08-17.
+        evidence: "Confirmación directa del propietario en conversación de proyecto, 2026-08-17."
     - src: laminas/lamina-personalizada-luca.jpeg
-      alt: Lámina A5 personalizada con el nombre Luca, pensada para decorar o enmarcar.
+      alt: Lámina tortuga
       rights:
         owner: Luna / MGR Creaciones
         licenseOrPermission: Diseño y producto propios; publicación autorizada en lunatartas.es.
-        evidence: Confirmación directa del propietario en conversación de proyecto, 2026-08-17.
+        evidence: "Confirmación directa del propietario en conversación de proyecto, 2026-08-17."
     - src: laminas/lamina-personalizada-sofia.jpeg
-      alt: Lámina A5 personalizada con el nombre Sofía, pensada para decorar o enmarcar.
+      alt: Lámina flamenco
       rights:
         owner: Luna / MGR Creaciones
         licenseOrPermission: Diseño y producto propios; publicación autorizada en lunatartas.es.
-        evidence: Confirmación directa del propietario en conversación de proyecto, 2026-08-17.
+        evidence: "Confirmación directa del propietario en conversación de proyecto, 2026-08-17."
     - src: laminas/lamina-personalizada-carlos.jpeg
-      alt: Lámina A5 personalizada con el nombre Carlos, pensada para decorar o enmarcar.
+      alt: Lámina marinero
       rights:
         owner: Luna / MGR Creaciones
         licenseOrPermission: Diseño y producto propios; publicación autorizada en lunatartas.es.
-        evidence: Confirmación directa del propietario en conversación de proyecto, 2026-08-17.
+        evidence: "Confirmación directa del propietario en conversación de proyecto, 2026-08-17."
     - src: laminas/lamina-personalizada-zoe.jpeg
-      alt: Lámina A5 personalizada con el nombre Zoe, pensada para decorar o enmarcar.
+      alt: Lámina arcoiris
       rights:
         owner: Luna / MGR Creaciones
         licenseOrPermission: Diseño y producto propios; publicación autorizada en lunatartas.es.
-        evidence: Confirmación directa del propietario en conversación de proyecto, 2026-08-17.
+        evidence: "Confirmación directa del propietario en conversación de proyecto, 2026-08-17."
     - src: laminas/lamina-personalizada-miriam.jpeg
-      alt: Lámina A5 personalizada con el nombre Miriam, pensada para decorar o enmarcar.
+      alt: Lámina erizo
       rights:
         owner: Luna / MGR Creaciones
         licenseOrPermission: Diseño y producto propios; publicación autorizada en lunatartas.es.
-        evidence: Confirmación directa del propietario en conversación de proyecto, 2026-08-17.
+        evidence: "Confirmación directa del propietario en conversación de proyecto, 2026-08-17."
 customization:
   kind: available
   options:
-    - Nombre
-    - Diseño personalizado
-  description: El nombre y el diseño se adaptan al encargo.
+    - Indicar el nombre
+    - elegir diseño de entre los publicados.
+  description: "El nombre y el diseño se adaptan al encargo, puedes sugerir temática."
 featured: true
 order: 40
 approval:
@@ -88,3 +88,5 @@ approval:
   sourceDate: '2026-08-17'
   approvedBy: Propietario del proyecto
   approvedAt: '2026-08-17'
+inventory:
+  mode: made-to-order
