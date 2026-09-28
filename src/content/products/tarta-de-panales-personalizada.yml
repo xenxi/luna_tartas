@@ -3,7 +3,7 @@ slug: tarta-de-panales-personalizada
 status: published
 name: Tarta de pañales personalizada
 summary: 40 pañales, una idea y alguien muy especial. Una tarta preparada a mano y personalizada para dar la bienvenida al bebé.
-description: "Cada tarta de Luna se crea a mano con 40 pañales y se personaliza para ese bebé y ese momento especial. Elegimos contigo la temática, los detalles y el acabado para convertir algo tan práctico como unos pañales en un regalo único, bonito y lleno de intención.\n\nPorque cuando llega alguien tan especial, su regalo también debería serlo."
+description: "Cada tarta de Luna se crea a mano con 40 pañales.\nElijo cada detalle para un acabado que enamore y convertir algo tan práctico como unos pañales en un regalo único y bonito."
 categories:
   - tartas-de-panales
 occasions:
@@ -24,24 +24,18 @@ media:
       licenseOrPermission: Fotografía propia. Uso autorizado por Luna.
       evidence: Catálogo propio de Luna; autorización de la titular.
   gallery:
-    - src: tartas/tarta-azul-completa.png
-      alt: Tarta de pañales artesanal en tonos azules con decoración infantil personalizada.
-      rights:
-        owner: Luna / MGR Creaciones
-        licenseOrPermission: Fotografía y producto propios; publicación autorizada en lunatartas.es.
-        evidence: 'Confirmación directa del propietario en conversación de proyecto, 2026-08-16.'
     - src: tartas/tarta-rosa-detalle.png
-      alt: Detalle de una tarta de pañales artesanal decorada en tonos rosas.
+      alt: Tarta de pañales Minnie 20€
       rights:
         owner: Luna / MGR Creaciones
         licenseOrPermission: Fotografía y producto propios; publicación autorizada en lunatartas.es.
-        evidence: 'Confirmación directa del propietario en conversación de proyecto, 2026-08-16.'
+        evidence: "Confirmación directa del propietario en conversación de proyecto, 2026-08-16."
     - src: tartas/tarta-stitch-completa.png
-      alt: Ejemplo de tarta de pañales artesanal con una temática infantil personalizada.
+      alt: Tarta de pañales Lilo y Stitch
       rights:
         owner: Luna / MGR Creaciones
         licenseOrPermission: Fotografía y producto propios; publicación autorizada en lunatartas.es.
-        evidence: 'Confirmación directa del propietario en conversación de proyecto, 2026-08-16.'
+        evidence: "Confirmación directa del propietario en conversación de proyecto, 2026-08-16."
     - src: tarta-de-panales-personalizada/gallery-0ab50cc729b0.jpg
       alt: Tarta de pañales Mickey mouse
       rights:
@@ -63,9 +57,10 @@ media:
 customization:
   kind: available
   options:
-    - Minnie o Mickey con 40 pañales Disney Baby Deliplus — 20 €
-    - Temática personalizada con 40 pañales de marca blanca — 25 €
-    - Con 40 pañales Dodot — desde 35 €
+    - Tarta de Minnie o Mickey con 40 pañales Disney Baby Deliplus — 20 €
+    - Tarta de cualquier temática con 40 pañales de marca blanca — 25 €
+    - Con 40 pañales Dodot —  35 €
+    - Con 40 pañales Huggies- 35€
   description: La temática, los detalles y el acabado se adaptan al encargo. El tipo de pañal elegido determina la modalidad y el precio.
 featured: false
 order: 10
