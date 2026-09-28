@@ -1,9 +1,9 @@
 id: etiquetas-personalizadas-regalos
 slug: etiquetas-personalizadas-regalos
 status: published
-name: Etiquetas para regalos
+name: Etiqueta para regalos
 summary: Etiquetas personalizadas para dar un acabado especial a regalos y detalles de celebración.
-description: 'Etiquetas para regalos personalizadas. Precio por unidad: 0,20 €. Pedido mínimo de 24 unidades.'
+description: "Precio por unidad: 0,30 €. Pedido mínimo de 20 etiquetas.\nElige diseño entre nuestras opciones o indícanos una temática o motivo deseado y lo realizamos.\nlas etiquetas se entregan listas para colocar, incluye cuerda."
 categories:
   - papeleria-personalizada
 occasions:
@@ -12,16 +12,36 @@ recipients:
   - alguien-especial
 price:
   kind: fixed
-  amountMinor: 20
+  amountMinor: 30
   currency: EUR
 media:
   cover:
-    src: papeleria/etiquetas-comunion-claudia.jpeg
-    alt: Etiquetas personalizadas para regalos de comunión con el nombre Claudia.
+    src: etiquetas-personalizadas-regalos/cover-782157f93c0c.jpg
+    alt: Etiqueta para regalos
     rights:
-      owner: Luna / MGR Creaciones
-      licenseOrPermission: Fotografía, diseño y producto propios; publicación autorizada en lunatartas.es.
-      evidence: Confirmación directa del propietario en conversación de proyecto, 2026-08-17.
+      owner: Luna
+      licenseOrPermission: Fotografía propia. Uso autorizado por Luna.
+      evidence: Catálogo propio de Luna; autorización de la titular.
+    caption: "varias formas y tamaños disponibles. Redondas, cuadradas, rectangulares, etc.."
+  gallery:
+    - src: etiquetas-personalizadas-regalos/gallery-278e9002073e.jpg
+      alt: Etiquetas redondas
+      rights:
+        owner: Luna
+        licenseOrPermission: Fotografía propia. Uso autorizado por Luna.
+        evidence: Catálogo propio de Luna; autorización de la titular.
+    - src: etiquetas-personalizadas-regalos/gallery-abf170ba07f7.jpg
+      alt: Etiqueta para regalos
+      rights:
+        owner: Luna
+        licenseOrPermission: Fotografía propia. Uso autorizado por Luna.
+        evidence: Catálogo propio de Luna; autorización de la titular.
+    - src: etiquetas-personalizadas-regalos/gallery-782157f93c0c.jpg
+      alt: Etiqueta para regalos
+      rights:
+        owner: Luna
+        licenseOrPermission: Fotografía propia. Uso autorizado por Luna.
+        evidence: Catálogo propio de Luna; autorización de la titular.
 customization:
   kind: available
   options:
@@ -35,3 +55,5 @@ approval:
   sourceDate: '2026-08-17'
   approvedBy: Propietario del proyecto
   approvedAt: '2026-08-17'
+inventory:
+  mode: made-to-order
