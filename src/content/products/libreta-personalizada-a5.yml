@@ -3,14 +3,14 @@ slug: libreta-personalizada-a5
 status: published
 name: Libreta personalizada
 summary: "Tú libreta presonalizada, para el día a día, tareas pendientes, blog de notas, regalos eventos, anotaciones evolución bebé."
-description: "Cada libreta que realizamos, va personalizada especialrme para ti, varios tamaños a elegir, A6 y A5 con 20 hojas, 40 páginas y un diseño único. \n\nEl precio por unidad es de 2,50€.\nPara pedidos de 10 unidades en adelante el precio es de 1'80 para las libretas A6 y A5."
+description: "Cada libreta que realizamos, va personalizada especialrme para ti, varios tamaños a elegir, A6 y A5 con 20 hojas, 40 páginas y un diseño único. \n\nEl precio por unidad es de 2,90"
 categories:
   - papeleria-personalizada
 recipients:
   - alguien-especial
 price:
-  kind: from
-  amountMinor: 180
+  kind: fixed
+  amountMinor: 290
   currency: EUR
 media:
   cover:
@@ -39,20 +39,6 @@ media:
         owner: Luna / MGR Creaciones
         licenseOrPermission: "Fotografía, diseño y producto propios; publicación autorizada en lunatartas.es."
         evidence: "Confirmación directa del propietario en conversación de proyecto, 2026-08-17."
-    - src: libreta-personalizada-a5/gallery-ab45b93bd1c9.jpg
-      alt: "Libreta Carrusel Recordatorio eventos,nombre personalizado.\nincluye etiqueta redonda con datos del evento y cuerda."
-      caption: "Bautizos, comuniones, etc.."
-      rights:
-        owner: Luna
-        licenseOrPermission: Fotografía propia. Uso autorizado por Luna.
-        evidence: Catálogo propio de Luna; autorización de la titular.
-    - src: libreta-personalizada-a5/gallery-278e9002073e.jpg
-      alt: "Libreta Carrusel, recordatorios eventos, bautizo, comunión, boda.. etc ."
-      caption: Libreta carrusel
-      rights:
-        owner: Luna
-        licenseOrPermission: Fotografía propia. Uso autorizado por Luna.
-        evidence: Catálogo propio de Luna; autorización de la titular.
 customization:
   kind: available
   options:
