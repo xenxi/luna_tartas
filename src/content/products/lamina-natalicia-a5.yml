@@ -1,9 +1,9 @@
 id: lamina-natalicia-a5
 slug: lamina-natalicia-a5
 status: published
-name: Lámina natalicia personalizada A5
-summary: El comienzo de una historia merece ser recordado en una lámina creada especialmente para ese bebé.
-description: Lámina natalicia A5 personalizada con nombre, fecha de nacimiento, hora, peso y medida. Impresa en cartulina blanca de 180 g para conservar cómo empezó todo.
+name: Lámina natalicia personalizada
+summary: El comienzo de una historia merece ser recordado en una lámina creada especialmente para el bebé.
+description: "Lámina natalicia personalizada con nombre, fecha de nacimiento, hora, peso y medida. Diseño digital efecto acuarela Impreso en cartulina blanca de 180 gr."
 categories:
   - laminas-personalizadas
 occasions:
@@ -12,23 +12,23 @@ recipients:
   - bebe
 price:
   kind: fixed
-  amountMinor: 200
+  amountMinor: 250
   currency: EUR
 media:
   cover:
     src: laminas/lamina-natalicia-clara.jpeg
-    alt: Lámina natalicia personalizada con el nombre Clara, un conejito con globos y sus datos de nacimiento.
+    alt: "Lámina natalicia conejito.\nIndica tamaño:\n10*15\n13*18\n15*20\n20*25"
     rights:
       owner: Luna / MGR Creaciones
       licenseOrPermission: Diseño y producto propios; publicación autorizada en lunatartas.es.
       evidence: Confirmación directa del propietario en conversación de proyecto, 2026-08-16.
   gallery:
     - src: laminas/lamina-natalicia-lucia.jpeg
-      alt: Lámina natalicia personalizada con el nombre Lucía, un caballito de mar y sus datos de nacimiento.
+      alt: "Lámina natalicia caballito de mar.\nIndica tamaño:\n10*15\n13*18\n15*20\n20*25"
       rights:
         owner: Luna / MGR Creaciones
         licenseOrPermission: Diseño y producto propios; publicación autorizada en lunatartas.es.
-        evidence: Confirmación directa del propietario en conversación de proyecto, 2026-08-17.
+        evidence: "Confirmación directa del propietario en conversación de proyecto, 2026-08-17."
 customization:
   kind: available
   options:
@@ -46,3 +46,5 @@ approval:
   sourceDate: '2026-08-16'
   approvedBy: Propietario del proyecto
   approvedAt: '2026-08-16'
+inventory:
+  mode: made-to-order
