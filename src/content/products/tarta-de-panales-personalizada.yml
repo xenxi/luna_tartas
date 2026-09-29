@@ -1,7 +1,7 @@
 id: tarta-de-panales-personalizada
 slug: tarta-de-panales-personalizada
 status: published
-name: Tarta de pañales personalizada
+name: Tartas de pañales
 summary: 40 pañales, una idea y alguien muy especial. Una tarta preparada a mano y personalizada para dar la bienvenida al bebé.
 description: "Cada tarta de Luna se crea a mano con 40 pañales.\nElijo cada detalle para un acabado que enamore y convertir algo tan práctico como unos pañales en un regalo único y bonito."
 categories:
@@ -52,6 +52,19 @@ media:
         evidence: Catálogo propio de Luna; autorización de la titular.
     - src: tarta-de-panales-personalizada/gallery-d4bb7f374f0e.jpg
       alt: Tarta de pañales Dumbo
+      rights:
+        owner: Luna
+        licenseOrPermission: Fotografía propia. Uso autorizado por Luna.
+        evidence: Catálogo propio de Luna; autorización de la titular.
+    - src: tarta-de-panales-personalizada/gallery-c48c463b357c.jpg
+      alt: Tartas de pañales
+      rights:
+        owner: Luna
+        licenseOrPermission: Fotografía propia. Uso autorizado por Luna.
+        evidence: Catálogo propio de Luna; autorización de la titular.
+    - src: tarta-de-panales-personalizada/gallery-9fd27b911ba6.jpg
+      alt: Tartas de pañales Winnie the pooh
+      caption: Pañales Huggies con estampado de Winnie the pooh.
       rights:
         owner: Luna
         licenseOrPermission: Fotografía propia. Uso autorizado por Luna.
