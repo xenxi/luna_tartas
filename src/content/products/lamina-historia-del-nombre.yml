@@ -1,6 +1,32 @@
 id: lamina-historia-del-nombre
 slug: lamina-historia-del-nombre
 status: draft
-name: Lámina historia del nombre
+name: Significado del nombre
 categories:
   - laminas-personalizadas
+summary: Lámina con el significado del nombre
+description: "Elige tamaño 10*15, 13*18, 15*20"
+price:
+  kind: fixed
+  amountMinor: 250
+  currency: EUR
+customization:
+  kind: none
+inventory:
+  mode: made-to-order
+media:
+  cover:
+    src: lamina-historia-del-nombre/cover-62643e8e3d4d.jpg
+    alt: Lámina Significado del nombre
+    caption: "Combina tu lámina con el nombre impreso en 3D, precio a parte, solicitar e indicar nombre"
+    rights:
+      owner: Luna
+      licenseOrPermission: Fotografía propia. Uso autorizado por Luna.
+      evidence: Catálogo propio de Luna; autorización de la titular.
+  gallery:
+    - src: lamina-historia-del-nombre/gallery-1b41a36da2e5.jpg
+      alt: Significado del nombre
+      rights:
+        owner: Luna
+        licenseOrPermission: Fotografía propia. Uso autorizado por Luna.
+        evidence: Catálogo propio de Luna; autorización de la titular.
