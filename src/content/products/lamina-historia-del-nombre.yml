@@ -5,7 +5,7 @@ name: Significado del nombre
 categories:
   - laminas-personalizadas
 summary: Lámina con el significado del nombre
-description: "Elige tamaño 10*15, 13*18, 15*20"
+description: "Elige tamaño \n10*15, \n13*18, \n15*20"
 price:
   kind: fixed
   amountMinor: 250

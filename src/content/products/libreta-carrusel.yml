@@ -29,10 +29,10 @@ customization:
 featured: false
 inventory:
   mode: made-to-order
-description: 'Para pedidos de mas de 50 libretas , la unidad sale a 1.80€'
+description: "Precio por unidad 2,50.\nPara pedidos de mas de 20 libretas , la unidad sale a 1.80€"
 price:
-  kind: fixed
-  amountMinor: 250
+  kind: from
+  amountMinor: 180
   currency: EUR
 approval:
   source: Revisión del producto en Luna Studio
