@@ -104,6 +104,14 @@ Los errores deben agruparse cuando sea posible y mostrar entidad/archivo, campo,
 
 Content Collections queda encapsulado en `src/lib/catalog/source/`. El DTO de entrada conserva únicamente la colección, el ID emitido por el loader, el `filePath` cuando Astro lo proporciona y los datos ya validados por el schema. `loadCatalog()` es el único punto de carga: lee las cuatro colecciones una vez en paralelo, memoiza la promesa para el proceso de build y entrega un `Catalog` de dominio.
 
+El loader de las cuatro colecciones reinterpreta el texto original como YAML
+1.2 Core antes de validar, igual que Studio y los fixtures del contrato. Así,
+`2026-10-02` y `"2026-10-02"` conservan el mismo valor string. Se mantiene el
+loader `glob` de Astro para descubrimiento, caché y observación de archivos.
+No se convierten objetos Date a strings: esa conversión ocultaría fechas
+imposibles que el parser de Astro hubiera normalizado. El schema sigue
+exigiendo fechas ISO de calendario válidas, sin horas ni valores nulos.
+
 El mapping es explícito para taxonomías, variantes `draft|published`, las tres variantes de precio, medios, personalización, SEO y aprobación. Copia objetos y arrays en lugar de exponer los datos de Astro; `context: FIXTURE` es metadata exclusiva del source y no cruza al dominio. Las colecciones se mantienen separadas y cada taxonomía recibe un discriminador de dominio estable: `categories → category`, `occasions → occasion` y `recipients → recipient`.
 
 Desde M7 el mapping distingue `draft|published|archived` y normaliza la ausencia
