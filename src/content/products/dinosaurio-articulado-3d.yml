@@ -1,0 +1,65 @@
+id: dinosaurio-articulado-3d
+slug: dinosaurio-articulado-3d
+status: published
+name: Dinosaurio Articulado 3D
+summary: "regalo para cumpleaños, comunión, bautizo"
+description: dinosaurio
+categories:
+  - packs-personalizados
+occasions:
+  - cumpleanos
+  - comunion
+recipients:
+  - ninos
+  - alguien-especial
+price:
+  kind: fixed
+  amountMinor: 390
+  currency: EUR
+media:
+  cover:
+    src: dinosaurio-articulado-3d/cover-f1dcedc747a7.jpg
+    alt: Dinosaurio Articulado 3D
+    rights:
+      owner: Luna
+      licenseOrPermission: Fotografía propia. Uso autorizado por Luna.
+      evidence: Catálogo propio de Luna; autorización de la titular.
+  gallery:
+    - src: dinosaurio-articulado-3d/gallery-ea6fc5e27d28.jpg
+      alt: Dinosaurio Articulado 3D
+      rights:
+        owner: Luna
+        licenseOrPermission: Fotografía propia. Uso autorizado por Luna.
+        evidence: Catálogo propio de Luna; autorización de la titular.
+    - src: dinosaurio-articulado-3d/gallery-01b06bd85b05.jpg
+      alt: Dinosaurio Articulado 3D
+      rights:
+        owner: Luna
+        licenseOrPermission: Fotografía propia. Uso autorizado por Luna.
+        evidence: Catálogo propio de Luna; autorización de la titular.
+    - src: dinosaurio-articulado-3d/gallery-46aa93afb3fd.jpg
+      alt: Dinosaurio Articulado 3D
+      rights:
+        owner: Luna
+        licenseOrPermission: Fotografía propia. Uso autorizado por Luna.
+        evidence: Catálogo propio de Luna; autorización de la titular.
+    - src: dinosaurio-articulado-3d/gallery-f1dcedc747a7.jpg
+      alt: Dinosaurio Articulado 3D
+      rights:
+        owner: Luna
+        licenseOrPermission: Fotografía propia. Uso autorizado por Luna.
+        evidence: Catálogo propio de Luna; autorización de la titular.
+customization:
+  kind: available
+  options:
+    - indica nombre
+    - edad y evento para personalizar la tarjeta.
+  description: indicar evento
+featured: false
+approval:
+  source: Revisión del producto en Luna Studio
+  sourceDate: 2026-10-02
+  approvedBy: Luna
+  approvedAt: 2026-10-02
+inventory:
+  mode: made-to-order
