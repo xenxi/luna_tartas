@@ -13,8 +13,8 @@ recipients:
   - ninos
   - alguien-especial
 price:
-  kind: from
-  amountMinor: 250
+  kind: fixed
+  amountMinor: 390
   currency: EUR
 media:
   cover:
