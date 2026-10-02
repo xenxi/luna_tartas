@@ -1,0 +1,40 @@
+id: tarta-de-panales
+slug: tarta-de-panales
+status: draft
+name: tarta de pañales
+summary: tarta minie
+description: tarta de pañales Minnie
+categories:
+  - tartas-de-panales
+occasions:
+  - nacimiento
+  - baby-shower
+recipients:
+  - bebe
+price:
+  kind: fixed
+  amountMinor: 2000
+  currency: EUR
+media:
+  cover:
+    src: tarta-de-panales/cover-667010f7bb94.jpg
+    alt: tarta de pañales
+    rights:
+      owner: Luna
+      licenseOrPermission: Fotografía propia. Uso autorizado por Luna.
+      evidence: Catálogo propio de Luna; autorización de la titular.
+  gallery:
+    - src: tarta-de-panales/gallery-ac584affb7ee.jpg
+      alt: tarta de pañales
+      rights:
+        owner: Luna
+        licenseOrPermission: Fotografía propia. Uso autorizado por Luna.
+        evidence: Catálogo propio de Luna; autorización de la titular.
+customization:
+  kind: available
+  options:
+    - indicar nombre del bebé
+  description: tarta minie
+featured: false
+inventory:
+  mode: made-to-order
