@@ -76,13 +76,13 @@ La estructura exacta se materializa en M1/M2; este mapa es un límite de respons
 ### Astro + generación estática
 
 - **Contexto:** catálogo público sin necesidad de datos dinámicos en runtime.
-- **Decisión:** línea estable Astro 6, TypeScript estricto, `output: 'static'`, `build.format: 'directory'` y ningún adapter. Las APIs experimentales quedan desactivadas. M1.1 fijará la versión exacta estable `6.x` en `package.json` y lockfile después de comprobarla en el registro npm.
+- **Decisión vigente (2026-10-02):** Astro `7.3.5`, TypeScript estricto, `output: 'static'`, `build.format: 'directory'` y ningún adapter. Las APIs experimentales quedan desactivadas. La actualización desde Astro 6 resuelve los advisories que bloquean el CI de publicación; `compressHTML: true` conserva la separación entre elementos inline del motor anterior. Versiones exactas en `package.json` y lockfile.
 - **Alternativas:** SSR, SPA o framework hidratado.
 - **Consecuencias:** HTML rápido y simple, sin servidor ni runtime de aplicación; toda publicación requiere build/deploy. Una necesidad futura de SSR exige una decisión nueva y no se resuelve añadiendo un adapter silenciosamente.
 
 ### Toolchain Node + npm
 
-- **Contexto:** instalación local y CI deben producir el mismo grafo y Astro 6 requiere una versión par compatible de Node.
+- **Contexto:** instalación local y CI deben producir el mismo grafo y Astro requiere una versión compatible de Node.
 - **Decisión:** Node `24.19.0` LTS y npm `11.17.0`; npm es el único package manager. M1.1 materializa `.nvmrc`, `engines.node: ">=24.19.0 <25"`, `packageManager: "npm@11.17.0"`, dependencias exactas y `package-lock.json`; CI usa la versión exacta y `npm ci`.
 - **Alternativas:** Node 22 LTS, Node 26 Current, pnpm o Yarn.
 - **Consecuencias:** plataforma soportada y reproducible. Los cambios de Node/npm o de major Astro se hacen en PR explícita con suite completa; no se aceptan runtimes Current/EOL ni lockfiles múltiples.

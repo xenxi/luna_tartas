@@ -211,7 +211,7 @@ describe('catalog source mapping', () => {
   it('reports an ID mismatch with collection, file, entry and field', () => {
     const document = taxonomyDocument('categories');
 
-    expect(() => mapTaxonomy({ ...document, id: 'different-id' })).toThrowError(
+    expect(() => mapTaxonomy({ ...document, id: 'different-id' })).toThrow(
       expect.objectContaining({
         name: 'CatalogSourceError',
         message: expect.stringContaining(
@@ -240,7 +240,7 @@ describe('catalog source mapping', () => {
         ...document,
         data: invalidData,
       } as unknown as ProductSourceDocument),
-    ).toThrowError(CatalogSourceError);
+    ).toThrow(CatalogSourceError);
 
     try {
       mapProduct({

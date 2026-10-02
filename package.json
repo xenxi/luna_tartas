@@ -35,7 +35,7 @@
   },
   "packageManager": "npm@11.17.0",
   "dependencies": {
-    "astro": "6.4.8"
+    "astro": "7.3.5"
   },
   "devDependencies": {
     "@astrojs/check": "0.9.10",
@@ -47,7 +47,7 @@
     "prettier-plugin-astro": "0.14.1",
     "tsx": "4.20.6",
     "typescript": "5.9.3",
-    "vitest": "3.2.7",
+    "vitest": "4.1.11",
     "yaml": "2.9.0"
   }
 }
