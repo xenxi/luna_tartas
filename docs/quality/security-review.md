@@ -1,5 +1,32 @@
 # Revisión de seguridad M8.5
 
+## Actualización de publicación — 2026-10-02
+
+El CI de la PR #3 detectó 35 advisories nuevos y detuvo la revisión de
+dependencias. Se actualizan Astro de `6.4.8` a `7.3.5`, Vitest de `3.2.7` a
+`4.1.11` y las dependencias transitivas admitidas por sus rangos. El lockfile
+contiene 508 paquetes; `npm audit` devuelve cero vulnerabilidades. Las cinco
+excepciones antiguas se retiran del gate; cualquier advisory nuevo sigue
+bloqueándolo.
+
+La actualización corrige el procesamiento AVIF de Astro mediante Sharp
+`0.35.5` y los mocks de Vitest. Referencias oficiales:
+[advisory de Astro](https://github.com/advisories/GHSA-26w7-cxv4-gfx2) y
+[advisory de Vitest](https://github.com/advisories/GHSA-82fw-gwwq-j7x9).
+
+Se evalúa y admite `MPL-2.0` para Lightning CSS `1.33.0` y sus binarios de
+plataforma, incorporados como herramientas de compilación por Vite 8.
+[Licencia del proyecto](https://github.com/parcel-bundler/lightningcss/blob/master/LICENSE).
+No se modifican sus fuentes ni se incluyen esos binarios en el artefacto
+estático de la web.
+
+La arquitectura conserva generación estática, catálogo YAML y ausencia de
+adapter. `compressHTML: true` mantiene la separación de elementos inline que
+usaba Astro 6. Se revisó la
+[guía de migración](https://docs.astro.build/en/guides/upgrade-to/v7/).
+El informe del 2026-08-17 que sigue es evidencia histórica; sus excepciones
+de dependencias quedan sustituidas por esta actualización.
+
 **Fecha:** 2026-08-17
 **Superficie:** repositorio e historial Git, workflows/logs previsibles, lockfile, dependencias/licencias y artefacto estático de GitHub Pages.
 

@@ -241,7 +241,7 @@ describe('aggregate catalog validation', () => {
         price: { kind: 'fixed', amountMinor: 1, currency: 'USD' },
       }),
     );
-    expect(() => assertValidCatalog(catalog, ['EUR'])).toThrowError(
+    expect(() => assertValidCatalog(catalog, ['EUR'])).toThrow(
       expect.objectContaining({
         name: 'CatalogValidationError',
         issues: expect.arrayContaining([

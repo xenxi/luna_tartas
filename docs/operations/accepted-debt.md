@@ -5,7 +5,6 @@ revisarse antes que `P2`; ninguna fila autoriza trabajo post-V1 por sí sola.
 
 | ID | Prioridad | Deuda o riesgo aceptado | Motivo de aceptación V1 | Owner | Condición de salida / revisión |
 | --- | --- | --- | --- | --- | --- |
-| DEBT-01 | P1 | Advisories mitigados de la cadena Astro 6/sharp y herramientas de desarrollo | El sitio es SSG, procesa sólo imágenes versionadas/revisadas y no expone SSR ni subida de usuario; el gate bloquea advisories nuevos | Mantenedor técnico | revisar en cada actualización y antes de aceptar media no confiable o SSR; planificar migración mayor y retirar excepciones sólo con suite completa verde |
 | DEBT-02 | P1 | Cobertura manual sin Firefox, Safari/iOS ni dispositivo Android real en M8.3 | Baseline, HTML estático, no-JS, checks responsive y Chrome/Edge pasaron; no hay evidencia inventada para plataformas ausentes | Mantenedor técnico | ejecutar matriz real antes de una evolución visual amplia o ante un incidente de compatibilidad |
 | DEBT-03 | P1 | El inventario histórico no incluye todos los posibles exports privados de logs/backlinks | Las 16 decisiones conocidas pasan en producción y Search Console está verificada; lo desconocido no justificó redirects especulativos | SEO / propietario del negocio | revisar Pages/404/links de Search Console y consultas de soporte; añadir sólo URLs con evidencia |
 | DEBT-04 | P2 | Tipografía de marca no incorporada | No se recibieron archivos/licencia web; los stacks de sistema cumplen accesibilidad y performance | Luna / marca | aportar masters, licencia y aprobación, y validar CLS, contraste y dirección visual antes de publicar |
@@ -17,3 +16,8 @@ revisarse antes que `P2`; ninguna fila autoriza trabajo post-V1 por sí sola.
 Resuelto y no arrastrado como deuda: favicon/logo aprobado (M9.1), dominio y
 HTTPS (M9.3), redirects conocidos (M9.2), Search Console y GA4 productivos
 (M9.4), y cero incidente crítico durante estabilización (M9.5).
+
+DEBT-01 resuelto en la reparación de publicación del 2026-10-02: Astro 7.3.5,
+Vitest 4.1.11 y lockfile actualizado, cero vulnerabilidades en `npm audit` y
+sin excepciones de advisories. Evidencia en `docs/quality/security-review.md`
+y `docs/testing.md`.

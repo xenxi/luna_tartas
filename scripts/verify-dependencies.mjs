@@ -28,6 +28,7 @@ const allowedLicenses = new Set([
   'ISC',
   'LGPL-3.0-or-later',
   'MIT',
+  'MPL-2.0', // Lightning CSS and its platform binaries: build tooling only.
   'Python-2.0',
 ]);
 
@@ -42,13 +43,8 @@ for (const [pathname, entry] of Object.entries(lock.packages)) {
   }
 }
 
-const acceptedAdvisories = new Set([
-  1120680, // esbuild dev server on Windows; local trusted development only.
-  1124066, // sharp/libvips; build-time processing of reviewed repository images only.
-  1139373, // Astro dynamic spread attribute names; no untrusted templates/runtime rendering.
-  1139375, // Astro hydrated view transitions; project has no islands or view transitions.
-  1139376, // Astro view-transition properties; project has no view transitions.
-]);
+// Patched dependencies need no exceptions. Any new advisory still fails the gate.
+const acceptedAdvisories = new Set();
 
 let audit;
 const npmCli = process.env.npm_execpath;
