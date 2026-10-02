@@ -13,8 +13,8 @@ recipients:
   - ninos
   - alguien-especial
 price:
-  kind: fixed
-  amountMinor: 390
+  kind: from
+  amountMinor: 250
   currency: EUR
 media:
   cover:
@@ -24,6 +24,7 @@ media:
       owner: Luna
       licenseOrPermission: Fotografía propia. Uso autorizado por Luna.
       evidence: Catálogo propio de Luna; autorización de la titular.
+    caption: "Precio 3,90€ \nPara pedidos en cantidad:\n+10: la unidad sale a 2.90€\n+20: la unidad sale a 2:50€"
   gallery:
     - src: dinosaurio-articulado-3d/gallery-ea6fc5e27d28.jpg
       alt: Dinosaurio Articulado 3D
