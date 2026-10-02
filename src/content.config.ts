@@ -1,18 +1,13 @@
 import { defineCollection } from 'astro:content';
-import { glob } from 'astro/loaders';
 import { productSchema } from './content/schemas/product';
 import { taxonomySchema } from './content/schemas/taxonomy';
+import { yamlCollectionLoader } from './lib/catalog/source/yaml-loader';
 
 function defineYamlCollection<
   Schema extends typeof taxonomySchema | typeof productSchema,
 >(base: string, schema: Schema) {
   return defineCollection({
-    loader: glob({
-      pattern: '**/[^_]*.{yml,yaml}',
-      base,
-      generateId: ({ data, entry }) =>
-        typeof data.id === 'string' ? data.id : entry,
-    }),
+    loader: yamlCollectionLoader(base),
     schema,
   });
 }

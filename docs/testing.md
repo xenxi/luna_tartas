@@ -68,3 +68,32 @@ Limitaciones de la primera verificación (antes de actualizar dependencias):
   no son una prueba manual con lector de pantalla ni una sesión de navegador.
 - La ejecución remota original no puede repararse con un reintento: vuelve
   a construir el mismo commit. Se necesita integrar esta corrección.
+
+## Publicación desde Studio: fechas YAML sin comillas (2026-10-02)
+
+La ejecución `37040671561`, sobre `47681ea`, falla al cargar el producto
+`dinosaurio-articulado-3d`: Astro interpreta las fechas de aprobación sin
+comillas como objetos Date, mientras Studio y los tests usan strings de YAML
+1.2. La corrección anterior de imágenes/dependencias ya estaba integrada.
+
+El adaptador de Content Collections conserva `glob` y valida el texto original
+con YAML 1.2 Core. No modifica el producto ni relaja el schema de aprobación.
+No exige actualizar Studio. Un test ejecuta `astro sync` real en un proyecto
+temporal: acepta la fecha sin comillas y rechaza `2026-02-31`. Los otros casos
+cubren fechas con comillas, timestamps, nulos, números y claves duplicadas.
+
+Verificación local sobre el catálogo de ese commit:
+
+- Lint y typecheck: cero errores, warnings o hints; contrato generado sin drift.
+- 324 tests pasan; build de 36 páginas y diez productos publicados.
+- Dependencias: cero vulnerabilidades pendientes y cero excepciones.
+- Assets, enlaces, SEO, crawl, JSON-LD, catálogo, rendimiento, artefacto,
+  seguridad, accesibilidad, responsive y redirects pasan.
+- Determinismo: 882 archivos idénticos; mutación rechazada.
+- Formato de los archivos de código modificados correcto. Los finales de línea
+  se normalizaron temporalmente a LF para reproducir el checkout Linux de CI.
+- Assets: 96.466.742 bytes; aviso de 75 MiB, bajo el límite de 100 MiB.
+
+Las comprobaciones de accesibilidad y responsive son sobre el artefacto.
+Este cambio no altera la interfaz; no se repite la revisión visual del móvil.
+El build local no acredita todavía el despliegue remoto de esta corrección.
