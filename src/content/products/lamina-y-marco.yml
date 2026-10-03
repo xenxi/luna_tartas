@@ -1,11 +1,80 @@
 id: lamina-y-marco
 slug: lamina-y-marco
-status: draft
+status: published
 name: Lámina y marco
-summary: "Indica que nombre poner y elige uno de los diseños:\nArcoiris, erizo, flamenco, tortuga, marinero, conejito, tortuga ..."
+summary: "Indica que nombre poner y elige uno de los diseños:\nArcoiris, erizo, flamenco, tortuga, marinero, globo..\nEl marco es de madera similar al de las fotos."
 description: "Recibe en casa tu lámina enmarcada( marco de madera similar al de las fotos)\nTamaño 13*18"
 customization:
   kind: none
 featured: false
 inventory:
   mode: made-to-order
+categories:
+  - laminas-personalizadas
+occasions:
+  - nacimiento
+  - baby-shower
+recipients:
+  - bebe
+  - ninos
+price:
+  kind: fixed
+  amountMinor: 990
+  currency: EUR
+approval:
+  source: Revisión del producto en Luna Studio
+  sourceDate: 2026-10-03
+  approvedBy: Luna
+  approvedAt: 2026-10-03
+media:
+  cover:
+    src: lamina-y-marco/cover-34935f0e7c7d.jpg
+    alt: Lámina y marco
+    caption: "Recibe en casa tu lámina enmarcada( marco de madera similar al de las fotos)\nTamaño 13*18\nIndica que nombre poner y elige uno de los diseños:\nArcoiris, erizo, flamenco, tortuga, marinero...."
+    rights:
+      owner: Luna
+      licenseOrPermission: Fotografía propia. Uso autorizado por Luna.
+      evidence: Catálogo propio de Luna; autorización de la titular.
+  gallery:
+    - src: lamina-y-marco/gallery-080b77ccd66d.jpg
+      alt: Lámina Arcoiris (marco incluido)
+      caption: "Recibe en casa tu lámina enmarcada( marco de madera similar al de las fotos)\nTamaño 13*18\nIndica que nombre poner y elige uno de los diseños:\nArcoiris, erizo, flamenco, tortuga, marinero..."
+      rights:
+        owner: Luna
+        licenseOrPermission: Fotografía propia. Uso autorizado por Luna.
+        evidence: Catálogo propio de Luna; autorización de la titular.
+    - src: lamina-y-marco/gallery-63846b951802.jpg
+      alt: Lámina marinero marco incluido
+      caption: "Recibe en casa tu lámina enmarcada( marco de madera similar al de las fotos)\nTamaño 13*18\nIndica que nombre poner y elige uno de los diseños:\nArcoiris, erizo, flamenco, tortuga, marinero..."
+      rights:
+        owner: Luna
+        licenseOrPermission: Fotografía propia. Uso autorizado por Luna.
+        evidence: Catálogo propio de Luna; autorización de la titular.
+    - src: lamina-y-marco/gallery-8d6caf51572b.jpg
+      alt: "Lámina flamenco, marco incluido"
+      caption: "Recibe en casa tu lámina enmarcada( marco de madera similar al de las fotos)\nTamaño 13*18\nIndica que nombre poner y elige uno de los diseños:\nArcoiris, erizo, flamenco, tortuga, marinero..."
+      rights:
+        owner: Luna
+        licenseOrPermission: Fotografía propia. Uso autorizado por Luna.
+        evidence: Catálogo propio de Luna; autorización de la titular.
+    - src: lamina-y-marco/gallery-a428869373ee.jpg
+      alt: "Lámina erizo, marco incluido"
+      caption: "Recibe en casa tu lámina enmarcada( marco de madera similar al de las fotos)\nTamaño 13*18\nIndica que nombre poner y elige uno de los diseños:\nArcoiris, erizo, flamenco, tortuga, marinero..."
+      rights:
+        owner: Luna
+        licenseOrPermission: Fotografía propia. Uso autorizado por Luna.
+        evidence: Catálogo propio de Luna; autorización de la titular.
+    - src: lamina-y-marco/gallery-a223854548e8.jpg
+      alt: "Lámina Globo, marco incluido"
+      caption: "Recibe en casa tu lámina enmarcada( marco de madera similar al de las fotos)\nTamaño 13*18\nIndica que nombre poner y elige uno de los diseños:\nArcoiris, erizo, flamenco, tortuga, marinero.."
+      rights:
+        owner: Luna
+        licenseOrPermission: Fotografía propia. Uso autorizado por Luna.
+        evidence: Catálogo propio de Luna; autorización de la titular.
+    - src: lamina-y-marco/gallery-34935f0e7c7d.jpg
+      alt: "Lámina tortuga, marco incluido"
+      caption: "Recibe en casa tu lámina enmarcada( marco de madera similar al de las fotos)\nTamaño 13*18\nIndica que nombre poner y elige uno de los diseños:\nArcoiris, erizo, flamenco, tortuga, marinero.."
+      rights:
+        owner: Luna
+        licenseOrPermission: Fotografía propia. Uso autorizado por Luna.
+        evidence: Catálogo propio de Luna; autorización de la titular.
