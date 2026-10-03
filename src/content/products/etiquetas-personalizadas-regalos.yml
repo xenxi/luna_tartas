@@ -2,8 +2,8 @@ id: etiquetas-personalizadas-regalos
 slug: etiquetas-personalizadas-regalos
 status: published
 name: Etiquetas para regalos
-summary: Etiquetas personalizadas para dar un acabado especial a regalos y detalles de celebración.
-description: "Precio por unidad: 0,30 €. Pedido mínimo de 20 etiquetas.\nElige diseño entre nuestras opciones o indícanos una temática o motivo deseado y lo realizamos.\nlas etiquetas se entregan listas para colocar, incluye cuerda."
+summary: 20 etiquetas para regalos (0'30 etiqueta)
+description: "Etiquetas personalizadas para dar un acabado especial a regalos y detalles de celebración.\nprecio por unidad: 0,30 €. Pedido mínimo de 20 etiquetas.\nElige diseño entre nuestras opciones o indícanos una temática o motivo deseado y lo realizamos.\nlas etiquetas se entregan listas para colocar, incluye cuerda."
 categories:
   - papeleria-personalizada
 occasions:
@@ -12,7 +12,7 @@ recipients:
   - alguien-especial
 price:
   kind: fixed
-  amountMinor: 30
+  amountMinor: 600
   currency: EUR
 media:
   cover:
@@ -25,13 +25,13 @@ media:
     caption: "varias formas y tamaños disponibles. Redondas, cuadradas, rectangulares, etc.."
   gallery:
     - src: etiquetas-personalizadas-regalos/gallery-abf170ba07f7.jpg
-      alt: Etiqueta para regalos
+      alt: "Etiqueta para regalos, cuerda incluida"
       rights:
         owner: Luna
         licenseOrPermission: Fotografía propia. Uso autorizado por Luna.
         evidence: Catálogo propio de Luna; autorización de la titular.
     - src: etiquetas-personalizadas-regalos/gallery-782157f93c0c.jpg
-      alt: Etiqueta para regalos
+      alt: "Etiqueta para regalos, cuerda incluida"
       rights:
         owner: Luna
         licenseOrPermission: Fotografía propia. Uso autorizado por Luna.
