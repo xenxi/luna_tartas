@@ -1,0 +1,55 @@
+id: halloween
+slug: halloween
+status: published
+name: Halloween 🧡
+summary: Juego Tres en Raya 🎃👻
+description: "La temporada más terroríficamente divertida del año ya está aquí! 🎃👻\n\n​¿Buscas un detalle original, un regalo diferente o un entretenimiento para los peques? Nuestro Tres en Raya de Halloween es perfecto. \n\n Viene completamente equipado con un tablero con diseño de huesos en relieve y fichas súper originales de calabazas y fantasmas impreso en 3D.\n ¡Un detalle artesanal y adorable para decorar y jugar en familia! 🖤🧡 \n\n⚠️\"¡Unidades limitadas para esta temporada de Halloween!\" \n\n​👉 Hazte con el tuyo\n\n🎁Para Linares la entrega es gratuita \nContactar vía WhatsApp 697 637 180"
+categories:
+  - packs-personalizados
+occasions:
+  - cumpleanos
+recipients:
+  - alguien-especial
+price:
+  kind: fixed
+  amountMinor: 690
+  currency: EUR
+media:
+  cover:
+    src: halloween/cover-591b5422851a.jpg
+    alt: Halloween 🧡
+    rights:
+      owner: Luna
+      licenseOrPermission: Fotografía propia. Uso autorizado por Luna.
+      evidence: Catálogo propio de Luna; autorización de la titular.
+  gallery:
+    - src: halloween/gallery-7fe4e5899bee.jpg
+      alt: Halloween 🧡
+      caption: Juego Tres en raya 🎃👻
+      rights:
+        owner: Luna
+        licenseOrPermission: Fotografía propia. Uso autorizado por Luna.
+        evidence: Catálogo propio de Luna; autorización de la titular.
+    - src: halloween/gallery-217e44488bf5.jpg
+      alt: Halloween 🧡
+      rights:
+        owner: Luna
+        licenseOrPermission: Fotografía propia. Uso autorizado por Luna.
+        evidence: Catálogo propio de Luna; autorización de la titular.
+    - src: halloween/gallery-b74550ccb5af.jpg
+      alt: Halloween 🧡
+      caption: Juego Tres en Raya 👻🎃
+      rights:
+        owner: Luna
+        licenseOrPermission: Fotografía propia. Uso autorizado por Luna.
+        evidence: Catálogo propio de Luna; autorización de la titular.
+customization:
+  kind: none
+featured: false
+approval:
+  source: Revisión del producto en Luna Studio
+  sourceDate: 2026-10-06
+  approvedBy: Luna
+  approvedAt: 2026-10-06
+inventory:
+  mode: made-to-order
