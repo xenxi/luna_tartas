@@ -12,7 +12,7 @@ recipients:
   - ninos
 price:
   kind: fixed
-  amountMinor: 250
+  amountMinor: 350
   currency: EUR
 media:
   cover:
@@ -37,3 +37,5 @@ approval:
   sourceDate: '2026-08-16'
   approvedBy: Propietario del proyecto
   approvedAt: '2026-08-16'
+inventory:
+  mode: made-to-order

@@ -10,7 +10,7 @@ recipients:
   - alguien-especial
 price:
   kind: fixed
-  amountMinor: 290
+  amountMinor: 350
   currency: EUR
 media:
   cover:

@@ -8,7 +8,7 @@ summary: Lámina con el significado del nombre
 description: "Elige tamaño \n10*15, \n13*18, \n15*20"
 price:
   kind: fixed
-  amountMinor: 250
+  amountMinor: 350
   currency: EUR
 customization:
   kind: none

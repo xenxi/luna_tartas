@@ -11,7 +11,7 @@ recipients:
   - alguien-especial
 price:
   kind: fixed
-  amountMinor: 500
+  amountMinor: 790
   currency: EUR
 media:
   cover:
@@ -34,3 +34,5 @@ approval:
   sourceDate: '2026-08-17'
   approvedBy: Propietario del proyecto
   approvedAt: '2026-08-17'
+inventory:
+  mode: made-to-order
