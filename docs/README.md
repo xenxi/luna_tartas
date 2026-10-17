@@ -4,6 +4,7 @@ Consult only the area materially relevant to the current task. Authoritative doc
 
 - Product: `product/`
 - Architecture and catalog contracts: `architecture/`
+- Multi-store editor, generated index and thumbnails: `architecture/studio-integration.md`
 - Design: `design/`
 - Conversion and analytics: `conversion/`
 - SEO and URLs: `seo/`

@@ -1,0 +1,493 @@
+{
+  "contract": "store-catalog",
+  "contractVersion": "3.0.0",
+  "definition": {
+    "contract": "store-catalog",
+    "version": "3.0.0",
+    "profile": "yaml-v2",
+    "documentFormat": "yaml",
+    "capabilities": ["inventory", "archived", "product-links", "media-gallery"],
+    "productPath": "src/content/products/",
+    "assetRoot": "src/assets/catalog/",
+    "schemaPath": "schemas/product.schema.json",
+    "indexPath": "catalog/index.json"
+  },
+  "products": [
+    {
+      "sourcePath": "src/content/products/cuento-infantil-personalizado.yml",
+      "blobSha": "b6e23b10340e933360d5a589f3668dfffa764349",
+      "id": "cuento-infantil-personalizado",
+      "slug": "cuento-infantil-personalizado",
+      "name": "Cuento infantil personalizado",
+      "status": "draft",
+      "price": null,
+      "inventory": {
+        "mode": "made-to-order"
+      },
+      "categories": [],
+      "order": null,
+      "featured": false,
+      "cover": null
+    },
+    {
+      "sourcePath": "src/content/products/dinosaurio-articulado-3d.yml",
+      "blobSha": "3462b1e6e2e9b561ef0ff1c48a79f4cbd2de5fa5",
+      "id": "dinosaurio-articulado-3d",
+      "slug": "dinosaurio-articulado-3d",
+      "name": "Dinosaurio Articulado 3D",
+      "status": "published",
+      "price": {
+        "kind": "fixed",
+        "amountMinor": 390,
+        "currency": "EUR"
+      },
+      "inventory": {
+        "mode": "made-to-order"
+      },
+      "categories": ["packs-personalizados"],
+      "order": null,
+      "featured": false,
+      "cover": {
+        "src": "dinosaurio-articulado-3d/cover-f1dcedc747a7.jpg",
+        "alt": "Dinosaurio Articulado 3D",
+        "blobSha": "a464be1d451f6163a99533b0605b022270e3441d"
+      }
+    },
+    {
+      "sourcePath": "src/content/products/etiquetas-personalizadas-regalos.yml",
+      "blobSha": "631e57ce3838b33e48bd054ecd050aebd5b2d475",
+      "id": "etiquetas-personalizadas-regalos",
+      "slug": "etiquetas-personalizadas-regalos",
+      "name": "Etiquetas para regalos",
+      "status": "published",
+      "price": {
+        "kind": "fixed",
+        "amountMinor": 600,
+        "currency": "EUR"
+      },
+      "inventory": {
+        "mode": "made-to-order"
+      },
+      "categories": ["papeleria-personalizada"],
+      "order": 30,
+      "featured": false,
+      "cover": {
+        "src": "etiquetas-personalizadas-regalos/cover-782157f93c0c.jpg",
+        "alt": "Etiqueta para regalos",
+        "blobSha": "e0601c10d3975832b11881aa00a1441726a74d48"
+      }
+    },
+    {
+      "sourcePath": "src/content/products/halloween.yml",
+      "blobSha": "6cc1ccdad53068b9869f1b5f942931e897f04b48",
+      "id": "halloween",
+      "slug": "halloween",
+      "name": "Halloween 🧡",
+      "status": "published",
+      "price": {
+        "kind": "fixed",
+        "amountMinor": 690,
+        "currency": "EUR"
+      },
+      "inventory": {
+        "mode": "made-to-order"
+      },
+      "categories": ["packs-personalizados"],
+      "order": null,
+      "featured": false,
+      "cover": {
+        "src": "halloween/cover-591b5422851a.jpg",
+        "alt": "Halloween 🧡",
+        "blobSha": "ac0f2bd00bccedde8e49aff31afc363acb4f32fe"
+      }
+    },
+    {
+      "sourcePath": "src/content/products/invitacion-marcapaginas-personalizada.yml",
+      "blobSha": "140d58cc79abb2d6ff2346083b6518b152abc8b9",
+      "id": "invitacion-marcapaginas-personalizada",
+      "slug": "invitacion-marcapaginas-personalizada",
+      "name": "Invitación marcapáginas personalizada",
+      "status": "published",
+      "price": {
+        "kind": "fixed",
+        "amountMinor": 350,
+        "currency": "EUR"
+      },
+      "inventory": {
+        "mode": "made-to-order"
+      },
+      "categories": ["papeleria-personalizada"],
+      "order": 70,
+      "featured": false,
+      "cover": {
+        "src": "laminas/invitacion-marcapaginas-emma.jpeg",
+        "alt": "Invitación marcapáginas personalizada en tonos rosas con ilustración floral de flamenco y nombre personalizado.",
+        "blobSha": "62fa6b9db976922e700a23494fd71e8ddc5f1b00"
+      }
+    },
+    {
+      "sourcePath": "src/content/products/lamina-historia-del-nombre.yml",
+      "blobSha": "b46e986eb8b40bbd76ee9947a87fd3def684fd9a",
+      "id": "lamina-historia-del-nombre",
+      "slug": "lamina-historia-del-nombre",
+      "name": "Significado del nombre",
+      "status": "draft",
+      "price": {
+        "kind": "fixed",
+        "amountMinor": 350,
+        "currency": "EUR"
+      },
+      "inventory": {
+        "mode": "made-to-order"
+      },
+      "categories": ["laminas-personalizadas"],
+      "order": null,
+      "featured": false,
+      "cover": {
+        "src": "lamina-historia-del-nombre/cover-62643e8e3d4d.jpg",
+        "alt": "Lámina Significado del nombre",
+        "blobSha": "361701639573200f2fbcdb272d3c928caa17c3ec"
+      }
+    },
+    {
+      "sourcePath": "src/content/products/lamina-natalicia-a5.yml",
+      "blobSha": "1180db8a42e9672f5258920d2e3f910215f2d1ff",
+      "id": "lamina-natalicia-a5",
+      "slug": "lamina-natalicia-a5",
+      "name": "Lámina natalicia personalizada",
+      "status": "published",
+      "price": {
+        "kind": "fixed",
+        "amountMinor": 350,
+        "currency": "EUR"
+      },
+      "inventory": {
+        "mode": "made-to-order"
+      },
+      "categories": ["laminas-personalizadas"],
+      "order": 50,
+      "featured": true,
+      "cover": {
+        "src": "laminas/lamina-natalicia-clara.jpeg",
+        "alt": "Lámina natalicia conejito.\nIndica tamaño:\n10*15\n13*18\n15*20\n20*25",
+        "blobSha": "a23731680973ae70eb8cd227d34c98af79615841"
+      }
+    },
+    {
+      "sourcePath": "src/content/products/lamina-personalizada-a5.yml",
+      "blobSha": "b8dcaf86aba23d5b88d10b9ad3e7b20ec32ec7f4",
+      "id": "lamina-personalizada-a5",
+      "slug": "lamina-personalizada-a5",
+      "name": "Lámina nombre",
+      "status": "published",
+      "price": {
+        "kind": "fixed",
+        "amountMinor": 350,
+        "currency": "EUR"
+      },
+      "inventory": {
+        "mode": "made-to-order"
+      },
+      "categories": ["laminas-personalizadas"],
+      "order": 40,
+      "featured": true,
+      "cover": {
+        "src": "lamina-personalizada-a5/cover-fc6766198fab.jpg",
+        "alt": "Lámina decorativa personalizada",
+        "blobSha": "4ef42b4522d67a7bf00b464dff4f253d6ee5f122"
+      }
+    },
+    {
+      "sourcePath": "src/content/products/lamina-y-marco.yml",
+      "blobSha": "1838afec106e4f694ab5986128f955e773793ecc",
+      "id": "lamina-y-marco",
+      "slug": "lamina-y-marco",
+      "name": "Lámina y marco",
+      "status": "published",
+      "price": {
+        "kind": "fixed",
+        "amountMinor": 990,
+        "currency": "EUR"
+      },
+      "inventory": {
+        "mode": "made-to-order"
+      },
+      "categories": ["laminas-personalizadas"],
+      "order": null,
+      "featured": false,
+      "cover": {
+        "src": "lamina-y-marco/cover-34935f0e7c7d.jpg",
+        "alt": "Lámina y marco",
+        "blobSha": "980bb914b64ee696733abbddd205feab5afe40b4"
+      }
+    },
+    {
+      "sourcePath": "src/content/products/libreta-carrusel.yml",
+      "blobSha": "164b17fd3c56f1ccf909ba0c074b9a6f9756134b",
+      "id": "libreta-carrusel",
+      "slug": "libreta-carrusel",
+      "name": "Libreta recordatorio carrusel",
+      "status": "published",
+      "price": {
+        "kind": "from",
+        "amountMinor": 180,
+        "currency": "EUR"
+      },
+      "inventory": {
+        "mode": "made-to-order"
+      },
+      "categories": ["papeleria-personalizada"],
+      "order": null,
+      "featured": false,
+      "cover": {
+        "src": "libreta-carrusel/cover-278e9002073e.jpg",
+        "alt": "test",
+        "blobSha": "e8b9a311c32fca89a977844890ccd3e4dde9b621"
+      }
+    },
+    {
+      "sourcePath": "src/content/products/libreta-personalizada-a5.yml",
+      "blobSha": "8afef5d1d3d8b572710f34501feb9d590c6a6930",
+      "id": "libreta-personalizada-a5",
+      "slug": "libreta-personalizada-a5",
+      "name": "Libreta personalizada",
+      "status": "published",
+      "price": {
+        "kind": "fixed",
+        "amountMinor": 350,
+        "currency": "EUR"
+      },
+      "inventory": {
+        "mode": "made-to-order"
+      },
+      "categories": ["papeleria-personalizada"],
+      "order": 20,
+      "featured": true,
+      "cover": {
+        "src": "papeleria/libreta-claudia-1.jpeg",
+        "alt": "Libreta personalizada A5 con con inicial y nombre",
+        "blobSha": "87c8329988dfbbff52b2ebfd83c4e462e0f4848c"
+      }
+    },
+    {
+      "sourcePath": "src/content/products/pack-personalizado.yml",
+      "blobSha": "2236226c755e4df0c7e00dea2238abe852559436",
+      "id": "pack-personalizado",
+      "slug": "pack-personalizado",
+      "name": "Pack personalizado",
+      "status": "published",
+      "price": {
+        "kind": "fixed",
+        "amountMinor": 790,
+        "currency": "EUR"
+      },
+      "inventory": {
+        "mode": "made-to-order"
+      },
+      "categories": ["packs-personalizados", "papeleria-personalizada"],
+      "order": 60,
+      "featured": true,
+      "cover": {
+        "src": "papeleria/pack-lamina-marcapaginas-libreta-a6.webp",
+        "alt": "Pack de papelería personalizada con una lámina, un marcapáginas y una libreta A6 en tonos rosas.",
+        "blobSha": "afe949a051e44db3da3e1fa8b69f82bf5546ea67"
+      }
+    },
+    {
+      "sourcePath": "src/content/products/tarjeta-felicitacion-personalizada-a6.yml",
+      "blobSha": "cfbcd79d0778016a3b1af7401dc6df771f8530b8",
+      "id": "tarjeta-felicitacion-personalizada-a6",
+      "slug": "tarjeta-felicitacion-personalizada-a6",
+      "name": "Tarjeta de felicitación personalizada A6",
+      "status": "published",
+      "price": {
+        "kind": "fixed",
+        "amountMinor": 200,
+        "currency": "EUR"
+      },
+      "inventory": {
+        "mode": "made-to-order"
+      },
+      "categories": ["papeleria-personalizada"],
+      "order": 80,
+      "featured": false,
+      "cover": {
+        "src": "papeleria/tarjeta-felicitacion-leo.jpeg",
+        "alt": "Tarjeta de felicitación A6 personalizada con el nombre Leo, abierta y decorada con banderines y un elefante.",
+        "blobSha": "82fc2966a82402295cd73d105971734e5d667ada"
+      }
+    },
+    {
+      "sourcePath": "src/content/products/tarta-de-panales-personalizada.yml",
+      "blobSha": "2096c0d7cc7e559f70543c2721177a35db41d9b8",
+      "id": "tarta-de-panales-personalizada",
+      "slug": "tarta-de-panales-personalizada",
+      "name": "Tartas de pañales",
+      "status": "published",
+      "price": {
+        "kind": "from",
+        "amountMinor": 2000,
+        "currency": "EUR"
+      },
+      "inventory": {
+        "mode": "made-to-order"
+      },
+      "categories": ["tartas-de-panales"],
+      "order": 10,
+      "featured": false,
+      "cover": {
+        "src": "tarta-de-panales-personalizada/cover-343c74deb89a.jpg",
+        "alt": "Tarta de pañales personalizada",
+        "blobSha": "8506dd72a5c8abc198b179cf2cd3af7a45d3a56d"
+      }
+    },
+    {
+      "sourcePath": "src/content/products/tarta-de-panales.yml",
+      "blobSha": "9ded60d5a2096b619d0bcb71dc969749b391c318",
+      "id": "tarta-de-panales",
+      "slug": "tarta-de-panales",
+      "name": "tarta de pañales",
+      "status": "draft",
+      "price": {
+        "kind": "fixed",
+        "amountMinor": 2000,
+        "currency": "EUR"
+      },
+      "inventory": {
+        "mode": "made-to-order"
+      },
+      "categories": ["tartas-de-panales"],
+      "order": null,
+      "featured": false,
+      "cover": {
+        "src": "tarta-de-panales/cover-667010f7bb94.jpg",
+        "alt": "tarta de pañales",
+        "blobSha": "fc0100951d8d03d909fbc4ccb7ded85641a7a5fe"
+      }
+    }
+  ],
+  "taxonomies": [
+    {
+      "sourcePath": "src/content/categories/laminas-personalizadas.yml",
+      "blobSha": "dc6bfc3fa0a1a01db95805413929f097671bf04d",
+      "collection": "categories",
+      "id": "laminas-personalizadas",
+      "slug": "laminas-personalizadas",
+      "name": "Láminas personalizadas",
+      "summary": "Láminas creadas alrededor de un nombre, un nacimiento o una pequeña historia que merece quedarse.",
+      "status": "published",
+      "order": 30
+    },
+    {
+      "sourcePath": "src/content/categories/packs-personalizados.yml",
+      "blobSha": "ea3ac5595c59aaa37db849752ee8d982d7076259",
+      "collection": "categories",
+      "id": "packs-personalizados",
+      "slug": "packs-personalizados",
+      "name": "Packs personalizados",
+      "summary": "Varios pequeños detalles combinados para crear un regalo completo y pensado para una sola persona.",
+      "status": "published",
+      "order": 40
+    },
+    {
+      "sourcePath": "src/content/categories/papeleria-personalizada.yml",
+      "blobSha": "3e59d94fee0567c06247cf62fd29df4be0c0ae60",
+      "collection": "categories",
+      "id": "papeleria-personalizada",
+      "slug": "papeleria-personalizada",
+      "name": "Papelería personalizada",
+      "summary": "Pequeños detalles de papel diseñados para llevar un nombre, una fecha o una historia especial.",
+      "status": "published",
+      "order": 20
+    },
+    {
+      "sourcePath": "src/content/categories/tartas-de-panales.yml",
+      "blobSha": "19355c1f7cd6e6223f8603dcf891c7a27c05727f",
+      "collection": "categories",
+      "id": "tartas-de-panales",
+      "slug": "tartas-de-panales",
+      "name": "Tartas de pañales",
+      "summary": "Regalos hechos a mano para dar la bienvenida al bebé de una forma bonita, práctica y personal.",
+      "status": "published",
+      "order": 10
+    },
+    {
+      "sourcePath": "src/content/occasions/baby-shower.yml",
+      "blobSha": "33d6c59365ab84b68b329e1a4c6b97dcd4c85749",
+      "collection": "occasions",
+      "id": "baby-shower",
+      "slug": "baby-shower",
+      "name": "Baby shower",
+      "summary": "Detalles bonitos y prácticos para celebrar que alguien muy especial está a punto de llegar.",
+      "status": "published",
+      "order": 20
+    },
+    {
+      "sourcePath": "src/content/occasions/comunion.yml",
+      "blobSha": "03d27f86a88b74b078ca6acfb01492ca474446f9",
+      "collection": "occasions",
+      "id": "comunion",
+      "slug": "comunion",
+      "name": "Primera Comunión",
+      "summary": "Detalles personalizados para compartir y recordar un día importante.",
+      "status": "published",
+      "order": 40
+    },
+    {
+      "sourcePath": "src/content/occasions/cumpleanos.yml",
+      "blobSha": "df7bfaf2140c8b047048bba784040fe75583466e",
+      "collection": "occasions",
+      "id": "cumpleanos",
+      "slug": "cumpleanos",
+      "name": "Cumpleaños",
+      "summary": "Pequeños detalles personalizados para que ese cumpleaños se sienta todavía más suyo.",
+      "status": "published",
+      "order": 30
+    },
+    {
+      "sourcePath": "src/content/occasions/nacimiento.yml",
+      "blobSha": "3ad042c839549490a92169c30cce80fad65d642a",
+      "collection": "occasions",
+      "id": "nacimiento",
+      "slug": "nacimiento",
+      "name": "Nacimiento",
+      "summary": "Ideas para celebrar una llegada que sólo ocurre una vez.",
+      "status": "published",
+      "order": 10
+    },
+    {
+      "sourcePath": "src/content/recipients/alguien-especial.yml",
+      "blobSha": "c97de7425f0c53e1cb92fdfb93affa2134d9ef41",
+      "collection": "recipients",
+      "id": "alguien-especial",
+      "slug": "alguien-especial",
+      "name": "Para alguien especial",
+      "summary": "Cuando no quieres regalar cualquier cosa, sino algo pensado para esa persona.",
+      "status": "published",
+      "order": 30
+    },
+    {
+      "sourcePath": "src/content/recipients/bebe.yml",
+      "blobSha": "51e6df4fcfe08b8c4abe83d946d0a6f5171de296",
+      "collection": "recipients",
+      "id": "bebe",
+      "slug": "bebe",
+      "name": "Para bebés",
+      "summary": "Regalos pensados para dar la bienvenida a la persona más pequeña de la familia.",
+      "status": "published",
+      "order": 10
+    },
+    {
+      "sourcePath": "src/content/recipients/ninos.yml",
+      "blobSha": "c1306a63649818e20f422e130d8ae14cc45c69b4",
+      "collection": "recipients",
+      "id": "ninos",
+      "slug": "ninos",
+      "name": "Para niños",
+      "summary": "Detalles personalizados que convierten su nombre, su cumpleaños y sus historias en algo sólo suyo.",
+      "status": "published",
+      "order": 20
+    }
+  ],
+  "generatedAt": "2026-10-17T15:46:22.239Z"
+}

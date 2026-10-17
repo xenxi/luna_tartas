@@ -1,3 +1,33 @@
+# Integración de Studio — 17 de octubre de 2026
+
+La integración pendiente se aplica sobre `46502f5`, conservando los productos y
+las correcciones de publicación de main. Se regenera el índice privado con 15
+productos y 11 taxonomías. Los SHA de documentos y portadas coinciden con Git.
+El endpoint público incluye únicamente las 12 portadas publicadas en WebP de
+320 px; ni el índice privado ni el manifiesto interno se copian a dist.
+
+Verificación local:
+
+- Lint, tipos (cero errores, warnings o hints), schema/índice y 326 pruebas
+  en 51 archivos: PASS.
+- Build: 38 páginas. Enlaces, artefacto, catálogo, assets, rendimiento, SEO,
+  crawl, JSON-LD, accesibilidad, responsive y redirects: PASS.
+- Determinismo: 1046 archivos idénticos entre dos builds. Mutación de enlace
+  crítico rechazada correctamente.
+- Seguridad: PASS en 632 archivos versionados, 219 revisiones, dos workflows
+  y 1046 archivos de artefacto, sin secretos ni campos internos publicados.
+- Formato de los archivos de código/JSON modificados: PASS. El chequeo global
+  mantiene 21 avisos en archivos heredados fuera del diff, incluidos finales de
+  línea de Windows y YAML escrito desde Studio. No se reformatean productos.
+- Assets emite el aviso previo de presupuesto total: 102250208 bytes frente al
+  umbral orientativo de 78643200. El control termina correctamente.
+- El control de dependencias detectó el advisory npm 1240991. Se actualiza sólo
+  `http-cache-semantics` de 4.2.0 a 4.3.0 en el lockfile; el control posterior
+  pasa con 508 paquetes, licencias evaluadas y cero advisories pendientes.
+
+No cambia la interfaz visual ni se realiza una publicación de productos desde
+Android. Esta evidencia local no acredita por sí sola un despliegue remoto.
+
 # Corrección del fallo de publicación — 2 de octubre de 2026
 
 ## Resultado vigente tras desbloquear el CI de la PR #3

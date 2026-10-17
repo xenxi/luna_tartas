@@ -1,0 +1,11 @@
+{
+  "contract": "store-catalog",
+  "version": "3.0.0",
+  "profile": "yaml-v2",
+  "documentFormat": "yaml",
+  "capabilities": ["inventory", "archived", "product-links", "media-gallery"],
+  "productPath": "src/content/products/",
+  "assetRoot": "src/assets/catalog/",
+  "schemaPath": "schemas/product.schema.json",
+  "indexPath": "catalog/index.json"
+}

@@ -1,5 +1,8 @@
 # Contrato conceptual del catálogo
 
+La integración del editor multi-store, el índice generado y las miniaturas
+versionadas se documentan en [Studio](studio-integration.md).
+
 Este documento fija semántica y límites. Los nombres exactos de campos y schemas ejecutables se cierran en M2 sin romper estas reglas.
 
 La procedencia y aprobación editorial de cada entidad se controla con el contrato de readiness en [`../product/content-readiness.md`](../product/content-readiness.md). Un fixture puede servir para probar schemas o variantes, pero no es contenido publicable.

@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "astro dev",
     "lint": "eslint src tests scripts astro.config.mjs",
-    "format": "prettier --check \"src/**/*.{astro,ts,js,yml,yaml}\" \"tests/**/*.{ts,js,yml,yaml}\" \"scripts/generate-catalog-schema.ts\" \"schemas/**/*.{json,yml,yaml}\" \"*.{json,mjs}\"",
+    "format": "prettier --check \"src/**/*.{astro,ts,js,yml,yaml}\" \"tests/**/*.{ts,js,yml,yaml}\" \"scripts/generate-*.ts\" \"schemas/**/*.{json,yml,yaml}\" \"*.{json,mjs}\" \"catalog/**/*.json\"",
     "schema:generate": "tsx scripts/generate-catalog-schema.ts",
     "verify:schema": "tsx scripts/generate-catalog-schema.ts --check",
     "build": "astro build",
@@ -28,7 +28,10 @@
     "verify:performance": "node scripts/verify-performance.mjs",
     "verify:responsive": "node scripts/verify-responsive.mjs",
     "verify:redirects": "node scripts/verify-redirects.mjs",
-    "release:manifest": "node scripts/create-release-manifest.mjs"
+    "release:manifest": "node scripts/create-release-manifest.mjs",
+    "studio:generate": "tsx scripts/generate-studio-index.ts",
+    "verify:studio": "tsx scripts/generate-studio-index.ts --check",
+    "prebuild": "npm run verify:studio"
   },
   "engines": {
     "node": ">=24.19.0 <25"
