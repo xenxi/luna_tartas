@@ -31,7 +31,7 @@ Lighthouse o herramienta equivalente valida budgets de rendimiento/SEO/accessibi
 | Transferencia inicial | <= 1.5 MiB en viewport 375 px, caché fría | auditoría de red; contenido below-the-fold lazy no cuenta hasta solicitarse |
 | Imagen LCP | variante solicitada <= 300 KiB, dimensiones declaradas y prioridad explícita | auditoría de red/HTML |
 | Otras imágenes | cada variante solicitada <= 200 KiB y lazy fuera de viewport | auditoría de red/HTML |
-| Assets fuente | raster <= 8 MiB y <= 24 MP; SVG <= 250 KiB sin script/referencias externas; binarios del repo aviso 75 MiB/límite 100 MiB | checker de assets desde M2/M8 |
+| Assets fuente | raster <= 8 MiB y <= 24 MP; SVG <= 250 KiB sin script/referencias externas; binarios del repo aviso 75 MiB/límite 256 MiB (recalibrado 2026-10-18) | checker de assets desde M2/M8 |
 
 M8.2 puede endurecer estos valores con muestras reales. Relajar un budget requiere evidencia reproducible, impacto, owner y aceptación documentada en la tarea o planificación vigente.
 
