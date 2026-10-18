@@ -31,7 +31,7 @@
     },
     {
       "sourcePath": "src/content/products/dinosaurio-articulado-3d.yml",
-      "blobSha": "3462b1e6e2e9b561ef0ff1c48a79f4cbd2de5fa5",
+      "blobSha": "59db1987d1933f7dc09a0f6b40e59b08fe6e663c",
       "id": "dinosaurio-articulado-3d",
       "slug": "dinosaurio-articulado-3d",
       "name": "Dinosaurio Articulado 3D",
@@ -537,5 +537,5 @@
       "order": 20
     }
   ],
-  "generatedAt": "2026-10-18T04:22:39.022586Z"
+  "generatedAt": "2026-10-18T04:53:29.091848Z"
 }
