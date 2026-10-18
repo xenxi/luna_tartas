@@ -1,14 +1,11 @@
 import { readdir, stat } from 'node:fs/promises';
 import { resolve } from 'node:path';
+import { sourceAssetPolicy } from './source-asset-policy.mjs';
 
-const ASSET_ROOT = resolve('src/assets');
-const RASTER_EXTENSIONS = new Set(['.avif', '.jpg', '.jpeg', '.png', '.webp']);
+const ASSET_ROOT = resolve(sourceAssetPolicy.root);
 const LIMITS = {
   rasterBytes: 8 * 1024 * 1024,
   svgBytes: 250 * 1024,
-  repositoryWarningBytes: 75 * 1024 * 1024,
-  // Allow catalog growth; per-file and delivered-page budgets remain hard gates.
-  repositoryLimitBytes: 256 * 1024 * 1024,
 };
 
 async function filesIn(directory) {
@@ -28,7 +25,7 @@ let totalBytes = 0;
 for (const file of files) {
   const info = await stat(file);
   const extension = file.slice(file.lastIndexOf('.')).toLowerCase();
-  if (!RASTER_EXTENSIONS.has(extension) && extension !== '.svg') continue;
+  if (!sourceAssetPolicy.extensions.includes(extension)) continue;
 
   totalBytes += info.size;
   const limit = extension === '.svg' ? LIMITS.svgBytes : LIMITS.rasterBytes;
@@ -39,14 +36,9 @@ for (const file of files) {
   }
 }
 
-if (totalBytes > LIMITS.repositoryLimitBytes) {
-  throw new Error(
-    `Versioned source assets total ${totalBytes} bytes; repository limit is ${LIMITS.repositoryLimitBytes} bytes`,
-  );
-}
-if (totalBytes > LIMITS.repositoryWarningBytes) {
+if (totalBytes > sourceAssetPolicy.warningBytes) {
   console.warn(
-    `Source assets warning: ${totalBytes} bytes exceeds ${LIMITS.repositoryWarningBytes} bytes`,
+    `Source assets warning: ${totalBytes} bytes exceeds ${sourceAssetPolicy.warningBytes} bytes. Review repository images; publication is allowed. Per-image and page-performance limits still apply.`,
   );
 }
 

@@ -7,5 +7,10 @@
   "productPath": "src/content/products/",
   "assetRoot": "src/assets/catalog/",
   "schemaPath": "schemas/product.schema.json",
-  "indexPath": "catalog/index.json"
+  "indexPath": "catalog/index.json",
+  "sourceAssets": {
+    "root": "src/assets/",
+    "warningBytes": 78643200,
+    "extensions": [".avif", ".jpg", ".jpeg", ".png", ".webp", ".svg"]
+  }
 }

@@ -24,6 +24,22 @@ Migración: publicar estos artefactos junto a la integración de la web antes de
 distribuir Studio. El cliente sigue leyendo 2.x sin índice mediante el adaptador
 anterior. No se extraen catálogos a un repositorio central.
 
+## Aviso persistente de peso de imágenes
+
+La definición incluye opcionalmente `sourceAssets` (raíz, extensiones y umbral
+de aviso), generado desde `scripts/source-asset-policy.mjs`. No añade una
+capacidad obligatoria: los clientes anteriores conservan compatibilidad.
+El total superior a 75 MiB es mantenimiento y no bloquea la publicación.
+
+Studio consulta los tamaños del árbol Git fijado al HEAD del catálogo en
+segundo plano, sin descargar los originales. Incluye imágenes editoriales y
+archivos sin referencias, igual que el checker web. Guarda la medición por
+repositorio/rama y política; conserva el aviso sin conexión y durante un fallo
+de sincronización. Se muestra sobre el router, en todas las pantallas, sin
+cierre ni caducidad. Sólo una medición nueva bajo el umbral lo elimina.
+Este control añade una consulta ligera del árbol cuando cambia HEAD; el listado
+sigue entregándose desde el índice sin esperar esa petición.
+
 ## Verificación
 
 La integración se valida sobre el catálogo y las dependencias actuales. Los

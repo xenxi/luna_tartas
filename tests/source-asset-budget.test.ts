@@ -1,4 +1,4 @@
-import { execFileSync } from 'node:child_process';
+import { spawnSync } from 'node:child_process';
 import {
   mkdtempSync,
   mkdirSync,
@@ -23,10 +23,9 @@ function checkAssets(sizes: number[], extension = 'jpg') {
       writeFileSync(file, '');
       truncateSync(file, size);
     });
-    return execFileSync(process.execPath, [script], {
+    return spawnSync(process.execPath, [script], {
       cwd: directory,
       encoding: 'utf8',
-      stdio: 'pipe',
     });
   } finally {
     rmSync(directory, { recursive: true, force: true });
@@ -35,29 +34,42 @@ function checkAssets(sizes: number[], extension = 'jpg') {
 
 describe('source asset publication budgets', () => {
   it('accepts catalog growth beyond the former 100 MiB total', () => {
-    expect(checkAssets(Array(28).fill(4 * MiB))).toContain('117440512 bytes');
+    const result = checkAssets(Array(28).fill(4 * MiB));
+    expect(result.status).toBe(0);
+    expect(result.stdout).toContain('117440512 bytes');
+    expect(result.stderr).toContain('publication is allowed');
   });
 
   it('accepts the 256 MiB boundary', () => {
-    expect(checkAssets(Array(32).fill(8 * MiB))).toContain('268435456 bytes');
+    expect(checkAssets(Array(32).fill(8 * MiB)).status).toBe(0);
   });
 
-  it('rejects an aggregate above 256 MiB even when every image fits', () => {
-    expect(() => checkAssets([...Array(32).fill(8 * MiB), 1])).toThrow(
-      'repository limit is 268435456 bytes',
+  it('warns without blocking even above the former 256 MiB limit', () => {
+    const result = checkAssets(Array(65).fill(8 * MiB));
+    expect(result.status).toBe(0);
+    expect(result.stderr).toContain('Source assets warning: 545259520 bytes');
+  });
+
+  it('warns only above 75 MiB', () => {
+    const sizes = [...Array(9).fill(8 * MiB), 3 * MiB];
+    expect(checkAssets(sizes).stderr).toBe('');
+    expect(checkAssets([...sizes, 1]).stderr).toContain(
+      'Source assets warning',
     );
   });
 
   it('still rejects a raster above 8 MiB', () => {
-    expect(() => checkAssets([8 * MiB + 1])).toThrow(
+    const result = checkAssets([8 * MiB + 1]);
+    expect(result.status).not.toBe(0);
+    expect(result.stderr).toContain(
       '.jpg assets must not exceed 8388608 bytes',
     );
   });
 
   it('accepts the SVG boundary and rejects an oversized SVG', () => {
-    expect(checkAssets([250 * 1024], 'svg')).toContain('256000 bytes');
-    expect(() => checkAssets([250 * 1024 + 1], 'svg')).toThrow(
-      '.svg assets must not exceed 256000 bytes',
-    );
+    expect(checkAssets([250 * 1024], 'svg').status).toBe(0);
+    const result = checkAssets([250 * 1024 + 1], 'svg');
+    expect(result.status).not.toBe(0);
+    expect(result.stderr).toContain('.svg assets must not exceed 256000 bytes');
   });
 });
