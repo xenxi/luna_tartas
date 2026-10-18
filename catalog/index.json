@@ -271,7 +271,7 @@
     },
     {
       "sourcePath": "src/content/products/libreta-personalizada-a5.yml",
-      "blobSha": "8afef5d1d3d8b572710f34501feb9d590c6a6930",
+      "blobSha": "571dcc9dd814829dbf91281623a238cf2cff9ce8",
       "id": "libreta-personalizada-a5",
       "slug": "libreta-personalizada-a5",
       "name": "Libreta personalizada",
@@ -537,5 +537,5 @@
       "order": 20
     }
   ],
-  "generatedAt": "2026-10-18T05:04:33.377814Z"
+  "generatedAt": "2026-10-18T05:12:20.521200Z"
 }
