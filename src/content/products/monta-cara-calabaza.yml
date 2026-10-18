@@ -1,0 +1,49 @@
+id: monta-cara-calabaza
+slug: monta-cara-calabaza
+status: published
+name: Monta cara Calabaza 🎃
+summary: Ponle caras a la calabaza
+description: "kit manualidades recortable para ponerle ojos, nariz, boca y accesorios a la calabaza."
+categories:
+  - papeleria-personalizada
+  - packs-personalizados
+occasions:
+  - cumpleanos
+recipients:
+  - ninos
+price:
+  kind: fixed
+  amountMinor: 150
+  currency: EUR
+media:
+  cover:
+    src: monta-cara-calabaza/cover-18c0bde2541f.jpg
+    alt: Monta cara Calabaza 🎃
+    rights:
+      owner: Luna
+      licenseOrPermission: Fotografía propia. Uso autorizado por Luna.
+      evidence: Catálogo propio de Luna; autorización de la titular.
+  gallery:
+    - src: monta-cara-calabaza/gallery-e3553ab3e64e.jpg
+      alt: Monta cara Calabaza 🎃
+      caption: recorta las piezas y ponle caras a la calabaza!
+      rights:
+        owner: Luna
+        licenseOrPermission: Fotografía propia. Uso autorizado por Luna.
+        evidence: Catálogo propio de Luna; autorización de la titular.
+    - src: monta-cara-calabaza/gallery-0c07d07ff254.jpg
+      alt: Monta cara Calabaza 🎃
+      rights:
+        owner: Luna
+        licenseOrPermission: Fotografía propia. Uso autorizado por Luna.
+        evidence: Catálogo propio de Luna; autorización de la titular.
+customization:
+  kind: none
+featured: false
+approval:
+  source: Revisión del producto en Luna Studio
+  sourceDate: 2026-10-16
+  approvedBy: Luna
+  approvedAt: 2026-10-16
+inventory:
+  mode: made-to-order

@@ -126,8 +126,32 @@
       }
     },
     {
+      "sourcePath": "src/content/products/kit-pintura-halloween.yml",
+      "blobSha": "e634dff84fbee38e691312ff7bae0f8da31b4e04",
+      "id": "kit-pintura-halloween",
+      "slug": "kit-pintura-halloween",
+      "name": "kit pintura Halloween",
+      "status": "published",
+      "price": {
+        "kind": "fixed",
+        "amountMinor": 590,
+        "currency": "EUR"
+      },
+      "inventory": {
+        "mode": "made-to-order"
+      },
+      "categories": ["packs-personalizados"],
+      "order": null,
+      "featured": false,
+      "cover": {
+        "src": "kit-pintura-halloween/cover-2d25a0cd3c86.jpg",
+        "alt": "kit pintura Halloween",
+        "blobSha": "ebb3df9d1c9b9145971c0f56e0556714379c424e"
+      }
+    },
+    {
       "sourcePath": "src/content/products/lamina-historia-del-nombre.yml",
-      "blobSha": "b46e986eb8b40bbd76ee9947a87fd3def684fd9a",
+      "blobSha": "a10fff24421fc7a7447141a9f486188ceb443c62",
       "id": "lamina-historia-del-nombre",
       "slug": "lamina-historia-del-nombre",
       "name": "Significado del nombre",
@@ -267,6 +291,30 @@
         "src": "papeleria/libreta-claudia-1.jpeg",
         "alt": "Libreta personalizada A5 con con inicial y nombre",
         "blobSha": "87c8329988dfbbff52b2ebfd83c4e462e0f4848c"
+      }
+    },
+    {
+      "sourcePath": "src/content/products/monta-cara-calabaza.yml",
+      "blobSha": "e69a682595ca367157089bf0d553c74a2a4fd758",
+      "id": "monta-cara-calabaza",
+      "slug": "monta-cara-calabaza",
+      "name": "Monta cara Calabaza 🎃",
+      "status": "published",
+      "price": {
+        "kind": "fixed",
+        "amountMinor": 150,
+        "currency": "EUR"
+      },
+      "inventory": {
+        "mode": "made-to-order"
+      },
+      "categories": ["papeleria-personalizada", "packs-personalizados"],
+      "order": null,
+      "featured": false,
+      "cover": {
+        "src": "monta-cara-calabaza/cover-18c0bde2541f.jpg",
+        "alt": "Monta cara Calabaza 🎃",
+        "blobSha": "e44656ee11c1a1fdeb83cd56a94f1dbc2b6285e0"
       }
     },
     {
@@ -489,5 +537,5 @@
       "order": 20
     }
   ],
-  "generatedAt": "2026-10-17T15:46:22.239Z"
+  "generatedAt": "2026-10-18T04:22:39.022586Z"
 }

@@ -1,0 +1,75 @@
+id: kit-pintura-halloween
+slug: kit-pintura-halloween
+status: published
+name: kit pintura Halloween
+summary: "Pinta, lava y vuelve a pintar!"
+description: 3 piezas motivo Halloween para pintar.
+categories:
+  - packs-personalizados
+recipients:
+  - ninos
+price:
+  kind: fixed
+  amountMinor: 590
+  currency: EUR
+media:
+  cover:
+    src: kit-pintura-halloween/cover-2d25a0cd3c86.jpg
+    alt: kit pintura Halloween
+    rights:
+      owner: Luna
+      licenseOrPermission: Fotografía propia. Uso autorizado por Luna.
+      evidence: Catálogo propio de Luna; autorización de la titular.
+  gallery:
+    - src: kit-pintura-halloween/gallery-e92a94e04c0f.jpg
+      alt: kit pintura Halloween
+      rights:
+        owner: Luna
+        licenseOrPermission: Fotografía propia. Uso autorizado por Luna.
+        evidence: Catálogo propio de Luna; autorización de la titular.
+    - src: kit-pintura-halloween/gallery-0d364c7af8dd.jpg
+      alt: kit pintura Halloween
+      rights:
+        owner: Luna
+        licenseOrPermission: Fotografía propia. Uso autorizado por Luna.
+        evidence: Catálogo propio de Luna; autorización de la titular.
+    - src: kit-pintura-halloween/gallery-b5d15dbbe134.jpg
+      alt: kit pintura Halloween
+      rights:
+        owner: Luna
+        licenseOrPermission: Fotografía propia. Uso autorizado por Luna.
+        evidence: Catálogo propio de Luna; autorización de la titular.
+    - src: kit-pintura-halloween/gallery-0d00bdcdff5a.jpg
+      alt: kit pintura Halloween
+      rights:
+        owner: Luna
+        licenseOrPermission: Fotografía propia. Uso autorizado por Luna.
+        evidence: Catálogo propio de Luna; autorización de la titular.
+    - src: kit-pintura-halloween/gallery-e76b6ab6d392.jpg
+      alt: kit pintura Halloween
+      rights:
+        owner: Luna
+        licenseOrPermission: Fotografía propia. Uso autorizado por Luna.
+        evidence: Catálogo propio de Luna; autorización de la titular.
+    - src: kit-pintura-halloween/gallery-2d25a0cd3c86.jpg
+      alt: kit pintura Halloween
+      rights:
+        owner: Luna
+        licenseOrPermission: Fotografía propia. Uso autorizado por Luna.
+        evidence: Catálogo propio de Luna; autorización de la titular.
+    - src: kit-pintura-halloween/gallery-a826bbc8cfda.jpg
+      alt: kit pintura Halloween
+      rights:
+        owner: Luna
+        licenseOrPermission: Fotografía propia. Uso autorizado por Luna.
+        evidence: Catálogo propio de Luna; autorización de la titular.
+customization:
+  kind: none
+featured: false
+approval:
+  source: Revisión del producto en Luna Studio
+  sourceDate: 2026-10-15
+  approvedBy: Luna
+  approvedAt: 2026-10-15
+inventory:
+  mode: made-to-order
