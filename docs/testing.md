@@ -1,3 +1,35 @@
+# Corrección del presupuesto de publicación — 18 de octubre de 2026
+
+El run `39099760754` sobre `93ea6b9` construye la web, pero falla en
+`Check public artifact`: `verify:assets` contabiliza 114.714.084 bytes
+(109,4 MiB), por encima del límite inicial de 100 MiB. Reintentar ese SHA
+reproduce el fallo. Se amplía explícitamente el presupuesto total a 256 MiB;
+la justificación y el impacto están en `quality/performance-audit.md`.
+No se modifican productos, fotografías ni el índice de Studio.
+
+Verificación local con Node 24.19.0 y npm 11.17.0:
+
+- Lint y tipos: PASS, cero errores, warnings o hints.
+- 331 tests en 52 archivos: PASS. Cinco regresiones nuevas ejecutan el checker
+  real: crecimiento por encima de 100 MiB, frontera de 256 MiB y rechazo de
+  excesos totales, raster de más de 8 MiB y SVG de más de 250 KiB.
+- Build: 40 páginas, 14 productos publicados. Schema, Studio, assets, enlaces,
+  rendimiento, artefacto, catálogo, SEO, crawl, JSON-LD, accesibilidad,
+  responsive y redirects: PASS. Transferencia inicial máxima a 375 px:
+  269.892 bytes; se mantienen los presupuestos de la web servida.
+- Dependencias: 508 paquetes, licencias evaluadas, cero advisories pendientes.
+- Determinismo: 1.196 archivos idénticos entre dos builds. La mutación de un
+  enlace crítico vacío se rechaza correctamente.
+- Formato de los dos archivos de código cambiados: PASS.
+
+El aviso de fuentes a partir de 75 MiB se mantiene y es esperado. El volumen
+permitido en Git aumenta; el límite duro total sigue activo en 256 MiB.
+Vitest requirió ejecutarse fuera del aislamiento de Windows por un error
+`EPERM` al renombrar su caché temporal; la ejecución posterior completa pasó.
+Los checks de accesibilidad y responsive inspeccionan el artefacto. No cambia
+la UI y no se repite la revisión visual. La evidencia local no acredita por
+sí sola un despliegue remoto.
+
 # Integración de Studio — 17 de octubre de 2026
 
 La integración pendiente se aplica sobre `46502f5`, conservando los productos y

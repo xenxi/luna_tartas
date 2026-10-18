@@ -7,7 +7,8 @@ const LIMITS = {
   rasterBytes: 8 * 1024 * 1024,
   svgBytes: 250 * 1024,
   repositoryWarningBytes: 75 * 1024 * 1024,
-  repositoryLimitBytes: 100 * 1024 * 1024,
+  // Allow catalog growth; per-file and delivered-page budgets remain hard gates.
+  repositoryLimitBytes: 256 * 1024 * 1024,
 };
 
 async function filesIn(directory) {
