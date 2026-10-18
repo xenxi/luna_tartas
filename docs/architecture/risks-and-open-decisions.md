@@ -10,7 +10,7 @@
 | Tipografía de marca sin masters/licencia web | diferencia respecto a identidad futura | stacks de sistema aprobados para V1; no incorporar fuente sin licencia y QA | ACCEPTED — P2; owner: Luna / marca |
 | Alta GA4 y consentimiento sin aprobacion productiva | medicion o privacidad incorrecta | GA4 directo aprobado y configurado con opt-in; M9.4 validó Network, hit real, Realtime, PII y revocación el 2026-08-21 | CONTROLLED — owner: titular de Luna Tartas |
 | Pages tiene redirects HTTP por path limitados | migración SEO incompleta si se retira la capa edge | Cloudflare sirve 301 y Worker 410 verificados; checker remoto tras cambios | CONTROLLED — owner: propietario del negocio |
-| Fotos originales pesadas en Git | repositorio lento a largo plazo | hard limits M0.2 (8 MiB/24 MP por raster; 256 MiB binarios; recalibrado 2026-10-18) y archivo externo; checks en M2/M8 | CONTROLLED — owner: equipo técnico |
+| Fotos originales pesadas en Git | repositorio lento a largo plazo | límites de 8 MiB/24 MP por raster; total con aviso de mantenimiento a 75 MiB, sin bloqueo; archivo externo y checks de rendimiento | CONTROLLED — owner: equipo técnico |
 | Exposición accidental de secretos en repositorio público, historial, logs o `dist` | compromiso de cuentas/servicios | `.gitignore`, permisos mínimos y gates de repo/historial/workflows/artefacto en M8.5; logs remotos se reinspeccionan en M8.6/M9.3 | CONTROLLED — owner: equipo técnico |
 
 ## Decisiones post-V1 no bloqueantes
@@ -35,7 +35,7 @@ Los umbrales de M0.2 son gates iniciales, no `TBD`: M8.2 puede endurecerlos y s�
 | URLs | apex HTTPS, `www -> apex`, minúsculas, HTML con barra final y `build.format: directory` | route builder/canonical/sitemap deben coincidir | CLOSED |
 | Redirects | Cloudflare Bulk Redirects para 301 y Worker para 410; meta refresh no aceptado | 16 decisiones y respuestas productivas verificadas | CLOSED |
 | Frontera pública | todo Git/log/artifact es público; Secrets sólo en Actions y nunca en `dist` | permisos mínimos, actions por SHA y scans | CLOSED |
-| Assets/repositorio | raster <= 8 MiB/24 MP, SVG <= 250 KiB, binarios <= 256 MiB, sin LFS V1 | checks automáticos en M2/M8 | CLOSED |
+| Assets/repositorio | raster <= 8 MiB/24 MP, SVG <= 250 KiB; total con aviso a 75 MiB, sin bloqueo; sin LFS V1 | checks automáticos en M2/M8 | CLOSED |
 | Compatibilidad | Baseline Widely Available con downstream, matriz de navegadores vigente, sin IE, core sin JS | smoke registrado en M8.3 | CLOSED |
 | Accesibilidad/performance | WCAG 2.2 AA, CWV “good”, Lighthouse y budgets de transferencia/JS/CSS | gates medibles en `testing-strategy.md` | CLOSED |
 | Dependencias | plataforma primero, necesidad actual, mantenimiento/licencia/seguridad/coste y pin exacto | toda dependencia nueva justifica y pasa suite | CLOSED |

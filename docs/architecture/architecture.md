@@ -125,7 +125,7 @@ La estructura exacta se materializa en M1/M2; este mapa es un límite de respons
 ### Política de imágenes y salud del repositorio
 
 - **Contexto:** las fotos son el contenido visual principal, pero los originales de archivo no deben degradar Git ni llegar sin control al artefacto.
-- **Decisión:** fotos web aprobadas en `src/assets/catalog`; marca en `src/assets/brand`; `public/` sólo para archivos que deban copiarse sin transformación. No Git LFS en V1. Un raster fuente falla si supera **8 MiB** o **24 megapíxeles**; SVG falla si supera **250 KiB**, contiene scripts o referencias externas. El conjunto de binarios versionados tiene aviso a **75 MiB** y límite duro de **256 MiB**. Masters/originales de archivo viven fuera del repo con propietario y referencia.
+- **Decisión:** fotos web aprobadas en `src/assets/catalog`; marca en `src/assets/brand`; `public/` sólo para archivos que deban copiarse sin transformación. No Git LFS en V1. Un raster fuente falla si supera **8 MiB** o **24 megapíxeles**; SVG falla si supera **250 KiB**, contiene scripts o referencias externas. El peso total de imágenes fuente genera un aviso de mantenimiento por encima de **75 MiB**, sin bloquear la publicación por acumulación de productos. Los límites por archivo y de rendimiento servido siguen siendo obligatorios. Masters/originales de archivo viven fuera del repo con propietario y referencia.
 - **Alternativas:** guardar originales completos, Git LFS o CDN/DAM externo desde el inicio.
 - **Consecuencias:** ingestión predecible y repo clonable; M2.2/M2.4 automatizan forma/dimensiones y M8.2 calibra formatos/salidas con muestras reales. Un caso que exceda límites requiere optimización o decisión documentada, no una excepción silenciosa.
 

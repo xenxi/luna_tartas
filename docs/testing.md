@@ -1,4 +1,28 @@
-# Corrección del presupuesto de publicación — 18 de octubre de 2026
+# Peso total informativo y aviso en Studio — 18 de octubre de 2026
+
+Por petición expresa del propietario, se sustituye el bloqueo total de 256 MiB
+por un aviso de mantenimiento por encima de 75 MiB. Raster de más de 8 MiB,
+imágenes de más de 24 MP, SVG inseguros/excesivos y páginas que incumplan los
+presupuestos de rendimiento siguen bloqueados por sus controles existentes.
+No se modifican productos, imágenes ni precios.
+
+La política de raíz/extensiones/umbral se comparte con Studio a través del
+contrato e índice privados generados. No incluye totales dependientes del
+catálogo: los clientes anteriores pueden seguir publicando sin causar deriva.
+Studio mide el árbol Git y mantiene el aviso hasta verificar la reducción.
+
+Verificación local: lint y tipos sin diagnósticos; 332 pruebas en 52 archivos.
+Los casos del checker real verifican el aviso sin bloqueo incluso con 520 MiB,
+la frontera de 75 MiB y los rechazos por archivo. Build de 40 páginas con 14
+productos; assets, enlaces, rendimiento, artefacto, catálogo, SEO, schema e
+índice: PASS. Transferencia inicial máxima a 375 px: 269.892 bytes.
+Formato de los archivos de código cambiados: PASS. El aviso total actual de
+114.714.084 bytes es esperado y se conserva visible en el log.
+
+La verificación de Studio y sus paquetes se documenta en su propio repositorio.
+Los resultados locales no acreditan por sí solos la publicación remota.
+
+# Corrección anterior del presupuesto de publicación — 18 de octubre de 2026
 
 El run `39099760754` sobre `93ea6b9` construye la web, pero falla en
 `Check public artifact`: `verify:assets` contabiliza 114.714.084 bytes

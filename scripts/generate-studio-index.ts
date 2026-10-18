@@ -4,6 +4,7 @@ import { parse } from 'yaml';
 import { format } from 'prettier';
 import { productSchema } from '../src/content/schemas/product';
 import { taxonomySchema } from '../src/content/schemas/taxonomy';
+import { sourceAssetPolicy } from './source-asset-policy.mjs';
 
 const check = process.argv.includes('--check');
 const gitSha = (bytes: Buffer) =>
@@ -83,6 +84,7 @@ const contract = {
   assetRoot: 'src/assets/catalog/',
   schemaPath: 'schemas/product.schema.json',
   indexPath: 'catalog/index.json',
+  sourceAssets: sourceAssetPolicy,
 };
 async function artifact(path: string, data: object, timestamp = false) {
   const previous = await readFile(path, 'utf8')

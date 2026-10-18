@@ -3,21 +3,25 @@
 ## Gate reproducible
 
 `npm run verify:assets` revisa todos los medios fuente versionados bajo
-`src/assets`: cada raster debe ocupar como máximo 8 MiB, cada SVG 250 KiB y
-el conjunto no puede exceder 256 MiB (aviso a partir de 75 MiB). La validación
-del catálogo mantiene además el límite de 24 MP y bloquea SVG no seguros.
+`src/assets`: cada raster debe ocupar como máximo 8 MiB y cada SVG 250 KiB.
+La validación del catálogo mantiene además 24 MP y bloquea SVG no seguros.
+El total de imágenes fuente sólo genera un aviso por encima de 75 MiB; no
+bloquea la publicación al añadir productos. Los presupuestos por página del
+artefacto siguen siendo obligatorios.
 
-Recalibración del 2026-10-18 para corregir la publicación del catálogo
-(owner: equipo técnico): el run `39099760754`, commit `93ea6b9`, construye
-correctamente la web pero bloquea sus 114.714.084 bytes de fuentes frente al
-antiguo tope de 100 MiB. Se fija un presupuesto total de 256 MiB, 2,34 veces
-el volumen actual, para permitir crecimiento editorial sin modificar imágenes
-ni productos. Aumenta el volumen permitido en Git y su coste de checkout;
-no aumenta los presupuestos de transferencia de cada página. Se conserva el
-aviso de 75 MiB para revisar ese crecimiento y todos los límites individuales
-y de rendimiento servido. Las pruebas ejecutan el checker real con totales
-por encima de 100 MiB, en 256 MiB y por encima de 256 MiB; también comprueban
-que raster y SVG sobredimensionados siguen bloqueados.
+El 2026-10-18 se sustituye el tope total inicial de 100 MiB y su ampliación
+temporal a 256 MiB por este aviso, por petición expresa del propietario.
+El catálogo actual suma 114.714.084 bytes. El aviso permite crecimiento y no
+resuelve por sí mismo el coste de checkout o del historial Git; su mantenimiento
+sigue siendo responsabilidad del equipo técnico. Los tests ejecutan el checker
+real con más de 100, 256 y 512 MiB; exigen éxito con aviso y siguen rechazando
+archivos individuales excesivos. Comprueban también la frontera de 75 MiB.
+
+`scripts/source-asset-policy.mjs` centraliza raíz, extensiones y umbral.
+El generador incluye la política opcional `sourceAssets` en el contrato y el
+índice privados de Studio. No publica tamaños ni borradores en la web.
+Studio mide metadatos del árbol Git, sin descargar originales, y conserva un
+aviso global sin cierre hasta que una medición nueva confirma la reducción.
 
 Después de `npm run build`, `npm run verify:performance` inspecciona las 25
 rutas HTML de `dist`. Comprueba que cada `picture` generado entregue AVIF y

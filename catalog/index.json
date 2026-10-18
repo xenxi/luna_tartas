@@ -10,7 +10,12 @@
     "productPath": "src/content/products/",
     "assetRoot": "src/assets/catalog/",
     "schemaPath": "schemas/product.schema.json",
-    "indexPath": "catalog/index.json"
+    "indexPath": "catalog/index.json",
+    "sourceAssets": {
+      "root": "src/assets/",
+      "warningBytes": 78643200,
+      "extensions": [".avif", ".jpg", ".jpeg", ".png", ".webp", ".svg"]
+    }
   },
   "products": [
     {
@@ -537,5 +542,5 @@
       "order": 20
     }
   ],
-  "generatedAt": "2026-10-18T05:12:20.521200Z"
+  "generatedAt": "2026-10-18T13:05:03.344Z"
 }
