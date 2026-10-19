@@ -396,7 +396,7 @@
     },
     {
       "sourcePath": "src/content/products/tarta-de-panales-personalizada.yml",
-      "blobSha": "2096c0d7cc7e559f70543c2721177a35db41d9b8",
+      "blobSha": "4f64438437767f6cd3784e988beedf9b71a816b9",
       "id": "tarta-de-panales-personalizada",
       "slug": "tarta-de-panales-personalizada",
       "name": "Tartas de pañales",
@@ -566,5 +566,5 @@
       "order": 20
     }
   ],
-  "generatedAt": "2026-10-19T16:40:38.165859Z"
+  "generatedAt": "2026-10-19T16:47:10.537652Z"
 }
