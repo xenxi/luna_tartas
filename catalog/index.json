@@ -180,14 +180,14 @@
     },
     {
       "sourcePath": "src/content/products/lamina-horoscopo.yml",
-      "blobSha": "b33950efba66dabd1693967c930e85a547ca8b7d",
+      "blobSha": "7e63afc2745d21a0a3e83b38090d367e59fa6990",
       "id": "lamina-horoscopo",
       "slug": "lamina-horoscopo",
-      "name": "Lámina Horóscopo",
+      "name": "Horóscopo Lámina y marco",
       "status": "published",
       "price": {
         "kind": "fixed",
-        "amountMinor": 350,
+        "amountMinor": 990,
         "currency": "EUR"
       },
       "inventory": {
@@ -566,5 +566,5 @@
       "order": 20
     }
   ],
-  "generatedAt": "2026-10-19T16:54:12.434959Z"
+  "generatedAt": "2026-10-19T16:59:07.322416Z"
 }
