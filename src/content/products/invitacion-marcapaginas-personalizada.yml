@@ -12,7 +12,7 @@ recipients:
   - ninos
 price:
   kind: fixed
-  amountMinor: 350
+  amountMinor: 250
   currency: EUR
 media:
   cover:

@@ -108,14 +108,14 @@
     },
     {
       "sourcePath": "src/content/products/invitacion-marcapaginas-personalizada.yml",
-      "blobSha": "140d58cc79abb2d6ff2346083b6518b152abc8b9",
+      "blobSha": "017a26b56bf6c6bcb9a1b5bede97caf0ed63b035",
       "id": "invitacion-marcapaginas-personalizada",
       "slug": "invitacion-marcapaginas-personalizada",
       "name": "Invitación marcapáginas personalizada",
       "status": "published",
       "price": {
         "kind": "fixed",
-        "amountMinor": 350,
+        "amountMinor": 250,
         "currency": "EUR"
       },
       "inventory": {
@@ -566,5 +566,5 @@
       "order": 20
     }
   ],
-  "generatedAt": "2026-10-19T16:36:26.902991Z"
+  "generatedAt": "2026-10-19T16:40:38.165859Z"
 }
