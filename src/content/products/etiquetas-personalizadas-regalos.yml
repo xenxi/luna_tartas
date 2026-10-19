@@ -30,12 +30,6 @@ media:
         owner: Luna
         licenseOrPermission: Fotografía propia. Uso autorizado por Luna.
         evidence: Catálogo propio de Luna; autorización de la titular.
-    - src: etiquetas-personalizadas-regalos/gallery-782157f93c0c.jpg
-      alt: "Etiqueta para regalos, cuerda incluida"
-      rights:
-        owner: Luna
-        licenseOrPermission: Fotografía propia. Uso autorizado por Luna.
-        evidence: Catálogo propio de Luna; autorización de la titular.
 customization:
   kind: available
   options:
