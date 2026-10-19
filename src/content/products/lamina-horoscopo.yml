@@ -1,0 +1,41 @@
+id: lamina-horoscopo
+slug: lamina-horoscopo
+status: published
+name: Lámina Horóscopo
+summary: "Recibe tu lámina personalizada para imprimir y enmarcar.\nIndicar nombre y signo del zodiaco.\nSe envía por email, formato PDF.\nlisto para imprimir, para marco de tamaño 13*18."
+description: "Se envía por email en formato PDF, para imprimir."
+categories:
+  - papeleria-personalizada
+occasions:
+  - cumpleanos
+recipients:
+  - alguien-especial
+price:
+  kind: fixed
+  amountMinor: 350
+  currency: EUR
+media:
+  cover:
+    src: lamina-horoscopo/cover-d79041493960.jpg
+    alt: Lámina Horóscopo
+    rights:
+      owner: Luna
+      licenseOrPermission: Fotografía propia. Uso autorizado por Luna.
+      evidence: Catálogo propio de Luna; autorización de la titular.
+  gallery:
+    - src: lamina-horoscopo/gallery-637b83970359.jpg
+      alt: Lámina Horóscopo
+      rights:
+        owner: Luna
+        licenseOrPermission: Fotografía propia. Uso autorizado por Luna.
+        evidence: Catálogo propio de Luna; autorización de la titular.
+customization:
+  kind: none
+featured: false
+approval:
+  source: Revisión del producto en Luna Studio
+  sourceDate: 2026-10-19
+  approvedBy: Luna
+  approvedAt: 2026-10-19
+inventory:
+  mode: made-to-order

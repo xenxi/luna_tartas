@@ -179,6 +179,30 @@
       }
     },
     {
+      "sourcePath": "src/content/products/lamina-horoscopo.yml",
+      "blobSha": "b33950efba66dabd1693967c930e85a547ca8b7d",
+      "id": "lamina-horoscopo",
+      "slug": "lamina-horoscopo",
+      "name": "Lámina Horóscopo",
+      "status": "published",
+      "price": {
+        "kind": "fixed",
+        "amountMinor": 350,
+        "currency": "EUR"
+      },
+      "inventory": {
+        "mode": "made-to-order"
+      },
+      "categories": ["papeleria-personalizada"],
+      "order": null,
+      "featured": false,
+      "cover": {
+        "src": "lamina-horoscopo/cover-d79041493960.jpg",
+        "alt": "Lámina Horóscopo",
+        "blobSha": "d8881e3105b46ebe65b35dcf74c2e984a578928e"
+      }
+    },
+    {
       "sourcePath": "src/content/products/lamina-natalicia-a5.yml",
       "blobSha": "1180db8a42e9672f5258920d2e3f910215f2d1ff",
       "id": "lamina-natalicia-a5",
@@ -542,5 +566,5 @@
       "order": 20
     }
   ],
-  "generatedAt": "2026-10-18T13:05:03.344Z"
+  "generatedAt": "2026-10-19T16:36:26.902991Z"
 }
