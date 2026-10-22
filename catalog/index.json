@@ -204,14 +204,14 @@
     },
     {
       "sourcePath": "src/content/products/lamina-natalicia-a5.yml",
-      "blobSha": "1180db8a42e9672f5258920d2e3f910215f2d1ff",
+      "blobSha": "3448a43802a52e472a1f41a23ef3b6f8f2c92391",
       "id": "lamina-natalicia-a5",
       "slug": "lamina-natalicia-a5",
       "name": "Lámina natalicia personalizada",
       "status": "published",
       "price": {
         "kind": "fixed",
-        "amountMinor": 350,
+        "amountMinor": 450,
         "currency": "EUR"
       },
       "inventory": {
@@ -228,14 +228,14 @@
     },
     {
       "sourcePath": "src/content/products/lamina-personalizada-a5.yml",
-      "blobSha": "b8dcaf86aba23d5b88d10b9ad3e7b20ec32ec7f4",
+      "blobSha": "923ef989242d09a9eb8c51e45774f837848d34b6",
       "id": "lamina-personalizada-a5",
       "slug": "lamina-personalizada-a5",
       "name": "Lámina nombre",
       "status": "published",
       "price": {
         "kind": "fixed",
-        "amountMinor": 350,
+        "amountMinor": 450,
         "currency": "EUR"
       },
       "inventory": {
@@ -566,5 +566,5 @@
       "order": 20
     }
   ],
-  "generatedAt": "2026-10-19T16:59:07.322416Z"
+  "generatedAt": "2026-10-22T01:08:35.262113Z"
 }

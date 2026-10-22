@@ -12,7 +12,7 @@ recipients:
   - bebe
 price:
   kind: fixed
-  amountMinor: 350
+  amountMinor: 450
   currency: EUR
 media:
   cover:
