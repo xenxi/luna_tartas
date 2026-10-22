@@ -108,7 +108,7 @@
     },
     {
       "sourcePath": "src/content/products/invitacion-marcapaginas-personalizada.yml",
-      "blobSha": "017a26b56bf6c6bcb9a1b5bede97caf0ed63b035",
+      "blobSha": "fa4297c0d47844b28d41c304f142b8bc7fc01aa4",
       "id": "invitacion-marcapaginas-personalizada",
       "slug": "invitacion-marcapaginas-personalizada",
       "name": "Invitación marcapáginas personalizada",
@@ -204,14 +204,14 @@
     },
     {
       "sourcePath": "src/content/products/lamina-natalicia-a5.yml",
-      "blobSha": "3448a43802a52e472a1f41a23ef3b6f8f2c92391",
+      "blobSha": "b607a50af34a8998fa7b4de7c30f3a06f9eeb659",
       "id": "lamina-natalicia-a5",
       "slug": "lamina-natalicia-a5",
-      "name": "Lámina natalicia personalizada",
+      "name": "Lámina Natalicia",
       "status": "published",
       "price": {
         "kind": "fixed",
-        "amountMinor": 450,
+        "amountMinor": 550,
         "currency": "EUR"
       },
       "inventory": {
@@ -228,14 +228,14 @@
     },
     {
       "sourcePath": "src/content/products/lamina-personalizada-a5.yml",
-      "blobSha": "b4ab8e0b4b58f83ac74d9a846b0eb8168bb71ed7",
+      "blobSha": "62e4e77675cb467c14ab69e16f3a9c3cb17991f3",
       "id": "lamina-personalizada-a5",
       "slug": "lamina-personalizada-a5",
       "name": "Lámina PDF para imprimir.",
       "status": "published",
       "price": {
         "kind": "fixed",
-        "amountMinor": 450,
+        "amountMinor": 550,
         "currency": "EUR"
       },
       "inventory": {
@@ -372,10 +372,10 @@
     },
     {
       "sourcePath": "src/content/products/tarjeta-felicitacion-personalizada-a6.yml",
-      "blobSha": "cfbcd79d0778016a3b1af7401dc6df771f8530b8",
+      "blobSha": "5007ac8b9a018f7063254afec22f28010995b0a6",
       "id": "tarjeta-felicitacion-personalizada-a6",
       "slug": "tarjeta-felicitacion-personalizada-a6",
-      "name": "Tarjeta de felicitación personalizada A6",
+      "name": "Tarjeta de Felicitación Elefante",
       "status": "published",
       "price": {
         "kind": "fixed",
@@ -566,5 +566,5 @@
       "order": 20
     }
   ],
-  "generatedAt": "2026-10-22T02:38:45.686917Z"
+  "generatedAt": "2026-10-22T02:47:57.043Z"
 }

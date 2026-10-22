@@ -1,9 +1,9 @@
 id: tarjeta-felicitacion-personalizada-a6
 slug: tarjeta-felicitacion-personalizada-a6
 status: published
-name: Tarjeta de felicitación personalizada A6
-summary: Una felicitación pensada para alguien concreto y convertida en un pequeño recuerdo personalizado.
-description: Tarjeta de felicitación personalizada en tamaño A6 y a doble cara, con nombre, mensaje y diseño adaptados a la ocasión.
+name: Tarjeta de Felicitación Elefante
+summary: "Una felicitación a doble cara , temática cumpleaños 🎂, con espacio en el interior para escribir mensaje o dedicatoria, un detalle especial  y un  recuerdo personalizado."
+description: "Tarjeta de felicitación personalizada en tamaño A6 y a doble cara, con nombre, mensaje y diseño adaptados a la ocasión.\nIndicar nombre para realizar la personalización"
 categories:
   - papeleria-personalizada
 occasions:
@@ -36,3 +36,5 @@ approval:
   sourceDate: '2026-08-17'
   approvedBy: Propietario del proyecto
   approvedAt: '2026-08-17'
+inventory:
+  mode: made-to-order

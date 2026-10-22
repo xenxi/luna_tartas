@@ -1,9 +1,9 @@
 id: lamina-natalicia-a5
 slug: lamina-natalicia-a5
 status: published
-name: Lámina natalicia personalizada
+name: Lámina Natalicia
 summary: El comienzo de una historia merece ser recordado en una lámina creada especialmente para el bebé.
-description: "Lámina natalicia personalizada con nombre, fecha de nacimiento, hora, peso y medida. Diseño digital efecto acuarela, se envía en formato PDF, descargable listo para imprimir.\nEn otra publicación puedes ver la lámina con marco. (impresa y enmarcada)"
+description: "Lámina natalicia personalizada con nombre, fecha de nacimiento, hora, peso y medida. se envía en formato PDF, descargable listo para imprimir.\nEn otra publicación puedes ver la lámina con marco. (impresa y enmarcada)"
 categories:
   - laminas-personalizadas
 occasions:
@@ -12,7 +12,7 @@ recipients:
   - bebe
 price:
   kind: fixed
-  amountMinor: 450
+  amountMinor: 550
   currency: EUR
 media:
   cover:
