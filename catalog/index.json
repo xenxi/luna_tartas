@@ -84,10 +84,10 @@
     },
     {
       "sourcePath": "src/content/products/halloween.yml",
-      "blobSha": "6cc1ccdad53068b9869f1b5f942931e897f04b48",
+      "blobSha": "63e6904bed691a50167ec1a84fec0a589db2f3c2",
       "id": "halloween",
       "slug": "halloween",
-      "name": "Halloween 🧡",
+      "name": "Tres en Raya Halloween 🎃 👻",
       "status": "published",
       "price": {
         "kind": "fixed",
@@ -132,10 +132,10 @@
     },
     {
       "sourcePath": "src/content/products/kit-pintura-halloween.yml",
-      "blobSha": "6e8f78f8bfe24644ab2e674d7931c8dccf86a033",
+      "blobSha": "de8d1246b8a66164b860b391bc9da6f11d71ced3",
       "id": "kit-pintura-halloween",
       "slug": "kit-pintura-halloween",
-      "name": "kit pintura Halloween",
+      "name": "🎨Kit pintura Pinta,lava y vuelve a Pintar!",
       "status": "published",
       "price": {
         "kind": "fixed",
@@ -150,7 +150,7 @@
       "featured": false,
       "cover": {
         "src": "kit-pintura-halloween/cover-e76b6ab6d392.jpg",
-        "alt": "kit pintura Halloween",
+        "alt": "kit pintura",
         "blobSha": "f1099c5e276a81aa45aeb3cf1f4aadca18fac070"
       }
     },
@@ -228,10 +228,10 @@
     },
     {
       "sourcePath": "src/content/products/lamina-personalizada-a5.yml",
-      "blobSha": "923ef989242d09a9eb8c51e45774f837848d34b6",
+      "blobSha": "b4ab8e0b4b58f83ac74d9a846b0eb8168bb71ed7",
       "id": "lamina-personalizada-a5",
       "slug": "lamina-personalizada-a5",
-      "name": "Lámina nombre",
+      "name": "Lámina PDF para imprimir.",
       "status": "published",
       "price": {
         "kind": "fixed",
@@ -276,10 +276,10 @@
     },
     {
       "sourcePath": "src/content/products/libreta-carrusel.yml",
-      "blobSha": "164b17fd3c56f1ccf909ba0c074b9a6f9756134b",
+      "blobSha": "785258c234a481560be1ed732c3a7ce810897405",
       "id": "libreta-carrusel",
       "slug": "libreta-carrusel",
-      "name": "Libreta recordatorio carrusel",
+      "name": "Libretas Recordatorio",
       "status": "published",
       "price": {
         "kind": "from",
@@ -300,10 +300,10 @@
     },
     {
       "sourcePath": "src/content/products/libreta-personalizada-a5.yml",
-      "blobSha": "571dcc9dd814829dbf91281623a238cf2cff9ce8",
+      "blobSha": "2d1a8fb7282c1f9ab66b53fe543a5d885d9fb6ac",
       "id": "libreta-personalizada-a5",
       "slug": "libreta-personalizada-a5",
-      "name": "Libreta personalizada",
+      "name": "Libretas Personalizadas",
       "status": "published",
       "price": {
         "kind": "fixed",
@@ -348,14 +348,14 @@
     },
     {
       "sourcePath": "src/content/products/pack-personalizado.yml",
-      "blobSha": "2236226c755e4df0c7e00dea2238abe852559436",
+      "blobSha": "f4b6e961ea3625fd211210510919e56b2dddad65",
       "id": "pack-personalizado",
       "slug": "pack-personalizado",
       "name": "Pack personalizado",
       "status": "published",
       "price": {
         "kind": "fixed",
-        "amountMinor": 790,
+        "amountMinor": 1200,
         "currency": "EUR"
       },
       "inventory": {
@@ -420,10 +420,10 @@
     },
     {
       "sourcePath": "src/content/products/tarta-de-panales.yml",
-      "blobSha": "9ded60d5a2096b619d0bcb71dc969749b391c318",
+      "blobSha": "52ce72c1459105e0097363f6f5c35eb78616113d",
       "id": "tarta-de-panales",
       "slug": "tarta-de-panales",
-      "name": "tarta de pañales",
+      "name": "Tartas de pañales",
       "status": "draft",
       "price": {
         "kind": "fixed",
@@ -566,5 +566,5 @@
       "order": 20
     }
   ],
-  "generatedAt": "2026-10-22T01:08:35.262113Z"
+  "generatedAt": "2026-10-22T02:38:45.686917Z"
 }

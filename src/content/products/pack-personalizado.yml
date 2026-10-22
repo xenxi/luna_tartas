@@ -2,7 +2,7 @@ id: pack-personalizado
 slug: pack-personalizado
 status: published
 name: Pack personalizado
-summary: Un conjunto de lámina, marcapáginas y libreta A6 coordinados para crear un regalo personalizado y especial.
+summary: "Un conjunto de Lámina, 2 marcapáginas y libreta A5 con diseños coordinados para crear un regalo personalizado y especial.\nIncluye marco de madera natural \ntamaño de lamina 13x18\n(otro tamaño indicar)"
 description: Un pack personalizado que reúne una lámina, un marcapáginas y una libreta A6 con un diseño coordinado. Las tres piezas se preparan alrededor del nombre y del estilo elegido para convertir un detalle sencillo en un recuerdo pensado especialmente para esa persona.
 categories:
   - packs-personalizados
@@ -11,7 +11,7 @@ recipients:
   - alguien-especial
 price:
   kind: fixed
-  amountMinor: 790
+  amountMinor: 1200
   currency: EUR
 media:
   cover:
@@ -24,8 +24,9 @@ media:
 customization:
   kind: available
   options:
-    - Nombre
-    - Diseño coordinado
+    - Indica que nombre ponemos en la lámina.
+    - Elige diseño de entre los publicados.
+    - (puedes indicar una temática)
   description: Las tres piezas comparten una misma línea visual y se personalizan para el destinatario.
 featured: true
 order: 60
