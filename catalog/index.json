@@ -156,14 +156,14 @@
     },
     {
       "sourcePath": "src/content/products/lamina-historia-del-nombre.yml",
-      "blobSha": "a10fff24421fc7a7447141a9f486188ceb443c62",
+      "blobSha": "c4f42cf2d3e716fcf9ed4a9d713a4d2606157496",
       "id": "lamina-historia-del-nombre",
       "slug": "lamina-historia-del-nombre",
       "name": "Significado del nombre",
       "status": "draft",
       "price": {
         "kind": "fixed",
-        "amountMinor": 350,
+        "amountMinor": 550,
         "currency": "EUR"
       },
       "inventory": {
@@ -566,5 +566,5 @@
       "order": 20
     }
   ],
-  "generatedAt": "2026-10-22T02:47:57.043Z"
+  "generatedAt": "2026-10-22T02:58:20.638378Z"
 }

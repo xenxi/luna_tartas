@@ -4,11 +4,11 @@ status: draft
 name: Significado del nombre
 categories:
   - laminas-personalizadas
-summary: Lámina con el significado del nombre
-description: "Elige tamaño \n10*15, \n13*18, \n15*20"
+summary: Significado del nombre
+description: "Indica:\nSi deseas recibir la Lámina en formado PDF descargable para imprimir.\nDeseas recibir el producto acabado Lámina y marco\n*Elige tamaño Lámina y marco*\n10*15 Lámina y marco (8'90€)\n13*18 Lámina y marco (9'90€)\n15*20 Lámina y marco (9'90€)"
 price:
   kind: fixed
-  amountMinor: 350
+  amountMinor: 550
   currency: EUR
 customization:
   kind: none
