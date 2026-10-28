@@ -132,19 +132,27 @@
     },
     {
       "sourcePath": "src/content/products/kit-de-colorear-personalizado.yml",
-      "blobSha": "c5213535f5e971204a8d42482dd69817447a51ce",
+      "blobSha": "74f096bdcce24e74302a4d815ea5856a8d38a55e",
       "id": "kit-de-colorear-personalizado",
       "slug": "kit-de-colorear-personalizado",
       "name": "Kit de colorear personalizado",
-      "status": "draft",
-      "price": null,
+      "status": "published",
+      "price": {
+        "kind": "from",
+        "amountMinor": 180,
+        "currency": "EUR"
+      },
       "inventory": {
         "mode": "made-to-order"
       },
-      "categories": [],
+      "categories": ["papeleria-personalizada"],
       "order": null,
       "featured": false,
-      "cover": null
+      "cover": {
+        "src": "kit-de-colorear-personalizado/cover-0128d7ac8676.jpg",
+        "alt": "Kit de colorear personalizado",
+        "blobSha": "85f389871818153095bef3a1f0032f325a41a851"
+      }
     },
     {
       "sourcePath": "src/content/products/kit-pintura-halloween.yml",
@@ -196,10 +204,10 @@
     },
     {
       "sourcePath": "src/content/products/lamina-horoscopo.yml",
-      "blobSha": "7e63afc2745d21a0a3e83b38090d367e59fa6990",
+      "blobSha": "2ec364ffe41c58726a1bc221a53fb89e14db3dc4",
       "id": "lamina-horoscopo",
       "slug": "lamina-horoscopo",
-      "name": "Horóscopo Lámina y marco",
+      "name": "Horóscopo marco y lámina.",
       "status": "published",
       "price": {
         "kind": "fixed",
@@ -582,5 +590,5 @@
       "order": 20
     }
   ],
-  "generatedAt": "2026-10-28T22:56:11.258630Z"
+  "generatedAt": "2026-10-28T23:00:11.886835Z"
 }
