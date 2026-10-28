@@ -131,6 +131,22 @@
       }
     },
     {
+      "sourcePath": "src/content/products/kit-de-colorear-personalizado.yml",
+      "blobSha": "c5213535f5e971204a8d42482dd69817447a51ce",
+      "id": "kit-de-colorear-personalizado",
+      "slug": "kit-de-colorear-personalizado",
+      "name": "Kit de colorear personalizado",
+      "status": "draft",
+      "price": null,
+      "inventory": {
+        "mode": "made-to-order"
+      },
+      "categories": [],
+      "order": null,
+      "featured": false,
+      "cover": null
+    },
+    {
       "sourcePath": "src/content/products/kit-pintura-halloween.yml",
       "blobSha": "de8d1246b8a66164b860b391bc9da6f11d71ced3",
       "id": "kit-pintura-halloween",
@@ -566,5 +582,5 @@
       "order": 20
     }
   ],
-  "generatedAt": "2026-10-22T02:58:20.638378Z"
+  "generatedAt": "2026-10-28T22:56:11.258630Z"
 }
