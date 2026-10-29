@@ -420,14 +420,14 @@
     },
     {
       "sourcePath": "src/content/products/tarta-de-panales-personalizada.yml",
-      "blobSha": "4f64438437767f6cd3784e988beedf9b71a816b9",
+      "blobSha": "f187ebc87e9c2cbb619cfefeace051f82fd4bb5c",
       "id": "tarta-de-panales-personalizada",
       "slug": "tarta-de-panales-personalizada",
       "name": "Tartas de pañales",
       "status": "published",
       "price": {
         "kind": "from",
-        "amountMinor": 2000,
+        "amountMinor": 20400,
         "currency": "EUR"
       },
       "inventory": {
@@ -438,7 +438,7 @@
       "featured": false,
       "cover": {
         "src": "tarta-de-panales-personalizada/cover-343c74deb89a.jpg",
-        "alt": "Tarta de pañales personalizada",
+        "alt": "Tarta de pañales Dulce",
         "blobSha": "8506dd72a5c8abc198b179cf2cd3af7a45d3a56d"
       }
     },
@@ -590,5 +590,5 @@
       "order": 20
     }
   ],
-  "generatedAt": "2026-10-28T23:00:11.886835Z"
+  "generatedAt": "2026-10-29T20:17:52.448581Z"
 }

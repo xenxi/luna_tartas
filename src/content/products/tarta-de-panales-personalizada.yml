@@ -13,32 +13,31 @@ recipients:
   - bebe
 price:
   kind: from
-  amountMinor: 2000
+  amountMinor: 20400
   currency: EUR
 media:
   cover:
     src: tarta-de-panales-personalizada/cover-343c74deb89a.jpg
-    alt: Tarta de pañales personalizada
+    alt: Tarta de pañales Dulce
     rights:
       owner: Luna
       licenseOrPermission: Fotografía propia. Uso autorizado por Luna.
       evidence: Catálogo propio de Luna; autorización de la titular.
   gallery:
     - src: tartas/tarta-rosa-detalle.png
-      alt: Tarta de pañales Minnie 20€
+      alt: Tarta de pañales Minnie
       rights:
         owner: Luna / MGR Creaciones
         licenseOrPermission: Fotografía y producto propios; publicación autorizada en lunatartas.es.
         evidence: "Confirmación directa del propietario en conversación de proyecto, 2026-08-16."
     - src: tartas/tarta-stitch-completa.png
       alt: Tarta de pañales Lilo y Stitch
-      caption: 25€
       rights:
         owner: Luna / MGR Creaciones
         licenseOrPermission: Fotografía y producto propios; publicación autorizada en lunatartas.es.
         evidence: "Confirmación directa del propietario en conversación de proyecto, 2026-08-16."
     - src: tarta-de-panales-personalizada/gallery-0ab50cc729b0.jpg
-      alt: Tarta de pañales Mickey mouse 20€
+      alt: Tarta de pañales Mickey mouse
       rights:
         owner: Luna tartas
         licenseOrPermission: luna tartas
@@ -52,6 +51,12 @@ media:
     - src: tarta-de-panales-personalizada/gallery-9fd27b911ba6.jpg
       alt: Tartas de pañales Winnie the pooh
       caption: Pañales Huggies con estampado de Winnie the pooh.
+      rights:
+        owner: Luna
+        licenseOrPermission: Fotografía propia. Uso autorizado por Luna.
+        evidence: Catálogo propio de Luna; autorización de la titular.
+    - src: tarta-de-panales-personalizada/gallery-02c144794634.jpg
+      alt: Tartas de pañales Campanilla
       rights:
         owner: Luna
         licenseOrPermission: Fotografía propia. Uso autorizado por Luna.
