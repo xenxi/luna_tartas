@@ -108,14 +108,14 @@
     },
     {
       "sourcePath": "src/content/products/invitacion-marcapaginas-personalizada.yml",
-      "blobSha": "fa4297c0d47844b28d41c304f142b8bc7fc01aa4",
+      "blobSha": "88eda33e64a3d96373372114ed8f744df1c72204",
       "id": "invitacion-marcapaginas-personalizada",
       "slug": "invitacion-marcapaginas-personalizada",
       "name": "Invitación marcapáginas personalizada",
       "status": "published",
       "price": {
-        "kind": "fixed",
-        "amountMinor": 250,
+        "kind": "from",
+        "amountMinor": 180,
         "currency": "EUR"
       },
       "inventory": {
@@ -126,7 +126,7 @@
       "featured": false,
       "cover": {
         "src": "laminas/invitacion-marcapaginas-emma.jpeg",
-        "alt": "Invitación marcapáginas personalizada en tonos rosas con ilustración floral de flamenco y nombre personalizado.",
+        "alt": "Invitación marcapáginas personalizada.\nPrecio por unidad 2'30.\nPrecio para pedidos de 20 unidades o más: 1'80€ cada invitación",
         "blobSha": "62fa6b9db976922e700a23494fd71e8ddc5f1b00"
       }
     },
@@ -614,5 +614,5 @@
       "order": 20
     }
   ],
-  "generatedAt": "2026-10-29T20:42:49.796229Z"
+  "generatedAt": "2026-10-29T20:48:31.247802Z"
 }

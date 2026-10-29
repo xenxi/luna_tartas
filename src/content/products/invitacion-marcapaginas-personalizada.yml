@@ -11,13 +11,13 @@ occasions:
 recipients:
   - ninos
 price:
-  kind: fixed
-  amountMinor: 250
+  kind: from
+  amountMinor: 180
   currency: EUR
 media:
   cover:
     src: laminas/invitacion-marcapaginas-emma.jpeg
-    alt: Invitación marcapáginas personalizada en tonos rosas con ilustración floral de flamenco y nombre personalizado.
+    alt: "Invitación marcapáginas personalizada.\nPrecio por unidad 2'30.\nPrecio para pedidos de 20 unidades o más: 1'80€ cada invitación"
     rights:
       owner: Luna / MGR Creaciones
       licenseOrPermission: Fotografía, diseño y producto propios; publicación autorizada en lunatartas.es.
