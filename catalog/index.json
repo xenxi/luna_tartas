@@ -419,6 +419,30 @@
       }
     },
     {
+      "sourcePath": "src/content/products/tarjetas-cumplemes.yml",
+      "blobSha": "8ed1c47f7e93105b5c057ac4ad402d15a065a063",
+      "id": "tarjetas-cumplemes",
+      "slug": "tarjetas-cumplemes",
+      "name": "Tarjetas CumpleMes",
+      "status": "draft",
+      "price": {
+        "kind": "from",
+        "amountMinor": 590,
+        "currency": "EUR"
+      },
+      "inventory": {
+        "mode": "made-to-order"
+      },
+      "categories": [],
+      "order": null,
+      "featured": false,
+      "cover": {
+        "src": "tarjetas-cumplemes/cover-1ce42adedb1e.jpg",
+        "alt": "Tarjetas CumpleMes",
+        "blobSha": "ac2b10d5fcba1d623c2180809b4ab47a9ec98504"
+      }
+    },
+    {
       "sourcePath": "src/content/products/tarta-de-panales-personalizada.yml",
       "blobSha": "f81cac1f84f9459be2a8cb17d8a1dfa4af9f551e",
       "id": "tarta-de-panales-personalizada",
@@ -590,5 +614,5 @@
       "order": 20
     }
   ],
-  "generatedAt": "2026-10-29T20:21:11.950542Z"
+  "generatedAt": "2026-10-29T20:42:49.796229Z"
 }

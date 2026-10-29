@@ -1,0 +1,24 @@
+id: tarjetas-cumplemes
+slug: tarjetas-cumplemes
+status: draft
+name: Tarjetas CumpleMes
+summary: Cumplemes bebé
+description: tarjetas cumplemes bebes
+price:
+  kind: from
+  amountMinor: 590
+  currency: EUR
+media:
+  cover:
+    src: tarjetas-cumplemes/cover-1ce42adedb1e.jpg
+    alt: Tarjetas CumpleMes
+    caption: "Dos tamaños a elegir:\nTamaño A5 ( medio folio)\nSe personaliza con el nombre \nTamaño Pequeño"
+    rights:
+      owner: Luna
+      licenseOrPermission: Fotografía propia. Uso autorizado por Luna.
+      evidence: Catálogo propio de Luna; autorización de la titular.
+customization:
+  kind: none
+featured: false
+inventory:
+  mode: made-to-order
