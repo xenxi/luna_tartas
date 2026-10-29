@@ -13,7 +13,7 @@ recipients:
   - bebe
 price:
   kind: from
-  amountMinor: 20400
+  amountMinor: 2000
   currency: EUR
 media:
   cover:
