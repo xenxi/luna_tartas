@@ -252,7 +252,7 @@
     },
     {
       "sourcePath": "src/content/products/lamina-personalizada-a5.yml",
-      "blobSha": "62e4e77675cb467c14ab69e16f3a9c3cb17991f3",
+      "blobSha": "222353ea113ec83c81b3b61680167066dcc47456",
       "id": "lamina-personalizada-a5",
       "slug": "lamina-personalizada-a5",
       "name": "Lámina PDF para imprimir.",
@@ -324,14 +324,14 @@
     },
     {
       "sourcePath": "src/content/products/libreta-personalizada-a5.yml",
-      "blobSha": "2d1a8fb7282c1f9ab66b53fe543a5d885d9fb6ac",
+      "blobSha": "a532628969fe43acc715ffc4bd1b6d6f6bce8097",
       "id": "libreta-personalizada-a5",
       "slug": "libreta-personalizada-a5",
       "name": "Libretas Personalizadas",
       "status": "published",
       "price": {
-        "kind": "fixed",
-        "amountMinor": 350,
+        "kind": "from",
+        "amountMinor": 290,
         "currency": "EUR"
       },
       "inventory": {
@@ -614,5 +614,5 @@
       "order": 20
     }
   ],
-  "generatedAt": "2026-10-29T20:48:31.247802Z"
+  "generatedAt": "2026-10-29T21:25:51.069567Z"
 }
