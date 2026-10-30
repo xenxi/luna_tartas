@@ -156,10 +156,10 @@
     },
     {
       "sourcePath": "src/content/products/kit-pintura-halloween.yml",
-      "blobSha": "de8d1246b8a66164b860b391bc9da6f11d71ced3",
+      "blobSha": "8b620adb5546e73e80e35ba88fcce29e8667125b",
       "id": "kit-pintura-halloween",
       "slug": "kit-pintura-halloween",
-      "name": "🎨Kit pintura Pinta,lava y vuelve a Pintar!",
+      "name": "🎨Kit Pinta,lava y vuelve a Pintar!",
       "status": "published",
       "price": {
         "kind": "fixed",
@@ -276,7 +276,7 @@
     },
     {
       "sourcePath": "src/content/products/lamina-y-marco.yml",
-      "blobSha": "1838afec106e4f694ab5986128f955e773793ecc",
+      "blobSha": "59ec383ac4522c374cbe8904e27bfac866bccd92",
       "id": "lamina-y-marco",
       "slug": "lamina-y-marco",
       "name": "Lámina y marco",
@@ -300,7 +300,7 @@
     },
     {
       "sourcePath": "src/content/products/libreta-carrusel.yml",
-      "blobSha": "785258c234a481560be1ed732c3a7ce810897405",
+      "blobSha": "6a2e195f42a7c920bbf206785548ad7295ee35cb",
       "id": "libreta-carrusel",
       "slug": "libreta-carrusel",
       "name": "Libretas Recordatorio",
@@ -318,7 +318,7 @@
       "featured": false,
       "cover": {
         "src": "libreta-carrusel/cover-278e9002073e.jpg",
-        "alt": "test",
+        "alt": "Libreta recordatorio evento",
         "blobSha": "e8b9a311c32fca89a977844890ccd3e4dde9b621"
       }
     },
@@ -396,14 +396,14 @@
     },
     {
       "sourcePath": "src/content/products/tarjeta-felicitacion-personalizada-a6.yml",
-      "blobSha": "5007ac8b9a018f7063254afec22f28010995b0a6",
+      "blobSha": "f6e2ff2f249e5a32ace4a3ba157b262d53252730",
       "id": "tarjeta-felicitacion-personalizada-a6",
       "slug": "tarjeta-felicitacion-personalizada-a6",
       "name": "Tarjeta de Felicitación Elefante",
       "status": "published",
       "price": {
         "kind": "fixed",
-        "amountMinor": 200,
+        "amountMinor": 220,
         "currency": "EUR"
       },
       "inventory": {
@@ -420,7 +420,7 @@
     },
     {
       "sourcePath": "src/content/products/tarjetas-cumplemes.yml",
-      "blobSha": "8ed1c47f7e93105b5c057ac4ad402d15a065a063",
+      "blobSha": "0cdc034d93473ae8bdfb6e9a17f0d786e37d5b86",
       "id": "tarjetas-cumplemes",
       "slug": "tarjetas-cumplemes",
       "name": "Tarjetas CumpleMes",
@@ -468,7 +468,7 @@
     },
     {
       "sourcePath": "src/content/products/tarta-de-panales.yml",
-      "blobSha": "52ce72c1459105e0097363f6f5c35eb78616113d",
+      "blobSha": "e7d945c7c612bc1a02f0d536d8abf963a16e0960",
       "id": "tarta-de-panales",
       "slug": "tarta-de-panales",
       "name": "Tartas de pañales",
@@ -614,5 +614,5 @@
       "order": 20
     }
   ],
-  "generatedAt": "2026-10-30T05:36:40.002648Z"
+  "generatedAt": "2026-10-30T05:58:13.084739Z"
 }

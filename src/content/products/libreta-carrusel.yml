@@ -15,8 +15,7 @@ recipients:
 media:
   cover:
     src: libreta-carrusel/cover-278e9002073e.jpg
-    alt: test
-    caption: test
+    alt: Libreta recordatorio evento
     rights:
       owner: Luna
       licenseOrPermission: Luna
@@ -24,7 +23,9 @@ media:
 customization:
   kind: available
   options:
-    - prueba
+    - Indica el nombre
+    - evento
+    - fecha.
   description: test
 featured: false
 inventory:
