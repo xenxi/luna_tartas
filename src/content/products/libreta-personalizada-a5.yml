@@ -1,16 +1,16 @@
 id: libreta-personalizada-a5
 slug: libreta-personalizada-a5
 status: published
-name: Libretas Personalizadas
+name: Libreta Personalizada A5
 summary: "Tú libreta presonalizada, para el día a día, tareas pendientes, blog de notas, regalos eventos, anotaciones evolución bebé."
-description: "Cada libreta que realizamos, va personalizada especialrme para ti. Tamaño A5 con 20 hojas, 40 páginas y un diseño único. \nLa personalizamos con el nombre, temática o inicial.\nElige la tuya y haz tu pedido!\n\n\nEl precio por unidad es de 3'50€\npara la libreta tamaño A5.\nPara la libreta de tamaño A6(más pequeña) el precio es de 2'90€.\nSi tu pedido es para cantidad más de 20 unidades:\nLibreta tamaño: \nA6 sale 1'80€ unidad.\nA5 sale a 2€ unidad."
+description: "Cada libreta que realizamos, va personalizada especialrme para ti. Tamaño A5 con 20 hojas, 40 páginas y un diseño único. \nLa personalizamos con el nombre, temática o inicial.\nElige la tuya y haz tu pedido."
 categories:
   - papeleria-personalizada
 recipients:
   - alguien-especial
 price:
-  kind: from
-  amountMinor: 290
+  kind: fixed
+  amountMinor: 390
   currency: EUR
 media:
   cover:

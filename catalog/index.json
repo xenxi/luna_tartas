@@ -300,14 +300,14 @@
     },
     {
       "sourcePath": "src/content/products/libreta-carrusel.yml",
-      "blobSha": "6a2e195f42a7c920bbf206785548ad7295ee35cb",
+      "blobSha": "1f97249ec0332e8a7cb1dcfdfff66bc5d47afe38",
       "id": "libreta-carrusel",
       "slug": "libreta-carrusel",
       "name": "Libretas Recordatorio",
       "status": "published",
       "price": {
         "kind": "from",
-        "amountMinor": 180,
+        "amountMinor": 190,
         "currency": "EUR"
       },
       "inventory": {
@@ -324,14 +324,14 @@
     },
     {
       "sourcePath": "src/content/products/libreta-personalizada-a5.yml",
-      "blobSha": "a532628969fe43acc715ffc4bd1b6d6f6bce8097",
+      "blobSha": "d6c26fc85476a27a37343554c5ca5c4126a41ffd",
       "id": "libreta-personalizada-a5",
       "slug": "libreta-personalizada-a5",
-      "name": "Libretas Personalizadas",
+      "name": "Libreta Personalizada A5",
       "status": "published",
       "price": {
-        "kind": "from",
-        "amountMinor": 290,
+        "kind": "fixed",
+        "amountMinor": 390,
         "currency": "EUR"
       },
       "inventory": {
@@ -348,10 +348,10 @@
     },
     {
       "sourcePath": "src/content/products/monta-cara-calabaza.yml",
-      "blobSha": "e69a682595ca367157089bf0d553c74a2a4fd758",
+      "blobSha": "b98f22b6de640ebc2586ac28992f7f6677fd9317",
       "id": "monta-cara-calabaza",
       "slug": "monta-cara-calabaza",
-      "name": "Monta cara Calabaza 🎃",
+      "name": "Crea la Cara Calabaza 🎃",
       "status": "published",
       "price": {
         "kind": "fixed",
@@ -614,5 +614,5 @@
       "order": 20
     }
   ],
-  "generatedAt": "2026-10-30T05:58:13.084739Z"
+  "generatedAt": "2026-10-30T06:10:03.827105Z"
 }
