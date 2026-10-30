@@ -465,30 +465,6 @@
         "alt": "Tarta de pañales Dulce",
         "blobSha": "8506dd72a5c8abc198b179cf2cd3af7a45d3a56d"
       }
-    },
-    {
-      "sourcePath": "src/content/products/tarta-de-panales.yml",
-      "blobSha": "e7d945c7c612bc1a02f0d536d8abf963a16e0960",
-      "id": "tarta-de-panales",
-      "slug": "tarta-de-panales",
-      "name": "Tartas de pañales",
-      "status": "draft",
-      "price": {
-        "kind": "fixed",
-        "amountMinor": 2000,
-        "currency": "EUR"
-      },
-      "inventory": {
-        "mode": "made-to-order"
-      },
-      "categories": ["tartas-de-panales"],
-      "order": null,
-      "featured": false,
-      "cover": {
-        "src": "tarta-de-panales/cover-667010f7bb94.jpg",
-        "alt": "tarta de pañales",
-        "blobSha": "fc0100951d8d03d909fbc4ccb7ded85641a7a5fe"
-      }
     }
   ],
   "taxonomies": [
@@ -614,5 +590,5 @@
       "order": 20
     }
   ],
-  "generatedAt": "2026-10-30T06:10:03.827105Z"
+  "generatedAt": "2026-10-30T06:15:44.898116Z"
 }
