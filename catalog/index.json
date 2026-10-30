@@ -36,7 +36,7 @@
     },
     {
       "sourcePath": "src/content/products/dinosaurio-articulado-3d.yml",
-      "blobSha": "59db1987d1933f7dc09a0f6b40e59b08fe6e663c",
+      "blobSha": "05aa1019bc169b0b28bf53d7dd0b4217b7668ae1",
       "id": "dinosaurio-articulado-3d",
       "slug": "dinosaurio-articulado-3d",
       "name": "Dinosaurio Articulado 3D",
@@ -108,7 +108,7 @@
     },
     {
       "sourcePath": "src/content/products/invitacion-marcapaginas-personalizada.yml",
-      "blobSha": "88eda33e64a3d96373372114ed8f744df1c72204",
+      "blobSha": "6c728deb312fe3e2344a50c60e6a6e202358d490",
       "id": "invitacion-marcapaginas-personalizada",
       "slug": "invitacion-marcapaginas-personalizada",
       "name": "Invitación marcapáginas personalizada",
@@ -228,10 +228,10 @@
     },
     {
       "sourcePath": "src/content/products/lamina-natalicia-a5.yml",
-      "blobSha": "b607a50af34a8998fa7b4de7c30f3a06f9eeb659",
+      "blobSha": "491497f97a48c1c2f3f679a15d74d203532c0945",
       "id": "lamina-natalicia-a5",
       "slug": "lamina-natalicia-a5",
-      "name": "Lámina Natalicia",
+      "name": "Lámina Natalicia formato PDF",
       "status": "published",
       "price": {
         "kind": "fixed",
@@ -252,7 +252,7 @@
     },
     {
       "sourcePath": "src/content/products/lamina-personalizada-a5.yml",
-      "blobSha": "222353ea113ec83c81b3b61680167066dcc47456",
+      "blobSha": "96fed03e9f791106db46bfbf99bc13364e7bf912",
       "id": "lamina-personalizada-a5",
       "slug": "lamina-personalizada-a5",
       "name": "Lámina PDF para imprimir.",
@@ -372,7 +372,7 @@
     },
     {
       "sourcePath": "src/content/products/pack-personalizado.yml",
-      "blobSha": "f4b6e961ea3625fd211210510919e56b2dddad65",
+      "blobSha": "e026cf69eef4a1e7e10271e1d95f7844abd9f501",
       "id": "pack-personalizado",
       "slug": "pack-personalizado",
       "name": "Pack personalizado",
@@ -390,7 +390,7 @@
       "featured": true,
       "cover": {
         "src": "papeleria/pack-lamina-marcapaginas-libreta-a6.webp",
-        "alt": "Pack de papelería personalizada con una lámina, un marcapáginas y una libreta A6 en tonos rosas.",
+        "alt": "Pack de papelería personalizada con lámina, marcapáginas y libreta.",
         "blobSha": "afe949a051e44db3da3e1fa8b69f82bf5546ea67"
       }
     },
@@ -614,5 +614,5 @@
       "order": 20
     }
   ],
-  "generatedAt": "2026-10-29T21:25:51.069567Z"
+  "generatedAt": "2026-10-30T05:36:40.002648Z"
 }
