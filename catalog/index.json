@@ -228,10 +228,10 @@
     },
     {
       "sourcePath": "src/content/products/lamina-y-marco.yml",
-      "blobSha": "59ec383ac4522c374cbe8904e27bfac866bccd92",
+      "blobSha": "aaa2a66196993b7c33b7a82f754e1a74ad36e682",
       "id": "lamina-y-marco",
       "slug": "lamina-y-marco",
-      "name": "Lámina y marco",
+      "name": "Lámina y marco 13*18",
       "status": "published",
       "price": {
         "kind": "fixed",
@@ -542,5 +542,5 @@
       "order": 20
     }
   ],
-  "generatedAt": "2026-10-31T21:56:49.609610Z"
+  "generatedAt": "2026-10-31T22:03:39.024196Z"
 }
