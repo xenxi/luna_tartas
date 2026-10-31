@@ -227,54 +227,6 @@
       }
     },
     {
-      "sourcePath": "src/content/products/lamina-natalicia-a5.yml",
-      "blobSha": "491497f97a48c1c2f3f679a15d74d203532c0945",
-      "id": "lamina-natalicia-a5",
-      "slug": "lamina-natalicia-a5",
-      "name": "Lámina Natalicia formato PDF",
-      "status": "published",
-      "price": {
-        "kind": "fixed",
-        "amountMinor": 550,
-        "currency": "EUR"
-      },
-      "inventory": {
-        "mode": "made-to-order"
-      },
-      "categories": ["laminas-personalizadas"],
-      "order": 50,
-      "featured": true,
-      "cover": {
-        "src": "laminas/lamina-natalicia-clara.jpeg",
-        "alt": "Lámina natalicia conejito.\nIndica tamaño:\n10*15\n13*18\n15*20\n20*25",
-        "blobSha": "a23731680973ae70eb8cd227d34c98af79615841"
-      }
-    },
-    {
-      "sourcePath": "src/content/products/lamina-personalizada-a5.yml",
-      "blobSha": "96fed03e9f791106db46bfbf99bc13364e7bf912",
-      "id": "lamina-personalizada-a5",
-      "slug": "lamina-personalizada-a5",
-      "name": "Lámina PDF para imprimir.",
-      "status": "published",
-      "price": {
-        "kind": "fixed",
-        "amountMinor": 550,
-        "currency": "EUR"
-      },
-      "inventory": {
-        "mode": "made-to-order"
-      },
-      "categories": ["laminas-personalizadas"],
-      "order": 40,
-      "featured": true,
-      "cover": {
-        "src": "lamina-personalizada-a5/cover-fc6766198fab.jpg",
-        "alt": "Lámina decorativa personalizada",
-        "blobSha": "4ef42b4522d67a7bf00b464dff4f253d6ee5f122"
-      }
-    },
-    {
       "sourcePath": "src/content/products/lamina-y-marco.yml",
       "blobSha": "59ec383ac4522c374cbe8904e27bfac866bccd92",
       "id": "lamina-y-marco",
@@ -590,5 +542,5 @@
       "order": 20
     }
   ],
-  "generatedAt": "2026-10-30T06:15:44.898116Z"
+  "generatedAt": "2026-10-31T21:56:49.609610Z"
 }
