@@ -5,7 +5,13 @@ name: Kit de colorear personalizado
 summary: "Regala a los invitados este kit personalizado para colorear, elige la temática que quieras, si no está entre los ejemplos escríbeme y la realizamos!"
 description: "​🎨Pedido mínimo: 10 unidades.\n​▫️Pack Cumpleaños Peque (10 unidades): 22,00 € (a 2,20 €\/ud)\n▫️Pack Cumpleaños Medio (15 unidades): 30,00 € (a 2,00 €\/ud)\n​▫️Pack Gran Fiesta (20 o más unidades): 1,80 €\/unidad"
 customization:
-  kind: none
+  description: Recibe tu pedido listo para regalar
+  kind: available
+  options:
+    - Indica el evento
+    - para cumpleaños nombre y edad.
+    - para comunión nombre y fecha.
+    - Indicar datos que quieres incluir .
 featured: false
 inventory:
   mode: made-to-order
@@ -32,3 +38,11 @@ media:
       owner: Luna
       licenseOrPermission: Fotografía propia. Uso autorizado por Luna.
       evidence: Catálogo propio de Luna; autorización de la titular.
+  gallery:
+    - src: kit-de-colorear-personalizado/gallery-bfdff87d9129.jpg
+      alt: Kit de colorear personalizado
+      caption: Elige temática
+      rights:
+        owner: Luna
+        licenseOrPermission: Fotografía propia. Uso autorizado por Luna.
+        evidence: Catálogo propio de Luna; autorización de la titular.
