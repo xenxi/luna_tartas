@@ -61,6 +61,12 @@ media:
         owner: Luna
         licenseOrPermission: Fotografía propia. Uso autorizado por Luna.
         evidence: Catálogo propio de Luna; autorización de la titular.
+    - src: tarta-de-panales-personalizada/gallery-5d1e0bdb62b6.jpg
+      alt: Tartas de pañales Pokémon
+      rights:
+        owner: Luna
+        licenseOrPermission: Fotografía propia. Uso autorizado por Luna.
+        evidence: Catálogo propio de Luna; autorización de la titular.
 customization:
   kind: available
   options:
