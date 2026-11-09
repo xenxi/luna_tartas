@@ -1,0 +1,53 @@
+id: invitacion-de-comunion
+slug: invitacion-de-comunion
+status: published
+name: invitación de comunión
+summary: invitación comunión
+description: Invitación cuadrada a doble cara
+categories:
+  - papeleria-personalizada
+occasions:
+  - comunion
+recipients:
+  - ninos
+price:
+  kind: fixed
+  amountMinor: 220
+  currency: EUR
+media:
+  cover:
+    src: invitacion-de-comunion/cover-82fd33c2e711.jpg
+    alt: invitación de comunión
+    rights:
+      owner: Luna
+      licenseOrPermission: Fotografía propia. Uso autorizado por Luna.
+      evidence: Catálogo propio de Luna; autorización de la titular.
+  gallery:
+    - src: invitacion-de-comunion/gallery-b3157eacb69b.jpg
+      alt: invitación de comunión
+      rights:
+        owner: Luna
+        licenseOrPermission: Fotografía propia. Uso autorizado por Luna.
+        evidence: Catálogo propio de Luna; autorización de la titular.
+    - src: invitacion-de-comunion/gallery-7d1264221a09.jpg
+      alt: invitación de comunión
+      rights:
+        owner: Luna
+        licenseOrPermission: Fotografía propia. Uso autorizado por Luna.
+        evidence: Catálogo propio de Luna; autorización de la titular.
+    - src: invitacion-de-comunion/gallery-82fd33c2e711.jpg
+      alt: invitación de comunión
+      rights:
+        owner: Luna
+        licenseOrPermission: Fotografía propia. Uso autorizado por Luna.
+        evidence: Catálogo propio de Luna; autorización de la titular.
+customization:
+  kind: none
+featured: false
+approval:
+  source: Revisión del producto en Luna Studio
+  sourceDate: 2026-11-09
+  approvedBy: Luna
+  approvedAt: 2026-11-09
+inventory:
+  mode: made-to-order
