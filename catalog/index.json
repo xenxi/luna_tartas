@@ -132,7 +132,7 @@
     },
     {
       "sourcePath": "src/content/products/invitacion-marcapaginas-personalizada.yml",
-      "blobSha": "6c728deb312fe3e2344a50c60e6a6e202358d490",
+      "blobSha": "e4d3187ecbd5c821acbf26c57a71acb25090a6cd",
       "id": "invitacion-marcapaginas-personalizada",
       "slug": "invitacion-marcapaginas-personalizada",
       "name": "Invitación marcapáginas personalizada",
@@ -566,5 +566,5 @@
       "order": 20
     }
   ],
-  "generatedAt": "2026-11-09T06:39:40.218512Z"
+  "generatedAt": "2026-11-09T06:42:40.379319Z"
 }

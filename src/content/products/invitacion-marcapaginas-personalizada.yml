@@ -29,7 +29,6 @@ customization:
     - Fecha
     - Hora
     - Lugar
-    - Diseño personalizado
   description: La información y el diseño se adaptan a cada celebración.
 order: 70
 approval:
