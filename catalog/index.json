@@ -180,7 +180,7 @@
     },
     {
       "sourcePath": "src/content/products/kit-pintura-halloween.yml",
-      "blobSha": "8b620adb5546e73e80e35ba88fcce29e8667125b",
+      "blobSha": "7656f060b668190c281be304c1b4b1cad5f74acb",
       "id": "kit-pintura-halloween",
       "slug": "kit-pintura-halloween",
       "name": "🎨Kit Pinta,lava y vuelve a Pintar!",
@@ -566,5 +566,5 @@
       "order": 20
     }
   ],
-  "generatedAt": "2026-11-12T23:08:03.371540Z"
+  "generatedAt": "2026-11-12T23:15:45.535289Z"
 }
