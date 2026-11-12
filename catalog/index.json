@@ -60,10 +60,10 @@
     },
     {
       "sourcePath": "src/content/products/etiquetas-personalizadas-regalos.yml",
-      "blobSha": "3afb0295416e61bf5fef0fe20960f4ae6dad2ef7",
+      "blobSha": "f971906fad9038cd97716a19be9ad1620bdfd0e6",
       "id": "etiquetas-personalizadas-regalos",
       "slug": "etiquetas-personalizadas-regalos",
-      "name": "Etiquetas para regalos",
+      "name": "20 Etiquetas para regalos",
       "status": "published",
       "price": {
         "kind": "fixed",
@@ -566,5 +566,5 @@
       "order": 20
     }
   ],
-  "generatedAt": "2026-11-12T23:02:52.928702Z"
+  "generatedAt": "2026-11-12T23:08:03.371540Z"
 }
