@@ -30,10 +30,10 @@ customization:
 featured: false
 inventory:
   mode: made-to-order
-description: "Precio por unidad 1,80\nPara pedidos de mas de 20 libretas, la unidad sale a 1'50€\nPara pedidos de más de 50 libretas, la unidad sale a 1'40\nSe presenta como en la foto, incluye funda  envoltorio de celofán transparente, listo para regalar."
+description: "Libreta personalizada regalo bautizo, comunión, eventos, detalle para invitados.\n\nPrecio por unidad 2'90€.\n▫️Descuento a partir de:\n10 unidades (2'30 unidad) \n20 unidades (2'10€ la unidad)\n30 unidades (1'95 la unidad)\n50 unidades (1'80€ la unidad)\nPara pedidos de más de 50 libretas, la unidad sale a 1'80\n\nSe presenta como en la foto, incluye funda envoltorio de celofán transparente, listo para regalar."
 price:
   kind: from
-  amountMinor: 140
+  amountMinor: 180
   currency: EUR
 approval:
   source: Revisión del producto en Luna Studio
