@@ -276,14 +276,14 @@
     },
     {
       "sourcePath": "src/content/products/libreta-carrusel.yml",
-      "blobSha": "dcca0390e20c51f0cf581755d1e388f2da96f8ba",
+      "blobSha": "12158823302c4cc63baccb03f5ec005484e2b108",
       "id": "libreta-carrusel",
       "slug": "libreta-carrusel",
       "name": "Libretas Recordatorio",
       "status": "published",
       "price": {
         "kind": "from",
-        "amountMinor": 190,
+        "amountMinor": 140,
         "currency": "EUR"
       },
       "inventory": {
@@ -566,5 +566,5 @@
       "order": 20
     }
   ],
-  "generatedAt": "2026-11-09T11:04:43.901874Z"
+  "generatedAt": "2026-11-12T21:00:04.099683Z"
 }

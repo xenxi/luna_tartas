@@ -30,10 +30,10 @@ customization:
 featured: false
 inventory:
   mode: made-to-order
-description: "Precio por unidad 2,80\nPara pedidos de mas de 20 libretas, la unidad sale a 2'30€\nPara pedidos de más de 50 libretas, la unidad sale a 1'90\nSe presenta como en la foto, incluye funda  envoltorio de celofán transparente, listo para regalar."
+description: "Precio por unidad 1,80\nPara pedidos de mas de 20 libretas, la unidad sale a 1'50€\nPara pedidos de más de 50 libretas, la unidad sale a 1'40\nSe presenta como en la foto, incluye funda  envoltorio de celofán transparente, listo para regalar."
 price:
   kind: from
-  amountMinor: 190
+  amountMinor: 140
   currency: EUR
 approval:
   source: Revisión del producto en Luna Studio
