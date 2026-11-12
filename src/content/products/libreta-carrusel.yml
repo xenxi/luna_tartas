@@ -26,7 +26,7 @@ customization:
     - Indica el nombre
     - evento
     - fecha.
-  description: test
+  description: "Libreta personalizada regalo bautizo, comunión, eventos, detalle para invitados.\nPrecio por unidad 2'90€\nDescuento a partir de:\n10 unidades (2'30 unidad) \n20 unidades (2'10€ la unidad)\n30 unidades (1'95 la unidad)\n50 unidades (1'80€ la unidad)"
 featured: false
 inventory:
   mode: made-to-order

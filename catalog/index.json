@@ -276,7 +276,7 @@
     },
     {
       "sourcePath": "src/content/products/libreta-carrusel.yml",
-      "blobSha": "12158823302c4cc63baccb03f5ec005484e2b108",
+      "blobSha": "83c8ff293bf704d3c5dcc3d988b4855b3febf526",
       "id": "libreta-carrusel",
       "slug": "libreta-carrusel",
       "name": "Libretas Recordatorio",
@@ -566,5 +566,5 @@
       "order": 20
     }
   ],
-  "generatedAt": "2026-11-12T21:00:04.099683Z"
+  "generatedAt": "2026-11-12T22:58:38.189947Z"
 }
