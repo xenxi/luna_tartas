@@ -180,14 +180,14 @@
     },
     {
       "sourcePath": "src/content/products/kit-pintura-halloween.yml",
-      "blobSha": "7656f060b668190c281be304c1b4b1cad5f74acb",
+      "blobSha": "6ac191809f80108d1fc39d923b094fcd81158de7",
       "id": "kit-pintura-halloween",
       "slug": "kit-pintura-halloween",
       "name": "🎨Kit Pinta,lava y vuelve a Pintar!",
       "status": "published",
       "price": {
-        "kind": "fixed",
-        "amountMinor": 590,
+        "kind": "from",
+        "amountMinor": 290,
         "currency": "EUR"
       },
       "inventory": {
@@ -566,5 +566,5 @@
       "order": 20
     }
   ],
-  "generatedAt": "2026-11-12T23:15:45.535289Z"
+  "generatedAt": "2026-11-12T23:17:57.165827Z"
 }

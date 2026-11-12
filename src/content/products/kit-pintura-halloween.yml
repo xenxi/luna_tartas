@@ -9,8 +9,8 @@ categories:
 recipients:
   - ninos
 price:
-  kind: fixed
-  amountMinor: 590
+  kind: from
+  amountMinor: 290
   currency: EUR
 media:
   cover:
