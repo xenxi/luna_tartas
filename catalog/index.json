@@ -420,7 +420,7 @@
     },
     {
       "sourcePath": "src/content/products/tarta-de-panales-personalizada.yml",
-      "blobSha": "2693babd04d12423d6310d882e51bd5eb5d9fe20",
+      "blobSha": "1adc9ff58bad3cf3dc2ba2636babb561da1c516d",
       "id": "tarta-de-panales-personalizada",
       "slug": "tarta-de-panales-personalizada",
       "name": "Tartas de pañales",
@@ -437,9 +437,9 @@
       "order": 10,
       "featured": false,
       "cover": {
-        "src": "tarta-de-panales-personalizada/cover-343c74deb89a.jpg",
-        "alt": "Tarta de pañales Dulce",
-        "blobSha": "8506dd72a5c8abc198b179cf2cd3af7a45d3a56d"
+        "src": "tarta-de-panales-personalizada/cover-d863000a03f3.jpg",
+        "alt": "Tartas de pañales",
+        "blobSha": "7dd12ede3ec7bb7f33962e8c791fc4bd91e3c040"
       }
     }
   ],
@@ -566,5 +566,5 @@
       "order": 20
     }
   ],
-  "generatedAt": "2026-11-12T23:17:57.165827Z"
+  "generatedAt": "2026-11-19T04:00:10.579800Z"
 }
