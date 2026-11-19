@@ -132,14 +132,14 @@
     },
     {
       "sourcePath": "src/content/products/invitacion-marcapaginas-personalizada.yml",
-      "blobSha": "e4d3187ecbd5c821acbf26c57a71acb25090a6cd",
+      "blobSha": "6370fd3039b338f8a70403ef138be2c50e569cf5",
       "id": "invitacion-marcapaginas-personalizada",
       "slug": "invitacion-marcapaginas-personalizada",
       "name": "Invitación marcapáginas personalizada",
       "status": "published",
       "price": {
-        "kind": "from",
-        "amountMinor": 180,
+        "kind": "fixed",
+        "amountMinor": 190,
         "currency": "EUR"
       },
       "inventory": {
@@ -177,6 +177,26 @@
         "alt": "Kit de colorear personalizado",
         "blobSha": "85f389871818153095bef3a1f0032f325a41a851"
       }
+    },
+    {
+      "sourcePath": "src/content/products/kit-erizos-pinta-lava-y-vuelve-a-pintar.yml",
+      "blobSha": "3fb419bc8eb1f90cf1e165c3d8cf781e1d52072e",
+      "id": "kit-erizos-pinta-lava-y-vuelve-a-pintar",
+      "slug": "kit-erizos-pinta-lava-y-vuelve-a-pintar",
+      "name": "Kit Erizos pinta, lava y vuelve a pintar!",
+      "status": "draft",
+      "price": {
+        "kind": "fixed",
+        "amountMinor": 220,
+        "currency": "EUR"
+      },
+      "inventory": {
+        "mode": "made-to-order"
+      },
+      "categories": ["packs-personalizados"],
+      "order": null,
+      "featured": false,
+      "cover": null
     },
     {
       "sourcePath": "src/content/products/kit-pintura-halloween.yml",
@@ -372,14 +392,14 @@
     },
     {
       "sourcePath": "src/content/products/tarjeta-felicitacion-personalizada-a6.yml",
-      "blobSha": "f6e2ff2f249e5a32ace4a3ba157b262d53252730",
+      "blobSha": "ce967870057bef78b339d8d2f7c403a186a85568",
       "id": "tarjeta-felicitacion-personalizada-a6",
       "slug": "tarjeta-felicitacion-personalizada-a6",
       "name": "Tarjeta de Felicitación Elefante",
       "status": "published",
       "price": {
         "kind": "fixed",
-        "amountMinor": 220,
+        "amountMinor": 190,
         "currency": "EUR"
       },
       "inventory": {
@@ -390,7 +410,7 @@
       "featured": false,
       "cover": {
         "src": "papeleria/tarjeta-felicitacion-leo.jpeg",
-        "alt": "Tarjeta de felicitación A6 personalizada con el nombre Leo, abierta y decorada con banderines y un elefante.",
+        "alt": "Tarjeta de felicitación personalizada con el nombre y edad, diseño exterior e interior con temática fiesta. Detalle único y especial para regalar.",
         "blobSha": "82fc2966a82402295cd73d105971734e5d667ada"
       }
     },
@@ -566,5 +586,5 @@
       "order": 20
     }
   ],
-  "generatedAt": "2026-11-19T06:41:33.960493Z"
+  "generatedAt": "2026-11-19T07:02:58.957835Z"
 }

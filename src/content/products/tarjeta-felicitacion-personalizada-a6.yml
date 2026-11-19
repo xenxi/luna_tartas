@@ -13,12 +13,12 @@ recipients:
   - alguien-especial
 price:
   kind: fixed
-  amountMinor: 220
+  amountMinor: 190
   currency: EUR
 media:
   cover:
     src: papeleria/tarjeta-felicitacion-leo.jpeg
-    alt: Tarjeta de felicitación A6 personalizada con el nombre Leo, abierta y decorada con banderines y un elefante.
+    alt: "Tarjeta de felicitación personalizada con el nombre y edad, diseño exterior e interior con temática fiesta. Detalle único y especial para regalar."
     rights:
       owner: Luna / MGR Creaciones
       licenseOrPermission: Fotografía, diseño y producto propios; publicación autorizada en lunatartas.es.
