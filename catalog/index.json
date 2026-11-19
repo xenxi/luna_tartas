@@ -156,7 +156,7 @@
     },
     {
       "sourcePath": "src/content/products/kit-de-colorear-personalizado.yml",
-      "blobSha": "896649a0cc222941e7cd252c8e574d10029d2f62",
+      "blobSha": "ab7f7c984df20cc48fa67d7b171dba5f9dad3a6b",
       "id": "kit-de-colorear-personalizado",
       "slug": "kit-de-colorear-personalizado",
       "name": "Kit de colorear personalizado",
@@ -566,5 +566,5 @@
       "order": 20
     }
   ],
-  "generatedAt": "2026-11-19T04:14:23.751510Z"
+  "generatedAt": "2026-11-19T06:41:33.960493Z"
 }
