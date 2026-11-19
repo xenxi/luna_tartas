@@ -1,6 +1,6 @@
 id: kit-erizos-pinta-lava-y-vuelve-a-pintar
 slug: kit-erizos-pinta-lava-y-vuelve-a-pintar
-status: draft
+status: published
 name: "Kit Erizos pinta, lava y vuelve a pintar!"
 summary: "Este kit de regalo incluye, cartel personalizado, 2 piezas de erizo, 2 rotuladores lavables, 4 hojas para colorear y envoltorio en papel celofán listo para regalar.\nUna vez pintadas las piezas de erizo, lavalas y vuelve a pintar!"
 description: "Este kit de regalo incluye, cartel personalizado, 2 piezas de erizo, 2 rotuladores lavables, 4 hojas para colorear y envoltorio en papel celofán listo para regalar.\nUna vez pintadas las piezas de erizo, lavalas y vuelve a pintar!"
@@ -19,3 +19,16 @@ customization:
 featured: false
 inventory:
   mode: made-to-order
+approval:
+  source: Revisión del producto en Luna Studio
+  sourceDate: 2026-11-19
+  approvedBy: Luna
+  approvedAt: 2026-11-19
+media:
+  cover:
+    src: kit-erizos-pinta-lava-y-vuelve-a-pintar/cover-dbaebf98204d.jpg
+    alt: "Kit Erizos pinta, lava y vuelve a pintar!"
+    rights:
+      owner: Luna
+      licenseOrPermission: Fotografía propia. Uso autorizado por Luna.
+      evidence: Catálogo propio de Luna; autorización de la titular.

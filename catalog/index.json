@@ -180,11 +180,11 @@
     },
     {
       "sourcePath": "src/content/products/kit-erizos-pinta-lava-y-vuelve-a-pintar.yml",
-      "blobSha": "3fb419bc8eb1f90cf1e165c3d8cf781e1d52072e",
+      "blobSha": "8d0edf1216426729b028f691c7ab44f1340e98c3",
       "id": "kit-erizos-pinta-lava-y-vuelve-a-pintar",
       "slug": "kit-erizos-pinta-lava-y-vuelve-a-pintar",
       "name": "Kit Erizos pinta, lava y vuelve a pintar!",
-      "status": "draft",
+      "status": "published",
       "price": {
         "kind": "fixed",
         "amountMinor": 220,
@@ -196,7 +196,11 @@
       "categories": ["packs-personalizados"],
       "order": null,
       "featured": false,
-      "cover": null
+      "cover": {
+        "src": "kit-erizos-pinta-lava-y-vuelve-a-pintar/cover-dbaebf98204d.jpg",
+        "alt": "Kit Erizos pinta, lava y vuelve a pintar!",
+        "blobSha": "7cafbde748ba2d4494c84541d82c5a63d139363f"
+      }
     },
     {
       "sourcePath": "src/content/products/kit-pintura-halloween.yml",
@@ -586,5 +590,5 @@
       "order": 20
     }
   ],
-  "generatedAt": "2026-11-19T07:02:58.957835Z"
+  "generatedAt": "2026-11-19T08:05:38.541549Z"
 }
