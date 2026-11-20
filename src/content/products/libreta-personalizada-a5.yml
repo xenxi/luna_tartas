@@ -3,23 +3,23 @@ slug: libreta-personalizada-a5
 status: published
 name: Libreta Personalizada A5
 summary: "Tú libreta presonalizada, para el día a día, tareas pendientes, blog de notas, regalos eventos, anotaciones evolución bebé."
-description: "Cada libreta que realizamos, va personalizada especialrme para ti. Tamaño A5 con 20 hojas, 40 páginas y un diseño único. \nLa personalizamos con el nombre, temática o inicial.\nElige la tuya y haz tu pedido."
+description: "Cada libreta que realizamos, va personalizada especialrme para ti. Tamaño A5 con 20 hojas, 40 páginas y un diseño único. \nLa personalizamos con el nombre, temática o inicial.\npresentado con cierre de goma y cuerda y envoltorio de celofán.\nElige la tuya y haz tu pedido."
 categories:
   - papeleria-personalizada
 recipients:
   - alguien-especial
 price:
   kind: fixed
-  amountMinor: 390
+  amountMinor: 350
   currency: EUR
 media:
   cover:
-    src: papeleria/libreta-claudia-1.jpeg
-    alt: Libreta personalizada A5 con con inicial y nombre
+    src: libreta-personalizada-a5/cover-d9427768a77e.jpg
+    alt: Libreta Personalizada
     rights:
-      owner: Luna / MGR Creaciones
-      licenseOrPermission: Fotografía, diseño y producto propios; publicación autorizada en lunatartas.es.
-      evidence: Confirmación directa del propietario en conversación de proyecto, 2026-08-17.
+      owner: Luna
+      licenseOrPermission: Fotografía propia. Uso autorizado por Luna.
+      evidence: Catálogo propio de Luna; autorización de la titular.
   gallery:
     - src: papeleria/libreta-claudia-2.jpeg
       alt: Detalles de la libreta personalizada parte trasera
@@ -39,6 +39,36 @@ media:
         owner: Luna / MGR Creaciones
         licenseOrPermission: "Fotografía, diseño y producto propios; publicación autorizada en lunatartas.es."
         evidence: "Confirmación directa del propietario en conversación de proyecto, 2026-08-17."
+    - src: libreta-personalizada-a5/gallery-8ba447ffffb5.jpg
+      alt: Libreta Personalizada A5
+      rights:
+        owner: Luna
+        licenseOrPermission: Fotografía propia. Uso autorizado por Luna.
+        evidence: Catálogo propio de Luna; autorización de la titular.
+    - src: libreta-personalizada-a5/gallery-b3c426325c26.jpg
+      alt: Libreta Personalizada A5
+      rights:
+        owner: Luna
+        licenseOrPermission: Fotografía propia. Uso autorizado por Luna.
+        evidence: Catálogo propio de Luna; autorización de la titular.
+    - src: libreta-personalizada-a5/gallery-dc9ab5b9e597.jpg
+      alt: Libreta Personalizada A5
+      rights:
+        owner: Luna
+        licenseOrPermission: Fotografía propia. Uso autorizado por Luna.
+        evidence: Catálogo propio de Luna; autorización de la titular.
+    - src: libreta-personalizada-a5/gallery-fb8e7f78b292.jpg
+      alt: Libreta Personalizada A5
+      rights:
+        owner: Luna
+        licenseOrPermission: Fotografía propia. Uso autorizado por Luna.
+        evidence: Catálogo propio de Luna; autorización de la titular.
+    - src: libreta-personalizada-a5/gallery-fc24626a2bf2.jpg
+      alt: Libreta Personalizada A5
+      rights:
+        owner: Luna
+        licenseOrPermission: Fotografía propia. Uso autorizado por Luna.
+        evidence: Catálogo propio de Luna; autorización de la titular.
 customization:
   kind: available
   options:

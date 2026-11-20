@@ -324,14 +324,14 @@
     },
     {
       "sourcePath": "src/content/products/libreta-personalizada-a5.yml",
-      "blobSha": "d6c26fc85476a27a37343554c5ca5c4126a41ffd",
+      "blobSha": "356e9a77d58983a2ccd434452564473a4c8ca956",
       "id": "libreta-personalizada-a5",
       "slug": "libreta-personalizada-a5",
       "name": "Libreta Personalizada A5",
       "status": "published",
       "price": {
         "kind": "fixed",
-        "amountMinor": 390,
+        "amountMinor": 350,
         "currency": "EUR"
       },
       "inventory": {
@@ -341,9 +341,9 @@
       "order": 20,
       "featured": true,
       "cover": {
-        "src": "papeleria/libreta-claudia-1.jpeg",
-        "alt": "Libreta personalizada A5 con con inicial y nombre",
-        "blobSha": "87c8329988dfbbff52b2ebfd83c4e462e0f4848c"
+        "src": "libreta-personalizada-a5/cover-d9427768a77e.jpg",
+        "alt": "Libreta Personalizada",
+        "blobSha": "f8e56587bfb75933b874ee07d40ac5b6456fa34d"
       }
     },
     {
@@ -590,5 +590,5 @@
       "order": 20
     }
   ],
-  "generatedAt": "2026-11-20T15:13:35.270099Z"
+  "generatedAt": "2026-11-20T18:09:33.196849Z"
 }
