@@ -1,7 +1,7 @@
 id: invitacion-de-comunion
 slug: invitacion-de-comunion
 status: published
-name: invitación de comunión
+name: Invitación de Comunión
 summary: invitación comunión
 description: Invitación cuadrada a doble cara
 categories:
@@ -12,7 +12,7 @@ recipients:
   - ninos
 price:
   kind: fixed
-  amountMinor: 220
+  amountMinor: 240
   currency: EUR
 media:
   cover:

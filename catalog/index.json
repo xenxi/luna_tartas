@@ -108,14 +108,14 @@
     },
     {
       "sourcePath": "src/content/products/invitacion-de-comunion.yml",
-      "blobSha": "64ba20fff0a7e1beb032a3869b3624f2900b155d",
+      "blobSha": "4ca044ede192bc4a711263217e9240a6aa675d1b",
       "id": "invitacion-de-comunion",
       "slug": "invitacion-de-comunion",
-      "name": "invitación de comunión",
+      "name": "Invitación de Comunión",
       "status": "published",
       "price": {
         "kind": "fixed",
-        "amountMinor": 220,
+        "amountMinor": 240,
         "currency": "EUR"
       },
       "inventory": {
@@ -590,5 +590,5 @@
       "order": 20
     }
   ],
-  "generatedAt": "2026-11-19T08:05:38.541549Z"
+  "generatedAt": "2026-11-20T15:13:35.270099Z"
 }
